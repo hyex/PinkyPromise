@@ -67,11 +67,11 @@
             </objects>
             <point key="canvasLocation" x="997.10144927536237" y="8.7053571428571423"/>
         </scene>
-        <!--More-->
+        <!--Navigation Controller-->
         <scene sceneID="enh-c2-t44">
             <objects>
                 <navigationController storyboardIdentifier="MoreTabNavi" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PcT-42-O8f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" id="eEf-IH-d7a"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="eEf-IH-d7a"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xLW-UZ-zp9">
