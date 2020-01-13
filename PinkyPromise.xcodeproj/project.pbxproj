@@ -12,7 +12,15 @@
 		330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AE5FF23CB56DC00706769 /* SceneDelegate.swift */; };
 		330AE60C23CB56DC00706769 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330AE60323CB56DC00706769 /* LaunchScreen.storyboard */; };
 		330AE60D23CB56DC00706769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330AE60523CB56DC00706769 /* Main.storyboard */; };
-		330AE60E23CB56DC00706769 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AE60823CB56DC00706769 /* ViewController.swift */; };
+		334AACD023CC248B00AAF955 /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACCF23CC248B00AAF955 /* HomeTab.storyboard */; };
+		334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD123CC249D00AAF955 /* MyTab.storyboard */; };
+		334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD423CC24B100AAF955 /* FriendTab.storyboard */; };
+		334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD623CC24BA00AAF955 /* MoreTab.storyboard */; };
+		334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACDC23CC262D00AAF955 /* HomeTabMainVC.swift */; };
+		334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACDE23CC273500AAF955 /* MainTabBarController.swift */; };
+		334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE023CC294000AAF955 /* MyTabMainVC.swift */; };
+		334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE223CC295100AAF955 /* FriendTabMainVC.swift */; };
+		334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE423CC296100AAF955 /* MoreTabMainVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +29,15 @@
 		330AE5FF23CB56DC00706769 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		330AE60423CB56DC00706769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		330AE60623CB56DC00706769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		330AE60823CB56DC00706769 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		334AACCF23CC248B00AAF955 /* HomeTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
+		334AACD123CC249D00AAF955 /* MyTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTab.storyboard; sourceTree = "<group>"; };
+		334AACD423CC24B100AAF955 /* FriendTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendTab.storyboard; sourceTree = "<group>"; };
+		334AACD623CC24BA00AAF955 /* MoreTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreTab.storyboard; sourceTree = "<group>"; };
+		334AACDC23CC262D00AAF955 /* HomeTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabMainVC.swift; sourceTree = "<group>"; };
+		334AACDE23CC273500AAF955 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		334AACE023CC294000AAF955 /* MyTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabMainVC.swift; sourceTree = "<group>"; };
+		334AACE223CC295100AAF955 /* FriendTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabMainVC.swift; sourceTree = "<group>"; };
+		334AACE423CC296100AAF955 /* MoreTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabMainVC.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +89,10 @@
 			children = (
 				330AE60323CB56DC00706769 /* LaunchScreen.storyboard */,
 				330AE60523CB56DC00706769 /* Main.storyboard */,
+				334AACCF23CC248B00AAF955 /* HomeTab.storyboard */,
+				334AACD123CC249D00AAF955 /* MyTab.storyboard */,
+				334AACD423CC24B100AAF955 /* FriendTab.storyboard */,
+				334AACD623CC24BA00AAF955 /* MoreTab.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -80,9 +100,53 @@
 		330AE60723CB56DC00706769 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				330AE60823CB56DC00706769 /* ViewController.swift */,
+				334AACE623CC296D00AAF955 /* Main */,
+				334AACD823CC24EF00AAF955 /* HomeTab */,
+				334AACD923CC250000AAF955 /* MyTab */,
+				334AACDA23CC250600AAF955 /* FriendTab */,
+				334AACDB23CC250E00AAF955 /* MoreTab */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		334AACD823CC24EF00AAF955 /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				334AACDC23CC262D00AAF955 /* HomeTabMainVC.swift */,
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		334AACD923CC250000AAF955 /* MyTab */ = {
+			isa = PBXGroup;
+			children = (
+				334AACE023CC294000AAF955 /* MyTabMainVC.swift */,
+			);
+			path = MyTab;
+			sourceTree = "<group>";
+		};
+		334AACDA23CC250600AAF955 /* FriendTab */ = {
+			isa = PBXGroup;
+			children = (
+				334AACE223CC295100AAF955 /* FriendTabMainVC.swift */,
+			);
+			path = FriendTab;
+			sourceTree = "<group>";
+		};
+		334AACDB23CC250E00AAF955 /* MoreTab */ = {
+			isa = PBXGroup;
+			children = (
+				334AACE423CC296100AAF955 /* MoreTabMainVC.swift */,
+			);
+			path = MoreTab;
+			sourceTree = "<group>";
+		};
+		334AACE623CC296D00AAF955 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				334AACDE23CC273500AAF955 /* MainTabBarController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		33FF2C2623CB55DC0040003A = {
@@ -104,10 +168,10 @@
 		33FF2C3123CB55DC0040003A /* PinkyPromise */ = {
 			isa = PBXGroup;
 			children = (
+				330AE5FC23CB56DC00706769 /* SupportingFile */,
 				330AE60123CB56DC00706769 /* Extensions */,
 				330AE5FB23CB56DC00706769 /* Models */,
 				330AE60223CB56DC00706769 /* Storyboards */,
-				330AE5FC23CB56DC00706769 /* SupportingFile */,
 				330AE60723CB56DC00706769 /* ViewControllers */,
 				330AE60023CB56DC00706769 /* Views */,
 				33FF2C4023CB55E20040003A /* Info.plist */,
@@ -173,7 +237,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */,
 				330AE60923CB56DC00706769 /* Assets.xcassets in Resources */,
+				334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */,
+				334AACD023CC248B00AAF955 /* HomeTab.storyboard in Resources */,
+				334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */,
 				330AE60D23CB56DC00706769 /* Main.storyboard in Resources */,
 				330AE60C23CB56DC00706769 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -186,8 +254,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				330AE60E23CB56DC00706769 /* ViewController.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
+				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
+				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
+				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
+				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
+				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
