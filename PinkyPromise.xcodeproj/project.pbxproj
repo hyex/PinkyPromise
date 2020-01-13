@@ -21,6 +21,8 @@
 		334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE023CC294000AAF955 /* MyTabMainVC.swift */; };
 		334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE223CC295100AAF955 /* FriendTabMainVC.swift */; };
 		334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE423CC296100AAF955 /* MoreTabMainVC.swift */; };
+		334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */; };
+		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		334AACE023CC294000AAF955 /* MyTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabMainVC.swift; sourceTree = "<group>"; };
 		334AACE223CC295100AAF955 /* FriendTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabMainVC.swift; sourceTree = "<group>"; };
 		334AACE423CC296100AAF955 /* MoreTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabMainVC.swift; sourceTree = "<group>"; };
+		334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTVC.swift; sourceTree = "<group>"; };
+		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +60,10 @@
 		330AE5FB23CB56DC00706769 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				334AACF023CC311500AAF955 /* HomeTab */,
+				334AACF123CC311B00AAF955 /* MyTab */,
+				334AACF223CC312100AAF955 /* FriendTab */,
+				334AACED23CC2F9000AAF955 /* MoreTab */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -73,6 +81,10 @@
 		330AE60023CB56DC00706769 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				334AACE723CC2E3A00AAF955 /* HomeTab */,
+				334AACE823CC2E4300AAF955 /* MyTab */,
+				334AACE923CC2E4A00AAF955 /* FriendTab */,
+				334AACEA23CC2E5300AAF955 /* MoreTab */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +159,64 @@
 				334AACDE23CC273500AAF955 /* MainTabBarController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		334AACE723CC2E3A00AAF955 /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		334AACE823CC2E4300AAF955 /* MyTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyTab;
+			sourceTree = "<group>";
+		};
+		334AACE923CC2E4A00AAF955 /* FriendTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FriendTab;
+			sourceTree = "<group>";
+		};
+		334AACEA23CC2E5300AAF955 /* MoreTab */ = {
+			isa = PBXGroup;
+			children = (
+				334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */,
+			);
+			path = MoreTab;
+			sourceTree = "<group>";
+		};
+		334AACED23CC2F9000AAF955 /* MoreTab */ = {
+			isa = PBXGroup;
+			children = (
+				334AACEE23CC2FF600AAF955 /* MoreTableData.swift */,
+			);
+			path = MoreTab;
+			sourceTree = "<group>";
+		};
+		334AACF023CC311500AAF955 /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		334AACF123CC311B00AAF955 /* MyTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyTab;
+			sourceTree = "<group>";
+		};
+		334AACF223CC312100AAF955 /* FriendTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FriendTab;
 			sourceTree = "<group>";
 		};
 		33FF2C2623CB55DC0040003A = {
@@ -254,6 +324,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
+				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
