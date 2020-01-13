@@ -21,6 +21,7 @@ class MoreTabMainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
         moreTableView.delegate = self
         moreTableView.dataSource = self
         
@@ -31,13 +32,15 @@ class MoreTabMainVC: UIViewController {
 
 extension MoreTabMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+//        performSegue(withIdentifier: "DetailSegue", sender: self.rankingList[indexPath.row])
+    
+                
 //        rankingTableView.backgroundColor = .darkGray
 //        print(self.rankingList[indexPath.row])
-//        performSegue(withIdentifier: "DetailSegue", sender: self.rankingList[indexPath.row])
 //        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailVC") {
 //            self.navigationController?.pushViewController(vc, animated: false)
 //        }
-        
     }
 }
 
