@@ -13,6 +13,10 @@ class HomeTabMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        
+//        if let tab = self.navigationController?.tabBarController as? MainTabBarController {
+//            print(tab.data)
+//        }
 
     }
     
