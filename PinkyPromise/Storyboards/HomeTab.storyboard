@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObT-pY-dvP">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,9 +12,62 @@
             <objects>
                 <viewController storyboardIdentifier="HomeTabMainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nu8-v0-LSz" customClass="HomeTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vej-n3-Vbq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pinky Promise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imd-hV-MIm">
+                                <rect key="frame" x="98" y="88" width="179" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQ1-bU-6Lk">
+                                <rect key="frame" x="11" y="147" width="353" height="288"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 데이터로부터 약속 가져오기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gp-dj-e2M">
+                                <rect key="frame" x="11" y="504" width="353" height="40"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="acL-dD-hKE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnp-T0-47O">
+                                <rect key="frame" x="172.66666666666666" y="658" width="30" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="+"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가장 가까운 나의 약속" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfi-hW-bGF">
+                                <rect key="frame" x="11" y="461" width="163" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="la0-yT-bTk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wfi-hW-bGF" firstAttribute="top" secondItem="iQ1-bU-6Lk" secondAttribute="bottom" constant="26" id="8Wd-la-V8O"/>
+                            <constraint firstItem="N9T-yw-9pV" firstAttribute="bottom" secondItem="Xnp-T0-47O" secondAttribute="bottom" constant="35" id="Bc3-Je-98w"/>
+                            <constraint firstItem="3gp-dj-e2M" firstAttribute="leading" secondItem="N9T-yw-9pV" secondAttribute="leading" constant="11" id="IWt-xy-1da"/>
+                            <constraint firstItem="3gp-dj-e2M" firstAttribute="centerX" secondItem="Xnp-T0-47O" secondAttribute="centerX" id="NjR-DB-d9s"/>
+                            <constraint firstItem="N9T-yw-9pV" firstAttribute="trailing" secondItem="iQ1-bU-6Lk" secondAttribute="trailing" constant="11" id="Oh5-el-zW4"/>
+                            <constraint firstItem="3gp-dj-e2M" firstAttribute="centerX" secondItem="iQ1-bU-6Lk" secondAttribute="centerX" id="QVN-yv-Rjz"/>
+                            <constraint firstItem="iQ1-bU-6Lk" firstAttribute="centerX" secondItem="imd-hV-MIm" secondAttribute="centerX" id="UcO-W5-gV0"/>
+                            <constraint firstItem="iQ1-bU-6Lk" firstAttribute="leading" secondItem="N9T-yw-9pV" secondAttribute="leading" constant="11" id="aXx-7K-n3m"/>
+                            <constraint firstItem="N9T-yw-9pV" firstAttribute="trailing" secondItem="3gp-dj-e2M" secondAttribute="trailing" constant="11" id="aeS-Wh-SfP"/>
+                            <constraint firstItem="N9T-yw-9pV" firstAttribute="top" secondItem="imd-hV-MIm" secondAttribute="top" id="gj1-ct-n2N"/>
+                            <constraint firstItem="wfi-hW-bGF" firstAttribute="leading" secondItem="iQ1-bU-6Lk" secondAttribute="leading" id="hfZ-iI-QYB"/>
+                            <constraint firstItem="iQ1-bU-6Lk" firstAttribute="top" secondItem="imd-hV-MIm" secondAttribute="bottom" constant="26" id="irx-g7-WJh"/>
+                            <constraint firstItem="Xnp-T0-47O" firstAttribute="top" secondItem="3gp-dj-e2M" secondAttribute="bottom" constant="114" id="kz2-hy-mfN"/>
+                            <constraint firstItem="imd-hV-MIm" firstAttribute="centerX" secondItem="N9T-yw-9pV" secondAttribute="centerX" id="nsj-fS-ifE"/>
+                            <constraint firstItem="3gp-dj-e2M" firstAttribute="top" secondItem="wfi-hW-bGF" secondAttribute="bottom" constant="20" id="rrS-uY-23P"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="N9T-yw-9pV"/>
                     </view>
                     <navigationItem key="navigationItem" id="LNs-G4-npE"/>
@@ -22,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eis-o0-auC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021.7391304347827" y="134.59821428571428"/>
+            <point key="canvasLocation" x="1021.6" y="134.48275862068965"/>
         </scene>
         <!--Home-->
         <scene sceneID="q0R-Nu-gZc">
@@ -32,7 +85,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aMy-5j-e5q">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
