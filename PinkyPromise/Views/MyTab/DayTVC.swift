@@ -15,7 +15,9 @@ class DayTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        promiseView.backgroundColor = .blue
+        
+//            return UITableView.automaticDimension
+        
         // Initialization code
     }
 
