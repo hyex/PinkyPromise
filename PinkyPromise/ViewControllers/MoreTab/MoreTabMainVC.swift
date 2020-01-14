@@ -16,15 +16,20 @@ class MoreTabMainVC: UIViewController {
         MoreTableData(title: "예제1"),
         MoreTableData(title: "예제2"),
         MoreTableData(title: "예제3"),
-
     ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         moreTableView.delegate = self
         moreTableView.dataSource = self
         
+//        MyApi.shared.allMenu(completion: { result in
+//            DispatchQueue.main.async {
+//                self.moreTableList = result
+//                self.moreTableView.reloadData()
+//            }
+//        })
     }
     
 }
