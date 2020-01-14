@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5623CD983A004E0104 /* DayChildVC.swift */; };
+		33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5823CD9848004E0104 /* PromiseChildVC.swift */; };
 		330AE60923CB56DC00706769 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 330AE5FD23CB56DC00706769 /* Assets.xcassets */; };
 		330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AE5FE23CB56DC00706769 /* AppDelegate.swift */; };
 		330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AE5FF23CB56DC00706769 /* SceneDelegate.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33028C5623CD983A004E0104 /* DayChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChildVC.swift; sourceTree = "<group>"; };
+		33028C5823CD9848004E0104 /* PromiseChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseChildVC.swift; sourceTree = "<group>"; };
 		330AE5FD23CB56DC00706769 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		330AE5FE23CB56DC00706769 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		330AE5FF23CB56DC00706769 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				334AACE023CC294000AAF955 /* MyTabMainVC.swift */,
+				33028C5623CD983A004E0104 /* DayChildVC.swift */,
+				33028C5823CD9848004E0104 /* PromiseChildVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -326,10 +332,12 @@
 			files = (
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
+				33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
 				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
+				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
