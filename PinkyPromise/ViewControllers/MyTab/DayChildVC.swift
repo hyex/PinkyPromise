@@ -9,65 +9,38 @@
 import UIKit
 
 class DayChildVC: UIViewController {
-
-    @IBOutlet weak var dayCollectionView: UICollectionView!
+    
+    @IBOutlet weak var dayTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dayCollectionView.delegate = self
-        dayCollectionView.dataSource = self
+        dayTableView.delegate = self
+        dayTableView.dataSource = self
 
     }
 
 }
 
-extension DayChildVC: UICollectionViewDelegate {
+extension DayChildVC: UITableViewDelegate {
     
 }
 
-extension DayChildVC: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension DayChildVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = UICollectionViewCell()
-        if let dayCell = dayCollectionView.dequeueReusableCell(withReuseIdentifier: "DayCVC", for: indexPath) as? DayCVC {
-            //            moreTableList.sort(by: {$0.promiseCount > $1.promiseCount})
-            //                    let rowData = self.moreTableList[indexPath.row]
-            
-            cell = dayCell
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+            if let dayCell = dayTableView.dequeueReusableCell(withIdentifier: "DayTVC", for: indexPath) as? DayTVC {
         
-        return cell
+                cell = dayCell
+            }
+        
+            return cell
     }
+    
+    
     
 }
-
-extension DayChildVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = 375
-//        let height =
-        let width = dayCollectionView.bounds.width
-        
-        /**
-         MARK: 이 높이를 테이블뷰의 크기에 맞추어서 하는 게 목표
-         */
-        let height = dayCollectionView.bounds.height/3
-        return CGSize(width: width, height: height)
-    }
-}
-
 
