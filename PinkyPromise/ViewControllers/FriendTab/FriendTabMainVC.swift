@@ -19,7 +19,7 @@ class FriendTabMainVC: UIViewController {
     
     let friendsInPromise : [FriendsInfo] = [
     FriendsInfo(img: "seonyoung", name: "seonyoung"),
-    FriendsInfo(img: "seonyoung", name: "heji" ),
+    FriendsInfo(img: "seonyoung", name: "hyeji" ),
     FriendsInfo(img: "seonyoung", name: "hyunjae"),
     FriendsInfo(img: "seonyoung", name: "uijeong")
     ]
@@ -52,4 +52,7 @@ extension FriendTabMainVC : UITableViewDataSource{
         
         return cell
     }
+    
+    
+    
 }

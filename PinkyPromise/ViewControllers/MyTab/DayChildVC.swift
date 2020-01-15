@@ -90,20 +90,20 @@ extension DayChildVC: UITableViewDataSource {
                 
                 //Adding custom views to the stackView
 //                print(rowData.promiseList.count )
-                for index in 0 ... rowData.promiseList.count-1 {
-//                    print(index)
-                    let view = UIView()
-                    let label = UILabel()
-    
-                    label.text = rowData.promiseList[index].title
-                    view.addSubview(label)
-                    view.backgroundColor = rowData.promiseList[index].color
-                    var f = view.frame
-                    f.size = CGSize(width: 300, height: 50)
-                    view.frame = f
-                    
-                    dayCell.promiseView.addArrangedSubview(view)
-                }
+//                for index in 0 ... rowData.promiseList.count-1 {
+////                    print(index)
+//                    let view = UIView()
+//                    let label = UILabel()
+//    
+//                    label.text = rowData.promiseList[index].title
+//                    view.addSubview(label)
+//                    view.backgroundColor = rowData.promiseList[index].color
+//                    var f = view.frame
+//                    f.size = CGSize(width: 300, height: 50)
+//                    view.frame = f
+//                    
+//                    dayCell.promiseView.addArrangedSubview(view)
+//                }
                 
                 cell = dayCell
             }
