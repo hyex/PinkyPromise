@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "seonyoung.JPG",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "seonyoung.JPG",
       "scale" : "2x"
     },
     {
