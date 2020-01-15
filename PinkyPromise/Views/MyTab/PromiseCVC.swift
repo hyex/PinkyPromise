@@ -14,16 +14,6 @@ class PromiseCVC: UICollectionViewCell {
     @IBOutlet weak var appSlider: LeeHJCustomSlider!
     @IBOutlet weak var showSliderValue: UILabel!
     @IBOutlet weak var promiseName: UILabel!
-    
-    var days:[day] = [] {
-        didSet {
-            self.updateStackView()
-        }
-    }
-    
-    func updateStackView() {
-        
-    }
 
     @IBAction func sliderValueChanged(_ sender: Any?) {
         self.showSliderValue.text = "\(self.appSlider.value)"
@@ -42,11 +32,16 @@ class PromiseCVC: UICollectionViewCell {
         self.contentView.layer.masksToBounds = true
 
         self.layer.shadowColor = UIColor.gray.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        self.layer.shadowOffset = CGSize(width: 0, height: 1.0)
         self.layer.shadowRadius = 5.0
         self.layer.shadowOpacity = 1.0
         self.layer.masksToBounds = false
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+        
+        promiseName.makeTwoLine()
+//        promiseName.lineBreakMode = .byWordWrapping
+//        promiseName.numberOfLines = 2
+        
+//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
 
     }
     

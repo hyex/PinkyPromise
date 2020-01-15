@@ -8,11 +8,6 @@
 
 import UIKit
 
-struct promise {
-    var color: UIColor
-    var title: String
-}
-
 struct day {
     var date: String
     var promiseList: [promise]
@@ -29,12 +24,12 @@ class DayChildVC: UIViewController {
 //    ]
     
     var dayList: [day] = [
-        day(date: "MON/1", promiseList: [
+        day(date: "MON  \n 1", promiseList: [
 //            promise(color: .red, title: "red"),
 //            promise(color: .yellow, title: "yellow"),
             promise(color: .blue, title: "blue")
         ]),
-        day(date: "TUE/2", promiseList: [
+        day(date: "TUE  \n 2", promiseList: [
 //            promise(color: .orange, title: "orange"),
             promise(color: .systemPink, title: "pink"),
             promise(color: .purple, title: "purple")
@@ -48,8 +43,7 @@ class DayChildVC: UIViewController {
         dayTableView.estimatedRowHeight = 100
         dayTableView.rowHeight = UITableView.automaticDimension
         dayTableView.separatorColor = .clear
-
-
+        dayTableView.reloadData()
     }
 
 }
@@ -75,36 +69,10 @@ extension DayChildVC: UITableViewDataSource {
                 let rowData = self.dayList[indexPath.row]
                 
                 dayCell.dayLabel.text = rowData.date
-            
-//                print(rowData.promiseList.enumerated())
-//
-//                for (index, element) in rowData.promiseList.enumerated(){
-//                    let view = UIView()
-//                    let label = UILabel()
-//                    label.text = rowData.promiseList[index].title
-//                    view.backgroundColor = rowData.promiseList[index].color
-//                    dayCell.promiseView.addSubview(view)
-//                }
                 
-//                let viewsToDrow = viewsPerCell[indexPath.row]
-                
-                //Adding custom views to the stackView
-//                print(rowData.promiseList.count )
-//                for index in 0 ... rowData.promiseList.count-1 {
-////                    print(index)
-//                    let view = UIView()
-//                    let label = UILabel()
-//    
-//                    label.text = rowData.promiseList[index].title
-//                    view.addSubview(label)
-//                    view.backgroundColor = rowData.promiseList[index].color
-//                    var f = view.frame
-//                    f.size = CGSize(width: 300, height: 50)
-//                    view.frame = f
-//                    
-//                    dayCell.promiseView.addArrangedSubview(view)
-//                }
-                
+                dayCell.promises = rowData.promiseList
+                print(dayCell.promises)
+
                 cell = dayCell
             }
         

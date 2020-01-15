@@ -26,3 +26,11 @@ extension UIButton{
         self.layer.cornerRadius = self.layer.frame.height/2
     }
 }
+
+extension UILabel{
+    
+    func makeTwoLine() {
+        self.lineBreakMode = .byWordWrapping
+        self.numberOfLines = 2
+    }
+}

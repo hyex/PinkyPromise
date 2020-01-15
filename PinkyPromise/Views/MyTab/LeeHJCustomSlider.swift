@@ -14,6 +14,8 @@ class LeeHJCustomSlider: UISlider {
            let point = CGPoint(x: bounds.minX, y: bounds.midY)
            return CGRect(origin: point, size: CGSize(width: bounds.width, height: 13))
     }
+    
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
