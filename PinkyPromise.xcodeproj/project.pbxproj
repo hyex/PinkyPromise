@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18C6EBD323CEED9F004C0704 /* LeeHJ in Resources */ = {isa = PBXBuildFile; fileRef = 18C6EBD223CEED9F004C0704 /* LeeHJ */; };
 		33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5623CD983A004E0104 /* DayChildVC.swift */; };
 		33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5823CD9848004E0104 /* PromiseChildVC.swift */; };
 		33028C6023CDB21B004E0104 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5F23CDB21B004E0104 /* Api.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18C6EBD223CEED9F004C0704 /* LeeHJ */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LeeHJ; sourceTree = "<group>"; };
 		33028C5623CD983A004E0104 /* DayChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChildVC.swift; sourceTree = "<group>"; };
 		33028C5823CD9848004E0104 /* PromiseChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseChildVC.swift; sourceTree = "<group>"; };
 		33028C5F23CDB21B004E0104 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -78,8 +80,8 @@
 		330AE5FB23CB56DC00706769 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				334AACF023CC311500AAF955 /* HomeTab */,
 				334AACF123CC311B00AAF955 /* MyTab */,
+				334AACF023CC311500AAF955 /* HomeTab */,
 				334AACF223CC312100AAF955 /* FriendTab */,
 				334AACED23CC2F9000AAF955 /* MoreTab */,
 			);
@@ -230,6 +232,7 @@
 		334AACF123CC311B00AAF955 /* MyTab */ = {
 			isa = PBXGroup;
 			children = (
+				18C6EBD223CEED9F004C0704 /* LeeHJ */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */,
 				334AACD023CC248B00AAF955 /* HomeTab.storyboard in Resources */,
 				334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */,
+				18C6EBD323CEED9F004C0704 /* LeeHJ in Resources */,
 				330AE60D23CB56DC00706769 /* Main.storyboard in Resources */,
 				330AE60C23CB56DC00706769 /* LaunchScreen.storyboard in Resources */,
 			);
