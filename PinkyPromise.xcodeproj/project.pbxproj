@@ -27,7 +27,7 @@
 		334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE423CC296100AAF955 /* MoreTabMainVC.swift */; };
 		334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */; };
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
-		A969950823CEE7EA00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950723CEE7EA00DA31D9 /* FriendTableViewCell.swift */; };
+		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,7 @@
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A969950723CEE7EA00DA31D9 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +199,7 @@
 		334AACE923CC2E4A00AAF955 /* FriendTab */ = {
 			isa = PBXGroup;
 			children = (
-				A969950723CEE7EA00DA31D9 /* FriendTableViewCell.swift */,
+				A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */,
 			);
 			path = FriendTab;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
-				A969950823CEE7EA00DA31D9 /* FriendTableViewCell.swift in Sources */,
+				A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
