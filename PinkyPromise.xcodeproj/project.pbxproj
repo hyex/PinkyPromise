@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18C6EBD323CEED9F004C0704 /* LeeHJ in Resources */ = {isa = PBXBuildFile; fileRef = 18C6EBD223CEED9F004C0704 /* LeeHJ */; };
 		33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5623CD983A004E0104 /* DayChildVC.swift */; };
 		33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5823CD9848004E0104 /* PromiseChildVC.swift */; };
 		33028C6023CDB21B004E0104 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5F23CDB21B004E0104 /* Api.swift */; };
@@ -17,6 +16,9 @@
 		330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AE5FF23CB56DC00706769 /* SceneDelegate.swift */; };
 		330AE60C23CB56DC00706769 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330AE60323CB56DC00706769 /* LaunchScreen.storyboard */; };
 		330AE60D23CB56DC00706769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330AE60523CB56DC00706769 /* Main.storyboard */; };
+		3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */; };
+		3317B3E323CEF36A006A5BF5 /* MyPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E223CEF36A006A5BF5 /* MyPromise.swift */; };
+		3317B3E523CEF3D2006A5BF5 /* LeeHJCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E423CEF3D2006A5BF5 /* LeeHJCustomSlider.swift */; };
 		334AACD023CC248B00AAF955 /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACCF23CC248B00AAF955 /* HomeTab.storyboard */; };
 		334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD123CC249D00AAF955 /* MyTab.storyboard */; };
 		334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD423CC24B100AAF955 /* FriendTab.storyboard */; };
@@ -32,7 +34,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18C6EBD223CEED9F004C0704 /* LeeHJ */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LeeHJ; sourceTree = "<group>"; };
 		33028C5623CD983A004E0104 /* DayChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChildVC.swift; sourceTree = "<group>"; };
 		33028C5823CD9848004E0104 /* PromiseChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseChildVC.swift; sourceTree = "<group>"; };
 		33028C5F23CDB21B004E0104 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -42,6 +43,9 @@
 		330AE5FF23CB56DC00706769 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		330AE60423CB56DC00706769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		330AE60623CB56DC00706769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseCVC.swift; sourceTree = "<group>"; };
+		3317B3E223CEF36A006A5BF5 /* MyPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromise.swift; sourceTree = "<group>"; };
+		3317B3E423CEF3D2006A5BF5 /* LeeHJCustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeHJCustomSlider.swift; sourceTree = "<group>"; };
 		334AACCF23CC248B00AAF955 /* HomeTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
 		334AACD123CC249D00AAF955 /* MyTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTab.storyboard; sourceTree = "<group>"; };
 		334AACD423CC24B100AAF955 /* FriendTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendTab.storyboard; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 		334AACE823CC2E4300AAF955 /* MyTab */ = {
 			isa = PBXGroup;
 			children = (
+				3317B3E423CEF3D2006A5BF5 /* LeeHJCustomSlider.swift */,
+				3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */,
 				33028C6123CDB35B004E0104 /* DayTVC.swift */,
 			);
 			path = MyTab;
@@ -232,7 +238,7 @@
 		334AACF123CC311B00AAF955 /* MyTab */ = {
 			isa = PBXGroup;
 			children = (
-				18C6EBD223CEED9F004C0704 /* LeeHJ */,
+				3317B3E223CEF36A006A5BF5 /* MyPromise.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -338,7 +344,6 @@
 				334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */,
 				334AACD023CC248B00AAF955 /* HomeTab.storyboard in Resources */,
 				334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */,
-				18C6EBD323CEED9F004C0704 /* LeeHJ in Resources */,
 				330AE60D23CB56DC00706769 /* Main.storyboard in Resources */,
 				330AE60C23CB56DC00706769 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -363,8 +368,11 @@
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
+				3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 				A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */,
+				3317B3E523CEF3D2006A5BF5 /* LeeHJCustomSlider.swift in Sources */,
+				3317B3E323CEF36A006A5BF5 /* MyPromise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

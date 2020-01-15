@@ -89,9 +89,9 @@ extension DayChildVC: UITableViewDataSource {
 //                let viewsToDrow = viewsPerCell[indexPath.row]
                 
                 //Adding custom views to the stackView
-                print(rowData.promiseList.count )
+//                print(rowData.promiseList.count )
                 for index in 0 ... rowData.promiseList.count-1 {
-                    print(index)
+//                    print(index)
                     let view = UIView()
                     let label = UILabel()
     
