@@ -98,6 +98,9 @@ extension DayChildVC: UITableViewDataSource {
                     label.text = rowData.promiseList[index].title
                     view.addSubview(label)
                     view.backgroundColor = rowData.promiseList[index].color
+                    var f = view.frame
+                    f.size = CGSize(width: 300, height: 50)
+                    view.frame = f
                     
                     dayCell.promiseView.addArrangedSubview(view)
                 }

@@ -26,40 +26,40 @@
             </objects>
             <point key="canvasLocation" x="-424" y="-26"/>
         </scene>
-        <!--HomeTabNavi-->
+        <!--HomeTab-->
         <scene sceneID="Jqx-ef-TH8">
             <objects>
-                <viewControllerPlaceholder storyboardName="HomeTab" referencedIdentifier="HomeTabNavi" id="1Y9-n8-BL0" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="HomeTab" referencedIdentifier="HomeTab" id="1Y9-n8-BL0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="azX-9V-GrQ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCy-hh-IFP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="473" y="-273"/>
         </scene>
-        <!--MyTabNavi-->
+        <!--MyTab-->
         <scene sceneID="p0e-hp-102">
             <objects>
-                <viewControllerPlaceholder storyboardName="MyTab" referencedIdentifier="MyTabNavi" id="d8H-Rr-ysJ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="MyTab" referencedIdentifier="MyTab" id="d8H-Rr-ysJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="dIH-t5-37w"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85u-KD-6P4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="480" y="-149"/>
         </scene>
-        <!--FriendTabNavi-->
+        <!--FriendTab-->
         <scene sceneID="gkg-mQ-chQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="FriendTab" referencedIdentifier="FriendTabNavi" id="U92-7d-Zsq" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="FriendTab" referencedIdentifier="FriendTab" id="U92-7d-Zsq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="HDa-gD-jbN"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c71-b1-eCS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="484" y="-38"/>
         </scene>
-        <!--MoreTabNavi-->
+        <!--MoreTab-->
         <scene sceneID="mmR-XI-oQV">
             <objects>
-                <viewControllerPlaceholder storyboardName="MoreTab" referencedIdentifier="MoreTabNavi" id="lcE-6v-y2X" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="MoreTab" referencedIdentifier="MoreTab" id="lcE-6v-y2X" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="WwQ-du-p7l"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXp-gg-DuP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

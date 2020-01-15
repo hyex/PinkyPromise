@@ -14,6 +14,16 @@ class PromiseCVC: UICollectionViewCell {
     @IBOutlet weak var appSlider: LeeHJCustomSlider!
     @IBOutlet weak var showSliderValue: UILabel!
     @IBOutlet weak var promiseName: UILabel!
+    
+    var days:[day] = [] {
+        didSet {
+            self.updateStackView()
+        }
+    }
+    
+    func updateStackView() {
+        
+    }
 
     @IBAction func sliderValueChanged(_ sender: Any?) {
         self.showSliderValue.text = "\(self.appSlider.value)"

@@ -10,7 +10,7 @@
         <!--Friend-->
         <scene sceneID="IWu-z6-Uac">
             <objects>
-                <viewController storyboardIdentifier="FriendTabNavi" useStoryboardIdentifierAsRestorationIdentifier="YES" id="29N-sA-g8s" customClass="FriendTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="29N-sA-g8s" customClass="FriendTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T9P-WB-DCR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
