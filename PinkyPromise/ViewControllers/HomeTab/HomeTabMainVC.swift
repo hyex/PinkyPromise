@@ -10,14 +10,23 @@ import UIKit
 
 class HomeTabMainVC: UIViewController {
 
+    @IBOutlet weak var addPromiseBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
-        
-//        if let tab = self.navigationController?.tabBarController as? MainTabBarController {
-//            print(tab.data)
-//        }
-
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+    @IBAction func addPromiseBtnAction(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AddPromiseVC") as! AddPromiseVC
+        
+        self.modalPresentationStyle = .currentContext
+        self.modalTransitionStyle = .coverVertical
+        
+        self.present(vc, animated: false, completion: nil)
+//        self.navigationController?.pushViewController(vc, animated: false)
+    }
 }

@@ -19,7 +19,6 @@
 		3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */; };
 		3317B3E323CEF36A006A5BF5 /* MyPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E223CEF36A006A5BF5 /* MyPromise.swift */; };
 		3317B3E523CEF3D2006A5BF5 /* LeeHJCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E423CEF3D2006A5BF5 /* LeeHJCustomSlider.swift */; };
-		334AACD023CC248B00AAF955 /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACCF23CC248B00AAF955 /* HomeTab.storyboard */; };
 		334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD123CC249D00AAF955 /* MyTab.storyboard */; };
 		334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD423CC24B100AAF955 /* FriendTab.storyboard */; };
 		334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD623CC24BA00AAF955 /* MoreTab.storyboard */; };
@@ -30,6 +29,9 @@
 		334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE423CC296100AAF955 /* MoreTabMainVC.swift */; };
 		334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */; };
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
+		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
+		3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */; };
+		3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +48,6 @@
 		3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseCVC.swift; sourceTree = "<group>"; };
 		3317B3E223CEF36A006A5BF5 /* MyPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromise.swift; sourceTree = "<group>"; };
 		3317B3E423CEF3D2006A5BF5 /* LeeHJCustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeHJCustomSlider.swift; sourceTree = "<group>"; };
-		334AACCF23CC248B00AAF955 /* HomeTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
 		334AACD123CC249D00AAF955 /* MyTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTab.storyboard; sourceTree = "<group>"; };
 		334AACD423CC24B100AAF955 /* FriendTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendTab.storyboard; sourceTree = "<group>"; };
 		334AACD623CC24BA00AAF955 /* MoreTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreTab.storyboard; sourceTree = "<group>"; };
@@ -59,6 +60,9 @@
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
+		3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPromiseVC.swift; sourceTree = "<group>"; };
+		3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectColorVC.swift; sourceTree = "<group>"; };
 		A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,9 +127,9 @@
 		330AE60223CB56DC00706769 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */,
 				330AE60323CB56DC00706769 /* LaunchScreen.storyboard */,
 				330AE60523CB56DC00706769 /* Main.storyboard */,
-				334AACCF23CC248B00AAF955 /* HomeTab.storyboard */,
 				334AACD123CC249D00AAF955 /* MyTab.storyboard */,
 				334AACD423CC24B100AAF955 /* FriendTab.storyboard */,
 				334AACD623CC24BA00AAF955 /* MoreTab.storyboard */,
@@ -148,6 +152,8 @@
 		334AACD823CC24EF00AAF955 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
+				3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */,
+				3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */,
 				334AACDC23CC262D00AAF955 /* HomeTabMainVC.swift */,
 			);
 			path = HomeTab;
@@ -341,8 +347,8 @@
 			files = (
 				334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */,
 				330AE60923CB56DC00706769 /* Assets.xcassets in Resources */,
+				3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */,
 				334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */,
-				334AACD023CC248B00AAF955 /* HomeTab.storyboard in Resources */,
 				334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */,
 				330AE60D23CB56DC00706769 /* Main.storyboard in Resources */,
 				330AE60C23CB56DC00706769 /* LaunchScreen.storyboard in Resources */,
@@ -366,6 +372,8 @@
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
 				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
+				3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */,
+				3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */,
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */,

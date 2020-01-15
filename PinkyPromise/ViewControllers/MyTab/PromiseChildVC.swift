@@ -72,7 +72,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
         cell.promiseName.text = tempPromise.promiseName
         cell.appSlider.minimumTrackTintColor = UIColor(named: "Red")
-        cell.appSlider.maximumTrackTintColor = UIColor(named: "DarkRed")
+        cell.appSlider.maximumTrackTintColor = UIColor(named: "Darkred")
         cell.appSlider.thumbTintColor = UIColor(named: "Red")
         //cell.appSlider.setThumbImage( UIImage(named: "Circle"), for: .normal)
 
