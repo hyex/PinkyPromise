@@ -47,7 +47,7 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             let width = 300
-            let height = 70
+            let height = 100
     //        let width = timelineCollectionView.bounds.width
     //        let height = timelineCollectionView.bounds.height
             return CGSize(width: width, height: height)
@@ -64,20 +64,28 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PromiseCVC", for: indexPath) as! PromiseCVC
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PromiseCVC", for: indexPath) as! PromiseCVC
 
         let tempPromise: MyPromise = self.promises[indexPath.item]
 
         //cell.backgroundColor = UIColor(named: "LightBlue")
 
         cell.promiseName.text = tempPromise.promiseName
-        cell.appSlider.minimumTrackTintColor = UIColor(named: "Red")
-        cell.appSlider.maximumTrackTintColor = UIColor(named: "Darkred")
-        cell.appSlider.thumbTintColor = UIColor(named: "Red")
+//        cell.appSlider.minimumTrackTintColor = UIColor(named: "Red")
+//        cell.appSlider.maximumTrackTintColor = UIColor(named: "Darkred")
+//        cell.appSlider.thumbTintColor = .clear
+        
+//        cell.appSlider.thumbTintColor = UIColor(named: "Red")
         //cell.appSlider.setThumbImage( UIImage(named: "Circle"), for: .normal)
 
-        cell.appSlider.value = 5
-
+        cell.appSlider.value = Float(tempPromise.pormiseProgress)
+        cell.showSliderValue.text = String(tempPromise.pormiseProgress)
+//        cell.appSlider.value = 5
+        
+        print(cell.appSlider.layer.position.x)
+        
+        cell.showSliderValue.layer.position.x = CGFloat(14.0 + 2.0 + tempPromise.pormiseProgress*27)
+        
         cell.setNeedsLayout()
 
         return cell

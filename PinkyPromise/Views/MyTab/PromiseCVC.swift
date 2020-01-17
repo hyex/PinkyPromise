@@ -17,10 +17,20 @@ class PromiseCVC: UICollectionViewCell {
 
     @IBAction func sliderValueChanged(_ sender: Any?) {
         self.showSliderValue.text = "\(self.appSlider.value)"
+        
+        // 레이블의 위치도 변경해야함
+        var sliderWidth = self.appSlider.frame.width
+        var temp = CGFloat(self.appSlider.value/10)*sliderWidth
+        print(sliderWidth)
+        print(type(of: sliderWidth))
+        self.showSliderValue.layer.position.x = CGFloat(14.0) + temp
+//        self.showSliderValue.layer.position.x = self.appSlider.layer.position.x + self.appSlider.value
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.showSliderValue.layer.position.x = CGFloat(14.0 + 5.0 )
 
         self.backgroundColor = UIColor.white
 
@@ -36,6 +46,8 @@ class PromiseCVC: UICollectionViewCell {
         self.layer.shadowRadius = 5.0
         self.layer.shadowOpacity = 1.0
         self.layer.masksToBounds = false
+        
+        self.appSlider.thumbTintColor = .clear
         
         promiseName.makeTwoLine()
 //        promiseName.lineBreakMode = .byWordWrapping

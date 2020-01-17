@@ -10,6 +10,18 @@ import UIKit
 
 class LeeHJCustomSlider: UISlider {
 
+    // navigation 투명하게
+//    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//    self.navigationController?.navigationBar.shadowImage = UIImage()
+    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//        self.thumbTintColor = UIColor.blue
+//        self.currentThumbImage = UIImage()
+//        print("init")
+//    }
+    
+    
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
            let point = CGPoint(x: bounds.minX, y: bounds.midY)
            return CGRect(origin: point, size: CGSize(width: bounds.width, height: 13))
