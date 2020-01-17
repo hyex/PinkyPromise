@@ -41,6 +41,6 @@ DerivedData/
 #           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGONRE THE LOCK FILE
 Pods/
 Podfile.lock
-*.xcworkspace
+# playground.xcworkspace
 xcschememanagement.plist
 contents.xcworkspacedata
