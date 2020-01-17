@@ -10,7 +10,12 @@ import Foundation
 
 
 class MyApi: NSObject {
+    
     static let shared = MyApi()
+    
+    let dateFormatter = DateFormatter()
+//    dateFormatter.locale = Locale(identifier: "ko_KR")
+//    dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
     
     // Api 예시
     func allMenu(completion: @escaping ([MoreTableData]) -> Void) { //}, onError: @escaping (Error) -> Void) {
@@ -30,4 +35,21 @@ class MyApi: NSObject {
 //                   self.moreTableView.reloadData()
 //               }
 //           })
+    
+    
+//    func allPromise(completion: @escaping ([PromiseData]) -> Void) {
+//        //}, onError: @escaping (Error) -> Void) {
+//        let result = [
+//            PromiseData(promiseName: "10시에 기상하기",
+//                        promiseStartDate: dateFormatter.date(from:"2020-01-03 10:00"),
+//                        promiseEndDate: dateFormatter.date(from:"2020-01-14 10:00"),
+//                        promiseAchievement: 3),
+//            PromiseData(promiseName: "4시에는 쿨쿨하기",
+//                        promiseStartDate: dateFormatter.date(from:"2020-01-02 13:00"),
+//                        promiseEndDate: dateFormatter.date(from:"2020-01-05 14:00"),
+//                        promiseAchievement: 4),
+//            
+//        ]
+//        completion(result)
+//    }
 }

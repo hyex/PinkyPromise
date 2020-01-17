@@ -6,6 +6,8 @@
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
+// Temp file
+
 import Foundation
 import UIKit
 
@@ -19,3 +21,4 @@ struct promise {
     var title: String
     
 }
+

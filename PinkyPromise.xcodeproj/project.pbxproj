@@ -32,6 +32,8 @@
 		334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE423CC296100AAF955 /* MoreTabMainVC.swift */; };
 		334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */; };
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
+		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
+		33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */; };
 		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
 		3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */; };
 		3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */; };
@@ -64,6 +66,8 @@
 		334AACE423CC296100AAF955 /* MoreTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabMainVC.swift; sourceTree = "<group>"; };
 		334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTVC.swift; sourceTree = "<group>"; };
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
+		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
+		33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endedPromiseVC.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				334AACE023CC294000AAF955 /* MyTabMainVC.swift */,
 				33028C5623CD983A004E0104 /* DayChildVC.swift */,
 				33028C5823CD9848004E0104 /* PromiseChildVC.swift */,
+				33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			children = (
 				3317B3E223CEF36A006A5BF5 /* MyPromise.swift */,
 				3317B3EA23CF1DD4006A5BF5 /* promise.swift */,
+				33A782AC23D21E110055D6C5 /* PromiseData.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -378,7 +384,9 @@
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				3317B3EB23CF1DD4006A5BF5 /* promise.swift in Sources */,
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
+				33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
+				33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
 				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
