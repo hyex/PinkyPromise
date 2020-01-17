@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Data Source-->
         <scene sceneID="lmf-iy-dqg">
             <objects>
                 <viewController storyboardIdentifier="HomeTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nu8-v0-LSz" customClass="HomeTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
@@ -27,6 +27,10 @@
                                     <constraint firstAttribute="width" constant="353" id="5bK-7d-LaY"/>
                                     <constraint firstAttribute="height" constant="332" id="5qi-HM-xsd"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="Nu8-v0-LSz" id="0bg-4n-4iA"/>
+                                    <outlet property="delegate" destination="Nu8-v0-LSz" id="fuv-92-DMo"/>
+                                </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 데이터로부터 약속 가져오기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gp-dj-e2M">
                                 <rect key="frame" x="11" y="504" width="353" height="40"/>
@@ -83,6 +87,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addPromiseBtn" destination="Xnp-T0-47O" id="o89-9M-VVi"/>
+                        <outlet property="calendar" destination="iQ1-bU-6Lk" id="UWc-sX-aHs"/>
                         <outlet property="nearPromise" destination="3gp-dj-e2M" id="OvW-Zu-6hq"/>
                         <outlet property="nearPromiseLabel" destination="wfi-hW-bGF" id="gH6-ma-U8k"/>
                     </connections>
