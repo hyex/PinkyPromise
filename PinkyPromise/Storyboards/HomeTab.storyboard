@@ -21,22 +21,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQ1-bU-6Lk">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQ1-bU-6Lk" customClass="FSCalendar">
                                 <rect key="frame" x="11" y="103" width="353" height="332"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="IJF-q4-TJ0">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="332"/>
-                                    </imageView>
-                                </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="353" id="5bK-7d-LaY"/>
                                     <constraint firstAttribute="height" constant="332" id="5qi-HM-xsd"/>
-                                    <constraint firstAttribute="bottom" secondItem="IJF-q4-TJ0" secondAttribute="bottom" id="R3z-MT-Lcn"/>
-                                    <constraint firstItem="IJF-q4-TJ0" firstAttribute="centerY" secondItem="iQ1-bU-6Lk" secondAttribute="centerY" id="VsN-lv-9QC"/>
-                                    <constraint firstItem="IJF-q4-TJ0" firstAttribute="top" secondItem="iQ1-bU-6Lk" secondAttribute="top" id="ZLq-7P-pt1"/>
-                                    <constraint firstItem="IJF-q4-TJ0" firstAttribute="centerX" secondItem="iQ1-bU-6Lk" secondAttribute="centerX" id="Zx7-4v-2kw"/>
-                                    <constraint firstAttribute="trailing" secondItem="IJF-q4-TJ0" secondAttribute="trailing" id="bT2-Fz-P5x"/>
-                                    <constraint firstItem="IJF-q4-TJ0" firstAttribute="leading" secondItem="iQ1-bU-6Lk" secondAttribute="leading" id="dJd-mM-KEI"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 데이터로부터 약속 가져오기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gp-dj-e2M">
@@ -156,7 +145,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rgh-AY-LyD">
-                                                    <rect key="frame" x="16" y="14.999999999999886" width="25" height="25"/>
+                                                    <rect key="frame" x="16" y="15.333333333333334" width="25" height="24.999999999999993"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="Fv5-Se-ODX"/>
                                                         <constraint firstAttribute="width" secondItem="rgh-AY-LyD" secondAttribute="height" multiplier="25:25" constant="-1.3300000000000001" id="N5q-j1-Vl9"/>
@@ -357,14 +346,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upD-zq-nd4">
-                                                    <rect key="frame" x="61" y="11" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upD-zq-nd4">
+                                                    <rect key="frame" x="48.333333333333343" y="11.333333333333336" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="app.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nu6-Nu-IhH">
-                                                    <rect key="frame" x="16" y="13.333333333333332" width="25" height="17.333333333333339"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nu6-Nu-IhH">
+                                                    <rect key="frame" x="15.999999999999998" y="13.333333333333332" width="19.333333333333329" height="17.333333333333339"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bUm-9e-l4M">
                                                     <rect key="frame" x="340.66666666666669" y="13.999999999999998" width="18.333333333333314" height="16.333333333333329"/>
@@ -375,6 +364,8 @@
                                                 <constraint firstItem="Nu6-Nu-IhH" firstAttribute="centerY" secondItem="bwD-CD-9nb" secondAttribute="centerY" id="TCQ-e6-T6P"/>
                                                 <constraint firstItem="upD-zq-nd4" firstAttribute="leading" secondItem="Nu6-Nu-IhH" secondAttribute="trailing" constant="13" id="Yxj-oA-B8u"/>
                                                 <constraint firstItem="bUm-9e-l4M" firstAttribute="centerY" secondItem="bwD-CD-9nb" secondAttribute="centerY" id="i0t-hJ-wuL"/>
+                                                <constraint firstItem="Nu6-Nu-IhH" firstAttribute="leading" secondItem="bwD-CD-9nb" secondAttribute="leading" constant="16" id="nYY-57-E3u"/>
+                                                <constraint firstItem="upD-zq-nd4" firstAttribute="centerY" secondItem="bwD-CD-9nb" secondAttribute="centerY" id="nkL-vT-YrN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -416,7 +407,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Calendar" width="218" height="179.33332824707031"/>
         <image name="app.fill" catalog="system" width="64" height="56"/>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="bell" catalog="system" width="64" height="62"/>
