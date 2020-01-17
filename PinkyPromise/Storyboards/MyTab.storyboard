@@ -147,9 +147,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="343" height="602"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tnr-cN-QzZ">
-                                <rect key="frame" x="0.0" y="54" width="343" height="548"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tnr-cN-QzZ">
+                                <rect key="frame" x="0.0" y="98" width="343" height="504"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FYX-mp-fwo">
                                     <size key="itemSize" width="282" height="89"/>
@@ -197,14 +196,26 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twJ-mp-PWk">
-                                <rect key="frame" x="39" y="0.0" width="264" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twJ-mp-PWk">
+                                <rect key="frame" x="39.666666666666657" y="44" width="264" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="264" id="eIl-9n-DGU"/>
+                                    <constraint firstAttribute="height" constant="47" id="tsn-OA-iyK"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="100% 지킨 약속들 보러가기!"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="R0T-BB-FdF" firstAttribute="top" secondItem="twJ-mp-PWk" secondAttribute="top" id="6VJ-GV-Mjb"/>
+                            <constraint firstItem="Tnr-cN-QzZ" firstAttribute="top" secondItem="twJ-mp-PWk" secondAttribute="bottom" constant="7" id="6dU-Pq-Irs"/>
+                            <constraint firstItem="R0T-BB-FdF" firstAttribute="bottom" secondItem="Tnr-cN-QzZ" secondAttribute="bottom" id="KMq-VL-xSA"/>
+                            <constraint firstItem="Tnr-cN-QzZ" firstAttribute="centerX" secondItem="R0T-BB-FdF" secondAttribute="centerX" id="oql-9Z-J7n"/>
+                            <constraint firstItem="Tnr-cN-QzZ" firstAttribute="leading" secondItem="R0T-BB-FdF" secondAttribute="leading" id="tv0-zw-oH2"/>
+                            <constraint firstItem="R0T-BB-FdF" firstAttribute="trailing" secondItem="Tnr-cN-QzZ" secondAttribute="trailing" id="wOE-n4-NiQ"/>
+                            <constraint firstItem="twJ-mp-PWk" firstAttribute="centerX" secondItem="R0T-BB-FdF" secondAttribute="centerX" id="wZY-OQ-IcK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="R0T-BB-FdF"/>
                     </view>
                     <connections>
