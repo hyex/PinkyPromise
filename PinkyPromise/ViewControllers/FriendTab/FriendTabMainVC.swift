@@ -47,7 +47,9 @@ extension FriendTabMainVC : UITableViewDataSource{
         
         let rowData = self.friendsInPromise[indexPath.row]
         
-    
+        cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
+        cell.friendProfileImg.clipsToBounds = true
+        
         cell.friendProfileImg.image = UIImage(named: rowData.img)
         cell.friendNameLabel.text = rowData.name
         
