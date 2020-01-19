@@ -29,6 +29,7 @@ class FriendTabMainVC: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
+
     }
 
 }
@@ -53,6 +54,7 @@ extension FriendTabMainVC : UITableViewDataSource{
         return cell
     }
     
-    
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }
