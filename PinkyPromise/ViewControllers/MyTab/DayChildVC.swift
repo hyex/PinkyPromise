@@ -72,7 +72,7 @@ extension DayChildVC: UITableViewDataSource {
                 
                 dayCell.dayLabel.text = rowData.date
                 
-                print("1")
+//                print("1")
                 dayCell.promises = rowData.promiseList
                 
 //                print(dayCell.promises)
@@ -95,10 +95,10 @@ extension DayChildVC: UITableViewDataSource {
                     f.size = CGSize(width: 30, height: 10)
                     //            view.frame.size.height = CGFloat(10.0)
                     view.frame = f
-                    print(view.frame.size.width)
-                    print(view.frame.size.height)
+//                    print(view.frame.size.width)
+//                    print(view.frame.size.height)
                     dayCell.promiseView.addArrangedSubview(view)
-                    print(dayCell.promiseView.arrangedSubviews[0].frame.size)
+//                    print(dayCell.promiseView.arrangedSubviews[0].frame.size)
                     
 //                    dayCell.promiseView.arrangedSubviews[index].widthAnchor.constraint(equalToConstant: dayCell.promiseView.frame.width).isActive = true
 //                    dayCell.promiseView.arrangedSubviews[index].heightAnchor.constraint(equalToConstant: 20.0).isActive = true

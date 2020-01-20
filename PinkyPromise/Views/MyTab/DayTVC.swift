@@ -16,7 +16,7 @@ class DayTVC: UITableViewCell {
     var promises:[promise] = []
     {
         didSet {
-            print("2")
+//            print("2")
 //            self.updateStackView()
             
         }
@@ -49,7 +49,7 @@ class DayTVC: UITableViewCell {
         super.awakeFromNib()
         
         dayLabel.makeTwoLine()
-        print("awake")
+//        print("awake")
         
 //        for (index, element) in promises.enumerated(){
 //            print(index)

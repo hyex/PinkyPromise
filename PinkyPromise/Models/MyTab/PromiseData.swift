@@ -19,20 +19,25 @@ struct PromiseData: Codable {
     
 //    let promiseId: Int
     let promiseName: String
-    let promiseStartDate: Date
-    let promiseEndDate: Date
+    let promiseStartTime: Date
+    let promiseEndTime: Date
+    let promiseColor: String
 //    let promisedIcon: String // UIImage cannot codable. search later.
-//    let promiseAlarm: String
+//    let isPromiseAlarm: Bool
+//    let promiseAlarmContent : String
     let promiseAchievement: Int
+//    let users: [user] or [String] or [Int]
     
     enum CodingKeys: String, CodingKey {
 //        case promiseId = "promiseId"
         case promiseName = "promiseName"
-        case promiseStartDate = "promiseStartDate"
-        case promiseEndDate = "promiseEndDate"
+        case promiseStartTime = "promiseStartDate"
+        case promiseEndTime = "promiseEndDate"
+        case promiseColor = "promiseColor"
 //        case promisedIcon = "promisedIcon"
 //        case promiseAlarm = "promiseAlarm"
         case promiseAchievement = "promiseAchievement"
     }
     
 }
+

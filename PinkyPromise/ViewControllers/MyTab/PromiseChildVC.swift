@@ -13,21 +13,8 @@ class PromiseChildVC: UIViewController {
     @IBOutlet weak var endedPromiseBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
-//    var promiseList : [PromiseData]? {
-//        didSet { collectionView.reloadData() }
-//    }
-    
-    
-    let promiseList: [MyPromise] = [MyPromise(promiseName: "1시간 독서", promiseStory: "1시간 독서하기", pormiseProgress: 3.0),
-                                 MyPromise(promiseName: "2시간 운동", promiseStory: "2시간 운동하기", pormiseProgress: 2.4),
-                                 MyPromise(promiseName: "2시간 동방", promiseStory: "2시간 누워있기", pormiseProgress: 2.4),
-                                 MyPromise(promiseName: "2시간 공부", promiseStory: "2시간 공부하기", pormiseProgress: 5.4),
-                                 MyPromise(promiseName: "2시간 식사", promiseStory: "2시간 식사하기", pormiseProgress: 8.0),
-                                 MyPromise(promiseName: "2시간 취침", promiseStory: "2시간 취침하기", pormiseProgress: 9.4),
-                                 MyPromise(promiseName: "2시간 기상", promiseStory: "2시간 기상하기", pormiseProgress: 3.4),
-                                 MyPromise(promiseName: "2시간 체조", promiseStory: "2시간 체조하기", pormiseProgress: 1.8)]
-    
+    var promiseList: [PromiseData] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +22,12 @@ class PromiseChildVC: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
-        
-//        MyApi.shared.allPromise(completion: { result in
-//                       DispatchQueue.main.async {
-//                           self.promiseList = result
-//                           self.collectionView.reloadData()
-//                       }
-//                   })
+        MyApi.shared.allPromise(completion: { result in
+            DispatchQueue.main.async {
+                self.promiseList = result
+                self.collectionView.reloadData()
+            }
+        })
     }
     
     
@@ -78,7 +64,7 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            return UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -102,30 +88,35 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PromiseCVC", for: indexPath) as! PromiseCVC
 
-        let tempPromise: MyPromise = self.promiseList[indexPath.item]
-
-        //cell.backgroundColor = UIColor(named: "LightBlue")
-
-        cell.promiseName.text = tempPromise.promiseName
-//        cell.appSlider.minimumTrackTintColor = UIColor(named: "Red")
-//        cell.appSlider.maximumTrackTintColor = UIColor(named: "Darkred")
-//        cell.appSlider.thumbTintColor = .clear
+        let  rowData: PromiseData = self.promiseList[indexPath.item]
         
-//        cell.appSlider.thumbTintColor = UIColor(named: "Red")
-        //cell.appSlider.setThumbImage( UIImage(named: "Circle"), for: .normal)
+        print(rowData.promiseStartTime)
+        print(rowData.promiseEndTime)
+        
+        
 
-        cell.appSlider.value = Float(tempPromise.pormiseProgress)
-        cell.showSliderValue.text = String(tempPromise.pormiseProgress)
-//        cell.appSlider.value = 5
+        cell.promiseName.text =  rowData.promiseName
+        cell.appSlider.value = Float( rowData.promiseAchievement)
+        cell.showSliderValue.text = String( rowData.promiseAchievement)
+
+        let sliderValueOriginX = cell.showSliderValue.layer.position.x
+        let calcValue = CGFloat( Float(rowData.promiseAchievement) / cell.appSlider.maximumValue * Float(cell.appSlider.frame.width))
         
-//        print(cell.appSlider.layer.position.x)
-        
-        cell.showSliderValue.layer.position.x = CGFloat(14.0 + 2.0 + tempPromise.pormiseProgress*27)
+        cell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue - CGFloat(2.0)
         
         cell.setNeedsLayout()
-
+        
         return cell
 
     }
     
 }
+
+
+   /**
+    let dateFormatter = DateFormatter()
+    //    dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+    
+    dateFormatter.date(from:"2020-01-03 10:00"),
+    */

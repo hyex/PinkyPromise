@@ -10,11 +10,12 @@
 
 import Foundation
 
-
-
 struct MyPromise: Codable {
     var promiseName: String
     var promiseStory: String
-    var pormiseProgress: Double// 약속 진행 상황 알려주는 진행률
+    var pormiseProgress: Double
+//    var promiseProgress: Double// 약속 진행 상황 알려주는 진행률
+//    var promiseStartTime: Date
+//    var promiseEndTime: Date
 }
 
