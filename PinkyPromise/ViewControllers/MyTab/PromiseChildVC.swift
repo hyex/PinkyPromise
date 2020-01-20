@@ -118,7 +118,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.showSliderValue.text = String(tempPromise.pormiseProgress)
 //        cell.appSlider.value = 5
         
-        print(cell.appSlider.layer.position.x)
+//        print(cell.appSlider.layer.position.x)
         
         cell.showSliderValue.layer.position.x = CGFloat(14.0 + 2.0 + tempPromise.pormiseProgress*27)
         

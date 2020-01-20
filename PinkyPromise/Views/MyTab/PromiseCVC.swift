@@ -21,8 +21,8 @@ class PromiseCVC: UICollectionViewCell {
         // 레이블의 위치도 변경해야함
         var sliderWidth = self.appSlider.frame.width
         var temp = CGFloat(self.appSlider.value/10)*sliderWidth
-        print(sliderWidth)
-        print(type(of: sliderWidth))
+//        print(sliderWidth)
+//        print(type(of: sliderWidth))
         self.showSliderValue.layer.position.x = CGFloat(14.0) + temp
 //        self.showSliderValue.layer.position.x = self.appSlider.layer.position.x + self.appSlider.value
     }
