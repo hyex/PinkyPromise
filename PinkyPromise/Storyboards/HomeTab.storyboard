@@ -205,13 +205,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hd0-jb-nME" customClass="FSCalendar">
-                                                    <rect key="frame" x="16" y="-34" width="343" height="318"/>
+                                                    <rect key="frame" x="16" y="11" width="343" height="228"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="318" id="Ctj-EA-4Dv"/>
-                                                        <constraint firstAttribute="width" constant="343" id="f6R-FT-va8"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="vGB-DM-gTv"/>
-                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="headerMinimumDissolvedAlpha">
                                                             <real key="value" value="0.0"/>
@@ -235,15 +230,18 @@
                                                         <userDefinedRuntimeAttribute type="color" keyPath="todayColor">
                                                             <color key="value" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsBoundingRectWhenChangingMonths" value="NO"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="centerY" secondItem="umz-WS-F5L" secondAttribute="centerY" id="4Ff-yt-R5m"/>
-                                                <constraint firstAttribute="trailing" secondItem="Hd0-jb-nME" secondAttribute="trailing" constant="16" id="4fA-qH-yho"/>
-                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="centerX" secondItem="umz-WS-F5L" secondAttribute="centerX" id="K5n-Y4-Eg5"/>
-                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="width" secondItem="umz-WS-F5L" secondAttribute="height" multiplier="343:250" id="d0R-Bn-dki"/>
-                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="leading" secondItem="umz-WS-F5L" secondAttribute="leading" constant="16" id="qRW-DR-iOO"/>
+                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="leading" secondItem="umz-WS-F5L" secondAttribute="leading" constant="16" id="6Oj-wu-zsB"/>
+                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="centerX" secondItem="umz-WS-F5L" secondAttribute="centerX" id="9Gw-zm-Q5p"/>
+                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="top" secondItem="umz-WS-F5L" secondAttribute="top" constant="11" id="NcT-DB-YCB"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hd0-jb-nME" secondAttribute="bottom" constant="11" id="WTM-Ax-P4J"/>
+                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="centerY" secondItem="umz-WS-F5L" secondAttribute="centerY" id="kPq-bE-GCA"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hd0-jb-nME" secondAttribute="trailing" constant="16" id="kuU-A4-NdA"/>
+                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="width" secondItem="umz-WS-F5L" secondAttribute="height" multiplier="343:250" id="pIM-xs-VMZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

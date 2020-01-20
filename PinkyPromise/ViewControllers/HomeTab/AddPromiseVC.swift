@@ -16,7 +16,8 @@ class AddPromiseVC: UIViewController {
 
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
     
-    var isfirstSelected: Bool!
+    var isStartCalSelected: Bool!
+    var isEndCalSelected: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,9 @@ class AddPromiseVC: UIViewController {
         self.promiseTableView.tableFooterView = dummyView;
         promiseTableView.clipsToBounds = false
         //self.promiseTableView.rowHeight = 100; 테이블뷰 높이 문제 해결 필요
+        
+        isStartCalSelected = false
+        isEndCalSelected = false
         
     }
 
@@ -60,7 +64,7 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: PromiseInputTVC;
-        print(indexPath.row, indexPath.section)
+        // print(indexPath.row, indexPath.section)
         switch (indexPath.row) {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as! PromiseInputTVC
@@ -70,6 +74,7 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
             break;
         case 2,4:
             cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell") as! PromiseInputTVC
+            
             break;
         case 5,6:
             cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseInputTVC
@@ -87,5 +92,34 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        if !isStartCalSelected && indexPath.row == 2 {
+            return 0.1
+        }
+        else if !isEndCalSelected && indexPath.row == 4 {
+            return 0.1
+        }
+        else{
+            return UITableView.automaticDimension
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if indexPath.row == 1 {
+            isStartCalSelected = isStartCalSelected ? false : true
+            self.promiseTableView.beginUpdates()
+            self.promiseTableView.endUpdates()
+        }
+        else if indexPath.row == 3 {
+            isEndCalSelected = isEndCalSelected ? false : true
+        self.promiseTableView.beginUpdates()
+        self.promiseTableView.endUpdates()
+        }
     }
 }

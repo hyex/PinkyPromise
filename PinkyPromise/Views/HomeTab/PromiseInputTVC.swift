@@ -26,21 +26,6 @@ class PromiseInputTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-    func configure() {
-        
-
-    }
-    
-    func setDate(){
         let now = Date()
         let date = DateFormatter()
         
@@ -59,8 +44,16 @@ class PromiseInputTVC: UITableViewCell {
             date.dateFormat = "a h:mm"
             timeLabel.text = "\(date.string(from: now))"
         }
+        
     }
-    func setTime(){
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+    func configure() {
         
     }
 }
