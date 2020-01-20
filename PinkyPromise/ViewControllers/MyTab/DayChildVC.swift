@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct promise {
+    var color: UIColor
+    var title: String
+}
 struct day {
     var date: String
     var promiseList: [promise]
