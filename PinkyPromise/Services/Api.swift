@@ -53,7 +53,7 @@ class MyApi: NSObject {
                         promiseStartTime: dateFormatter.date(from:"2020-01-02 13:00") ?? defaultDate,
                         promiseEndTime: dateFormatter.date(from:"2020-01-05 14:00") ?? defaultDate,
                         promiseColor: "blue",
-                        promiseAchievement: 10),
+                        promiseAchievement: 2),
 
         ]
         completion(result)

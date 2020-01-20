@@ -93,6 +93,28 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
         print(rowData.promiseStartTime)
         print(rowData.promiseEndTime)
         
+        // 날짜만 비교해서 며칠 남았는지 뽑아낸다
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let startDate = rowData.promiseStartTime
+        let endDate = rowData.promiseEndTime
+
+        let interval = endDate.timeIntervalSince(startDate)
+        let days = Int(interval / 86400)
+
+        /** 날짜 차이와 시간 차이까지 알고 싶으면
+         let calendar = Calendar.current
+         let dateGap = calendar.dateComponents([.year,.month,.day,.hour], from: startDate, to: endDate)
+
+         if case let (y?, m?, d?, h?) = (dateGap.year, dateGap.month, dateGap.day, dateGap.hour)
+         {
+           print("\(y)년 \(m)개월 \(d)일 \(h)시간 후")
+         }
+         */
+        
+        // slider의 max 값을 변경
+        cell.appSlider.maximumValue = Float(days)
+        print(cell.appSlider.maximumValue)
         
 
         cell.promiseName.text =  rowData.promiseName
