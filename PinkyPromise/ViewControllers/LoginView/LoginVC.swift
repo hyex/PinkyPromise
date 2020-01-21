@@ -9,16 +9,8 @@
 import UIKit
 import FirebaseUI
 import GoogleSignIn
-import AppleSignIn
 
-class LoginVC: UIViewController, FUIAuthDelegate, AppleLoginDelegate {
-    func didCompleteAuthorizationWith(user: AppleUser) {
-        print(user)
-    }
-    
-    func didCompleteAuthorizationWith(error: Error) {
-        print(error)
-    }
+class LoginVC: UIViewController, FUIAuthDelegate   {
     
     
 //    fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
@@ -30,28 +22,27 @@ class LoginVC: UIViewController, FUIAuthDelegate, AppleLoginDelegate {
         super.viewDidLoad()
         
         let providers: [FUIAuthProvider] = [
-                   FUIGoogleAuth(),
-            ]
+                FUIGoogleAuth(),
+        ]
         authUI!.providers = providers
-        //FirebaseAuthentication.shared.signInWithAnonymous()
        
-        let button = AppleLoginButton()
-        button.delegate = self
-        button.translatesAutoresizingMaskIntoConstraints = false
+        //google login
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+    }
+}
+
+extension LoginVC: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error == nil {
+            print("login success")
+            return
+        }else {
+            print("\(error.localizedDescription)")
+        }
         
-        view.addSubview(button)
-        
-        NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
     }
     
-    @IBAction func signInWithAppleTapped() {
-           guard let window = view.window else { return }
-           
-           let appleLoginManager = AppleLoginManager()
-           appleLoginManager.delegate = self
-           
-           appleLoginManager.performAppleLoginRequest(in: window)
-       }
-
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        //perform..
+    }
 }

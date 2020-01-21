@@ -115,6 +115,7 @@ class MyApi: NSObject {
         
         Firestore.firestore().collection(PROMISEUSERREF).addDocument(data: [
             USERNAME : userTable.userName,
+            USERFRIENDS: userTable.userFriends
         ]) { error in
             if let err = error {
                 debugPrint("Error adding document : \(error)")
@@ -125,7 +126,7 @@ class MyApi: NSObject {
         
     }
     
-}
+
 // VC file에 이렇게 사용
 //    MyApi.shared.allMenu(completion: { result in
 //               DispatchQueue.main.async {
@@ -170,5 +171,5 @@ class MyApi: NSObject {
          //
          */
     }
-}
 
+}
