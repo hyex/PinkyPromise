@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FSCalendar
 
 struct PromiseSchedule {
     var startDate: Date;
@@ -21,6 +22,8 @@ class PromiseInputTVC: UITableViewCell {
     
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBOutlet weak var calendar: FSCalendar!
+    
     var schedule: PromiseSchedule!
     
     override func awakeFromNib() {
@@ -34,8 +37,8 @@ class PromiseInputTVC: UITableViewCell {
 
         date.dateFormat = "eee"
 
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: now)
+        let cal = Calendar.current
+        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: now)
             
         if let dateLabel = dateLabel {
             dateLabel.text = "\(components.month!)월 \(components.day!)일 \(date.string(from: now))요일"

@@ -35,8 +35,8 @@ class AddPromiseVC: UIViewController {
         promiseTableView.clipsToBounds = false
         //self.promiseTableView.rowHeight = 100; 테이블뷰 높이 문제 해결 필요
         
-        isStartCalSelected = false
-        isEndCalSelected = false
+        isStartCalSelected = true
+        isEndCalSelected = true
         
     }
 
@@ -74,7 +74,6 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
             break;
         case 2,4:
             cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell") as! PromiseInputTVC
-            
             break;
         case 5,6:
             cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseInputTVC
