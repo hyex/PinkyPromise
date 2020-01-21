@@ -29,9 +29,12 @@ class FriendTabMainVC: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
+        
+//        UIView footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 10)];
+//        footerView.backgroundColor = [UIColor clearColor];
+//        friendMainTableView.tableFooterView = footerView;
 
     }
-
 }
 
 extension FriendTabMainVC : UITableViewDelegate{ }
