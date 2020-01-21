@@ -9,13 +9,15 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-
+    
     // 나중에 user 전역 어쩌고에 사용
-//    var data:String? = nil
+    //    var data:String? = nil
+    
+    var thoughtuser = [PromiseUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
 }

@@ -29,6 +29,7 @@ class PromiseChildVC: UIViewController {
         
         self.collectionView.reloadData()
         
+
     }
 }
 

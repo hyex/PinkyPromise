@@ -17,6 +17,13 @@ class MoreTabMainVC: UIViewController {
         MoreTableData(title: "예제2"),
         MoreTableData(title: "예제3"),
     ]
+    
+    func onComplete(data: [MoreTableData]) -> Void {
+        DispatchQueue.main.async {
+            self.moreTableList = data
+            self.moreTableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +31,7 @@ class MoreTabMainVC: UIViewController {
         moreTableView.delegate = self
         moreTableView.dataSource = self
         
-//        MyApi.shared.allMenu(completion: { result in
-//            DispatchQueue.main.async {
-//                self.moreTableList = result
-//                self.moreTableView.reloadData()
-//            }
-//        })
+        MyApi.shared.allMenu(completion: self.onComplete(data:))
     }
     
 }
