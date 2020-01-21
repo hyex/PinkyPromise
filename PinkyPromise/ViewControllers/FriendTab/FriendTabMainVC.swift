@@ -29,8 +29,12 @@ class FriendTabMainVC: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
-    }
+        
+//        UIView footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 10)];
+//        footerView.backgroundColor = [UIColor clearColor];
+//        friendMainTableView.tableFooterView = footerView;
 
+    }
 }
 
 extension FriendTabMainVC : UITableViewDelegate{ }
@@ -46,13 +50,16 @@ extension FriendTabMainVC : UITableViewDataSource{
         
         let rowData = self.friendsInPromise[indexPath.row]
         
-    
+        cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
+        cell.friendProfileImg.clipsToBounds = true
+        
         cell.friendProfileImg.image = UIImage(named: rowData.img)
         cell.friendNameLabel.text = rowData.name
         
         return cell
     }
     
-    
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }
