@@ -13,16 +13,19 @@ class DayTVC: UITableViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var promiseView: UIStackView!
     
-    fileprivate let promiseHeight: CGFloat = 40
+    fileprivate let promiseHeight: CGFloat = 30
     
     func setPromise(day: Day){
         DispatchQueue.main.async {
             self.dayLabel.text = day.day
-//            print(day.day)
+            
             if self.promiseView.arrangedSubviews.count != day.promise.count {
                 for promise in day.promise {
                     let viewToAdd = OnePromiseView(frame: CGRect.zero, promise: promise)
-                    viewToAdd.backgroundColor = UIColor(named: promise.promiseColor)
+//                    viewToAdd.backgroundColor = UIColor(named: "blue")
+//                    viewToAdd.backgroundColor = UIColor(named: promise.promiseColor)
+//                    print(promise.promiseColor)
+//                    print(promise.promiseName)
                     self.promiseView.addArrangedSubview(viewToAdd)
                 }
             }

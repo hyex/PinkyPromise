@@ -26,20 +26,24 @@ class DayChildVC: UIViewController {
     var days: [Day] = [
         Day(day: "MON  \n 1", promise: [
             Promise(promiseName: "red", promiseColor: ".red"),
-            Promise(promiseName: "yellow", promiseColor: ".yellow"),
+            Promise(promiseName: "yellow", promiseColor: ".yellow")
         ]),
         Day(day: "TUE  \n 2", promise: [
             Promise(promiseName: "yellow", promiseColor: ".yellow"),
             Promise(promiseName: "black", promiseColor: ".black"),
             Promise(promiseName: "blue", promiseColor: ".blue"),
+            Promise(promiseName: "black", promiseColor: ".black"),
+            Promise(promiseName: "blue", promiseColor: ".blue"),
+            Promise(promiseName: "black", promiseColor: ".black"),
+            Promise(promiseName: "blue", promiseColor: ".blue")
         ])
         
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dayTableView.delegate = self
-        dayTableView.dataSource = self
+        self.dayTableView.delegate = self
+        self.dayTableView.dataSource = self
     
 //        dayTableView.estimatedRowHeight = 1000
 //        dayTableView.rowHeight = UITableView.automaticDimension
@@ -49,13 +53,6 @@ class DayChildVC: UIViewController {
 
 }
 
-extension DayChildVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 40 + 20)
-        return height
-    }
-
-}
 
 extension DayChildVC: UITableViewDataSource {
 
@@ -64,7 +61,7 @@ extension DayChildVC: UITableViewDataSource {
 //    }
 //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return days.count
+        return self.days.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,6 +80,15 @@ extension DayChildVC: UITableViewDataSource {
 //        return cell
     }
     
+}
+
+
+extension DayChildVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 30 + 10)
+        return height
+        
+    }
 }
 
 
