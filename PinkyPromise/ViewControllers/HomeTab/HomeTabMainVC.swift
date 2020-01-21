@@ -7,17 +7,21 @@
 //
 
 import UIKit
+import FSCalendar
 
 class HomeTabMainVC: UIViewController {
 
     @IBOutlet weak var addPromiseBtn: UIButton!
     @IBOutlet weak var nearPromiseLabel: UILabel!
     @IBOutlet weak var nearPromise: UILabel!
+    @IBOutlet weak var calendar: FSCalendar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        
+                
+        calendar.delegate = self
+        calendar.dataSource = self
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {
@@ -62,4 +66,24 @@ extension HomeTabMainVC {
         addPromiseBtn.makeCircle()
     }
     
+}
+
+
+extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
+    
+    // 날짜 선택 시 콜백
+    public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        print(dateFormatter.string(from: date))
+    }
+    
+    // 날짜 선택 해제 시 콜백
+    public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosion: FSCalendarMonthPosition) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        print(dateFormatter.string(from: date))
+    }
 }
