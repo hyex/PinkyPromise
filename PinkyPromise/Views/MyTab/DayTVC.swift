@@ -13,41 +13,50 @@ class DayTVC: UITableViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var promiseView: UIStackView!
     
-    var promises:[promise] = []
-    {
-        didSet {
-//            print("2")
-//            self.updateStackView()
-            
-        }
-    }
+    fileprivate let promiseHeight: CGFloat = 40
     
-    func updateStackView() {
-        for (index, element) in promises.enumerated(){
-//            print(index)
-            print(promises[index])
-            let view = UIView()
-            let label = UILabel()
-            
-            // 안먹음
-            view.addSubview(label)
-            label.text = element.title
-        
-            view.backgroundColor = element.color
-            
-            // 안먹음
-            var f = view.frame
-            f.size = CGSize(width: 30, height: 10)
-//            view.frame.size.height = CGFloat(10.0)
-            view.frame = f
-            
-            self.promiseView.addArrangedSubview(view)
+    func setPromise(day: Day){
+        DispatchQueue.main.async {
+            self.dayLabel.text = day.day
+//            print(day.day)
+            if self.promiseView.arrangedSubviews.count != day.promise.count {
+                for promise in day.promise {
+                    let viewToAdd = OnePromiseView(frame: CGRect.zero, promise: promise)
+                    viewToAdd.backgroundColor = UIColor(named: promise.promiseColor)
+                    self.promiseView.addArrangedSubview(viewToAdd)
+                }
+            }
         }
-        self.setNeedsLayout()
     }
+//
+//    func updateStackView() {
+//        for (index, element) in promises.enumerated(){
+////            print(index)
+//            print(promises[index])
+//            let view = UIView()
+//            let label = UILabel()
+//
+//            // 안먹음
+//            view.addSubview(label)
+//            label.text = element.title
+//
+//            view.backgroundColor = element.color
+//
+//            // 안먹음
+//            var f = view.frame
+//            f.size = CGSize(width: 30, height: 10)
+////            view.frame.size.height = CGFloat(10.0)
+//            view.frame = f
+//
+//            self.promiseView.addArrangedSubview(view)
+//        }
+//        self.setNeedsLayout()
+//    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        promiseView.backgroundColor = .lightGray
         dayLabel.makeTwoLine()
 //        print("awake")
         

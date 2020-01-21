@@ -26,6 +26,8 @@ class PromiseCVC: UICollectionViewCell {
         self.showSliderValue.layer.position.x = CGFloat(14.0) + temp
 //        self.showSliderValue.layer.position.x = self.appSlider.layer.position.x + self.appSlider.value
     }
+    
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

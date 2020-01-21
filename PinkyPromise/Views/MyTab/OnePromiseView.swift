@@ -11,17 +11,18 @@
 import UIKit
 
 class OnePromiseView: UIView {
-    private var promise:promise? = nil
-    @IBOutlet weak var memberLabel: UILabel!
+    private var promise:Promise? = nil
+    
+    @IBOutlet weak var promiseName: UILabel!
     
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         // Drawing code
-        self.memberLabel.text = self.promise?.title
+        self.promiseName.text = self.promise?.promiseName
     }
     
-    convenience init(frame:CGRect, promise:promise) {
+    convenience init(frame:CGRect, promise:Promise) {
         self.init(frame: frame)
         self.promise = promise
     }
