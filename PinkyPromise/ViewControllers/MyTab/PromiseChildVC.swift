@@ -48,10 +48,25 @@ extension PromiseChildVC {
     }
     
     func setupBtn() {
-        endedPromiseBtn.layer.borderColor = UIColor.black.cgColor
-        endedPromiseBtn.layer.borderWidth = 1.0
         
+        endedPromiseBtn.layer.borderColor = UIColor.clear.cgColor
+        endedPromiseBtn.layer.borderWidth = 1.0
+        endedPromiseBtn.backgroundColor = .white
+        endedPromiseBtn.layer.cornerRadius = 8
+        endedPromiseBtn.layer.masksToBounds = false
+        
+        endedPromiseBtn.layer.shadowColor = UIColor.gray.cgColor
+        endedPromiseBtn.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        endedPromiseBtn.layer.shadowRadius = 5
+        endedPromiseBtn.layer.shadowOpacity = 1.0
+        
+        let appColor = UIColor(displayP3Red: 142.0/255.0, green: 128.0/255.0, blue: 239.0/255.0, alpha: 1.0)
+        let attributedString = NSAttributedString(string: "100% 지킨 약속 보러가기", attributes: [
+            .font: UIFont.boldSystemFont(ofSize: 20.0),
+          .foregroundColor: appColor
+        ])
 
+        endedPromiseBtn.setAttributedTitle(attributedString, for: .normal )
     }
 }
 

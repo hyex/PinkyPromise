@@ -10,10 +10,13 @@ import UIKit
 
 
 class PromiseCVC: UICollectionViewCell {
-   
+    
+    @IBOutlet weak var promiseIcon: UIImageView!
+    
+    @IBOutlet weak var promiseName: UILabel!
     @IBOutlet weak var appSlider: CustomSlider!
     @IBOutlet weak var showSliderValue: UILabel!
-    @IBOutlet weak var promiseName: UILabel!
+    
     
     // 사용자가 값을 변경할 수 없게 user interaction enabled 를 false로 만들어 이 함수는 실행 되지 않을 것임
     @IBAction func sliderVlueChanged(_ sender: Any?) {
@@ -44,6 +47,9 @@ class PromiseCVC: UICollectionViewCell {
         self.layer.shadowRadius = 5.0
         self.layer.shadowOpacity = 1.0
         self.layer.masksToBounds = false
+        
+        self.promiseIcon.layer.cornerRadius = self.promiseIcon.frame.height/2
+        self.promiseIcon.layer.masksToBounds = true
         
         
     }
