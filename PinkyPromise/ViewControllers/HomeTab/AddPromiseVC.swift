@@ -5,8 +5,24 @@
 //  Created by kimhyeji on 1/14/20.
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
-
+    
 import UIKit
+import FSCalendar
+
+
+struct PromiseInput {
+    //    let promiseId: Int
+    var promiseName: String
+    var promiseStartTime: Date
+    var promiseEndTime: Date
+    var promiseColor: String
+    //    let promisedIcon: String // UIImage cannot codable. search later.
+    //    let isPromiseAlarm: Bool
+    //    let promiseAlarmContent : String
+    var promiseAchievement: Int
+    //    let users: [user] or [String] or [Int]}
+}
+
 
 class AddPromiseVC: UIViewController {
 
@@ -14,57 +30,79 @@ class AddPromiseVC: UIViewController {
 
     @IBOutlet weak var promiseTableView: UITableView!
 
+    @IBOutlet weak var saveBtn: UIBarButtonItem!
+    
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
     
     var isStartCalSelected: Bool!
     var isEndCalSelected: Bool!
+    var promise: PromiseInput!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // navigation 투명하게
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
         
+        // set UI
+        setNavigationUI()
         setBackBtn()
+        setNavigationUI()
         
+        // detegate & dataSource
         promiseTableView.delegate = self
         promiseTableView.dataSource = self
-        
-        self.promiseTableView.tableFooterView = dummyView;
-        promiseTableView.clipsToBounds = false
-        //self.promiseTableView.rowHeight = 100; 테이블뷰 높이 문제 해결 필요
-        
-        isStartCalSelected = false
-        isEndCalSelected = false
-        
+
+        // logic
+        isStartCalSelected = true
+        isEndCalSelected = true
     }
 
     @IBAction func backBtnAction(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
     
+    @IBAction func saveBtnAction(_ sender: Any) {
+       // var indexPath: NSIndexPath
+        
+        let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! PromiseInputTVC
     
-}
-
-
-extension AddPromiseVC {
-
-    func setBackBtn() {
-        backBtn.tintColor = .black
+        promise.promiseName = cell.textField.text!
+        
+        
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
+// about UI
+extension AddPromiseVC {
+    func setBackBtn() {
+        backBtn.tintColor = .black
+    }
+    func setNavigationUI() {
+        // navigation 투명하게
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    func setTableViewUI() {
+        // tableView 뷰 변경
+        promiseTableView.tableFooterView = dummyView;
+        promiseTableView.clipsToBounds = false
+        //self.promiseTableView.rowHeight = 100; 테이블뷰 높이 문제 해결 필요
+    }
+}
+
+// initialize tableView
 extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8;
     }
-
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: PromiseInputTVC;
-        // print(indexPath.row, indexPath.section)
         switch (indexPath.row) {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as! PromiseInputTVC
@@ -74,33 +112,33 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
             break;
         case 2,4:
             cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell") as! PromiseInputTVC
-            
+            cell.calendar.delegate = self
+            cell.calendar.dataSource = self
             break;
-        case 5,6:
+        case 5:
             cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseInputTVC
             break;
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! PromiseInputTVC
             break;
         }
-        
-        cell.configure()
 
         return cell
         // Configure the cells..
     }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
+}
+
+
+// hide & show Calendar
+extension AddPromiseVC {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if !isStartCalSelected && indexPath.row == 2 {
-            return 0.1
+            return 0.01
         }
         else if !isEndCalSelected && indexPath.row == 4 {
-            return 0.1
+            return 0.01
         }
         else{
             return UITableView.automaticDimension
@@ -123,3 +161,40 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
         }
     }
 }
+
+
+// calendar logic
+extension AddPromiseVC: FSCalendarDataSource {
+    // 날짜 선택 시 콜백
+    public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+
+        //let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! PromiseInputTVC
+        
+        let cellUpper = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseInputTVC
+        
+        let cellSelf = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
+        
+        
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        cellUpper.dateLabel.text = dateFormatter.string(from: cellSelf.calendar.selectedDate!)
+        //let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath)
+        //promiseTableView.indexPathForSelectedRow
+        //cell?.setDate()
+        //print(dateFormatter.string(from: date))
+    }
+
+    // 날짜 선택 해제 시 콜백
+    public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosion: FSCalendarMonthPosition) {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        print(dateFormatter.string(from: date))
+    }
+    
+    //public func calendar
+}
+
+extension AddPromiseVC:FSCalendarDelegate {}
