@@ -39,8 +39,8 @@
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
 		33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */; };
-		33BC046523D6E8D100DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046423D6E8D000DEFD3A /* OnePromiseView.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
+		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
 		3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */; };
 		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
 		3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */; };
@@ -84,8 +84,8 @@
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
 		33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endedPromiseVC.swift; sourceTree = "<group>"; };
-		33BC046423D6E8D000DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
+		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseInputTVC.swift; sourceTree = "<group>"; };
@@ -270,7 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				33BC046623D6E96200DEFD3A /* OnePromiseView.xib */,
-				33BC046423D6E8D000DEFD3A /* OnePromiseView.swift */,
+				33BC046823D7271200DEFD3A /* OnePromiseView.swift */,
 				33028C6123CDB35B004E0104 /* DayTVC.swift */,
 				3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */,
 				3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */,
@@ -518,13 +518,13 @@
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				186D855B23D42486006DA619 /* promiseTable.swift in Sources */,
-				33BC046523D6E8D100DEFD3A /* OnePromiseView.swift in Sources */,
 				33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */,
 				A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */,
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
+				33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */,
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
 				33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
