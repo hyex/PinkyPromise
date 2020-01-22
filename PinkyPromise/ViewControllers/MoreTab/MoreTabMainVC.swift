@@ -12,11 +12,7 @@ class MoreTabMainVC: UIViewController {
 
     @IBOutlet weak var moreTableView: UITableView!
     
-    var moreTableList:[MoreTableData] = [
-        MoreTableData(title: "예제1"),
-        MoreTableData(title: "예제2"),
-        MoreTableData(title: "예제3"),
-    ]
+    var moreTableList:[MoreTableData] = []
     
     func onComplete(data: [MoreTableData]) -> Void {
         DispatchQueue.main.async {
@@ -31,13 +27,26 @@ class MoreTabMainVC: UIViewController {
         moreTableView.delegate = self
         moreTableView.dataSource = self
         
-        MyApi.shared.allMenu(completion: self.onComplete(data:))
+        MyApi.shared.allMore(completion: self.onComplete(data:))
+        // 위와 같음
+        //    MyApi.shared.allMenu(completion: { result in
+        //               DispatchQueue.main.async {
+        //                   self.moreTableList = result
+        //                   self.moreTableView.reloadData()
+        //               }
+        //           })
+
     }
     
 }
 
 
 extension MoreTabMainVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
 //        performSegue(withIdentifier: "DetailSegue", sender: self.rankingList[indexPath.row])

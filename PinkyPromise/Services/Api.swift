@@ -21,11 +21,11 @@ class MyApi: NSObject {
     let dateFormatter = DateFormatter()
 
     // Api 예시
-    func allMenu(completion: ([MoreTableData]) -> Void) { //}, onError: @escaping (Error) -> Void) {
+    func allMore(completion: ([MoreTableData]) -> Void) { //}, onError: @escaping (Error) -> Void) {
         let result = [
-            MoreTableData(title: "예제1"),
-            MoreTableData(title: "예제2"),
-            MoreTableData(title: "예제3"),
+            MoreTableData(title: "내 정보"),
+            MoreTableData(title: "내 친구"),
+            MoreTableData(title: "내 코드"),
         ]
         completion(result)
     }
