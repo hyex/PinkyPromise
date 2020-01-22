@@ -12,4 +12,8 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var friendProfileImg: UIImageView!
     
     @IBOutlet weak var friendNameLabel: UILabel!
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
 }

@@ -8,54 +8,53 @@
 
 import UIKit
 
-struct promise {
-    var color: UIColor
-    var title: String
+struct Promise {
+    let promiseName: String
+    let promiseColor: String
 }
-struct day {
-    var date: String
-    var promiseList: [promise]
+
+struct Day {
+    var day: String
+    var promise: [Promise]
 }
 
 class DayChildVC: UIViewController {
     
     @IBOutlet weak var dayTableView: UITableView!
     
-//    var promiseList1: [promise] = [
-//        promise(color: .red, title: "red"),
-//        promise(color: .yellow, title: "yellow"),
-//        promise(color: .blue, title: "blue")
-//    ]
     
-    var dayList: [day] = [
-        day(date: "MON  \n 1", promiseList: [
-            promise(color: .red, title: "red"),
-            promise(color: .yellow, title: "yellow"),
-            promise(color: .blue, title: "blue")
+    var days: [Day] = [
+        Day(day: "MON  \n 1", promise: [
+            Promise(promiseName: "red", promiseColor: ".red"),
+            Promise(promiseName: "yellow", promiseColor: ".yellow"),
         ]),
-        day(date: "TUE  \n 2", promiseList: [
-//            promise(color: .orange, title: "orange"),
-            promise(color: .systemPink, title: "pink"),
-            promise(color: .purple, title: "purple")
+        Day(day: "TUE  \n 2", promise: [
+            Promise(promiseName: "yellow", promiseColor: ".yellow"),
+            Promise(promiseName: "black", promiseColor: ".black"),
+            Promise(promiseName: "blue", promiseColor: ".blue"),
         ])
+        
     ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         dayTableView.delegate = self
         dayTableView.dataSource = self
-        dayTableView.estimatedRowHeight = 1000
-        dayTableView.rowHeight = UITableView.automaticDimension
-        dayTableView.separatorColor = .clear
-        dayTableView.reloadData()
+    
+//        dayTableView.estimatedRowHeight = 1000
+//        dayTableView.rowHeight = UITableView.automaticDimension
+//        dayTableView.separatorColor = .clear
+//        dayTableView.reloadData()
     }
 
 }
 
 extension DayChildVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableView.automaticDimension;
+        let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 40 + 20)
+        return height
     }
+
 }
 
 extension DayChildVC: UITableViewDataSource {
@@ -65,58 +64,61 @@ extension DayChildVC: UITableViewDataSource {
 //    }
 //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dayList.count
+        return days.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-            if let dayCell = dayTableView.dequeueReusableCell(withIdentifier: "DayTVC", for: indexPath) as? DayTVC {
-                
-                let rowData = self.dayList[indexPath.row]
-                
-                dayCell.dayLabel.text = rowData.date
-                
-//                print("1")
-                dayCell.promises = rowData.promiseList
-                
-//                print(dayCell.promises)
-//                dayCell.updateStackView()
-                
-                for (index, element) in rowData.promiseList.enumerated(){
-                    //            print(index)
-//                    print(promises[index])
-                    let view = UIView()
-                    let label = UILabel()
-                    
-                    // 안먹음
-                    view.addSubview(label)
-                    label.text = element.title
-                    
-                    view.backgroundColor = element.color
-                    
-                    // 안먹음
-                    var f = view.frame
-                    f.size = CGSize(width: 30, height: 10)
-                    //            view.frame.size.height = CGFloat(10.0)
-                    view.frame = f
-//                    print(view.frame.size.width)
-//                    print(view.frame.size.height)
-                    dayCell.promiseView.addArrangedSubview(view)
-//                    print(dayCell.promiseView.arrangedSubviews[0].frame.size)
-                    
-//                    dayCell.promiseView.arrangedSubviews[index].widthAnchor.constraint(equalToConstant: dayCell.promiseView.frame.width).isActive = true
-//                    dayCell.promiseView.arrangedSubviews[index].heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-//                    print(dayCell.promiseView.arrangedSubviews[0].frame.size)
-                    
-                }
-                
-
-                cell = dayCell
-            }
         
-            return cell
+        let cell = dayTableView.dequeueReusableCell(withIdentifier: "DayTVC", for: indexPath) as! DayTVC
+        cell.setPromise(day: self.days[indexPath.row])
+        return cell
+        
+//        var cell = UITableViewCell()
+//        if let dayCell = dayTableView.dequeueReusableCell(withIdentifier: "DayTVC", for: indexPath) as? DayTVC {
+//            cell.backgroundColor = .brown
+//            dayCell.setPromise(day: self.days[indexPath.row])
+//            cell = dayCell
+//        }
+//
+//        return cell
     }
     
 }
 
 
+//let rowData = self.days[indexPath.row]
+                    
+//                dayCell.dayLabel.text = rowData.date
+//                dayCell.promises = rowData.promiseList
+
+//                print(dayCell.promises)
+//                dayCell.updateStackView()
+                
+//                for (index, element) in rowData.promiseList.enumerated(){
+//                    //            print(index)
+////                    print(promises[index])
+//                    let view = UIView()
+//                    let label = UILabel()
+//
+//                    // 안먹음
+//                    view.addSubview(label)
+//                    label.text = element.title
+//
+//                    view.backgroundColor = element.color
+//
+//                    // 안먹음
+//                    var f = view.frame
+//                    f.size = CGSize(width: 30, height: 10)
+//                    //            view.frame.size.height = CGFloat(10.0)
+//                    view.frame = f
+////                    print(view.frame.size.width)
+////                    print(view.frame.size.height)
+//                    dayCell.promiseView.addArrangedSubview(view)
+//                    print(dayCell.promiseView.arrangedSubviews[0].frame.size)
+
+//                    dayCell.promiseView.arrangedSubviews[index].widthAnchor.constraint(equalToConstant: dayCell.promiseView.frame.width).isActive = true
+//                    dayCell.promiseView.arrangedSubviews[index].heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+//                    print(dayCell.promiseView.arrangedSubviews[0].frame.size)
+                    
+//                }
+                

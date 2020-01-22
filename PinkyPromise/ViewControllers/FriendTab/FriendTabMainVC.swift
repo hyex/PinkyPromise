@@ -29,12 +29,17 @@ class FriendTabMainVC: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
-        
-//        UIView footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 10)];
-//        footerView.backgroundColor = [UIColor clearColor];
-//        friendMainTableView.tableFooterView = footerView;
 
     }
+    
+    @IBAction func endedPromiseBtnAction(_ sender: Any) {
+           let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
+           
+           vc.modalTransitionStyle = .flipHorizontal
+           vc.modalPresentationStyle = .overCurrentContext
+           
+           self.present(vc, animated: false)
+       }
 }
 
 extension FriendTabMainVC : UITableViewDelegate{ }
