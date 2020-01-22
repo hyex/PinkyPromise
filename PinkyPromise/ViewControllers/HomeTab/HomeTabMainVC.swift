@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 import FSCalendar
 
 class HomeTabMainVC: UIViewController {

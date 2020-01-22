@@ -168,21 +168,21 @@ extension AddPromiseVC: FSCalendarDataSource {
     // 날짜 선택 시 콜백
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
-        //let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! PromiseInputTVC
+        let firstCalCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
+        let secondCalCell = promiseTableView.cellForRow(at: NSIndexPath(row: 4, section: 0) as IndexPath) as! PromiseInputTVC
         
-        let cellUpper = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseInputTVC
-        
-        let cellSelf = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-        
-        
-        
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        cellUpper.dateLabel.text = dateFormatter.string(from: cellSelf.calendar.selectedDate!)
+        if firstCalCell.calendar == calendar {
+            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseInputTVC
+            cell.changeDateFormatKR(date: date)
+        }
+        if secondCalCell.calendar == calendar {
+            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
+            cell.changeDateFormatKR(date: date)
+        }
+
         //let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath)
-        //promiseTableView.indexPathForSelectedRow
-        //cell?.setDate()
+        // promiseTableView.indexPathForSelectedRow
+        
         //print(dateFormatter.string(from: date))
     }
 
