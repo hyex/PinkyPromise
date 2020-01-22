@@ -8,20 +8,27 @@
 
 struct FriendsInfo {
     var img : String
-    var name : String
+    var friendname : String
+    var promisename : String
 }
 
 import UIKit
 
 class FriendTabMainVC: UIViewController {
     
+    @IBOutlet weak var addNewPromiseBtn: UIButton!
+    @IBOutlet weak var promiseCtnLabel: UILabel!
     @IBOutlet weak var friendMainTableView: UITableView!
     
     let friendsInPromise : [FriendsInfo] = [
-    FriendsInfo(img: "seonyoung", name: "seonyoung"),
-    FriendsInfo(img: "seonyoung", name: "hyeji" ),
-    FriendsInfo(img: "seonyoung", name: "hyunjae"),
-    FriendsInfo(img: "seonyoung", name: "uijeong")
+    FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
+    FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
+    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "물 하루 1L 이상 마시기 "),
+    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "물 하루 1L 이상 마시기 "),
+    FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
+    FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
+    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "물 하루 1L 이상 마시기 "),
+    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "물 하루 1L 이상 마시기 ")
     ]
     
     override func viewDidLoad() {
@@ -29,7 +36,10 @@ class FriendTabMainVC: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
-
+        
+        let purplePlus : UIImage = UIImage(named: "plus")!
+        addNewPromiseBtn.setImage(purplePlus, for: UIControl.State.normal)
+        
     }
     
     @IBAction func endedPromiseBtnAction(_ sender: Any) {
@@ -59,7 +69,11 @@ extension FriendTabMainVC : UITableViewDataSource{
         cell.friendProfileImg.clipsToBounds = true
         
         cell.friendProfileImg.image = UIImage(named: rowData.img)
-        cell.friendNameLabel.text = rowData.name
+        cell.friendNameLabel.text = rowData.friendname
+        cell.promiseNameLabel.text = rowData.promisename
+        
+        let purpleArrow : UIImage = UIImage(named: "next")!
+        cell.friendDatailBtn.setImage(purpleArrow, for: UIControl.State.normal)
         
         return cell
     }
