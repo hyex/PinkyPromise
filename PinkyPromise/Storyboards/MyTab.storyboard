@@ -166,54 +166,75 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-sJ-Zrn" customClass="CustomSlider" customModule="PinkyPromise" customModuleProvider="target">
-                                                    <rect key="frame" x="14.000000000000018" y="58" width="256" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-sJ-Zrn" customClass="CustomSlider" customModule="PinkyPromise" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="58" width="256" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="252" id="ew9-aC-fOo"/>
+                                                        <constraint firstAttribute="height" constant="29" id="l5p-CN-VWY"/>
+                                                    </constraints>
                                                     <color key="minimumTrackTintColor" red="0.55749700911562028" green="0.50272371716074804" blue="0.93720256979695438" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="sliderVlueChanged:" destination="59y-eh-3rL" eventType="valueChanged" id="0cg-9H-3uF"/>
                                                     </connections>
                                                 </slider>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="약속명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3V-ol-Qk1">
-                                                    <rect key="frame" x="52.000000000000014" y="12" width="169" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약속명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3V-ol-Qk1">
+                                                    <rect key="frame" x="52" y="12" width="44.333333333333343" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="29" id="fEC-f4-Zpq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="성공횟수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnF-ge-7BA">
-                                                    <rect key="frame" x="15.000000000000018" y="72" width="49" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="성공횟수" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnF-ge-7BA">
+                                                    <rect key="frame" x="14" y="72" width="49" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="heji" translatesAutoresizingMaskIntoConstraints="NO" id="ych-3u-9kM">
-                                                    <rect key="frame" x="14.000000000000018" y="12" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heji" translatesAutoresizingMaskIntoConstraints="NO" id="ych-3u-9kM">
+                                                    <rect key="frame" x="14" y="12" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="49Q-gh-xgy"/>
+                                                        <constraint firstAttribute="width" secondItem="ych-3u-9kM" secondAttribute="height" multiplier="1:1" id="qdh-GT-9sY"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-zx-yxK">
-                                                    <rect key="frame" x="274.00000000000006" y="56" width="17" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-zx-yxK">
+                                                    <rect key="frame" x="274" y="58" width="17" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10일남음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fH-SQ-okZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10일남음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fH-SQ-okZ">
                                                     <rect key="frame" x="247" y="19" width="45" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XrI-sJ-Zrn" firstAttribute="top" secondItem="ych-3u-9kM" secondAttribute="bottom" constant="16" id="4uf-id-5Eb"/>
+                                                <constraint firstItem="b3V-ol-Qk1" firstAttribute="centerY" secondItem="7fH-SQ-okZ" secondAttribute="centerY" id="62W-Jb-vmR"/>
+                                                <constraint firstItem="b3V-ol-Qk1" firstAttribute="leading" secondItem="ych-3u-9kM" secondAttribute="trailing" constant="8" id="KhR-jA-Qsh"/>
+                                                <constraint firstAttribute="trailing" secondItem="pf5-zx-yxK" secondAttribute="trailing" constant="8.9999999999999432" id="QKb-fe-0Eg"/>
+                                                <constraint firstItem="XrI-sJ-Zrn" firstAttribute="leading" secondItem="nFN-Zu-oJD" secondAttribute="leading" constant="16.000000000000018" id="auJ-L2-WVh"/>
+                                                <constraint firstAttribute="bottom" secondItem="pf5-zx-yxK" secondAttribute="bottom" constant="14" id="iH6-p9-Gg2"/>
+                                                <constraint firstItem="ych-3u-9kM" firstAttribute="leading" secondItem="nFN-Zu-oJD" secondAttribute="leading" constant="14.000000000000018" id="l5f-Ki-fQG"/>
+                                                <constraint firstAttribute="trailing" secondItem="7fH-SQ-okZ" secondAttribute="trailing" constant="8" id="lDc-bV-Ufq"/>
+                                                <constraint firstItem="ych-3u-9kM" firstAttribute="top" secondItem="nFN-Zu-oJD" secondAttribute="top" constant="12" id="qnZ-k4-gYK"/>
+                                                <constraint firstItem="pf5-zx-yxK" firstAttribute="top" secondItem="XrI-sJ-Zrn" secondAttribute="top" id="vda-9O-oLJ"/>
+                                                <constraint firstItem="ych-3u-9kM" firstAttribute="top" secondItem="b3V-ol-Qk1" secondAttribute="top" id="xU4-8E-WSQ"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="300" height="90"/>
                                         <connections>
                                             <outlet property="appSlider" destination="XrI-sJ-Zrn" id="mwK-gF-Rym"/>
+                                            <outlet property="leftDays" destination="7fH-SQ-okZ" id="Ozp-r4-E5D"/>
                                             <outlet property="promiseIcon" destination="ych-3u-9kM" id="ceg-IF-gy7"/>
                                             <outlet property="promiseName" destination="b3V-ol-Qk1" id="8PR-S5-PJV"/>
                                             <outlet property="showSliderValue" destination="xnF-ge-7BA" id="03p-3y-0WQ"/>
+                                            <outlet property="totalDays" destination="pf5-zx-yxK" id="qYk-sy-lnz"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

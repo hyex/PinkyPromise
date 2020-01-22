@@ -145,15 +145,15 @@ class MyApi: NSObject {
 
         let result = [
             PromiseData(promiseName: "10시에 기상하기",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-03 10:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-14 10:00") ?? defaultDate,
+                        promiseStartTime: dateFormatter.date(from:"2020-01-18 10:00") ?? defaultDate,
+                        promiseEndTime: dateFormatter.date(from:"2020-01-28 10:00") ?? defaultDate,
                         promiseColor: "red",
                         promiseAchievement: 3),
             PromiseData(promiseName: "4시에는 쿨쿨하기",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-02 13:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-05 14:00") ?? defaultDate,
+                        promiseStartTime: dateFormatter.date(from:"2020-01-20 13:00") ?? defaultDate,
+                        promiseEndTime: dateFormatter.date(from:"2020-01-25 14:00") ?? defaultDate,
                         promiseColor: "blue",
-                        promiseAchievement: 2),
+                        promiseAchievement: 4),
 
         ]
         completion(result)

@@ -12,8 +12,9 @@ import UIKit
 class PromiseCVC: UICollectionViewCell {
     
     @IBOutlet weak var promiseIcon: UIImageView!
-    
     @IBOutlet weak var promiseName: UILabel!
+    @IBOutlet weak var leftDays: UILabel!
+    @IBOutlet weak var totalDays: UILabel!
     @IBOutlet weak var appSlider: CustomSlider!
     @IBOutlet weak var showSliderValue: UILabel!
     

@@ -112,11 +112,15 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
         // 날짜만 비교해서 며칠 남았는지 뽑아낸다
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        let today = Date()
         let startDate = rowData.promiseStartTime
         let endDate = rowData.promiseEndTime
 
         let interval = endDate.timeIntervalSince(startDate)
         let days = Int(interval / 86400)
+        
+        let leftInterval = endDate.timeIntervalSince(today)
+        let left = Int(leftInterval / 86400)
 
         /** 날짜 차이와 시간 차이까지 알고 싶으면
          let calendar = Calendar.current
@@ -128,12 +132,16 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
          }
          */
         
+        cell.leftDays.text = "\(left)일남음"
+        cell.totalDays.text = String(days)
+        
         // slider의 max 값을 변경
         cell.appSlider.maximumValue = Float(days)
-        print(cell.appSlider.maximumValue)
+//        print(cell.appSlider.maximumValue)
+        
         
 
-        cell.promiseName.text =  rowData.promiseName
+        cell.promiseName.text = rowData.promiseName
         cell.appSlider.value = Float( rowData.promiseAchievement)
         cell.showSliderValue.text = String( rowData.promiseAchievement)
 
