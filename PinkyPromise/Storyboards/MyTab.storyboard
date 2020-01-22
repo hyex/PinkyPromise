@@ -91,10 +91,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요일/날짜" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbZ-8Y-8NH">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="60" height="20.333333333333329"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <rect key="frame" x="20" y="10" width="51" height="51"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="5aL-ys-Yz2"/>
+                                                        <constraint firstAttribute="width" secondItem="EbZ-8Y-8NH" secondAttribute="height" multiplier="1:1" id="1vc-WC-pzM"/>
+                                                        <constraint firstAttribute="width" constant="51" id="5aL-ys-Yz2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -107,13 +107,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EbZ-8Y-8NH" firstAttribute="top" secondItem="bg5-Lm-a1m" secondAttribute="top" constant="9.9999999999999982" id="MsM-za-bJ4"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EbZ-8Y-8NH" secondAttribute="bottom" constant="8" id="Vrw-1k-T4d"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EbZ-8Y-8NH" secondAttribute="bottom" constant="-1" id="Vrw-1k-T4d"/>
                                                 <constraint firstItem="EbZ-8Y-8NH" firstAttribute="leading" secondItem="bg5-Lm-a1m" secondAttribute="leading" constant="20" id="c8G-Lo-FNS"/>
                                                 <constraint firstItem="EbZ-8Y-8NH" firstAttribute="top" secondItem="9rw-23-m7o" secondAttribute="top" id="g6A-Us-a0C"/>
                                                 <constraint firstAttribute="bottom" secondItem="9rw-23-m7o" secondAttribute="bottom" constant="10" id="gbw-g9-w09"/>
                                                 <constraint firstItem="9rw-23-m7o" firstAttribute="top" secondItem="bg5-Lm-a1m" secondAttribute="top" constant="10" id="lfs-Qm-nX5"/>
                                                 <constraint firstAttribute="trailing" secondItem="9rw-23-m7o" secondAttribute="trailing" constant="11" id="qes-cv-f0p"/>
-                                                <constraint firstItem="9rw-23-m7o" firstAttribute="leading" secondItem="EbZ-8Y-8NH" secondAttribute="trailing" constant="12" id="xo1-jm-BQm"/>
+                                                <constraint firstItem="9rw-23-m7o" firstAttribute="leading" secondItem="EbZ-8Y-8NH" secondAttribute="trailing" constant="21" id="xo1-jm-BQm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
