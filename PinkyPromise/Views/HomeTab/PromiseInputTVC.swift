@@ -23,31 +23,13 @@ class PromiseInputTVC: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var calendar: FSCalendar!
-    
+        
     var schedule: PromiseSchedule!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        let now = Date()
-        let date = DateFormatter()
-        
-        date.locale = Locale(identifier: "ko_kr")
-        date.timeZone = TimeZone(abbreviation: "KST")
-
-        date.dateFormat = "eee"
-
-        let cal = Calendar.current
-        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: now)
-            
-        if let dateLabel = dateLabel {
-            dateLabel.text = "\(components.month!)월 \(components.day!)일 \(date.string(from: now))요일"
-        }
-        if let timeLabel = timeLabel {
-            date.dateFormat = "a h:mm"
-            timeLabel.text = "\(date.string(from: now))"
-        }
-        
+        initializeDate()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,11 +37,35 @@ class PromiseInputTVC: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
     func configure() {
         
     }
 }
+
+extension PromiseInputTVC {
+    func initializeDate() {
+        let now = Date()
+        let date = DateFormatter()
+        
+        date.locale = Locale(identifier: "ko_kr")
+        date.timeZone = TimeZone(abbreviation: "KST")
+        
+        date.dateFormat = "eee"
+        
+        let cal = Calendar.current
+        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: now)
+        
+        if let dateLabel = dateLabel {
+            dateLabel.text = "\(components.month!)월 \(components.day!)일 \(date.string(from: now))요일"
+        }
+        if let timeLabel = timeLabel {
+            date.dateFormat = "a h:mm"
+            timeLabel.text = "\(date.string(from: now))"
+        }
+    }
+}
+
 
 extension DateFormatter {
     
