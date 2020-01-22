@@ -32,7 +32,7 @@ class PromiseChildVC: UIViewController {
     
     
     @IBAction func endedPromiseBtnAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "endedPromiseVC") as! endedPromiseVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: "EndedPromiseVC") as! EndedPromiseVC
         
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext

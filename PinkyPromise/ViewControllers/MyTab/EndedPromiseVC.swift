@@ -8,7 +8,7 @@
 
 import UIKit
 
-class endedPromiseVC: UIViewController {
+class EndedPromiseVC: UIViewController {
     
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var endedPromiseCollectionView: UICollectionView!

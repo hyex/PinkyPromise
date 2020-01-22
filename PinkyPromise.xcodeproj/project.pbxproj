@@ -38,7 +38,7 @@
 		334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */; };
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
-		33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */; };
+		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
 		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
 		3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */; };
@@ -83,7 +83,7 @@
 		334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTVC.swift; sourceTree = "<group>"; };
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
-		33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endedPromiseVC.swift; sourceTree = "<group>"; };
+		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,7 +228,7 @@
 				334AACE023CC294000AAF955 /* MyTabMainVC.swift */,
 				33028C5623CD983A004E0104 /* DayChildVC.swift */,
 				33028C5823CD9848004E0104 /* PromiseChildVC.swift */,
-				33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */,
+				33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -526,7 +526,7 @@
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
 				33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */,
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
-				33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */,
+				33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
 				33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,

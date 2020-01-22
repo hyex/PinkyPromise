@@ -285,7 +285,7 @@
         <!--Ended PromiseVC-->
         <scene sceneID="Guq-yJ-jdF">
             <objects>
-                <viewController storyboardIdentifier="endedPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Kk-fu-Wu9" customClass="endedPromiseVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EndedPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Kk-fu-Wu9" customClass="EndedPromiseVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UJd-de-cn6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
