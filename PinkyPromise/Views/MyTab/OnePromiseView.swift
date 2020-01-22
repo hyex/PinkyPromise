@@ -21,63 +21,42 @@ class OnePromiseView: UIView {
     override func draw(_ rect: CGRect) {
         // Drawing code
         self.promiseName.text = self.promise?.promiseName
-        if promise != nil {
-                    let unwrappedPromise = promise!
-//                    let backgroundColor = "UIColor" + unwrappedPromise.promiseColor
-//            let selector = Selector("\(name)Color")
-//            if UIColor.self.responds(to: selector) {
-//                let color = UIColor.self.perform(selector).takeUnretainedValue()
-//                return (color as! UIColor)
-//            } else {
-//                return nil
-//            }
-//                    print(backgroundColor)
-//                }
-//                else {
-//                    print(promise!)
-                }
-            
-//        let color = UIColor.
-//        color.colorNamed
-        let color = UIColor(named: "blackColor")
-        print(color)
-        self.backgroundColor = UIColor(named: "Darkred")
-//            UIColor().color
-//
     }
     
+    // 1
     convenience init(frame:CGRect, promise: Promise) {
-        self.init(frame: frame)
+        self.init(frame: frame) // 2
         self.promise = promise
+        self.commonInit()
     }
     
+    // 2
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
+        print("required")
     }
 
     private func commonInit(){
         let view = Bundle.main.loadNibNamed(xibName, owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
-//        view.frame = CGRect(x: 0.0, y: 0.0, width: 240.0, height: 30.0)
-//        view.backgroundColor = UIColor(named: "White")
-        
-//        if promise != nil {
-//            var unwrappedPromise = promise!
-//            let backgroundColor = "UIColor" + unwrappedPromise.promiseColor
-//            print(backgroundColor)
-//        }
-//        else {
-//            print(promise!)
-//        }
+        view.layer.cornerRadius = 4
 
-        
+        if promise != nil {
+            let unwrappedPromise = promise!
+            let selector = Selector("\(unwrappedPromise.promiseColor)Color")
+            if UIColor.self.responds(to: selector) {
+                let color = UIColor.self.perform(selector).takeUnretainedValue()
+                view.backgroundColor = color as? UIColor
+            } else {
+                print("fail")
+            }
+        }
+
         self.addSubview(view)
-        
     }
 }

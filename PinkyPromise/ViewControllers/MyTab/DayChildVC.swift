@@ -25,19 +25,23 @@ class DayChildVC: UIViewController {
     
     var days: [Day] = [
         Day(day: "MON  \n 1", promise: [
-            Promise(promiseName: "red", promiseColor: ".red"),
-            Promise(promiseName: "yellow", promiseColor: ".yellow")
+            Promise(promiseName: "red", promiseColor: "red"),
+            Promise(promiseName: "yellow", promiseColor: "yellow")
         ]),
         Day(day: "TUE  \n 2", promise: [
-            Promise(promiseName: "yellow", promiseColor: ".yellow"),
-            Promise(promiseName: "black", promiseColor: ".black"),
-            Promise(promiseName: "blue", promiseColor: ".blue"),
-            Promise(promiseName: "black", promiseColor: ".black"),
-            Promise(promiseName: "blue", promiseColor: ".blue"),
-            Promise(promiseName: "black", promiseColor: ".black"),
-            Promise(promiseName: "blue", promiseColor: ".blue")
+            Promise(promiseName: "yellow", promiseColor: "yellow"),
+            Promise(promiseName: "green", promiseColor: "green"),
+            Promise(promiseName: "blue", promiseColor: "blue"),
+            Promise(promiseName: "brown", promiseColor: "brown"),
+            Promise(promiseName: "blue", promiseColor: "blue"),
+            Promise(promiseName: "green", promiseColor: "green"),
+            Promise(promiseName: "blue", promiseColor: "blue")
+        ]),
+        Day(day: "WED  \n 3", promise: [
+            Promise(promiseName: "blue", promiseColor: "blue"),
+            Promise(promiseName: "green", promiseColor: "green"),
+            Promise(promiseName: "blue", promiseColor: "blue")
         ])
-        
     ]
 
     override func viewDidLoad() {
@@ -82,10 +86,9 @@ extension DayChildVC: UITableViewDataSource {
     
 }
 
-
 extension DayChildVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 30 + 10)
+        let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 35 + 10)
         return height
         
     }
