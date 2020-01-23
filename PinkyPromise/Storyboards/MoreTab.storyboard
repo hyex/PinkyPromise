@@ -16,14 +16,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qOr-sX-qi7">
-                                <rect key="frame" x="16" y="111" width="382" height="686"/>
+                                <rect key="frame" x="0.0" y="111" width="414" height="702"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoreTVC" rowHeight="80" id="nRV-Td-9dm" customClass="MoreTVC" customModule="PinkyPromise" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="382" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nRV-Td-9dm" id="wFv-Y4-KZX">
-                                            <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t73-s0-vgj">
@@ -33,7 +33,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfa-3b-FhM">
-                                                    <rect key="frame" x="320" y="25" width="30" height="30"/>
+                                                    <rect key="frame" x="352" y="25" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="99V-HM-q7f"/>
                                                         <constraint firstAttribute="width" secondItem="sfa-3b-FhM" secondAttribute="height" multiplier="1:1" id="apk-qV-DtO"/>
@@ -55,8 +55,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pinky Promise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-R7-LcX">
-                                <rect key="frame" x="117.5" y="50" width="179" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-R7-LcX">
+                                <rect key="frame" x="174.5" y="50" width="65" height="33"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -65,11 +65,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Ixo-R7-LcX" firstAttribute="centerX" secondItem="P8a-Tt-MZO" secondAttribute="centerX" id="89p-B7-RiU"/>
-                            <constraint firstItem="qOr-sX-qi7" firstAttribute="leading" secondItem="P8a-Tt-MZO" secondAttribute="leading" constant="16" id="GEx-l5-YjP"/>
+                            <constraint firstItem="qOr-sX-qi7" firstAttribute="leading" secondItem="P8a-Tt-MZO" secondAttribute="leading" id="GEx-l5-YjP"/>
                             <constraint firstItem="qOr-sX-qi7" firstAttribute="top" secondItem="Ixo-R7-LcX" secondAttribute="bottom" constant="28" id="Gs1-Y6-vAg"/>
                             <constraint firstItem="Ixo-R7-LcX" firstAttribute="top" secondItem="P8a-Tt-MZO" secondAttribute="top" constant="6" id="V8W-8w-KSA"/>
-                            <constraint firstItem="P8a-Tt-MZO" firstAttribute="trailing" secondItem="qOr-sX-qi7" secondAttribute="trailing" constant="16" id="XoZ-sj-NrQ"/>
-                            <constraint firstItem="P8a-Tt-MZO" firstAttribute="bottom" secondItem="qOr-sX-qi7" secondAttribute="bottom" constant="16" id="hZS-6b-A40"/>
+                            <constraint firstItem="P8a-Tt-MZO" firstAttribute="trailing" secondItem="qOr-sX-qi7" secondAttribute="trailing" id="XoZ-sj-NrQ"/>
+                            <constraint firstItem="P8a-Tt-MZO" firstAttribute="bottom" secondItem="qOr-sX-qi7" secondAttribute="bottom" id="hZS-6b-A40"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P8a-Tt-MZO"/>
                     </view>

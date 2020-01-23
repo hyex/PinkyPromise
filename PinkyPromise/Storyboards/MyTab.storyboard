@@ -58,7 +58,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wyg-Tc-bpA"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My" id="QOd-Lt-j3y"/>
+                    <tabBarItem key="tabBarItem" title="My" image="person.crop.circle" catalog="system" id="QOd-Lt-j3y">
+                        <color key="badgeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="Bbb-HL-yYy"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -391,5 +393,6 @@
     <resources>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="heji" width="562.5" height="558"/>
+        <image name="person.crop.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>
