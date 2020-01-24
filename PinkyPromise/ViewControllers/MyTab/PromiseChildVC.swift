@@ -13,21 +13,38 @@ class PromiseChildVC: UIViewController {
     @IBOutlet weak var endedPromiseBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var promiseList: [PromiseData] = []
-
+    var promiseList: [PromiseData]? {
+        didSet { collectionView.reloadData() }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUpCollectionView()
+        getAllPromiseData()
         initView()
+        
+    }
+    
+    private func setUpCollectionView() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
+    }
+    
+    // 통신
+    private func getAllPromiseData() {
         MyApi.shared.allPromise(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
                 self.collectionView.reloadData()
             }
         })
+//        MyPageCheckService.shared.getMyPageData(token: token, completion: { (myPageData) in
+//            self.myData = myPageData
+//        }) { (errCode) in
+//            self.simpleAlert(title: "알림", message: "네트워크 연결상태를 확인해주세요!")
+//            print("회원 정보 조회에 실패했습니다.")
+//        }
     }
     
     
@@ -49,24 +66,21 @@ extension PromiseChildVC {
     
     func setupBtn() {
         
+        endedPromiseBtn.applyShadow(radius: 5, color: .gray, offset: CGSize(width: 0.0, height: 1.0), opacity: 1.0)
+        
         endedPromiseBtn.layer.borderColor = UIColor.clear.cgColor
         endedPromiseBtn.layer.borderWidth = 1.0
-        endedPromiseBtn.backgroundColor = .white
+//        endedPromiseBtn.layer.backgroundColor = UIColor.white.cgColor
+        endedPromiseBtn.backgroundColor = UIColor.white
         endedPromiseBtn.layer.cornerRadius = 8
         endedPromiseBtn.layer.masksToBounds = false
         
-        endedPromiseBtn.layer.shadowColor = UIColor.gray.cgColor
-        endedPromiseBtn.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        endedPromiseBtn.layer.shadowRadius = 5
-        endedPromiseBtn.layer.shadowOpacity = 1.0
-        
-        let appColor = UIColor(displayP3Red: 142.0/255.0, green: 128.0/255.0, blue: 239.0/255.0, alpha: 1.0)
+    
         let attributedString = NSAttributedString(string: "100% 지킨 약속 보러가기", attributes: [
             .font: UIFont.boldSystemFont(ofSize: 20.0),
-          .foregroundColor: appColor
+            .foregroundColor: UIColor.appColor
         ])
-
-        endedPromiseBtn.setAttributedTitle(attributedString, for: .normal )
+        endedPromiseBtn.setAttributedTitle(attributedString, for: .normal)
     }
 }
 
@@ -97,72 +111,67 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
 
 extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.promiseList.count
+        
+        guard let promiseList = promiseList else {
+            return 1
+        }
+        return promiseList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PromiseCVC", for: indexPath) as! PromiseCVC
-
-        let  rowData: PromiseData = self.promiseList[indexPath.item]
+        var cell = UICollectionViewCell()
         
-        print(rowData.promiseStartTime)
-        print(rowData.promiseEndTime)
-        
-        // 날짜만 비교해서 며칠 남았는지 뽑아낸다
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let today = Date()
-        let startDate = rowData.promiseStartTime
-        let endDate = rowData.promiseEndTime
-
-        let interval = endDate.timeIntervalSince(startDate)
-        let days = Int(interval / 86400)
-        
-        let leftInterval = endDate.timeIntervalSince(today)
-        let left = Int(leftInterval / 86400)
-
-        /** 날짜 차이와 시간 차이까지 알고 싶으면
-         let calendar = Calendar.current
-         let dateGap = calendar.dateComponents([.year,.month,.day,.hour], from: startDate, to: endDate)
-
-         if case let (y?, m?, d?, h?) = (dateGap.year, dateGap.month, dateGap.day, dateGap.hour)
-         {
-           print("\(y)년 \(m)개월 \(d)일 \(h)시간 후")
-         }
-         */
-        
-        cell.leftDays.text = "\(left)일남음"
-        cell.totalDays.text = String(days)
-        
-        // slider의 max 값을 변경
-        cell.appSlider.maximumValue = Float(days)
-//        print(cell.appSlider.maximumValue)
-        
-        
-
-        cell.promiseName.text = rowData.promiseName
-        cell.appSlider.value = Float( rowData.promiseAchievement)
-        cell.showSliderValue.text = String( rowData.promiseAchievement)
-
-        let sliderValueOriginX = cell.showSliderValue.layer.position.x
-        let calcValue = CGFloat( Float(rowData.promiseAchievement) / cell.appSlider.maximumValue * Float(cell.appSlider.frame.width))
-        
-        cell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue - CGFloat(2.0)
-        
-        cell.setNeedsLayout()
-        
+        if let promiseCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "PromiseCVC", for: indexPath) as? PromiseCVC {
+            
+            if let list = promiseList {
+                
+                let rowData = list[indexPath.item]
+                
+                // 날짜만 비교해서 며칠 남았는지 뽑아낸다
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let today = Date()
+                let startDate = rowData.promiseStartTime
+                let endDate = rowData.promiseEndTime
+                
+                let interval = endDate.timeIntervalSince(startDate)
+                let days = Int(interval / 86400)
+                
+                let leftInterval = endDate.timeIntervalSince(today)
+                let left = Int(leftInterval / 86400)
+                
+                /** 날짜 차이와 시간 차이까지 알고 싶으면
+                 let calendar = Calendar.current
+                 let dateGap = calendar.dateComponents([.year,.month,.day,.hour], from: startDate, to: endDate)
+                 
+                 if case let (y?, m?, d?, h?) = (dateGap.year, dateGap.month, dateGap.day, dateGap.hour)
+                 {
+                 print("\(y)년 \(m)개월 \(d)일 \(h)시간 후")
+                 }
+                 */
+                
+                promiseCell.leftDays.text = "\(left)일남음"
+                promiseCell.totalDays.text = String(days)
+                
+                // slider의 max 값을 변경
+                promiseCell.appSlider.maximumValue = Float(days)
+                
+                
+                promiseCell.promiseName.text = rowData.promiseName
+                promiseCell.appSlider.value = Float( rowData.promiseAchievement)
+                promiseCell.showSliderValue.text = String( rowData.promiseAchievement)
+                
+                let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
+                let calcValue = CGFloat( Float(rowData.promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
+                
+                promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue - CGFloat(2.0)
+                promiseCell.setNeedsLayout()
+                
+            }
+            cell = promiseCell
+        }
         return cell
-
     }
-    
 }
-
-
-   /**
-    let dateFormatter = DateFormatter()
-    //    dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
-    
-    dateFormatter.date(from:"2020-01-03 10:00"),
-    */
+        
