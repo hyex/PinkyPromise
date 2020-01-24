@@ -57,10 +57,8 @@ class PromiseTable {
             let dataAchievement = data[PROMISEACHIEVEMENT] as? Double ?? 0.0
             
             let newPromise = PromiseTable(promiseName: dataName, isPromiseAlarm: isDataAlarm, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseAlarmContent: dataAlarmContent, promiseIcon: dataIcon, promiseAchievement: dataAchievement, promiseUsers: dataUsers)
-            
             promise.append(newPromise)
         }
-        
         return promise
     }
 }

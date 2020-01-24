@@ -9,27 +9,20 @@
 import UIKit
 import FSCalendar
 
-struct PromiseSchedule {
-    var startDate: Date;
-    var endDate: Date;
-}
-
 class PromiseInputTVC: UITableViewCell {
-
-    @IBOutlet weak var textField: UITextField!
 
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var calendar: FSCalendar!
-        
-    var schedule: PromiseSchedule!
+    
+    var date: Date!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        initializeDate()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,24 +38,32 @@ class PromiseInputTVC: UITableViewCell {
 
 extension PromiseInputTVC {
     func initializeDate() {
-        let now = Date()
-        let date = DateFormatter()
+        date = Date()
+        self.changeDateFormatKR(date: date)
+    }
+    func changeDateFormatKR(date: Date) {
+        self.date = date
         
-        date.locale = Locale(identifier: "ko_kr")
-        date.timeZone = TimeZone(abbreviation: "KST")
+        let dateFormat = DateFormatter()
         
-        date.dateFormat = "eee"
+        dateFormat.locale = Locale(identifier: "ko_kr")
+        dateFormat.timeZone = TimeZone(abbreviation: "KST")
+        
+        dateFormat.dateFormat = "eee"
         
         let cal = Calendar.current
-        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: now)
+        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: date)
         
         if let dateLabel = dateLabel {
-            dateLabel.text = "\(components.month!)월 \(components.day!)일 \(date.string(from: now))요일"
+            dateLabel.text = "\(components.month!)월 \(components.day!)일 \(dateFormat.string(from: date))요일"
         }
         if let timeLabel = timeLabel {
-            date.dateFormat = "a h:mm"
-            timeLabel.text = "\(date.string(from: now))"
+            dateFormat.dateFormat = "a h:mm"
+            timeLabel.text = "\(dateFormat.string(from: date))"
         }
+    }
+    func getValue() -> Date {
+        return self.date
     }
 }
 
@@ -72,7 +73,7 @@ extension DateFormatter {
     static let yyyyMMdd: DateFormatter = {
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "yyyy-MM-dd "
+        formatter.dateFormat = "yyyy-MM-dd"
         
         formatter.calendar = Calendar(identifier: .iso8601)
         

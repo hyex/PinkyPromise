@@ -9,21 +9,6 @@
 import UIKit
 import FSCalendar
 
-
-struct PromiseInput {
-    //    let promiseId: Int
-    var promiseName: String
-    var promiseStartTime: Date
-    var promiseEndTime: Date
-    var promiseColor: String
-    //    let promisedIcon: String // UIImage cannot codable. search later.
-    //    let isPromiseAlarm: Bool
-    //    let promiseAlarmContent : String
-    var promiseAchievement: Int
-    //    let users: [user] or [String] or [Int]}
-}
-
-
 class AddPromiseVC: UIViewController {
 
     @IBOutlet weak var backBtn: UIBarButtonItem!
@@ -36,7 +21,6 @@ class AddPromiseVC: UIViewController {
     
     var isStartCalSelected: Bool!
     var isEndCalSelected: Bool!
-    var promise: PromiseInput!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,10 +46,23 @@ class AddPromiseVC: UIViewController {
     @IBAction func saveBtnAction(_ sender: Any) {
        // var indexPath: NSIndexPath
         
-        let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! PromiseInputTVC
-    
-        promise.promiseName = cell.textField.text!
+        let textCell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! TextCellTVC
+        let dateStartCell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
+        let dateEndCell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
+
+        let dataName = textCell.getValue()
+        let dataStartTime = dateStartCell.getValue()
+        let dataEndTime = dateEndCell.getValue()
+        let isDataAlarm = true
+        let dataColor = "Red"
+        let dataAlarmContent = ""
+        let dataIcon = ""
+        let dataAchievement = 0.0
+        let dataUsers: Array<String>? = []
         
+        let newPromise = PromiseTable(promiseName: dataName, isPromiseAlarm: isDataAlarm, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseAlarmContent: dataAlarmContent, promiseIcon: dataIcon, promiseAchievement: dataAchievement, promiseUsers: dataUsers)
+        
+        MyApi.shared.addPromiseData(newPromise)
         
         self.dismiss(animated: false, completion: nil)
     }
@@ -93,7 +90,7 @@ extension AddPromiseVC {
 extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8;
+        return 7;
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -102,28 +99,25 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell: PromiseInputTVC;
         switch (indexPath.row) {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as! PromiseInputTVC
-            break;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as! TextCellTVC
+            return cell
         case 1,3:
-            cell = tableView.dequeueReusableCell(withIdentifier: "dateCell") as! PromiseInputTVC
-            break;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell") as! PromiseInputTVC
+            return cell
         case 2,4:
-            cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell") as! PromiseInputTVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell") as! PromiseInputTVC
             cell.calendar.delegate = self
             cell.calendar.dataSource = self
-            break;
+            return cell
         case 5:
-            cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseInputTVC
-            break;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseInputTVC
+            return cell
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! PromiseInputTVC
-            break;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! PromiseInputTVC
+            return cell
         }
-
-        return cell
         // Configure the cells..
     }
 }

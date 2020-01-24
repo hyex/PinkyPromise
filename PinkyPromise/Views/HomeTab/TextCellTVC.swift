@@ -1,18 +1,21 @@
 //
-//  textCellTVC.swift
+//  TextCellTVC.swift
 //  PinkyPromise
 //
-//  Created by linc on 2020/01/22.
+//  Created by linc on 2020/01/23.
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
 import UIKit
 
-class textCellTVC: UITableViewCell {
+class TextCellTVC: UITableViewCell {
 
+    @IBOutlet weak var textField: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -20,5 +23,8 @@ class textCellTVC: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func getValue() -> String {
+        return textField.text ?? "(제목없음)"
+    }
 }

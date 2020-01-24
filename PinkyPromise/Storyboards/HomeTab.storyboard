@@ -134,28 +134,28 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="textCell" rowHeight="55" id="x9x-sm-wFL" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TextCellTVC" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="textCell" rowHeight="55" id="x9x-sm-wFL" customClass="TextCellTVC" customModule="PinkyPromise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x9x-sm-wFL" id="aXK-MX-pLe">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="약속명 입력" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lMA-g6-qiT">
-                                                    <rect key="frame" x="53.999999999999993" y="13" width="127.33333333333331" height="29"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="약속명 입력" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rDk-Mk-bdE">
+                                                    <rect key="frame" x="15.999999999999993" y="10" width="127.33333333333331" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="lMA-g6-qiT" firstAttribute="leading" secondItem="aXK-MX-pLe" secondAttribute="leading" constant="54" id="KiQ-x2-uei"/>
-                                                <constraint firstItem="lMA-g6-qiT" firstAttribute="top" secondItem="aXK-MX-pLe" secondAttribute="top" constant="13" id="ZyB-jT-HqW"/>
-                                                <constraint firstAttribute="bottom" secondItem="lMA-g6-qiT" secondAttribute="bottom" constant="13" id="cTk-zo-DHw"/>
-                                                <constraint firstItem="lMA-g6-qiT" firstAttribute="centerY" secondItem="aXK-MX-pLe" secondAttribute="centerY" id="fQY-2s-xcz"/>
+                                                <constraint firstAttribute="bottom" secondItem="rDk-Mk-bdE" secondAttribute="bottom" constant="10" id="Lb1-KS-7D7"/>
+                                                <constraint firstItem="rDk-Mk-bdE" firstAttribute="centerY" secondItem="aXK-MX-pLe" secondAttribute="centerY" id="PoI-cq-KEP"/>
+                                                <constraint firstItem="rDk-Mk-bdE" firstAttribute="top" secondItem="aXK-MX-pLe" secondAttribute="top" constant="10" id="oEE-7o-30u"/>
+                                                <constraint firstItem="rDk-Mk-bdE" firstAttribute="leading" secondItem="aXK-MX-pLe" secondAttribute="leading" constant="16" id="vu7-AQ-SWp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="textField" destination="lMA-g6-qiT" id="wqW-zZ-axu"/>
+                                            <outlet property="textField" destination="rDk-Mk-bdE" id="Pnv-lk-m1h"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="dateCell" id="Nm1-KM-4fC" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
