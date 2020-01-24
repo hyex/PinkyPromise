@@ -61,8 +61,6 @@ extension HomeTabMainVC {
     }
     
     func setupBtn() {
-        addPromiseBtn.setTitleColor(.white, for: .normal)
-        addPromiseBtn.backgroundColor = .blue
 //        addPromiseBtn.layer.cornerRadius = addPromiseBtn.layer.frame.height/2
         addPromiseBtn.makeCircle()
     }

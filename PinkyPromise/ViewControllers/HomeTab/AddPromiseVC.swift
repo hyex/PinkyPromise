@@ -47,8 +47,8 @@ class AddPromiseVC: UIViewController {
        // var indexPath: NSIndexPath
         
         let textCell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! TextCellTVC
-        let dateStartCell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
-        let dateEndCell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
+        let dateStartCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
+        let dateEndCell = promiseTableView.cellForRow(at: NSIndexPath(row: 4, section: 0) as IndexPath) as! PromiseInputTVC
 
         let dataName = textCell.getValue()
         let dataStartTime = dateStartCell.getValue()
@@ -90,7 +90,7 @@ extension AddPromiseVC {
 extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7;
+        return 8;
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -111,7 +111,7 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
             cell.calendar.delegate = self
             cell.calendar.dataSource = self
             return cell
-        case 5:
+        case 5,6:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseInputTVC
             return cell
         default:
