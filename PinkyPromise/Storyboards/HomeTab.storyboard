@@ -39,7 +39,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnp-T0-47O">
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnp-T0-47O">
                                 <rect key="frame" x="162" y="636" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -47,9 +47,10 @@
                                     <constraint firstAttribute="height" constant="50" id="cFV-Mm-msc"/>
                                     <constraint firstAttribute="width" constant="50" id="vMJ-7B-EMB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="titleShadowOffset" width="10" height="2"/>
+                                <size key="titleShadowOffset" width="10" height="10"/>
+                                <state key="normal" title="+"/>
                                 <connections>
                                     <action selector="addPromiseBtnAction:" destination="Nu8-v0-LSz" eventType="touchUpInside" id="IlB-xN-uwc"/>
                                 </connections>
@@ -91,18 +92,9 @@
                                     <outlet property="delegate" destination="Nu8-v0-LSz" id="fuv-92-DMo"/>
                                 </connections>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WtS-jo-lAn">
-                                <rect key="frame" x="162" y="636" width="50" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="WtS-jo-lAn" firstAttribute="centerY" secondItem="Xnp-T0-47O" secondAttribute="centerY" id="5pd-y0-3Cz"/>
                             <constraint firstItem="wfi-hW-bGF" firstAttribute="top" secondItem="iQ1-bU-6Lk" secondAttribute="bottom" constant="26" id="8Wd-la-V8O"/>
                             <constraint firstItem="N9T-yw-9pV" firstAttribute="bottom" secondItem="Xnp-T0-47O" secondAttribute="bottom" constant="43" id="Bc3-Je-98w"/>
                             <constraint firstItem="3gp-dj-e2M" firstAttribute="leading" secondItem="N9T-yw-9pV" secondAttribute="leading" constant="11" id="IWt-xy-1da"/>
@@ -115,7 +107,6 @@
                             <constraint firstItem="N9T-yw-9pV" firstAttribute="top" secondItem="imd-hV-MIm" secondAttribute="top" constant="-6" id="gj1-ct-n2N"/>
                             <constraint firstItem="wfi-hW-bGF" firstAttribute="leading" secondItem="iQ1-bU-6Lk" secondAttribute="leading" id="hfZ-iI-QYB"/>
                             <constraint firstItem="iQ1-bU-6Lk" firstAttribute="top" secondItem="imd-hV-MIm" secondAttribute="bottom" constant="20" id="irx-g7-WJh"/>
-                            <constraint firstItem="WtS-jo-lAn" firstAttribute="centerX" secondItem="Xnp-T0-47O" secondAttribute="centerX" id="lbR-y4-VCS"/>
                             <constraint firstItem="imd-hV-MIm" firstAttribute="centerX" secondItem="N9T-yw-9pV" secondAttribute="centerX" id="nsj-fS-ifE"/>
                             <constraint firstItem="3gp-dj-e2M" firstAttribute="top" secondItem="wfi-hW-bGF" secondAttribute="bottom" constant="20" id="rrS-uY-23P"/>
                             <constraint firstItem="Xnp-T0-47O" firstAttribute="top" secondItem="3gp-dj-e2M" secondAttribute="bottom" constant="92" id="ut9-dU-on8"/>

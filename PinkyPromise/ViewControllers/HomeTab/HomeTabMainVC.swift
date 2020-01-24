@@ -85,4 +85,11 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
         dateFormatter.dateFormat = "YYYY-MM-dd"
         print(dateFormatter.string(from: date))
     }
+    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-DD-YYYY"
+        dateFormatter.timeZone = TimeZone.current
+        let dateStr = dateFormatter.string(from: date)
+        return "01-10-2020".contains(dateStr) ? UIImage(named: "cloud") : nil
+    }
 }
