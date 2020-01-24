@@ -23,12 +23,12 @@ class FriendTabMainVC: UIViewController {
     let friendsInPromise : [FriendsInfo] = [
     FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
     FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
-    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "물 하루 1L 이상 마시기 "),
-    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "물 하루 1L 이상 마시기 "),
+    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "2시 전 취침 10시 전 기상"),
+    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "One day One commit"),
     FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
     FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
-    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "물 하루 1L 이상 마시기 "),
-    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "물 하루 1L 이상 마시기 ")
+    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "2시 전 취침 10시 전 기상"),
+    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "One day One commit")
     ]
     
     override func viewDidLoad() {
@@ -43,13 +43,14 @@ class FriendTabMainVC: UIViewController {
     }
     
     @IBAction func endedPromiseBtnAction(_ sender: Any) {
-           let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
-           
-           vc.modalTransitionStyle = .flipHorizontal
-           vc.modalPresentationStyle = .overCurrentContext
-           
-           self.present(vc, animated: false)
-       }
+        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
+        
+        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        self.present(vc, animated: false)
+    }
+    
 }
 
 extension FriendTabMainVC : UITableViewDelegate{ }
@@ -79,6 +80,6 @@ extension FriendTabMainVC : UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 70
     }
 }
