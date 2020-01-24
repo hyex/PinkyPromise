@@ -11,6 +11,10 @@
 		186D855423D41C94006DA619 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855323D41C94006DA619 /* Constants.swift */; };
 		186D855923D42174006DA619 /* promiseUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855823D42174006DA619 /* promiseUsers.swift */; };
 		186D855B23D42486006DA619 /* promiseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855A23D42486006DA619 /* promiseTable.swift */; };
+		1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63523D876FE00751947 /* FirebaseStorageService.swift */; };
+		1875B63A23D99F7400751947 /* signInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63923D99F7400751947 /* signInVC.swift */; };
+		1875B63C23D99F8600751947 /* signUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63B23D99F8600751947 /* signUpVC.swift */; };
+		1875B63E23D9A23D00751947 /* signAnonymousVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63D23D9A23D00751947 /* signAnonymousVC.swift */; };
 		188AAA3723D5CE8400E8BB70 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188AAA3623D5CE8400E8BB70 /* FirebaseAuthentication.swift */; };
 		18A7B4F823CF663900598AF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A7B4F723CF663900598AF5 /* GoogleService-Info.plist */; };
 		18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE1EA123D5A3C400C786C5 /* LoginVC.swift */; };
@@ -25,7 +29,7 @@
 		330AE60D23CB56DC00706769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330AE60523CB56DC00706769 /* Main.storyboard */; };
 		3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */; };
 		3317B3E523CEF3D2006A5BF5 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */; };
-		3317B3E723CEFFCC006A5BF5 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E623CEFFCC006A5BF5 /* View.swift */; };
+		3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */; };
 		3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */; };
 		334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD123CC249D00AAF955 /* MyTab.storyboard */; };
 		334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD423CC24B100AAF955 /* FriendTab.storyboard */; };
@@ -38,9 +42,11 @@
 		334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */; };
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
-		33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */; };
-		33BC046523D6E8D100DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046423D6E8D000DEFD3A /* OnePromiseView.swift */; };
+		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
+		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
+		33BC046B23D8CD2100DEFD3A /* EndedPromiseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046A23D8CD2100DEFD3A /* EndedPromiseTVC.swift */; };
+		33BC046F23D9945300DEFD3A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */; };
 		3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */; };
 		3F461AC623DADFFD00748703 /* ColorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F461AC523DADFFD00748703 /* ColorTVC.swift */; };
 		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
@@ -57,6 +63,10 @@
 		186D855323D41C94006DA619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		186D855823D42174006DA619 /* promiseUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseUsers.swift; sourceTree = "<group>"; };
 		186D855A23D42486006DA619 /* promiseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseTable.swift; sourceTree = "<group>"; };
+		1875B63523D876FE00751947 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
+		1875B63923D99F7400751947 /* signInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInVC.swift; sourceTree = "<group>"; };
+		1875B63B23D99F8600751947 /* signUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpVC.swift; sourceTree = "<group>"; };
+		1875B63D23D9A23D00751947 /* signAnonymousVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signAnonymousVC.swift; sourceTree = "<group>"; };
 		188AAA3623D5CE8400E8BB70 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		18A7B4F723CF663900598AF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18AE1EA123D5A3C400C786C5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -72,7 +82,7 @@
 		330AE60623CB56DC00706769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseCVC.swift; sourceTree = "<group>"; };
 		3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
-		3317B3E623CEFFCC006A5BF5 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = PinkyPromise/Models/FriendTab/View.swift; sourceTree = SOURCE_ROOT; };
+		3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "PinkyPromise/Models/FriendTab/UIView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		334AACD123CC249D00AAF955 /* MyTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTab.storyboard; sourceTree = "<group>"; };
 		334AACD423CC24B100AAF955 /* FriendTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendTab.storyboard; sourceTree = "<group>"; };
@@ -85,9 +95,11 @@
 		334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTVC.swift; sourceTree = "<group>"; };
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
-		33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endedPromiseVC.swift; sourceTree = "<group>"; };
-		33BC046423D6E8D000DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
+		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
+		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
+		33BC046A23D8CD2100DEFD3A /* EndedPromiseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseTVC.swift; sourceTree = "<group>"; };
+		33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "PinkyPromise/Storyboards/UIColor+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseInputTVC.swift; sourceTree = "<group>"; };
@@ -134,6 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				18AE1EA123D5A3C400C786C5 /* LoginVC.swift */,
+				1875B63923D99F7400751947 /* signInVC.swift */,
+				1875B63B23D99F8600751947 /* signUpVC.swift */,
+				1875B63D23D9A23D00751947 /* signAnonymousVC.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -143,6 +158,7 @@
 			children = (
 				33028C5F23CDB21B004E0104 /* Api.swift */,
 				186D855323D41C94006DA619 /* Constants.swift */,
+				1875B63523D876FE00751947 /* FirebaseStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -184,7 +200,8 @@
 		330AE60123CB56DC00706769 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3317B3E623CEFFCC006A5BF5 /* View.swift */,
+				3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */,
+				33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,7 +249,7 @@
 				334AACE023CC294000AAF955 /* MyTabMainVC.swift */,
 				33028C5623CD983A004E0104 /* DayChildVC.swift */,
 				33028C5823CD9848004E0104 /* PromiseChildVC.swift */,
-				33A782AE23D22B6C0055D6C5 /* endedPromiseVC.swift */,
+				33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -276,10 +293,11 @@
 			isa = PBXGroup;
 			children = (
 				33BC046623D6E96200DEFD3A /* OnePromiseView.xib */,
-				33BC046423D6E8D000DEFD3A /* OnePromiseView.swift */,
+				33BC046823D7271200DEFD3A /* OnePromiseView.swift */,
 				33028C6123CDB35B004E0104 /* DayTVC.swift */,
 				3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */,
 				3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */,
+				33BC046A23D8CD2100DEFD3A /* EndedPromiseTVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -525,18 +543,22 @@
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				186D855B23D42486006DA619 /* promiseTable.swift in Sources */,
 				3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */,
-				33BC046523D6E8D100DEFD3A /* OnePromiseView.swift in Sources */,
 				33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */,
+				33BC046B23D8CD2100DEFD3A /* EndedPromiseTVC.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */,
 				A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */,
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
+				1875B63A23D99F7400751947 /* signInVC.swift in Sources */,
+				33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */,
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
-				33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */,
+				33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
 				33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */,
+				1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
+				1875B63E23D9A23D00751947 /* signAnonymousVC.swift in Sources */,
 				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
 				3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */,
@@ -544,10 +566,13 @@
 				186D855923D42174006DA619 /* promiseUsers.swift in Sources */,
 				3F461AC623DADFFD00748703 /* ColorTVC.swift in Sources */,
 				3317B3E723CEFFCC006A5BF5 /* View.swift in Sources */,
+				3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */,
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
+				33BC046F23D9945300DEFD3A /* UIColor+Extension.swift in Sources */,
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */,
 				188AAA3723D5CE8400E8BB70 /* FirebaseAuthentication.swift in Sources */,
+				1875B63C23D99F8600751947 /* signUpVC.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 				3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */,
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,

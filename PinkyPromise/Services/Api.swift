@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 class MyApi: NSObject {
     
@@ -21,22 +22,16 @@ class MyApi: NSObject {
     let dateFormatter = DateFormatter()
 
     // Api 예시
-    func allMenu(completion: ([MoreTableData]) -> Void) { //}, onError: @escaping (Error) -> Void) {
+    func allMore(completion: ([MoreTableData]) -> Void) { //}, onError: @escaping (Error) -> Void) {
         let result = [
-            MoreTableData(title: "예제1"),
-            MoreTableData(title: "예제2"),
-            MoreTableData(title: "예제3"),
+            MoreTableData(title: "내 정보"),
+            MoreTableData(title: "내 친구"),
+            MoreTableData(title: "내 코드"),
         ]
         completion(result)
     }
     
-    func tempPromise(by userId:String, completion: ([PromiseTable]) -> Void) {
-        
-        let id = "" // userId
-        
-        completion([])
-    }
-    
+    //유저 데이터가 업데이트될때마다 실행되며 업데이트된 데이터를 반환해줌, 클로저 사용
     func getUserUpdate(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         promiseListner = userCollectionRef.addSnapshotListener({ (snapShot, error) in
@@ -49,6 +44,7 @@ class MyApi: NSObject {
         })
     }
     
+    //유저 데이터를 반환해줌
     func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         userCollectionRef.getDocuments { (sanpShot, err) in
@@ -61,6 +57,7 @@ class MyApi: NSObject {
         }
     }
     
+    //약속 데이터를 반환
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
         promiseCollectionRef.getDocuments { (sanpShot, err) in
@@ -73,6 +70,7 @@ class MyApi: NSObject {
         }
     }
     
+    //약속 데이터가 업데이트되면 실행되며 업데이트되는 데이터를 받아줌
     func getPromiseUpdate(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
         
@@ -91,18 +89,18 @@ class MyApi: NSObject {
     public func addPromiseData(_ promiseTable: PromiseTable) {
         
         Firestore.firestore().collection(PROMISETABLEREF).addDocument(data: [
-            PROMISENAME : promiseTable.promiseName,
-            PROMISECOLOR: promiseTable.promiseColor,
-            PROMISEICON: promiseTable.promiseIcon,
-            PROMISEACHIEVEMENT: promiseTable.promiseAchievement,
-            PROMISESTARTTIME: promiseTable.promiseStartTime,
-            PROMISEENDTIME: promiseTable.promiseEndTime,
-            ISPROMISEALARM: promiseTable.isPromiseAlarm,
-            PROMISEALARMCONTENT: promiseTable.promiseAlarmContent,
-            PROMISEUSERS: promiseTable.promiseUsers
+            PROMISENAME : promiseTable.promiseName ?? "Anomynous",
+            PROMISECOLOR: promiseTable.promiseColor ?? "nil",
+            PROMISEICON: promiseTable.promiseIcon ?? "nil",
+            PROMISEACHIEVEMENT: promiseTable.promiseAchievement ?? 0,
+            PROMISESTARTTIME: promiseTable.promiseStartTime ?? Date(),
+            PROMISEENDTIME: promiseTable.promiseEndTime ?? Date(),
+            ISPROMISEALARM: promiseTable.isPromiseAlarm ?? false,
+            PROMISEALARMCONTENT: promiseTable.promiseAlarmContent ?? "nil",
+            PROMISEUSERS: promiseTable.promiseUsers ?? []
         ]) { error in
             if let err = error {
-                debugPrint("Error adding document : \(error)")
+                debugPrint("Error adding document : \(err)")
             } else {
                 print("parsing success")
             }
@@ -113,18 +111,19 @@ class MyApi: NSObject {
     func addUserData(_ userTable: PromiseUser) {
         
         Firestore.firestore().collection(PROMISEUSERREF).addDocument(data: [
-            USERNAME : userTable.userName,
-            USERFRIENDS: userTable.userFriends
+            USERNAME : userTable.userName ?? "Anomynous",
+            USERFRIENDS: userTable.userFriends ?? [],
+            USERID: userTable.userId ?? "nil",
+            USERIMAGE: userTable.userImage ?? "404"
         ]) { error in
             if let err = error {
-                debugPrint("Error adding document : \(error)")
+                debugPrint("Error adding document : \(err)")
             } else {
                 print("this is API Error")
             }
         }
         
     }
-    
 
 // VC file에 이렇게 사용
 //    MyApi.shared.allMenu(completion: { result in
@@ -144,16 +143,20 @@ class MyApi: NSObject {
 
         let result = [
             PromiseData(promiseName: "10시에 기상하기",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-03 10:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-14 10:00") ?? defaultDate,
+                        promiseStartTime: dateFormatter.date(from:"2020-01-18 10:00") ?? defaultDate,
+                        promiseEndTime: dateFormatter.date(from:"2020-01-28 10:00") ?? defaultDate,
                         promiseColor: "red",
                         promiseAchievement: 3),
             PromiseData(promiseName: "4시에는 쿨쿨하기",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-02 13:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-05 14:00") ?? defaultDate,
+                        promiseStartTime: dateFormatter.date(from:"2020-01-20 13:00") ?? defaultDate,
+                        promiseEndTime: dateFormatter.date(from:"2020-01-25 14:00") ?? defaultDate,
                         promiseColor: "blue",
-                        promiseAchievement: 2),
-
+                        promiseAchievement: 4),
+            PromiseData(promiseName: "완료된 약속",
+            promiseStartTime: dateFormatter.date(from:"2020-01-25 13:00") ?? defaultDate,
+            promiseEndTime: dateFormatter.date(from:"2020-01-27 14:00") ?? defaultDate,
+            promiseColor: "purple",
+            promiseAchievement: 3),
         ]
         completion(result)
         

@@ -13,6 +13,10 @@ class FriendTableViewCell: UITableViewCell {
     
     @IBOutlet weak var friendNameLabel: UILabel!
     
+    @IBOutlet weak var friendDatailBtn: UIButton!
+    
+    @IBOutlet weak var promiseNameLabel: UILabel!
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
     }

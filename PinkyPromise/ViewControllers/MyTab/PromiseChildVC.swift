@@ -32,7 +32,7 @@ class PromiseChildVC: UIViewController {
     
     
     @IBAction func endedPromiseBtnAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "endedPromiseVC") as! endedPromiseVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: "EndedPromiseVC") as! EndedPromiseVC
         
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
@@ -48,10 +48,25 @@ extension PromiseChildVC {
     }
     
     func setupBtn() {
-        endedPromiseBtn.layer.borderColor = UIColor.black.cgColor
-        endedPromiseBtn.layer.borderWidth = 1.0
         
+        endedPromiseBtn.layer.borderColor = UIColor.clear.cgColor
+        endedPromiseBtn.layer.borderWidth = 1.0
+        endedPromiseBtn.backgroundColor = .white
+        endedPromiseBtn.layer.cornerRadius = 8
+        endedPromiseBtn.layer.masksToBounds = false
+        
+        endedPromiseBtn.layer.shadowColor = UIColor.gray.cgColor
+        endedPromiseBtn.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        endedPromiseBtn.layer.shadowRadius = 5
+        endedPromiseBtn.layer.shadowOpacity = 1.0
+        
+        let appColor = UIColor(displayP3Red: 142.0/255.0, green: 128.0/255.0, blue: 239.0/255.0, alpha: 1.0)
+        let attributedString = NSAttributedString(string: "100% 지킨 약속 보러가기", attributes: [
+            .font: UIFont.boldSystemFont(ofSize: 20.0),
+          .foregroundColor: appColor
+        ])
 
+        endedPromiseBtn.setAttributedTitle(attributedString, for: .normal )
     }
 }
 
@@ -97,11 +112,15 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
         // 날짜만 비교해서 며칠 남았는지 뽑아낸다
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        let today = Date()
         let startDate = rowData.promiseStartTime
         let endDate = rowData.promiseEndTime
 
         let interval = endDate.timeIntervalSince(startDate)
         let days = Int(interval / 86400)
+        
+        let leftInterval = endDate.timeIntervalSince(today)
+        let left = Int(leftInterval / 86400)
 
         /** 날짜 차이와 시간 차이까지 알고 싶으면
          let calendar = Calendar.current
@@ -113,12 +132,16 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
          }
          */
         
+        cell.leftDays.text = "\(left)일남음"
+        cell.totalDays.text = String(days)
+        
         // slider의 max 값을 변경
         cell.appSlider.maximumValue = Float(days)
-        print(cell.appSlider.maximumValue)
+//        print(cell.appSlider.maximumValue)
+        
         
 
-        cell.promiseName.text =  rowData.promiseName
+        cell.promiseName.text = rowData.promiseName
         cell.appSlider.value = Float( rowData.promiseAchievement)
         cell.showSliderValue.text = String( rowData.promiseAchievement)
 

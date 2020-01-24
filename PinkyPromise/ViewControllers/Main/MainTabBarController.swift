@@ -18,6 +18,15 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let unselectedColor = UIColor.appColor.withAlphaComponent(0.5)
+        let selectedColor   = UIColor.appColor
+        
+        self.tabBar.unselectedItemTintColor = unselectedColor
+        self.tabBar.tintColor = selectedColor
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: unselectedColor], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectedColor], for: .selected)
+        
     }
     
 }
