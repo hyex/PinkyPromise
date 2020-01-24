@@ -543,10 +543,8 @@
 				3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */,
 				A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */,
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
-
 				1875B63A23D99F7400751947 /* signInVC.swift in Sources */,
 				33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */,
-
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
 				33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
