@@ -68,7 +68,6 @@ class PromiseTable {
             
             promise.append(newPromise)
         }
-        
         return promise
     }
 }
