@@ -47,8 +47,8 @@ class AddPromiseVC: UIViewController {
        // var indexPath: NSIndexPath
         
         let textCell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! TextCellTVC
-        let dateStartCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-        let dateEndCell = promiseTableView.cellForRow(at: NSIndexPath(row: 4, section: 0) as IndexPath) as! PromiseInputTVC
+        let dateStartCell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseInputTVC
+        let dateEndCell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
 
         let dataName = textCell.getValue()
         let dataStartTime = dateStartCell.getValue()
@@ -59,8 +59,10 @@ class AddPromiseVC: UIViewController {
         let dataIcon = ""
         let dataAchievement = 0.0
         let dataUsers: Array<String>? = []
+        let isPromiseAchievement = false
+        let promisePanalty = ""
         
-        let newPromise = PromiseTable(promiseName: dataName, isPromiseAlarm: isDataAlarm, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseAlarmContent: dataAlarmContent, promiseIcon: dataIcon, promiseAchievement: dataAchievement, promiseUsers: dataUsers)
+        let newPromise = PromiseTable(promiseName: dataName, isPromiseAlarm: isDataAlarm, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseAlarmContent: dataAlarmContent, promiseIcon: dataIcon, promiseAchievement: dataAchievement, promiseUsers: dataUsers, isPromiseAchievement: isPromiseAchievement, promisePanalty: promisePanalty)
         
         MyApi.shared.addPromiseData(newPromise)
         
