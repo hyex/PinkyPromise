@@ -86,7 +86,7 @@ class MyApi: NSObject {
     }
     
     //약속 데이터를 추가할 때 사용하는 함수
-    func addPromiseData(_ promiseTable: PromiseTable) {
+    public func addPromiseData(_ promiseTable: PromiseTable) {
         
         Firestore.firestore().collection(PROMISETABLEREF).addDocument(data: [
             PROMISENAME : promiseTable.promiseName ?? "Anomynous",
@@ -105,7 +105,6 @@ class MyApi: NSObject {
                 print("parsing success")
             }
         }
-        
     }
     
     //사용자 데이터를 추가할 때 사용하는 함수
