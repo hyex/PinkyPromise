@@ -42,35 +42,28 @@ class DayChildVC: UIViewController {
             Promise(promiseName: "systemPink", promiseColor: "systemPink")
         ])
     ]
-    
-//    var days: [Day] = [
-//        Day(day: "MON  \n 1", promise: [
-//            Promise(promiseName: "red", promiseColor: "red"),
-//            Promise(promiseName: "yellow", promiseColor: "yellow")
-//        ]),
-//        Day(day: "TUE  \n 2", promise: [
-//            Promise(promiseName: "yellow", promiseColor: "yellow"),
-//            Promise(promiseName: "green", promiseColor: "green"),
-//            Promise(promiseName: "blue", promiseColor: "blue"),
-//            Promise(promiseName: "brown", promiseColor: "brown"),
-//            Promise(promiseName: "blue", promiseColor: "blue"),
-//            Promise(promiseName: "green", promiseColor: "green"),
-//            Promise(promiseName: "blue", promiseColor: "blue")
-//        ]),
-//        Day(day: "WED  \n 3", promise: [
-//            Promise(promiseName: "blue", promiseColor: "blue"),
-//            Promise(promiseName: "green", promiseColor: "green"),
-//            Promise(promiseName: "blue", promiseColor: "blue")
-//        ])
-//    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dayTableView.delegate = self
-        self.dayTableView.dataSource = self
-    
+        
+        setUpTableView()
     }
 
+    private func setUpTableView() {
+        self.dayTableView.delegate = self
+        self.dayTableView.dataSource = self
+    }
+    
+    // 통신
+    // Day 별 
+//    private func getMyPageData() {
+//        MyPageCheckService.shared.getMyPageData(token: token, completion: { (myPageData) in
+//            self.myData = myPageData
+//        }) { (errCode) in
+//            self.simpleAlert(title: "알림", message: "네트워크 연결상태를 확인해주세요!")
+//            print("회원 정보 조회에 실패했습니다.")
+//        }
+//    }
 }
 
 
