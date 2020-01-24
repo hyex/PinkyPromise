@@ -11,6 +11,10 @@
 		186D855423D41C94006DA619 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855323D41C94006DA619 /* Constants.swift */; };
 		186D855923D42174006DA619 /* promiseUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855823D42174006DA619 /* promiseUsers.swift */; };
 		186D855B23D42486006DA619 /* promiseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855A23D42486006DA619 /* promiseTable.swift */; };
+		1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63523D876FE00751947 /* FirebaseStorageService.swift */; };
+		1875B63A23D99F7400751947 /* signInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63923D99F7400751947 /* signInVC.swift */; };
+		1875B63C23D99F8600751947 /* signUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63B23D99F8600751947 /* signUpVC.swift */; };
+		1875B63E23D9A23D00751947 /* signAnonymousVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63D23D9A23D00751947 /* signAnonymousVC.swift */; };
 		188AAA3723D5CE8400E8BB70 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188AAA3623D5CE8400E8BB70 /* FirebaseAuthentication.swift */; };
 		18A7B4F823CF663900598AF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A7B4F723CF663900598AF5 /* GoogleService-Info.plist */; };
 		18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE1EA123D5A3C400C786C5 /* LoginVC.swift */; };
@@ -55,6 +59,10 @@
 		186D855323D41C94006DA619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		186D855823D42174006DA619 /* promiseUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseUsers.swift; sourceTree = "<group>"; };
 		186D855A23D42486006DA619 /* promiseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseTable.swift; sourceTree = "<group>"; };
+		1875B63523D876FE00751947 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
+		1875B63923D99F7400751947 /* signInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInVC.swift; sourceTree = "<group>"; };
+		1875B63B23D99F8600751947 /* signUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpVC.swift; sourceTree = "<group>"; };
+		1875B63D23D9A23D00751947 /* signAnonymousVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signAnonymousVC.swift; sourceTree = "<group>"; };
 		188AAA3623D5CE8400E8BB70 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		18A7B4F723CF663900598AF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18AE1EA123D5A3C400C786C5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -130,6 +138,9 @@
 			isa = PBXGroup;
 			children = (
 				18AE1EA123D5A3C400C786C5 /* LoginVC.swift */,
+				1875B63923D99F7400751947 /* signInVC.swift */,
+				1875B63B23D99F8600751947 /* signUpVC.swift */,
+				1875B63D23D9A23D00751947 /* signAnonymousVC.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -139,6 +150,7 @@
 			children = (
 				33028C5F23CDB21B004E0104 /* Api.swift */,
 				186D855323D41C94006DA619 /* Constants.swift */,
+				1875B63523D876FE00751947 /* FirebaseStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -525,11 +537,14 @@
 				3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */,
 				A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */,
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
+				1875B63A23D99F7400751947 /* signInVC.swift in Sources */,
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
 				33A782AF23D22B6C0055D6C5 /* endedPromiseVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
 				33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */,
+				1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
+				1875B63E23D9A23D00751947 /* signAnonymousVC.swift in Sources */,
 				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
 				3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */,
@@ -540,6 +555,7 @@
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */,
 				188AAA3723D5CE8400E8BB70 /* FirebaseAuthentication.swift in Sources */,
+				1875B63C23D99F8600751947 /* signUpVC.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 				3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */,
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,

@@ -20,8 +20,13 @@ let PROMISESTARTTIME = "promiseStartTime"
 let PROMISEENDTIME = "promiseEndTime"
 let PROMISEICON = "promiseIcon"
 let PROMISEUSERS = "users"
+let ISPROMISEACHIEVEMENT = "promiseAchievement"
+let PROMSISEPANALTY = "promisePanalty"
 
 //유저 테이블과 그 필드들
 let PROMISEUSERREF = "promiseUsers"
+
 let USERNAME = "userName"
 let USERFRIENDS = "userFriends"
+let USERID = "userId"
+let USERIMAGE = "userImage"

@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 class MyApi: NSObject {
     
@@ -30,13 +31,7 @@ class MyApi: NSObject {
         completion(result)
     }
     
-    func tempPromise(by userId:String, completion: ([PromiseTable]) -> Void) {
-        
-        let id = "" // userId
-        
-        completion([])
-    }
-    
+    //유저 데이터가 업데이트될때마다 실행되며 업데이트된 데이터를 반환해줌, 클로저 사용
     func getUserUpdate(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         promiseListner = userCollectionRef.addSnapshotListener({ (snapShot, error) in
@@ -49,6 +44,7 @@ class MyApi: NSObject {
         })
     }
     
+    //유저 데이터를 반환해줌
     func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         userCollectionRef.getDocuments { (sanpShot, err) in
@@ -61,6 +57,7 @@ class MyApi: NSObject {
         }
     }
     
+    //약속 데이터를 반환
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
         promiseCollectionRef.getDocuments { (sanpShot, err) in
@@ -73,6 +70,7 @@ class MyApi: NSObject {
         }
     }
     
+    //약속 데이터가 업데이트되면 실행되며 업데이트되는 데이터를 받아줌
     func getPromiseUpdate(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
         
@@ -91,18 +89,18 @@ class MyApi: NSObject {
     func addPromiseData(_ promiseTable: PromiseTable) {
         
         Firestore.firestore().collection(PROMISETABLEREF).addDocument(data: [
-            PROMISENAME : promiseTable.promiseName,
-            PROMISECOLOR: promiseTable.promiseColor,
-            PROMISEICON: promiseTable.promiseIcon,
-            PROMISEACHIEVEMENT: promiseTable.promiseAchievement,
-            PROMISESTARTTIME: promiseTable.promiseStartTime,
-            PROMISEENDTIME: promiseTable.promiseEndTime,
-            ISPROMISEALARM: promiseTable.isPromiseAlarm,
-            PROMISEALARMCONTENT: promiseTable.promiseAlarmContent,
-            PROMISEUSERS: promiseTable.promiseUsers
+            PROMISENAME : promiseTable.promiseName ?? "Anomynous",
+            PROMISECOLOR: promiseTable.promiseColor ?? "nil",
+            PROMISEICON: promiseTable.promiseIcon ?? "nil",
+            PROMISEACHIEVEMENT: promiseTable.promiseAchievement ?? 0,
+            PROMISESTARTTIME: promiseTable.promiseStartTime ?? Date(),
+            PROMISEENDTIME: promiseTable.promiseEndTime ?? Date(),
+            ISPROMISEALARM: promiseTable.isPromiseAlarm ?? false,
+            PROMISEALARMCONTENT: promiseTable.promiseAlarmContent ?? "nil",
+            PROMISEUSERS: promiseTable.promiseUsers ?? []
         ]) { error in
             if let err = error {
-                debugPrint("Error adding document : \(error)")
+                debugPrint("Error adding document : \(err)")
             } else {
                 print("parsing success")
             }
@@ -114,18 +112,19 @@ class MyApi: NSObject {
     func addUserData(_ userTable: PromiseUser) {
         
         Firestore.firestore().collection(PROMISEUSERREF).addDocument(data: [
-            USERNAME : userTable.userName,
-            USERFRIENDS: userTable.userFriends
+            USERNAME : userTable.userName ?? "Anomynous",
+            USERFRIENDS: userTable.userFriends ?? [],
+            USERID: userTable.userId ?? "nil",
+            USERIMAGE: userTable.userImage ?? "404"
         ]) { error in
             if let err = error {
-                debugPrint("Error adding document : \(error)")
+                debugPrint("Error adding document : \(err)")
             } else {
                 print("this is API Error")
             }
         }
         
     }
-    
 
 // VC file에 이렇게 사용
 //    MyApi.shared.allMenu(completion: { result in
