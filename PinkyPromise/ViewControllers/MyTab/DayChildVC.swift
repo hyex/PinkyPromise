@@ -22,7 +22,6 @@ class DayChildVC: UIViewController {
     
     @IBOutlet weak var dayTableView: UITableView!
     
-
     var days: [Day] = [
         Day(day: 0, promise: [
             Promise(promiseName: "red", promiseColor: "red"),
