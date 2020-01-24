@@ -27,7 +27,7 @@ class FirebaseStorageService: NSObject {
     private let promiseFolderRef: StorageReference = Storage.storage().reference().child("promiseImage")
     private let userFolderRef: StorageReference = Storage.storage().reference().child("userImage")
     
-    
+    //약속이미지를 업로드할 때 사용하는 함수
     func storePromiseImage(image: Data, completion: @escaping (Result<String,Error>) -> ()) {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
@@ -52,6 +52,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
+    //유저이미지를 업로드할때 사용하는 함수
     func storeUserImage(image: Data, completion: @escaping (Result<String, Error>) -> () ) {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
@@ -76,6 +77,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
+    //약속 이미지를 받아올 때 사용하는 함수
     func getPromiseImage(url: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         promiseFolderRef.storage.reference(forURL: url).getData(maxSize: 20000000) { (data, error) in
             if let err = error {
@@ -86,6 +88,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
+    //유저 이미지를 받아올 때 사용하는 함수
     func getUserImage(url: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         
         userFolderRef.storage.reference(forURL: url).getData(maxSize: 20000000) { (data, error) in
