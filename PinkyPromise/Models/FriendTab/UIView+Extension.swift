@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  UIView+Extension.swift
 //  PinkyPromise
 //
 //  Created by kimhyeji on 1/15/20.
@@ -8,6 +8,26 @@
 
 import Foundation
 import UIKit
+
+extension UIView {
+    func applyShadow(radius: CGFloat, color: UIColor, offset: CGSize, opacity: Float) {
+        self.layer.shadowRadius = radius
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = opacity
+    }
+    
+    func applyRadius(radius: CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
+    }
+    
+    func applyBorder(width: CGFloat, color: UIColor) {
+        self.layer.borderWidth = width
+        self.layer.borderColor = color.cgColor
+    }
+}
+
 
 extension UIButton{
 

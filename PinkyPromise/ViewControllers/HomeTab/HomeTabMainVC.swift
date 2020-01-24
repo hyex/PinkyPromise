@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 import FSCalendar
 
 class HomeTabMainVC: UIViewController {
@@ -60,8 +61,6 @@ extension HomeTabMainVC {
     }
     
     func setupBtn() {
-        addPromiseBtn.setTitleColor(.white, for: .normal)
-        addPromiseBtn.backgroundColor = .blue
 //        addPromiseBtn.layer.cornerRadius = addPromiseBtn.layer.frame.height/2
         addPromiseBtn.makeCircle()
     }
@@ -85,5 +84,12 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         print(dateFormatter.string(from: date))
+    }
+    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-DD-YYYY"
+        dateFormatter.timeZone = TimeZone.current
+        let dateStr = dateFormatter.string(from: date)
+        return "01-10-2020".contains(dateStr) ? UIImage(named: "cloud") : nil
     }
 }

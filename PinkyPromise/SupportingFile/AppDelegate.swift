@@ -18,14 +18,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        FirebaseApp.configure()
+        if UserDefaults.standard.bool(forKey: "loggedIn") == nil {
+            UserDefaults.standard.set(false, forKey: "loggedIn")
+            print("1")
+        }
+        else if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+            let initialViewController = LoginVC()
+            window?.rootViewController = initialViewController
+            print("2")
+        }
+        else if UserDefaults.standard.bool(forKey: "loggedIn") == true {
+            let initialViewController = AddPromiseVC()
+            window?.rootViewController = initialViewController
+            print("3")
+        }
         
+        FirebaseApp.configure()
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         return true
     }
 
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
+      -> Bool {
+      return GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
+    }
+    
     // MARK: UISceneSession Lifecycle
-
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
