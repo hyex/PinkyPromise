@@ -13,7 +13,7 @@ class PromiseChildVC: UIViewController {
     @IBOutlet weak var endedPromiseBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var promiseList: [PromiseData]? {
+    var promiseList: [PromiseTable]? {
         didSet { collectionView.reloadData() }
     }
     
@@ -33,7 +33,8 @@ class PromiseChildVC: UIViewController {
     
     // 통신
     private func getAllPromiseData() {
-        MyApi.shared.allPromise(completion: { result in
+        
+        MyApi.shared.getPromiseData(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
                 self.collectionView.reloadData()
@@ -95,17 +96,17 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = Int(collectionView.bounds.width) - 32
-        let height = 100
+        let width = collectionView.bounds.width - CGFloat(32.0)
+        let height = collectionView.bounds.height
         return CGSize(width: width, height: height)
     }
     
     // 클릭 시 실행되는 함수
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
-        print(indexPath.row)
-        
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
+//        print(indexPath.row)
+//        
+//    }
 }
 
 
@@ -135,10 +136,10 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 let startDate = rowData.promiseStartTime
                 let endDate = rowData.promiseEndTime
                 
-                let interval = endDate.timeIntervalSince(startDate)
+                let interval = endDate!.timeIntervalSince(startDate!)
                 let days = Int(interval / 86400)
                 
-                let leftInterval = endDate.timeIntervalSince(today)
+                let leftInterval = endDate!.timeIntervalSince(today)
                 let left = Int(leftInterval / 86400)
                 
                 /** 날짜 차이와 시간 차이까지 알고 싶으면

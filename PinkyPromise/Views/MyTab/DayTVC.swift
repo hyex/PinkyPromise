@@ -24,8 +24,6 @@ class DayTVC: UITableViewCell {
         dateFormatter.locale = Locale(identifier: "en")
         dateFormatter.dateFormat = "EEEEEEE\nd"
         
-        
-        
         DispatchQueue.main.async {
             
             self.dayLabel.text = dateFormatter.string(from: date)
@@ -49,6 +47,7 @@ class DayTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         dayLabel.makeTwoLine()
+        
 //        dayLabel.lineBreakMode = .byWordWrapping
 //        dayLabel.numberOfLines = 2
     }

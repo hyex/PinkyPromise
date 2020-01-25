@@ -50,6 +50,19 @@ extension EndedPromiseVC: UITableViewDelegate {
     
     // Make the background color show through
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let shadowView = UIView()
+//        let gradient = CAGradientLayer()
+//        gradient.frame.size = CGSize(width: tableView.bounds.width, height: 15)
+//
+//        let stopColor = UIColor.gray.cgColor
+//        let startColor = UIColor.white.cgColor
+//
+//        gradient.colors = [stopColor, startColor]
+//        gradient.locations = [0.0,0.8]
+//
+//        shadowView.layer.addSublayer(gradient)
+//
+//        return shadowView
         let footerView = UIView()
         footerView.backgroundColor = UIColor.clear
         return footerView
@@ -91,17 +104,16 @@ extension EndedPromiseVC: UITableViewDataSource {
 
         let selector = Selector("\(rowData.promiseColor)Color")
         if UIColor.self.responds(to: selector) {
-            let color = UIColor.self.perform(selector).takeUnretainedValue()
+            var color = UIColor.self.perform(selector).takeUnretainedValue()
+//            color = color.withAlphaComponent(0.2)
             let cgColor = color.cgColor
             cell.layer.borderColor = cgColor as! CGColor
             
         } else {
-            print("fail")
+            print("get color Fail")
         }
         
-        cell.layer.borderWidth = 2
-        
-        
+        cell.layer.borderWidth = 1
         
         return cell
     }
