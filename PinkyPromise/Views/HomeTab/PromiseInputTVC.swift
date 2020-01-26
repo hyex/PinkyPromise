@@ -37,6 +37,7 @@ class PromiseInputTVC: UITableViewCell {
 }
 
 extension PromiseInputTVC {
+    
     func initializeDate() {
         date = Date()
         self.changeDateFormatKR(date: date)
@@ -84,3 +85,5 @@ extension DateFormatter {
         return formatter
     }()
 }
+
+
