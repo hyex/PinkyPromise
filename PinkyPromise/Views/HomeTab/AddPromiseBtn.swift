@@ -9,7 +9,7 @@
 import UIKit
 import Floaty
 
-class AddPromiseBtn: UIButton {
+class AddPromiseBtn: Floaty {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -19,14 +19,10 @@ class AddPromiseBtn: UIButton {
     }
     */
     
-    let floaty: Floaty = Floaty()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
-        floaty.buttonColor = UIColor.systemPurple
-        floaty.plusColor = .white
-        
+        self.buttonColor = UIColor.systemPurple
+        self.plusColor = .white
     }
     
     required init(coder aDecoder: NSCoder) {
