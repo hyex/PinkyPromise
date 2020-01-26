@@ -18,6 +18,39 @@ class HomeTabMainVC: UIViewController {
     fileprivate weak var calendar: FSCalendar!
     fileprivate weak var eventLabel: UILabel!
     
+    struct Promise {
+        let promiseName: String
+        let promiseColor: String
+        let progress: Int
+    }
+    
+    struct Day {
+        var day: Date
+        var promise: [Promise]
+    }
+    
+    var days: [Day] = [
+
+        Day(day: Date(), promise: [
+            Promise(promiseName: "독서", promiseColor: "red", progress: 0),
+            Promise(promiseName: "1DAY 1COMMIT", promiseColor: "yellow", progress: 1)
+        ]),
+        Day(day: Date(timeInterval: 86400, since: Date()), promise: [
+            Promise(promiseName: "yellow", promiseColor: "yellow", progress: 2),
+            Promise(promiseName: "green", promiseColor: "green", progress: 1),
+            Promise(promiseName: "blue", promiseColor: "blue", progress: 0),
+            Promise(promiseName: "purple", promiseColor: "purple", progress: 2),
+            Promise(promiseName: "blue", promiseColor: "blue", progress: 1),
+            Promise(promiseName: "green", promiseColor: "green", progress: 1),
+            Promise(promiseName: "systemPink", promiseColor: "systemPink", progress: 0)
+        ]),
+        Day(day: Date(timeInterval: 172800, since: Date()), promise: [
+            Promise(promiseName: "purple", promiseColor: "purple", progress: 4),
+            Promise(promiseName: "green", promiseColor: "green", progress: 4),
+            Promise(promiseName: "systemPink", promiseColor: "systemPink", progress: 4)
+        ])
+    ]
+    
     override func loadView() {
             
         let view = UIView(frame: UIScreen.main.bounds)
@@ -61,6 +94,7 @@ class HomeTabMainVC: UIViewController {
         let label = UILabel(frame: CGRect(x: 0, y: calendar.frame.maxY + 10, width: self.view.frame.size.width, height: 50))
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.font = UIFont.boldSystemFont(ofSize: 20.0)
         self.view.addSubview(label)
         self.eventLabel = label
            
@@ -74,6 +108,7 @@ class HomeTabMainVC: UIViewController {
 //        initView()
 //        calendar.delegate = self
 //        calendar.dataSource = self
+    
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {
@@ -83,6 +118,7 @@ class HomeTabMainVC: UIViewController {
         vc.modalPresentationStyle = .overCurrentContext
         
         self.present(vc, animated: false, completion: nil)
+        
     }
 }
 
@@ -95,20 +131,7 @@ extension HomeTabMainVC {
 }
 
 extension HomeTabMainVC {
-    
-//    func setupLabel() {
-//
-//        let yourAttributes: [NSAttributedString.Key: Any] = [
-//            .font: UIFont.systemFont(ofSize: 20),
-//            .foregroundColor: UIColor.black,
-//            .underlineColor: UIColor.darkGray,
-//            .underlineStyle: NSUnderlineStyle.thick.rawValue]
-//
-//        let attributeString = NSMutableAttributedString(string: "Today", attributes: yourAttributes)
-//
-//        nearPromiseLabel.attributedText = attributeString
-//        }
-//
+
 //    func setupBtn() {
 ////        addPromiseBtn.layer.cornerRadius = addPromiseBtn.layer.frame.height/2
 //        addPromiseBtn.makeCircle()
@@ -121,25 +144,86 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     
     // 날짜 선택 시 콜백
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        print(dateFormatter.string(from: date))
+
+        changeDateFormatKR(date: date)
     }
     
     // 날짜 선택 해제 시 콜백
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosion: FSCalendarMonthPosition) {
 
     }
-//    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MM-DD-YYYY"
-//        dateFormatter.timeZone = TimeZone.current
-//        let dateStr = dateFormatter.string(from: date)
-//        return "01-10-2020".contains(dateStr) ? UIImage(named: "cloud") : nil
-//    }
+
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
-        let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position)
+        let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position) as! MyCalendarCell
+        cell.setBackgroundColor(progress: 0)
+        configureVisibleCells()
         return cell
     }
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        self.calendar.frame.size.height = bounds.height
+        self.eventLabel.frame.origin.y = calendar.frame.maxY + 10
+    }
+    
+    private func configureVisibleCells() {
+        
+        let dateFormat = DateFormatter()
+        dateFormat.locale = Locale(identifier: "ko_kr")
+        dateFormat.timeZone = TimeZone(abbreviation: "KST")
+        
+        dateFormat.dateFormat = "yyyy-MM-dd"
+        
+        let cells = calendar.visibleCells() as! [MyCalendarCell]
+        cells.forEach { (cell) in
+            let date = calendar.date(for: cell)
+            
+            days.forEach { (day) in
+                if dateFormat.string(from: day.day) == dateFormat.string(from: date!) {
+                    
+                    var progress: Int = 0
+                    day.promise.forEach { (pm) in
+                        progress += pm.progress
+                        print(day.day)
+                    }
+                    cell.setBackgroundColor(progress: CGFloat(progress / day.promise.count) + 1)
+                }
+            }
+//            cell.setBackgroundColor(progress: 1)
+        }
+    }
+    
+    func calculateDayProgress() {
+    
+        
+        
+        
+    }
+}
+
+
+extension HomeTabMainVC {
+func changeDateFormatKR(date: Date) {
+    
+    let today = Date()
+    
+    let dateFormat = DateFormatter()
+    
+    dateFormat.locale = Locale(identifier: "ko_kr")
+    dateFormat.timeZone = TimeZone(abbreviation: "KST")
+    
+    dateFormat.dateFormat = "yyyy-MM-dd"
+
+    if dateFormat.string(from: today) == dateFormat.string(from: date) {
+        eventLabel.text = "Today"
+    }
+    else{
+        dateFormat.dateFormat = "eee"
+        
+        let cal = Calendar.current
+        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: date)
+        if let eventLabel = eventLabel {
+        eventLabel.text = "\(components.month!)월 \(components.day!)일 \(dateFormat.string(from: date))요일"
+    }
+    }
+}
 }
