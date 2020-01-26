@@ -256,7 +256,15 @@ extension HomeTabMainVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DayPromiseListTVC = (tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC)
-        cell.setName(name: "reading a book")
+        
+        let date = calendar.selectedDate ?? Date()
+        
+        days.forEach { (day) in
+            if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
+                cell.promiseName.text = day.promise[indexPath.row].promiseName
+            }
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -277,5 +285,4 @@ extension HomeTabMainVC {
             self.tableView.tableFooterView = dummyView;
         self.tableView.clipsToBounds = false
     }
-    
 }
