@@ -17,6 +17,14 @@ class HomeTabMainVC: UIViewController {
 //    @IBOutlet weak var nearPromise: UILabel!
     fileprivate weak var calendar: FSCalendar!
     fileprivate weak var eventLabel: UILabel!
+    weak var tableView: UITableView!
+    let dateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        return formatter
+    }()
     
     struct Promise {
         let promiseName: String
@@ -101,6 +109,19 @@ class HomeTabMainVC: UIViewController {
         let attributedText = NSMutableAttributedString(string: "")
            attributedText.append(NSAttributedString(string: "Today"))
         self.eventLabel.attributedText = attributedText
+        
+        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY + 10, width: self.view.frame.size.width, height: 400))
+          
+         view.addSubview(myTableView)
+          
+         self.tableView = myTableView
+         
+         tableView.delegate = self
+         tableView.dataSource = self
+         
+         let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
+         tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
+        
     }
     
     override func viewDidLoad() {
@@ -108,7 +129,8 @@ class HomeTabMainVC: UIViewController {
 //        initView()
 //        calendar.delegate = self
 //        calendar.dataSource = self
-    
+        setTableViewUI()
+        
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {
@@ -146,6 +168,7 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
         changeDateFormatKR(date: date)
+        self.tableView.reloadData()
     }
     
     // 날짜 선택 해제 시 콜백
@@ -163,22 +186,17 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         self.calendar.frame.size.height = bounds.height
         self.eventLabel.frame.origin.y = calendar.frame.maxY + 10
+        self.tableView.frame.origin.y = eventLabel.frame.maxY + 10
     }
     
     private func configureVisibleCells() {
-        
-        let dateFormat = DateFormatter()
-        dateFormat.locale = Locale(identifier: "ko_kr")
-        dateFormat.timeZone = TimeZone(abbreviation: "KST")
-        
-        dateFormat.dateFormat = "yyyy-MM-dd"
         
         let cells = calendar.visibleCells() as! [MyCalendarCell]
         cells.forEach { (cell) in
             let date = calendar.date(for: cell)
             
             days.forEach { (day) in
-                if dateFormat.string(from: day.day) == dateFormat.string(from: date!) {
+                if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date!) {
                     
                     var progress: Int = 0
                     day.promise.forEach { (pm) in
@@ -188,16 +206,9 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
                     cell.setBackgroundColor(progress: CGFloat(progress / day.promise.count) + 1)
                 }
             }
-//            cell.setBackgroundColor(progress: 1)
         }
     }
-    
-    func calculateDayProgress() {
-    
-        
-        
-        
-    }
+ 
 }
 
 
@@ -206,24 +217,65 @@ func changeDateFormatKR(date: Date) {
     
     let today = Date()
     
-    let dateFormat = DateFormatter()
-    
-    dateFormat.locale = Locale(identifier: "ko_kr")
-    dateFormat.timeZone = TimeZone(abbreviation: "KST")
-    
-    dateFormat.dateFormat = "yyyy-MM-dd"
-
-    if dateFormat.string(from: today) == dateFormat.string(from: date) {
+    if self.dateFormat.string(from: today) == self.dateFormat.string(from: date) {
         eventLabel.text = "Today"
     }
     else{
+        let dateFormat = DateFormatter()
         dateFormat.dateFormat = "eee"
+        
+        dateFormat.locale = Locale(identifier: "ko_kr")
+        dateFormat.timeZone = TimeZone(abbreviation: "KST")
         
         let cal = Calendar.current
         let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: date)
         if let eventLabel = eventLabel {
         eventLabel.text = "\(components.month!)월 \(components.day!)일 \(dateFormat.string(from: date))요일"
-    }
+        }
     }
 }
+}
+
+extension HomeTabMainVC: UITableViewDelegate {}
+extension HomeTabMainVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let date = calendar.selectedDate ?? Date()
+        var count = 0
+        
+        days.forEach { (day) in
+            if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
+                count = day.promise.count
+            }
+        }
+        return count
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: DayPromiseListTVC = (tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC)
+        cell.setName(name: "reading a book")
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+}
+
+extension HomeTabMainVC {
+        func setTableViewUI() {
+        // tableView 뷰 변경
+            let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
+            self.tableView.tableFooterView = dummyView;
+        self.tableView.clipsToBounds = false
+    }
+    
 }
