@@ -16,6 +16,7 @@ pod 'Firebase/Auth'
 pod 'GoogleSignIn'
 pod 'SVProgressHUD'
 pod 'Firebase/Storage'
+pod 'Floaty', '~> 4.2.0'
 
 # Optionally, include the Swift extension if you're using Swift
 pod 'FirebaseFirestoreSwift'

@@ -17,6 +17,7 @@ class HomeTabMainVC: UIViewController {
 //    @IBOutlet weak var nearPromise: UILabel!
     fileprivate weak var calendar: FSCalendar!
     fileprivate weak var eventLabel: UILabel!
+    
     weak var tableView: UITableView!
     let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
@@ -80,7 +81,9 @@ class HomeTabMainVC: UIViewController {
         self.calendar = calendar
            
         calendar.appearance.headerTitleColor = UIColor.systemPurple
-        calendar.appearance.weekdayTextColor = UIColor.darkText
+       
+        calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20.0)
+         calendar.appearance.weekdayTextColor = UIColor.darkText
         calendar.appearance.borderSelectionColor = UIColor.systemPurple
         calendar.appearance.selectionColor = UIColor.clear
         calendar.appearance.titleSelectionColor = UIColor.darkText
@@ -130,7 +133,6 @@ class HomeTabMainVC: UIViewController {
 //        calendar.delegate = self
 //        calendar.dataSource = self
         setTableViewUI()
-        
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {
