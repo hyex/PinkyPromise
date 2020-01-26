@@ -49,12 +49,12 @@
 		33BC046F23D9945300DEFD3A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */; };
 		3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */; };
 		3F461AC623DADFFD00748703 /* ColorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F461AC523DADFFD00748703 /* ColorTVC.swift */; };
+		3F6DAE4923DCD53A00599661 /* MyCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6DAE4823DCD53A00599661 /* MyCalendarCell.swift */; };
 		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
 		3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */; };
 		3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */; };
-
-		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */; };
+		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -106,6 +106,7 @@
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseInputTVC.swift; sourceTree = "<group>"; };
 		3F461AC523DADFFD00748703 /* ColorTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTVC.swift; sourceTree = "<group>"; };
+		3F6DAE4823DCD53A00599661 /* MyCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarCell.swift; sourceTree = "<group>"; };
 		3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
 		3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPromiseVC.swift; sourceTree = "<group>"; };
 		3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectColorVC.swift; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 				3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */,
 				3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */,
 				3F461AC523DADFFD00748703 /* ColorTVC.swift */,
+				3F6DAE4823DCD53A00599661 /* MyCalendarCell.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -546,9 +548,7 @@
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				186D855B23D42486006DA619 /* promiseTable.swift in Sources */,
-
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,
-				33BC046523D6E8D100DEFD3A /* OnePromiseView.swift in Sources */,
 				3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */,
 				33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */,
 				33BC046B23D8CD2100DEFD3A /* EndedPromiseTVC.swift in Sources */,
@@ -572,7 +572,7 @@
 				3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */,
 				186D855923D42174006DA619 /* promiseUsers.swift in Sources */,
 				3F461AC623DADFFD00748703 /* ColorTVC.swift in Sources */,
-				3317B3E723CEFFCC006A5BF5 /* View.swift in Sources */,
+				3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */,
 				3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */,
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
 				33BC046F23D9945300DEFD3A /* UIColor+Extension.swift in Sources */,
@@ -585,6 +585,7 @@
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,
 				A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */,
 				3317B3E523CEF3D2006A5BF5 /* CustomSlider.swift in Sources */,
+				3F6DAE4923DCD53A00599661 /* MyCalendarCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
