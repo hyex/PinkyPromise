@@ -130,7 +130,7 @@
         <!--New Promise-->
         <scene sceneID="xm5-Dn-tBW">
             <objects>
-                <viewController storyboardIdentifier="AddPromiseVC" id="n3T-qC-QZ6" customClass="AddPromiseVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n3T-qC-QZ6" customClass="AddPromiseVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="br8-9D-0fk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -42,13 +42,27 @@ class FriendTabMainVC: UIViewController {
         
     }
     
-    @IBAction func endedPromiseBtnAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
+    @IBAction func showPromiseDetail(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailNavigationController") as! DetailNavigationController
+
+        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .overCurrentContext
+
+        self.present(vc, animated: false)
+    }
+    
+    @IBAction func addPromiseBtnAction(_ sender: Any) {
+        print("in addPromiseBtnAction")
+        
+        let homeTabStoryboard = UIStoryboard(name: "HomeTab", bundle: nil)
+        let vc = homeTabStoryboard.instantiateViewController(withIdentifier: "HomeNavigationController") as! HomeNavigationController
+        
+        print("after let vc")
         
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
         
-        self.present(vc, animated: false)
+        self.present(vc, animated: false, completion: nil)
     }
     
 }

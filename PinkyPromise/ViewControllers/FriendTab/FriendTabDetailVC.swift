@@ -17,6 +17,8 @@ struct FriendDatailInfo{
 import UIKit
 
 class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var promiseTitleLabel: UILabel!
     @IBOutlet weak var friendDatailTableView: UITableView!
     
@@ -56,8 +58,13 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    @IBAction func backBtnAction(_ sender : Any){
+        self.dismiss(animated: false, completion: nil)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 115
+    }
+    
 }
 
