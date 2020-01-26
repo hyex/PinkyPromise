@@ -265,6 +265,10 @@ extension HomeTabMainVC: UITableViewDataSource {
             }
         }
         
+        cell.view.layer.backgroundColor = UIColor.systemPurple.withAlphaComponent(CGFloat(0.1)).cgColor
+//        cell.layer.borderWidth = 1
+        cell.view.layer.cornerRadius = 8
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
