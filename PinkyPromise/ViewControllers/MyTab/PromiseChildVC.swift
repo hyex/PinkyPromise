@@ -75,7 +75,7 @@ extension PromiseChildVC {
         
         let attributedString = NSAttributedString(string: "100% 지킨 약속 보러가기", attributes: [
             .font: UIFont.boldSystemFont(ofSize: 20.0),
-            .foregroundColor: UIColor.appColor.withAlphaComponent(0.8)
+            .foregroundColor: UIColor.appColor //.withAlphaComponent(0.8)
         ])
         endedPromiseBtn.setAttributedTitle(attributedString, for: .normal)
     }
