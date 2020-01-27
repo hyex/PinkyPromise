@@ -16,7 +16,7 @@ class MoreTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.button.tintColor = UIColor.appColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

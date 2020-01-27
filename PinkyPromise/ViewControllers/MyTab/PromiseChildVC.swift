@@ -13,7 +13,7 @@ class PromiseChildVC: UIViewController {
     @IBOutlet weak var endedPromiseBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var promiseList: [PromiseTable]? {
+    var promiseList: [PromiseData]? {
         didSet { collectionView.reloadData() }
     }
     
@@ -34,7 +34,7 @@ class PromiseChildVC: UIViewController {
     // 통신
     private func getAllPromiseData() {
         
-        MyApi.shared.getPromiseData(completion: { result in
+        MyApi.shared.allPromise(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
                 self.collectionView.reloadData()
@@ -136,11 +136,11 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 let startDate = rowData.promiseStartTime
                 let endDate = rowData.promiseEndTime
                 
-                let interval = endDate!.timeIntervalSince(startDate!)
-                let days = Int(interval / 86400)
+                let interval = endDate.timeIntervalSince(startDate)
+                let days = Int(interval / 86400) + 1
                 
-                let leftInterval = endDate!.timeIntervalSince(today)
-                let left = Int(leftInterval / 86400)
+                let leftInterval = endDate.timeIntervalSince(today)
+                let left = Int(leftInterval / 86400) + 1
                 
                 /** 날짜 차이와 시간 차이까지 알고 싶으면
                  let calendar = Calendar.current
@@ -166,7 +166,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
                 let calcValue = CGFloat( Float(rowData.promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
                 
-                promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue// - CGFloat(2.0)
+                promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue - CGFloat(4.0)
                 promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
 
                 

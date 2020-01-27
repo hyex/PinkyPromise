@@ -300,14 +300,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HHL-Fo-umX">
-                                <rect key="frame" x="16" y="111" width="343" height="651"/>
+                                <rect key="frame" x="0.0" y="111" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EndedPromiseTVC" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EndedPromiseTVC" rowHeight="133" id="fJw-zl-yQ7" customClass="EndedPromiseTVC" customModule="PinkyPromise" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="133"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="133"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fJw-zl-yQ7" id="Eg1-El-WdP">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="133"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XTM-Bh-OOq">
@@ -370,11 +370,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="HHL-Fo-umX" firstAttribute="top" secondItem="YZh-we-R6q" secondAttribute="bottom" constant="32.666666666666657" id="3GD-QH-4MW"/>
-                            <constraint firstItem="HHL-Fo-umX" firstAttribute="leading" secondItem="4fq-hj-Zsn" secondAttribute="leading" constant="16" id="A4e-3h-LQJ"/>
+                            <constraint firstItem="HHL-Fo-umX" firstAttribute="leading" secondItem="4fq-hj-Zsn" secondAttribute="leading" id="A4e-3h-LQJ"/>
                             <constraint firstItem="RMZ-La-v0W" firstAttribute="top" secondItem="4fq-hj-Zsn" secondAttribute="top" constant="9" id="Gwo-YD-KPf"/>
                             <constraint firstItem="RMZ-La-v0W" firstAttribute="centerY" secondItem="YZh-we-R6q" secondAttribute="centerY" id="LqY-tL-vQ2"/>
-                            <constraint firstItem="4fq-hj-Zsn" firstAttribute="bottom" secondItem="HHL-Fo-umX" secondAttribute="bottom" constant="16" id="MXe-km-OMt"/>
-                            <constraint firstItem="4fq-hj-Zsn" firstAttribute="trailing" secondItem="HHL-Fo-umX" secondAttribute="trailing" constant="16" id="UHM-Cq-jFc"/>
+                            <constraint firstItem="4fq-hj-Zsn" firstAttribute="bottom" secondItem="HHL-Fo-umX" secondAttribute="bottom" id="MXe-km-OMt"/>
+                            <constraint firstItem="4fq-hj-Zsn" firstAttribute="trailing" secondItem="HHL-Fo-umX" secondAttribute="trailing" id="UHM-Cq-jFc"/>
                             <constraint firstItem="RMZ-La-v0W" firstAttribute="leading" secondItem="4fq-hj-Zsn" secondAttribute="leading" constant="16" id="W3K-G0-OYg"/>
                             <constraint firstItem="YZh-we-R6q" firstAttribute="top" secondItem="4fq-hj-Zsn" secondAttribute="top" constant="8" id="qHj-Mk-x6r"/>
                             <constraint firstItem="YZh-we-R6q" firstAttribute="centerX" secondItem="4fq-hj-Zsn" secondAttribute="centerX" id="vN3-K2-4Di"/>
