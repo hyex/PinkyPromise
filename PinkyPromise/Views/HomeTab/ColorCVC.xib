@@ -28,7 +28,7 @@
                                 <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" backgroundImage="circle.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="colorButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ewa-d9-rn8"/>
+                                    <action selector="colorButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="BrG-jt-Eci"/>
                                 </connections>
                             </button>
                         </subviews>

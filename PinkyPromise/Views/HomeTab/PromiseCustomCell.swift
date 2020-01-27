@@ -10,10 +10,14 @@ import UIKit
 
 class PromiseCustomCell: UITableViewCell {
 
-    @IBOutlet weak var colorButton: UIButton!
+    @IBOutlet weak var colorButton: UIButton! = {
+        let button = UIButton()
+        button.tintColor = UIColor.systemPurple
+        return button
+    }()
 
     @IBOutlet weak var iconButton: UIButton!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,7 +30,6 @@ class PromiseCustomCell: UITableViewCell {
     }
     
     @IBAction func colorBtnAction(_ sender: Any) {
-        
     }
     
     @IBAction func iconBtnAction(_ sender: Any) {

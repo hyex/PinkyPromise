@@ -9,6 +9,8 @@
 import UIKit
 import FSCalendar
 
+
+
 class AddPromiseVC: UIViewController {
 
     @IBOutlet weak var backBtn: UIBarButtonItem!
@@ -21,9 +23,13 @@ class AddPromiseVC: UIViewController {
     
     var isStartCalSelected: Bool!
     var isEndCalSelected: Bool!
+    var selectedColor: Int! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // for modal
+        definesPresentationContext = true
         
         // set UI
         setNavigationUI()
@@ -204,4 +210,24 @@ extension AddPromiseVC: UITextFieldDelegate {
         
     }
     
+}
+
+extension AddPromiseVC: SendSelectedColorDelegate {
+    func sendSelectedColor(data: String, num: Int) {
+        let customCell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseCustomCell
+        let color = MyColor(rawValue: data)
+        self.selectedColor = num
+        customCell.colorButton.tintColor = color?.create
+        customCell.iconButton.tintColor = color?.create
+    }
+    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CustomPromiseVC" {
+            let vc = segue.destination as! AddColorVC
+//            let customCell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseCustomCell
+            vc.delegate = self
+            vc.selectedColor = self.selectedColor
+        }
+    }
 }
