@@ -36,11 +36,17 @@ class FriendTabMainVC: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
+        friendMainTableView.tableFooterView = UIView()
         
         let purplePlus : UIImage = UIImage(named: "plus")!
         addNewPromiseBtn.setImage(purplePlus, for: UIControl.State.normal)
         
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        friendMainTableView.deselectRow(at: indexPath, animated: true)
+//        self.performSegue(withIdentifier: "friendsInPromise", sender: nil)
+//    }
     
     @IBAction func showPromiseDetail(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "DetailNavigationController") as! DetailNavigationController

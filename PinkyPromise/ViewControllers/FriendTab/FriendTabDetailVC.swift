@@ -9,9 +9,11 @@
 struct FriendDatailInfo{
     var image : String
     var name : String
-    var successCnt : String
-    var failCnt : String
-    var longestCnt : String
+    var perfect : String
+    var threeQuarter : String
+    var half : String
+    var quarter : String
+    var zero : String
 }
 
 import UIKit
@@ -23,17 +25,18 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var friendDatailTableView: UITableView!
     
     let datailPromiseInfo : [FriendDatailInfo] = [
-    FriendDatailInfo(image: "heji", name: "hyex", successCnt: "10", failCnt: "5", longestCnt: "7"),
-    FriendDatailInfo(image: "heji", name: "hyex", successCnt: "10", failCnt: "5", longestCnt: "7"),
-    FriendDatailInfo(image: "heji", name: "hyex", successCnt: "10", failCnt: "5", longestCnt: "7"),
-    FriendDatailInfo(image: "heji", name: "hyex", successCnt: "10", failCnt: "5", longestCnt: "7"),
-    FriendDatailInfo(image: "heji", name: "hyex", successCnt: "10", failCnt: "5", longestCnt: "7")
+    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
+    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
+    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
+    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
+    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         friendDatailTableView.delegate = self
         friendDatailTableView.dataSource = self
+        friendDatailTableView.tableFooterView = UIView()
         
     }
     
@@ -46,15 +49,32 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let rowData = self.datailPromiseInfo[indexPath.row]
         
+        cell.crownImg.image = UIImage(named: "crown")
+        if(!(indexPath.row == 0)) {
+            cell.crownImg.isHidden = true
+        }
+        
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
         cell.friendProfileImg.image = UIImage(named: rowData.image)
         
         cell.friendNameLabel.text = rowData.name
-        cell.successCntLabel.text = rowData.successCnt
-        cell.failCntLabel.text = rowData.failCnt
-        cell.longestCntLabel.text = rowData.longestCnt
+        cell.perfectCnt.text = rowData.perfect
+        cell.threeQuarterCnt.text = rowData.threeQuarter
+        cell.halfCnt.text = rowData.half
+        cell.quarterCnt.text = rowData.quarter
+        cell.zeroCnt.text = rowData.zero
         
+        var nowProgressed : Double
+        let p1 = 1.0 * Double(rowData.perfect)!
+        let p2 = 0.75 * Double(rowData.threeQuarter)!
+        let p3 = 0.5 * Double(rowData.half)!
+        let p4 = 0.25 * Double(rowData.quarter)!
+        
+        nowProgressed = (p1 + p2 + p3 + p4) / 30.0
+        cell.progressView.progress = Float(nowProgressed)
+        
+
         return cell
     }
     
