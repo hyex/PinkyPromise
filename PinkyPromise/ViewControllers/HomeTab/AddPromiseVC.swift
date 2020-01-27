@@ -92,7 +92,7 @@ extension AddPromiseVC {
 extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8;
+        return 7;
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -106,16 +106,16 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as! TextCellTVC
             cell.textField.delegate = self
             return cell
-        case 1,3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell") as! PromiseInputTVC
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseCustomCell
             return cell
         case 2,4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell") as! PromiseInputTVC
+            return cell
+        case 3,5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell") as! PromiseInputTVC
             cell.calendar.delegate = self
             cell.calendar.dataSource = self
-            return cell
-        case 5,6:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseInputTVC
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! PromiseInputTVC
@@ -131,10 +131,10 @@ extension AddPromiseVC {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        if !isStartCalSelected && indexPath.row == 2 {
+        if !isStartCalSelected && indexPath.row == 3 {
             return 0.01
         }
-        else if !isEndCalSelected && indexPath.row == 4 {
+        else if !isEndCalSelected && indexPath.row == 5 {
             return 0.01
         }
         else{
@@ -146,12 +146,12 @@ extension AddPromiseVC {
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if indexPath.row == 1 {
+        if indexPath.row == 2 {
             isStartCalSelected = isStartCalSelected ? false : true
             self.promiseTableView.beginUpdates()
             self.promiseTableView.endUpdates()
         }
-        else if indexPath.row == 3 {
+        else if indexPath.row == 4 {
             isEndCalSelected = isEndCalSelected ? false : true
         self.promiseTableView.beginUpdates()
         self.promiseTableView.endUpdates()
@@ -165,15 +165,15 @@ extension AddPromiseVC: FSCalendarDataSource {
     // 날짜 선택 시 콜백
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
-        let firstCalCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-        let secondCalCell = promiseTableView.cellForRow(at: NSIndexPath(row: 4, section: 0) as IndexPath) as! PromiseInputTVC
+        let firstCalCell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
+        let secondCalCell = promiseTableView.cellForRow(at: NSIndexPath(row: 5, section: 0) as IndexPath) as! PromiseInputTVC
         
         if firstCalCell.calendar == calendar {
-            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseInputTVC
+            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
             cell.changeDateFormatKR(date: date)
         }
         if secondCalCell.calendar == calendar {
-            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
+            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 4, section: 0) as IndexPath) as! PromiseInputTVC
             cell.changeDateFormatKR(date: date)
         }
 

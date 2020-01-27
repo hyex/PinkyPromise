@@ -1,15 +1,19 @@
 //
-//  ColorTVC.swift
+//  PromiseCustomCell.swift
 //  PinkyPromise
 //
-//  Created by linc on 2020/01/24.
+//  Created by linc on 2020/01/27.
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
 import UIKit
 
-class ColorTVC: UITableViewCell {
+class PromiseCustomCell: UITableViewCell {
 
+    @IBOutlet weak var colorButton: UIButton!
+
+    @IBOutlet weak var iconButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +24,12 @@ class ColorTVC: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func colorBtnAction(_ sender: Any) {
+        
+    }
+    
+    @IBAction func iconBtnAction(_ sender: Any) {
+        
+    }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import EventKit
 import FSCalendar
+import Floaty
 
 class HomeTabMainVC: UIViewController {
 
@@ -17,8 +18,9 @@ class HomeTabMainVC: UIViewController {
 //    @IBOutlet weak var nearPromise: UILabel!
     fileprivate weak var calendar: FSCalendar!
     fileprivate weak var eventLabel: UILabel!
-    
+    var addPromiseBtn: AddPromiseBtn!
     weak var tableView: UITableView!
+    
     let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -72,8 +74,8 @@ class HomeTabMainVC: UIViewController {
         titleLabel.attributedText = NSAttributedString(string: "PinkyPromise")
         view.addSubview(titleLabel)
         
-        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
-        let calendar = FSCalendar(frame: CGRect(x: 0, y: titleLabel.frame.maxY + 28, width: view.frame.size.width, height: height))
+//        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
+        let calendar = FSCalendar(frame: CGRect(x: 0, y: titleLabel.frame.maxY, width: view.frame.size.width, height: view.frame.size.width - 90))
         calendar.dataSource = self
         calendar.delegate = self
 //        calendar.allowsMultipleSelection = true
@@ -102,7 +104,7 @@ class HomeTabMainVC: UIViewController {
            calendar.addGestureRecognizer(scopeGesture)
            
            
-        let label = UILabel(frame: CGRect(x: 0, y: calendar.frame.maxY + 10, width: self.view.frame.size.width, height: 50))
+        let label = UILabel(frame: CGRect(x: 0, y: calendar.frame.maxY, width: self.view.frame.size.width, height: 50))
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
@@ -113,7 +115,7 @@ class HomeTabMainVC: UIViewController {
            attributedText.append(NSAttributedString(string: "Today"))
         self.eventLabel.attributedText = attributedText
         
-        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY + 10, width: self.view.frame.size.width, height: 400))
+        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY + 10, width: self.view.frame.size.width, height: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - self.eventLabel.frame.maxY))
           
          view.addSubview(myTableView)
           
@@ -124,6 +126,11 @@ class HomeTabMainVC: UIViewController {
          
          let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
          tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
+        
+        addPromiseBtn = AddPromiseBtn(frame: CGRect(x: self.view.center.x - 25, y: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - 110, width: 50, height: 50));
+        
+        addPromiseBtn.fabDelegate = self
+            self.view.addSubview(addPromiseBtn)
         
     }
     
@@ -136,7 +143,7 @@ class HomeTabMainVC: UIViewController {
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "HomeNavigationController") as! UIViewController
+        let vc = storyboard!.instantiateViewController(withIdentifier: "HomeNavigationController")
         
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
@@ -290,5 +297,19 @@ extension HomeTabMainVC {
             let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
             self.tableView.tableFooterView = dummyView;
         self.tableView.clipsToBounds = false
+    }
+}
+
+extension HomeTabMainVC: FloatyDelegate {
+    func emptyFloatySelected(_ floaty: Floaty) {
+        
+        let storyboard = UIStoryboard(name: "HomeTab", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController")
+        
+        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        self.present(vc, animated: false, completion: nil)
+        
     }
 }
