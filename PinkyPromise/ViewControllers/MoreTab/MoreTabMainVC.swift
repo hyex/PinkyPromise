@@ -12,14 +12,18 @@ class MoreTabMainVC: UIViewController {
 
     @IBOutlet weak var moreTableView: UITableView!
     
-    var moreTableList:[MoreTableData] = []
+    var moreTableList:[MoreTableData] = [
+        MoreTableData(title: "내 정보"),
+        MoreTableData(title: "내 친구"),
+        MoreTableData(title: "코드로 친구추가")
+    ]
     
-    func onComplete(data: [MoreTableData]) -> Void {
-        DispatchQueue.main.async {
-            self.moreTableList = data
-            self.moreTableView.reloadData()
-        }
-    }
+//    func onComplete(data: [MoreTableData]) -> Void {
+//        DispatchQueue.main.async {
+//            self.moreTableList = data
+//            self.moreTableView.reloadData()
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +31,7 @@ class MoreTabMainVC: UIViewController {
         moreTableView.delegate = self
         moreTableView.dataSource = self
         
-        MyApi.shared.allMore(completion: self.onComplete(data:))
+//        MyApi.shared.allMore(completion: self.onComplete(data:))
         // 위와 같음
         //    MyApi.shared.allMenu(completion: { result in
         //               DispatchQueue.main.async {
@@ -48,15 +52,26 @@ extension MoreTabMainVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
+        switch indexPath.row {
+        case 0:
+            print(self.moreTableList[indexPath.row].title)
+        case 1:
+            print(self.moreTableList[indexPath.row].title)
+        case 2:
+            let vc = storyboard?.instantiateViewController(identifier: "AddFriendCodeVC") as! AddFriendCodeVC
+            
+            vc.modalPresentationStyle = .currentContext
+            vc.modalTransitionStyle = .coverVertical
+            
+            self.present(vc, animated: false)
+            
+        default:
+            print("error")
+        }
 //        performSegue(withIdentifier: "DetailSegue", sender: self.rankingList[indexPath.row])
     
-                
-//        rankingTableView.backgroundColor = .darkGray
-//        print(self.rankingList[indexPath.row])
-//        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailVC") {
-//            self.navigationController?.pushViewController(vc, animated: false)
-//        }
+
     }
 }
 
@@ -80,11 +95,5 @@ extension MoreTabMainVC: UITableViewDataSource {
         
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection: Int) -> String? {
-//        return "Ranking"
-//    }
-
-
 }
 

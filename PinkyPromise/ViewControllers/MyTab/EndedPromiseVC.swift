@@ -17,7 +17,8 @@ class EndedPromiseVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        backBtn.tintColor = .black
+        
+        initView()
         self.endedPromiseCollectionView.delegate = self
         self.endedPromiseCollectionView.dataSource = self
         
@@ -37,6 +38,23 @@ class EndedPromiseVC: UIViewController {
 
 }
 
+
+extension EndedPromiseVC {
+    private func initView() {
+        backBtn.tintColor = .black
+        addSwipeGesture()
+    }
+    func addSwipeGesture() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        endedPromiseCollectionView.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .right) {
+            self.dismiss(animated: false, completion: nil)}
+    }
+}
 
 extension EndedPromiseVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

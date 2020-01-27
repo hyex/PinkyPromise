@@ -32,6 +32,7 @@
 		3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */; };
 		3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */; };
 		332A24C723DEF670004377DA /* EndedPromiseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A24C623DEF670004377DA /* EndedPromiseCVC.swift */; };
+		332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */; };
 		334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD123CC249D00AAF955 /* MyTab.storyboard */; };
 		334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD423CC24B100AAF955 /* FriendTab.storyboard */; };
 		334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD623CC24BA00AAF955 /* MoreTab.storyboard */; };
@@ -88,6 +89,7 @@
 		3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "PinkyPromise/Models/FriendTab/UIView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		332A24C623DEF670004377DA /* EndedPromiseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseCVC.swift; sourceTree = "<group>"; };
+		332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCodeVC.swift; sourceTree = "<group>"; };
 		334AACD123CC249D00AAF955 /* MyTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTab.storyboard; sourceTree = "<group>"; };
 		334AACD423CC24B100AAF955 /* FriendTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendTab.storyboard; sourceTree = "<group>"; };
 		334AACD623CC24BA00AAF955 /* MoreTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreTab.storyboard; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				334AACE423CC296100AAF955 /* MoreTabMainVC.swift */,
+				332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */,
 			);
 			path = MoreTab;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				1875B63C23D99F8600751947 /* signUpVC.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 				3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */,
+				332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */,
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,
 				332A24C723DEF670004377DA /* EndedPromiseCVC.swift in Sources */,
 				A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */,
