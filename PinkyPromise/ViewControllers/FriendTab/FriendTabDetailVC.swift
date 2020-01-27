@@ -32,12 +32,18 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
     ]
     
+    var detailPromise : FriendsInfo? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         friendDatailTableView.delegate = self
         friendDatailTableView.dataSource = self
         friendDatailTableView.tableFooterView = UIView()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(self.detailPromise)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
