@@ -83,7 +83,7 @@ extension AddIconVC: UICollectionViewDelegate, UICollectionViewDataSource {
         return CGSize(width: 55, height: 55)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! ColorCVC
+        let cell = collectionView.cellForItem(at: indexPath) as! IconCVC
         cell.layer.borderColor = UIColor.gray.cgColor
         
 //        cell.getButtonColor()
