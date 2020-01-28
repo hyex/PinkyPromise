@@ -56,6 +56,9 @@
 		3F6DAE5323DDB5F900599661 /* DayPromiseListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6DAE5123DDB5F900599661 /* DayPromiseListTVC.xib */; };
 		3F6DAE5923DE30D800599661 /* AddPromiseBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6DAE5823DE30D800599661 /* AddPromiseBtn.swift */; };
 		3F6DAE5B23DF158300599661 /* PromiseCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6DAE5A23DF158300599661 /* PromiseCustomCell.swift */; };
+		3F7F7E7723DFB7960033856F /* IconCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F7E7523DFB7960033856F /* IconCVC.swift */; };
+		3F7F7E7823DFB7960033856F /* IconCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7F7E7623DFB7960033856F /* IconCVC.xib */; };
+		3F7F7E7A23DFBA4F0033856F /* AddIconVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F7E7923DFBA4F0033856F /* AddIconVC.swift */; };
 		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
 		3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */; };
 		3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */; };
@@ -120,6 +123,9 @@
 		3F6DAE5123DDB5F900599661 /* DayPromiseListTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DayPromiseListTVC.xib; path = ../../../../../../Documents/DayPromiseListTVC.xib; sourceTree = "<group>"; };
 		3F6DAE5823DE30D800599661 /* AddPromiseBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromiseBtn.swift; sourceTree = "<group>"; };
 		3F6DAE5A23DF158300599661 /* PromiseCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseCustomCell.swift; sourceTree = "<group>"; };
+		3F7F7E7523DFB7960033856F /* IconCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCVC.swift; sourceTree = "<group>"; };
+		3F7F7E7623DFB7960033856F /* IconCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconCVC.xib; sourceTree = "<group>"; };
+		3F7F7E7923DFBA4F0033856F /* AddIconVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIconVC.swift; sourceTree = "<group>"; };
 		3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
 		3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPromiseVC.swift; sourceTree = "<group>"; };
 		3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectColorVC.swift; sourceTree = "<group>"; };
@@ -258,6 +264,7 @@
 				334AACDC23CC262D00AAF955 /* HomeTabMainVC.swift */,
 				3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */,
 				3F035C5223DF5BC40037A4BA /* AddColorVC.swift */,
+				3F7F7E7923DFBA4F0033856F /* AddIconVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -311,6 +318,8 @@
 				3F6DAE5A23DF158300599661 /* PromiseCustomCell.swift */,
 				3F035C4E23DF447A0037A4BA /* ColorCVC.swift */,
 				3F035C4F23DF447A0037A4BA /* ColorCVC.xib */,
+				3F7F7E7523DFB7960033856F /* IconCVC.swift */,
+				3F7F7E7623DFB7960033856F /* IconCVC.xib */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -489,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F035C5123DF447A0037A4BA /* ColorCVC.xib in Resources */,
+				3F7F7E7823DFB7960033856F /* IconCVC.xib in Resources */,
 				33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */,
 				334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */,
 				18A7B4F823CF663900598AF5 /* GoogleService-Info.plist in Resources */,
@@ -571,6 +581,7 @@
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				3F6DAE5923DE30D800599661 /* AddPromiseBtn.swift in Sources */,
+				3F7F7E7723DFB7960033856F /* IconCVC.swift in Sources */,
 				186D855B23D42486006DA619 /* promiseTable.swift in Sources */,
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,
 				3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */,
@@ -588,6 +599,7 @@
 				33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
 				3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */,
+				3F7F7E7A23DFBA4F0033856F /* AddIconVC.swift in Sources */,
 				33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */,
 				1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,

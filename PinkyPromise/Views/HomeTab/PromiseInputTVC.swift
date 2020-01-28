@@ -56,7 +56,7 @@ extension PromiseInputTVC {
         let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: date)
         
         if let dateLabel = dateLabel {
-            dateLabel.text = "\(components.month!)월 \(components.day!)일 \(dateFormat.string(from: date))요일"
+            dateLabel.text = "\(components.month!)월 \(components.day!)일 (\(dateFormat.string(from: date)))"
         }
         if let timeLabel = timeLabel {
             dateFormat.dateFormat = "a h:mm"

@@ -1,5 +1,5 @@
 //
-//  AddColorVC.swift
+//  AddIconVC.swift
 //  PinkyPromise
 //
 //  Created by linc on 2020/01/28.
@@ -8,34 +8,32 @@
 
 import UIKit
 
-protocol SelectedColorDelegate {
-    func backSelectedColor(data: String, num: Int)
+protocol SelectedIconDelegate {
+    func backSelectedIcon(data: String, num: Int)
 }
 
-protocol SendSelectedColorDelegate {
-    func sendSelectedColor(data: String, num: Int)
+protocol SendSelectedIconDelegate {
+    func sendSelectedIcon(data: String, num: Int)
 }
 
+class AddIconVC: UIViewController {
 
+    var selectedIcon: Int = 0
 
-class AddColorVC: UIViewController {
-    
-    var selectedColor: Int = 0
-    
-    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
+    let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
     
     @IBOutlet weak var cancelBtn: UIButton!
-    
-    @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBOutlet weak var smallView: UIView!
     
-    var delegate: SendSelectedColorDelegate!
+    var delegate: SendSelectedIconDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        let nibName = UINib(nibName: "ColorCVC", bundle: nil)
+        let nibName = UINib(nibName: "IconCVC", bundle: nil)
         
         self.smallView.layer.shadowColor = UIColor.black.cgColor
         self.smallView.layer.masksToBounds = false
@@ -64,18 +62,18 @@ class AddColorVC: UIViewController {
     }
 }
 
-extension AddColorVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension AddIconVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCollectionCell", for: indexPath) as! ColorCVC
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCollectionCell", for: indexPath) as! IconCVC
         cell.delegate = self
-        if indexPath.row == selectedColor {
+        if indexPath.row == selectedIcon {
             cell.setSelectedBox()
         }
-        cell.setButtonColor(name: colors[indexPath.row])
+        cell.setButtonIcon(name: icons[indexPath.row])
         
         return cell
     }
@@ -93,13 +91,12 @@ extension AddColorVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-extension AddColorVC: SelectedColorDelegate {
-    
-    func backSelectedColor(data: String, num: Int) {
-        let cell = collectionView.cellForItem(at: IndexPath(row: selectedColor, section: 0)) as! ColorCVC
+extension AddIconVC: SelectedIconDelegate {
+    func backSelectedIcon(data: String, num: Int) {
+        let cell = collectionView.cellForItem(at: IndexPath(row: selectedIcon, section: 0)) as! IconCVC
         cell.dismissSelectedBox()
         
-        delegate.sendSelectedColor(data: data, num: num)
+        delegate.sendSelectedIcon(data: data, num: num)
         dismiss(animated: true, completion: nil)
     }
 }

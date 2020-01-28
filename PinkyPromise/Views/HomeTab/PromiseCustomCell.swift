@@ -35,4 +35,5 @@ class PromiseCustomCell: UITableViewCell {
     @IBAction func iconBtnAction(_ sender: Any) {
         
     }
+    
 }

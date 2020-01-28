@@ -43,14 +43,18 @@
             <constraints>
                 <constraint firstItem="pZa-4D-mHs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0Uj-Io-lDH"/>
                 <constraint firstAttribute="trailing" secondItem="pZa-4D-mHs" secondAttribute="trailing" id="5SO-11-Uyw"/>
+                <constraint firstAttribute="bottom" secondItem="pZa-4D-mHs" secondAttribute="bottom" id="Nx6-Bd-b7i"/>
                 <constraint firstItem="pZa-4D-mHs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="f0b-VK-oXb"/>
                 <constraint firstAttribute="bottom" secondItem="pZa-4D-mHs" secondAttribute="bottom" id="i1A-zS-jqo"/>
+                <constraint firstItem="pZa-4D-mHs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lSU-9m-J6B"/>
+                <constraint firstItem="pZa-4D-mHs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="px5-gz-Xsc"/>
+                <constraint firstAttribute="trailing" secondItem="pZa-4D-mHs" secondAttribute="trailing" id="rev-xV-fVb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="colorButton" destination="uk1-7t-0YE" id="4ZC-An-iGY"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="135.9375"/>
+            <point key="canvasLocation" x="131.15942028985509" y="134.26339285714286"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -48,6 +48,8 @@ class ColorCVC: UICollectionViewCell {
     var colorName: String!
     var colorInt: Int!
     
+    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
+
     var delegate: SelectedColorDelegate!
     
     override func awakeFromNib() {
