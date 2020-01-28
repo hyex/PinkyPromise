@@ -20,7 +20,8 @@ import UIKit
 
 class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    @IBOutlet weak var backBtn: UIBarButtonItem!
+    @IBOutlet weak var backBtn: UIButton!
+    //    @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var promiseTitleLabel: UILabel!
     @IBOutlet weak var friendDatailTableView: UITableView!
     
@@ -32,13 +33,20 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
     ]
     
-    var detailPromise : FriendsInfo? = nil
+    var detailPromise : FriendsInfo? = nil {
+        didSet {
+            print(self.detailPromise)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackBtn()
+        
         friendDatailTableView.delegate = self
         friendDatailTableView.dataSource = self
         friendDatailTableView.tableFooterView = UIView()
+        
         
     }
     
@@ -84,8 +92,16 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    @IBAction func backBtnAction(_ sender : Any){
+//    @IBAction func backBtnAction(_ sender : Any){
+//        self.dismiss(animated: false, completion: nil)
+//    }
+    
+    @IBAction func backBtnAction(_ sender : Any) {
         self.dismiss(animated: false, completion: nil)
+    }
+    
+    func setBackBtn() {
+        self.backBtn.tintColor = UIColor.purple
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
