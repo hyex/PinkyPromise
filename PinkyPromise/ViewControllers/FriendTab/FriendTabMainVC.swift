@@ -41,7 +41,6 @@ class FriendTabMainVC: UIViewController {
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
         friendMainTableView.tableFooterView = UIView()
-        
     }
     
     //약속 추가 버튼 이미지 설정
