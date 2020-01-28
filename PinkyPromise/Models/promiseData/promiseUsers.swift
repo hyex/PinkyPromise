@@ -14,11 +14,13 @@ class PromiseUser {
     private(set) var userFriends: Array<String>!
     private(set) var userId: String!
     private(set) var userImage: String!
-    init(userName: String, userFriends: Array<String>, userId: String, userImage: String) {
+    private(set) var userCode: Int!
+    init(userName: String, userFriends: Array<String>, userId: String, userImage: String, userCode: Int) {
         self.userName = userName
         self.userFriends = userFriends
         self.userId = userId
         self.userImage = userImage
+        self.userCode = userCode
     }
     
     class func parseData(snapShot: QuerySnapshot?) -> [PromiseUser] {
@@ -31,7 +33,8 @@ class PromiseUser {
             let datauserFriends = data[USERFRIENDS] as? Array<String> ?? []
             let datauserId = data[USERID] as? String ?? "nil"
             let datauserImage = data[USERIMAGE] as? String ?? "404"
-            let newdatauser = PromiseUser(userName: datauser, userFriends: datauserFriends, userId: datauserId, userImage: datauserImage)
+            let datauserCode = data[USERCODE] as? Int ?? Int.random(in: 100000...999999)
+            let newdatauser = PromiseUser(userName: datauser, userFriends: datauserFriends, userId: datauserId, userImage: datauserImage, userCode: datauserCode)
             promiseuser.append(newdatauser)
         }
         

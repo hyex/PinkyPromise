@@ -135,14 +135,28 @@ class LoginVC: UIViewController {
         print(FirebaseUserService.currentUserID)
         print("this is test end")
         
+        var user1 = ""
+        
         MyApi.shared.getPromiseData { (temp) in
             for douc in temp {
                 print(douc.promiseName)
                 print(douc.promiseEndTime)
                 print(douc.promiseId)
                 print(douc.promiseUsers)
+                user1 = douc.promiseId
             }
             print("test zero")
+        }
+        
+        var temp2 = [Any]()
+        print("second test start")
+        MyApi.shared.getProgressData(promiseid: user1) { (temp2) in
+            print("this is \(user1)")
+            for douc in temp2 {
+                print(douc.promiseId)
+                print(douc.userId)
+                print(douc.progressDay)
+            }
         }
     }
     
@@ -183,23 +197,26 @@ extension LoginVC: GIDSignInDelegate {
                 
                 self.indicator?.stopAnimating()
                 //SVProgressHUD.dismiss()
-                UserDefaults.standard.set(true, forKey: "loggedIn")
                 //let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 
                 print(fullName)
                 print(email)
                 
-                
-                
                 if UserDefaults.standard.bool(forKey: "loggedIn") == false {
                     print("not yet logined...")
                     self.navigationController?.isNavigationBarHidden = true
                     self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                    
+                    UserDefaults.standard.set(true, forKey: "loggedIn")
+                    
+                    var temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "nil", userCode: Int.random(in: 100000...999999))
+                    MyApi.shared.addUserData(temp)
+                    
                 } else {
                     print("go login!!")
                     self.navigationController?.isNavigationBarHidden = true
                     self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                    //self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+                    
                 }
             }
         }
