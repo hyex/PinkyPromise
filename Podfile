@@ -14,7 +14,6 @@ pod 'Firebase/Core'
 pod 'FirebaseUI'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
-pod 'SVProgressHUD'
 pod 'Firebase/Storage'
 pod 'Floaty', '~> 4.2.0'
 

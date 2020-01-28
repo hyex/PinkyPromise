@@ -46,6 +46,7 @@ class DayChildVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        initView()
         setUpTableView()
     }
 
@@ -66,6 +67,13 @@ class DayChildVC: UIViewController {
 //    }
 }
 
+//extension DayChildVC {
+//    func initView() {
+////        addSwipeGesture()
+//    }
+//
+//
+//}
 
 extension DayChildVC: UITableViewDataSource {
 

@@ -13,6 +13,7 @@ class PromiseChildVC: UIViewController {
     @IBOutlet weak var endedPromiseBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+//    var promiseList: [PromiseData]? {
     var promiseList: [PromiseTable]? {
         didSet { collectionView.reloadData() }
     }
@@ -34,7 +35,9 @@ class PromiseChildVC: UIViewController {
     // 통신
     private func getAllPromiseData() {
         
-        MyApi.shared.getPromiseData(completion: { result in
+        
+//        MyApi.shared.allPromise(completion: { result in
+        MyApi.shared.getPromiseDataSinceToday(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
                 self.collectionView.reloadData()
@@ -75,7 +78,7 @@ extension PromiseChildVC {
         
         let attributedString = NSAttributedString(string: "100% 지킨 약속 보러가기", attributes: [
             .font: UIFont.boldSystemFont(ofSize: 20.0),
-            .foregroundColor: UIColor.appColor.withAlphaComponent(0.8)
+            .foregroundColor: UIColor.appColor //.withAlphaComponent(0.8)
         ])
         endedPromiseBtn.setAttributedTitle(attributedString, for: .normal)
     }
@@ -133,14 +136,14 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let today = Date()
-                let startDate = rowData.promiseStartTime
-                let endDate = rowData.promiseEndTime
+                let startDate = rowData.promiseStartTime!
+                let endDate = rowData.promiseEndTime!
                 
-                let interval = endDate!.timeIntervalSince(startDate!)
-                let days = Int(interval / 86400)
+                let interval = endDate.timeIntervalSince(startDate)
+                let days = Int(interval / 86400) + 1
                 
-                let leftInterval = endDate!.timeIntervalSince(today)
-                let left = Int(leftInterval / 86400)
+                let leftInterval = endDate.timeIntervalSince(today)
+                let left = Int(leftInterval / 86400) + 1
                 
                 /** 날짜 차이와 시간 차이까지 알고 싶으면
                  let calendar = Calendar.current
@@ -159,14 +162,14 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 promiseCell.appSlider.maximumValue = Float(days)
                 
                 promiseCell.promiseName.text = rowData.promiseName
-                promiseCell.appSlider.value = Float( rowData.promiseAchievement)
-                promiseCell.showSliderValue.text = String( rowData.promiseAchievement)
+                //promiseCell.appSlider.value = Float( rowData.promiseAchievement)
+//                promiseCell.showSliderValue.text = String( rowData.promiseAchievement)
                 
                 let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
                 let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
-                let calcValue = CGFloat( Float(rowData.promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
+//                let calcValue = CGFloat( Float(rowData.promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
                 
-                promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue// - CGFloat(2.0)
+//                promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue - CGFloat(4.0)
                 promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
 
                 

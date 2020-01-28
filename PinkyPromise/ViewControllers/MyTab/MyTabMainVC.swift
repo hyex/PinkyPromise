@@ -17,6 +17,8 @@ class MyTabMainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initView()
+//        self.view.bringSubviewToFront(dayChildView)
         dayChildView.isHidden = false
         promiseChildView.isHidden = true
 
@@ -27,9 +29,11 @@ class MyTabMainVC: UIViewController {
         
         switch segmentedControl.selectedSegmentIndex{
         case 0:
+//            self.view.bringSubviewToFront(dayChildView)
             dayChildView.isHidden = false
             promiseChildView.isHidden = true
         case 1:
+//            self.view.bringSubviewToFront(promiseChildView)
             dayChildView.isHidden = true
             promiseChildView.isHidden = false
         default:
@@ -37,4 +41,37 @@ class MyTabMainVC: UIViewController {
         }
     }
     
+}
+
+extension MyTabMainVC {
+    func initView() {
+        addSwipeGesture()
+    }
+    
+    func addSwipeGesture() {
+            
+            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+            let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+            
+            leftSwipe.direction = .left
+            rightSwipe.direction = .right
+            
+            dayChildView.addGestureRecognizer(leftSwipe)
+            promiseChildView.addGestureRecognizer(rightSwipe)
+        }
+        
+        @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+                
+            if (sender.direction == .left) {
+                segmentedControl.selectedSegmentIndex = 1
+                dayChildView.isHidden = true
+                promiseChildView.isHidden = false
+            }
+                
+            if (sender.direction == .right) {
+                segmentedControl.selectedSegmentIndex = 0
+                dayChildView.isHidden = false
+                promiseChildView.isHidden = true
+            }
+        }
 }

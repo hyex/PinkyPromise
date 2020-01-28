@@ -17,7 +17,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qOr-sX-qi7">
                                 <rect key="frame" x="0.0" y="111" width="414" height="702"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoreTVC" rowHeight="80" id="nRV-Td-9dm" customClass="MoreTVC" customModule="PinkyPromise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
@@ -38,6 +37,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="99V-HM-q7f"/>
                                                         <constraint firstAttribute="width" secondItem="sfa-3b-FhM" secondAttribute="height" multiplier="1:1" id="apk-qV-DtO"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <state key="normal" image="arrow.right" catalog="system"/>
                                                 </button>
                                             </subviews>
@@ -73,8 +73,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P8a-Tt-MZO"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="eEf-IH-d7a"/>
-                    <navigationItem key="navigationItem" id="LIQ-E2-Sja"/>
+                    <navigationItem key="navigationItem" id="Lcc-XE-opJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="moreTableView" destination="qOr-sX-qi7" id="Y38-oJ-Vcq"/>
@@ -82,7 +81,87 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNU-gm-d3s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.10144927536237" y="8.7053571428571423"/>
+            <point key="canvasLocation" x="3727.5362318840585" y="8.7053571428571423"/>
+        </scene>
+        <!--Add Friend CodeVC-->
+        <scene sceneID="HA3-FW-OdK">
+            <objects>
+                <viewController storyboardIdentifier="AddFriendCodeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L5h-IP-TCG" customClass="AddFriendCodeVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xaB-9w-qbe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRm-iA-UZs">
+                                <rect key="frame" x="0.0" y="453" width="414" height="409"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="친구 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-2e-KCh">
+                                        <rect key="frame" x="139" y="89" width="136" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh6-k2-uUa">
+                                        <rect key="frame" x="176" y="188" width="62" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="친구 코드 입력" textAlignment="center" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="pHL-T8-omL">
+                                        <rect key="frame" x="123" y="142" width="168" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Dh6-k2-uUa" firstAttribute="centerX" secondItem="pHL-T8-omL" secondAttribute="centerX" id="3Lj-WI-0tg"/>
+                                    <constraint firstItem="cIS-2e-KCh" firstAttribute="centerX" secondItem="pRm-iA-UZs" secondAttribute="centerX" id="8Z6-gF-CCZ"/>
+                                    <constraint firstItem="pHL-T8-omL" firstAttribute="centerX" secondItem="cIS-2e-KCh" secondAttribute="centerX" id="AUb-b2-dgL"/>
+                                    <constraint firstItem="pHL-T8-omL" firstAttribute="top" secondItem="cIS-2e-KCh" secondAttribute="bottom" constant="8" id="L0x-Yc-CsW"/>
+                                    <constraint firstItem="Dh6-k2-uUa" firstAttribute="top" secondItem="pHL-T8-omL" secondAttribute="bottom" constant="12" id="S0E-gQ-eO3"/>
+                                    <constraint firstItem="pHL-T8-omL" firstAttribute="width" secondItem="pRm-iA-UZs" secondAttribute="width" multiplier="0.405797" id="XUH-66-yBU"/>
+                                    <constraint firstItem="cIS-2e-KCh" firstAttribute="top" secondItem="pRm-iA-UZs" secondAttribute="top" constant="89" id="hGL-dV-nNl"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내 코드" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGx-nw-gT0">
+                                <rect key="frame" x="155" y="152" width="104" height="45"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhh-2v-3RA">
+                                <rect key="frame" x="142" y="205" width="130" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Yhh-2v-3RA" firstAttribute="top" secondItem="KGx-nw-gT0" secondAttribute="bottom" constant="8" id="4Ik-NO-u7e"/>
+                            <constraint firstItem="Yhh-2v-3RA" firstAttribute="centerX" secondItem="KGx-nw-gT0" secondAttribute="centerX" id="4rB-yE-tOe"/>
+                            <constraint firstItem="pRm-iA-UZs" firstAttribute="height" secondItem="xaB-9w-qbe" secondAttribute="height" multiplier="0.456473" id="HlB-y7-tZ8"/>
+                            <constraint firstItem="hm7-zZ-rXo" firstAttribute="bottom" secondItem="pRm-iA-UZs" secondAttribute="bottom" id="IN5-zD-SE4"/>
+                            <constraint firstItem="pRm-iA-UZs" firstAttribute="centerX" secondItem="hm7-zZ-rXo" secondAttribute="centerX" id="Qjo-RI-p7G"/>
+                            <constraint firstItem="pRm-iA-UZs" firstAttribute="width" secondItem="xaB-9w-qbe" secondAttribute="width" id="X65-Ia-yUR"/>
+                            <constraint firstItem="KGx-nw-gT0" firstAttribute="top" secondItem="hm7-zZ-rXo" secondAttribute="top" constant="108" id="xG9-by-clB"/>
+                            <constraint firstItem="KGx-nw-gT0" firstAttribute="centerX" secondItem="hm7-zZ-rXo" secondAttribute="centerX" id="zIo-Pi-ZBQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hm7-zZ-rXo"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmBtn" destination="Dh6-k2-uUa" id="2bw-Wu-mM0"/>
+                        <outlet property="friendCodeLabel" destination="cIS-2e-KCh" id="V5K-LT-QY7"/>
+                        <outlet property="friendCodeTextField" destination="pHL-T8-omL" id="ANO-NG-HAz"/>
+                        <outlet property="inputCodeView" destination="pRm-iA-UZs" id="c5f-tl-4sn"/>
+                        <outlet property="myCode" destination="Yhh-2v-3RA" id="1gk-d1-riA"/>
+                        <outlet property="myCodeLabel" destination="KGx-nw-gT0" id="AiB-MH-cgU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eLz-wR-gAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4755.072463768116" y="8.7053571428571423"/>
         </scene>
     </scenes>
     <resources>
