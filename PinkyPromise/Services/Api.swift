@@ -87,7 +87,7 @@ class MyApi: NSObject {
         })
     }
     
-    //프로그레스테이블의 정보 반환
+    //프로그레스테이블의 정보 반환 약속 id를 반환하면 
     func getProgressData(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
         var result = [ProgressTable]()
         progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
@@ -131,7 +131,7 @@ class MyApi: NSObject {
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
         let result = Timestamp()
         
-        promiseCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: result).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: result).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
