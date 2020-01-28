@@ -14,6 +14,7 @@ class PromiseChildVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var promiseList: [PromiseData]? {
+//    var promiseList: [PromiseTable]? {
         didSet { collectionView.reloadData() }
     }
     
@@ -34,7 +35,9 @@ class PromiseChildVC: UIViewController {
     // 통신
     private func getAllPromiseData() {
         
+        
         MyApi.shared.allPromise(completion: { result in
+//        MyApi.shared.getPromiseData(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
                 self.collectionView.reloadData()

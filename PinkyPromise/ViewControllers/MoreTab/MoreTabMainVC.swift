@@ -5,13 +5,14 @@
 //  Created by kimhyeji on 1/13/20.
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
-
 import UIKit
 
 class MoreTabMainVC: UIViewController {
-
+    
     @IBOutlet weak var moreTableView: UITableView!
     
+//    var moreTableList = ["내 정보", "나의 약속 친구들", "약속 친구 추가하러가기", "개발자 정보"]
+
     var moreTableList:[MoreTableData] = [
         MoreTableData(title: "내 정보"),
         MoreTableData(title: "내 친구"),
@@ -25,11 +26,10 @@ class MoreTabMainVC: UIViewController {
 //        }
 //    }
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        moreTableView.delegate = self
-        moreTableView.dataSource = self
         
 //        MyApi.shared.allMore(completion: self.onComplete(data:))
         // 위와 같음
@@ -43,8 +43,6 @@ class MoreTabMainVC: UIViewController {
     }
     
 }
-
-
 extension MoreTabMainVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -52,6 +50,19 @@ extension MoreTabMainVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        //let selectCell = 
+        
+        //performSegue(withIdentifier: "detailSegue", sender: self.moreTableList[indexPath.row])
+                    
+//        moreTableView.backgroundColor = .darkGray
+//        print(self.moreTableList[indexPath.row])
+
+        
+        //        if let vc = storyboard?.instantiateViewController(withIdentifier: "MoreVC") {
+        //            self.navigationController?.pushViewController(vc, animated: true)
+        //        }
+        
         
         switch indexPath.row {
         case 0:
@@ -75,7 +86,6 @@ extension MoreTabMainVC: UITableViewDelegate {
     }
 }
 
-
 extension MoreTabMainVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,7 +96,7 @@ extension MoreTabMainVC: UITableViewDataSource {
         
         var cell = UITableViewCell()
         if let rankingcell = tableView.dequeueReusableCell(withIdentifier: "MoreTVC", for: indexPath) as? MoreTVC {
-//            moreTableList.sort(by: {$0.promiseCount > $1.promiseCount})
+            //            moreTableList.sort(by: {$0.promiseCount > $1.promiseCount})
             let rowData = self.moreTableList[indexPath.row]
             
             rankingcell.title.text = rowData.title
@@ -95,5 +105,10 @@ extension MoreTabMainVC: UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection: Int) -> String? {
+        return "this is MoreTab"
+    }
+
 }
 

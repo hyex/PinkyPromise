@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import FirebaseUI
 import FirebaseStorage
-import SVProgressHUD
+//import SVProgressHUD
 import GoogleSignIn
 
 class LoginVC: UIViewController {
@@ -23,11 +23,13 @@ class LoginVC: UIViewController {
     @IBOutlet weak var pinkyTitle: UILabel!
     
     @IBOutlet weak var bottomView: UIImageView!
-
+    @IBOutlet weak var tempImage: UIImageView!
+    
     var indicator: UIActivityIndicatorView?
     
     @IBAction func goToSignIn(){
-        //performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+        let controller = signInVC()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func goToSignUp(){
@@ -43,17 +45,15 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func anomynousSignIn() {
-        Auth.auth().signInAnonymously { (authResult, error) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let user = authResult?.user else { return }
-            let isAnonymous = user.isAnonymous //true
-            let uid = user.uid
-            
-        }
+        //        Auth.auth().signInAnonymously { (authResult, error) in
+        //            if let error = error {
+        //                print(error.localizedDescription)
+        //            }
+        //            guard let user = authResult?.user else { return }
+        //            let isAnonymous = user.isAnonymous //true
+        //            let uid = user.uid
+        //            //self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        //        }
     }
     
     override func viewDidLoad() {
@@ -80,7 +80,81 @@ class LoginVC: UIViewController {
             self.pinkyTitle.center.x += self.view.bounds.width
             self.view.layoutIfNeeded()
         }, completion: nil)
+        
         //GIDSignIn.sharedInstance()?.delegate = self
+        
+        //        let tempProgress = ProgressTable(progressDay: Timestamp(seconds: 1577946254, nanoseconds: 157794620), progressDegree: 3, promiseId: "sdff9033", userId: "leehj test")
+        //
+        //        MyApi.shared.addProgressData(tempProgress)
+        //
+        //        MyApi.shared.getProgressData { (result) in
+        //            for document in result {
+        //                print(document.progressDay as Any)
+        //                print(document.progressDegree as Any)
+        //                print(document.userId as Any)
+        //                print(document.promiseId as Any)
+        //
+        //                let days = NSDate(timeIntervalSince1970: TimeInterval(document.progressDay!.seconds))
+        //                print("\(days)")
+        //            }
+        //        }
+        
+        //MyApi.shared.deleteUserWithUid(Uid: "LbyESVddCnhGCTbRphoNU15fXok1")
+        
+        print(Auth.auth().currentUser?.email ?? "")
+        
+        //        let Promisedd = PromiseTable(promiseName: "sdfds", isPromiseAlarm: true, promiseStartTime: Date(), promiseEndTime: Date(), promiseColor: "red", promiseIcon: "smile", promiseAlarmTime: Date(), promiseUsers: [], isPromiseAchievement: false, promisePanalty: "qjfclrdms tlfh", promiseId: "Q1is3jCUDajGT6wJB9wZ")
+        
+        //MyApi.shared.addPromiseData(Promisedd)
+        
+        var temp = [Any]()
+        
+        //        MyApi.shared.getProgressData { (temp) in
+        //            for douc in temp {
+        //                print(douc.progressDay)
+        //                print(douc.progressDegree)
+        //                print(douc.promiseId)
+        //                print(douc.userId)
+        //            }
+        //        }
+        
+        FirebaseStorageService.shared.getPromiseImageWithName(name: "IMG_0001.PNG") { (result) in
+            switch result {
+            case .failure(let error): print(error)
+            case .success(let firebaseimage): self.tempImage.image = firebaseimage
+            }
+        }
+        
+        MyApi.shared.getPromiseDataSinceToday { (result) in
+            for douc in result {
+                print(douc.promiseName)
+            }
+        }
+        print("this is test")
+        print(FirebaseUserService.currentUser.email)
+        print(FirebaseUserService.currentUserID)
+        print("this is test end")
+        
+        MyApi.shared.getPromiseData { (temp) in
+            for douc in temp {
+                print(douc.promiseName)
+                print(douc.promiseEndTime)
+                print(douc.promiseId)
+                print(douc.promiseUsers)
+            }
+            print("test zero")
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.identifier)
+        
+        switch segue.identifier {
+        case "loginSegue":
+            let mainVC = segue.destination as! MainTabBarController
+        default:
+            break
+        }
     }
 }
 
@@ -91,7 +165,7 @@ extension LoginVC: GIDSignInDelegate {
             print(error?.localizedDescription)
         } else {
             //SVProgressHUD.show()
-            self.indicator?.startAnimating()
+            //self.indicator?.startAnimating()
             let fullName = user.profile.name
             let email = user.profile.email
             
@@ -99,26 +173,41 @@ extension LoginVC: GIDSignInDelegate {
             guard let accessToken = user.authentication.accessToken else { return }
             let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
             
-            Auth.auth().signInAndRetrieveData(with: credentials) { (user, error) in
+            Auth.auth().signIn(with: credentials) { (user, error) in
                 if error != nil {
                     //SVProgressHUD.showError(withStatus: error?.localizedDescription)
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription ?? "")
                 }
+                
                 let userID = user?.user.uid
                 
-                //구글 유저를 추가해야한다.
                 self.indicator?.stopAnimating()
                 //SVProgressHUD.dismiss()
                 UserDefaults.standard.set(true, forKey: "loggedIn")
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = AddPromiseVC()
+                //let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                print(fullName)
+                print(email)
+                
+                
+                
+                if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+                    print("not yet logined...")
+                    self.navigationController?.isNavigationBarHidden = true
+                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                } else {
+                    print("go login!!")
+                    self.navigationController?.isNavigationBarHidden = true
+                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                    //self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+                }
             }
-            
         }
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        SVProgressHUD.showError(withStatus: error.localizedDescription)
+        //  SVProgressHUD.showError(withStatus: error.localizedDescription)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
