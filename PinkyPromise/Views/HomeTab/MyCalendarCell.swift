@@ -16,7 +16,7 @@ class MyCalendarCell: FSCalendarCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        print("  ")
 //        self.shapeLayer.isHidden = true
         
         let view = UIView(frame: self.bounds)
@@ -26,6 +26,11 @@ class MyCalendarCell: FSCalendarCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.backgroundView?.frame = self.bounds.insetBy(dx: 1, dy: 1)
+    }
+    
+    func setBackgroundColor(progress: CGFloat) {
+        let alpha = progress * 0.2
+        self.backgroundView?.backgroundColor = UIColor.systemPurple.withAlphaComponent(alpha)
     }
     
 //    override func configureAppearance() {

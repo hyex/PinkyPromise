@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseStorage
+import FirebaseFirestore
 
 class MyApi: NSObject {
     
@@ -58,7 +59,7 @@ class MyApi: NSObject {
         }
     }
     
-    //약속 데이터를 반환
+    //약속 데이터를 반환// 내가 포함되어 있는 녀석들만
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (sanpShot, err) in
@@ -87,9 +88,9 @@ class MyApi: NSObject {
     }
     
     //프로그레스테이블의 정보 반환
-    func getProgressData(completion: @escaping ([ProgressTable]) -> Void ){
+    func getProgressData(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
         var result = [ProgressTable]()
-        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
             } else {
@@ -100,30 +101,31 @@ class MyApi: NSObject {
     }
     
     //프로그레스테이블의 정보를 날짜 기준으로 내림차순으로 반환
-    func getProgressDataDesc(completion: @escaping ([ProgressTable]) -> Void ){
-        var result = [ProgressTable]()
-        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).getDocuments { (snapShot, error) in
-            if let err = error {
-                debugPrint("debug print \(err)")
-            } else {
-                result = ProgressTable.parseData(snapShot: snapShot)
-                completion(result)
-            }
-        }
-    }
+    //아직개발단계
+//    func getProgressDataDesc(completion: @escaping ([ProgressTable]) -> Void ){
+//        var result = [ProgressTable]()
+//        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).getDocuments { (snapShot, error) in
+//            if let err = error {
+//                debugPrint("debug print \(err)")
+//            } else {
+//                result = ProgressTable.parseData(snapShot: snapShot)
+//                completion(result)
+//            }
+//        }
+//    }
     
     //프로그래스테이블의 데이터가 업데이트될때마다 프로그레스테이블을 날짜별로 소팅시켜서 반환
-    func getProgressUpdateData(completion: @escaping ([ProgressTable]) -> Void) {
-        var result = [ProgressTable]()
-        promiseListner = promiseCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).addSnapshotListener({ (snapShot, error) in
-            if let err = error {
-                debugPrint("debut print \(err)")
-            } else {
-                result = ProgressTable.parseData(snapShot: snapShot)
-                completion(result)
-            }
-        })
-    }
+//    func getProgressUpdateData(completion: @escaping ([ProgressTable]) -> Void) {
+//        var result = [ProgressTable]()
+//        promiseListner = promiseCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).addSnapshotListener({ (snapShot, error) in
+//            if let err = error {
+//                debugPrint("debut print \(err)")
+//            } else {
+//                result = ProgressTable.parseData(snapShot: snapShot)
+//                completion(result)
+//            }
+//        })
+//    }
     
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
@@ -168,12 +170,13 @@ class MyApi: NSObject {
             USERNAME : userTable.userName ?? "Anomynous",
             USERFRIENDS: userTable.userFriends ?? [],
             USERID: userTable.userId ?? "nil",
-            USERIMAGE: userTable.userImage ?? "404"
+            USERIMAGE: userTable.userImage ?? "404",
+            USERCODE: userTable.userCode ?? Int.random(in: 100000...999999)
         ]) { error in
             if let err = error {
                 debugPrint("Error adding document : \(err)")
             } else {
-                print("this is API Error")
+                print("this is API success")
             }
         }
         
@@ -190,7 +193,7 @@ class MyApi: NSObject {
             if let err = error {
                 debugPrint("error adding document : \(err)")
             } else {
-                print("this is API Error")
+                print("this is API success")
             }
         }
     }

@@ -29,6 +29,7 @@ let USERNAME = "userName"
 let USERFRIENDS = "userFriends"
 let USERID = "userId"
 let USERIMAGE = "userImage"
+let USERCODE = "userCode"
 
 //약속 진행상황 테이블
 let PROGRESSTABLEREF = "progressTable"
