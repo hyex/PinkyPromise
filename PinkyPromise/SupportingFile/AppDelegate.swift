@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //initialViewController.isNavigationBarHidden = true
             window?.rootViewController = initialViewController
         }
-        
+
         FirebaseApp.configure()
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
