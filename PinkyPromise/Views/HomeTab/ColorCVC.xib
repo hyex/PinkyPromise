@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ColorCVC" customModule="PinkyPromise" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-4D-mHs">
+                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uk1-7t-0YE">
+                                <rect key="frame" x="7.5" y="8" width="40" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bvc-Q1-dQ7"/>
+                                    <constraint firstAttribute="width" constant="40" id="k50-BD-bfJ"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" backgroundImage="circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="colorButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="BrG-jt-Eci"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uk1-7t-0YE" firstAttribute="centerX" secondItem="pZa-4D-mHs" secondAttribute="centerX" id="R1I-tg-XM7"/>
+                            <constraint firstItem="uk1-7t-0YE" firstAttribute="centerY" secondItem="pZa-4D-mHs" secondAttribute="centerY" id="oNj-ig-cVQ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="pZa-4D-mHs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0Uj-Io-lDH"/>
+                <constraint firstAttribute="trailing" secondItem="pZa-4D-mHs" secondAttribute="trailing" id="5SO-11-Uyw"/>
+                <constraint firstAttribute="bottom" secondItem="pZa-4D-mHs" secondAttribute="bottom" id="Nx6-Bd-b7i"/>
+                <constraint firstItem="pZa-4D-mHs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="f0b-VK-oXb"/>
+                <constraint firstAttribute="bottom" secondItem="pZa-4D-mHs" secondAttribute="bottom" id="i1A-zS-jqo"/>
+                <constraint firstItem="pZa-4D-mHs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lSU-9m-J6B"/>
+                <constraint firstItem="pZa-4D-mHs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="px5-gz-Xsc"/>
+                <constraint firstAttribute="trailing" secondItem="pZa-4D-mHs" secondAttribute="trailing" id="rev-xV-fVb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="colorButton" destination="uk1-7t-0YE" id="4ZC-An-iGY"/>
+            </connections>
+            <point key="canvasLocation" x="131.15942028985509" y="134.26339285714286"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="circle.fill" catalog="system" width="64" height="60"/>
+    </resources>
+</document>

@@ -14,6 +14,7 @@ class MainTabBarController: UITabBarController {
     //    var data:String? = nil
     
     var thoughtuser = [PromiseUser]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()

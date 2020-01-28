@@ -28,6 +28,11 @@ class MyCalendarCell: FSCalendarCell {
         self.backgroundView?.frame = self.bounds.insetBy(dx: 1, dy: 1)
     }
     
+    func setBackgroundColor(progress: CGFloat) {
+        let alpha = progress * 0.2
+        self.backgroundView?.backgroundColor = UIColor.systemPurple.withAlphaComponent(alpha)
+    }
+    
 //    override func configureAppearance() {
 //        super.configureAppearance()
 //        // Override the build-in appearance configuration
