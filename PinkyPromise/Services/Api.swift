@@ -100,6 +100,18 @@ class MyApi: NSObject {
         }
     }
     
+    func getAllProgressData(completion: @escaping ([ProgressTable]) -> Void ){
+        var result = [ProgressTable]()
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint("debug print \(err)")
+            } else {
+                result = ProgressTable.parseData(snapShot: snapShot)
+                completion(result)
+            }
+        }
+    }
+    
     //프로그레스테이블의 정보를 날짜 기준으로 내림차순으로 반환
     //아직개발단계
 //    func getProgressDataDesc(completion: @escaping ([ProgressTable]) -> Void ){

@@ -18,6 +18,12 @@ class PromiseChildVC: UIViewController {
         didSet { collectionView.reloadData() }
     }
     
+    var progressList: [ProgressTable]? {
+        didSet { collectionView.reloadData() }
+    }
+//    var allProgressList: [eachProgressList]? = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,22 +41,32 @@ class PromiseChildVC: UIViewController {
     // 통신
     private func getAllPromiseData() {
         
-        
-//        MyApi.shared.allPromise(completion: { result in
         MyApi.shared.getPromiseDataSinceToday(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
-                self.collectionView.reloadData()
+//                self.collectionView.reloadData()
             }
         })
-//        MyPageCheckService.shared.getMyPageData(token: token, completion: { (myPageData) in
-//            self.myData = myPageData
-//        }) { (errCode) in
-//            self.simpleAlert(title: "알림", message: "네트워크 연결상태를 확인해주세요!")
-//            print("회원 정보 조회에 실패했습니다.")
+        
+        MyApi.shared.getAllProgressData(completion: { result in
+            DispatchQueue.main.async {
+                self.progressList = result
+            }
+        })
+        
+//        MyTabApi.shared.getAllProgressData()
+        
+        
+//        for idx in 0...self.promiseList!.count {
+//            MyApi.shared.getProgressData(promiseid: self.promiseList![idx].promiseId, completion: { result in
+//                DispatchQueue.main.async {
+//                    self.progressList![idx] = result
+//                    print(self.progressList)
+//                }
+//            })
 //        }
+        
     }
-    
     
     @IBAction func endedPromiseBtnAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EndedPromiseVC") as! EndedPromiseVC
@@ -112,7 +128,6 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
 //    }
 }
 
-
 extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -131,7 +146,17 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
             if let list = promiseList {
                 
                 let rowData = list[indexPath.item]
-                
+
+                var promiseAchievement:Int = 0
+
+                for progress in progressList! {
+                    if progress.promiseId == list[indexPath.item].promiseId {
+                        if progress.progressDegree == 4.0 {
+                            promiseAchievement += 1
+                        }
+                    }
+                }
+                    
                 // 날짜만 비교해서 며칠 남았는지 뽑아낸다
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -161,18 +186,18 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 // slider의 max 값을 변경
                 promiseCell.appSlider.maximumValue = Float(days)
                 
+                promiseCell.promiseIcon.image = UIImage(named: rowData.promiseIcon)
                 promiseCell.promiseName.text = rowData.promiseName
-                //promiseCell.appSlider.value = Float( rowData.promiseAchievement)
-//                promiseCell.showSliderValue.text = String( rowData.promiseAchievement)
+                promiseCell.appSlider.value = Float(promiseAchievement)
+                promiseCell.showSliderValue.text = String(promiseAchievement)
                 
                 let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
                 let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
-//                let calcValue = CGFloat( Float(rowData.promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
+                let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
                 
-//                promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue - CGFloat(4.0)
+                promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue //- CGFloat(2.0)
                 promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
 
-                
             }
             cell = promiseCell
         }
