@@ -201,7 +201,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gY-iT-02K">
-                                                    <rect key="frame" x="187.66666666666666" y="10.000000000000004" width="55" height="55.333333333333343"/>
+                                                    <rect key="frame" x="187.66666666666666" y="10" width="55" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="QZe-U8-uiB"/>
                                                         <constraint firstAttribute="height" constant="55" id="dow-WJ-Vsr"/>
@@ -246,33 +246,61 @@
                                             <outlet property="iconButton" destination="9gY-iT-02K" id="yvj-Nv-rTn"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="dateCell" rowHeight="55" id="Nm1-KM-4fC" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="178.33333587646484" width="375" height="55"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="dateCell" rowHeight="80" id="Nm1-KM-4fC" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="178.33333587646484" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nm1-KM-4fC" id="UZT-rs-kAm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1월 13일 금요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfv-rW-fgB">
-                                                    <rect key="frame" x="15.999999999999993" y="13" width="120.33333333333331" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 날짜:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yq-UC-biy">
+                                                    <rect key="frame" x="16" y="14.333333333333334" width="68" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료 날짜:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyt-I4-beS">
+                                                    <rect key="frame" x="16" y="45.333333333333336" width="68" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ceM-Su-rGN">
+                                                    <rect key="frame" x="258" y="13" width="101" height="54"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1월 13일 (금)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOY-xs-jq1">
+                                                            <rect key="frame" x="0.0" y="0.0" width="101" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1월 13일 (금)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEo-Zu-yGx">
+                                                            <rect key="frame" x="0.0" y="31" width="101" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Qfv-rW-fgB" firstAttribute="leading" secondItem="UZT-rs-kAm" secondAttribute="leading" constant="16" id="TdI-Vi-CIx"/>
-                                                <constraint firstAttribute="bottom" secondItem="Qfv-rW-fgB" secondAttribute="bottom" constant="13" id="Ved-8T-Sk8"/>
-                                                <constraint firstItem="Qfv-rW-fgB" firstAttribute="top" secondItem="UZT-rs-kAm" secondAttribute="top" constant="13" id="rug-V8-YMd"/>
-                                                <constraint firstItem="Qfv-rW-fgB" firstAttribute="centerY" secondItem="UZT-rs-kAm" secondAttribute="centerY" id="u8O-u4-Jn3"/>
+                                                <constraint firstItem="7yq-UC-biy" firstAttribute="leading" secondItem="UZT-rs-kAm" secondAttribute="leading" constant="16" id="0ei-gw-hF0"/>
+                                                <constraint firstItem="7yq-UC-biy" firstAttribute="centerY" secondItem="rOY-xs-jq1" secondAttribute="centerY" id="5nk-gv-H8r"/>
+                                                <constraint firstItem="ceM-Su-rGN" firstAttribute="top" secondItem="UZT-rs-kAm" secondAttribute="top" constant="13" id="Aza-I0-QDM"/>
+                                                <constraint firstItem="jyt-I4-beS" firstAttribute="centerY" secondItem="IEo-Zu-yGx" secondAttribute="centerY" id="MH2-Cg-fJI"/>
+                                                <constraint firstItem="jyt-I4-beS" firstAttribute="leading" secondItem="UZT-rs-kAm" secondAttribute="leading" constant="16" id="QAU-8q-e64"/>
+                                                <constraint firstItem="ceM-Su-rGN" firstAttribute="centerY" secondItem="UZT-rs-kAm" secondAttribute="centerY" id="adb-sF-Lic"/>
+                                                <constraint firstAttribute="trailing" secondItem="ceM-Su-rGN" secondAttribute="trailing" constant="16" id="r9g-zj-1pS"/>
+                                                <constraint firstAttribute="bottom" secondItem="ceM-Su-rGN" secondAttribute="bottom" constant="13" id="uQj-0S-Ugs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dateLabel" destination="Qfv-rW-fgB" id="Tjt-vd-E4c"/>
+                                            <outlet property="endDateLabel" destination="IEo-Zu-yGx" id="jF5-Dr-wRR"/>
+                                            <outlet property="startDateLabel" destination="rOY-xs-jq1" id="DzE-9H-yhY"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="calendarCell" rowHeight="250" id="gfe-NN-uhc" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="233.33333587646484" width="375" height="250"/>
+                                        <rect key="frame" x="0.0" y="258.33333587646484" width="375" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gfe-NN-uhc" id="umz-WS-F5L">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -324,15 +352,60 @@
                                             <outlet property="calendar" destination="Hd0-jb-nME" id="oBh-Ld-AC8"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="friendCell" id="MPz-AI-g1D" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="508.33333587646484" width="375" height="49.333332061767578"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MPz-AI-g1D" id="F8d-DH-rfV">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.333332061767578"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="친구와 함께하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvc-oz-UY8">
+                                                    <rect key="frame" x="56" y="12.999999999999998" width="120" height="23.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWK-pC-75g">
+                                                    <rect key="frame" x="310" y="9.3333333333333357" width="51" height="31"/>
+                                                </switch>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="22Y-lo-ZfT">
+                                                    <rect key="frame" x="16" y="13" width="25" height="24"/>
+                                                    <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="2ne-63-PeS"/>
+                                                        <constraint firstAttribute="width" secondItem="22Y-lo-ZfT" secondAttribute="height" multiplier="1:1" id="BZs-X4-njt"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="하루가 끝나기 전에 알람을 울립니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4H0-PQ-Vhc">
+                                                    <rect key="frame" x="56" y="34" width="173" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="22Y-lo-ZfT" firstAttribute="leading" secondItem="F8d-DH-rfV" secondAttribute="leading" constant="16" id="1Y8-WR-4PU"/>
+                                                <constraint firstAttribute="trailing" secondItem="HWK-pC-75g" secondAttribute="trailing" constant="16" id="6He-9Y-cUL"/>
+                                                <constraint firstItem="22Y-lo-ZfT" firstAttribute="centerY" secondItem="F8d-DH-rfV" secondAttribute="centerY" id="QWc-GV-fzz"/>
+                                                <constraint firstItem="HWK-pC-75g" firstAttribute="centerY" secondItem="F8d-DH-rfV" secondAttribute="centerY" id="QpL-CX-gMC"/>
+                                                <constraint firstItem="Uvc-oz-UY8" firstAttribute="centerY" secondItem="F8d-DH-rfV" secondAttribute="centerY" id="RA0-Kn-TUc"/>
+                                                <constraint firstItem="22Y-lo-ZfT" firstAttribute="width" secondItem="22Y-lo-ZfT" secondAttribute="height" multiplier="1:1" id="RSK-r0-Knv"/>
+                                                <constraint firstItem="Uvc-oz-UY8" firstAttribute="leading" secondItem="22Y-lo-ZfT" secondAttribute="trailing" constant="15" id="ZBd-bx-Ypz"/>
+                                                <constraint firstItem="Uvc-oz-UY8" firstAttribute="top" secondItem="F8d-DH-rfV" secondAttribute="top" constant="13" id="alb-Gr-dLN"/>
+                                                <constraint firstAttribute="bottom" secondItem="Uvc-oz-UY8" secondAttribute="bottom" constant="13" id="myr-zY-SPw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="alarmCell" id="x3B-0r-zJZ" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="483.33333587646484" width="375" height="49.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="557.66666793823242" width="375" height="49.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x3B-0r-zJZ" id="Qbu-2O-DgR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dK-Bf-pST">
-                                                    <rect key="frame" x="56" y="12.999999999999998" width="66" height="23.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="벌칙 추가하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dK-Bf-pST">
+                                                    <rect key="frame" x="56.000000000000007" y="12.999999999999998" width="103.66666666666669" height="23.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -348,6 +421,13 @@
                                                         <constraint firstAttribute="width" secondItem="ipu-SK-Db2" secondAttribute="height" multiplier="1:1" id="BWO-ks-dFR"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="하루가 끝나기 전에 알람을 울립니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMr-zs-wLc">
+                                                    <rect key="frame" x="56" y="34" width="173" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="7dK-Bf-pST" firstAttribute="top" secondItem="Qbu-2O-DgR" secondAttribute="top" constant="13" id="12C-dZ-oWZ"/>

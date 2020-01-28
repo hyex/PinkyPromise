@@ -58,12 +58,11 @@ class AddPromiseVC: UIViewController {
         
         let textCell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! TextCellTVC
         
-        let dateStartCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-        let dateEndCell = promiseTableView.cellForRow(at: NSIndexPath(row: 4, section: 0) as IndexPath) as! PromiseInputTVC
+        let dateCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
         
         let dataName = textCell.getValue()
-        let dataStartTime = dateStartCell.getValue()
-        let dataEndTime = dateEndCell.getValue()
+        let dataStartTime = dateCell.getFirstDate()
+        let dataEndTime = dateCell.getLastDate()
         let isDataAlarm = true
         let dataColor = colors[selectedColor]
         let dataAlarmContent = ""
@@ -120,13 +119,17 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PromiseCustomCell
             return cell
-        case 2,4:
+        case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell") as! PromiseInputTVC
+            cell.setFirstDate(date: Date())
+            cell.setLastDate(date: Date())
             return cell
-        case 3,5:
+        case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell") as! PromiseInputTVC
             cell.calendar.delegate = self
             cell.calendar.dataSource = self
+            cell.calendar.allowsMultipleSelection = true
+
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! PromiseInputTVC
@@ -145,9 +148,6 @@ extension AddPromiseVC {
         if !isStartCalSelected && indexPath.row == 3 {
             return 0.01
         }
-        else if !isEndCalSelected && indexPath.row == 5 {
-            return 0.01
-        }
         else{
             return UITableView.automaticDimension
         }
@@ -162,11 +162,7 @@ extension AddPromiseVC {
             self.promiseTableView.beginUpdates()
             self.promiseTableView.endUpdates()
         }
-        else if indexPath.row == 4 {
-            isEndCalSelected = isEndCalSelected ? false : true
-            self.promiseTableView.beginUpdates()
-            self.promiseTableView.endUpdates()
-        }
+        
     }
 }
 
@@ -175,31 +171,83 @@ extension AddPromiseVC {
 extension AddPromiseVC: FSCalendarDataSource {
     // 날짜 선택 시 콜백
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let secondCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
+
+        let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
         
-        let firstCalCell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
-        let secondCalCell = promiseTableView.cellForRow(at: NSIndexPath(row: 5, section: 0) as IndexPath) as! PromiseInputTVC
-        
-        if firstCalCell.calendar == calendar {
-            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-            cell.changeDateFormatKR(date: date)
+        if cell.firstDate == nil {
+            
+            cell.firstDate = date
+            cell.datesRange = [cell.firstDate!]
+            
+            secondCell.setFirstDate(date: date)
+            secondCell.setLastDate(date: date)
+            
+            print("datesRange contains: \(cell.datesRange!)")
+            return
         }
-        if secondCalCell.calendar == calendar {
-            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 4, section: 0) as IndexPath) as! PromiseInputTVC
-            cell.changeDateFormatKR(date: date)
+        
+        else if cell.firstDate != nil && cell.lastDate == nil {
+            // handle the case of if the last date is less than the first date:
+            if date <= cell.firstDate! {
+                cell.calendar.deselect(cell.firstDate!)
+                cell.firstDate = date
+                secondCell.setFirstDate(date: date)
+                secondCell.setLastDate(date: date)
+
+                cell.datesRange = [cell.firstDate!]
+                
+                print("datesRange contains: \(cell.datesRange!)")
+                return
+            }
+            
+            let range = cell.datesRange(from: cell.firstDate!, to: date)
+            
+            cell.lastDate = range.last
+            secondCell.setLastDate(date: range.last!)
+            for day in range {
+                calendar.select(day)
+            }
+            
+            cell.datesRange = range
+            
+            return
         }
         
-        //let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath)
-        // promiseTableView.indexPathForSelectedRow
+        // both are selected:
+        if cell.firstDate != nil && cell.lastDate != nil {
+            for day in cell.calendar.selectedDates {
+                cell.calendar.deselect(day)
+            }
+            cell.lastDate = nil
+            cell.firstDate = nil
+            
+            cell.datesRange = []
+            print("datesRange contains: \(cell.datesRange!)")
+        }
         
-        //print(dateFormatter.string(from: date))
     }
     
     // 날짜 선택 해제 시 콜백
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosion: FSCalendarMonthPosition) {
+        let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        print(dateFormatter.string(from: date))
+        // both are selected:
+        if cell.firstDate != nil && cell.lastDate != nil {
+            for day in cell.calendar.selectedDates {
+                cell.calendar.deselect(day)
+            }
+            cell.lastDate = nil
+            cell.firstDate = nil
+            
+            cell.datesRange = []
+            print("datesRange contains: \(cell.datesRange!)")
+            
+            let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
+            cell.setFirstDate(date: Date())
+            cell.setLastDate(date: Date())
+            
+        }
     }
     
     //public func calendar

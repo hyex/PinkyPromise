@@ -11,18 +11,32 @@ import FSCalendar
 
 class PromiseInputTVC: UITableViewCell {
 
-    @IBOutlet weak var dateLabel: UILabel!
+
+    @IBOutlet weak var startDateLabel: UILabel!
     
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var endDateLabel: UILabel!
     
     @IBOutlet weak var calendar: FSCalendar!
     
+    var firstDate: Date!
+    var lastDate: Date!
+    var datesRange: [Date]!
     var date: Date!
+    
+    let dateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        formatter.dateFormat = "eee"
+        
+        return formatter
+    }()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        initializeDate()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,33 +52,47 @@ class PromiseInputTVC: UITableViewCell {
 
 extension PromiseInputTVC {
     
-    func initializeDate() {
-        date = Date()
-        self.changeDateFormatKR(date: date)
-    }
-    func changeDateFormatKR(date: Date) {
+    func changeDateFormatKR(date: Date, dateLabel: UILabel!) {
         self.date = date
-        
-        let dateFormat = DateFormatter()
-        
-        dateFormat.locale = Locale(identifier: "ko_kr")
-        dateFormat.timeZone = TimeZone(abbreviation: "KST")
-        
-        dateFormat.dateFormat = "eee"
         
         let cal = Calendar.current
         let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: date)
         
         if let dateLabel = dateLabel {
-            dateLabel.text = "\(components.month!)월 \(components.day!)일 (\(dateFormat.string(from: date)))"
-        }
-        if let timeLabel = timeLabel {
-            dateFormat.dateFormat = "a h:mm"
-            timeLabel.text = "\(dateFormat.string(from: date))"
+            dateLabel.text = "\(components.month!)월 \(components.day!)일 (\(self.dateFormat.string(from: date)))"
         }
     }
-    func getValue() -> Date {
-        return self.date
+    
+    func setFirstDate(date: Date) {
+        self.firstDate = date
+        changeDateFormatKR(date: firstDate, dateLabel: self.startDateLabel)
+    }
+    
+    func setLastDate(date: Date) {
+        self.lastDate = date
+        changeDateFormatKR(date: lastDate, dateLabel: self.endDateLabel)
+    }
+    
+    func getFirstDate() -> Date {
+        return self.firstDate
+    }
+    
+    func getLastDate() -> Date {
+        return self.lastDate
+    }
+    
+    func datesRange(from: Date, to: Date) -> [Date] {
+        if from > to { return [Date]() }
+        
+        var tempDate = from
+        var array = [tempDate]
+        
+        while tempDate < to {
+            tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
+            array.append(tempDate)
+        }
+        return array
+        
     }
 }
 
