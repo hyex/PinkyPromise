@@ -62,9 +62,9 @@ class AddPromiseVC: UIViewController {
         let isPromiseAchievement = false
         let promisePanalty = ""
         
-        let newPromise = PromiseTable(promiseName: dataName, isPromiseAlarm: isDataAlarm, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseAlarmContent: dataAlarmContent, promiseIcon: dataIcon, promiseAchievement: dataAchievement, promiseUsers: dataUsers, isPromiseAchievement: isPromiseAchievement, promisePanalty: promisePanalty)
-        
-        MyApi.shared.addPromiseData(newPromise)
+//        let newPromise = PromiseTable(promiseName: dataName, isPromiseAlarm: isDataAlarm, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseAlarmTime: isDataAlarm, promiseUsers: <#T##Array<String>!#>, isPromiseAchievement: <#T##Bool#>, promisePanalty: <#T##String#>)
+//        
+//        MyApi.shared.addPromiseData(newPromise)
         
         self.dismiss(animated: false, completion: nil)
     }

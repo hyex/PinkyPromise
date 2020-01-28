@@ -12,15 +12,14 @@ import Foundation
 let PROMISETABLEREF = "PromiseTable"
 
 let ISPROMISEALARM = "isPromiseAlarm"
-let PROMISEACHIEVEMENT = "promiseAchievement"
-let PROMISEALARMCONTENT = "promiseAlarmContent"
+let ISPROMISEACHIEVEMENT = "isPromiseAchievement"
+let PROMISEALARMTIME = "promiseAlarmTime"
 let PROMISECOLOR = "promiseColor"
 let PROMISENAME = "promiseName"
 let PROMISESTARTTIME = "promiseStartTime"
 let PROMISEENDTIME = "promiseEndTime"
 let PROMISEICON = "promiseIcon"
 let PROMISEUSERS = "users"
-let ISPROMISEACHIEVEMENT = "promiseAchievement"
 let PROMSISEPANALTY = "promisePanalty"
 
 //유저 테이블과 그 필드들
@@ -30,3 +29,11 @@ let USERNAME = "userName"
 let USERFRIENDS = "userFriends"
 let USERID = "userId"
 let USERIMAGE = "userImage"
+
+//약속 진행상황 테이블
+let PROGRESSTABLEREF = "progressTable"
+
+let PROGRESSDEGREE = "progressDegree"
+let PROGRESSDAY = "progressDay"
+let PROMISEID = "promiseId"
+//let USERID = "userId" 유저테이블에존재
