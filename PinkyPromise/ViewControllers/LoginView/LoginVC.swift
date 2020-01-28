@@ -45,15 +45,15 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func anomynousSignIn() {
-//        Auth.auth().signInAnonymously { (authResult, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//            guard let user = authResult?.user else { return }
-//            let isAnonymous = user.isAnonymous //true
-//            let uid = user.uid
-//            //self.performSegue(withIdentifier: "loginSegue", sender: nil)
-//        }
+        //        Auth.auth().signInAnonymously { (authResult, error) in
+        //            if let error = error {
+        //                print(error.localizedDescription)
+        //            }
+        //            guard let user = authResult?.user else { return }
+        //            let isAnonymous = user.isAnonymous //true
+        //            let uid = user.uid
+        //            //self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        //        }
     }
     
     override func viewDidLoad() {
@@ -99,7 +99,7 @@ class LoginVC: UIViewController {
         //            }
         //        }
         
-        MyApi.shared.deleteUserWithUid(Uid: "LbyESVddCnhGCTbRphoNU15fXok1")
+        //MyApi.shared.deleteUserWithUid(Uid: "LbyESVddCnhGCTbRphoNU15fXok1")
         
         print(Auth.auth().currentUser?.email ?? "")
         
@@ -130,6 +130,20 @@ class LoginVC: UIViewController {
                 print(douc.promiseName)
             }
         }
+        print("this is test")
+        print(FirebaseUserService.currentUser.email)
+        print(FirebaseUserService.currentUserID)
+        print("this is test end")
+        
+        MyApi.shared.getPromiseData { (temp) in
+            for douc in temp {
+                print(douc.promiseName)
+                print(douc.promiseEndTime)
+                print(douc.promiseId)
+                print(douc.promiseUsers)
+            }
+            print("test zero")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -159,7 +173,7 @@ extension LoginVC: GIDSignInDelegate {
             guard let accessToken = user.authentication.accessToken else { return }
             let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
             
-            Auth.auth().signInAndRetrieveData(with: credentials) { (user, error) in
+            Auth.auth().signIn(with: credentials) { (user, error) in
                 if error != nil {
                     //SVProgressHUD.showError(withStatus: error?.localizedDescription)
                     print(error?.localizedDescription ?? "")
@@ -171,9 +185,11 @@ extension LoginVC: GIDSignInDelegate {
                 //SVProgressHUD.dismiss()
                 UserDefaults.standard.set(true, forKey: "loggedIn")
                 //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-             
+                
                 print(fullName)
                 print(email)
+                
+                
                 
                 if UserDefaults.standard.bool(forKey: "loggedIn") == false {
                     print("not yet logined...")

@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="qOr-sX-qi7">
-                                <rect key="frame" x="0.0" y="155" width="414" height="658"/>
+                                <rect key="frame" x="0.0" y="111" width="414" height="702"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoreTVC" rowHeight="80" id="nRV-Td-9dm" customClass="MoreTVC" customModule="PinkyPromise" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="80"/>
@@ -59,7 +59,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-R7-LcX">
-                                <rect key="frame" x="174.5" y="94" width="65" height="33"/>
+                                <rect key="frame" x="174.5" y="50" width="65" height="33"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -76,6 +76,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P8a-Tt-MZO"/>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="sFg-DJ-5xj"/>
                     <navigationItem key="navigationItem" id="Lcc-XE-opJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -91,7 +92,7 @@
             <objects>
                 <viewController id="HpA-wb-ltq" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yM-PN-dvV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Gn-19-qMK">
@@ -108,27 +109,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcM-fh-56g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3713.04347826087" y="8.7053571428571423"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="L7f-c9-Ltx">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0VU-kS-Kib" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="qCh-co-GDA">
-                        <color key="badgeColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="imb-OX-R0p">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="IwM-Qb-H7g" kind="relationship" relationship="rootViewController" id="Irr-EQ-zs7"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JJ2-aj-Fgo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1907.2463768115942" y="8.7053571428571423"/>
         </scene>
         <!--Add Friend CodeVC-->
         <scene sceneID="HA3-FW-OdK">

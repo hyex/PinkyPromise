@@ -284,10 +284,8 @@
 			isa = PBXGroup;
 			children = (
 				334AACE423CC296100AAF955 /* MoreTabMainVC.swift */,
-
 				18BA607523DF3E6D00925578 /* MoreDetailVC.swift */,
 				332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */,
-
 			);
 			path = MoreTab;
 			sourceTree = "<group>";
@@ -601,11 +599,8 @@
 				1875B63C23D99F8600751947 /* signUpVC.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 				3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */,
-
 				18BA607823DFF02E00925578 /* FirebaseUserService.swift in Sources */,
-
 				332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */,
-
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,
 				332A24C723DEF670004377DA /* EndedPromiseCVC.swift in Sources */,
 				A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */,

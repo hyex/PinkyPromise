@@ -35,7 +35,7 @@ class MyApi: NSObject {
     //유저 데이터가 업데이트될때마다 실행되며 업데이트된 데이터를 반환해줌, 클로저 사용
     func getUserUpdate(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
-        promiseListner = userCollectionRef.addSnapshotListener({ (snapShot, error) in
+        promiseListner = userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).addSnapshotListener({ (snapShot, error) in
             if let err = error {
                 debugPrint(err)
             } else {
@@ -48,7 +48,7 @@ class MyApi: NSObject {
     //유저 데이터를 반환해줌
     func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
-        userCollectionRef.getDocuments { (sanpShot, err) in
+        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
             }else {
@@ -61,7 +61,7 @@ class MyApi: NSObject {
     //약속 데이터를 반환
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
-        promiseCollectionRef.getDocuments { (sanpShot, err) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
             }else {
@@ -76,7 +76,7 @@ class MyApi: NSObject {
         var result = [PromiseTable]()
         
         //        promiseListner = promiseCollectionRef.order(by: PROMISEACHIEVEMENT, descending: true).addSnapshotListener({ (snapShot, error) in
-        promiseListner = promiseCollectionRef.addSnapshotListener({ (snapShot, error) in
+        promiseListner = promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).addSnapshotListener({ (snapShot, error) in
             if let err = error {
                 debugPrint(err)
             } else {
@@ -89,7 +89,7 @@ class MyApi: NSObject {
     //프로그레스테이블의 정보 반환
     func getProgressData(completion: @escaping ([ProgressTable]) -> Void ){
         var result = [ProgressTable]()
-        progressCollectionRef.getDocuments { (snapShot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
             } else {
@@ -102,7 +102,7 @@ class MyApi: NSObject {
     //프로그레스테이블의 정보를 날짜 기준으로 내림차순으로 반환
     func getProgressDataDesc(completion: @escaping ([ProgressTable]) -> Void ){
         var result = [ProgressTable]()
-        progressCollectionRef.order(by: PROGRESSDAY, descending: true).getDocuments { (snapShot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
             } else {
@@ -115,7 +115,7 @@ class MyApi: NSObject {
     //프로그래스테이블의 데이터가 업데이트될때마다 프로그레스테이블을 날짜별로 소팅시켜서 반환
     func getProgressUpdateData(completion: @escaping ([ProgressTable]) -> Void) {
         var result = [ProgressTable]()
-        promiseListner = promiseCollectionRef.order(by: PROGRESSDAY, descending: true).addSnapshotListener({ (snapShot, error) in
+        promiseListner = promiseCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).addSnapshotListener({ (snapShot, error) in
             if let err = error {
                 debugPrint("debut print \(err)")
             } else {
@@ -129,7 +129,7 @@ class MyApi: NSObject {
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
         let result = Timestamp()
         
-        promiseCollectionRef.whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: result).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: result).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -149,9 +149,7 @@ class MyApi: NSObject {
             ISPROMISEACHIEVEMENT: promiseTable.isPromiseAchievement ?? false,
             PROMISESTARTTIME: promiseTable.promiseStartTime ?? Date(),
             PROMISEENDTIME: promiseTable.promiseEndTime ?? Date(),
-            ISPROMISEALARM: promiseTable.isPromiseAlarm ?? false,
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
-            PROMISEALARMTIME: promiseTable.promiseAlarmTime ?? Date(),
             PROMISEUSERS: promiseTable.promiseUsers ?? []
         ]) { error in
             if let err = error {
