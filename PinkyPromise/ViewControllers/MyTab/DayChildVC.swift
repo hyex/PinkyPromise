@@ -46,6 +46,7 @@ class DayChildVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        initView()
         setUpTableView()
     }
 
@@ -66,6 +67,13 @@ class DayChildVC: UIViewController {
 //    }
 }
 
+//extension DayChildVC {
+//    func initView() {
+////        addSwipeGesture()
+//    }
+//
+//
+//}
 
 extension DayChildVC: UITableViewDataSource {
 
@@ -85,7 +93,7 @@ extension DayChildVC: UITableViewDataSource {
 
 extension DayChildVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 35 + 10)
+        let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 40 + 10)
         return height
         
     }

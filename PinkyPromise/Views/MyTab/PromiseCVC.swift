@@ -37,18 +37,14 @@ class PromiseCVC: UICollectionViewCell {
         super.awakeFromNib()
         
         // view setup
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         self.layer.cornerRadius = 8.0
-        self.contentView.layer.cornerRadius = 8.0
-        self.contentView.layer.borderWidth = 2.0
-        self.contentView.layer.borderColor = UIColor.clear.cgColor
-        self.contentView.layer.masksToBounds = true
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 1.0)
         self.layer.shadowRadius = 5.0
         self.layer.shadowOpacity = 1.0
         self.layer.masksToBounds = false
-        
+
         self.promiseIcon.layer.cornerRadius = self.promiseIcon.frame.height/2
         self.promiseIcon.layer.masksToBounds = true
         

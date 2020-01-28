@@ -13,8 +13,6 @@ class DayTVC: UITableViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var promiseView: UIStackView!
     
-    
-    
 //    fileprivate let promiseHeight: CGFloat = 30
     
     func setPromise(day: Day){
@@ -23,8 +21,6 @@ class DayTVC: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en")
         dateFormatter.dateFormat = "EEEEEEE\nd"
-        
-        
         
         DispatchQueue.main.async {
             
@@ -49,6 +45,7 @@ class DayTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         dayLabel.makeTwoLine()
+        self.selectionStyle = .none
 //        dayLabel.lineBreakMode = .byWordWrapping
 //        dayLabel.numberOfLines = 2
     }

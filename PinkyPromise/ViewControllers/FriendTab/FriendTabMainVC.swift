@@ -36,24 +36,40 @@ class FriendTabMainVC: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
+        friendMainTableView.tableFooterView = UIView()
         
         let purplePlus : UIImage = UIImage(named: "plus")!
         addNewPromiseBtn.setImage(purplePlus, for: UIControl.State.normal)
         
     }
     
-    @IBAction func endedPromiseBtnAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
+    @IBAction func showPromiseDetail(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailNavigationController") as! DetailNavigationController
+
+        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .overCurrentContext
+
+        self.present(vc, animated: false)
+    }
+    
+    @IBAction func addPromiseBtnAction(_ sender: Any) {
+        print("in addPromiseBtnAction")
         
+        let homeTabStoryboard = UIStoryboard(name: "HomeTab", bundle: nil)
+        let vc = homeTabStoryboard.instantiateViewController(withIdentifier: "HomeNavigationController") as! HomeNavigationController
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
         
-        self.present(vc, animated: false)
+        self.present(vc, animated: false, completion: nil)
     }
     
 }
 
-extension FriendTabMainVC : UITableViewDelegate{ }
+extension FriendTabMainVC : UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detailPromise", sender: self.friendsInPromise[indexPath.row])
+    }
+}
 
 extension FriendTabMainVC : UITableViewDataSource{
     
@@ -81,5 +97,17 @@ extension FriendTabMainVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailPromise" {
+            let promise = sender as? FriendsInfo
+            if promise != nil{
+                let FriendTabDetailVC = segue.destination as? FriendTabDetailVC
+                if FriendTabDetailVC != nil {
+                    FriendTabDetailVC?.detailPromise = promise
+                }
+            }
+        }
     }
 }

@@ -56,7 +56,17 @@ class OnePromiseView: UIView {
                 print("fail")
             }
         }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+        view.addGestureRecognizer(tapGesture)
 
         self.addSubview(view)
     }
+    
+    // MARK: need to add
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        // 뷰 이동 여기다가 추가
+        print("tap")
+    }
 }
+

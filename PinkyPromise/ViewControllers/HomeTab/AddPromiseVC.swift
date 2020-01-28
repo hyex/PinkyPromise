@@ -89,7 +89,7 @@ extension AddPromiseVC {
 }
 
 // initialize tableView
-extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8;
@@ -104,6 +104,7 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate, UITextFieldD
         switch (indexPath.row) {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as! TextCellTVC
+            cell.textField.delegate = self
             return cell
         case 1,3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell") as! PromiseInputTVC
@@ -193,4 +194,14 @@ extension AddPromiseVC: FSCalendarDataSource {
     //public func calendar
 }
 
-extension AddPromiseVC:FSCalendarDelegate {}
+extension AddPromiseVC: FSCalendarDelegate {}
+
+extension AddPromiseVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= 15
+        
+    }
+    
+}

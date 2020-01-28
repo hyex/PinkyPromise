@@ -34,6 +34,8 @@
 		3317B3E523CEF3D2006A5BF5 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */; };
 		3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */; };
 		3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */; };
+		332A24C723DEF670004377DA /* EndedPromiseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A24C623DEF670004377DA /* EndedPromiseCVC.swift */; };
+		332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */; };
 		334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD123CC249D00AAF955 /* MyTab.storyboard */; };
 		334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD423CC24B100AAF955 /* FriendTab.storyboard */; };
 		334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334AACD623CC24BA00AAF955 /* MoreTab.storyboard */; };
@@ -48,10 +50,10 @@
 		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
 		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
-		33BC046B23D8CD2100DEFD3A /* EndedPromiseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046A23D8CD2100DEFD3A /* EndedPromiseTVC.swift */; };
 		33BC046F23D9945300DEFD3A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */; };
 		3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */; };
 		3F461AC623DADFFD00748703 /* ColorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F461AC523DADFFD00748703 /* ColorTVC.swift */; };
+		3F6DAE4923DCD53A00599661 /* MyCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6DAE4823DCD53A00599661 /* MyCalendarCell.swift */; };
 		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
 		3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */; };
 		3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */; };
@@ -59,6 +61,7 @@
 		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
+		A98A2DEE23DD631C00E72DFA /* DetailNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98A2DED23DD631C00E72DFA /* DetailNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,8 @@
 		3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "PinkyPromise/Models/FriendTab/UIView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
+		332A24C623DEF670004377DA /* EndedPromiseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseCVC.swift; sourceTree = "<group>"; };
+		332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCodeVC.swift; sourceTree = "<group>"; };
 		334AACD123CC249D00AAF955 /* MyTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTab.storyboard; sourceTree = "<group>"; };
 		334AACD423CC24B100AAF955 /* FriendTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendTab.storyboard; sourceTree = "<group>"; };
 		334AACD623CC24BA00AAF955 /* MoreTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreTab.storyboard; sourceTree = "<group>"; };
@@ -105,12 +110,12 @@
 		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
-		33BC046A23D8CD2100DEFD3A /* EndedPromiseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseTVC.swift; sourceTree = "<group>"; };
 		33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "PinkyPromise/Storyboards/UIColor+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseInputTVC.swift; sourceTree = "<group>"; };
 		3F461AC523DADFFD00748703 /* ColorTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTVC.swift; sourceTree = "<group>"; };
+		3F6DAE4823DCD53A00599661 /* MyCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarCell.swift; sourceTree = "<group>"; };
 		3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
 		3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPromiseVC.swift; sourceTree = "<group>"; };
 		3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectColorVC.swift; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 		A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabDetailVC.swift; sourceTree = "<group>"; };
 		A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		A98A2DED23DD631C00E72DFA /* DetailNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +275,7 @@
 			children = (
 				334AACE223CC295100AAF955 /* FriendTabMainVC.swift */,
 				A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */,
+				A98A2DED23DD631C00E72DFA /* DetailNavigationController.swift */,
 			);
 			path = FriendTab;
 			sourceTree = "<group>";
@@ -277,7 +284,10 @@
 			isa = PBXGroup;
 			children = (
 				334AACE423CC296100AAF955 /* MoreTabMainVC.swift */,
+
 				18BA607523DF3E6D00925578 /* MoreDetailVC.swift */,
+				332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */,
+
 			);
 			path = MoreTab;
 			sourceTree = "<group>";
@@ -296,6 +306,7 @@
 				3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */,
 				3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */,
 				3F461AC523DADFFD00748703 /* ColorTVC.swift */,
+				3F6DAE4823DCD53A00599661 /* MyCalendarCell.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -308,7 +319,7 @@
 				33028C6123CDB35B004E0104 /* DayTVC.swift */,
 				3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */,
 				3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */,
-				33BC046A23D8CD2100DEFD3A /* EndedPromiseTVC.swift */,
+				332A24C623DEF670004377DA /* EndedPromiseCVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -557,7 +568,6 @@
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,
 				3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */,
 				33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */,
-				33BC046B23D8CD2100DEFD3A /* EndedPromiseTVC.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */,
@@ -573,6 +583,7 @@
 				1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
 				1875B63E23D9A23D00751947 /* signAnonymousVC.swift in Sources */,
+				A98A2DEE23DD631C00E72DFA /* DetailNavigationController.swift in Sources */,
 				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
 				3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */,
@@ -590,10 +601,16 @@
 				1875B63C23D99F8600751947 /* signUpVC.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 				3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */,
+
 				18BA607823DFF02E00925578 /* FirebaseUserService.swift in Sources */,
+
+				332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */,
+
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,
+				332A24C723DEF670004377DA /* EndedPromiseCVC.swift in Sources */,
 				A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */,
 				3317B3E523CEF3D2006A5BF5 /* CustomSlider.swift in Sources */,
+				3F6DAE4923DCD53A00599661 /* MyCalendarCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

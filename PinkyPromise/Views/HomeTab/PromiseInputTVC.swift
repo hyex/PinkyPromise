@@ -22,7 +22,7 @@ class PromiseInputTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        initializeDate()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,6 +37,7 @@ class PromiseInputTVC: UITableViewCell {
 }
 
 extension PromiseInputTVC {
+    
     func initializeDate() {
         date = Date()
         self.changeDateFormatKR(date: date)
@@ -84,3 +85,5 @@ extension DateFormatter {
         return formatter
     }()
 }
+
+
