@@ -11,9 +11,8 @@ class MoreTabMainVC: UIViewController {
 
     @IBOutlet weak var moreTableView: UITableView!
     
-<<<<<<< HEAD
-    var moreTableList = ["내 정보", "나의 약속 친구들", "약속 친구 추가하러가기", "개발자 정보"]
-=======
+//    var moreTableList = ["내 정보", "나의 약속 친구들", "약속 친구 추가하러가기", "개발자 정보"]
+
     var moreTableList:[MoreTableData] = [
         MoreTableData(title: "내 정보"),
         MoreTableData(title: "내 친구"),
@@ -26,7 +25,7 @@ class MoreTabMainVC: UIViewController {
 //            self.moreTableView.reloadData()
 //        }
 //    }
->>>>>>> f8e46397f7490a6cff4ec794c42716af5f7fbfb7
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +33,6 @@ class MoreTabMainVC: UIViewController {
         moreTableView.delegate = self
         moreTableView.dataSource = self
         
-<<<<<<< HEAD
-=======
 //        MyApi.shared.allMore(completion: self.onComplete(data:))
         // 위와 같음
         //    MyApi.shared.allMenu(completion: { result in
@@ -44,8 +41,6 @@ class MoreTabMainVC: UIViewController {
         //                   self.moreTableView.reloadData()
         //               }
         //           })
-
->>>>>>> f8e46397f7490a6cff4ec794c42716af5f7fbfb7
     }
     
 }
@@ -58,20 +53,19 @@ extension MoreTabMainVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-<<<<<<< HEAD
+
 
         //let selectCell = 
         
         //performSegue(withIdentifier: "detailSegue", sender: self.moreTableList[indexPath.row])
                     
-        moreTableView.backgroundColor = .darkGray
-        print(self.moreTableList[indexPath.row])
+//        moreTableView.backgroundColor = .darkGray
+//        print(self.moreTableList[indexPath.row])
         
 //        if let vc = storyboard?.instantiateViewController(withIdentifier: "MoreVC") {
 //            self.navigationController?.pushViewController(vc, animated: true)
 //        }
         
-=======
         
         switch indexPath.row {
         case 0:
@@ -91,8 +85,6 @@ extension MoreTabMainVC: UITableViewDelegate {
         }
 //        performSegue(withIdentifier: "DetailSegue", sender: self.rankingList[indexPath.row])
     
-
->>>>>>> f8e46397f7490a6cff4ec794c42716af5f7fbfb7
     }
 }
 
@@ -109,18 +101,16 @@ extension MoreTabMainVC: UITableViewDataSource {
 //            moreTableList.sort(by: {$0.promiseCount > $1.promiseCount})
             let rowData = self.moreTableList[indexPath.row]
             
-            rankingcell.title.text = rowData
+            rankingcell.title.text = rowData.title
             cell = rankingcell
         }
         
         return cell
     }
-<<<<<<< HEAD
+
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection: Int) -> String? {
         return "this is MoreTab"
     }
 
-=======
->>>>>>> f8e46397f7490a6cff4ec794c42716af5f7fbfb7
 }
