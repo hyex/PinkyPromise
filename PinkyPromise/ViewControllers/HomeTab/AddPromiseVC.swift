@@ -131,6 +131,9 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
             cell.calendar.allowsMultipleSelection = true
 
             return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell") as! PromiseInputTVC
+            return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! PromiseInputTVC
             return cell
@@ -288,8 +291,14 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             //            let customCell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseCustomCell
             vc.delegate = self
             vc.selectedIcon = self.selectedIcon
+        } else if segue.identifier == "withFriend" {
+            let backItem = UIBarButtonItem()
+            backItem.title = "친구와 약속하기"
+            backItem.tintColor = UIColor.systemIndigo
+            navigationItem.backBarButtonItem = backItem
         }
     }
+    
 }
 
 extension AddPromiseVC: SendSelectedIconDelegate {
