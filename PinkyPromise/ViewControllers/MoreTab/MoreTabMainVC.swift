@@ -16,7 +16,8 @@ class MoreTabMainVC: UIViewController {
     var moreTableList:[MoreTableData] = [
         MoreTableData(title: "내 정보"),
         MoreTableData(title: "내 친구"),
-        MoreTableData(title: "코드로 친구추가")
+        MoreTableData(title: "코드로 친구추가"),
+        MoreTableData(title: "개발자")
     ]
     
 //    func onComplete(data: [MoreTableData]) -> Void {
@@ -25,21 +26,18 @@ class MoreTabMainVC: UIViewController {
 //            self.moreTableView.reloadData()
 //        }
 //    }
-
+//     사용시
+//    MyApi.shared.allMore(completion: self.onComplete(data:))
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        moreTableView.delegate = self
+        moreTableView.dataSource = self
         self.navigationController?.navigationBar.isHidden = true
-        
-//        MyApi.shared.allMore(completion: self.onComplete(data:))
-        // 위와 같음
-        //    MyApi.shared.allMenu(completion: { result in
-        //               DispatchQueue.main.async {
-        //                   self.moreTableList = result
-        //                   self.moreTableView.reloadData()
-        //               }
-        //           })
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
 }
@@ -51,19 +49,6 @@ extension MoreTabMainVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        //let selectCell = 
-        
-        //performSegue(withIdentifier: "detailSegue", sender: self.moreTableList[indexPath.row])
-                    
-//        moreTableView.backgroundColor = .darkGray
-//        print(self.moreTableList[indexPath.row])
-
-        
-        //        if let vc = storyboard?.instantiateViewController(withIdentifier: "MoreVC") {
-        //            self.navigationController?.pushViewController(vc, animated: true)
-        //        }
-        
-        
         switch indexPath.row {
         case 0:
             print(self.moreTableList[indexPath.row].title)
@@ -72,10 +57,13 @@ extension MoreTabMainVC: UITableViewDelegate {
         case 2:
             let vc = storyboard?.instantiateViewController(identifier: "AddFriendCodeVC") as! AddFriendCodeVC
             
-            vc.modalPresentationStyle = .currentContext
-            vc.modalTransitionStyle = .coverVertical
-            
-            self.present(vc, animated: false)
+//            vc.modalPresentationStyle = .currentContext
+//            vc.modalTransitionStyle = .coverVertical
+//
+//            self.present(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: false)
+        case 3:
+            print(self.moreTableList[indexPath.row].title)
             
         default:
             print("error")
@@ -106,9 +94,9 @@ extension MoreTabMainVC: UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection: Int) -> String? {
-        return "this is MoreTab"
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection: Int) -> String? {
+//        return "this is MoreTab"
+//    }
 
 }
 
