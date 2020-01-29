@@ -151,7 +151,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
                 for progress in progressList! {
                     if progress.promiseId == list[indexPath.item].promiseId {
-                        if progress.progressDegree == 4.0 {
+                        if progress.progressDegree == 4 {
                             promiseAchievement += 1
                         }
                     }

@@ -39,6 +39,12 @@ class MainTabBarController: UITabBarController {
                     let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
             
             self.present(tempVC, animated: true, completion: nil)
+         }else {
+            print("here is AppDeletage.swift 2")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                               let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
+                       
+                       self.present(tempVC, animated: true, completion: nil)
         }
     }
     

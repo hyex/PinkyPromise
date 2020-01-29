@@ -107,7 +107,7 @@ class LoginVC: UIViewController {
         
         //MyApi.shared.addPromiseData(Promisedd)
         
-        var temp = [Any]()
+        //var temp = [Any]()
         
         //        MyApi.shared.getProgressData { (temp) in
         //            for douc in temp {
@@ -184,6 +184,18 @@ class LoginVC: UIViewController {
             }
         }
                 
+        
+        var temp4 = [[PromiseTable]]()
+        
+        MyApi.shared.getPromiseDataSorted { (temp4) in
+            for douc1 in temp4 {
+                print("this is douc1...")
+                for douc2 in douc1 {
+                    print("this is douc2.. +\(douc2.promiseName) + \(douc2.promiseColor)" )
+                }
+            }
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -196,6 +208,7 @@ class LoginVC: UIViewController {
             break
         }
     }
+    
     
 }
 

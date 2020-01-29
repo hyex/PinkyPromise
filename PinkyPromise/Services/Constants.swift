@@ -11,7 +11,9 @@ import Foundation
 //약속 컬렉션과 그 필드들
 let PROMISETABLEREF = "PromiseTable"
 
+let ISPROMISEALARM = "isPromiseAlarm"
 let ISPROMISEACHIEVEMENT = "isPromiseAchievement"
+let PROMISEALARMTIME = "promiseAlarmTime"
 let PROMISECOLOR = "promiseColor"
 let PROMISENAME = "promiseName"
 let PROMISESTARTTIME = "promiseStartTime"
