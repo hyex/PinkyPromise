@@ -51,7 +51,7 @@ class AddFriendCodeVC: UIViewController {
 // MARK:- initialize
 extension AddFriendCodeVC {
     private func initView() {
-        setNavi()
+        setNavigationBar()
         setBackBtn()
         self.myCodeLabel.textColor = UIColor.appColor
         self.myCode.textColor = UIColor.appColor
@@ -60,20 +60,53 @@ extension AddFriendCodeVC {
         addSwipeGesture()
     }
     
-    private func setNavi() {
+    private func setNavigationBar() {
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
         bar.backgroundColor = UIColor.clear
-        
+
+//        self.navigationItem.setHidesBackButton(true, animated:false)
+//
+//        //your custom view for back image with custom size
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+//        let imageView = UIImageView(frame: CGRect(x: 2, y: 10, width: 30, height: 20))
+//
+//        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.appColor, renderingMode: .alwaysOriginal)
+//        if let imgBackArrow = image {
+//            imageView.image = imgBackArrow
+//        }
+//        view.addSubview(imageView)
+//
+//        let backTap = UITapGestureRecognizer(target: self, action: #selector(backToMain))
+//        view.addGestureRecognizer(backTap)
+//
+//        let leftBarButtonItem = UIBarButtonItem(customView: view)
+//        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
-    
+
+    @objc func backToMain() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     private func setBackBtn() {
         let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.appColor, renderingMode: .alwaysOriginal)
-        self.navigationController?.navigationBar.backIndicatorImage = image
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        navigationController?.navigationBar.backIndicatorImage = image
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         self.navigationController?.navigationBar.backItem?.title = ""
+        
+//        navigationItem.leftItemsSupplementBackButton = true
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+//        self.navigationController?.navigationBar.backIndicatorImage = image
+//        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+//        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = ""
+//        self.navigationController?.navigationBar.backItem?.rightBarButtonItem?.title = ""
+//        self.navigationController?.navigationBar.backItem
+//        let backItem = UIBarButtonItem()
+//        backItem.title = ""
+//        backItem.image = image
+//        self.navigationController?.navigationBar.backItem?.leftBarButtonItem = backItem
+
     }
     
     func addSwipeGesture() {
@@ -96,9 +129,9 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     // 옵저버 등록
     func registerForKeyboardNotifications() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
     }
 
@@ -111,64 +144,38 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     
     
         @objc func keyboardWillShow(_ note: NSNotification) {
-            print("show")
-    //        if let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-    //            if keyboardSize.height == 0.0 || keyboardShown == true {
-    //                return
-    //            }
-    //
-    //            UIView.animate(withDuration: 0.33, animations: { () -> Void in
-    //                if originY == nil { originY = label.frame.origin.y }
-    //                label.frame.origin.y = originY - keyboardSize.height
-    //            }, completion: {
-    //                keyboardShown = true
-    //            })
-    //        }
+            let height = self.inputCodeView.frame.size.height
+            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
         }
             
         @objc func keyboardWillHide(_ note: NSNotification) {
-            print("hide")
-    //        if let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-    //            if keyboardShown == false {
-    //                return
-    //            }
-    //
-    //            UIView.animate(withDuration: 0.33, animations: { () -> Void in
-    //                guard let originY = originY else { return }
-    //                label.frame.origin.y = originY
-    //            }, completion: {
-    //                keyboardShown = false
-    //            })
-    //        }
+            self.view.frame.origin.y = 0
         }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.friendCodeTextField.resignFirstResponder()
-        //        self.searchTextField.becomeFirstResponder()
-        self.inputCodeView.layer.position.y = CGFloat(250.0)
     }
     
     // Called when the line feed button is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         self.friendCodeTextField.resignFirstResponder()
-        //            self.dismiss(animated: true, completion: nil)
         return true
     }
     
-    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning()
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
+    
     // Called just before UITextField is edited
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
-        
-        self.inputCodeView.layer.position.y = CGFloat(250.0)
+//        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
         
     }
+    
     // Called immediately after UITextField is edited
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
-//        self.inputCodeView.layer.position.y = CGFloat(428.0)
+//        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
     }
     
 }
