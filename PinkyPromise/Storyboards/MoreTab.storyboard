@@ -139,15 +139,28 @@
                                     <constraint firstItem="cIS-2e-KCh" firstAttribute="top" secondItem="pRm-iA-UZs" secondAttribute="top" constant="89" id="hGL-dV-nNl"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cub-OD-amd">
+                                <rect key="frame" x="143.66666666666666" y="211" width="88" height="42"/>
+                                <color key="backgroundColor" red="0.58039215690000001" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <state key="normal" title="   copy   ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="myCodeCopyBtnAction:" destination="L5h-IP-TCG" eventType="touchUpInside" id="Qvz-hz-0X7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Yhh-2v-3RA" firstAttribute="centerX" secondItem="Cub-OD-amd" secondAttribute="centerX" id="0qh-Kk-efz"/>
                             <constraint firstItem="Yhh-2v-3RA" firstAttribute="top" secondItem="KGx-nw-gT0" secondAttribute="bottom" constant="8" id="4Ik-NO-u7e"/>
                             <constraint firstItem="Yhh-2v-3RA" firstAttribute="centerX" secondItem="KGx-nw-gT0" secondAttribute="centerX" id="4rB-yE-tOe"/>
                             <constraint firstItem="pRm-iA-UZs" firstAttribute="height" secondItem="xaB-9w-qbe" secondAttribute="height" multiplier="0.456473" constant="-20.656076000000041" id="HlB-y7-tZ8"/>
                             <constraint firstItem="hm7-zZ-rXo" firstAttribute="bottom" secondItem="pRm-iA-UZs" secondAttribute="bottom" id="IN5-zD-SE4"/>
                             <constraint firstItem="pRm-iA-UZs" firstAttribute="centerX" secondItem="hm7-zZ-rXo" secondAttribute="centerX" id="Qjo-RI-p7G"/>
                             <constraint firstItem="pRm-iA-UZs" firstAttribute="width" secondItem="xaB-9w-qbe" secondAttribute="width" id="X65-Ia-yUR"/>
+                            <constraint firstItem="Cub-OD-amd" firstAttribute="top" secondItem="Yhh-2v-3RA" secondAttribute="bottom" constant="8" id="gtn-Kc-Y96"/>
                             <constraint firstItem="KGx-nw-gT0" firstAttribute="top" secondItem="hm7-zZ-rXo" secondAttribute="top" constant="64" id="xG9-by-clB"/>
                             <constraint firstItem="KGx-nw-gT0" firstAttribute="centerX" secondItem="hm7-zZ-rXo" secondAttribute="centerX" id="zIo-Pi-ZBQ"/>
                         </constraints>
@@ -159,6 +172,7 @@
                         <outlet property="friendCodeTextField" destination="pHL-T8-omL" id="ANO-NG-HAz"/>
                         <outlet property="inputCodeView" destination="pRm-iA-UZs" id="c5f-tl-4sn"/>
                         <outlet property="myCode" destination="Yhh-2v-3RA" id="1gk-d1-riA"/>
+                        <outlet property="myCodeCopyBtn" destination="Cub-OD-amd" id="biE-lE-fju"/>
                         <outlet property="myCodeLabel" destination="KGx-nw-gT0" id="AiB-MH-cgU"/>
                     </connections>
                 </viewController>

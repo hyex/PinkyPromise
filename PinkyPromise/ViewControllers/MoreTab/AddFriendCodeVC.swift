@@ -6,11 +6,6 @@
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
-//refresh control
-
-//Swift
-//UIPasteboard.general.string = "ex)안녕하세요"
-//출처: https://devsc.tistory.com/91?category=688748 [You Know Programing?]
 
 import UIKit
 
@@ -18,6 +13,7 @@ class AddFriendCodeVC: UIViewController {
 
     @IBOutlet weak var myCodeLabel: UILabel!
     @IBOutlet weak var myCode: UILabel!
+    @IBOutlet weak var myCodeCopyBtn: UIButton!
     @IBOutlet weak var friendCodeLabel: UILabel!
     @IBOutlet weak var friendCodeTextField: UITextField!
     @IBOutlet weak var confirmBtn: UIButton!
@@ -34,6 +30,11 @@ class AddFriendCodeVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
         unregisterForKeyboardNotifications()
     }
+    
+    @IBAction func myCodeCopyBtnAction(_ sender: Any) {
+        UIPasteboard.general.string = self.myCode.text
+    }
+    
 
     @IBAction func confirmBtnAction(_ sender: Any) {
         
@@ -61,7 +62,8 @@ extension AddFriendCodeVC {
         setNavigationBar()
         setBackBtn()
         setMyCode()
-        
+        self.myCodeCopyBtn.backgroundColor = UIColor.appColor
+        self.myCodeCopyBtn.applyRadius(radius: 8.0)
         friendCodeTextField.delegate = self
         self.inputCodeView.backgroundColor = UIColor.appColor
         addSwipeGesture()
