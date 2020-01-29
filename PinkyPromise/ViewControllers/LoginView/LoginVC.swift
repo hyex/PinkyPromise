@@ -166,23 +166,23 @@ class LoginVC: UIViewController {
         var temp3 = [String]()
         
         
-        MyApi.shared.getPromiseNameAndFriends { (temp2) in
-            
-            for douc in temp2 {
-                print(douc.promiseName)
-                for douc2 in douc.friendsUid {
-                    print("this is \(douc2)")
-                   
-                    DispatchQueue.global().sync {
-                        MyApi.shared.getUserNameWithUID(id: douc2) { ( tempString ) in
-                            temp3.append(tempString)
-                            print(tempString)
-                        }
-                    }
-                    
-                }
-            }
-        }
+//        MyApi.shared.getPromiseNameAndFriends { (temp2) in
+//
+//            for douc in temp2 {
+//                print(douc.promiseName)
+//                for douc2 in douc.friendsUid {
+//                    print("this is \(douc2)")
+//
+//                    DispatchQueue.global().sync {
+//                        MyApi.shared.getUserNameWithUID(id: douc2) { ( tempString ) in
+//                            temp3.append(tempString)
+//                            print(tempString)
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
                 
         
         var temp4 = [[PromiseTable]]()

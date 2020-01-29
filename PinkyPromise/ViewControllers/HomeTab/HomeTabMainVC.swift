@@ -12,14 +12,15 @@ import FSCalendar
 import Floaty
 
 class HomeTabMainVC: UIViewController {
-
-//    @IBOutlet weak var addPromiseBtn: UIButton!
-//    @IBOutlet weak var nearPromiseLabel: UILabel!
-//    @IBOutlet weak var nearPromise: UILabel!
+    
+    //    @IBOutlet weak var addPromiseBtn: UIButton!
+    //    @IBOutlet weak var nearPromiseLabel: UILabel!
+    //    @IBOutlet weak var nearPromise: UILabel!
     fileprivate weak var calendar: FSCalendar!
     fileprivate weak var eventLabel: UILabel!
     var addPromiseBtn: AddPromiseBtn!
     weak var tableView: UITableView!
+    private var promiseListforDates: [ProgressTable]!
     
     let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
@@ -41,7 +42,7 @@ class HomeTabMainVC: UIViewController {
     }
     
     var days: [Day] = [
-
+        
         Day(day: Date(), promise: [
             Promise(promiseName: "독서", promiseColor: "red", progress: 0),
             Promise(promiseName: "1DAY 1COMMIT", promiseColor: "yellow", progress: 1)
@@ -63,7 +64,8 @@ class HomeTabMainVC: UIViewController {
     ]
     
     override func loadView() {
-            
+       
+        // initialize UI
         let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor.white
         self.view = view
@@ -74,18 +76,18 @@ class HomeTabMainVC: UIViewController {
         titleLabel.attributedText = NSAttributedString(string: "PinkyPromise")
         view.addSubview(titleLabel)
         
-//        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
+        //        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
         let calendar = FSCalendar(frame: CGRect(x: 0, y: titleLabel.frame.maxY, width: view.frame.size.width, height: view.frame.size.width - 90))
         calendar.dataSource = self
         calendar.delegate = self
-//        calendar.allowsMultipleSelection = true
+        //        calendar.allowsMultipleSelection = true
         view.addSubview(calendar)
         self.calendar = calendar
-           
+        
         calendar.appearance.headerTitleColor = UIColor.systemPurple
-       
+        
         calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20.0)
-         calendar.appearance.weekdayTextColor = UIColor.darkText
+        calendar.appearance.weekdayTextColor = UIColor.darkText
         calendar.appearance.borderSelectionColor = UIColor.systemPurple
         calendar.appearance.selectionColor = UIColor.clear
         calendar.appearance.titleSelectionColor = UIColor.darkText
@@ -96,49 +98,59 @@ class HomeTabMainVC: UIViewController {
         
         calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
         calendar.register(MyCalendarCell.self, forCellReuseIdentifier: "cell")
-   //        calendar.clipsToBounds = true // Remove top/bottom line
-           
+        //        calendar.clipsToBounds = true // Remove top/bottom line
+        
         calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
-           
+        
         let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
-           calendar.addGestureRecognizer(scopeGesture)
-           
-           
+        calendar.addGestureRecognizer(scopeGesture)
+        
+        
         let label = UILabel(frame: CGRect(x: 0, y: calendar.frame.maxY, width: self.view.frame.size.width, height: 50))
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
         self.view.addSubview(label)
         self.eventLabel = label
-           
+        
         let attributedText = NSMutableAttributedString(string: "")
-           attributedText.append(NSAttributedString(string: "Today"))
+        attributedText.append(NSAttributedString(string: "Today"))
         self.eventLabel.attributedText = attributedText
         
         let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY + 10, width: self.view.frame.size.width, height: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - self.eventLabel.frame.maxY))
-          
-         view.addSubview(myTableView)
-          
-         self.tableView = myTableView
-         
-         tableView.delegate = self
-         tableView.dataSource = self
-         
-         let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
-         tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
+        
+        view.addSubview(myTableView)
+        
+        self.tableView = myTableView
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
         
         addPromiseBtn = AddPromiseBtn(frame: CGRect(x: self.view.center.x - 25, y: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - 110, width: 50, height: 50));
         
         addPromiseBtn.fabDelegate = self
-            self.view.addSubview(addPromiseBtn)
+        self.view.addSubview(addPromiseBtn)
+        
+//        // data setting
+//        print(FirebaseUserService.currentUserID)
+//        DispatchQueue.global().sync {
+//            MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
+//                self.promiseListforDates = result
+//                print(self.promiseListforDates[0].progressDay)
+//            })
+//        }
+        
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        initView()
-//        calendar.delegate = self
-//        calendar.dataSource = self
+        //        initView()
+        //        calendar.delegate = self
+        //        calendar.dataSource = self
         setTableViewUI()
     }
     
@@ -155,18 +167,18 @@ class HomeTabMainVC: UIViewController {
 
 // MARK: Init
 extension HomeTabMainVC {
-//    private func initView() {
-//        setupLabel()
-//        setupBtn()
-//    }
+    //    private func initView() {
+    //        setupLabel()
+    //        setupBtn()
+    //    }
 }
 
 extension HomeTabMainVC {
-
-//    func setupBtn() {
-////        addPromiseBtn.layer.cornerRadius = addPromiseBtn.layer.frame.height/2
-//        addPromiseBtn.makeCircle()
-//    }
+    
+    //    func setupBtn() {
+    ////        addPromiseBtn.layer.cornerRadius = addPromiseBtn.layer.frame.height/2
+    //        addPromiseBtn.makeCircle()
+    //    }
 }
 
 
@@ -175,16 +187,16 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     
     // 날짜 선택 시 콜백
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-
+        
         changeDateFormatKR(date: date)
         self.tableView.reloadData()
     }
     
     // 날짜 선택 해제 시 콜백
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosion: FSCalendarMonthPosition) {
-
+        
     }
-
+    
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position) as! MyCalendarCell
         cell.setBackgroundColor(progress: 0)
@@ -217,32 +229,32 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
             }
         }
     }
- 
+    
 }
 
 
 extension HomeTabMainVC {
-func changeDateFormatKR(date: Date) {
-    
-    let today = Date()
-    
-    if self.dateFormat.string(from: today) == self.dateFormat.string(from: date) {
-        eventLabel.text = "Today"
-    }
-    else{
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "eee"
+    func changeDateFormatKR(date: Date) {
         
-        dateFormat.locale = Locale(identifier: "ko_kr")
-        dateFormat.timeZone = TimeZone(abbreviation: "KST")
+        let today = Date()
         
-        let cal = Calendar.current
-        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: date)
-        if let eventLabel = eventLabel {
-        eventLabel.text = "\(components.month!)월 \(components.day!)일 \(dateFormat.string(from: date))요일"
+        if self.dateFormat.string(from: today) == self.dateFormat.string(from: date) {
+            eventLabel.text = "Today"
+        }
+        else{
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "eee"
+            
+            dateFormat.locale = Locale(identifier: "ko_kr")
+            dateFormat.timeZone = TimeZone(abbreviation: "KST")
+            
+            let cal = Calendar.current
+            let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: date)
+            if let eventLabel = eventLabel {
+                eventLabel.text = "\(components.month!)월 \(components.day!)일 \(dateFormat.string(from: date))요일"
+            }
         }
     }
-}
 }
 
 extension HomeTabMainVC: UITableViewDelegate {}
@@ -252,13 +264,15 @@ extension HomeTabMainVC: UITableViewDataSource {
         
         let date = calendar.selectedDate ?? Date()
         var count = 0
-        
+
         days.forEach { (day) in
             if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
                 count = day.promise.count
             }
         }
         return count
+
+        
     }
     
     
@@ -275,7 +289,7 @@ extension HomeTabMainVC: UITableViewDataSource {
         }
         
         cell.view.layer.backgroundColor = UIColor.systemPurple.withAlphaComponent(CGFloat(0.1)).cgColor
-//        cell.layer.borderWidth = 1
+        //        cell.layer.borderWidth = 1
         cell.view.layer.cornerRadius = 8
         
         return cell
@@ -292,10 +306,10 @@ extension HomeTabMainVC: UITableViewDataSource {
 }
 
 extension HomeTabMainVC {
-        func setTableViewUI() {
+    func setTableViewUI() {
         // tableView 뷰 변경
-            let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
-            self.tableView.tableFooterView = dummyView;
+        let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.tableView.tableFooterView = dummyView;
         self.tableView.clipsToBounds = false
     }
 }

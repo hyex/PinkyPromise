@@ -134,7 +134,7 @@ class MyApi: NSObject {
     }
     
     //프로그레스테이블의 정보 반환 약속 id를 반환하면 
-    func getProgressData(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
+    func getProgressDataWithPromiseId(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
         var result = [ProgressTable]()
         progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
             if let err = error {
@@ -147,15 +147,17 @@ class MyApi: NSObject {
     }
     
     //프로그레스테이블에 원하는 유저의 uid를 인풋으로 그 유저의 프로그레스 정보를 알 수 있다
-    func getProgressData(userid: String, completion: @escaping ([ProgressTable]) -> Void) {
+    func getProgressDataWithUid(userid: String, completion: @escaping ([ProgressTable]) -> Void ) {
         var result = [ProgressTable]()
         progressCollectionRef.whereField(USERID, isEqualTo: userid).getDocuments { (snapShot, error) in
+
             if let err = error {
                 debugPrint("debug print \(err)")
             } else {
                 result = ProgressTable.parseData(snapShot: snapShot)
                 completion(result)
             }
+
         }
     }
     
