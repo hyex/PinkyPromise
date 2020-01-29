@@ -25,6 +25,7 @@ class AddPromiseVC: UIViewController {
     var isEndCalSelected: Bool!
     var selectedColor: Int! = 0
     var selectedIcon: Int! = 0
+    var selectedFriends: [Int]!
     
     let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
     let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
@@ -295,8 +296,11 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             vc.delegate = self
             vc.selectedIcon = self.selectedIcon
         }
+        else if segue.identifier == "withFriendVC" {
+            let vc = segue.destination as! AddFriendsVC
+            vc.delegate = self
+        }
     }
-    
 }
 
 extension AddPromiseVC: SendSelectedIconDelegate {
@@ -305,5 +309,11 @@ extension AddPromiseVC: SendSelectedIconDelegate {
         let customCell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseCustomCell
         self.selectedIcon = num
         customCell.iconButton.setImage(UIImage(named: icons[selectedIcon]), for: .normal)
+    }
+}
+
+extension AddPromiseVC: SendSelectedFriendsDelegate {
+    func sendSelectedFriends(data: [Int]) {
+        selectedFriends = data
     }
 }

@@ -528,6 +528,20 @@
                                                         <constraint firstAttribute="height" constant="30" id="TeF-V7-uSS"/>
                                                         <constraint firstAttribute="width" constant="30" id="nVs-Ja-eWI"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="animationDuration">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="onFillColor">
+                                                            <color key="value" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="onTintColor">
+                                                            <color key="value" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="onCheckColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -540,6 +554,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="checkBox" destination="A02-21-iJg" id="yX7-ez-Jco"/>
                                             <outlet property="friendNameLabel" destination="ybl-Jc-6lo" id="eu8-Da-vwG"/>
                                             <outlet property="friendProfileImg" destination="b3M-Zh-cRg" id="Sib-5v-Le8"/>
                                         </connections>
@@ -550,29 +565,29 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="aKf-M3-boi" firstAttribute="bottom" secondItem="JRE-WF-64r" secondAttribute="bottom" id="LZ6-zf-ipD"/>
-                            <constraint firstItem="aKf-M3-boi" firstAttribute="top" secondItem="JRE-WF-64r" secondAttribute="top" id="Z9B-Mc-tIM"/>
+                            <constraint firstItem="aKf-M3-boi" firstAttribute="top" secondItem="JRE-WF-64r" secondAttribute="top" id="ig6-J6-6po"/>
                             <constraint firstItem="aKf-M3-boi" firstAttribute="trailing" secondItem="JRE-WF-64r" secondAttribute="trailing" id="wGB-Q8-Hg7"/>
                             <constraint firstItem="aKf-M3-boi" firstAttribute="leading" secondItem="JRE-WF-64r" secondAttribute="leading" id="y6e-9m-tok"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JRE-WF-64r"/>
                     </view>
-                    <navigationItem key="navigationItem" title="약속 상대 초대" id="SYN-tZ-cxh">
-                        <barButtonItem key="leftBarButtonItem" image="arrow.left" catalog="system" id="jMy-0M-iAU">
+                    <navigationItem key="navigationItem" title="약속 상대 초대" id="kAx-JB-Lfd">
+                        <barButtonItem key="leftBarButtonItem" image="arrow.left" catalog="system" id="Mdp-fs-Kuq">
                             <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="backBtnAction:" destination="9ol-aW-ZeM" id="N1A-ei-GPy"/>
+                                <action selector="backBtnAction:" destination="9ol-aW-ZeM" id="dd6-3a-SUQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="확인" id="vrP-a4-D1h">
+                        <barButtonItem key="rightBarButtonItem" title="확인" id="J5Z-dH-a2f">
                             <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="saveBtnAction:" destination="9ol-aW-ZeM" id="WC3-8E-lR6"/>
+                                <action selector="saveBtnAction:" destination="9ol-aW-ZeM" id="GPo-BB-DJu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="backBtn" destination="jMy-0M-iAU" id="Ibb-q3-ebL"/>
-                        <outlet property="saveBtn" destination="vrP-a4-D1h" id="j2g-Ui-o6o"/>
+                        <outlet property="backBtn" destination="Mdp-fs-Kuq" id="jLw-Yk-fIa"/>
+                        <outlet property="saveBtn" destination="J5Z-dH-a2f" id="RtF-Af-jvN"/>
                         <outlet property="tableView" destination="aKf-M3-boi" id="Wus-Nr-dXW"/>
                     </connections>
                 </viewController>

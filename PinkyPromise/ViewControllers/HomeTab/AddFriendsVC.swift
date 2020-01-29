@@ -9,13 +9,25 @@
 import UIKit
 import BEMCheckBox
 
+protocol ReceiveSelectedFriendsDelegate {
+    func receiveSelectedIcon(data: [String])
+}
+
+protocol SendSelectedFriendsDelegate {
+    func sendSelectedFriends(data: [Int])
+}
+
 class AddFriendsVC: UIViewController {
-    
+
     @IBOutlet weak var backBtn: UIBarButtonItem!
-    
+
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var checkBoxesState: [Int : Bool] = [:]
+    
+    var delegate: SendSelectedFriendsDelegate!
     
     // MARK: - 임시 친구약속 데이터
     
@@ -41,21 +53,16 @@ class AddFriendsVC: UIViewController {
     // MARK: - Navigation
     
     @IBAction func backBtnAction(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: false)
     }
     
     @IBAction func saveBtnAction(_ sender: Any) {
+        let arr = checkBoxesState.filter({ (key: Int, value: Bool) -> Bool in
+            return value ? true : false
+            }).keys
         
-    }
-    
-    
-    
-    
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        self.delegate.sendSelectedFriends(data: Array(arr))
+        self.navigationController?.popViewController(animated: false)
     }
     
 }
@@ -65,7 +72,7 @@ extension AddFriendsVC: UITableViewDelegate {}
 
 extension AddFriendsVC: UITableViewDataSource {
     
-    // MARK: - TableView View
+    // MARK: - View
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.friendsInPromise.count
@@ -81,8 +88,19 @@ extension AddFriendsVC: UITableViewDataSource {
         
         cell.friendProfileImg.image = UIImage(named: rowData.img)
         cell.friendNameLabel.text = rowData.friendname
-//        cell.promiseNameLabel.text = rowData.promisename
-       return cell
+        //        cell.promiseNameLabel.text = rowData.promisename
+        cell.checkBox.delegate = self
+        cell.checkBox.tag = indexPath.row
+        
+        if let isOn = checkBoxesState[indexPath.row] {
+            cell.checkBox.on = isOn ? true: false
+            checkBoxesState[cell.checkBox.tag] = cell.checkBox.on
+        } else {
+            cell.checkBox.on = false
+            checkBoxesState[cell.checkBox.tag] = cell.checkBox.on
+        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -90,5 +108,22 @@ extension AddFriendsVC: UITableViewDataSource {
     }
     
     
-    // Mark: -
+    // MARK: - Logic
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! CheckFriendsTVC
+        
+        cell.switchCheckBox()
+        checkBoxesState.updateValue(cell.checkBox.on, forKey: cell.checkBox.tag)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
 }
+
+extension AddFriendsVC: BEMCheckBoxDelegate {
+    func didTap(_ checkBox: BEMCheckBox) {
+        checkBoxesState.updateValue(checkBox.on, forKey: checkBox.tag)
+    }
+}
+
+
