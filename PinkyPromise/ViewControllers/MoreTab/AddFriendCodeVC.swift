@@ -6,6 +6,8 @@
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
+//refresh control
+
 //Swift
 //UIPasteboard.general.string = "ex)안녕하세요"
 //출처: https://devsc.tistory.com/91?category=688748 [You Know Programing?]
@@ -23,14 +25,14 @@ class AddFriendCodeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerForKeyboardNotifications()
+//        registerForKeyboardNotifications()
         self.navigationController?.navigationBar.isHidden = false
         initView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.popViewController(animated: true)
-        unregisterForKeyboardNotifications()
+//        unregisterForKeyboardNotifications()
     }
 
     @IBAction func confirmBtnAction(_ sender: Any) {
@@ -139,6 +141,7 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.friendCodeTextField.resignFirstResponder()
         //        self.searchTextField.becomeFirstResponder()
+        self.inputCodeView.layer.position.y = CGFloat(250.0)
     }
     
     // Called when the line feed button is pressed
@@ -155,10 +158,13 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
         
+        self.inputCodeView.layer.position.y = CGFloat(250.0)
+        
     }
     // Called immediately after UITextField is edited
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+//        self.inputCodeView.layer.position.y = CGFloat(428.0)
     }
     
 }
