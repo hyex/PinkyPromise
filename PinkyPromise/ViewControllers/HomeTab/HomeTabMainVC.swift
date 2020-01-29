@@ -20,6 +20,7 @@ class HomeTabMainVC: UIViewController {
     fileprivate weak var eventLabel: UILabel!
     var addPromiseBtn: AddPromiseBtn!
     weak var tableView: UITableView!
+    private var promiseListforDates: [ProgressTable]!
     
     let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
@@ -63,7 +64,8 @@ class HomeTabMainVC: UIViewController {
     ]
     
     override func loadView() {
-        
+       
+        // initialize UI
         let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor.white
         self.view = view
@@ -132,13 +134,27 @@ class HomeTabMainVC: UIViewController {
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
         
+//        // data setting
+//        print(FirebaseUserService.currentUserID)
+//        DispatchQueue.global().sync {
+//            MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
+//                self.promiseListforDates = result
+//                print(self.promiseListforDates[0].progressDay)
+//            })
+//        }
+        
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
         //        initView()
         //        calendar.delegate = self
         //        calendar.dataSource = self
+=======
+//        initView()
+>>>>>>> dc2bd0237484107b44740ed14fd340c989159d99
         setTableViewUI()
     }
     
@@ -252,13 +268,15 @@ extension HomeTabMainVC: UITableViewDataSource {
         
         let date = calendar.selectedDate ?? Date()
         var count = 0
-        
+
         days.forEach { (day) in
             if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
                 count = day.promise.count
             }
         }
         return count
+
+        
     }
     
     

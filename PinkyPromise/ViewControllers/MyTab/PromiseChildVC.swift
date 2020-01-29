@@ -54,9 +54,6 @@ class PromiseChildVC: UIViewController {
             }
         })
         
-//        MyTabApi.shared.getAllProgressData()
-        
-        
 //        for idx in 0...self.promiseList!.count {
 //            MyApi.shared.getProgressData(promiseid: self.promiseList![idx].promiseId, completion: { result in
 //                DispatchQueue.main.async {
@@ -151,7 +148,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
                 for progress in progressList! {
                     if progress.promiseId == list[indexPath.item].promiseId {
-                        if progress.progressDegree == 4.0 {
+                        if progress.progressDegree == 4 {
                             promiseAchievement += 1
                         }
                     }
