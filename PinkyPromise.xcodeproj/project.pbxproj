@@ -33,7 +33,6 @@
 		330AE60D23CB56DC00706769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330AE60523CB56DC00706769 /* Main.storyboard */; };
 		3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */; };
 		3317B3E523CEF3D2006A5BF5 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */; };
-		3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */; };
 		3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */; };
 		332A24C723DEF670004377DA /* EndedPromiseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A24C623DEF670004377DA /* EndedPromiseCVC.swift */; };
 		332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */; };
@@ -50,10 +49,11 @@
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
 		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
 		33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */; };
-		33B7E8D823E1736400B2D6C0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8D723E1736400B2D6C0 /* UIViewController+Extension.swift */; };
+		33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */; };
+		33B7E8DE23E1E02E00B2D6C0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */; };
+		33B7E8DF23E1E02E00B2D6C0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
 		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
-		33BC046F23D9945300DEFD3A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */; };
 		3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F035C4E23DF447A0037A4BA /* ColorCVC.swift */; };
 		3F035C5123DF447A0037A4BA /* ColorCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F035C4F23DF447A0037A4BA /* ColorCVC.xib */; };
 		3F035C5323DF5BC40037A4BA /* AddColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F035C5223DF5BC40037A4BA /* AddColorVC.swift */; };
@@ -108,7 +108,6 @@
 		330AE60623CB56DC00706769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseCVC.swift; sourceTree = "<group>"; };
 		3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
-		3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "PinkyPromise/Models/FriendTab/UIView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		332A24C623DEF670004377DA /* EndedPromiseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseCVC.swift; sourceTree = "<group>"; };
 		332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCodeVC.swift; sourceTree = "<group>"; };
@@ -125,10 +124,11 @@
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
 		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
 		33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabApi.swift; sourceTree = "<group>"; };
-		33B7E8D723E1736400B2D6C0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "PinkyPromise/Services/UIViewController+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
-		33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "PinkyPromise/Storyboards/UIColor+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F035C4E23DF447A0037A4BA /* ColorCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCVC.swift; sourceTree = "<group>"; };
@@ -243,16 +243,6 @@
 				334AACEA23CC2E5300AAF955 /* MoreTab */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		330AE60123CB56DC00706769 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				3317B3E623CEFFCC006A5BF5 /* UIView+Extension.swift */,
-				33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */,
-				33B7E8D723E1736400B2D6C0 /* UIViewController+Extension.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		330AE60223CB56DC00706769 /* Storyboards */ = {
@@ -414,6 +404,16 @@
 			path = FriendTab;
 			sourceTree = "<group>";
 		};
+		33B7E8D923E1E02E00B2D6C0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */,
+				33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */,
+				33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		33FF2C2623CB55DC0040003A = {
 			isa = PBXGroup;
 			children = (
@@ -435,11 +435,11 @@
 		33FF2C3123CB55DC0040003A /* PinkyPromise */ = {
 			isa = PBXGroup;
 			children = (
+				33B7E8D923E1E02E00B2D6C0 /* Extensions */,
 				181D739B23D5DE32006797A2 /* PinkyPromise.entitlements */,
 				18A7B4F723CF663900598AF5 /* GoogleService-Info.plist */,
 				33028C5E23CDB208004E0104 /* Services */,
 				330AE5FC23CB56DC00706769 /* SupportingFile */,
-				330AE60123CB56DC00706769 /* Extensions */,
 				330AE5FB23CB56DC00706769 /* Models */,
 				330AE60223CB56DC00706769 /* Storyboards */,
 				330AE60723CB56DC00706769 /* ViewControllers */,
@@ -608,7 +608,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33B7E8D823E1736400B2D6C0 /* UIViewController+Extension.swift in Sources */,
 				33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */,
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
@@ -623,6 +622,7 @@
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				3FE061CF23E0CF9900CD2F6A /* FriendCellTVC.swift in Sources */,
 				3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */,
+				33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */,
 				A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */,
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
 				1875B63A23D99F7400751947 /* signInVC.swift in Sources */,
@@ -635,6 +635,7 @@
 				3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */,
 				3FE061D723E0E4C900CD2F6A /* AddFriendsVC.swift in Sources */,
 				3F7F7E7A23DFBA4F0033856F /* AddIconVC.swift in Sources */,
+				33B7E8DF23E1E02E00B2D6C0 /* UIViewController+Extension.swift in Sources */,
 				33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */,
 				1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
@@ -647,10 +648,7 @@
 				3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */,
 				18BA606C23DC82B100925578 /* progressTable.swift in Sources */,
 				186D855923D42174006DA619 /* promiseUsers.swift in Sources */,
-				3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */,
-				3317B3E723CEFFCC006A5BF5 /* UIView+Extension.swift in Sources */,
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
-				33BC046F23D9945300DEFD3A /* UIColor+Extension.swift in Sources */,
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */,
 				188AAA3723D5CE8400E8BB70 /* FirebaseAuthentication.swift in Sources */,
@@ -661,6 +659,7 @@
 				18BA607823DFF02E00925578 /* FirebaseUserService.swift in Sources */,
 				332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */,
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,
+				33B7E8DE23E1E02E00B2D6C0 /* UIView+Extension.swift in Sources */,
 				3F035C5323DF5BC40037A4BA /* AddColorVC.swift in Sources */,
 				332A24C723DEF670004377DA /* EndedPromiseCVC.swift in Sources */,
 				A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */,
