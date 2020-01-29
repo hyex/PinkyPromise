@@ -14,10 +14,15 @@ class MainTabBarController: UITabBarController {
     //    var data:String? = nil
     
     var thoughtuser = [PromiseUser]()
+    var appDelegate = UIApplication.shared.delegate as? AppDelegate
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        self.appDelegate?.scheduleNotification()
         
         let unselectedColor = UIColor.appColor.withAlphaComponent(0.5)
         let selectedColor   = UIColor.appColor
