@@ -77,7 +77,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
-    //유저 이미지를 받아올 때 사용하는 함수
+    // 유저 이미지를 받아올 때 사용하는 함수
     func getUserImageWithName(name: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         
         userFolderRef.storage.reference(withPath: "userImage/\(name)").getData(maxSize: 20000000) { (data, error) in

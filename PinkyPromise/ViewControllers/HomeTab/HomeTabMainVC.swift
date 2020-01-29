@@ -148,13 +148,7 @@ class HomeTabMainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
         //        initView()
-        //        calendar.delegate = self
-        //        calendar.dataSource = self
-=======
-//        initView()
->>>>>>> dc2bd0237484107b44740ed14fd340c989159d99
         setTableViewUI()
     }
     
