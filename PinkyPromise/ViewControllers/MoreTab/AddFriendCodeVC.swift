@@ -36,13 +36,20 @@ class AddFriendCodeVC: UIViewController {
     }
 
     @IBAction func confirmBtnAction(_ sender: Any) {
-        // 텍스트필드 길이 검사 (6글자인지)
+        
         let text = friendCodeTextField.text!
-        print(text.count)
+
+        // MARK: - need to add
         // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
-            // 있다면 추가해주고, 심플알람주고, pop
-            // 없다면 없다는 실픔알림주고 끝
-//        simpleAlert(title: "친구추가성공", message: "(변수)님과 친구성공")
+        
+        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1)
+        if result == nil {
+            simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
+        } else {
+            let username = result?.userName
+            simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구성공")
+        }
+            
     }
     
     
@@ -142,15 +149,14 @@ extension AddFriendCodeVC: UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    @objc func keyboardWillShow(_ note: NSNotification) {
+        let height = self.inputCodeView.frame.size.height
+        self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
+    }
     
-        @objc func keyboardWillShow(_ note: NSNotification) {
-            let height = self.inputCodeView.frame.size.height
-            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
-        }
-            
-        @objc func keyboardWillHide(_ note: NSNotification) {
-            self.view.frame.origin.y = 0
-        }
+    @objc func keyboardWillHide(_ note: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.friendCodeTextField.resignFirstResponder()
@@ -158,8 +164,19 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     
     // Called when the line feed button is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         self.friendCodeTextField.resignFirstResponder()
+         let text = friendCodeTextField.text!
+        
+        // MARK: - need to add
+        // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
+        
+        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1)
+        if result == nil {
+            simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
+        } else {
+            let username = result?.userName
+            simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구성공")
+        }
         return true
     }
     
@@ -176,6 +193,7 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     // Called immediately after UITextField is edited
     func textFieldDidEndEditing(_ textField: UITextField) {
 //        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+
     }
     
 }
