@@ -11,6 +11,8 @@ import Firebase
 import FirebaseStorage
 import FirebaseFirestore
 
+/* 기본적으로 Auth.auth().currentuser 유저의 uid가 포함하고 있는 함수들만 있게함*/
+
 class MyApi: NSObject {
     
     static let shared = MyApi()
@@ -59,6 +61,36 @@ class MyApi: NSObject {
         }
     }
     
+    //UID에 맞는 유저 이름을 반환해줌
+    func getUserNameWithUID(id: String, completion: @escaping (String) -> Void) {
+        var result = ""
+        userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
+            if let err = err {
+                debugPrint(err)
+            }else {
+                //result = PromiseUser.parseData(snapShot: sanpShot)
+                for douc in sanpShot!.documents {
+                    result = douc.data()[USERNAME] as? String ?? ""
+                }
+                completion(result)
+            }
+        }
+    }
+    
+    //UID에 맞는 유저 데이터를 반환해줌
+    func getUserDataWithUID2(id: String, completion: @escaping (PromiseUser) -> Void) {
+        var result = [PromiseUser]()
+        userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
+            if let err = err {
+                debugPrint(err)
+            }else {
+                result = PromiseUser.parseData(snapShot: sanpShot)
+            }
+            let result2 = result[result.startIndex]
+            completion(result2)
+        }
+    }
+    
     //약속 데이터를 반환// 내가 포함되어 있는 녀석들만
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
@@ -68,6 +100,20 @@ class MyApi: NSObject {
             }else {
                 result = PromiseTable.parseData(snapShot: sanpShot)
                 completion(result)
+            }
+        }
+    }
+    
+    //이미 끝난 약속 데이터만 반환하는 함수
+    func getCompletedPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
+        let result = Timestamp()
+        
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isLessThan: result).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                completion(tempResult)
             }
         }
     }
@@ -100,6 +146,20 @@ class MyApi: NSObject {
         }
     }
     
+    //프로그레스테이블에 원하는 유저의 uid를 인풋으로 그 유저의 프로그레스 정보를 알 수 있다
+    func getProgressData(userid: String, completion: @escaping ([ProgressTable]) -> Void ) {
+        var result = [ProgressTable]()
+        progressCollectionRef.whereField(USERID, isEqualTo: userid).getDocuments { (snapShot, error) in
+        if let err = error {
+        debugPrint("debug print \(err)")
+        } else {
+        result = ProgressTable.parseData(snapShot: snapShot)
+        completion(result)
+        }
+        }
+    }
+    
+    //프로그레스테이블의 유저의 정보를 알 수 있다.
     func getAllProgressData(completion: @escaping ([ProgressTable]) -> Void ){
         var result = [ProgressTable]()
         progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
@@ -114,30 +174,85 @@ class MyApi: NSObject {
     
     //프로그레스테이블의 정보를 날짜 기준으로 내림차순으로 반환
     //아직개발단계
-//    func getProgressDataDesc(completion: @escaping ([ProgressTable]) -> Void ){
-//        var result = [ProgressTable]()
-//        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).getDocuments { (snapShot, error) in
-//            if let err = error {
-//                debugPrint("debug print \(err)")
-//            } else {
-//                result = ProgressTable.parseData(snapShot: snapShot)
-//                completion(result)
-//            }
-//        }
-//    }
+    //    func getProgressDataDesc(completion: @escaping ([ProgressTable]) -> Void ){
+    //        var result = [ProgressTable]()
+    //        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).getDocuments { (snapShot, error) in
+    //            if let err = error {
+    //                debugPrint("debug print \(err)")
+    //            } else {
+    //                result = ProgressTable.parseData(snapShot: snapShot)
+    //                completion(result)
+    //            }
+    //        }
+    //    }
     
     //프로그래스테이블의 데이터가 업데이트될때마다 프로그레스테이블을 날짜별로 소팅시켜서 반환
-//    func getProgressUpdateData(completion: @escaping ([ProgressTable]) -> Void) {
-//        var result = [ProgressTable]()
-//        promiseListner = promiseCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).addSnapshotListener({ (snapShot, error) in
-//            if let err = error {
-//                debugPrint("debut print \(err)")
-//            } else {
-//                result = ProgressTable.parseData(snapShot: snapShot)
-//                completion(result)
-//            }
-//        })
-//    }
+    //    func getProgressUpdateData(completion: @escaping ([ProgressTable]) -> Void) {
+    //        var result = [ProgressTable]()
+    //        promiseListner = promiseCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).addSnapshotListener({ (snapShot, error) in
+    //            if let err = error {
+    //                debugPrint("debut print \(err)")
+    //            } else {
+    //                result = ProgressTable.parseData(snapShot: snapShot)
+    //                completion(result)
+    //            }
+    //        })
+    //    }
+    
+    //선영쿤의 요청한 함수, 유저와 함께 약속중인 친구들 이름과 약속명, firebase가 조인 지원을 안해준다고 해서 잘될지 모르겟음
+    //다 틀렸어...
+    func getPromiseNameAndFriends(completion: @escaping ([tempStruct]) -> Void) {
+        
+        var tempst: Array<tempStruct> = []
+        
+        self.promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                for douc in tempResult {
+                    
+                    let tempName = douc.promiseName//약속명
+                    let tempFirend = douc.promiseUsers//친구 uid 배열들
+                    
+                    let tempFirend2 = tempFirend?.filter{ $0 != FirebaseUserService.currentUserID }
+                    
+                    var aaaa = tempStruct(promiseName: tempName, friendsUid: tempFirend2)
+                    tempst.append(aaaa)
+                }
+            }
+            completion(tempst)
+            
+        }
+    }
+    
+    func getPromiseNameAndFriend2(tempst: [tempStruct], completion: @escaping ([promiseNameAndFriends]) -> Void ) {
+        
+        var tempResult2 = [promiseNameAndFriends]()
+        
+        for douc in tempst {
+            var tempNm = [String]()
+            for douc2 in douc.friendsUid {
+                DispatchQueue.global().sync {
+                    self.userCollectionRef.whereField(USERID, isEqualTo: douc2).getDocuments { (snapShot, error) in
+                        if let err = error {
+                            debugPrint(err.localizedDescription)
+                        }else {
+                            for douc3 in snapShot!.documents {
+                                let tempFRNM = douc3.data()[USERNAME] as? String ?? ""
+                                tempNm.append(tempFRNM)
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            let temp3 = promiseNameAndFriends(promiseName: douc.promiseName, friendsName: tempNm)
+            tempResult2.append(temp3)
+        }
+        completion(tempResult2)
+        
+    }
     
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
@@ -288,10 +403,10 @@ class MyApi: NSObject {
                         promiseColor: "lightGray",
                         promiseAchievement: 4),
             PromiseData(promiseName: "완료된 약속",
-            promiseStartTime: dateFormatter.date(from:"2020-01-25 13:00") ?? defaultDate,
-            promiseEndTime: dateFormatter.date(from:"2020-01-27 14:00") ?? defaultDate,
-            promiseColor: "purple",
-            promiseAchievement: 3),
+                        promiseStartTime: dateFormatter.date(from:"2020-01-25 13:00") ?? defaultDate,
+                        promiseEndTime: dateFormatter.date(from:"2020-01-27 14:00") ?? defaultDate,
+                        promiseColor: "purple",
+                        promiseAchievement: 3),
             PromiseData(promiseName: "DARARARARA",
                         promiseStartTime: dateFormatter.date(from:"2020-01-18 10:00") ?? defaultDate,
                         promiseEndTime: dateFormatter.date(from:"2020-01-28 10:00") ?? defaultDate,
@@ -303,10 +418,10 @@ class MyApi: NSObject {
                         promiseColor: "yellow",
                         promiseAchievement: 4),
             PromiseData(promiseName: "완료된 약속",
-            promiseStartTime: dateFormatter.date(from:"2020-01-25 13:00") ?? defaultDate,
-            promiseEndTime: dateFormatter.date(from:"2020-01-27 14:00") ?? defaultDate,
-            promiseColor: "purple",
-            promiseAchievement: 3),
+                        promiseStartTime: dateFormatter.date(from:"2020-01-25 13:00") ?? defaultDate,
+                        promiseEndTime: dateFormatter.date(from:"2020-01-27 14:00") ?? defaultDate,
+                        promiseColor: "purple",
+                        promiseAchievement: 3),
             PromiseData(promiseName: "aassddff",
                         promiseStartTime: dateFormatter.date(from:"2020-01-18 10:00") ?? defaultDate,
                         promiseEndTime: dateFormatter.date(from:"2020-01-28 10:00") ?? defaultDate,

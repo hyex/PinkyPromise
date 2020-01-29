@@ -30,7 +30,7 @@ class FirebaseUserService {
                 failure(error!)
                 return
             }
-            let userID = authDataResult?.user.uid
+            //let userID = authDataResult?.user.uid
             
             if let chosenImage = image {
                 guard let imageData = chosenImage.jpegData(compressionQuality: 0.1) else {

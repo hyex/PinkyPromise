@@ -125,39 +125,65 @@ class LoginVC: UIViewController {
             }
         }
         
-        MyApi.shared.getPromiseDataSinceToday { (result) in
-            for douc in result {
-                print(douc.promiseName)
-            }
-        }
-        print("this is test")
-        print(FirebaseUserService.currentUser.email)
-        print(FirebaseUserService.currentUserID)
-        print("this is test end")
+//        MyApi.shared.getPromiseDataSinceToday { (result) in
+//            for douc in result {
+//                print(douc.promiseName)
+//            }
+//        }
+//        print("this is test")
+//        print(FirebaseUserService.currentUser.email)
+//        print(FirebaseUserService.currentUserID)
+//        print("this is test end")
+//
+//        var user1 = ""
+//
+//        MyApi.shared.getPromiseData { (temp) in
+//            for douc in temp {
+//                print(douc.promiseName)
+//                print(douc.promiseEndTime)
+//                print(douc.promiseId)
+//                print(douc.promiseUsers)
+//                user1 = douc.promiseId
+//            }
+//            print("test zero")
+//        }
+//
+//        var temp2 = [Any]()
+//        print("second test start")
+//        MyApi.shared.getProgressData(promiseid: user1) { (temp2) in
+//            print("this is \(user1)")
+//            for douc in temp2 {
+//                print(douc.promiseId)
+//                print(douc.userId)
+//                print(douc.progressDay)
+//            }
+//        }
+//
+//        var temp3 = ProgressTable(progressDay: Date(timeIntervalSince1970: 1579629600) + 86400*7, progressDegree: Int.random(in: 0...4), promiseId: "5njGWwMFVuB88dhJNGEC", userId: "cd2dhimtCHdLDzxhTu4mi1Z1Cvr2")
+//
+//        MyApi.shared.addProgressData(temp3)
+        var temp2 = [tempStruct]()
+        var temp3 = [String]()
         
-        var user1 = ""
         
-        MyApi.shared.getPromiseData { (temp) in
-            for douc in temp {
-                print(douc.promiseName)
-                print(douc.promiseEndTime)
-                print(douc.promiseId)
-                print(douc.promiseUsers)
-                user1 = douc.promiseId
-            }
-            print("test zero")
-        }
-        
-        var temp2 = [Any]()
-        print("second test start")
-        MyApi.shared.getProgressData(promiseid: user1) { (temp2) in
-            print("this is \(user1)")
-            for douc in temp2 {
-                print(douc.promiseId)
-                print(douc.userId)
-                print(douc.progressDay)
-            }
-        }
+//        MyApi.shared.getPromiseNameAndFriends { (temp2) in
+//
+//            for douc in temp2 {
+//                print(douc.promiseName)
+//                for douc2 in douc.friendsUid {
+//                    print("this is \(douc2)")
+//
+//                    DispatchQueue.global().sync {
+//                        MyApi.shared.getUserNameWithUID(id: douc2) { ( tempString ) in
+//                            temp3.append(tempString)
+//                            print(tempString)
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
+                
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -170,6 +196,7 @@ class LoginVC: UIViewController {
             break
         }
     }
+    
 }
 
 extension LoginVC: GIDSignInDelegate {
@@ -205,8 +232,6 @@ extension LoginVC: GIDSignInDelegate {
                 if UserDefaults.standard.bool(forKey: "loggedIn") == false {
                     print("not yet logined...")
                     self.navigationController?.isNavigationBarHidden = true
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                    
                     UserDefaults.standard.set(true, forKey: "loggedIn")
                     
                     var temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "nil", userCode: Int.random(in: 100000...999999))
@@ -215,7 +240,6 @@ extension LoginVC: GIDSignInDelegate {
                 } else {
                     print("go login!!")
                     self.navigationController?.isNavigationBarHidden = true
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
                     
                 }
             }

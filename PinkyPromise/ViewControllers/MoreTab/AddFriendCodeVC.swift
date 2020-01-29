@@ -23,21 +23,71 @@ class AddFriendCodeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForKeyboardNotifications()
         self.navigationController?.navigationBar.isHidden = false
         initView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.popViewController(animated: true)
+        unregisterForKeyboardNotifications()
     }
-    
+
     @IBAction func confirmBtnAction(_ sender: Any) {
         // 텍스트필드 길이 검사 (6글자인지)
+        let text = friendCodeTextField.text!
+        print(text.count)
         // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
             // 있다면 추가해주고, 심플알람주고, pop
             // 없다면 없다는 실픔알림주고 끝
-        simpleAlert(title: "친구추가성공", message: "(변수)님과 친구성공")
+//        simpleAlert(title: "친구추가성공", message: "(변수)님과 친구성공")
     }
+    
+    func registerForKeyboardNotifications() {
+        // 옵저버 등록
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIResponder.keyboardWillShowNotification, object: nil)
+//
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIResponder.keyboardWillShowNotification, object: nil)
+
+    }
+
+
+    func unregisterForKeyboardNotifications() {
+      // 옵저버 등록 해제
+//        NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+     
+        @objc func keyboardWillShow(_ note: NSNotification) {
+    //        if let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    //            if keyboardSize.height == 0.0 || keyboardShown == true {
+    //                return
+    //            }
+    //
+    //            UIView.animate(withDuration: 0.33, animations: { () -> Void in
+    //                if originY == nil { originY = label.frame.origin.y }
+    //                label.frame.origin.y = originY - keyboardSize.height
+    //            }, completion: {
+    //                keyboardShown = true
+    //            })
+    //        }
+        }
+            
+        @objc func keyboardWillHide(_ note: NSNotification) {
+    //        if let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+    //            if keyboardShown == false {
+    //                return
+    //            }
+    //
+    //            UIView.animate(withDuration: 0.33, animations: { () -> Void in
+    //                guard let originY = originY else { return }
+    //                label.frame.origin.y = originY
+    //            }, completion: {
+    //                keyboardShown = false
+    //            })
+    //        }
+        }
     
 }
 
@@ -80,8 +130,7 @@ extension AddFriendCodeVC {
             self.navigationController?.popViewController(animated: false)
         }
     }
-    
-
+   
     
 }
 
