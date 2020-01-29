@@ -170,7 +170,6 @@
                         <outlet property="signInBtn" destination="eqT-k7-lM5" id="aSg-PW-eBD"/>
                         <outlet property="signUpBtn" destination="329-s0-1pn" id="Gkc-g4-XcC"/>
                         <outlet property="tempImage" destination="nE0-ob-CGz" id="rhT-jk-mBZ"/>
-                        <segue destination="s3e-cr-Y8S" kind="show" identifier="loginSegue" id="059-ft-RF6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3D-Dt-wQR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
