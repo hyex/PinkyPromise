@@ -148,6 +148,7 @@ class HomeTabMainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //        initView()
         setTableViewUI()
     }
