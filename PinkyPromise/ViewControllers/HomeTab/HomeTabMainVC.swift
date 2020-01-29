@@ -150,8 +150,6 @@ class HomeTabMainVC: UIViewController {
         super.viewDidLoad()
         
         //        initView()
-        //        calendar.delegate = self
-        //        calendar.dataSource = self
         setTableViewUI()
     }
     

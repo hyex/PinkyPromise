@@ -29,6 +29,8 @@ class AddFriendsVC: UIViewController {
     
     var delegate: SendSelectedFriendsDelegate!
     
+    var myFriends: [Int : [String]]!
+    
     // MARK: - 임시 친구약속 데이터
     
     let friendsInPromise : [FriendsInfo] = [
@@ -75,19 +77,31 @@ extension AddFriendsVC: UITableViewDataSource {
     // MARK: - View
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.friendsInPromise.count
+        return self.myFriends.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendCheckCell") as! CheckFriendsTVC
         
-        let rowData = self.friendsInPromise[indexPath.row]
+        let friend = self.myFriends[indexPath.row]
         
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
         
-        cell.friendProfileImg.image = UIImage(named: rowData.img)
-        cell.friendNameLabel.text = rowData.friendname
+        myFriends.forEach { (friend) in
+            FirebaseStorageService.shared.getUserImageWithName(name: friend.value[1]) { (result) in
+                switch result {
+                case .failure(let err):
+                    print(err)
+                    break
+                case .success(let userImage):
+                    cell.friendProfileImg.image = userImage
+                    break
+                }
+            }
+        }
+        
+        cell.friendNameLabel.text = friend?[0]
         //        cell.promiseNameLabel.text = rowData.promisename
         cell.checkBox.delegate = self
         cell.checkBox.tag = indexPath.row
