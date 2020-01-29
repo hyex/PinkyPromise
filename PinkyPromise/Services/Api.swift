@@ -146,6 +146,7 @@ class MyApi: NSObject {
         }
     }
     
+    //프로그레스테이블에 원하는 유저의 uid를 인풋으로 그 유저의 프로그레스 정보를 알 수 있다
     func getProgressData(userid: String, completion: @escaping ([ProgressTable]) -> Void) {
         var result = [ProgressTable]()
         progressCollectionRef.whereField(USERID, isEqualTo: userid).getDocuments { (snapShot, error) in
@@ -156,6 +157,18 @@ class MyApi: NSObject {
                        completion(result)
                    }
                }
+
+    //프로그레스테이블의 유저의 정보를 알 수 있다.
+    func getAllProgressData(completion: @escaping ([ProgressTable]) -> Void ){
+        var result = [ProgressTable]()
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint("debug print \(err)")
+            } else {
+                result = ProgressTable.parseData(snapShot: snapShot)
+                completion(result)
+            }
+        }
     }
     
     //프로그레스테이블의 정보를 날짜 기준으로 내림차순으로 반환
