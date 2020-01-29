@@ -60,8 +60,8 @@ extension AddFriendCodeVC {
     private func initView() {
         setNavigationBar()
         setBackBtn()
-        self.myCodeLabel.textColor = UIColor.appColor
-        self.myCode.textColor = UIColor.appColor
+        setMyCode()
+        
         friendCodeTextField.delegate = self
         self.inputCodeView.backgroundColor = UIColor.appColor
         addSwipeGesture()
@@ -114,6 +114,18 @@ extension AddFriendCodeVC {
 //        backItem.image = image
 //        self.navigationController?.navigationBar.backItem?.leftBarButtonItem = backItem
 
+    }
+    
+    private func setMyCode() {
+        self.myCodeLabel.textColor = UIColor.appColor
+        self.myCode.textColor = UIColor.appColor
+        
+        MyApi.shared.getUserData(completion: { result in
+            DispatchQueue.main.async {
+                self.myCode.text = String(result[0].userCode)
+            }
+        })
+        
     }
     
     func addSwipeGesture() {
