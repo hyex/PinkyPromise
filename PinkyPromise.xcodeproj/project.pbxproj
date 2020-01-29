@@ -21,6 +21,7 @@
 		18BA606C23DC82B100925578 /* progressTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA606B23DC82B100925578 /* progressTable.swift */; };
 		18BA607623DF3E6D00925578 /* MoreDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA607523DF3E6D00925578 /* MoreDetailVC.swift */; };
 		18BA607823DFF02E00925578 /* FirebaseUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA607723DFF02E00925578 /* FirebaseUserService.swift */; };
+		18BA607C23E0D08100925578 /* promiseNameAndFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA607B23E0D08100925578 /* promiseNameAndFriends.swift */; };
 		33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5623CD983A004E0104 /* DayChildVC.swift */; };
 		33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5823CD9848004E0104 /* PromiseChildVC.swift */; };
 		33028C6023CDB21B004E0104 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5F23CDB21B004E0104 /* Api.swift */; };
@@ -48,6 +49,7 @@
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
 		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
+		33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
 		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
 		33BC046F23D9945300DEFD3A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */; };
@@ -92,6 +94,7 @@
 		18BA606B23DC82B100925578 /* progressTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressTable.swift; sourceTree = "<group>"; };
 		18BA607523DF3E6D00925578 /* MoreDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDetailVC.swift; sourceTree = "<group>"; };
 		18BA607723DFF02E00925578 /* FirebaseUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserService.swift; sourceTree = "<group>"; };
+		18BA607B23E0D08100925578 /* promiseNameAndFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseNameAndFriends.swift; sourceTree = "<group>"; };
 		2BDC4506C0E7546CBE6D7E26 /* Pods-PinkyPromise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinkyPromise.release.xcconfig"; path = "Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise.release.xcconfig"; sourceTree = "<group>"; };
 		33028C5623CD983A004E0104 /* DayChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChildVC.swift; sourceTree = "<group>"; };
 		33028C5823CD9848004E0104 /* PromiseChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseChildVC.swift; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
 		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
+		33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabApi.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
 		33BC046E23D9945300DEFD3A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "PinkyPromise/Storyboards/UIColor+Extension.swift"; sourceTree = SOURCE_ROOT; };
@@ -169,6 +173,7 @@
 				186D855823D42174006DA619 /* promiseUsers.swift */,
 				186D855A23D42486006DA619 /* promiseTable.swift */,
 				18BA606B23DC82B100925578 /* progressTable.swift */,
+				18BA607B23E0D08100925578 /* promiseNameAndFriends.swift */,
 			);
 			path = promiseData;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				186D855323D41C94006DA619 /* Constants.swift */,
 				1875B63523D876FE00751947 /* FirebaseStorageService.swift */,
 				18BA607723DFF02E00925578 /* FirebaseUserService.swift */,
+				33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -599,6 +605,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */,
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				3F6DAE5923DE30D800599661 /* AddPromiseBtn.swift in Sources */,
@@ -646,6 +653,7 @@
 				1875B63C23D99F8600751947 /* signUpVC.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 				3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */,
+				18BA607C23E0D08100925578 /* promiseNameAndFriends.swift in Sources */,
 				18BA607823DFF02E00925578 /* FirebaseUserService.swift in Sources */,
 				332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */,
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,
