@@ -6,9 +6,6 @@
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
-//Swift
-//UIPasteboard.general.string = "ex)안녕하세요"
-//출처: https://devsc.tistory.com/91?category=688748 [You Know Programing?]
 
 import UIKit
 
@@ -16,6 +13,7 @@ class AddFriendCodeVC: UIViewController {
 
     @IBOutlet weak var myCodeLabel: UILabel!
     @IBOutlet weak var myCode: UILabel!
+    @IBOutlet weak var myCodeCopyBtn: UIButton!
     @IBOutlet weak var friendCodeLabel: UILabel!
     @IBOutlet weak var friendCodeTextField: UITextField!
     @IBOutlet weak var confirmBtn: UIButton!
@@ -32,91 +30,104 @@ class AddFriendCodeVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
         unregisterForKeyboardNotifications()
     }
-
-    @IBAction func confirmBtnAction(_ sender: Any) {
-        // 텍스트필드 길이 검사 (6글자인지)
-        let text = friendCodeTextField.text!
-        print(text.count)
-        // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
-            // 있다면 추가해주고, 심플알람주고, pop
-            // 없다면 없다는 실픔알림주고 끝
-//        simpleAlert(title: "친구추가성공", message: "(변수)님과 친구성공")
+    
+    @IBAction func myCodeCopyBtnAction(_ sender: Any) {
+        UIPasteboard.general.string = self.myCode.text
     }
     
-    func registerForKeyboardNotifications() {
-        // 옵저버 등록
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIResponder.keyboardWillShowNotification, object: nil)
-//
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIResponder.keyboardWillShowNotification, object: nil)
 
-    }
+    @IBAction func confirmBtnAction(_ sender: Any) {
+        
+        let text = friendCodeTextField.text!
 
-
-    func unregisterForKeyboardNotifications() {
-      // 옵저버 등록 해제
-//        NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-     
-        @objc func keyboardWillShow(_ note: NSNotification) {
-    //        if let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-    //            if keyboardSize.height == 0.0 || keyboardShown == true {
-    //                return
-    //            }
-    //
-    //            UIView.animate(withDuration: 0.33, animations: { () -> Void in
-    //                if originY == nil { originY = label.frame.origin.y }
-    //                label.frame.origin.y = originY - keyboardSize.height
-    //            }, completion: {
-    //                keyboardShown = true
-    //            })
-    //        }
+        // MARK: - need to add
+        // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
+        
+        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1)
+        if result == nil {
+            simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
+        } else {
+            let username = result?.userName
+            simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구성공")
         }
             
-        @objc func keyboardWillHide(_ note: NSNotification) {
-    //        if let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-    //            if keyboardShown == false {
-    //                return
-    //            }
-    //
-    //            UIView.animate(withDuration: 0.33, animations: { () -> Void in
-    //                guard let originY = originY else { return }
-    //                label.frame.origin.y = originY
-    //            }, completion: {
-    //                keyboardShown = false
-    //            })
-    //        }
-        }
+    }
+    
     
 }
 
 // MARK:- initialize
 extension AddFriendCodeVC {
     private func initView() {
-        setNavi()
+        setNavigationBar()
         setBackBtn()
-        self.myCodeLabel.textColor = UIColor.appColor
-        self.myCode.textColor = UIColor.appColor
+        setMyCode()
+        self.myCodeCopyBtn.backgroundColor = UIColor.appColor
+        self.myCodeCopyBtn.applyRadius(radius: 8.0)
         friendCodeTextField.delegate = self
         self.inputCodeView.backgroundColor = UIColor.appColor
         addSwipeGesture()
     }
     
-    private func setNavi() {
+    private func setNavigationBar() {
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
         bar.backgroundColor = UIColor.clear
-        
+
+//        self.navigationItem.setHidesBackButton(true, animated:false)
+//
+//        //your custom view for back image with custom size
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+//        let imageView = UIImageView(frame: CGRect(x: 2, y: 10, width: 30, height: 20))
+//
+//        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.appColor, renderingMode: .alwaysOriginal)
+//        if let imgBackArrow = image {
+//            imageView.image = imgBackArrow
+//        }
+//        view.addSubview(imageView)
+//
+//        let backTap = UITapGestureRecognizer(target: self, action: #selector(backToMain))
+//        view.addGestureRecognizer(backTap)
+//
+//        let leftBarButtonItem = UIBarButtonItem(customView: view)
+//        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
-    
+
+    @objc func backToMain() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     private func setBackBtn() {
         let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.appColor, renderingMode: .alwaysOriginal)
-        self.navigationController?.navigationBar.backIndicatorImage = image
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        navigationController?.navigationBar.backIndicatorImage = image
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         self.navigationController?.navigationBar.backItem?.title = ""
+        
+//        navigationItem.leftItemsSupplementBackButton = true
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+//        self.navigationController?.navigationBar.backIndicatorImage = image
+//        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+//        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = ""
+//        self.navigationController?.navigationBar.backItem?.rightBarButtonItem?.title = ""
+//        self.navigationController?.navigationBar.backItem
+//        let backItem = UIBarButtonItem()
+//        backItem.title = ""
+//        backItem.image = image
+//        self.navigationController?.navigationBar.backItem?.leftBarButtonItem = backItem
+
+    }
+    
+    private func setMyCode() {
+        self.myCodeLabel.textColor = UIColor.appColor
+        self.myCode.textColor = UIColor.appColor
+        
+        MyApi.shared.getUserData(completion: { result in
+            DispatchQueue.main.async {
+                self.myCode.text = String(result[0].userCode)
+            }
+        })
+        
     }
     
     func addSwipeGesture() {
@@ -136,29 +147,67 @@ extension AddFriendCodeVC {
 
 extension AddFriendCodeVC: UITextFieldDelegate {
     
+    // 옵저버 등록
+    func registerForKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
+
+    // 옵저버 등록 해제
+    func unregisterForKeyboardNotifications() {
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ note: NSNotification) {
+        let height = self.inputCodeView.frame.size.height
+        self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
+    }
+    
+    @objc func keyboardWillHide(_ note: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.friendCodeTextField.resignFirstResponder()
-        //        self.searchTextField.becomeFirstResponder()
     }
     
     // Called when the line feed button is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         self.friendCodeTextField.resignFirstResponder()
-        //            self.dismiss(animated: true, completion: nil)
+         let text = friendCodeTextField.text!
+        
+        // MARK: - need to add
+        // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
+        
+        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1)
+        if result == nil {
+            simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
+        } else {
+            let username = result?.userName
+            simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구성공")
+        }
         return true
     }
     
-    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning()
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
+    
     // Called just before UITextField is edited
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
+//        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
         
     }
+    
     // Called immediately after UITextField is edited
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+//        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+
     }
     
 }
