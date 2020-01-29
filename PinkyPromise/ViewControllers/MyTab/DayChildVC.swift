@@ -43,6 +43,10 @@ class DayChildVC: UIViewController {
         ])
     ]
 
+    var promiseList: [PromiseTable]? {
+        didSet { dayTableView.reloadData() }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,14 +61,14 @@ class DayChildVC: UIViewController {
     
     // 통신
     // Day 별 
-//    private func getMyPageData() {
-//        MyPageCheckService.shared.getMyPageData(token: token, completion: { (myPageData) in
-//            self.myData = myPageData
-//        }) { (errCode) in
-//            self.simpleAlert(title: "알림", message: "네트워크 연결상태를 확인해주세요!")
-//            print("회원 정보 조회에 실패했습니다.")
-//        }
-//    }
+    private func getMyPageData() {
+        MyApi.shared.getPromiseData(completion:  {result in
+            DispatchQueue.main.async {
+                self.promiseList = result
+                
+            }
+        })
+    }
 }
 
 //extension DayChildVC {
@@ -84,6 +88,12 @@ extension DayChildVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = dayTableView.dequeueReusableCell(withIdentifier: "DayTVC", for: indexPath) as! DayTVC
+        
+//        if let list = self.promiseList {
+//            let rowData = list[indexPath.row]
+//        }
+        
+        
         cell.setPromise(day: self.days[indexPath.row])
         return cell
         
@@ -94,6 +104,7 @@ extension DayChildVC: UITableViewDataSource {
 extension DayChildVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 40 + 10)
+//        let height:CGFloat = CGFloat(?????.promise.count * 40 + 10)
         return height
         
     }

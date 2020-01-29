@@ -24,15 +24,50 @@ class AddFriendCodeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        initView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func confirmBtnAction(_ sender: Any) {
+        // 텍스트필드 길이 검사 (6글자인지)
+        // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
+            // 있다면 추가해주고, 심플알람주고, pop
+            // 없다면 없다는 실픔알림주고 끝
+        simpleAlert(title: "친구추가성공", message: "(변수)님과 친구성공")
+    }
+    
+}
+
+// MARK:- initialize
+extension AddFriendCodeVC {
+    private func initView() {
+        setNavi()
+        setBackBtn()
+        self.myCodeLabel.textColor = UIColor.appColor
+        self.myCode.textColor = UIColor.appColor
+        friendCodeTextField.delegate = self
+        self.inputCodeView.backgroundColor = UIColor.appColor
+        addSwipeGesture()
+    }
+    
+    private func setNavi() {
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
         bar.backgroundColor = UIColor.clear
-//        addSwipeGesture()
-        initView()
         
     }
     
+    
+    private func setBackBtn() {
+        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.appColor, renderingMode: .alwaysOriginal)
+        self.navigationController?.navigationBar.backIndicatorImage = image
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.backItem?.title = ""
+    }
     
     func addSwipeGesture() {
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
@@ -41,61 +76,10 @@ class AddFriendCodeVC: UIViewController {
     }
     
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-        print(sender)
-           if (sender.direction == .right) {
-               print(sender.direction)
-               print("swipe")
-               self.dismiss(animated: false, completion: nil)}
-       }
-
-}
-
-// MARK:- init
-extension AddFriendCodeVC {
-    private func initView() {
-//        self.backBtn.tintColor = .black
-        setBackBtn()
-        self.myCodeLabel.textColor = UIColor.appColor
-        self.myCode.textColor = UIColor.appColor
-        friendCodeTextField.delegate = self
-        self.inputCodeView.backgroundColor = UIColor.appColor
-//        addSwipeGesture()
+        if (sender.direction == .right) {
+            self.navigationController?.popViewController(animated: false)
+        }
     }
-    
-    @objc func backBtnAction(_ sender: UIBarButtonItem) {
-           self.navigationController?.popViewController(animated: false)
-       }
-    
-    private func setNavi() {
-        self.navigationController?.isNavigationBarHidden = false
-        // navi background color
-        navigationController?.navigationBar.barTintColor =
-            UIColor(displayP3Red: 247.0/255.0, green:  248.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-
-    }
-    private func setBackBtn() {
-        var backBtn: UIBarButtonItem!
-        backBtn = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backBtnAction(_:))) 
-        backBtn.tintColor = UIColor.appColor
-        self.navigationController?.navigationItem.leftBarButtonItem  = backBtn
-        
-    }
-    
-    
-    
-//
-//    func addSwipeGesture() {
-//        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-//        rightSwipe.direction = .right
-//        self.view.addGestureRecognizer(rightSwipe)
-//    }
-    
-//    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-//        if (sender.direction == .right) {
-//            print(sender.direction)
-//            print("swipe")
-//            self.dismiss(animated: false, completion: nil)}
-//    }
     
 
     
@@ -117,8 +101,6 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     }
     
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        
     }
     // Called just before UITextField is edited
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -128,10 +110,6 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     // Called immediately after UITextField is edited
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
-        
     }
-    
-    
-
     
 }
