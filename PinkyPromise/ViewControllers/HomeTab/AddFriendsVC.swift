@@ -31,6 +31,8 @@ class AddFriendsVC: UIViewController {
     
     var myFriends: [Int : [String]]!
     
+    var myFriendsImg: [UIImage]!
+    
     // MARK: - 임시 친구약속 데이터
     
     let friendsInPromise : [FriendsInfo] = [
@@ -88,18 +90,7 @@ extension AddFriendsVC: UITableViewDataSource {
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
         
-        myFriends.forEach { (friend) in
-            FirebaseStorageService.shared.getUserImageWithName(name: friend.value[1]) { (result) in
-                switch result {
-                case .failure(let err):
-                    print(err)
-                    break
-                case .success(let userImage):
-                    cell.friendProfileImg.image = userImage
-                    break
-                }
-            }
-        }
+        cell.friendProfileImg.image = self.myFriendsImg[indexPath.row]
         
         cell.friendNameLabel.text = friend?[0]
         //        cell.promiseNameLabel.text = rowData.promisename

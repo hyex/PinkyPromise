@@ -64,7 +64,7 @@ class HomeTabMainVC: UIViewController {
     ]
     
     override func loadView() {
-       
+        
         // initialize UI
         let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor.white
@@ -134,16 +134,23 @@ class HomeTabMainVC: UIViewController {
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
         
-//        // data setting
-//        print(FirebaseUserService.currentUserID)
-//        DispatchQueue.global().sync {
-//            MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
+        // data setting
+        
+//        MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
+//            DispatchQueue.main.sync {
 //                self.promiseListforDates = result
+//                print(self.promiseListforDates[0].progressDay ?? "data nil")
+//            }
+//        })
+//        MyApi.shared.getPromiseData(completion:  { (result) in
+//            DispatchQueue.main.async {
+//                result.forEach { (promise) in
+//                    <#code#>
+//                }
+////                self.promiseListforDates = result
 //                print(self.promiseListforDates[0].progressDay)
-//            })
-//        }
-        
-        
+//            }
+//        })
     }
     
     override func viewDidLoad() {
@@ -263,14 +270,14 @@ extension HomeTabMainVC: UITableViewDataSource {
         
         let date = calendar.selectedDate ?? Date()
         var count = 0
-
+        
         days.forEach { (day) in
             if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
                 count = day.promise.count
             }
         }
         return count
-
+        
         
     }
     
@@ -294,7 +301,7 @@ extension HomeTabMainVC: UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 70
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

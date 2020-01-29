@@ -27,6 +27,7 @@ class AddPromiseVC: UIViewController {
     private var selectedIcon: Int! = 0
     private var selectedFriends: [Int]!
     private var myFriends: [Int : [String]]! = [ : ]
+    private var myFriendsImg: [UIImage]! = []
     
     let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
     let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
@@ -61,7 +62,26 @@ class AddPromiseVC: UIViewController {
                     i += 0
                 }
             }
+            self.myFriends.forEach { (friend) in
+                FirebaseStorageService.shared.getUserImageWithName(name: friend.value[1]) { (result) in
+                    switch result {
+                    case .failure(let err):
+                        print(err)
+                        break
+                    case .success(let userImage):
+                        if self.myFriendsImg != nil {
+                            self.myFriendsImg.append(userImage)
+                        } else {
+                            self.myFriendsImg = [userImage]
+                            print("--------------------------------------")
+                            print(self.myFriendsImg[0])
+                        }
+                        break
+                    }
+                }
+            }
         }
+        
     }
     
     
@@ -89,6 +109,8 @@ class AddPromiseVC: UIViewController {
         let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: dataPromiseAchievement, promisePanalty: promisePanalty, promiseId: "")
         
         MyApi.shared.addPromiseData(newPromise)
+//        MyApi.shared.addProgressData(newPromise)
+        
         self.dismiss(animated: false, completion: nil)
     }
 }
@@ -162,24 +184,16 @@ extension AddPromiseVC {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if !isStartCalSelected && indexPath.row == 3 {
-            return 0.01
-        }
-        else{
-            return UITableView.automaticDimension
-        }
+        return indexPath.row != 3 ? 75 : 240
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if indexPath.row == 2 {
-            isStartCalSelected = isStartCalSelected ? false : true
-            self.promiseTableView.beginUpdates()
-            self.promiseTableView.endUpdates()
+        if indexPath.row == 4 {
+            self.performSegue(withIdentifier: "withFriendVC", sender: nil)
         }
-        
     }
 }
 
@@ -310,6 +324,7 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
             vc.myFriends = self.myFriends
+            vc.myFriendsImg = self.myFriendsImg
         }
     }
 }

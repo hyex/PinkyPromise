@@ -13,8 +13,6 @@ class FriendCellTVC: UITableViewCell {
     
     @IBOutlet weak var withFiendButton: UIButton!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,13 +25,6 @@ class FriendCellTVC: UITableViewCell {
     }
 
     @IBAction func withFriendBtnAction(_ sender: Any) {
-//        let vc = storyboard!.instantiateViewController(withIdentifier: "HomeNavigationController")
-//
-//              vc.modalTransitionStyle = .flipHorizontal
-//              vc.modalPresentationStyle = .overCurrentContext
-//
-//              self.present(vc, animated: false, completion: nil)
-//
         
     }
     
