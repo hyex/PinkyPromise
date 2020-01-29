@@ -21,10 +21,12 @@ class AddPromiseVC: UIViewController {
     
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
     
-    var isStartCalSelected: Bool!
-    var isEndCalSelected: Bool!
-    var selectedColor: Int! = 0
-    var selectedIcon: Int! = 0
+    private var isStartCalSelected: Bool!
+    private var isEndCalSelected: Bool!
+    private var selectedColor: Int! = 0
+    private var selectedIcon: Int! = 0
+    private var selectedFriends: [Int]!
+    private var myFriends: [Int : [String]]! = [ : ]
     
     let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
     let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
@@ -47,7 +49,22 @@ class AddPromiseVC: UIViewController {
         // logic
         isStartCalSelected = true
         isEndCalSelected = true
+        
+        //data setting
+        DispatchQueue.global().async {
+            MyApi.shared.getUserData { (result) in
+                var i = 0
+                result[0].userFriends.forEach { (friendId) in
+                    MyApi.shared.getUserDataWithUID2(id: friendId, completion: { (friend) in
+                        self.myFriends[i] = [friend.userName, friend.userImage]
+                    })
+                    i += 0
+                }
+            }
+        }
     }
+    
+    
     
     @IBAction func backBtnAction(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
@@ -63,19 +80,15 @@ class AddPromiseVC: UIViewController {
         let dataName = textCell.getValue()
         let dataStartTime = dateCell.getFirstDate()
         let dataEndTime = dateCell.getLastDate()
-        let isDataAlarm = true
         let dataColor = colors[selectedColor]
-        let dataAlarmContent = ""
         let dataIcon = icons[selectedIcon]
-        let dataAchievement = 0.0
         let dataUsers: Array<String>? = []
-        let isPromiseAchievement = false
+        let dataPromiseAchievement = false
         let promisePanalty = ""
         
-//        let newPromise = PromiseTable(promiseName: dataName, isPromiseAlarm: isDataAlarm, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseAlarmTime: isDataAlarm, promiseUsers: <#T##Array<String>!#>, isPromiseAchievement: <#T##Bool#>, promisePanalty: <#T##String#>)
-//        
-//        MyApi.shared.addPromiseData(newPromise)
+        let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: dataPromiseAchievement, promisePanalty: promisePanalty, promiseId: "")
         
+        MyApi.shared.addPromiseData(newPromise)
         self.dismiss(animated: false, completion: nil)
     }
 }
@@ -132,7 +145,8 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
 
             return cell
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell") as! PromiseInputTVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell") as! FriendCellTVC
+            
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! PromiseInputTVC
@@ -291,14 +305,13 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             //            let customCell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseCustomCell
             vc.delegate = self
             vc.selectedIcon = self.selectedIcon
-        } else if segue.identifier == "withFriend" {
-            let backItem = UIBarButtonItem()
-            backItem.title = "친구와 약속하기"
-            backItem.tintColor = UIColor.systemIndigo
-            navigationItem.backBarButtonItem = backItem
+        }
+        else if segue.identifier == "withFriendVC" {
+            let vc = segue.destination as! AddFriendsVC
+            vc.delegate = self
+            vc.myFriends = self.myFriends
         }
     }
-    
 }
 
 extension AddPromiseVC: SendSelectedIconDelegate {
@@ -307,5 +320,11 @@ extension AddPromiseVC: SendSelectedIconDelegate {
         let customCell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseCustomCell
         self.selectedIcon = num
         customCell.iconButton.setImage(UIImage(named: icons[selectedIcon]), for: .normal)
+    }
+}
+
+extension AddPromiseVC: SendSelectedFriendsDelegate {
+    func sendSelectedFriends(data: [Int]) {
+        selectedFriends = data
     }
 }

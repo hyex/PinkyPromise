@@ -16,43 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        //로그인이 되어있지않은경우
-//        window?.rootViewController = UIViewController()
-        if UserDefaults.standard.bool(forKey: "loggedIn") == false {
-            print("here is AppDeletage.swift 1")
-
-            //스토리보드 identifier 설정
-            //let tempstory = main.storyboard -> 신 가져오기
-            //let tempvc = tempstory as LoginVC
-            //initalViewController = tempcv
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
-            let initialViewController = tempVC
-            
-//            let initialViewController = LoginVC()
-//            //initialViewController.isNavigationBarHidden = true
-            window?.rootViewController = initialViewController
-            //로그인이 되어있는경우는 바로 뷰컨트롤러를 메인탭바로 이동하고싶은데 하루종일삽질했는데 안된다.
-
-        }//로그인이 되어있는경우
-            
-        else if UserDefaults.standard.bool(forKey: "loggedIn") == true {
-            print("here is AppDeletage.swift 2")
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tempVC = storyboard.instantiateViewController(withIdentifier: "mainSB") as! MainTabBarController
-            let initialViewController = tempVC
-            
-//            let initialViewController = MainTabBarController()
-//            //initialViewController.isNavigationBarHidden = true
-            window?.rootViewController = initialViewController
-        }
-
-        FirebaseApp.configure()
+     FirebaseApp.configure()
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
         return true

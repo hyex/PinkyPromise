@@ -15,12 +15,17 @@ pod 'FirebaseUI'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
 pod 'Firebase/Storage'
-pod 'Floaty', '~> 4.2.0'
 
 # Optionally, include the Swift extension if you're using Swift
 pod 'FirebaseFirestoreSwift'
 
-  # Pods for PinkyPromise
+  # Pods for Calendar
   pod 'FSCalendar'
+
+  # FAB button
+  pod 'Floaty', '~> 4.2.0'
+
+  # Check Box
+  pod 'BEMCheckBox'
 
 end

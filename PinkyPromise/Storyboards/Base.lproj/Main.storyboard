@@ -170,7 +170,6 @@
                         <outlet property="signInBtn" destination="eqT-k7-lM5" id="aSg-PW-eBD"/>
                         <outlet property="signUpBtn" destination="329-s0-1pn" id="Gkc-g4-XcC"/>
                         <outlet property="tempImage" destination="nE0-ob-CGz" id="rhT-jk-mBZ"/>
-                        <segue destination="s3e-cr-Y8S" kind="show" identifier="loginSegue" id="059-ft-RF6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3D-Dt-wQR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -253,12 +252,11 @@
             </objects>
             <point key="canvasLocation" x="1301" y="325"/>
         </scene>
-        <!--Item-->
+        <!--More-->
         <scene sceneID="6zS-wD-6jC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="btw-gJ-0EQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="AWH-Lp-Z8T" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="O4y-RF-xJe"/>
+                    <tabBarItem key="tabBarItem" title="More" image="arrowshape.turn.up.right" catalog="system" id="O4y-RF-xJe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kzF-1m-laN">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -267,6 +265,7 @@
                         <segue destination="lcE-6v-y2X" kind="relationship" relationship="rootViewController" id="cu7-ud-V2N"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="btw-gJ-0EQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="610" y="384"/>
         </scene>
@@ -341,4 +340,7 @@
             <point key="canvasLocation" x="-1842" y="330"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowshape.turn.up.right" catalog="system" width="64" height="52"/>
+    </resources>
 </document>

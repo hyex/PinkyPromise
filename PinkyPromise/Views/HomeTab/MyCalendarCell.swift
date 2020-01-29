@@ -16,7 +16,6 @@ class MyCalendarCell: FSCalendarCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("  ")
 //        self.shapeLayer.isHidden = true
         
         let view = UIView(frame: self.bounds)

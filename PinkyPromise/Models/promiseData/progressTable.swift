@@ -11,11 +11,11 @@ import Firebase
 
 class ProgressTable {
     private(set) var progressDay: Date!
-    private(set) var progressDegree: Double!
+    private(set) var progressDegree: Int!
     private(set) var promiseId: String!
     private(set) var userId: String!
     
-    init(progressDay: Date, progressDegree: Double, promiseId: String, userId: String) {
+    init(progressDay: Date, progressDegree: Int, promiseId: String, userId: String) {
         self.progressDay = progressDay
         self.progressDegree = progressDegree
         self.promiseId = promiseId
@@ -31,7 +31,7 @@ class ProgressTable {
             
             let dataProgressDay = data[PROGRESSDAY] as? Timestamp ?? Timestamp()
             let dataProgressDaytoDate = dataProgressDay.dateValue()
-            let dataProgressDegree = data[PROGRESSDEGREE] as? Double ?? 0
+            let dataProgressDegree = data[PROGRESSDEGREE] as? Int ?? 0
             let dataPromiseId = data[PROMISEID] as? String ?? "nil"
             let datauserId = data[USERID] as? String ?? "nil"
             

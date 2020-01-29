@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController {
     //    var data:String? = nil
     
     var thoughtuser = [PromiseUser]()
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,19 @@ class MainTabBarController: UITabBarController {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: unselectedColor], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectedColor], for: .selected)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+            print("here is AppDeletage.swift 1")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
+            
+            self.present(tempVC, animated: true, completion: nil)
+            print("finished")
+        }
     }
     
 }
