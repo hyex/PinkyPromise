@@ -27,7 +27,7 @@ class AddPromiseVC: UIViewController {
     private var selectedIcon: Int! = 0
     private var selectedFriends: [Int]!
     private var myFriends: [Int : [String]]! = [ : ]
-    private var myFriendsImg: [UIImage]! = []
+//    private var myFriendsImg: [UIImage]! = []
     
     let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
     let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
@@ -62,24 +62,7 @@ class AddPromiseVC: UIViewController {
                     i += 0
                 }
             }
-            self.myFriends.forEach { (friend) in
-                FirebaseStorageService.shared.getUserImageWithName(name: friend.value[1]) { (result) in
-                    switch result {
-                    case .failure(let err):
-                        print(err)
-                        break
-                    case .success(let userImage):
-                        if self.myFriendsImg != nil {
-                            self.myFriendsImg.append(userImage)
-                        } else {
-                            self.myFriendsImg = [userImage]
-                            print("--------------------------------------")
-                            print(self.myFriendsImg[0])
-                        }
-                        break
-                    }
-                }
-            }
+
         }
         
     }
@@ -324,7 +307,7 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
             vc.myFriends = self.myFriends
-            vc.myFriendsImg = self.myFriendsImg
+//            vc.myFriendsImg = self.myFriendsImg
         }
     }
 }
