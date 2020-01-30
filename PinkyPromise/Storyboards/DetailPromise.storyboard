@@ -10,7 +10,7 @@
         <!--Promise DetailVC-->
         <scene sceneID="xUG-lN-UsD">
             <objects>
-                <viewController id="VBn-5Q-dZn" customClass="PromiseDetailVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PromiseDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VBn-5Q-dZn" customClass="PromiseDetailVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L5l-7G-A2D">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
