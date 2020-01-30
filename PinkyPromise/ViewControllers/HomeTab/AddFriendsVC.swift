@@ -52,6 +52,7 @@ class AddFriendsVC: UIViewController {
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.tintColor = .white
+        searchController.beginAppearanceTransition(false, animated: false)
         
         searchController.searchBar.setImage(UIImage(named: "multiple.circle.fill"), for: UISearchBar.Icon.clear, state: .normal)
     }
