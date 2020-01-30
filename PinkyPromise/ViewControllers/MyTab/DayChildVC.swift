@@ -88,24 +88,24 @@ extension DayChildVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = dayTableView.dequeueReusableCell(withIdentifier: "DayTVC", for: indexPath) as! DayTVC
-        
+        cell.vc = self
 //        if let list = self.promiseList {
 //            let rowData = list[indexPath.row]
 //        }
         
-        
         cell.setPromise(day: self.days[indexPath.row])
         return cell
-        
     }
     
+    //****선영 추가 부분****
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailpromise"{
-            let detailpromise = sender as? Promise
-            if detailpromise != nil{
+        print("in prepare func")
+        if segue.identifier == "promiseDetail"{
+            let promiseDetail = sender as? Promise
+            if promiseDetail != nil{
                 let PromiseDetailVC = segue.destination as? PromiseDetailVC
                 if PromiseDetailVC != nil {
-                    PromiseDetailVC?.detailPromiseInfo = detailpromise
+                    PromiseDetailVC?.promiseDetail = promiseDetail
                 }
             }
         }
@@ -121,10 +121,6 @@ extension DayChildVC: UITableViewDelegate {
         
     }
     
-    //*****선영 추가 부분*****
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "detailpromise", sender : Promise(promiseName: "yellow", promiseColor: "yellow"))
-    }
 }
 
   

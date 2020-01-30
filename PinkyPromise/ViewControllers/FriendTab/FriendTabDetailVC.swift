@@ -21,7 +21,6 @@ import UIKit
 class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var backBtn: UIButton!
-    //    @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var promiseTitleLabel: UILabel!
     @IBOutlet weak var friendDatailTableView: UITableView!
     
@@ -50,9 +49,9 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print(self.detailPromise!)
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        print(self.detailPromise!)
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.datailPromiseInfo.count
@@ -91,10 +90,6 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
 
         return cell
     }
-    
-//    @IBAction func backBtnAction(_ sender : Any){
-//        self.dismiss(animated: false, completion: nil)
-//    }
     
     @IBAction func backBtnAction(_ sender : Any) {
         self.dismiss(animated: false, completion: nil)

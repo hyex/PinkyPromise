@@ -10,5 +10,7 @@ import UIKit
 
 class AlarmVC: UITableViewCell {
     
+    @IBOutlet weak var alarmImg: UIImageView!
+    @IBOutlet weak var alarm: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!
 }

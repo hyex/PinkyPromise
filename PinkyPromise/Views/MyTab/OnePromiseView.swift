@@ -11,6 +11,8 @@ import UIKit
 
 class OnePromiseView: UIView {
     
+    var vc : DayChildVC? = nil
+    
     private var promise: Promise? = nil
     private let xibName = "OnePromiseView"
 
@@ -67,6 +69,10 @@ class OnePromiseView: UIView {
     @objc func handleTap(sender: UITapGestureRecognizer) {
         // 뷰 이동 여기다가 추가
         print("tap")
+        if let controller = self.vc {
+            controller.performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
+
+        }
     }
 }
 
