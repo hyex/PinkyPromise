@@ -57,6 +57,7 @@
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
 		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
 		3F02329623E28C7E00BB0E23 /* AddPanaltyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */; };
+		3F02329823E2A58700BB0E23 /* FriendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02329723E2A58700BB0E23 /* FriendData.swift */; };
 		3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F035C4E23DF447A0037A4BA /* ColorCVC.swift */; };
 		3F035C5123DF447A0037A4BA /* ColorCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F035C4F23DF447A0037A4BA /* ColorCVC.xib */; };
 		3F035C5323DF5BC40037A4BA /* AddColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F035C5223DF5BC40037A4BA /* AddColorVC.swift */; };
@@ -146,6 +147,7 @@
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPanaltyVC.swift; sourceTree = "<group>"; };
+		3F02329723E2A58700BB0E23 /* FriendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendData.swift; path = PinkyPromise/ViewControllers/HomeTab/FriendData.swift; sourceTree = SOURCE_ROOT; };
 		3F035C4E23DF447A0037A4BA /* ColorCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCVC.swift; sourceTree = "<group>"; };
 		3F035C4F23DF447A0037A4BA /* ColorCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCVC.xib; sourceTree = "<group>"; };
 		3F035C5223DF5BC40037A4BA /* AddColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddColorVC.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 		334AACF023CC311500AAF955 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
+				3F02329723E2A58700BB0E23 /* FriendData.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
 				33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */,
 				A9A3E82B23E02EFD00EDFE1C /* PromiseFriendTVC.swift in Sources */,
+				3F02329823E2A58700BB0E23 /* FriendData.swift in Sources */,
 				3FE061D923E0E6C200CD2F6A /* CheckFriendsTVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
 				3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */,
