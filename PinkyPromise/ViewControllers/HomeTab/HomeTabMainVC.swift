@@ -42,7 +42,7 @@ class HomeTabMainVC: UIViewController {
     }
     
     var days: [Day] = [
-        
+         
         Day(day: Date(), promise: [
             Promise(promiseName: "독서", promiseColor: "red", progress: 0),
             Promise(promiseName: "1DAY 1COMMIT", promiseColor: "yellow", progress: 1)
