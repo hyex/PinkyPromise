@@ -26,6 +26,7 @@
 		33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5823CD9848004E0104 /* PromiseChildVC.swift */; };
 		33028C6023CDB21B004E0104 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5F23CDB21B004E0104 /* Api.swift */; };
 		33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C6123CDB35B004E0104 /* DayTVC.swift */; };
+		3303394523E3051F00B84316 /* MyFriendTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303394423E3051F00B84316 /* MyFriendTVC.swift */; };
 		330AE60923CB56DC00706769 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 330AE5FD23CB56DC00706769 /* Assets.xcassets */; };
 		330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AE5FE23CB56DC00706769 /* AppDelegate.swift */; };
 		330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AE5FF23CB56DC00706769 /* SceneDelegate.swift */; };
@@ -114,6 +115,7 @@
 		33028C5823CD9848004E0104 /* PromiseChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseChildVC.swift; sourceTree = "<group>"; };
 		33028C5F23CDB21B004E0104 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		33028C6123CDB35B004E0104 /* DayTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVC.swift; sourceTree = "<group>"; };
+		3303394423E3051F00B84316 /* MyFriendTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendTVC.swift; sourceTree = "<group>"; };
 		330AE5FD23CB56DC00706769 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		330AE5FE23CB56DC00706769 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		330AE5FF23CB56DC00706769 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */,
+				3303394423E3051F00B84316 /* MyFriendTVC.swift */,
 			);
 			path = MoreTab;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
 				33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */,
 				A9A3E82B23E02EFD00EDFE1C /* PromiseFriendTVC.swift in Sources */,
+				3303394523E3051F00B84316 /* MyFriendTVC.swift in Sources */,
 				3F02329823E2A58700BB0E23 /* FriendData.swift in Sources */,
 				3FE061D923E0E6C200CD2F6A /* CheckFriendsTVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,

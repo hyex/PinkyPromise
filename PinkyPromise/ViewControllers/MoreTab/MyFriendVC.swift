@@ -9,10 +9,16 @@
 import UIKit
 
 class MyFriendVC: UIViewController {
-
+    
+    @IBOutlet weak var myFriendTableView: UITableView!
+    
+    var friendList: [PromiseUser] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        myFriendTableView.delegate = self
+        myFriendTableView.dataSource = self
         initView()
     }
     
@@ -35,6 +41,8 @@ extension MyFriendVC {
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
         bar.backgroundColor = UIColor.clear
+        bar.topItem?.title = "내 친구"
+        bar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: CGFloat(20.0))]
     }
     
     
@@ -56,5 +64,32 @@ extension MyFriendVC {
              self.navigationController?.popViewController(animated: false)
          }
      }
+    
+}
+
+
+extension MyFriendVC: UITableViewDelegate {
+    
+}
+
+extension MyFriendVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.friendList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        if let friendCell = tableView.dequeueReusableCell(withIdentifier: "MyFriendTVC", for: indexPath) as? MyFriendTVC {
+
+            let rowData = self.friendList[indexPath.row]
+            friendCell.userName.text = rowData.userName!
+            // FIXME: 이미지 삽입
+//            friendCell.userImage =
+            cell = friendCell
+        }
+        
+        return cell
+    }
+    
     
 }
