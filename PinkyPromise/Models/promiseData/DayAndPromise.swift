@@ -9,7 +9,7 @@
 import Foundation
 
 struct DayAndPromise {
-    var Day: Int!
-    var promiseData: PromiseTable!
+    var Day: Double!
+    var promiseData: [PromiseTable]!
     
 }

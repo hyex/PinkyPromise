@@ -87,4 +87,5 @@ class FirebaseUserService {
     static var currentUserID: String {
         return Auth.auth().currentUser!.uid
     }
+    
 }

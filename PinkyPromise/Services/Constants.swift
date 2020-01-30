@@ -35,6 +35,5 @@ let USERCODE = "userCode"
 let PROGRESSTABLEREF = "progressTable"
 
 let PROGRESSDEGREE = "progressDegree"
-let PROGRESSDAY = "progressDay"
 let PROMISEID = "promiseId"
 //let USERID = "userId" 유저테이블에존재

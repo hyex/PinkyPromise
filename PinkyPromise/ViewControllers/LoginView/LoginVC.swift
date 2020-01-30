@@ -247,7 +247,7 @@ extension LoginVC: GIDSignInDelegate {
                     self.navigationController?.isNavigationBarHidden = true
                     UserDefaults.standard.set(true, forKey: "loggedIn")
                     
-                    var temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "nil", userCode: Int.random(in: 100000...999999))
+                    var temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "nil", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                     MyApi.shared.addUserData(temp)
                     
                 } else {
