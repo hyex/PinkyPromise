@@ -8,13 +8,15 @@
 
 import Foundation
 
-struct promiseNameAndFriendsUID {
+struct promiseDataAndFriendsUID {
     var promiseName: String!
+    var promiseId: String!
     var friendsUid: Array<String>!
 }
 
 struct promiseNameAndFriendsName {
     var promiseName: String!
+    var promiseId: String!
     var friendsName: Array<String>!
 }
 

@@ -145,7 +145,7 @@ class MyApi: NSObject {
         
         var countcheck = 0
         for douc in promises {
-            progressCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
+            progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
                 if let err = error {
                     debugPrint(err.localizedDescription)
                 } else {
@@ -160,13 +160,11 @@ class MyApi: NSObject {
                                 completion(result)
                             }
                         }
-                    } else {
-                        completion([])
                     }
                 }
             }
+            countcheck += 1
         }
-        countcheck += 1
     }
     
     //func getPromiseAndProgress()
@@ -250,8 +248,7 @@ class MyApi: NSObject {
                         }
                     }
                     
-                    let temp3 = DayAndPromise(Day: i, promiseData: temp2)
-                    
+                    let temp3 = DayAndPromise(Day: Date(timeIntervalSince1970: i), promiseData: temp2)
                     temp1.append(temp3)
                 }
                 completion(temp1)
@@ -320,7 +317,7 @@ class MyApi: NSObject {
                     
                     if tempName.count > 0 {
                         //tempName은 친구들 이름들이 저장되어있다.
-                        var tempFriendNameAndPromiseName = promiseNameAndFriendsName(promiseName: douc.promiseName, friendsName: tempName)
+                        var tempFriendNameAndPromiseName = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: tempName)
                         
                         resultData.append(tempFriendNameAndPromiseName)
                     }
