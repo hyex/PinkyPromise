@@ -55,6 +55,7 @@
 		33B7E8E323E1E4B200B2D6C0 /* MyFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
 		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
+		3F02329623E28C7E00BB0E23 /* AddPanaltyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */; };
 		3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F035C4E23DF447A0037A4BA /* ColorCVC.swift */; };
 		3F035C5123DF447A0037A4BA /* ColorCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F035C4F23DF447A0037A4BA /* ColorCVC.xib */; };
 		3F035C5323DF5BC40037A4BA /* AddColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F035C5223DF5BC40037A4BA /* AddColorVC.swift */; };
@@ -74,6 +75,7 @@
 		3FE061CF23E0CF9900CD2F6A /* FriendCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061CE23E0CF9900CD2F6A /* FriendCellTVC.swift */; };
 		3FE061D723E0E4C900CD2F6A /* AddFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */; };
 		3FE061D923E0E6C200CD2F6A /* CheckFriendsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */; };
+		3FE061DF23E24BE700CD2F6A /* PanaltyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */; };
 		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
@@ -141,6 +143,7 @@
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPanaltyVC.swift; sourceTree = "<group>"; };
 		3F035C4E23DF447A0037A4BA /* ColorCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCVC.swift; sourceTree = "<group>"; };
 		3F035C4F23DF447A0037A4BA /* ColorCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCVC.xib; sourceTree = "<group>"; };
 		3F035C5223DF5BC40037A4BA /* AddColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddColorVC.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 		3FE061CE23E0CF9900CD2F6A /* FriendCellTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellTVC.swift; sourceTree = "<group>"; };
 		3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsVC.swift; sourceTree = "<group>"; };
 		3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFriendsTVC.swift; sourceTree = "<group>"; };
+		3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaltyTVC.swift; sourceTree = "<group>"; };
 		45752F0852F9A5F9940CA4DA /* Pods-PinkyPromise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinkyPromise.debug.xcconfig"; path = "Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise.debug.xcconfig"; sourceTree = "<group>"; };
 		A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabDetailVC.swift; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 				3F035C5223DF5BC40037A4BA /* AddColorVC.swift */,
 				3F7F7E7923DFBA4F0033856F /* AddIconVC.swift */,
 				3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */,
+				3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				3F7F7E7623DFB7960033856F /* IconCVC.xib */,
 				3FE061CE23E0CF9900CD2F6A /* FriendCellTVC.swift */,
 				3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */,
+				3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -652,6 +658,7 @@
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				3FE061CF23E0CF9900CD2F6A /* FriendCellTVC.swift in Sources */,
 				3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */,
+				3F02329623E28C7E00BB0E23 /* AddPanaltyVC.swift in Sources */,
 				33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */,
 				A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */,
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
@@ -693,6 +700,7 @@
 				18BA607823DFF02E00925578 /* FirebaseUserService.swift in Sources */,
 				A9A3E83123E0357300EDFE1C /* ColorVC.swift in Sources */,
 				A9A3E83323E0358C00EDFE1C /* IconVC.swift in Sources */,
+				3FE061DF23E24BE700CD2F6A /* PanaltyTVC.swift in Sources */,
 				332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */,
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,
 				33B7E8DE23E1E02E00B2D6C0 /* UIView+Extension.swift in Sources */,
