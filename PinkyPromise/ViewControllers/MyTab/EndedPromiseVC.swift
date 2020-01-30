@@ -13,7 +13,7 @@ class EndedPromiseVC: UIViewController {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var endedPromiseCollectionView: UICollectionView!
     
-    var promiseList: [PromiseData] = []
+    var promiseList: [PromiseTable] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +23,10 @@ class EndedPromiseVC: UIViewController {
         self.endedPromiseCollectionView.dataSource = self
         
         // 날짜가 끝났고, 성취률 100%인 약속들만 넘겨오는 함수 만들기 Api 에서
-        MyApi.shared.allPromise(completion: { result in
+        MyApi.shared.getCompletedPromiseData(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
+                print(result)
                 self.endedPromiseCollectionView.reloadData()
             }
         })
@@ -98,8 +99,8 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         //        let today = Date()
-        let startDate = rowData.promiseStartTime
-        let endDate = rowData.promiseEndTime
+        let startDate = rowData.promiseStartTime!
+        let endDate = rowData.promiseEndTime!
         
         //        cell.promiseIcon = rowData.promiseIcon
         cell.promiseName.text = rowData.promiseName
