@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My-->
+        <!--Promise-->
         <scene sceneID="yla-xl-dry">
             <objects>
                 <viewController storyboardIdentifier="MyTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a3a-jh-vKq" customClass="MyTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,7 +58,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wyg-Tc-bpA"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My" image="person.crop.circle" catalog="system" id="QOd-Lt-j3y">
+                    <tabBarItem key="tabBarItem" title="Promise" image="list.bullet.indent" catalog="system" id="QOd-Lt-j3y">
                         <color key="badgeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="Bbb-HL-yYy"/>
@@ -413,7 +413,7 @@
     <resources>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="heji" width="375" height="372"/>
-        <image name="person.crop.circle" catalog="system" width="64" height="60"/>
+        <image name="list.bullet.indent" catalog="system" width="64" height="36"/>
         <image name="uijeong" width="1008" height="1008"/>
     </resources>
 </document>

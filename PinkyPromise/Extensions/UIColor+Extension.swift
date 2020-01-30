@@ -11,7 +11,7 @@ import UIKit
 extension UIColor {
     
     @nonobjc class var appColor: UIColor {
-        return UIColor(red: 148.0/255.0, green: 55.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        return UIColor(red: 141.0/255.0, green: 70.0/255.0, blue: 205.0/255.0, alpha: 1.0)
     }
     
     @nonobjc class var darkNavy: UIColor {

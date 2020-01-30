@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Friend-->
+        <!--Friends-->
         <scene sceneID="IWu-z6-Uac">
             <objects>
                 <viewController storyboardIdentifier="FriendTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="29N-sA-g8s" customClass="FriendTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
@@ -135,7 +135,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iMH-qh-w1K"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friend" id="kDv-dV-tdh"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="person.2.fill" catalog="system" id="kDv-dV-tdh"/>
                     <navigationItem key="navigationItem" id="kYT-OT-jys"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -384,6 +384,7 @@
     <resources>
         <image name="arrow.right" catalog="system" width="64" height="48"/>
         <image name="leftBackBtn_Purple" width="512" height="512"/>
+        <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
 </document>
