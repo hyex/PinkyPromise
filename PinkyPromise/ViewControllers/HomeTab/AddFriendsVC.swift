@@ -9,12 +9,15 @@
 import UIKit
 import BEMCheckBox
 
-protocol ReceiveSelectedFriendsDelegate {
-    func receiveSelectedIcon(data: [String])
+protocol SendSelectedFriendsDelegate {
+    func sendSelectedFriends(data: [FriendData])
 }
 
-protocol SendSelectedFriendsDelegate {
-    func sendSelectedFriends(data: [Int])
+struct FriendData {
+    var tag: Int!
+    var name: String!
+    var image: String!
+    var isChecked: Bool!
 }
 
 class AddFriendsVC: UIViewController {
@@ -25,21 +28,32 @@ class AddFriendsVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var checkBoxesState: [Int : Bool] = [:]
+    fileprivate var searchController = UISearchController(searchResultsController: nil)
     
+//    var checkBoxesState: [Int : Bool] = [:]
+//
     var delegate: SendSelectedFriendsDelegate!
-    
-    var myFriends: [Int : [String]]!
-    
-    var myFriendsImg: [UIImage]!
+//
+//    var myFriends: [Int : [String]]!
+//
+//    var myFriendsImg: [UIImage]!
 
+    var withFriendsList: [FriendData]!
+    var filteredData = [FriendData]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        	
+        searchController.searchResultsUpdater = self
         
-
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.tintColor = .white
+        
+        searchController.searchBar.setImage(UIImage(named: "multiple.circle.fill"), for: UISearchBar.Icon.clear, state: .normal)
     }
     
     // MARK: - Navigation
@@ -49,14 +63,13 @@ class AddFriendsVC: UIViewController {
     }
     
     @IBAction func saveBtnAction(_ sender: Any) {
-        let arr = checkBoxesState.filter({ (key: Int, value: Bool) -> Bool in
-            return value ? true : false
-            }).keys
+        let arr = withFriendsList.filter({ (friend) -> Bool in
+            return friend.isChecked ? true : false
+            })
         
         self.delegate.sendSelectedFriends(data: Array(arr))
         self.navigationController?.popViewController(animated: false)
     }
-    
 }
 
 
@@ -67,19 +80,31 @@ extension AddFriendsVC: UITableViewDataSource {
     // MARK: - View
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.myFriends.count
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredData.count
+        }
+        return withFriendsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendCheckCell") as! CheckFriendsTVC
         
-        let friend = self.myFriends[indexPath.row]
+        let friend: FriendData
+        let isSearched: Bool
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            friend = filteredData[indexPath.row]
+            isSearched = true
+        } else {
+            friend = withFriendsList[indexPath.row]
+            isSearched = false
+        }
         
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
     
         DispatchQueue.global().sync {
-            FirebaseStorageService.shared.getUserImageWithName(name: (friend?[1])!) { (result) in
+            FirebaseStorageService.shared.getUserImageWithName(name: (friend.image)!) { (result) in
                 switch result {
                 case .failure(let err):
                     print(err)
@@ -91,18 +116,22 @@ extension AddFriendsVC: UITableViewDataSource {
             }
         }
         
-        cell.friendNameLabel.text = friend?[0]
+        cell.friendNameLabel.text = friend.name
         //        cell.promiseNameLabel.text = rowData.promisename
         cell.checkBox.delegate = self
         cell.checkBox.tag = indexPath.row
         
-        if let isOn = checkBoxesState[indexPath.row] {
+        if let isOn = friend.isChecked {
             cell.checkBox.on = isOn ? true: false
-            checkBoxesState[cell.checkBox.tag] = cell.checkBox.on
         } else {
             cell.checkBox.on = false
-            checkBoxesState[cell.checkBox.tag] = cell.checkBox.on
         }
+        
+        if isSearched {
+             withFriendsList[filteredData[indexPath.row].tag].isChecked = cell.checkBox.on
+         } else {
+             withFriendsList[indexPath.row].isChecked = cell.checkBox.on
+         }
         
         return cell
     }
@@ -116,9 +145,22 @@ extension AddFriendsVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CheckFriendsTVC
+        let isSearched: Bool
         
         cell.switchCheckBox()
-        checkBoxesState.updateValue(cell.checkBox.on, forKey: cell.checkBox.tag)
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            isSearched = true
+        } else {
+            isSearched = false
+        }
+        
+        if isSearched {
+             withFriendsList[filteredData[indexPath.row].tag].isChecked = cell.checkBox.on
+         } else {
+             withFriendsList[indexPath.row].isChecked = cell.checkBox.on
+         }
+        
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
@@ -126,8 +168,19 @@ extension AddFriendsVC: UITableViewDataSource {
 
 extension AddFriendsVC: BEMCheckBoxDelegate {
     func didTap(_ checkBox: BEMCheckBox) {
-        checkBoxesState.updateValue(checkBox.on, forKey: checkBox.tag)
+        withFriendsList[checkBox.tag].isChecked = checkBox.on
     }
 }
 
-
+extension AddFriendsVC: UISearchResultsUpdating {
+    private func filterFriendsData(for searchText: String) {
+        filteredData = withFriendsList.filter({ friend in
+            return friend.name.lowercased().contains(searchText.lowercased())
+        })
+        tableView.reloadData()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterFriendsData(for: searchController.searchBar.text ?? "")
+    }
+}

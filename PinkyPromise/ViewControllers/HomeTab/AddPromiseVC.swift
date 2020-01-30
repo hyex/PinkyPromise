@@ -9,7 +9,12 @@
 import UIKit
 import FSCalendar
 
-
+//struct FriendData {
+//    let tag: Int!
+//    var name: String!
+//    var image: String!
+//    var isChecked: Bool!
+//}
 
 class AddPromiseVC: UIViewController {
     
@@ -25,8 +30,12 @@ class AddPromiseVC: UIViewController {
     private var isEndCalSelected: Bool!
     private var selectedColor: Int! = 0
     private var selectedIcon: Int! = 0
-    private var selectedFriends: [Int]!
-    private var myFriends: [Int : [String]]! = [ : ]
+//    private var selectedFriends: [Int]!
+//    private var myFriends: [Int : [String]]! = [ : ]
+    private var myFriends: [FriendData] = []
+    
+    private var selectedFriends: [FriendData]!
+    
     private var panaltyName: String!
 //    private var myFriendsImg: [UIImage]! = []
     
@@ -58,12 +67,13 @@ class AddPromiseVC: UIViewController {
                 var i = 0
                 result[0].userFriends.forEach { (friendId) in
                     MyApi.shared.getUserDataWithUID2(id: friendId, completion: { (friend) in
-                        self.myFriends[i] = [friend.userName, friend.userImage]
+                        let temp = FriendData(tag: i, name: friend.userName, image: friend.userImage, isChecked: nil)
+                        self.myFriends.append(temp)
+                        print(self.myFriends)
                     })
                     i += 0
                 }
             }
-
         }
         
     }
@@ -310,7 +320,7 @@ extension AddPromiseVC: SendSelectedColorDelegate {
         else if segue.identifier == "withFriendVC" {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
-            vc.myFriends = self.myFriends
+            vc.withFriendsList = self.myFriends
 //            vc.myFriendsImg = self.myFriendsImg
         }
         else if segue.identifier == "PanaltyVC" {
@@ -331,7 +341,7 @@ extension AddPromiseVC: SendSelectedIconDelegate {
 }
 
 extension AddPromiseVC: SendSelectedFriendsDelegate {
-    func sendSelectedFriends(data: [Int]) {
+    func sendSelectedFriends(data: [FriendData]) {
         selectedFriends = data
     }
 }
