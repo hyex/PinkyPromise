@@ -59,7 +59,7 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.indicator = UIActivityIndicatorView()
-        self.pinkyTitle.center.x -= view.bounds.width
+//        self.pinkyTitle.center.x -= view.bounds.width
         
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
@@ -69,13 +69,13 @@ class LoginVC: UIViewController {
         self.bottomView.clipsToBounds = true
         self.bottomView.frame.size.width = width * 2
         self.bottomView.frame.size.height = height * 2
-        
+
         self.anomynousSignbtn.layer.cornerRadius = 10
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
         self.appleSignInBtn.layer.cornerRadius = 10
         self.googleSignInBtn.layer.cornerRadius = 10
-        
+
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
             self.pinkyTitle.center.x += self.view.bounds.width
             self.view.layoutIfNeeded()

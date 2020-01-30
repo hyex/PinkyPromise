@@ -81,7 +81,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNU-gm-d3s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3727.5362318840585" y="8.7053571428571423"/>
+            <point key="canvasLocation" x="2398" y="8"/>
+        </scene>
+        <!--My PageVC-->
+        <scene sceneID="fjb-VO-tWJ">
+            <objects>
+                <viewController storyboardIdentifier="MyPageVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zee-iU-zVN" customClass="MyPageVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kjm-gc-112">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7o-y8-NtV">
+                                <rect key="frame" x="153" y="506" width="69.333333333333314" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B1m-Be-Lox">
+                                <rect key="frame" x="62" y="188" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="B1m-Be-Lox" secondAttribute="height" multiplier="1:1" id="pUE-Rv-CWC"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="M7o-y8-NtV" firstAttribute="top" secondItem="B1m-Be-Lox" secondAttribute="bottom" constant="68" id="3dz-bR-YUr"/>
+                            <constraint firstItem="M7o-y8-NtV" firstAttribute="centerX" secondItem="B1m-Be-Lox" secondAttribute="centerX" id="JwQ-hf-maC"/>
+                            <constraint firstItem="B1m-Be-Lox" firstAttribute="top" secondItem="iXn-Cp-4T9" secondAttribute="top" constant="144" id="ad0-oR-i9k"/>
+                            <constraint firstItem="B1m-Be-Lox" firstAttribute="centerX" secondItem="iXn-Cp-4T9" secondAttribute="centerX" id="pR4-Bl-Cfc"/>
+                            <constraint firstItem="iXn-Cp-4T9" firstAttribute="bottom" secondItem="M7o-y8-NtV" secondAttribute="bottom" constant="224" id="sjD-eP-aL9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iXn-Cp-4T9"/>
+                    </view>
+                    <connections>
+                        <outlet property="userImage" destination="B1m-Be-Lox" id="zE3-nB-oTh"/>
+                        <outlet property="userName" destination="M7o-y8-NtV" id="PNn-sr-NnC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3lf-fA-Sak" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3245" y="11"/>
+        </scene>
+        <!--My FriendVC-->
+        <scene sceneID="VYI-zg-n7n">
+            <objects>
+                <viewController storyboardIdentifier="MyFriendVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PUT-Pe-php" customClass="MyFriendVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OX3-Ld-2A8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ON7-jF-1GX">
+                                <rect key="frame" x="166" y="151" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rsT-0a-5TN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0HD-GL-fDe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4100" y="10"/>
         </scene>
         <!--Add Friend CodeVC-->
         <scene sceneID="HA3-FW-OdK">
@@ -139,15 +203,28 @@
                                     <constraint firstItem="cIS-2e-KCh" firstAttribute="top" secondItem="pRm-iA-UZs" secondAttribute="top" constant="89" id="hGL-dV-nNl"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cub-OD-amd">
+                                <rect key="frame" x="143.66666666666666" y="211" width="88" height="42"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <state key="normal" title="   copy   ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="myCodeCopyBtnAction:" destination="L5h-IP-TCG" eventType="touchUpInside" id="Qvz-hz-0X7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Yhh-2v-3RA" firstAttribute="centerX" secondItem="Cub-OD-amd" secondAttribute="centerX" id="0qh-Kk-efz"/>
                             <constraint firstItem="Yhh-2v-3RA" firstAttribute="top" secondItem="KGx-nw-gT0" secondAttribute="bottom" constant="8" id="4Ik-NO-u7e"/>
                             <constraint firstItem="Yhh-2v-3RA" firstAttribute="centerX" secondItem="KGx-nw-gT0" secondAttribute="centerX" id="4rB-yE-tOe"/>
                             <constraint firstItem="pRm-iA-UZs" firstAttribute="height" secondItem="xaB-9w-qbe" secondAttribute="height" multiplier="0.456473" constant="-20.656076000000041" id="HlB-y7-tZ8"/>
                             <constraint firstItem="hm7-zZ-rXo" firstAttribute="bottom" secondItem="pRm-iA-UZs" secondAttribute="bottom" id="IN5-zD-SE4"/>
                             <constraint firstItem="pRm-iA-UZs" firstAttribute="centerX" secondItem="hm7-zZ-rXo" secondAttribute="centerX" id="Qjo-RI-p7G"/>
                             <constraint firstItem="pRm-iA-UZs" firstAttribute="width" secondItem="xaB-9w-qbe" secondAttribute="width" id="X65-Ia-yUR"/>
+                            <constraint firstItem="Cub-OD-amd" firstAttribute="top" secondItem="Yhh-2v-3RA" secondAttribute="bottom" constant="8" id="gtn-Kc-Y96"/>
                             <constraint firstItem="KGx-nw-gT0" firstAttribute="top" secondItem="hm7-zZ-rXo" secondAttribute="top" constant="64" id="xG9-by-clB"/>
                             <constraint firstItem="KGx-nw-gT0" firstAttribute="centerX" secondItem="hm7-zZ-rXo" secondAttribute="centerX" id="zIo-Pi-ZBQ"/>
                         </constraints>
@@ -159,12 +236,13 @@
                         <outlet property="friendCodeTextField" destination="pHL-T8-omL" id="ANO-NG-HAz"/>
                         <outlet property="inputCodeView" destination="pRm-iA-UZs" id="c5f-tl-4sn"/>
                         <outlet property="myCode" destination="Yhh-2v-3RA" id="1gk-d1-riA"/>
+                        <outlet property="myCodeCopyBtn" destination="Cub-OD-amd" id="biE-lE-fju"/>
                         <outlet property="myCodeLabel" destination="KGx-nw-gT0" id="AiB-MH-cgU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLz-wR-gAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4754.3999999999996" y="8.1280788177339911"/>
+            <point key="canvasLocation" x="4975" y="10"/>
         </scene>
     </scenes>
     <resources>

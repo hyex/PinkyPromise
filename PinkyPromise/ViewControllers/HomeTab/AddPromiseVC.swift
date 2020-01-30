@@ -21,11 +21,12 @@ class AddPromiseVC: UIViewController {
     
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
     
-    var isStartCalSelected: Bool!
-    var isEndCalSelected: Bool!
-    var selectedColor: Int! = 0
-    var selectedIcon: Int! = 0
-    var selectedFriends: [Int]!
+    private var isStartCalSelected: Bool!
+    private var isEndCalSelected: Bool!
+    private var selectedColor: Int! = 0
+    private var selectedIcon: Int! = 0
+    private var selectedFriends: [Int]!
+    private var myFriends: [Int : [String]]! = [ : ]
     
     let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
     let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
@@ -48,6 +49,19 @@ class AddPromiseVC: UIViewController {
         // logic
         isStartCalSelected = true
         isEndCalSelected = true
+        
+        //data setting
+        DispatchQueue.global().async {
+            MyApi.shared.getUserData { (result) in
+                var i = 0
+                result[0].userFriends.forEach { (friendId) in
+                    MyApi.shared.getUserDataWithUID2(id: friendId, completion: { (friend) in
+                        self.myFriends[i] = [friend.userName, friend.userImage]
+                    })
+                    i += 0
+                }
+            }
+        }
     }
     
     
@@ -295,6 +309,7 @@ extension AddPromiseVC: SendSelectedColorDelegate {
         else if segue.identifier == "withFriendVC" {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
+            vc.myFriends = self.myFriends
         }
     }
 }
