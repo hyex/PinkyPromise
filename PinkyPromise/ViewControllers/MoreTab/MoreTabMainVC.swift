@@ -60,11 +60,12 @@ class MoreTabMainVC: UIViewController {
             DispatchQueue.main.async {
                 self.user = result[0]
                 self.userName.text = result[0].userName
-                imageName = self.user?.userImage ?? "defaultImage" // MARK: need to fix
+                imageName = self.user?.userImage ?? (self.user?.userId)!
                 FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
                     switch result {
                     case .failure(let err):
                         print(err)
+                        self.userImage.image = UIImage(named: "user_male")
                     case .success(let image):
                         self.userImage.image = image
                     }
@@ -100,7 +101,6 @@ extension MoreTabMainVC {
         
         imageChangeBtn.backgroundColor = .white
         imageChangeBtn.applyRadius(radius: 8)
-        
         
         let color = UIColor.appColor.withAlphaComponent(0.5)
         
