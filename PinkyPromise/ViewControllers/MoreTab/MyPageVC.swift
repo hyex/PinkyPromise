@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class MyPageVC: UIViewController {
 
@@ -24,6 +25,12 @@ class MyPageVC: UIViewController {
         picker.delegate = self
         getUserData()
         initView()
+        
+        let status = PHPhotoLibrary.authorizationStatus()
+        if status == .notDetermined  {
+            PHPhotoLibrary.requestAuthorization({status in
+            })
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -35,15 +42,10 @@ class MyPageVC: UIViewController {
         let alert =  UIAlertController(title: "프로필 사진 변경", message: "어떤 사진으로 변경하시나요?", preferredStyle: .actionSheet)
         let library =  UIAlertAction(title: "사진앨범", style: .default) { (action) in
             self.openLibrary()
-            
         }
-        
         let camera =  UIAlertAction(title: "카메라", style: .default) { (action) in
-            
             self.openCamera()
-            
         }
-
 
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
 
@@ -62,7 +64,7 @@ class MyPageVC: UIViewController {
             DispatchQueue.main.async {
                 self.user = result[0]
                 self.userName.text = result[0].userName
-                imageName = self.user?.userImage ?? "defaultImage"
+                imageName = self.user?.userImage ?? "defaultImage" // MARK: need to fix
                 FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
                     switch result {
                     case .failure(let err):
@@ -71,7 +73,6 @@ class MyPageVC: UIViewController {
                         self.userImage.image = image
                     }
                 })
-                
             }
         })
     }
@@ -82,8 +83,7 @@ extension MyPageVC {
         setNavigationBar()
         setBackBtn()
         self.userImage.makeCircle()
-//        self.userImage = self.user?.userImage
-//        self.userName.text = self.user?.userName
+        self.userImage.applyBorder(width: 2.0, color: UIColor.appColor)
         imageChangeBtn.backgroundColor = .white
         imageChangeBtn.applyRadius(radius: 8)
         addSwipeGesture()
@@ -140,10 +140,39 @@ extension MyPageVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             
             self.userImage.image = image
-            // MARK: need to add
-            // image 넘기기 서버로
-            print(info)
+            //print(info)
+            var name: String = ""
             
+            if let asset = info[UIImagePickerController.InfoKey.phAsset] as? PHAsset {
+                let assetResources = PHAssetResource.assetResources(for: asset)
+                let filename = assetResources.first!.originalFilename
+                let nameArray = filename.components(separatedBy: ".")
+                print(nameArray)
+                name = nameArray[0]
+            } else{
+                let today = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyMMMddhhmmss"
+                name = dateFormatter.string(from: today)
+                print("userImage name error")
+            }
+            
+            // image 형태 변환
+            guard let imageData = image.jpegData(compressionQuality: 1) else {
+                print("image convert error")
+                return
+            }
+        
+            // 여기서 뭐 엄청 뜸
+            FirebaseStorageService.shared.storeUserImage(image: imageData, imageName: name, completion: { result in
+                switch result {
+                case .failure(let err):
+                    print(err)
+                case .success(let image):
+                    print(image)
+                }
+                
+            })
         }
         dismiss(animated: true, completion: nil)
     }
