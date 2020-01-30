@@ -10,16 +10,16 @@ import Foundation
 import Firebase
 
 class ProgressTable {
-    private(set) var progressDay: Date!
-    private(set) var progressDegree: Int!
+    private(set) var progressDegree: Array<Int>!
     private(set) var promiseId: String!
     private(set) var userId: String!
+    private(set) var progressId: String!
     
-    init(progressDay: Date, progressDegree: Int, promiseId: String, userId: String) {
-        self.progressDay = progressDay
+    init(progressDegree: Array<Int>, promiseId: String, userId: String, progressId: String) {
         self.progressDegree = progressDegree
         self.promiseId = promiseId
         self.userId = userId
+        self.promiseId = progressId
     }
     
     class func parseData(snapShot: QuerySnapshot?) -> [ProgressTable] {
@@ -29,13 +29,13 @@ class ProgressTable {
         for document in snap.documents {
             let data = document.data()
             
-            let dataProgressDay = data[PROGRESSDAY] as? Timestamp ?? Timestamp()
-            let dataProgressDaytoDate = dataProgressDay.dateValue()
-            let dataProgressDegree = data[PROGRESSDEGREE] as? Int ?? 0
+            let dataProgressDegree = data[PROGRESSDEGREE] as? Array<Int> ?? []
             let dataPromiseId = data[PROMISEID] as? String ?? "nil"
             let datauserId = data[USERID] as? String ?? "nil"
+            let dataProgressId = document.documentID
             
-            let newdatauser = ProgressTable(progressDay: dataProgressDaytoDate + 32400, progressDegree: dataProgressDegree, promiseId: dataPromiseId, userId: datauserId)
+            let newdatauser = ProgressTable(progressDegree: dataProgressDegree, promiseId: dataPromiseId, userId: datauserId, progressId: dataProgressId)
+            
             progressTable.append(newdatauser)
         }
         

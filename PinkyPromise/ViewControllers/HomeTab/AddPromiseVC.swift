@@ -55,7 +55,7 @@ class AddPromiseVC: UIViewController {
             MyApi.shared.getUserData { (result) in
                 var i = 0
                 result[0].userFriends.forEach { (friendId) in
-                    MyApi.shared.getUserDataWithUID2(id: friendId, completion: { (friend) in
+                    MyApi.shared.getUserDataWithUID(id: friendId, completion: { (friend) in
                         self.myFriends[i] = [friend.userName, friend.userImage]
                     })
                     i += 0

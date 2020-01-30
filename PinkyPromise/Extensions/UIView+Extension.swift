@@ -54,3 +54,14 @@ extension UILabel{
         self.numberOfLines = 2
     }
 }
+
+extension UIImageView {
+    func makeCircle() {
+        self.layer.cornerRadius = self.layer.frame.height/2
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.clear.cgColor
+        self.clipsToBounds = true
+        self.layer.masksToBounds = true
+    }
+    
+}

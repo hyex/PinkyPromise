@@ -14,8 +14,8 @@ class MoreTabMainVC: UIViewController {
     var moreTableList:[MoreTableData] = [
         MoreTableData(title: "내 정보"),
         MoreTableData(title: "내 친구"),
-        MoreTableData(title: "코드로 친구추가"),
-        MoreTableData(title: "개발자")
+        MoreTableData(title: "코드로 친구추가")
+//        MoreTableData(title: "개발자")
     ]
     
 //    func onComplete(data: [MoreTableData]) -> Void {
@@ -49,15 +49,16 @@ extension MoreTabMainVC: UITableViewDelegate {
 
         switch indexPath.row {
         case 0:
-            print(self.moreTableList[indexPath.row].title)
+            let vc = storyboard?.instantiateViewController(identifier: "MyPageVC") as! MyPageVC
+            self.navigationController?.pushViewController(vc, animated: false)
         case 1:
-            print(self.moreTableList[indexPath.row].title)
+            let vc = storyboard?.instantiateViewController(identifier: "MyFriendVC") as! MyFriendVC
+            self.navigationController?.pushViewController(vc, animated: false)
         case 2:
             let vc = storyboard?.instantiateViewController(identifier: "AddFriendCodeVC") as! AddFriendCodeVC
-            
             self.navigationController?.pushViewController(vc, animated: false)
-        case 3:
-            print(self.moreTableList[indexPath.row].title)
+//        case 3:
+//            print(self.moreTableList[indexPath.row].title)
         default:
             print("MoreTab moving error")
         }

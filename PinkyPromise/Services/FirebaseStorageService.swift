@@ -15,7 +15,7 @@ class FirebaseStorageService: NSObject {
     private let promiseFolderRef: StorageReference = Storage.storage().reference().child("promiseImage")
     private let userFolderRef: StorageReference = Storage.storage().reference().child("userImage")
     
-    //약속이미지를 업로드할 때 사용하는 함수
+    //약속이미지를 업로드할 때 사용하는 함수 image는 UIImage가 아니라 jpegData. 밑에 사용예시 추가함
     func storePromiseImage(image: Data, imageName: String, completion: @escaping (Result<String,Error>) -> ()) {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
@@ -40,7 +40,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
-    //유저이미지를 업로드할때 사용하는 함수
+    //유저이미지를 업로드할때 사용하는 함수 image는 UIImage가 아니라 jpegData. 밑에 사용예시 추가함
     func storeUserImage(image: Data, imageName: String, completion: @escaping (Result<String, Error>) -> () ) {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
@@ -66,7 +66,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
-    //약속 이미지를 받아올 때 사용하는 함수
+    //약속 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
     func getPromiseImageWithName(name: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         promiseFolderRef.storage.reference(withPath: "promiseImage/\(name)").getData(maxSize: 20000000) { (data, error) in
             if let err = error {
@@ -77,7 +77,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
-    // 유저 이미지를 받아올 때 사용하는 함수
+    //유저 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
     func getUserImageWithName(name: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         
         userFolderRef.storage.reference(withPath: "userImage/\(name)").getData(maxSize: 20000000) { (data, error) in
@@ -92,7 +92,7 @@ class FirebaseStorageService: NSObject {
     //사용예시
     //    private func getSetImage() {
     //        if let photoUrl = post?.photoUrl {
-    //            FirebaseStorageService.uploadManager.getImage(url: photoUrl) { (result) in
+    //            FirebaseStorageService.getImage(url: photoUrl) { (result) in
     //                switch result {
     //                case .failure(let error):
     //                    print(error)
@@ -104,3 +104,22 @@ class FirebaseStorageService: NSObject {
     //    }
     
 }
+
+
+//firebase storage storeimage 사용예시
+//    guard let imageData = self.image?.jpegData(compressionQuality: 1) else {
+//        makeAlert(with: "error", and: "could not compress image")
+//        return
+//    }
+//
+//    FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+//        switch result {
+//        case .success(let url):
+//            self?.imageURL = url
+//            print("check 3")
+//            print(self?.imageURL)
+//        case .failure(let error):
+//            print("this is error")
+//            print(error)
+//        }
+//    }
