@@ -126,7 +126,7 @@ extension PromiseDetailVC : UITableViewDataSource{
         }
         
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(tableView == promiseFriendTableView){
             return 60

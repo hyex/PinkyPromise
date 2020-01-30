@@ -189,15 +189,15 @@ extension MoreTabMainVC: UIImagePickerControllerDelegate, UINavigationController
             }
         
             // 여기서 뭐 엄청 뜸
-            FirebaseStorageService.shared.storeUserImage(image: imageData, imageName: name, completion: { result in
-                switch result {
-                case .failure(let err):
-                    print(err)
-                case .success(let image):
-                    print(image)
-                }
-                
-            })
+//            FirebaseStorageService.shared.storeUserImage(image: imageData, imageName: name, completion: { result in
+//                switch result {
+//                case .failure(let err):
+//                    print(err)
+//                case .success(let image):
+//                    print(image)
+//                }
+//
+//            })
         }
         dismiss(animated: true, completion: nil)
     }

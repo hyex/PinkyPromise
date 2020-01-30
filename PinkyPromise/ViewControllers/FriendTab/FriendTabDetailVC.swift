@@ -49,10 +49,6 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        print(self.detailPromise!)
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.datailPromiseInfo.count
     }
@@ -89,6 +85,8 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.progressView.progress = Float(nowProgressed)
         
 
+        print(cell.friendNameLabel!)
+        
         return cell
     }
     
@@ -101,7 +99,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 115
+        return 122
     }
     
 }
