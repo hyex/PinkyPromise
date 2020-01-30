@@ -35,7 +35,7 @@ class FriendTabMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.navigationController?.navigationBar.isHidden = true
-        getAllPromiseData()
+//        getAllPromiseData()
         setPlusBtn()
         
         promiseCtnLabel.text = String(friendsInPromise.count)
@@ -62,14 +62,14 @@ class FriendTabMainVC: UIViewController {
     }
     
     //나의 모든 약속 데이터 가져오기
-    private func getAllPromiseData() {
-        print("in get AllPromiseData func")
-        MyApi.shared.allPromise { result in DispatchQueue.main.async {
-            print("**********promise data from db**********")
-            print("첫 데이터 : ", result[0])
-            }
-        }
-    }
+//    private func getAllPromiseData() {
+//        print("in get AllPromiseData func")
+//        MyApi.shared.allPromise { result in DispatchQueue.main.async {
+//            print("**********promise data from db**********")
+//            print("첫 데이터 : ", result[0])
+//            }
+//        }
+//    }
 }
 
 extension FriendTabMainVC : UITableViewDelegate{

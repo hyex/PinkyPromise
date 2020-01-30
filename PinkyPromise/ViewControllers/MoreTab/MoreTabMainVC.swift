@@ -6,46 +6,27 @@
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 import UIKit
-import Photos
 
 class MoreTabMainVC: UIViewController {
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var imageChangeBtn: UIButton!
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var moreTableView: UITableView!
+    @IBOutlet weak var myFriendBtn: UIButton!
+    @IBOutlet weak var addFriendCodeBtn: UIButton!
+    @IBOutlet weak var logOutBtn: UIButton!
     
     let picker = UIImagePickerController()
     var user: PromiseUser? = nil
     
-    var moreTableList:[MoreTableData] = [
-        MoreTableData(title: "내 친구"),
-        MoreTableData(title: "코드로 친구추가")
-    ]
-    
-//    func onComplete(data: [MoreTableData]) -> Void {
-//        DispatchQueue.main.async {
-//            self.moreTableList = data
-//            self.moreTableView.reloadData()
-//        }
-//    }
-//     사용시
-//    MyApi.shared.allMore(completion: self.onComplete(data:))
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        moreTableView.delegate = self
-        moreTableView.dataSource = self
+        
         self.navigationController?.navigationBar.isHidden = true
         picker.delegate = self
+        
         getUserData()
         initView()
-        
-        let status = PHPhotoLibrary.authorizationStatus()
-        if status == .notDetermined  {
-            PHPhotoLibrary.requestAuthorization({status in
-            })
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,55 +73,44 @@ class MoreTabMainVC: UIViewController {
         })
     }
     
-}
-extension MoreTabMainVC: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+    @IBAction func myfriendBtnAction(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "MyFriendVC") as! MyFriendVC
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        switch indexPath.row {
-        case 0:
-            let vc = storyboard?.instantiateViewController(identifier: "MyFriendVC") as! MyFriendVC
-            self.navigationController?.pushViewController(vc, animated: false)
-        case 1:
-            let vc = storyboard?.instantiateViewController(identifier: "AddFriendCodeVC") as! AddFriendCodeVC
-            self.navigationController?.pushViewController(vc, animated: false)
-        default:
-            print("MoreTab moving error")
-        }
+    @IBAction func addFriendCodeBtnAction(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "AddFriendCodeVC") as! AddFriendCodeVC
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    @IBAction func logOutBtnAction(_ sender: Any) {
     }
 }
 
-extension MoreTabMainVC: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.moreTableList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cell = UITableViewCell()
-        if let rankingcell = tableView.dequeueReusableCell(withIdentifier: "MoreTVC", for: indexPath) as? MoreTVC {
-
-            let rowData = self.moreTableList[indexPath.row]
-            rankingcell.title.text = rowData.title
-            cell = rankingcell
-        }
-        
-        return cell
-    }
-
-}
 
 extension MoreTabMainVC {
     private func initView() {
         self.userImage.makeCircle()
         self.userImage.applyBorder(width: 2.0, color: UIColor.appColor)
+        setUpBtn()
+        
+    }
+    
+    private func setUpBtn() {
+        
         imageChangeBtn.backgroundColor = .white
         imageChangeBtn.applyRadius(radius: 8)
+        
+        
+        let color = UIColor.appColor.withAlphaComponent(0.5)
+        
+        myFriendBtn.applyRadius(radius: 8)
+        addFriendCodeBtn.applyRadius(radius: 8)
+        logOutBtn.applyRadius(radius: 8)
+        
+        myFriendBtn.backgroundColor = color
+        addFriendCodeBtn.backgroundColor = color
+        logOutBtn.backgroundColor = color
     }
 }
 
@@ -162,41 +132,24 @@ extension MoreTabMainVC: UIImagePickerControllerDelegate, UINavigationController
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             
             self.userImage.image = image
-            //print(info)
-            var name: String = ""
             
-            if let asset = info[UIImagePickerController.InfoKey.phAsset] as? PHAsset {
-                let assetResources = PHAssetResource.assetResources(for: asset)
-                let filename = assetResources.first!.originalFilename
-                let nameArray = filename.components(separatedBy: ".")
-                print(nameArray)
-                name = nameArray[0]
-            } else{
-                let today = Date()
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyMMMddhhmmss"
-                name = dateFormatter.string(from: today)
-                print("userImage name error")
-            }
-            
-            // image 형태 변환
+            // type convert to jpeg
             guard let imageData = image.jpegData(compressionQuality: 1) else {
                 print("image convert error")
                 return
             }
-        
-            // 여기서 뭐 엄청 뜸
+
             FirebaseStorageService.shared.storeUserImage(image: imageData, completion: { result in
                 switch result {
                 case .failure(let err):
                     print(err)
-                case .success(let image):
-                    print(image)
+                case .success:
+                    break
                 }
-                
             })
         }
         dismiss(animated: true, completion: nil)
