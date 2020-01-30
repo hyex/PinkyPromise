@@ -80,6 +80,19 @@ class FirebaseStorageService: NSObject {
         }
     }
     
+//    imageLocation.downloadURL { (url, error) in
+//        guard error == nil else {
+//            completion(.failure(error!))
+//            return
+//        }
+//        guard let url = url?.absoluteString else {
+//            completion(.failure(error!))
+//            return
+//        }
+//        completion(.success(url))
+//    }
+    
+    
     //유저 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
     func getUserImageWithName(name: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         

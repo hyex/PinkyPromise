@@ -56,23 +56,18 @@ class MainTabBarController: UITabBarController {
         //                }
         //            }
         
-        //        //친구가 추가된다
-        //        MyApi.shared.addFriendWithCode(code: 909970) { (temp) in
-        //            print(temp)
-        //        }
-        
         
 //                MyApi.shared.getCompletedPromiseData { (result) in
 //                    print(result)
 //                }
         
-        MyApi.shared.getPromiseNameAndFriendsName { (result) in
-            for douc in result {
-                print(douc.promiseId)
-                print(douc.promiseName)
-                print(douc.friendsName)
-            }
-        }
+//        MyApi.shared.getPromiseNameAndFriendsName { (result) in
+//            for douc in result {
+//                print(douc.promiseId)
+//                print(douc.promiseName)
+//                print(douc.friendsName)
+//            }
+//        }
         
 //        MyApi.shared.getUsersFriendsData { (result) in
 //            for douc in result {
