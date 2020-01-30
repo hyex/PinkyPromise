@@ -77,6 +77,24 @@ class MyApi: NSObject {
         }
     }
     
+    func getUsersFriendsData(completion: @escaping ([PromiseUser]) -> Void) {
+        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let tempResult = PromiseUser.parseData(snapShot: snapShot)
+                
+                var temp = [PromiseUser]()
+                for douc in tempResult[0].userFriends {
+                    self.getUserDataWithUID(id: douc) { (result) in
+                        temp.append(result)
+                    }
+                }
+                completion(temp)
+            }
+        }
+    }
+    
     //UID에 맞는 유저 데이터를 반환해줌
     func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
         var result = [PromiseUser]()
