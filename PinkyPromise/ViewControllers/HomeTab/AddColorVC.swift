@@ -22,7 +22,7 @@ class AddColorVC: UIViewController {
     
     var selectedColor: Int = 0
     
-    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
+    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
     
     @IBOutlet weak var cancelBtn: UIButton!
     
@@ -66,7 +66,7 @@ class AddColorVC: UIViewController {
 
 extension AddColorVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return 12
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

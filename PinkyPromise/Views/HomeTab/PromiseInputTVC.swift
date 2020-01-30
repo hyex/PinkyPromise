@@ -66,11 +66,15 @@ extension PromiseInputTVC {
     func setFirstDate(date: Date) {
         self.firstDate = date
         changeDateFormatKR(date: firstDate, dateLabel: self.startDateLabel)
+        print("---first---")
+        print(self.firstDate)
     }
     
     func setLastDate(date: Date) {
         self.lastDate = date
         changeDateFormatKR(date: lastDate, dateLabel: self.endDateLabel)
+        print("---last----")
+        print(self.lastDate)
     }
     
     func getFirstDate() -> Date {

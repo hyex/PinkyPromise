@@ -48,13 +48,15 @@ class AddFriendsVC: UIViewController {
         tableView.dataSource = self
         	
         searchController.searchResultsUpdater = self
-        
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "이름 검색"
         definesPresentationContext = true
+
         tableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.tintColor = .white
-        searchController.beginAppearanceTransition(false, animated: false)
+//        tableView.tableHeaderView?.frame.size.height = 80
+        searchController.searchBar.tintColor = .appColor
         
-        searchController.searchBar.setImage(UIImage(named: "multiple.circle.fill"), for: UISearchBar.Icon.clear, state: .normal)
+//        searchController.searchBar.setImage(UIImage(systemName: "multiple.circle.fill"), for: UISearchBar.Icon.clear, state: .normal)
     }
     
     // MARK: - Navigation
