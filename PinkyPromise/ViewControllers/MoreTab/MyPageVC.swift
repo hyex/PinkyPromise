@@ -83,6 +83,7 @@ extension MyPageVC {
         setNavigationBar()
         setBackBtn()
         self.userImage.makeCircle()
+        self.userImage.applyBorder(width: 2.0, color: UIColor.appColor)
         imageChangeBtn.backgroundColor = .white
         imageChangeBtn.applyRadius(radius: 8)
         addSwipeGesture()
@@ -145,7 +146,8 @@ extension MyPageVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             if let asset = info[UIImagePickerController.InfoKey.phAsset] as? PHAsset {
                 let assetResources = PHAssetResource.assetResources(for: asset)
                 let filename = assetResources.first!.originalFilename
-                let nameArray = filename.components(separatedBy: ".HEIC")
+                let nameArray = filename.components(separatedBy: ".")
+                print(nameArray)
                 name = nameArray[0]
             } else{
                 let today = Date()
@@ -155,7 +157,7 @@ extension MyPageVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
                 print("userImage name error")
             }
             
-            // image 넘기기 서버로
+            // image 형태 변환
             guard let imageData = image.jpegData(compressionQuality: 1) else {
                 print("image convert error")
                 return
