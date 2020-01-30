@@ -15,8 +15,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-R7-LcX">
+                                <rect key="frame" x="155" y="50" width="65" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qs9-h7-0X9">
+                                <rect key="frame" x="62" y="110" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Qs9-h7-0X9" secondAttribute="height" multiplier="1:1" id="awF-y6-KcU"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-eV-qiB">
+                                <rect key="frame" x="152.33333333333334" y="443" width="69.333333333333343" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dC7-bR-5Qz">
+                                <rect key="frame" x="62" y="390" width="250" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="사진 변경">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="imageChangeBtnAction:" destination="IwM-Qb-H7g" eventType="touchUpInside" id="Drw-qy-taT"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qOr-sX-qi7">
-                                <rect key="frame" x="0.0" y="111" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="548" width="375" height="181"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoreTVC" rowHeight="80" id="nRV-Td-9dm" customClass="MoreTVC" customModule="PinkyPromise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
@@ -55,87 +83,47 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-R7-LcX">
-                                <rect key="frame" x="155" y="50" width="65" height="33"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNn-El-KVz">
+                                <rect key="frame" x="62" y="497" width="250" height="5"/>
+                                <color key="backgroundColor" red="0.55475924700000001" green="0.27558713709999999" blue="0.80382506909999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.55475924700000001" green="0.27558713709999999" blue="0.80382506909999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="dC7-bR-5Qz" firstAttribute="top" secondItem="Qs9-h7-0X9" secondAttribute="bottom" constant="30" id="0YH-qF-hZX"/>
+                            <constraint firstItem="RzC-eV-qiB" firstAttribute="top" secondItem="dC7-bR-5Qz" secondAttribute="bottom" constant="20" id="3tH-5E-Fgb"/>
                             <constraint firstItem="Ixo-R7-LcX" firstAttribute="centerX" secondItem="P8a-Tt-MZO" secondAttribute="centerX" id="89p-B7-RiU"/>
+                            <constraint firstItem="P8a-Tt-MZO" firstAttribute="trailing" secondItem="Qs9-h7-0X9" secondAttribute="trailing" constant="63" id="EM3-7x-eNz"/>
+                            <constraint firstItem="iNn-El-KVz" firstAttribute="leading" secondItem="P8a-Tt-MZO" secondAttribute="leading" constant="62" id="FLd-cS-Ku2"/>
                             <constraint firstItem="qOr-sX-qi7" firstAttribute="leading" secondItem="P8a-Tt-MZO" secondAttribute="leading" id="GEx-l5-YjP"/>
-                            <constraint firstItem="qOr-sX-qi7" firstAttribute="top" secondItem="Ixo-R7-LcX" secondAttribute="bottom" constant="28" id="Gs1-Y6-vAg"/>
+                            <constraint firstItem="dC7-bR-5Qz" firstAttribute="centerX" secondItem="Qs9-h7-0X9" secondAttribute="centerX" id="HVQ-Q9-bbo"/>
+                            <constraint firstItem="P8a-Tt-MZO" firstAttribute="trailing" secondItem="iNn-El-KVz" secondAttribute="trailing" constant="63" id="J27-Mo-o9i"/>
+                            <constraint firstItem="Qs9-h7-0X9" firstAttribute="top" secondItem="Ixo-R7-LcX" secondAttribute="bottom" constant="27" id="KVw-Ei-VnU"/>
+                            <constraint firstItem="iNn-El-KVz" firstAttribute="top" secondItem="RzC-eV-qiB" secondAttribute="bottom" constant="6" id="ONh-wC-cS0"/>
                             <constraint firstItem="Ixo-R7-LcX" firstAttribute="top" secondItem="P8a-Tt-MZO" secondAttribute="top" constant="6" id="V8W-8w-KSA"/>
                             <constraint firstItem="P8a-Tt-MZO" firstAttribute="trailing" secondItem="qOr-sX-qi7" secondAttribute="trailing" id="XoZ-sj-NrQ"/>
+                            <constraint firstItem="dC7-bR-5Qz" firstAttribute="width" secondItem="Qs9-h7-0X9" secondAttribute="width" id="eSi-y2-XrW"/>
+                            <constraint firstItem="RzC-eV-qiB" firstAttribute="centerX" secondItem="dC7-bR-5Qz" secondAttribute="centerX" id="gda-Wk-Z8t"/>
                             <constraint firstItem="P8a-Tt-MZO" firstAttribute="bottom" secondItem="qOr-sX-qi7" secondAttribute="bottom" id="hZS-6b-A40"/>
+                            <constraint firstItem="Qs9-h7-0X9" firstAttribute="leading" secondItem="P8a-Tt-MZO" secondAttribute="leading" constant="62" id="ldG-Hi-nwx"/>
+                            <constraint firstItem="qOr-sX-qi7" firstAttribute="top" secondItem="RzC-eV-qiB" secondAttribute="bottom" constant="57" id="mjk-kr-5M1"/>
+                            <constraint firstItem="qOr-sX-qi7" firstAttribute="top" secondItem="iNn-El-KVz" secondAttribute="bottom" constant="46" id="r1J-9j-0ce"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P8a-Tt-MZO"/>
                     </view>
                     <navigationItem key="navigationItem" id="Lcc-XE-opJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="imageChangeBtn" destination="dC7-bR-5Qz" id="jB1-dD-WDV"/>
                         <outlet property="moreTableView" destination="qOr-sX-qi7" id="Y38-oJ-Vcq"/>
+                        <outlet property="userImage" destination="Qs9-h7-0X9" id="zZM-nJ-llF"/>
+                        <outlet property="userName" destination="RzC-eV-qiB" id="oWb-hd-vub"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNU-gm-d3s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2398" y="8"/>
-        </scene>
-        <!--My PageVC-->
-        <scene sceneID="fjb-VO-tWJ">
-            <objects>
-                <viewController storyboardIdentifier="MyPageVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zee-iU-zVN" customClass="MyPageVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kjm-gc-112">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7o-y8-NtV">
-                                <rect key="frame" x="153" y="507" width="69.333333333333314" height="48"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B1m-Be-Lox">
-                                <rect key="frame" x="62.666666666666657" y="164" width="249.99999999999997" height="250"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="B1m-Be-Lox" secondAttribute="height" multiplier="1:1" id="pUE-Rv-CWC"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dra-nD-f8v">
-                                <rect key="frame" x="62.666666666666657" y="444" width="249.99999999999997" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="사진 변경">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="imageChangeBtnAction:" destination="Zee-iU-zVN" eventType="touchUpInside" id="buT-xX-pSX"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="M7o-y8-NtV" firstAttribute="top" secondItem="dra-nD-f8v" secondAttribute="bottom" constant="30" id="Bmj-7c-Lof"/>
-                            <constraint firstItem="M7o-y8-NtV" firstAttribute="centerX" secondItem="B1m-Be-Lox" secondAttribute="centerX" id="JwQ-hf-maC"/>
-                            <constraint firstItem="dra-nD-f8v" firstAttribute="width" secondItem="B1m-Be-Lox" secondAttribute="width" id="QlS-MR-JDa"/>
-                            <constraint firstItem="B1m-Be-Lox" firstAttribute="top" secondItem="iXn-Cp-4T9" secondAttribute="top" constant="120" id="ad0-oR-i9k"/>
-                            <constraint firstItem="iXn-Cp-4T9" firstAttribute="trailing" secondItem="B1m-Be-Lox" secondAttribute="trailing" constant="62.5" id="e1b-tZ-72i"/>
-                            <constraint firstItem="dra-nD-f8v" firstAttribute="top" secondItem="B1m-Be-Lox" secondAttribute="bottom" constant="30" id="fXP-8r-QBM"/>
-                            <constraint firstItem="B1m-Be-Lox" firstAttribute="leading" secondItem="iXn-Cp-4T9" secondAttribute="leading" constant="62.5" id="lHK-6r-mGV"/>
-                            <constraint firstItem="dra-nD-f8v" firstAttribute="centerX" secondItem="B1m-Be-Lox" secondAttribute="centerX" id="zPy-DI-cXb"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="iXn-Cp-4T9"/>
-                    </view>
-                    <connections>
-                        <outlet property="imageChangeBtn" destination="dra-nD-f8v" id="Myq-Tn-ESG"/>
-                        <outlet property="userImage" destination="B1m-Be-Lox" id="zE3-nB-oTh"/>
-                        <outlet property="userName" destination="M7o-y8-NtV" id="PNn-sr-NnC"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3lf-fA-Sak" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3245" y="11"/>
+            <point key="canvasLocation" x="3071" y="10"/>
         </scene>
         <!--My FriendVC-->
         <scene sceneID="VYI-zg-n7n">
