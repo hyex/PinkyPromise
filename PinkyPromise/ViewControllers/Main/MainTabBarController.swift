@@ -61,6 +61,12 @@ class MainTabBarController: UITabBarController {
 //            print(temp)
 //        }
         
+        
+        MyApi.shared.getCompletedPromiseData { (result) in
+            print(result)
+        }
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,11 +76,10 @@ class MainTabBarController: UITabBarController {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
-            
+            tempVC.modalPresentationStyle = .fullScreen
             self.present(tempVC, animated: true, completion: nil)
 
             print("finished")
-
         }
     }
     

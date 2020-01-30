@@ -113,15 +113,19 @@ class MyApi: NSObject {
                 debugPrint(err.localizedDescription)
             } else {
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
-                completion(tempResult)
+                self.getPerfectCompletedPromiseData(promises: tempResult, completion: { result in
+                    completion(result)
+                })
             }
         }
+        
     }
     
     //끝난 약속 데이터를 인풋으로, 이중에서 프로그레스 배열이 모두 4인 경우만 약속 반환
     func getPerfectCompletedPromiseData(promises: [PromiseTable], completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
         
+        var countcheck = 0
         for douc in promises {
             progressCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
                 if let err = error {
@@ -134,13 +138,21 @@ class MyApi: NSObject {
                         
                         if check4 == false {
                             result.append(douc)
+                            if promises.count <= countcheck {
+                                completion(result)
+                            }
                         }
+                    } else {
+                        completion([])
                     }
                 }
             }
         }
-        completion(result)
+        countcheck += 1
     }
+    
+    //func getPromiseAndProgress()
+    
     
     //약속 데이터가 업데이트되면 실행되며 업데이트되는 데이터를 받아줌
     func getPromiseUpdate(completion: @escaping ([PromiseTable]) -> Void) {
@@ -265,62 +277,42 @@ class MyApi: NSObject {
         }
     }
     
-    
-    //선영쿤의 요청한 함수, 유저와 함께 약속중인 친구들 이름과 약속명, firebase가 조인 지원을 안해준다고 해서 잘될지 모르겟음
-    //다 틀렸어...
-    func getPromiseNameAndFriends(completion: @escaping ([tempStruct]) -> Void) {
+    //선영쿤이 요청한 함수 -> friendTab에 들어갈 데이터
+    func getPromiseNameAndFriendsName(completion: @escaping ([promiseNameAndFriendsName]) -> Void) {
         
-        var tempst: Array<tempStruct> = []
-        
-        self.promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
-            } else {
+            }else {
+                //먼저
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                var resultData = [promiseNameAndFriendsName]()
+                
                 for douc in tempResult {
                     
-                    let tempName = douc.promiseName//약속명
-                    let tempFirend = douc.promiseUsers//친구 uid 배열들
+                    var tempName = [String]()
+                    for douc2 in douc.promiseUsers {
+                        if douc2 != FirebaseUserService.currentUserID {
+                            //친구들 uid
+                            self.getUserNameWithUID(id: douc2) { (result) in
+                                tempName.append(result)
+                            }
+                        }
+                    }
                     
-                    let tempFirend2 = tempFirend?.filter{ $0 != FirebaseUserService.currentUserID }
-                    
-                    var aaaa = tempStruct(promiseName: tempName, friendsUid: tempFirend2)
-                    tempst.append(aaaa)
+                    if tempName.count > 0 {
+                        //tempName은 친구들 이름들이 저장되어있다.
+                        var tempFriendNameAndPromiseName = promiseNameAndFriendsName(promiseName: douc.promiseName, friendsName: tempName)
+                        
+                        resultData.append(tempFriendNameAndPromiseName)
+                    }
                 }
+                
+                completion(resultData)
             }
-            completion(tempst)
-            
         }
     }
     
-    //getPromiseNameAndFriends의 반환된 데이터르
-    func getPromiseNameAndFriend2(tempst: [tempStruct], completion: @escaping ([promiseNameAndFriends]) -> Void ) {
-        
-        var tempResult2 = [promiseNameAndFriends]()
-        
-        for douc in tempst {
-            var tempNm = [String]()
-            for douc2 in douc.friendsUid {
-                DispatchQueue.global().sync {
-                    self.userCollectionRef.whereField(USERID, isEqualTo: douc2).getDocuments { (snapShot, error) in
-                        if let err = error {
-                            debugPrint(err.localizedDescription)
-                        }else {
-                            for douc3 in snapShot!.documents {
-                                let tempFRNM = douc3.data()[USERNAME] as? String ?? ""
-                                tempNm.append(tempFRNM)
-                            }
-                        }
-                        
-                    }
-                }
-            }
-            let temp3 = promiseNameAndFriends(promiseName: douc.promiseName, friendsName: tempNm)
-            tempResult2.append(temp3)
-        }
-        completion(tempResult2)
-        
-    }
     
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
