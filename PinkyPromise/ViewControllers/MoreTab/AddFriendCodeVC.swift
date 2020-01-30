@@ -43,7 +43,7 @@ class AddFriendCodeVC: UIViewController {
         // MARK: - need to add
         // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
         
-        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1)
+        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1, documentId: "0")
         if result == nil {
             simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
         } else {
@@ -184,7 +184,7 @@ extension AddFriendCodeVC: UITextFieldDelegate {
         // MARK: - need to add
         // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
         
-        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1)
+        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1, documentId: "0")
         if result == nil {
             simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
         } else {
