@@ -63,20 +63,16 @@ class MyApi: NSObject {
     
     //UID에 맞는 유저 이름을 반환해줌
     func getUserNameWithUID(id: String, completion: @escaping (String) -> Void) {
-        var result = ""
         userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
             }else {
-                //result = PromiseUser.parseData(snapShot: sanpShot)
-                for douc in sanpShot!.documents {
-                    result = douc.data()[USERNAME] as? String ?? ""
-                }
-                completion(result)
+                var result = PromiseUser.parseData(snapShot: sanpShot)
+                completion(result[0].userName)
             }
         }
     }
-    
+    //유저의 친구들의 promiseUser들 가져온다.
     func getUsersFriendsData(completion: @escaping ([PromiseUser]) -> Void) {
         userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
             if let err = error {
@@ -85,12 +81,17 @@ class MyApi: NSObject {
                 let tempResult = PromiseUser.parseData(snapShot: snapShot)
                 
                 var temp = [PromiseUser]()
+                var check1 = 0
                 for douc in tempResult[0].userFriends {
                     self.getUserDataWithUID(id: douc) { (result) in
                         temp.append(result)
+                        check1 += 1
+                        if tempResult[0].userFriends.count <= check1 {
+                            completion(temp)
+                        }
                     }
                 }
-                completion(temp)
+                
             }
         }
     }
@@ -103,9 +104,9 @@ class MyApi: NSObject {
                 debugPrint(err)
             }else {
                 result = PromiseUser.parseData(snapShot: sanpShot)
+                let result2 = result[result.startIndex]
+                completion(result2)
             }
-            let result2 = result[result.startIndex]
-            completion(result2)
         }
     }
     
@@ -304,26 +305,36 @@ class MyApi: NSObject {
                 var resultData = [promiseNameAndFriendsName]()
                 
                 for douc in tempResult {
-                    
-                    var tempName = [String]()
-                    for douc2 in douc.promiseUsers {
-                        if douc2 != FirebaseUserService.currentUserID {
-                            //친구들 uid
-                            self.getUserNameWithUID(id: douc2) { (result) in
-                                tempName.append(result)
-                            }
-                        }
-                    }
-                    
-                    if tempName.count > 0 {
-                        //tempName은 친구들 이름들이 저장되어있다.
-                        var tempFriendNameAndPromiseName = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: tempName)
+                    self.getFriendsName(tempTable: douc, completion: { result in
+                        let tempData = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: result)
                         
-                        resultData.append(tempFriendNameAndPromiseName)
-                    }
+                        resultData.append(tempData)
+                        
+                        if tempResult.count == resultData.count {
+                            completion(resultData)
+                        }
+                    })
                 }
+            }
+        }
+    }
+    
+    //getPromiseNameAndFriendsName의 부속함수, 약속테이블의 사용자의 친구들의 이름을 반환함
+    func getFriendsName(tempTable: PromiseTable, completion: @escaping ([String]) -> Void ){
+        var tempName = [String]()
+        
+        let friendsName = tempTable.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
+        
+        for douc in friendsName {
+            //친구들 uid
+            self.getUserNameWithUID(id: douc) { (result) in
+                tempName.append(result)
                 
-                completion(resultData)
+                if friendsName.count == tempName.count {
+                    completion(tempName)
+                }else if friendsName.count < tempName.count {
+                    completion([])
+                }
             }
         }
     }
@@ -338,7 +349,7 @@ class MyApi: NSObject {
                 let tempfriend = douc.promiseUsers.filter {
                     $0 != FirebaseUserService.currentUserID
                 }
-             
+                
                 var tempProgress = [[Int]]()//친구의 진행정도 배열
                 for douc3 in tempfriend {
                     //친구들 uid를 이용하여 progressTable의 정보들을 받아옴

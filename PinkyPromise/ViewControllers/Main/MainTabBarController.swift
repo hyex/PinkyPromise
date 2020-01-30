@@ -66,23 +66,21 @@ class MainTabBarController: UITabBarController {
 //                    print(result)
 //                }
         
-        let image = UIImage(named: "hyunjae")
-
-        guard let imageData = image?.jpegData(compressionQuality: 1) else {
-            print("no")
-            return
-        }
-
-        FirebaseStorageService.shared.storeUserImage(image: imageData) { (result) in
-            switch result {
-            case .success(let url):
-                print("check 3")
-                print(url)
-            case .failure(let error):
-                print("this is error")
-                print(error)
+        MyApi.shared.getPromiseNameAndFriendsName { (result) in
+            for douc in result {
+                print(douc.promiseId)
+                print(douc.promiseName)
+                print(douc.friendsName)
             }
         }
+        
+//        MyApi.shared.getUsersFriendsData { (result) in
+//            for douc in result {
+//                print(douc.userId)
+//                print(douc.documentId)
+//                print(douc.userImage)
+//            }
+//        }
 
         //firebase storage storeimage 사용예시
         //    guard let imageData = self.image?.jpegData(compressionQuality: 1) else {
