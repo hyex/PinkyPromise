@@ -14,4 +14,5 @@ class StartDateVC: UITableViewCell {
     @IBOutlet weak var start: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     
+    @IBOutlet weak var editStartDateBtn: UIButton!
 }

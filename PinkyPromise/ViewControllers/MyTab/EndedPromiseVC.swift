@@ -108,7 +108,10 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         let duration = dateFormatter.string(from: startDate) + " ~ " + dateFormatter.string(from: endDate)
         cell.promiseDuration.text = duration
         
-        let selector = Selector("\(rowData.promiseColor)Color")
+        let promiseColor = rowData.promiseColor!
+        let selector = Selector("\(promiseColor)")
+//        let selector = Selector("\(rowData.promiseColor)Color")
+        print(selector)
         if UIColor.self.responds(to: selector) {
             var color = UIColor.self.perform(selector).takeUnretainedValue()
             color = color.withAlphaComponent(0.15)
@@ -117,11 +120,20 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
 //            cell.layer.backgroundColor = cgColor
 //            cell.layer.borderColor = cgColor
             cell.layer.shadowColor = cgColor
-
-            
         } else {
             print("get color Fail")
         }
+        
+//        print(rowData.promiseColor)
+//        if let colorName = rowData.promiseColor {
+//            print(colorName)
+//            print(UIColor(named: colorName))
+//            cell.backgroundColor = UIColor(named: "appColor")
+//            cell.backgroundColor = UIColor(named: colorName)
+//            cell.layer.shadowColor = UIColor(named: colorName)?.cgColor
+//        }
+//        print(UIColor(named: rowData.promiseColor))
+//        cell.backgroundColor = UIColor(named: rowData.promiseColor)!
         
 //        cell.layer.borderWidth = 1
         

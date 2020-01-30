@@ -51,10 +51,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="9GW-Gg-sfg"/>
                                                         <constraint firstAttribute="width" constant="20" id="AOH-Fo-s1Z"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="arrow.right" catalog="system"/>
-                                                    <connections>
-                                                        <action selector="showPromiseDetail:" destination="29N-sA-g8s" eventType="touchUpInside" id="61j-I9-Uhr"/>
-                                                    </connections>
+                                                    <state key="normal" title="Button" image="next"/>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-wo-kQn">
                                                     <rect key="frame" x="80" y="7.6666666666666679" width="46" height="45"/>
@@ -112,7 +109,7 @@
                                     <constraint firstAttribute="width" constant="23" id="BdN-yH-JRr"/>
                                     <constraint firstAttribute="height" constant="23" id="VMZ-lM-NmI"/>
                                 </constraints>
-                                <state key="normal" image="plus" catalog="system"/>
+                                <state key="normal" image="plus"/>
                                 <connections>
                                     <action selector="addPromiseBtnAction:" destination="29N-sA-g8s" eventType="touchUpInside" id="kbL-Dh-VD0"/>
                                 </connections>
@@ -190,7 +187,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VkK-Sk-vMy">
-                                                    <rect key="frame" x="129" y="98.666666666666671" width="228" height="5"/>
+                                                    <rect key="frame" x="134" y="98.666666666666671" width="228" height="5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="5" id="BlD-pB-3uq"/>
                                                     </constraints>
@@ -204,7 +201,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="fgq-Mp-E08">
-                                                    <rect key="frame" x="129" y="21" width="228" height="60"/>
+                                                    <rect key="frame" x="134" y="21" width="228" height="60"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="YAA-vw-fDA">
                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="60"/>
@@ -328,7 +325,7 @@
                                                 <constraint firstItem="tiO-ym-dmb" firstAttribute="top" secondItem="ccS-te-UGn" secondAttribute="bottom" constant="5" id="cUv-Nq-Pzv"/>
                                                 <constraint firstItem="ccS-te-UGn" firstAttribute="centerX" secondItem="tiO-ym-dmb" secondAttribute="centerX" id="muR-ZS-NCI"/>
                                                 <constraint firstItem="mfg-ie-yZL" firstAttribute="top" secondItem="LHT-QW-JDI" secondAttribute="topMargin" constant="-13" id="nWJ-Gc-P4v"/>
-                                                <constraint firstItem="VkK-Sk-vMy" firstAttribute="leading" secondItem="tiO-ym-dmb" secondAttribute="trailing" constant="45" id="sf8-vk-CFK"/>
+                                                <constraint firstItem="VkK-Sk-vMy" firstAttribute="leading" secondItem="tiO-ym-dmb" secondAttribute="trailing" constant="50" id="sf8-vk-CFK"/>
                                                 <constraint firstItem="ccS-te-UGn" firstAttribute="centerY" secondItem="fgq-Mp-E08" secondAttribute="centerY" id="tTg-lr-sM3"/>
                                                 <constraint firstItem="VkK-Sk-vMy" firstAttribute="top" secondItem="fgq-Mp-E08" secondAttribute="bottom" constant="17.670000000000002" id="wKM-Hg-1mi"/>
                                                 <constraint firstItem="VkK-Sk-vMy" firstAttribute="width" secondItem="fgq-Mp-E08" secondAttribute="width" id="zWv-0G-aad"/>
@@ -354,7 +351,7 @@
                                     <constraint firstAttribute="height" constant="25" id="kkO-hc-Jvn"/>
                                     <constraint firstAttribute="width" constant="15" id="z75-pW-RJr"/>
                                 </constraints>
-                                <state key="normal" image="leftBackBtn_Purple"/>
+                                <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="backBtnAction:" destination="kn5-MZ-B4N" eventType="touchUpInside" id="nuv-mg-dpt"/>
                                 </connections>
@@ -394,9 +391,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.right" catalog="system" width="64" height="48"/>
-        <image name="leftBackBtn_Purple" width="512" height="512"/>
+        <image name="back" width="256" height="256"/>
+        <image name="next" width="256" height="256"/>
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="plus" width="256" height="256"/>
     </resources>
 </document>

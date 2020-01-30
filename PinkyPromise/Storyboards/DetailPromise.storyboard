@@ -77,6 +77,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="editStartDateBtn" destination="pPZ-zB-21L" id="qwO-dB-fhm"/>
                                             <outlet property="start" destination="UuJ-lE-Www" id="i7a-N7-BSO"/>
                                             <outlet property="startDateImg" destination="BxZ-b7-hbM" id="VIf-C0-DvT"/>
                                             <outlet property="startDateLabel" destination="e1l-YV-FX5" id="iOu-Bi-Ini"/>
@@ -131,6 +132,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="editFinalDateBtn" destination="JAx-J7-4ZN" id="D2x-CS-b7L"/>
                                             <outlet property="final" destination="lg3-xp-k8P" id="rha-Bd-I0g"/>
                                             <outlet property="finalDateImg" destination="C2K-7y-BfN" id="kUk-2e-H8w"/>
                                             <outlet property="finalDateLabel" destination="38f-K1-V8r" id="7PM-jK-qR4"/>
@@ -278,7 +280,7 @@
                                     <constraint firstAttribute="width" constant="15" id="0sk-UK-A7n"/>
                                     <constraint firstAttribute="height" constant="25" id="LSL-Hf-8Cf"/>
                                 </constraints>
-                                <state key="normal" image="leftBackBtn_Purple"/>
+                                <state key="normal" image="back"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께 약속한 친구들" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfU-bz-Pg2">
                                 <rect key="frame" x="17" y="435" width="148" height="24"/>
@@ -354,7 +356,6 @@
                         <viewLayoutGuide key="safeArea" id="DEz-wr-1bL"/>
                     </view>
                     <connections>
-                        <outlet property="backBtn" destination="opH-7e-mFb" id="HPY-Tx-yeI"/>
                         <outlet property="promiseFriendTableView" destination="xcI-7e-xuG" id="aey-cR-YSJ"/>
                         <outlet property="promiseInfoTableView" destination="zvs-jW-YzB" id="ZkO-Wz-GgQ"/>
                         <outlet property="promiseNameLabel" destination="qtw-Wo-ZuA" id="Otm-Qf-JC4"/>
@@ -367,10 +368,10 @@
     </scenes>
     <resources>
         <image name="app.fill" catalog="system" width="64" height="56"/>
+        <image name="back" width="256" height="256"/>
         <image name="bell" catalog="system" width="64" height="62"/>
         <image name="chevron.right" catalog="system" width="48" height="64"/>
         <image name="clock" catalog="system" width="64" height="60"/>
-        <image name="leftBackBtn_Purple" width="512" height="512"/>
         <image name="photo" catalog="system" width="64" height="46"/>
     </resources>
 </document>

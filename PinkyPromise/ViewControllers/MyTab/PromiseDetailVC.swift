@@ -47,6 +47,13 @@ class PromiseDetailVC: UIViewController {
         promiseFriendTableView.dataSource = self
         promiseFriendTableView.tableFooterView = UIView()
     }
+    
+    /*@IBAction func backBtnAction(_ sender : Any) {
+        self.dismiss(animated: false, completion: nil)
+    }**/
+    @IBAction func backBtnAction(_ sender : Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
 }
 
 extension PromiseDetailVC : UITableViewDelegate{ }
@@ -69,19 +76,38 @@ extension PromiseDetailVC : UITableViewDataSource{
             case 0:
                 let startCell = tableView.dequeueReusableCell(withIdentifier: "StartDateVC") as! StartDateVC
                 startCell.startDateLabel.text = "2020년 1월 30일 수요일 오전 9시"
+                
+                startCell.startDateImg.tintColor = UIColor.appColor
+                startCell.editStartDateBtn.tintColor = UIColor.appColor
+                
                 return startCell
             case 1:
                 let finalCell = tableView.dequeueReusableCell(withIdentifier: "FinalDateVC") as! FinalDateVC
                 finalCell.finalDateLabel.text = "2020년 2월 20일 월요일 오후 11시"
+                
+                finalCell.finalDateImg.tintColor = UIColor.appColor
+                finalCell.editFinalDateBtn.tintColor = UIColor.appColor
+                
                 return finalCell
             case 2:
                 let colorCell = tableView.dequeueReusableCell(withIdentifier: "ColorVC") as! ColorVC
+                
+                colorCell.colorImg.tintColor = UIColor.appColor
+                colorCell.editColorBtn.tintColor = UIColor.appColor
+                
                 return colorCell
             case 3:
                 let iconCell = tableView.dequeueReusableCell(withIdentifier: "IconVC") as! IconVC
+                
+                iconCell.iconImg.tintColor = UIColor.appColor
+                iconCell.editIconBtn.tintColor = UIColor.appColor
+                
                 return iconCell
             default:
                 let alarmCell = tableView.dequeueReusableCell(withIdentifier: "AlarmVC") as! AlarmVC
+                
+                alarmCell.alarmImg.tintColor = UIColor.appColor
+                
                 return alarmCell
                 
             }

@@ -85,6 +85,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         let p4 = 0.25 * Double(rowData.quarter)!
         
         nowProgressed = (p1 + p2 + p3 + p4) / 30.0
+        cell.progressView.tintColor = UIColor.appColor
         cell.progressView.progress = Float(nowProgressed)
         
 
