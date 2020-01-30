@@ -66,7 +66,7 @@ class AddPromiseVC: UIViewController {
             MyApi.shared.getUserData { (result) in
                 var i = 0
                 result[0].userFriends.forEach { (friendId) in
-                    MyApi.shared.getUserDataWithUID2(id: friendId, completion: { (friend) in
+                    MyApi.shared.getUserDataWithUID(id: friendId, completion: { (friend) in
                         let temp = FriendData(tag: i, name: friend.userName, image: friend.userImage, isChecked: nil)
                         self.myFriends.append(temp)
                         print(self.myFriends)
