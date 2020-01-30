@@ -35,17 +35,19 @@ class MyFriendVC: UIViewController {
     
     private func getFriendData() {
         MyApi.shared.getUsersFriendsData(completion: { result in
-            self.friendList = result
+            DispatchQueue.main.async {
+                self.friendList = result
+            }
         })
     }
 
 }
 
-
+// MARK:- initialization
 extension MyFriendVC {
     private func initView() {
         setNavigationBar()
-        setBackBtn()
+        addBackButton()
         addSwipeGesture()
     }
     
@@ -56,14 +58,22 @@ extension MyFriendVC {
         bar.backgroundColor = UIColor.clear
         bar.topItem?.title = "내 친구"
         bar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: CGFloat(20.0))]
+        
     }
-    
-    
-    private func setBackBtn() {
+    func addBackButton() {
+        let backButton = UIButton(type: .custom)
         let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.appColor, renderingMode: .alwaysOriginal)
-        navigationController?.navigationBar.backIndicatorImage = image
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.backItem?.title = ""
+        backButton.setImage(image, for: .normal)
+        backButton.setImage(image, for: .selected)
+        backButton.setTitle("", for: .normal)
+//        backButton.setTitleColor(backButton.tintColor, for: .normal) // You can change the TitleColor
+        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+
+    @objc func backAction(_ sender: UIButton) {
+       let _ = self.navigationController?.popViewController(animated: true)
     }
     
     func addSwipeGesture() {
@@ -80,9 +90,10 @@ extension MyFriendVC {
     
 }
 
-
 extension MyFriendVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 }
 
 extension MyFriendVC: UITableViewDataSource {
@@ -98,7 +109,7 @@ extension MyFriendVC: UITableViewDataSource {
             
             if let friendList = self.friendList {
                 let rowData = friendList[indexPath.row]
-                friendCell.userName.text = rowData.userName! //rowData.userName!
+                friendCell.userName.text = rowData.userName!
                 let imageName = rowData.userImage!
                 
                 FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
@@ -106,6 +117,7 @@ extension MyFriendVC: UITableViewDataSource {
                         switch result {
                         case .failure(let err):
                             print(err)
+                            friendCell.userImage.image = UIImage(named: "user_male")
                         case .success(let image):
                             friendCell.userImage.image = image
                         }

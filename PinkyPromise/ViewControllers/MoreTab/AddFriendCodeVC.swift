@@ -41,27 +41,24 @@ class AddFriendCodeVC: UIViewController {
     @IBAction func confirmBtnAction(_ sender: Any) {
         
         let text = friendCodeTextField.text!
+        
+        if let textInt = Int(text) {
+            MyApi.shared.addFriendWithCode(code: textInt, completion: { result in
 
-        // FIXME:- api 고치면 주석친걸로 고치기
-        
-        // var resultUser: PromiseUser? = nil
-        var resultUser: String? = nil
-        
-        MyApi.shared.addFriendWithCode(code: Int(text)!, completion: { result in
-            resultUser = result?.userName!
-            if resultUser == nil {
-                self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
-            } else {
-                // let username = resultUser?.userName
-                let username = resultUser
-                // if( resultUser.userId ) {
-                if( resultUser == self.user!.userId ) {
-                    self.simpleAlert(title: "친구추가실패", message: "이 코드는 본인 코드입니다!")
+                if result == nil {
+                    self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
                 } else {
-                    self.simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구성공")
+                    let username = result?.userName
+                    if (result?.userId == FirebaseUserService.currentUserID) {
+                        self.simpleAlert(title: "친구추가실패", message: "이 코드는 본인 코드입니다!")
+                    } else {
+                        self.simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구 성공! \n 이제 약속하러 가볼까요?")
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            self.simpleAlert(title: "친구추가실패", message: "코드는 숫자입니다.")
+        }
     }
     
 }
@@ -190,30 +187,26 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     // Called when the line feed button is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.friendCodeTextField.resignFirstResponder()
-         let text = friendCodeTextField.text!
+        let text = friendCodeTextField.text!
         
-        
-        // FIXME:- api 고치면 주석친걸로 고치기
-        
-        // var resultUser: PromiseUser? = nil
-        var resultUser: String? = nil
-        
-        MyApi.shared.addFriendWithCode(code: Int(text)!, completion: { result in
-            resultUser = result?.userName!
-            if resultUser == nil {
-                self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
-            } else {
-                // let username = resultUser?.userName
-                let username = resultUser
-                // if( resultUser.userId ) {
-                if( resultUser == self.user!.userId ) {
-                    self.simpleAlert(title: "친구추가실패", message: "이 코드는 본인 코드입니다!")
+        if let textInt = Int(text) {
+            MyApi.shared.addFriendWithCode(code: textInt, completion: { result in
+
+                if result == nil {
+                    self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
                 } else {
-                    self.simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구성공")
+                    let username = result?.userName
+                    if (result?.userId == FirebaseUserService.currentUserID) {
+                        self.simpleAlert(title: "친구추가실패", message: "이 코드는 본인 코드입니다!")
+                    } else {
+                        self.simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구 성공! \n 이제 약속하러 가볼까요?")
+                    }
                 }
-            }
-        })
-    
+            })
+        } else {
+            self.simpleAlert(title: "친구추가실패", message: "코드는 숫자입니다.")
+        }
+        
         return true
     }
     
