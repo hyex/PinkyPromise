@@ -148,9 +148,9 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
                 for progress in progressList! {
                     if progress.promiseId == list[indexPath.item].promiseId {
-                        if progress.progressDegree == 4 {
-                            promiseAchievement += 1
-                        }
+//                        if progress.progressDegree == 4 {
+//                            promiseAchievement += 1
+//                        }
                     }
                 }
                     
@@ -200,5 +200,19 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         return cell
     }
+    
+//override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//    if segue.identifier == "detailPromise" {
+//        let promise = sender as? FriendsInfo
+//        if promise != nil{
+//            let FriendTabDetailVC = segue.destination as? FriendTabDetailVC
+//            if FriendTabDetailVC != nil {
+//                FriendTabDetailVC?.detailPromise = promise
+//            }
+//        }
+//    }
+//}
+
 }
         

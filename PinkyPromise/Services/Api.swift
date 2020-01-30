@@ -78,7 +78,7 @@ class MyApi: NSObject {
     }
     
     //UID에 맞는 유저 데이터를 반환해줌
-    func getUserDataWithUID2(id: String, completion: @escaping (PromiseUser) -> Void) {
+    func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
         var result = [PromiseUser]()
         userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
             if let err = err {
@@ -113,10 +113,46 @@ class MyApi: NSObject {
                 debugPrint(err.localizedDescription)
             } else {
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
-                completion(tempResult)
+                self.getPerfectCompletedPromiseData(promises: tempResult, completion: { result in
+                    completion(result)
+                })
             }
         }
+        
     }
+    
+    //끝난 약속 데이터를 인풋으로, 이중에서 프로그레스 배열이 모두 4인 경우만 약속 반환
+    func getPerfectCompletedPromiseData(promises: [PromiseTable], completion: @escaping ([PromiseTable]) -> Void) {
+        var result = [PromiseTable]()
+        
+        var countcheck = 0
+        for douc in promises {
+            progressCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
+                if let err = error {
+                    debugPrint(err.localizedDescription)
+                } else {
+                    let tempResult = ProgressTable.parseData(snapShot: snapShot)
+                    
+                    if tempResult.count > 0 {
+                        let check4 = tempResult[0].progressDegree.contains { $0 < 4 }
+                        
+                        if check4 == false {
+                            result.append(douc)
+                            if promises.count <= countcheck {
+                                completion(result)
+                            }
+                        }
+                    } else {
+                        completion([])
+                    }
+                }
+            }
+        }
+        countcheck += 1
+    }
+    
+    //func getPromiseAndProgress()
+    
     
     //약속 데이터가 업데이트되면 실행되며 업데이트되는 데이터를 받아줌
     func getPromiseUpdate(completion: @escaping ([PromiseTable]) -> Void) {
@@ -150,12 +186,14 @@ class MyApi: NSObject {
     func getProgressDataWithUid(userid: String, completion: @escaping ([ProgressTable]) -> Void ) {
         var result = [ProgressTable]()
         progressCollectionRef.whereField(USERID, isEqualTo: userid).getDocuments { (snapShot, error) in
-        if let err = error {
-        debugPrint("debug print \(err)")
-        } else {
-        result = ProgressTable.parseData(snapShot: snapShot)
-        completion(result)
-        }
+            
+            if let err = error {
+                debugPrint("debug print \(err)")
+            } else {
+                result = ProgressTable.parseData(snapShot: snapShot)
+                completion(result)
+            }
+            
         }
     }
     
@@ -172,87 +210,109 @@ class MyApi: NSObject {
         }
     }
     
-    //프로그레스테이블의 정보를 날짜 기준으로 내림차순으로 반환
-    //아직개발단계
-    //    func getProgressDataDesc(completion: @escaping ([ProgressTable]) -> Void ){
-    //        var result = [ProgressTable]()
-    //        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).getDocuments { (snapShot, error) in
-    //            if let err = error {
-    //                debugPrint("debug print \(err)")
-    //            } else {
-    //                result = ProgressTable.parseData(snapShot: snapShot)
-    //                completion(result)
-    //            }
-    //        }
-    //    }
-    
-    //프로그래스테이블의 데이터가 업데이트될때마다 프로그레스테이블을 날짜별로 소팅시켜서 반환
-    //    func getProgressUpdateData(completion: @escaping ([ProgressTable]) -> Void) {
-    //        var result = [ProgressTable]()
-    //        promiseListner = promiseCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).order(by: PROGRESSDAY, descending: true).addSnapshotListener({ (snapShot, error) in
-    //            if let err = error {
-    //                debugPrint("debut print \(err)")
-    //            } else {
-    //                result = ProgressTable.parseData(snapShot: snapShot)
-    //                completion(result)
-    //            }
-    //        })
-    //    }
-    
-    //선영쿤의 요청한 함수, 유저와 함께 약속중인 친구들 이름과 약속명, firebase가 조인 지원을 안해준다고 해서 잘될지 모르겟음
-    //다 틀렸어...
-    func getPromiseNameAndFriends(completion: @escaping ([tempStruct]) -> Void) {
+    //오늘을 기준으로 10일 이전 약속들을 [PromiseTable]을 하나의 배열 요소로 가지는 배열
+    func getPromiseData10ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
+        let result = Timestamp()
+        let now = Date()
         
-        var tempst: Array<tempStruct> = []
-        
-        self.promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThan: now).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
-                for douc in tempResult {
+                var temp1 = [DayAndPromise]()
+                
+                //10일 전부터 오늘까지
+                for i in stride(from: now.timeIntervalSince1970 - 864000, through: now.timeIntervalSince1970, by: 86400) {
+                    var temp2 = [PromiseTable]()
                     
-                    let tempName = douc.promiseName//약속명
-                    let tempFirend = douc.promiseUsers//친구 uid 배열들
+                    for douc in tempResult {
+                        if (i >= douc.promiseStartTime.timeIntervalSince1970) && (i <= douc.promiseEndTime.timeIntervalSince1970) {
+                            temp2.append(douc)
+                        }
+                    }
                     
-                    let tempFirend2 = tempFirend?.filter{ $0 != FirebaseUserService.currentUserID }
+                    let temp3 = DayAndPromise(Day: i, promiseData: temp2)
                     
-                    var aaaa = tempStruct(promiseName: tempName, friendsUid: tempFirend2)
-                    tempst.append(aaaa)
+                    temp1.append(temp3)
                 }
+                completion(temp1)
             }
-            completion(tempst)
-            
         }
     }
     
-    func getPromiseNameAndFriend2(tempst: [tempStruct], completion: @escaping ([promiseNameAndFriends]) -> Void ) {
+    //오늘을 기준으로 약속이 끝날 때까지의 날짜별 데이터
+    func getPromiseDataSorted(completion: @escaping ([[PromiseTable]]) -> Void ) {
         
-        var tempResult2 = [promiseNameAndFriends]()
+        let result = Timestamp()
+        let now = Date()
+        let tommorow = Date(timeIntervalSince1970: now.timeIntervalSince1970 + 60*60*24)
         
-        for douc in tempst {
-            var tempNm = [String]()
-            for douc2 in douc.friendsUid {
-                DispatchQueue.global().sync {
-                    self.userCollectionRef.whereField(USERID, isEqualTo: douc2).getDocuments { (snapShot, error) in
-                        if let err = error {
-                            debugPrint(err.localizedDescription)
-                        }else {
-                            for douc3 in snapShot!.documents {
-                                let tempFRNM = douc3.data()[USERNAME] as? String ?? ""
-                                tempNm.append(tempFRNM)
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThan: result).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                
+                let MaxTime = tempResult.endIndex
+                let maxTimeDate = tempResult[MaxTime - 1].promiseEndTime
+                
+                var temp1 = [[PromiseTable]]()
+                
+                for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate!.timeIntervalSince1970, by: 60*60*24) {
+                    //i는 하루하루의 타임스탬프
+                    
+                    var temp2 = [PromiseTable]()
+                    
+                    for douc in tempResult {
+                        if (i > douc.promiseStartTime.timeIntervalSince1970) && (i < douc.promiseEndTime.timeIntervalSince1970) {
+                            temp2.append(douc)
+                        }
+                    }
+                    temp1.append(temp2)
+                }
+                
+                completion(temp1)
+            }
+        }
+    }
+    
+    //선영쿤이 요청한 함수 -> friendTab에 들어갈 데이터
+    func getPromiseNameAndFriendsName(completion: @escaping ([promiseNameAndFriendsName]) -> Void) {
+        
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            }else {
+                //먼저
+                let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                var resultData = [promiseNameAndFriendsName]()
+                
+                for douc in tempResult {
+                    
+                    var tempName = [String]()
+                    for douc2 in douc.promiseUsers {
+                        if douc2 != FirebaseUserService.currentUserID {
+                            //친구들 uid
+                            self.getUserNameWithUID(id: douc2) { (result) in
+                                tempName.append(result)
                             }
                         }
+                    }
+                    
+                    if tempName.count > 0 {
+                        //tempName은 친구들 이름들이 저장되어있다.
+                        var tempFriendNameAndPromiseName = promiseNameAndFriendsName(promiseName: douc.promiseName, friendsName: tempName)
                         
+                        resultData.append(tempFriendNameAndPromiseName)
                     }
                 }
+                
+                completion(resultData)
             }
-            let temp3 = promiseNameAndFriends(promiseName: douc.promiseName, friendsName: tempNm)
-            tempResult2.append(temp3)
         }
-        completion(tempResult2)
-        
     }
+    
     
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
@@ -271,7 +331,7 @@ class MyApi: NSObject {
     //약속 데이터를 추가할 때 사용하는 함수
     func addPromiseData(_ promiseTable: PromiseTable) {
         
-        Firestore.firestore().collection(PROMISETABLEREF).addDocument(data: [
+        Firestore.firestore().collection(PROMISETABLEREF).document(promiseTable.promiseId).setData([
             PROMISENAME : promiseTable.promiseName ?? "Anomynous",
             PROMISECOLOR: promiseTable.promiseColor ?? "nil",
             PROMISEICON: promiseTable.promiseIcon ?? "nil",
@@ -293,7 +353,7 @@ class MyApi: NSObject {
     //사용자 데이터를 추가할 때 사용하는 함수
     func addUserData(_ userTable: PromiseUser) {
         
-        Firestore.firestore().collection(PROMISEUSERREF).addDocument(data: [
+        Firestore.firestore().collection(PROMISEUSERREF).document(userTable.userId).setData([
             USERNAME : userTable.userName ?? "Anomynous",
             USERFRIENDS: userTable.userFriends ?? [],
             USERID: userTable.userId ?? "nil",
@@ -306,24 +366,59 @@ class MyApi: NSObject {
                 print("this is API success")
             }
         }
-        
     }
     
-    //프로그레스테이블에 데이터 추가
-    func addProgressData(_ progressTable: ProgressTable) {
-        Firestore.firestore().collection(PROGRESSTABLEREF).addDocument(data: [
-            PROGRESSDAY: progressTable.progressDay ?? Timestamp(),
-            PROGRESSDEGREE: progressTable.progressDegree ?? 0,
-            PROMISEID: progressTable.promiseId ?? "nil",
-            USERID: progressTable.userId ?? "nil"
-        ]) { error in
-            if let err = error {
-                debugPrint("error adding document : \(err)")
-            } else {
-                print("this is API success")
+    //프로그레스테이블에 데이터 추가, addPromiseTable 직후 같은 promiseTable을 넣어준다.
+    func addProgressData(_ promiseTable: PromiseTable) {
+        
+        let indexTime = Int(promiseTable.promiseEndTime.timeIntervalSince1970 - promiseTable.promiseStartTime.timeIntervalSince1970) / 86400
+        let indexPromiseId = promiseTable.promiseId
+        
+        for douc in promiseTable.promiseUsers {//약속에 있는 유저 개수만큼 progressTable을 만든다.
+            let temp1 = [Int](repeating: -1, count: indexTime)
+            
+            Firestore.firestore().collection(PROGRESSTABLEREF).addDocument( data: [
+                PROGRESSDEGREE: temp1,
+                PROMISEID: indexPromiseId ?? "nil",
+                USERID: douc
+            ]) { error in
+                if let err = error {
+                    debugPrint("error adding document : \(err)")
+                } else {
+                    print("this is API success")
+                }
             }
         }
     }
+    
+    func addFriendWithCode(code: Int, completion: @escaping (String?) -> Void) {
+        userCollectionRef.whereField(USERCODE, isEqualTo: code).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            }else {
+                let result = PromiseUser.parseData(snapShot: snapShot)
+                //result는 원소가 1인 배열이거나 혹은 0인 배열
+                
+                if result.count > 0 {
+                    //code를 가지는 사용자가 있다는 의미
+                    
+                    if result[0].userId != FirebaseUserService.currentUserID {
+                        //본인이 아닐 경우 사용자에 친구 추가 누름
+                       var temp = result[0].userFriends
+                        
+                        temp?.append(result[0].userId)
+                        self.userCollectionRef.document(FirebaseUserService.currentUserID).setData([USERFRIENDS: temp], merge: true)
+                    }
+                    completion(result[0].userId)
+                    
+                } else {
+                    //사용자가 없다. 고로 result는 0, 빈 배열
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
     
     //유저를 uid를 이용해서 유저를 삭제하는 함수
     func deleteUserWithUid(Uid: String) {
@@ -340,8 +435,6 @@ class MyApi: NSObject {
             }
         }
         
-        Firestore.firestore().collection(PROMISETABLEREF).document().updateData( [PROMISEUSERS : FieldValue.arrayRemove([])] )
-        //물어봐야함
     }
     
     //약속을 약속 id를 사용해서 삭제하는 함수
@@ -371,8 +464,39 @@ class MyApi: NSObject {
             }
         }
         
-        Firestore.firestore().collection(PROMISETABLEREF).document().updateData( [PROMISEUSERS : FieldValue.arrayRemove([])] )
-        //물어봐야함
+    }
+    
+    func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: Array<Character> =
+            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if length == 0 {
+                    return
+                }
+                
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+        
+        //let index = result.index(result.startIndex, offsetBy: 20)
+        return String(result.prefix(20))
     }
     
     // VC file에 이렇게 사용
@@ -444,3 +568,4 @@ class MyApi: NSObject {
     
     
 }
+

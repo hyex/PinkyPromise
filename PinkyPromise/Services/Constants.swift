@@ -11,7 +11,9 @@ import Foundation
 //약속 컬렉션과 그 필드들
 let PROMISETABLEREF = "PromiseTable"
 
+let ISPROMISEALARM = "isPromiseAlarm"
 let ISPROMISEACHIEVEMENT = "isPromiseAchievement"
+let PROMISEALARMTIME = "promiseAlarmTime"
 let PROMISECOLOR = "promiseColor"
 let PROMISENAME = "promiseName"
 let PROMISESTARTTIME = "promiseStartTime"
@@ -33,6 +35,5 @@ let USERCODE = "userCode"
 let PROGRESSTABLEREF = "progressTable"
 
 let PROGRESSDEGREE = "progressDegree"
-let PROGRESSDAY = "progressDay"
 let PROMISEID = "promiseId"
 //let USERID = "userId" 유저테이블에존재

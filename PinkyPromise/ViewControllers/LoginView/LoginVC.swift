@@ -81,42 +81,7 @@ class LoginVC: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: nil)
         
-        //GIDSignIn.sharedInstance()?.delegate = self
-        
-        //        let tempProgress = ProgressTable(progressDay: Timestamp(seconds: 1577946254, nanoseconds: 157794620), progressDegree: 3, promiseId: "sdff9033", userId: "leehj test")
-        //
-        //        MyApi.shared.addProgressData(tempProgress)
-        //
-        //        MyApi.shared.getProgressData { (result) in
-        //            for document in result {
-        //                print(document.progressDay as Any)
-        //                print(document.progressDegree as Any)
-        //                print(document.userId as Any)
-        //                print(document.promiseId as Any)
-        //
-        //                let days = NSDate(timeIntervalSince1970: TimeInterval(document.progressDay!.seconds))
-        //                print("\(days)")
-        //            }
-        //        }
-        
-        //MyApi.shared.deleteUserWithUid(Uid: "LbyESVddCnhGCTbRphoNU15fXok1")
-        
         print(Auth.auth().currentUser?.email ?? "")
-        
-        //        let Promisedd = PromiseTable(promiseName: "sdfds", isPromiseAlarm: true, promiseStartTime: Date(), promiseEndTime: Date(), promiseColor: "red", promiseIcon: "smile", promiseAlarmTime: Date(), promiseUsers: [], isPromiseAchievement: false, promisePanalty: "qjfclrdms tlfh", promiseId: "Q1is3jCUDajGT6wJB9wZ")
-        
-        //MyApi.shared.addPromiseData(Promisedd)
-        
-        var temp = [Any]()
-        
-        //        MyApi.shared.getProgressData { (temp) in
-        //            for douc in temp {
-        //                print(douc.progressDay)
-        //                print(douc.progressDegree)
-        //                print(douc.promiseId)
-        //                print(douc.userId)
-        //            }
-        //        }
         
         FirebaseStorageService.shared.getPromiseImageWithName(name: "IMG_0001.PNG") { (result) in
             switch result {
@@ -124,66 +89,20 @@ class LoginVC: UIViewController {
             case .success(let firebaseimage): self.tempImage.image = firebaseimage
             }
         }
-        
-//        MyApi.shared.getPromiseDataSinceToday { (result) in
-//            for douc in result {
-//                print(douc.promiseName)
-//            }
-//        }
-//        print("this is test")
-//        print(FirebaseUserService.currentUser.email)
-//        print(FirebaseUserService.currentUserID)
-//        print("this is test end")
-//
-//        var user1 = ""
-//
-//        MyApi.shared.getPromiseData { (temp) in
-//            for douc in temp {
-//                print(douc.promiseName)
-//                print(douc.promiseEndTime)
-//                print(douc.promiseId)
-//                print(douc.promiseUsers)
-//                user1 = douc.promiseId
-//            }
-//            print("test zero")
-//        }
-//
-//        var temp2 = [Any]()
-//        print("second test start")
-//        MyApi.shared.getProgressData(promiseid: user1) { (temp2) in
-//            print("this is \(user1)")
-//            for douc in temp2 {
-//                print(douc.promiseId)
-//                print(douc.userId)
-//                print(douc.progressDay)
-//            }
-//        }
-//
-//        var temp3 = ProgressTable(progressDay: Date(timeIntervalSince1970: 1579629600) + 86400*7, progressDegree: Int.random(in: 0...4), promiseId: "5njGWwMFVuB88dhJNGEC", userId: "cd2dhimtCHdLDzxhTu4mi1Z1Cvr2")
-//
-//        MyApi.shared.addProgressData(temp3)
-        var temp2 = [tempStruct]()
+
         var temp3 = [String]()
         
+        var temp4 = [[PromiseTable]]()
         
-//        MyApi.shared.getPromiseNameAndFriends { (temp2) in
-//
-//            for douc in temp2 {
-//                print(douc.promiseName)
-//                for douc2 in douc.friendsUid {
-//                    print("this is \(douc2)")
-//
-//                    DispatchQueue.global().sync {
-//                        MyApi.shared.getUserNameWithUID(id: douc2) { ( tempString ) in
-//                            temp3.append(tempString)
-//                            print(tempString)
-//                        }
-//                    }
-//
-//                }
-//            }
-//        }
-                
+        MyApi.shared.getPromiseDataSorted { (temp4) in
+            for douc1 in temp4 {
+                print("this is douc1...")
+                for douc2 in douc1 {
+                    print("this is douc2.. +\(douc2.promiseName) + \(douc2.promiseColor)" )
+                }
+            }
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -196,6 +115,7 @@ class LoginVC: UIViewController {
             break
         }
     }
+    
     
 }
 
@@ -234,13 +154,12 @@ extension LoginVC: GIDSignInDelegate {
                     self.navigationController?.isNavigationBarHidden = true
                     UserDefaults.standard.set(true, forKey: "loggedIn")
                     
-                    var temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "nil", userCode: Int.random(in: 100000...999999))
+                    var temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "nil", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                     MyApi.shared.addUserData(temp)
                     
                 } else {
                     print("go login!!")
                     self.navigationController?.isNavigationBarHidden = true
-                    
                 }
             }
         }

@@ -8,17 +8,13 @@
 
 import Foundation
 
-struct tempStruct {
+struct promiseNameAndFriendsUID {
     var promiseName: String!
     var friendsUid: Array<String>!
 }
 
-class promiseNameAndFriends {
+struct promiseNameAndFriendsName {
     var promiseName: String!
     var friendsName: Array<String>!
-    
-    init(promiseName: String, friendsName: Array<String>) {
-        self.promiseName = promiseName
-        self.friendsName = friendsName
-    }
 }
+
