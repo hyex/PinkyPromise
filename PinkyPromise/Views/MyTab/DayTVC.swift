@@ -9,6 +9,8 @@
 import UIKit
 
 class DayTVC: UITableViewCell {
+    
+    var vc:DayChildVC? = nil
 
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var promiseView: UIStackView!
@@ -36,6 +38,7 @@ class DayTVC: UITableViewCell {
             if self.promiseView.arrangedSubviews.count != day.promise.count {
                 for promise in day.promise {
                     let viewToAdd = OnePromiseView(frame: CGRect.zero, promise: promise)
+                    viewToAdd.vc = self.vc
                     self.promiseView.addArrangedSubview(viewToAdd)
                 }
             }

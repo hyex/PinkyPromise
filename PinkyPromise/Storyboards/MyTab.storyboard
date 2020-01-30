@@ -137,11 +137,22 @@
                     </view>
                     <connections>
                         <outlet property="dayTableView" destination="XIc-NK-Ugw" id="Zou-ZQ-PNu"/>
+                        <segue destination="ufB-NV-DCf" kind="show" identifier="promiseDetail" id="TPX-JL-d6I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zep-An-3as" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-695" y="865"/>
+        </scene>
+        <!--PromiseDetailVC-->
+        <scene sceneID="xaD-yy-MVu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DetailPromise" referencedIdentifier="PromiseDetailVC" id="ufB-NV-DCf" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="CyP-zm-vkb"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTN-it-WGO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-73" y="1042"/>
         </scene>
         <!--Promise ChildVC-->
         <scene sceneID="hGw-I9-EdB">
