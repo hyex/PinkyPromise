@@ -35,7 +35,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var detailPromise : FriendsInfo? = nil {
         didSet {
-            print(self.detailPromise)
+            print(self.detailPromise!)
         }
     }
     
@@ -51,7 +51,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(self.detailPromise)
+        print(self.detailPromise!)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

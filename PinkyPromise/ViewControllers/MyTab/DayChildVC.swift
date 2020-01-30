@@ -99,6 +99,18 @@ extension DayChildVC: UITableViewDataSource {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailpromise"{
+            let detailpromise = sender as? Promise
+            if detailpromise != nil{
+                let PromiseDetailVC = segue.destination as? PromiseDetailVC
+                if PromiseDetailVC != nil {
+                    PromiseDetailVC?.detailPromiseInfo = detailpromise
+                }
+            }
+        }
+    }
+    
 }
 
 extension DayChildVC: UITableViewDelegate {
@@ -108,5 +120,11 @@ extension DayChildVC: UITableViewDelegate {
         return height
         
     }
+    
+    //*****선영 추가 부분*****
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detailpromise", sender : Promise(promiseName: "yellow", promiseColor: "yellow"))
+    }
 }
 
+  

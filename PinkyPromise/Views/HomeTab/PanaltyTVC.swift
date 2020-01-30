@@ -1,16 +1,16 @@
 //
-//  FriendCellTVC.swift
+//  PanaltyTVC.swift
 //  PinkyPromise
 //
-//  Created by linc on 2020/01/29.
+//  Created by linc on 2020/01/30.
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
 import UIKit
 
-class FriendCellTVC: UITableViewCell {
+class PanaltyTVC: UITableViewCell {
 
-    
+    @IBOutlet weak var addBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,4 +22,10 @@ class FriendCellTVC: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
+    
+    @IBAction func addBtnAction(_ sender: Any) {
+        
+    }
+    
 }

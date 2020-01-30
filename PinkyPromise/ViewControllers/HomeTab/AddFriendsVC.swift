@@ -31,25 +31,15 @@ class AddFriendsVC: UIViewController {
     
     var myFriends: [Int : [String]]!
     
-    // MARK: - 임시 친구약속 데이터
-    
-    let friendsInPromise : [FriendsInfo] = [
-        FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
-        FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
-        FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "2시 전 취침 10시 전 기상"),
-        FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "One day One commit"),
-        FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
-        FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
-        FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "2시 전 취침 10시 전 기상"),
-        FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "One day One commit")
-    ]
-    
+    var myFriendsImg: [UIImage]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         
+
     }
     
     // MARK: - Navigation
@@ -87,9 +77,9 @@ extension AddFriendsVC: UITableViewDataSource {
         
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
-        
-        myFriends.forEach { (friend) in
-            FirebaseStorageService.shared.getUserImageWithName(name: friend.value[1]) { (result) in
+    
+        DispatchQueue.global().sync {
+            FirebaseStorageService.shared.getUserImageWithName(name: (friend?[1])!) { (result) in
                 switch result {
                 case .failure(let err):
                     print(err)
