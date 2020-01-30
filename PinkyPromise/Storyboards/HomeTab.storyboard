@@ -690,7 +690,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69l-2R-crd">
-                                <rect key="frame" x="0.0" y="506" width="375" height="272"/>
+                                <rect key="frame" x="0.0" y="458" width="375" height="320"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 약속 아이콘은 .." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CS4-fC-iEL">
                                         <rect key="frame" x="117.33333333333333" y="10" width="140.33333333333337" height="33"/>
@@ -710,7 +710,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yip-1E-6St">
-                                        <rect key="frame" x="40" y="66" width="295" height="140"/>
+                                        <rect key="frame" x="40" y="66" width="295" height="227"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="qNV-kc-dUv">
                                             <size key="itemSize" width="55" height="55"/>
@@ -739,11 +739,11 @@
                                     <constraint firstItem="yip-1E-6St" firstAttribute="top" secondItem="CS4-fC-iEL" secondAttribute="bottom" constant="23" id="XOZ-cv-F7i"/>
                                     <constraint firstItem="ETR-6z-0z1" firstAttribute="top" secondItem="69l-2R-crd" secondAttribute="top" constant="10" id="drI-SU-svO"/>
                                     <constraint firstAttribute="width" constant="375" id="efi-rD-iv1"/>
-                                    <constraint firstAttribute="height" constant="272" id="g0a-7G-bhc"/>
+                                    <constraint firstAttribute="height" constant="320" id="g0a-7G-bhc"/>
                                     <constraint firstAttribute="trailing" secondItem="ETR-6z-0z1" secondAttribute="trailing" constant="16" id="gxt-LH-oEa"/>
                                     <constraint firstItem="yip-1E-6St" firstAttribute="leading" secondItem="69l-2R-crd" secondAttribute="leading" constant="40" id="jE5-Mk-DdM"/>
                                     <constraint firstItem="CS4-fC-iEL" firstAttribute="centerY" secondItem="ETR-6z-0z1" secondAttribute="centerY" id="lHa-Fc-1Zc"/>
-                                    <constraint firstItem="yip-1E-6St" firstAttribute="centerY" secondItem="69l-2R-crd" secondAttribute="centerY" id="yE2-1a-o9G"/>
+                                    <constraint firstAttribute="bottom" secondItem="yip-1E-6St" secondAttribute="bottom" constant="27" id="lKo-bQ-kKg"/>
                                     <constraint firstItem="CS4-fC-iEL" firstAttribute="centerX" secondItem="69l-2R-crd" secondAttribute="centerX" id="zxu-se-qKz"/>
                                 </constraints>
                             </view>
@@ -775,7 +775,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1S-rJ-5vd">
-                                <rect key="frame" x="0.0" y="506" width="375" height="272"/>
+                                <rect key="frame" x="0.0" y="458" width="375" height="320"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 약속 색깔은 .." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2m-5h-SbB">
                                         <rect key="frame" x="124.66666666666669" y="10" width="126" height="33"/>
@@ -794,7 +794,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wS7-EM-yQg">
-                                        <rect key="frame" x="40" y="66" width="295" height="140"/>
+                                        <rect key="frame" x="40" y="68" width="295" height="225"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="DCO-Wk-ZMC">
                                             <size key="itemSize" width="55" height="55"/>
@@ -821,11 +821,11 @@
                                     <constraint firstItem="D2m-5h-SbB" firstAttribute="top" secondItem="O1S-rJ-5vd" secondAttribute="top" constant="10" id="MtP-mP-ET6"/>
                                     <constraint firstItem="wS7-EM-yQg" firstAttribute="leading" secondItem="O1S-rJ-5vd" secondAttribute="leading" constant="40" id="Nyw-jc-KiT"/>
                                     <constraint firstAttribute="trailing" secondItem="wS7-EM-yQg" secondAttribute="trailing" constant="40" id="PmI-kH-bY5"/>
-                                    <constraint firstItem="wS7-EM-yQg" firstAttribute="centerY" secondItem="O1S-rJ-5vd" secondAttribute="centerY" id="Vm1-Of-2Hr"/>
-                                    <constraint firstItem="wS7-EM-yQg" firstAttribute="top" secondItem="D2m-5h-SbB" secondAttribute="bottom" constant="23" id="ayP-Ur-GFd"/>
+                                    <constraint firstAttribute="bottom" secondItem="wS7-EM-yQg" secondAttribute="bottom" constant="27" id="RAO-nk-f2Y"/>
+                                    <constraint firstItem="wS7-EM-yQg" firstAttribute="top" secondItem="D2m-5h-SbB" secondAttribute="bottom" constant="25" id="ayP-Ur-GFd"/>
                                     <constraint firstAttribute="trailing" secondItem="URo-zm-P9t" secondAttribute="trailing" constant="16" id="gLT-Sg-xlf"/>
                                     <constraint firstItem="D2m-5h-SbB" firstAttribute="centerY" secondItem="URo-zm-P9t" secondAttribute="centerY" id="ldK-cf-ftF"/>
-                                    <constraint firstAttribute="height" constant="272" id="o3T-Wf-fSC"/>
+                                    <constraint firstAttribute="height" constant="320" id="o3T-Wf-fSC"/>
                                     <constraint firstItem="wS7-EM-yQg" firstAttribute="centerX" secondItem="O1S-rJ-5vd" secondAttribute="centerX" id="pXS-Wo-j0B"/>
                                     <constraint firstItem="D2m-5h-SbB" firstAttribute="centerX" secondItem="O1S-rJ-5vd" secondAttribute="centerX" id="veB-x7-F6E"/>
                                     <constraint firstItem="URo-zm-P9t" firstAttribute="top" secondItem="O1S-rJ-5vd" secondAttribute="top" constant="10" id="zb0-5R-CsN"/>
@@ -849,7 +849,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="68a-i8-lS7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4804" y="-293"/>
+            <point key="canvasLocation" x="4804" y="-293.3497536945813"/>
         </scene>
         <!--Home Navigation Controller-->
         <scene sceneID="9y8-7z-wY5">
