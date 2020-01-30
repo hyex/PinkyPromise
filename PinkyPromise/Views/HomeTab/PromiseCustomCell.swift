@@ -16,7 +16,11 @@ class PromiseCustomCell: UITableViewCell {
         return button
     }()
 
-    @IBOutlet weak var iconButton: UIButton!
+    @IBOutlet weak var iconButton: UIButton! {
+        didSet {
+            iconButton.tintColor = colorButton.tintColor ?? UIColor.systemPurple
+        }
+    }
         
     override func awakeFromNib() {
         super.awakeFromNib()

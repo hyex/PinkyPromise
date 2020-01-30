@@ -27,6 +27,8 @@ class AddPromiseVC: UIViewController {
     private var selectedIcon: Int! = 0
     private var selectedFriends: [Int]!
     private var myFriends: [Int : [String]]! = [ : ]
+    private var panaltyName: String!
+//    private var myFriendsImg: [UIImage]! = []
     
     let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
     let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
@@ -61,7 +63,9 @@ class AddPromiseVC: UIViewController {
                     i += 0
                 }
             }
+
         }
+        
     }
     
     
@@ -84,11 +88,13 @@ class AddPromiseVC: UIViewController {
         let dataIcon = icons[selectedIcon]
         let dataUsers: Array<String>? = []
         let dataPromiseAchievement = false
-        let promisePanalty = ""
+        let promisePanalty = self.panaltyName ?? "벌칙없음"
         
         let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: dataPromiseAchievement, promisePanalty: promisePanalty, promiseId: "")
         
         MyApi.shared.addPromiseData(newPromise)
+//        MyApi.shared.addProgressData(newPromise)
+        
         self.dismiss(animated: false, completion: nil)
     }
 }
@@ -115,7 +121,7 @@ extension AddPromiseVC {
 extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7;
+        return 6;
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -149,7 +155,7 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
             
             return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! PromiseInputTVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: "panaltyCell") as! PanaltyTVC
             return cell
         }
         // Configure the cells..
@@ -162,24 +168,19 @@ extension AddPromiseVC {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if !isStartCalSelected && indexPath.row == 3 {
-            return 0.01
-        }
-        else{
-            return UITableView.automaticDimension
-        }
+        return indexPath.row != 3 ? 75 : 240
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if indexPath.row == 2 {
-            isStartCalSelected = isStartCalSelected ? false : true
-            self.promiseTableView.beginUpdates()
-            self.promiseTableView.endUpdates()
+        if indexPath.row == 4 {
+            self.performSegue(withIdentifier: "withFriendVC", sender: nil)
         }
-        
+        else if indexPath.row == 5 {
+            self.performSegue(withIdentifier: "PanaltyVC", sender: nil)
+        }
     }
 }
 
@@ -310,6 +311,12 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
             vc.myFriends = self.myFriends
+//            vc.myFriendsImg = self.myFriendsImg
+        }
+        else if segue.identifier == "PanaltyVC" {
+            let vc = segue.destination as! AddPanaltyVC
+            vc.delegate = self
+            vc.panaltyName?.text = self.panaltyName ?? ""
         }
     }
 }
@@ -328,3 +335,10 @@ extension AddPromiseVC: SendSelectedFriendsDelegate {
         selectedFriends = data
     }
 }
+
+extension AddPromiseVC: SendPanaltyNameDelegate {
+    func sendPanaltyName(data: String) {
+        self.panaltyName = data
+    }
+}
+
