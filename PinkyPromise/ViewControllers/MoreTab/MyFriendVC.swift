@@ -12,18 +12,31 @@ class MyFriendVC: UIViewController {
     
     @IBOutlet weak var myFriendTableView: UITableView!
     
-    var friendList: [PromiseUser] = []
+    var friendList: [PromiseUser]? {
+        didSet { myFriendTableView.reloadData() }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        getFriendData()
+        setUpTableView()
+        initView()
+    }
+    
+    private func setUpTableView() {
         myFriendTableView.delegate = self
         myFriendTableView.dataSource = self
-        initView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func getFriendData() {
+        MyApi.shared.getUsersFriendsData(completion: { result in
+            self.friendList = result
+        })
     }
 
 }
@@ -74,18 +87,33 @@ extension MyFriendVC: UITableViewDelegate {
 
 extension MyFriendVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.friendList.count
+        guard let friendList = self.friendList else { return 0 }
+        return friendList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         var cell = UITableViewCell()
         if let friendCell = tableView.dequeueReusableCell(withIdentifier: "MyFriendTVC", for: indexPath) as? MyFriendTVC {
-
-            let rowData = self.friendList[indexPath.row]
-            friendCell.userName.text = rowData.userName!
-            // FIXME: 이미지 삽입
-//            friendCell.userImage =
-            cell = friendCell
+            
+            if let friendList = self.friendList {
+                let rowData = friendList[indexPath.row]
+                friendCell.userName.text = rowData.userName! //rowData.userName!
+                let imageName = rowData.userImage!
+                
+                FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .failure(let err):
+                            print(err)
+                        case .success(let image):
+                            friendCell.userImage.image = image
+                        }
+                    }
+                })
+         
+                cell = friendCell
+            }
         }
         
         return cell
