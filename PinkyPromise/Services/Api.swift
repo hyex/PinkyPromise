@@ -407,8 +407,6 @@ class MyApi: NSObject {
                 let result = PromiseUser.parseData(snapShot: snapShot)
                 //result는 원소가 1인 배열이거나 혹은 0인 배열
                 
-                var temp: PromiseUser
-                
                 if result.count > 0 {
                     //code를 가지는 사용자가 있다는 의미
                     
