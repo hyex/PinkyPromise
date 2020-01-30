@@ -29,6 +29,8 @@ class PromiseDetailVC: UIViewController {
         Friend(profileImg: "seonyoung", name: "sunnyangee"),
     ]
     
+    var detailPromiseInfo : Promise? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         promiseFriendTableView.delegate = self
