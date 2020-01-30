@@ -5,6 +5,7 @@
 //  Created by apple on 2020/01/22.
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
+
 import UIKit
 import Foundation
 import FirebaseFirestore
@@ -42,17 +43,17 @@ class FirebaseStorageService: NSObject {
     }
     
     //유저이미지를 업로드할때 사용하는 함수 image는 UIImage가 아니라 jpegData. 밑에 사용예시 추가함
-    func storeUserImage(image: Data, imageName: String, completion: @escaping (Result<String, Error>) -> () ) {
+    func storeUserImage(image: Data, completion: @escaping (Result<String, Error>) -> () ) {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         //let uuid = UUID()
         //let imageLocation = userFolderRef.child(uuid.description)
-        let imageLocation = userFolderRef.child(imageName)
+        let imageLocation = userFolderRef.child(FirebaseUserService.currentUserID)
         imageLocation.putData(image, metadata: metadata) { (responseMetadata, error) in
             if let err = error {
                 completion(.failure(err))
             } else {
-                Firestore.firestore().collection(PROMISEUSERREF).document(FirebaseUserService.currentUserID).setData([USERIMAGE : imageName], merge: true)
+                Firestore.firestore().collection(PROMISEUSERREF).document(FirebaseUserService.currentUserID).setData([USERIMAGE : FirebaseUserService.currentUserID], merge: true)
                 imageLocation.downloadURL { (url, error) in
                     guard error == nil else {
                         completion(.failure(error!))

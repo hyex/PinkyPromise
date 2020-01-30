@@ -48,7 +48,7 @@ class AddFriendCodeVC: UIViewController {
         var resultUser: String? = nil
         
         MyApi.shared.addFriendWithCode(code: Int(text)!, completion: { result in
-            resultUser = result!
+            resultUser = result?.userName!
             if resultUser == nil {
                 self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
             } else {
@@ -199,7 +199,7 @@ extension AddFriendCodeVC: UITextFieldDelegate {
         var resultUser: String? = nil
         
         MyApi.shared.addFriendWithCode(code: Int(text)!, completion: { result in
-            resultUser = result!
+            resultUser = result?.userName!
             if resultUser == nil {
                 self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
             } else {

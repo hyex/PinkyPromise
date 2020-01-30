@@ -62,29 +62,28 @@ class MainTabBarController: UITabBarController {
         //        }
         
         
-                MyApi.shared.getCompletedPromiseData { (result) in
-                    print(result)
-                }
+//                MyApi.shared.getCompletedPromiseData { (result) in
+//                    print(result)
+//                }
         
-//        let image = UIImage(named: "hyunjae")
-//
-//        guard let imageData = image?.jpegData(compressionQuality: 1) else {
-//            print("no")
-//            return
-//        }
-//
-//        FirebaseStorageService.shared.storeUserImage(image: imageData, imageName: "hyunjae") { (result) in
-//            switch result {
-//            case .success(let url):
-////                self?.imageURL = url
-//                print("check 3")
-//                print(url)
-//            case .failure(let error):
-//                print("this is error")
-//                print(error)
-//            }
-//        }
-//
+        let image = UIImage(named: "hyunjae")
+
+        guard let imageData = image?.jpegData(compressionQuality: 1) else {
+            print("no")
+            return
+        }
+
+        FirebaseStorageService.shared.storeUserImage(image: imageData) { (result) in
+            switch result {
+            case .success(let url):
+                print("check 3")
+                print(url)
+            case .failure(let error):
+                print("this is error")
+                print(error)
+            }
+        }
+
         //firebase storage storeimage 사용예시
         //    guard let imageData = self.image?.jpegData(compressionQuality: 1) else {
         //        makeAlert(with: "error", and: "could not compress image")

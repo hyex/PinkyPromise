@@ -164,7 +164,7 @@ extension MyPageVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             }
         
             // 여기서 뭐 엄청 뜸
-            FirebaseStorageService.shared.storeUserImage(image: imageData, imageName: name, completion: { result in
+            FirebaseStorageService.shared.storeUserImage(image: imageData, completion: { result in
                 switch result {
                 case .failure(let err):
                     print(err)
