@@ -19,6 +19,8 @@ class AddFriendCodeVC: UIViewController {
     @IBOutlet weak var confirmBtn: UIButton!
     @IBOutlet weak var inputCodeView: UIView!
     
+    var user: PromiseUser? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForKeyboardNotifications()
@@ -127,6 +129,7 @@ extension AddFriendCodeVC {
         MyApi.shared.getUserData(completion: { result in
             DispatchQueue.main.async {
                 self.myCode.text = String(result[0].userCode)
+                self.user = result[0]
             }
         })
         
@@ -183,17 +186,28 @@ extension AddFriendCodeVC: UITextFieldDelegate {
         self.friendCodeTextField.resignFirstResponder()
          let text = friendCodeTextField.text!
         
-        // MARK: - need to add
-        // 서버로 보내서 이런 코드를 가진 유저가 있는지 검사
         
-        let result: PromiseUser? = PromiseUser(userName: "김혜지", userFriends:[], userId: "1", userImage: "1", userCode: 1, documentId: "0")
-
-        if result == nil {
-            simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
-        } else {
-            let username = result?.userName
-            simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구성공")
-        }
+        // FIXME:- api 고치면 주석친걸로 고치기
+        
+        // var resultUser: PromiseUser? = nil
+        var resultUser: String? = nil
+        
+        MyApi.shared.addFriendWithCode(code: Int(text)!, completion: { result in
+            resultUser = result!
+            if resultUser == nil {
+                self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
+            } else {
+                // let username = resultUser?.userName
+                let username = resultUser
+                // if( resultUser.userId ) {
+                if( resultUser == self.user!.userId ) {
+                    self.simpleAlert(title: "친구추가실패", message: "이 코드는 본인 코드입니다!")
+                } else {
+                    self.simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구성공")
+                }
+            }
+        })
+    
         return true
     }
     
