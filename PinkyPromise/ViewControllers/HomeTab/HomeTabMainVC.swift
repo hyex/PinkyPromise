@@ -67,7 +67,7 @@ class HomeTabMainVC: UIViewController {
         
         // initialize UI
         let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         self.view = view
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 33))
@@ -105,8 +105,8 @@ class HomeTabMainVC: UIViewController {
         let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
         calendar.addGestureRecognizer(scopeGesture)
         
-        
-        let label = UILabel(frame: CGRect(x: 0, y: calendar.frame.maxY, width: self.view.frame.size.width, height: 50))
+        let yAxis = calendar.frame.maxY - CGFloat(20)
+        let label = UILabel(frame: CGRect(x: 0, y: yAxis, width: self.view.frame.size.width, height: 50))
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
@@ -117,7 +117,7 @@ class HomeTabMainVC: UIViewController {
         attributedText.append(NSAttributedString(string: "Today"))
         self.eventLabel.attributedText = attributedText
         
-        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY + 10, width: self.view.frame.size.width, height: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - self.eventLabel.frame.maxY))
+        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY - CGFloat(5), width: self.view.frame.size.width, height: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - self.eventLabel.frame.maxY))
         
         view.addSubview(myTableView)
         

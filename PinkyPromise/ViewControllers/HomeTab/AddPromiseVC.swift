@@ -26,8 +26,8 @@ class AddPromiseVC: UIViewController {
     
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
     
-    private var isStartCalSelected: Bool!
-    private var isEndCalSelected: Bool!
+//    private var isStartCalSelected: Bool!
+//    private var isEndCalSelected: Bool!
     private var selectedColor: Int! = 0
     private var selectedIcon: Int! = 0
 //    private var selectedFriends: [Int]!
@@ -39,8 +39,8 @@ class AddPromiseVC: UIViewController {
     private var panaltyName: String!
 //    private var myFriendsImg: [UIImage]! = []
     
-    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
-    let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
+    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
+    let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep", "star", "book", "drugs", "english" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +57,9 @@ class AddPromiseVC: UIViewController {
         promiseTableView.delegate = self
         promiseTableView.dataSource = self
         
-        // logic
-        isStartCalSelected = true
-        isEndCalSelected = true
+//        // logic
+//        isStartCalSelected = true
+//        isEndCalSelected = true
         
         //data setting
         DispatchQueue.global().async {
@@ -69,7 +69,6 @@ class AddPromiseVC: UIViewController {
                     MyApi.shared.getUserDataWithUID(id: friendId, completion: { (friend) in
                         let temp = FriendData(tag: i, name: friend.userName, image: friend.userImage, isChecked: nil)
                         self.myFriends.append(temp)
-                        print(self.myFriends)
                     })
                     i += 0
                 }
@@ -101,7 +100,7 @@ class AddPromiseVC: UIViewController {
         let promisePanalty = self.panaltyName ?? "벌칙없음"
         
         let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: dataPromiseAchievement, promisePanalty: promisePanalty, promiseId: "")
-        
+        print(newPromise)
         MyApi.shared.addPromiseData(newPromise)
 //        MyApi.shared.addProgressData(newPromise)
         

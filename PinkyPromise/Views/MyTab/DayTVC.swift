@@ -17,7 +17,10 @@ class DayTVC: UITableViewCell {
     
 //    fileprivate let promiseHeight: CGFloat = 30
     
-    func setPromise(day: Day){
+//    func setPromise(day: DayAndPromise){
+    func setPromise(day: Day) {
+//        Day(day: <#T##Int#>, promise: <#T##[Promise]#>)
+//        DayAndPromise(Day: <#T##Double?#>, promiseData: <#T##[PromiseTable]?#>)
         
         let date = Date(timeIntervalSinceNow: TimeInterval(day.day*86400))
         let dateFormatter = DateFormatter()

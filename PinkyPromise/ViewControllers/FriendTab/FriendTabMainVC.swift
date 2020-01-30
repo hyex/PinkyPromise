@@ -38,6 +38,8 @@ class FriendTabMainVC: UIViewController {
         getAllPromiseData()
         setPlusBtn()
         
+        promiseCtnLabel.text = String(friendsInPromise.count)
+        
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
         friendMainTableView.tableFooterView = UIView()

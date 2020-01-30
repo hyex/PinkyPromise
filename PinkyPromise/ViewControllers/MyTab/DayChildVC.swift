@@ -47,9 +47,15 @@ class DayChildVC: UIViewController {
         didSet { dayTableView.reloadData() }
     }
     
+    var dayList: [DayAndPromise]? {
+        didSet { dayTableView.reloadData()
+//            print(dayList!)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getMyPageData()
 //        initView()
         setUpTableView()
     }
@@ -62,10 +68,9 @@ class DayChildVC: UIViewController {
     // 통신
     // Day 별 
     private func getMyPageData() {
-        MyApi.shared.getPromiseData(completion:  {result in
+        MyApi.shared.getPromiseData10ToNow(completion: { result in
             DispatchQueue.main.async {
-                self.promiseList = result
-                
+                self.dayList = result
             }
         })
     }
@@ -82,13 +87,21 @@ class DayChildVC: UIViewController {
 extension DayChildVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.days.count
+//        guard let dayList = dayList else { return 0 }
+//        return dayList.count
+        return days.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = dayTableView.dequeueReusableCell(withIdentifier: "DayTVC", for: indexPath) as! DayTVC
         cell.vc = self
+        
+//        if let list = self.dayList {
+//            let rowData = list[indexPath.row]
+//            cell.setPromise(day: rowData)
+//        }
+        
 //        if let list = self.promiseList {
 //            let rowData = list[indexPath.row]
 //        }
@@ -115,8 +128,9 @@ extension DayChildVC: UITableViewDataSource {
 
 extension DayChildVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        guard let dayList = dayList else { return 0 }
+//        let height:CGFloat = CGFloat(dayList[indexPath.row].promiseData.count * 40 + 10)
         let height:CGFloat = CGFloat(self.days[indexPath.row].promise.count * 40 + 10)
-//        let height:CGFloat = CGFloat(?????.promise.count * 40 + 10)
         return height
         
     }

@@ -55,12 +55,23 @@
                                                     <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPZ-zB-21L">
+                                                    <rect key="frame" x="382" y="11" width="16" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="NA3-gf-EWT"/>
+                                                        <constraint firstAttribute="width" constant="16" id="ph9-YD-BTE"/>
+                                                    </constraints>
+                                                    <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Button" image="chevron.right" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="BxZ-b7-hbM" firstAttribute="leading" secondItem="igV-0I-Mqm" secondAttribute="leading" constant="16" id="3ET-cq-2nK"/>
                                                 <constraint firstItem="e1l-YV-FX5" firstAttribute="leading" secondItem="UuJ-lE-Www" secondAttribute="trailing" constant="16" id="DDn-9e-QKk"/>
                                                 <constraint firstItem="UuJ-lE-Www" firstAttribute="leading" secondItem="BxZ-b7-hbM" secondAttribute="trailing" constant="16" id="OS3-cM-bni"/>
                                                 <constraint firstItem="BxZ-b7-hbM" firstAttribute="centerY" secondItem="UuJ-lE-Www" secondAttribute="centerY" id="T11-aD-Dyp"/>
+                                                <constraint firstItem="e1l-YV-FX5" firstAttribute="centerY" secondItem="pPZ-zB-21L" secondAttribute="centerY" id="cdn-sg-rzL"/>
+                                                <constraint firstAttribute="trailing" secondItem="pPZ-zB-21L" secondAttribute="trailing" constant="16" id="ceY-Lr-KaE"/>
                                                 <constraint firstItem="UuJ-lE-Www" firstAttribute="centerY" secondItem="e1l-YV-FX5" secondAttribute="centerY" id="nDO-ab-pM4"/>
                                                 <constraint firstItem="BxZ-b7-hbM" firstAttribute="centerY" secondItem="igV-0I-Mqm" secondAttribute="centerY" id="yPE-Yj-fhT"/>
                                             </constraints>
@@ -98,6 +109,15 @@
                                                     <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAx-J7-4ZN">
+                                                    <rect key="frame" x="382" y="11" width="16" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="9gr-NO-Xjk"/>
+                                                        <constraint firstAttribute="width" constant="16" id="c9d-q5-Q2U"/>
+                                                    </constraints>
+                                                    <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Button" image="chevron.right" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="C2K-7y-BfN" firstAttribute="centerY" secondItem="NCY-77-H8J" secondAttribute="centerY" id="137-Kf-IAt"/>
@@ -105,7 +125,9 @@
                                                 <constraint firstItem="lg3-xp-k8P" firstAttribute="centerY" secondItem="38f-K1-V8r" secondAttribute="centerY" id="8oR-gW-2od"/>
                                                 <constraint firstItem="C2K-7y-BfN" firstAttribute="leading" secondItem="NCY-77-H8J" secondAttribute="leading" constant="16" id="ItC-3O-Cfe"/>
                                                 <constraint firstItem="C2K-7y-BfN" firstAttribute="centerY" secondItem="lg3-xp-k8P" secondAttribute="centerY" id="LNT-gn-Fe9"/>
+                                                <constraint firstItem="38f-K1-V8r" firstAttribute="centerY" secondItem="JAx-J7-4ZN" secondAttribute="centerY" id="RfP-K1-MqP"/>
                                                 <constraint firstItem="38f-K1-V8r" firstAttribute="leading" secondItem="lg3-xp-k8P" secondAttribute="trailing" constant="16" id="SXq-ZT-zfm"/>
+                                                <constraint firstAttribute="trailing" secondItem="JAx-J7-4ZN" secondAttribute="trailing" constant="16" id="yA5-ro-wzn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -157,10 +179,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="color" destination="WVq-J9-s7d" id="gyP-uI-ciQ"/>
-                                            <outlet property="colorImg" destination="GPy-co-yhP" id="xYI-ow-7xI"/>
-                                            <outlet property="colorLable" destination="WVq-J9-s7d" id="ldH-SO-dcJ"/>
-                                            <outlet property="editColorBtn" destination="rxB-ab-LJl" id="Kff-e7-E4l"/>
+                                            <outlet property="color" destination="WVq-J9-s7d" id="9Lm-BU-lK8"/>
+                                            <outlet property="colorImg" destination="GPy-co-yhP" id="pmV-k0-T9P"/>
+                                            <outlet property="editColorBtn" destination="rxB-ab-LJl" id="Rj0-cN-Lce"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IconVC" id="Kc0-kD-ecz" customClass="IconVC" customModule="PinkyPromise" customModuleProvider="target">
@@ -207,7 +228,6 @@
                                             <outlet property="editIconBtn" destination="93G-M2-Qx5" id="Sg0-sM-O47"/>
                                             <outlet property="icon" destination="8vb-BW-2YD" id="A5p-1b-xQY"/>
                                             <outlet property="iconImg" destination="U47-Pg-wZs" id="WjG-Dv-6hJ"/>
-                                            <outlet property="iconLabel" destination="8vb-BW-2YD" id="9LG-Em-zV0"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlarmVC" id="qbQ-ch-lH1" customClass="AlarmVC" customModule="PinkyPromise" customModuleProvider="target">
@@ -246,9 +266,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="alarm" destination="Isg-Zn-pJL" id="VCw-Wf-g73"/>
-                                            <outlet property="alarmImb" destination="lgH-hT-VQS" id="0fr-Pl-Qzj"/>
                                             <outlet property="alarmImg" destination="lgH-hT-VQS" id="cN8-Wu-FFH"/>
-                                            <outlet property="alarmLabel" destination="Isg-Zn-pJL" id="cd1-Y3-ZZH"/>
                                             <outlet property="alarmSwitch" destination="ETw-wV-Idx" id="x0O-oR-85v"/>
                                         </connections>
                                     </tableViewCell>
