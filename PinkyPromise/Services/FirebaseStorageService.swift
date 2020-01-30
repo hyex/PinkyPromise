@@ -7,6 +7,7 @@
 //
 import UIKit
 import Foundation
+import FirebaseFirestore
 import FirebaseStorage
 
 class FirebaseStorageService: NSObject {
@@ -51,6 +52,7 @@ class FirebaseStorageService: NSObject {
             if let err = error {
                 completion(.failure(err))
             } else {
+                Firestore.firestore().collection(PROMISEUSERREF).document(FirebaseUserService.currentUserID).setData([USERIMAGE : imageName], merge: true)
                 imageLocation.downloadURL { (url, error) in
                     guard error == nil else {
                         completion(.failure(error!))
