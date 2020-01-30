@@ -69,6 +69,15 @@ class MainTabBarController: UITabBarController {
 //            }
 //        }
         
+        FirebaseStorageService.shared.getUserImageURLWithName(name: "heji.jpeg") { (result) in
+            switch result {
+                    case .success(let url):
+                        print("\(url)")
+                    case .failure(let error):
+                        print("this is error")
+                        
+                    }
+        }
 //        MyApi.shared.getUsersFriendsData { (result) in
 //            for douc in result {
 //                print(douc.userId)

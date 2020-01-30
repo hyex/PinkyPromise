@@ -80,6 +80,21 @@ class FirebaseStorageService: NSObject {
         }
     }
     
+    //약속 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
+    func getPromiseImageURLWithName(name: String, completion: @escaping (Result<String, Error>) -> ()) {
+        promiseFolderRef.storage.reference().child("promiseImage/\(name)").downloadURL { (url, error) in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            guard let url = url?.absoluteString else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(url))
+        }
+    }
+    
 //    imageLocation.downloadURL { (url, error) in
 //        guard error == nil else {
 //            completion(.failure(error!))
@@ -102,6 +117,21 @@ class FirebaseStorageService: NSObject {
             } else if let data = data, let image = UIImage(data: data){
                 completion(.success(image))
             }
+        }
+    }
+    
+    //유저 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
+    func getUserImageURLWithName(name: String, completion: @escaping (Result<String, Error>) -> ()) {
+        promiseFolderRef.storage.reference().child("userImage/\(name)").downloadURL { (url, error) in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            guard let url = url?.absoluteString else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(url))
         }
     }
     

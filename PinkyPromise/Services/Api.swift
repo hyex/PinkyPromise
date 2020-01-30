@@ -352,6 +352,9 @@ class MyApi: NSObject {
                 
                 let promiseDay = Int((result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400)
                 
+                let promiseDaysinceToday = Int( ( Date().timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
+                
+                
             }
         }
     }
