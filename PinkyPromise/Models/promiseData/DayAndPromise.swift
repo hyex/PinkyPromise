@@ -8,15 +8,13 @@
 
 import Foundation
 
-
-
 struct DayAndPromise {
-    var Day: Double!
+    var Day: Date!
     var promiseData: [PromiseTable]!
 }
 
 struct PromiseAndProgress {
-    var Day: Double!
+    var Day: Date!
     var promiseData: [PromiseTable]
     var progressData: [ProgressTable]
 }
