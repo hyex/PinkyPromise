@@ -9,33 +9,45 @@
 import UIKit
 
 enum MyColor: String {
-    case systemPurple
-    case systemRed
-    case systemBlue
-    case systemGreen
-    case systemOrange
-    case systemIndigo
-    case systemTeal
-    case systemPink
+    case mySkyBlue
+    case myDarkBlue
+    case myPurple
+    case myRedOrange
+    case myGreen
+    case myEmerald
+    case myPink
+    case myRed
+    case myLightGreen
+    case myYellowGreen
+    case myYellow
+    case myLightOrange
     
     var create: UIColor {
         switch self {
-        case .systemIndigo:
-            return UIColor.systemIndigo
-        case .systemRed:
-            return UIColor.systemRed
-        case .systemBlue:
-            return UIColor.systemBlue
-        case .systemGreen:
-            return UIColor.systemGreen
-        case .systemOrange:
-            return UIColor.systemOrange
-        case .systemPurple:
-            return UIColor.systemPurple
-        case .systemTeal:
-            return UIColor.systemTeal
-        case .systemPink:
-            return UIColor.systemPink
+        case .mySkyBlue:
+            return UIColor.mySkyBlue
+        case .myDarkBlue:
+            return UIColor.myDarkBlue
+        case .myPurple:
+            return UIColor.myPurple
+        case .myRedOrange:
+            return UIColor.myRedOrange
+        case .myGreen:
+            return UIColor.myGreen
+        case .myEmerald:
+            return UIColor.myEmerald
+        case .myPink:
+            return UIColor.myPink
+        case .myRed:
+            return UIColor.myRed
+        case .myLightGreen:
+            return UIColor.myLightGreen
+        case .myYellowGreen:
+            return UIColor.myYelloGreen
+        case .myYellow:
+            return UIColor.myYellow
+        case .myLightOrange:
+            return UIColor.myLightOrange
         }
     }
     
@@ -48,8 +60,19 @@ class ColorCVC: UICollectionViewCell {
     var colorName: String!
     var colorInt: Int!
     
-    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
-
+    let colors: [String] = [ "mySkyBlue"
+    , "myDarkBlue"
+    , "myPurple"
+    , "myRedOrange"
+    , "myGreen"
+    , "myEmerald"
+    , "myPink"
+    , "myRed"
+    , "myLightGreen"
+    , "myYellowGreen"
+    , "myYellow"
+    , "myLightOrange" ]
+    
     var delegate: SelectedColorDelegate!
     
     override func awakeFromNib() {

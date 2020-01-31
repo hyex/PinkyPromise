@@ -16,19 +16,31 @@ protocol SendSelectedColorDelegate {
     func sendSelectedColor(data: String, num: Int)
 }
 
-
-
 class AddColorVC: UIViewController {
     
-    var selectedColor: Int = 0
+    var selectedColor: Int = 2
     
-    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
+    let colors: [String] = [ "mySkyBlue"
+    , "myDarkBlue"
+    , "myPurple"
+    , "myRedOrange"
+    , "myGreen"
+    , "myEmerald"
+    , "myPink"
+    , "myRed"
+    , "myLightGreen"
+    , "myYellowGreen"
+    , "myYellow"
+    , "myLightOrange" ]
+    
     
     @IBOutlet weak var cancelBtn: UIButton!
     
     @IBOutlet weak var collectionView: UICollectionView!
 
     @IBOutlet weak var smallView: UIView!
+    
+    @IBOutlet var bigView: UIView!
     
     var delegate: SendSelectedColorDelegate!
     
@@ -53,12 +65,17 @@ class AddColorVC: UIViewController {
         layout.minimumLineSpacing = 25
         layout.minimumInteritemSpacing = 25
         collectionView.collectionViewLayout = layout
+        cancelBtn.tintColor = UIColor.appColor
         
-        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(AddColorVC.dismissPage(sender:)))
+        self.bigView.addGestureRecognizer(gesture)
         // Do any additional setup after loading the view.
     }
  
-
+    @objc func dismissPage(sender: UIGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
+    }
+    
     @IBAction func cancelBtnAction(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }

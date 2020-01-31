@@ -56,33 +56,43 @@ class MainTabBarController: UITabBarController {
         //                }
         //            }
         
-        //        //친구가 추가된다
-        //        MyApi.shared.addFriendWithCode(code: 909970) { (temp) in
-        //            print(temp)
-        //        }
-        
         
 //                MyApi.shared.getCompletedPromiseData { (result) in
 //                    print(result)
 //                }
         
-        let image = UIImage(named: "hyunjae")
-
-        guard let imageData = image?.jpegData(compressionQuality: 1) else {
-            print("no")
-            return
-        }
-
-        FirebaseStorageService.shared.storeUserImage(image: imageData) { (result) in
-            switch result {
-            case .success(let url):
-                print("check 3")
-                print(url)
-            case .failure(let error):
-                print("this is error")
-                print(error)
+        MyApi.shared.getPromiseNameAndFriendsName { (result) in
+            for douc in result {
+                print(douc.promiseId)
+                print(douc.promiseName)
+                print(douc.friendsName)
             }
         }
+        
+//        MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
+//            print(result.promiseName)
+//            print(result.promiseDay)
+//            print(result.promiseDaySinceStart)
+//
+//            for douc in result.friendsDetail {
+//                print(douc.friendName)
+//                print(douc.friendDegree)
+//                print(douc.friendImage)
+//            }
+//
+//        }
+        
+//        var temp = PromiseTable(promiseName: "iOS 관두기", promiseStartTime: Date(timeIntervalSince1970: 1580428800 - 86400), promiseEndTime: Date(timeIntervalSince1970: 1580428800 + 86400), promiseColor: "Red", promiseIcon: "imacicon", promiseUsers: [], isPromiseAchievement: false, promisePanalty: "Android 시작하기", promiseId: MyApi.shared.randomNonceString())
+//
+//        MyApi.shared.addPromiseData(temp)
+        
+//        MyApi.shared.getUsersFriendsData { (result) in
+//            for douc in result {
+//                print(douc.userId)
+//                print(douc.documentId)
+//                print(douc.userImage)
+//            }
+//        }
 
         //firebase storage storeimage 사용예시
         //    guard let imageData = self.image?.jpegData(compressionQuality: 1) else {

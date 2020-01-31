@@ -25,6 +25,6 @@ class TextCellTVC: UITableViewCell {
     }
     
     func getValue() -> String {
-        return textField.text ?? "(제목없음)"
+        return textField.text ?? ""
     }
 }

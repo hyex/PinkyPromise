@@ -17,22 +17,24 @@ protocol SendSelectedIconDelegate {
 }
 
 class AddIconVC: UIViewController {
-
+    
     var selectedIcon: Int = 0
-
-    let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
+    
+    let icons: [String] = [ "star", "timer", "gym", "weight-scale", "sleep", "list", "ebook", "award", "family",  "couple",  "no-smoking", "beer" ]
     
     @IBOutlet weak var cancelBtn: UIButton!
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var smallView: UIView!
+    
+    @IBOutlet var bigView: UIView!
     
     var delegate: SendSelectedIconDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         let nibName = UINib(nibName: "IconCVC", bundle: nil)
         
         self.smallView.layer.shadowColor = UIColor.black.cgColor
@@ -41,7 +43,7 @@ class AddIconVC: UIViewController {
         self.smallView.layer.shadowRadius = 8
         self.smallView.layer.shadowOpacity = 0.3
         
-        collectionView.register(nibName, forCellWithReuseIdentifier: "ColorCollectionCell")
+        collectionView.register(nibName, forCellWithReuseIdentifier: "IconCollectionCell")
         
         // collectionview delegate & dataSource
         collectionView.delegate = self
@@ -51,24 +53,30 @@ class AddIconVC: UIViewController {
         layout.minimumLineSpacing = 25
         layout.minimumInteritemSpacing = 25
         collectionView.collectionViewLayout = layout
+        cancelBtn.tintColor = UIColor.appColor
         
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(AddIconVC.dismissPage(sender:)))
+        self.bigView.addGestureRecognizer(gesture)
         // Do any additional setup after loading the view.
     }
- 
-
+    
+    @objc func dismissPage(sender: UIGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
+    }
+    
+    
     @IBAction func cancelBtnAction(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
 }
-
 extension AddIconVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 12
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCollectionCell", for: indexPath) as! IconCVC
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IconCollectionCell", for: indexPath) as! IconCVC
         cell.delegate = self
         if indexPath.row == selectedIcon {
             cell.setSelectedBox()
@@ -77,17 +85,17 @@ extension AddIconVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         return cell
     }
-
+    
     func collection(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = collectionView.frame.width / 4 - 5
+        //        let width = collectionView.frame.width / 4 - 5
         return CGSize(width: 55, height: 55)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! IconCVC
         cell.layer.borderColor = UIColor.gray.cgColor
         
-//        cell.getButtonColor()
-
+        //        cell.getButtonColor()
+        
     }
 }
 

@@ -12,27 +12,42 @@ class MyFriendVC: UIViewController {
     
     @IBOutlet weak var myFriendTableView: UITableView!
     
-    var friendList: [PromiseUser] = []
+    var friendList: [PromiseUser]? {
+        didSet { myFriendTableView.reloadData() }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        getFriendData()
+        setUpTableView()
+        initView()
+    }
+    
+    private func setUpTableView() {
         myFriendTableView.delegate = self
         myFriendTableView.dataSource = self
-        initView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    private func getFriendData() {
+        MyApi.shared.getUsersFriendsData(completion: { result in
+            DispatchQueue.main.async {
+                self.friendList = result
+            }
+        })
+    }
 
 }
 
-
+// MARK:- initialization
 extension MyFriendVC {
     private func initView() {
         setNavigationBar()
-        setBackBtn()
+        addBackButton()
         addSwipeGesture()
     }
     
@@ -43,14 +58,22 @@ extension MyFriendVC {
         bar.backgroundColor = UIColor.clear
         bar.topItem?.title = "내 친구"
         bar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: CGFloat(20.0))]
+        
     }
-    
-    
-    private func setBackBtn() {
+    func addBackButton() {
+        let backButton = UIButton(type: .custom)
         let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.appColor, renderingMode: .alwaysOriginal)
-        navigationController?.navigationBar.backIndicatorImage = image
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.backItem?.title = ""
+        backButton.setImage(image, for: .normal)
+        backButton.setImage(image, for: .selected)
+        backButton.setTitle("", for: .normal)
+//        backButton.setTitleColor(backButton.tintColor, for: .normal) // You can change the TitleColor
+        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+
+    @objc func backAction(_ sender: UIButton) {
+       let _ = self.navigationController?.popViewController(animated: true)
     }
     
     func addSwipeGesture() {
@@ -67,25 +90,42 @@ extension MyFriendVC {
     
 }
 
-
 extension MyFriendVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 }
 
 extension MyFriendVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.friendList.count
+        guard let friendList = self.friendList else { return 0 }
+        return friendList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         var cell = UITableViewCell()
         if let friendCell = tableView.dequeueReusableCell(withIdentifier: "MyFriendTVC", for: indexPath) as? MyFriendTVC {
-
-            let rowData = self.friendList[indexPath.row]
-            friendCell.userName.text = rowData.userName!
-            // FIXME: 이미지 삽입
-//            friendCell.userImage =
-            cell = friendCell
+            
+            if let friendList = self.friendList {
+                let rowData = friendList[indexPath.row]
+                friendCell.userName.text = rowData.userName!
+                let imageName = rowData.userImage!
+                
+                FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .failure(let err):
+                            print(err)
+                            friendCell.userImage.image = UIImage(named: "user_male")
+                        case .success(let image):
+                            friendCell.userImage.image = image
+                        }
+                    }
+                })
+         
+                cell = friendCell
+            }
         }
         
         return cell

@@ -158,8 +158,8 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let today = Date()
-                let startDate = rowData.promiseStartTime!
-                let endDate = rowData.promiseEndTime!
+                let startDate = rowData.promiseStartTime
+                let endDate = rowData.promiseEndTime
                 
                 let interval = endDate.timeIntervalSince(startDate)
                 let days = Int(interval / 86400) + 1

@@ -53,7 +53,6 @@
 		33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */; };
 		33B7E8DE23E1E02E00B2D6C0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */; };
 		33B7E8DF23E1E02E00B2D6C0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */; };
-		33B7E8E123E1E49800B2D6C0 /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8E023E1E49800B2D6C0 /* MyPageVC.swift */; };
 		33B7E8E323E1E4B200B2D6C0 /* MyFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
 		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
@@ -142,7 +141,6 @@
 		33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		33B7E8E023E1E49800B2D6C0 /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendVC.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				334AACE423CC296100AAF955 /* MoreTabMainVC.swift */,
-				33B7E8E023E1E49800B2D6C0 /* MyPageVC.swift */,
 				33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */,
 				332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */,
 			);
@@ -361,9 +358,9 @@
 			isa = PBXGroup;
 			children = (
 				3F8F103523E03884002D2BDA /* DayPromiseListTVC.xib */,
+				3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */,
 				3F8F103323E0387A002D2BDA /* DayPromiseListTVC.swift */,
 				3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */,
-				3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */,
 				3F6DAE4823DCD53A00599661 /* MyCalendarCell.swift */,
 				3F6DAE5823DE30D800599661 /* AddPromiseBtn.swift */,
 				3F6DAE5A23DF158300599661 /* PromiseCustomCell.swift */,
@@ -656,7 +653,6 @@
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				3F6DAE5923DE30D800599661 /* AddPromiseBtn.swift in Sources */,
 				3F7F7E7723DFB7960033856F /* IconCVC.swift in Sources */,
-				33B7E8E123E1E49800B2D6C0 /* MyPageVC.swift in Sources */,
 				3F8F103423E0387A002D2BDA /* DayPromiseListTVC.swift in Sources */,
 				186D855B23D42486006DA619 /* promiseTable.swift in Sources */,
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,

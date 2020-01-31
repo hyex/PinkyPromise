@@ -63,20 +63,17 @@ class MyApi: NSObject {
     
     //UID에 맞는 유저 이름을 반환해줌
     func getUserNameWithUID(id: String, completion: @escaping (String) -> Void) {
-        var result = ""
         userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
             }else {
-                //result = PromiseUser.parseData(snapShot: sanpShot)
-                for douc in sanpShot!.documents {
-                    result = douc.data()[USERNAME] as? String ?? ""
-                }
-                completion(result)
+                let result = PromiseUser.parseData(snapShot: sanpShot)
+                completion(result[0].userName)
             }
         }
     }
     
+    //유저의 친구들의 promiseUser들 가져온다.
     func getUsersFriendsData(completion: @escaping ([PromiseUser]) -> Void) {
         userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
             if let err = error {
@@ -85,12 +82,17 @@ class MyApi: NSObject {
                 let tempResult = PromiseUser.parseData(snapShot: snapShot)
                 
                 var temp = [PromiseUser]()
+                var check1 = 0
                 for douc in tempResult[0].userFriends {
                     self.getUserDataWithUID(id: douc) { (result) in
                         temp.append(result)
+                        check1 += 1
+                        if tempResult[0].userFriends.count <= check1 {
+                            completion(temp)
+                        }
                     }
                 }
-                completion(temp)
+                
             }
         }
     }
@@ -103,9 +105,9 @@ class MyApi: NSObject {
                 debugPrint(err)
             }else {
                 result = PromiseUser.parseData(snapShot: sanpShot)
+                let result2 = result[result.startIndex]
+                completion(result2)
             }
-            let result2 = result[result.startIndex]
-            completion(result2)
         }
     }
     
@@ -274,7 +276,7 @@ class MyApi: NSObject {
                 
                 var temp1 = [[PromiseTable]]()
                 
-                for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate!.timeIntervalSince1970, by: 60*60*24) {
+                for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate.timeIntervalSince1970, by: 60*60*24) {
                     //i는 하루하루의 타임스탬프
                     
                     var temp2 = [PromiseTable]()
@@ -299,70 +301,94 @@ class MyApi: NSObject {
             if let err = error {
                 debugPrint(err.localizedDescription)
             }else {
-                //먼저
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
-                var resultData = [promiseNameAndFriendsName]()
-                
+                var result1 = [promiseNameAndFriendsName]()
+                var check = 0
                 for douc in tempResult {
+                    let FriendsList = douc.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
                     
-                    var tempName = [String]()
-                    for douc2 in douc.promiseUsers {
-                        if douc2 != FirebaseUserService.currentUserID {
-                            //친구들 uid
-                            self.getUserNameWithUID(id: douc2) { (result) in
-                                tempName.append(result)
+                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: FriendsList)
+                    
+                    if FriendsList.count == 0 {//친구가 없으면 패스하고 check에 1을 더해준다.
+                        check += 1
+                    } else {
+                        self.getFriendsName(tempTable: temp) { (result) in
+                            result1.append(result)
+                            if result1.count + check >= tempResult.count {
+                                completion(result1)
                             }
                         }
                     }
-                    
-                    if tempName.count > 0 {
-                        //tempName은 친구들 이름들이 저장되어있다.
-                        var tempFriendNameAndPromiseName = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: tempName)
-                        
-                        resultData.append(tempFriendNameAndPromiseName)
-                    }
                 }
-                
-                completion(resultData)
+            }
+        }
+    }
+    
+    //getPromiseNameAndFriendsName의 부속함수, 약속테이블의 사용자의 친구들의 이름을 반환함
+    func getFriendsName(tempTable: promiseNameAndFriendsName, completion: @escaping (promiseNameAndFriendsName) -> Void ){
+
+        var temp2 = [String]()
+        
+        for douc in tempTable.friendsName {
+            self.getUserNameWithUID(id: douc) { (result) in
+                temp2.append(result)
+                if temp2.count == tempTable.friendsName.count {
+                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, friendsName: temp2)
+                    completion(temp3)
+                }
             }
         }
     }
     
     //선영쿤이 요청한 detailView 진행중인 약속에 한해 들어간다.
-    func getDataforDetailView(completion: @escaping ([promiseDetail]) -> Void) {
-        self.getPromiseDataSinceToday { (result) in
-            var tempDetail1 = [promiseDetail]()
-            
-            for douc in result {
-                //약속명, 약속 기간, 친구 리스트, 약속 기간과 며칠째 수행중인지
-                let tempfriend = douc.promiseUsers.filter {
-                    $0 != FirebaseUserService.currentUserID
-                }
-             
-                var tempProgress = [[Int]]()//친구의 진행정도 배열
-                for douc3 in tempfriend {
-                    //친구들 uid를 이용하여 progressTable의 정보들을 받아옴
-                    self.getProgressDataWithUid(userid: douc3) { (result3) in
-                        tempProgress.append(result3[0].progressDegree)
+    func getDataforDetailViewjr1(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapshot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let result = PromiseTable.parseData(snapShot: snapshot)
+                
+                if result.count > 0 {
+                    let promiseDay = Double( (result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400)
+                    
+                    let promiseDaysinceToday = Double( ( Date().timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
+                    
+                    let tempUsers = result[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
+                    
+                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: tempUsers)
+                    
+                    //completion(temp)
+                    
+                    self.getDataForDetailViewjr2(detailData1: temp) { (result2) in
+                        completion(result2)
                     }
                 }
-                
-                var tempfriendName = [String]()//친구들 이름
-                
-                for douc2 in tempfriend {
-                    self.getUserNameWithUID(id: douc2) { (result2) in
-                        tempfriendName.append(result2)
-                    }
-                }
-                
-                let temp1 = promiseDetail(promiseName: douc.promiseName, promiseDay:   Int((douc.promiseEndTime.timeIntervalSince1970 - douc.promiseStartTime.timeIntervalSince1970) / 86400), promiseDaySinceStart: Int( (Date().timeIntervalSince1970 - douc.promiseEndTime.timeIntervalSince1970) / 86400), friendsNameList: tempfriendName, friendsDegree: tempProgress)
-                
-                tempDetail1.append(temp1)
             }
-            
-            completion(tempDetail1)
         }
     }
+    
+    func getDataForDetailViewjr2(detailData1: promiseDetailjunior1, completion: @escaping (promiseDetail) -> Void) {
+        
+        var temp3 = [promiseDetail]()
+        
+        var temp4 = [promiseDetailChild]()
+        
+        for douc in detailData1.friendsUIDList {
+            self.getUserDataWithUID(id: douc) { (result3) in
+                
+                self.getProgressDataWithUid(userid: douc) { (result4) in
+                    
+                    let zek = promiseDetailChild(friendName: result3.userName, friendImage: result3.userImage, friendDegree: result4[0].progressDegree)
+                    temp4.append(zek)
+                    
+                    if temp4.count == detailData1.friendsUIDList.count {
+                        completion(promiseDetail(promiseName: detailData1.promiseName, promiseDay: detailData1.promiseDay, promiseDaySinceStart: detailData1.promiseDaySinceStart, friendsDetail: temp4))
+                    }
+                }
+            }
+        }
+    }
+
     
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
@@ -378,6 +404,13 @@ class MyApi: NSObject {
         }
     }
     
+    //의정쿤이 요청한 함수 졸라게 어려붐
+    func getMothlyDataWithCurrentMonth(completion: @escaping ([PromiseAndProgress]) -> Void) {
+        
+    }
+    
+    
+    
     //약속 데이터를 추가할 때 사용하는 함수
     func addPromiseData(_ promiseTable: PromiseTable) {
         
@@ -389,7 +422,8 @@ class MyApi: NSObject {
             PROMISESTARTTIME: promiseTable.promiseStartTime ?? Date(),
             PROMISEENDTIME: promiseTable.promiseEndTime ?? Date(),
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
-            PROMISEUSERS: promiseTable.promiseUsers ?? []
+            PROMISEUSERS: promiseTable.promiseUsers ?? [],
+            PROMISEID: promiseTable.promiseId ?? "nil"
         ]) { error in
             if let err = error {
                 debugPrint("Error adding document : \(err)")
@@ -454,10 +488,18 @@ class MyApi: NSObject {
                     
                     if result[0].userId != FirebaseUserService.currentUserID {
                         //본인이 아닐 경우 사용자에 친구 추가 누름
-                        var temp = result[0].userFriends
-                        
-                        temp?.append(result[0].userId)
-                        self.userCollectionRef.document(FirebaseUserService.currentUserID).setData([USERFRIENDS: temp], merge: true)
+                       
+                        self.getUserData { (result2) in
+                            
+                            var temp = result2[0].userFriends
+                            
+                            let tempadd = temp!.contains { $0 == (result[0].userId) }
+                            
+                            if tempadd == false {
+                                temp?.append(result[0].userId)
+                            }
+                          self.userCollectionRef.document(FirebaseUserService.currentUserID).setData( [USERFRIENDS : temp], merge: true )
+                        }
                     }
                     
                     self.getUserDataWithUID(id: result[0].userId) { (result) in

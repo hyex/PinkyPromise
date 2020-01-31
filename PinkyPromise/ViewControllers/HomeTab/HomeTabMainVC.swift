@@ -84,17 +84,17 @@ class HomeTabMainVC: UIViewController {
         view.addSubview(calendar)
         self.calendar = calendar
         
-        calendar.appearance.headerTitleColor = UIColor.systemPurple
+        calendar.appearance.headerTitleColor = UIColor.appColor
         
         calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20.0)
         calendar.appearance.weekdayTextColor = UIColor.darkText
-        calendar.appearance.borderSelectionColor = UIColor.systemPurple
+        calendar.appearance.borderSelectionColor = UIColor.appColor
         calendar.appearance.selectionColor = UIColor.clear
         calendar.appearance.titleSelectionColor = UIColor.darkText
         
         calendar.appearance.headerMinimumDissolvedAlpha = 0
         
-        calendar.appearance.todayColor = UIColor.systemPurple
+        calendar.appearance.todayColor = UIColor.appColor
         
         calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
         calendar.register(MyCalendarCell.self, forCellReuseIdentifier: "cell")
@@ -228,9 +228,8 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
                     var progress: Int = 0
                     day.promise.forEach { (pm) in
                         progress += pm.progress
-                        print(day.day)
                     }
-                    cell.setBackgroundColor(progress: CGFloat(progress / day.promise.count) + 1)
+                    cell.setBackgroundColor(progress: ceil(Double(progress / day.promise.count)))
                 }
             }
         }
@@ -294,7 +293,7 @@ extension HomeTabMainVC: UITableViewDataSource {
             }
         }
         
-        cell.view.layer.backgroundColor = UIColor.systemPurple.withAlphaComponent(CGFloat(0.1)).cgColor
+        cell.view.layer.backgroundColor = UIColor.appColor.withAlphaComponent(CGFloat(0.1)).cgColor
         //        cell.layer.borderWidth = 1
         cell.view.layer.cornerRadius = 8
         

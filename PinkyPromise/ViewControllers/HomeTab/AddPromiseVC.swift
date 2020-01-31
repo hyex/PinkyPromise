@@ -26,22 +26,33 @@ class AddPromiseVC: UIViewController {
     
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
     
-//    private var isStartCalSelected: Bool!
-//    private var isEndCalSelected: Bool!
-    private var selectedColor: Int! = 0
+    //    private var isStartCalSelected: Bool!
+    //    private var isEndCalSelected: Bool!
+    private var selectedColor: Int! = 2
     private var selectedIcon: Int! = 0
-//    private var selectedFriends: [Int]!
-//    private var myFriends: [Int : [String]]! = [ : ]
+    //    private var selectedFriends: [Int]!
+    //    private var myFriends: [Int : [String]]! = [ : ]
     private var myFriends: [FriendData] = []
     
     private var selectedFriends: [FriendData]!
     
     private var panaltyName: String!
-//    private var myFriendsImg: [UIImage]! = []
+    //    private var myFriendsImg: [UIImage]! = []
     
-    let colors: [String] = [ "systemPurple", "systemRed", "systemBlue", "systemGreen", "systemOrange", "systemIndigo", "systemTeal", "systemPink", "systemOrange", "systemIndigo", "systemTeal", "systemPink" ]
-    let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep", "star", "book", "drugs", "english" ]
+    let colors: [String] = [ "mySkyBlue"
+        , "myDarkBlue"
+        , "myPurple"
+        , "myRedOrange"
+        , "myGreen"
+        , "myEmerald"
+        , "myPink"
+        , "myRed"
+        , "myLightGreen"
+        , "myYellowGreen"
+        , "myYellow"
+        , "myLightOrange" ]
     
+    let icons: [String] = [ "star", "timer", "gym", "weight-scale", "sleep", "list", "ebook", "award", "family",  "couple",  "no-smoking", "beer" ]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,9 +68,9 @@ class AddPromiseVC: UIViewController {
         promiseTableView.delegate = self
         promiseTableView.dataSource = self
         
-//        // logic
-//        isStartCalSelected = true
-//        isEndCalSelected = true
+        //        // logic
+        //        isStartCalSelected = true
+        //        isEndCalSelected = true
         
         //data setting
         DispatchQueue.global().async {
@@ -77,8 +88,6 @@ class AddPromiseVC: UIViewController {
         
     }
     
-    
-    
     @IBAction func backBtnAction(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
@@ -89,7 +98,6 @@ class AddPromiseVC: UIViewController {
         let textCell = promiseTableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! TextCellTVC
         
         let dateCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-        
         let dataName = textCell.getValue()
         let dataStartTime = dateCell.getFirstDate()
         let dataEndTime = dateCell.getLastDate()
@@ -99,10 +107,15 @@ class AddPromiseVC: UIViewController {
         let dataPromiseAchievement = false
         let promisePanalty = self.panaltyName ?? "벌칙없음"
         
+        // error
+        if dataName == "" { alertData(name: "title"); return }
+        
+        
+        
         let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: dataPromiseAchievement, promisePanalty: promisePanalty, promiseId: "")
         print(newPromise)
         MyApi.shared.addPromiseData(newPromise)
-//        MyApi.shared.addProgressData(newPromise)
+        //        MyApi.shared.addProgressData(newPromise)
         
         self.dismiss(animated: false, completion: nil)
     }
@@ -111,7 +124,8 @@ class AddPromiseVC: UIViewController {
 // about UI
 extension AddPromiseVC {
     func setBackBtn() {
-        backBtn.tintColor = .black
+        backBtn.tintColor = UIColor.appColor
+        saveBtn.tintColor = UIColor.appColor
     }
     func setNavigationUI() {
         // navigation 투명하게
@@ -123,6 +137,29 @@ extension AddPromiseVC {
         promiseTableView.tableFooterView = dummyView;
         promiseTableView.clipsToBounds = false
         //self.promiseTableView.rowHeight = 100; 테이블뷰 높이 문제 해결 필요
+    }
+}
+
+extension AddPromiseVC {
+    func alertData(name : String) {
+        var text: String!
+        switch name {
+        case "calendar":
+            text = "365일이상 선택할 수 없습니다."
+            break
+        case "title":
+            text = "제목을 입력해주세요."
+            break
+        default:
+            break
+        }
+        
+        let dialog = UIAlertController(title: text, message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
+        dialog.addAction(action)
+        
+        self.present(dialog, animated: true, completion: nil)
     }
 }
 
@@ -157,7 +194,7 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
             cell.calendar.delegate = self
             cell.calendar.dataSource = self
             cell.calendar.allowsMultipleSelection = true
-
+            
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell") as! FriendCellTVC
@@ -199,7 +236,7 @@ extension AddPromiseVC: FSCalendarDataSource {
     // 날짜 선택 시 콜백
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let secondCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-
+        
         let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
         
         if cell.firstDate == nil {
@@ -210,10 +247,10 @@ extension AddPromiseVC: FSCalendarDataSource {
             secondCell.setFirstDate(date: date)
             secondCell.setLastDate(date: date)
             
-            print("datesRange contains: \(cell.datesRange!)")
+            //            print("datesRange contains: \(cell.datesRange!)")
             return
         }
-        
+            
         else if cell.firstDate != nil && cell.lastDate == nil {
             // handle the case of if the last date is less than the first date:
             if date <= cell.firstDate! {
@@ -221,10 +258,10 @@ extension AddPromiseVC: FSCalendarDataSource {
                 cell.firstDate = date
                 secondCell.setFirstDate(date: date)
                 secondCell.setLastDate(date: date)
-
+                
                 cell.datesRange = [cell.firstDate!]
                 
-                print("datesRange contains: \(cell.datesRange!)")
+                //                print("datesRange contains: \(cell.datesRange!)")
                 return
             }
             
@@ -238,6 +275,23 @@ extension AddPromiseVC: FSCalendarDataSource {
             
             cell.datesRange = range
             
+            if range.count > 365 {
+                for day in cell.calendar.selectedDates {
+                    cell.calendar.deselect(day)
+                }
+                cell.lastDate = nil
+                cell.firstDate = nil
+                
+                cell.datesRange = []
+                
+                let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
+                cell.setFirstDate(date: Date())
+                cell.setLastDate(date: Date())
+                
+                self.alertData(name: "calendar")
+                calendar.setCurrentPage(Date(), animated: true)
+            }
+            
             return
         }
         
@@ -250,7 +304,8 @@ extension AddPromiseVC: FSCalendarDataSource {
             cell.firstDate = nil
             
             cell.datesRange = []
-            print("datesRange contains: \(cell.datesRange!)")
+            //            print("datesRange contains: \(cell.datesRange!)")
+            
         }
         
     }
@@ -268,12 +323,11 @@ extension AddPromiseVC: FSCalendarDataSource {
             cell.firstDate = nil
             
             cell.datesRange = []
-            print("datesRange contains: \(cell.datesRange!)")
+            //            print("datesRange contains: \(cell.datesRange!)")
             
             let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
             cell.setFirstDate(date: Date())
             cell.setLastDate(date: Date())
-            
         }
     }
     
@@ -320,7 +374,7 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
             vc.withFriendsList = self.myFriends
-//            vc.myFriendsImg = self.myFriendsImg
+            //            vc.myFriendsImg = self.myFriendsImg
         }
         else if segue.identifier == "PanaltyVC" {
             let vc = segue.destination as! AddPanaltyVC
@@ -335,7 +389,9 @@ extension AddPromiseVC: SendSelectedIconDelegate {
     func sendSelectedIcon(data: String, num: Int) {
         let customCell = promiseTableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as! PromiseCustomCell
         self.selectedIcon = num
-        customCell.iconButton.setImage(UIImage(named: icons[selectedIcon]), for: .normal)
+        let icon = UIImage(named: icons[selectedIcon])?.withRenderingMode(.alwaysTemplate)
+        icon?.withTintColor(customCell.colorButton.tintColor ?? UIColor.appColor)
+        customCell.iconButton.setImage(icon, for: .normal)
     }
 }
 

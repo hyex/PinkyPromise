@@ -157,6 +157,23 @@ extension LoginVC: GIDSignInDelegate {
                     var temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "nil", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                     MyApi.shared.addUserData(temp)
                     
+                    let tempimage = UIImage(named: "user_male")
+                    
+                    guard let imageData = tempimage!.jpegData(compressionQuality: 1) else {
+                         return
+                    }
+                        FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                            switch result {
+                            case .success(let url):
+                                //self?.imageURL = url
+                                print("store default user Image")
+                                //print(self?.imageURL)
+                            case .failure(let error):
+                                print("this is error")
+                                //print(error)
+                            }
+                        }
+                    
                 } else {
                     print("go login!!")
                     self.navigationController?.isNavigationBarHidden = true
