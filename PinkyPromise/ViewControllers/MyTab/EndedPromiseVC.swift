@@ -95,14 +95,12 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         
         cell.promiseFriends.text = "WITH "
         
-        print(rowData.promiseId!)
         if let id = rowData.promiseId {
             MyApi.shared.getPromiseFriendsNameWithPID(promiseID: id, completion: { result in
                 DispatchQueue.main.async {
                     for friend in result {
                         cell.promiseFriends.text! += friend + " "
                     }
-                    print(result)
                 }
             })
         }
