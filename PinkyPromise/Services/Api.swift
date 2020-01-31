@@ -67,7 +67,7 @@ class MyApi: NSObject {
             if let err = err {
                 debugPrint(err)
             }else {
-                var result = PromiseUser.parseData(snapShot: sanpShot)
+                let result = PromiseUser.parseData(snapShot: sanpShot)
                 completion(result[0].userName)
             }
         }
@@ -301,33 +301,40 @@ class MyApi: NSObject {
             if let err = error {
                 debugPrint(err.localizedDescription)
             }else {
-                //먼저
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
-                var resultData = [promiseNameAndFriendsName]()
+                var result1 = [promiseNameAndFriendsName]()
                 var check = 0
-                
                 for douc in tempResult {
+                    let FriendsList = douc.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
                     
+                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: FriendsList)
                     
-                    
+                    if FriendsList.count == 0 {//친구가 없으면 패스하고 check에 1을 더해준다.
+                        check += 1
+                    } else {
+                        self.getFriendsName(tempTable: temp) { (result) in
+                            result1.append(result)
+                            if result1.count + check >= tempResult.count {
+                                completion(result1)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
     //getPromiseNameAndFriendsName의 부속함수, 약속테이블의 사용자의 친구들의 이름을 반환함
-    func getFriendsName(tempTable: PromiseTable, completion: @escaping ([String]) -> Void ){
-        var tempName = [String]()
+    func getFriendsName(tempTable: promiseNameAndFriendsName, completion: @escaping (promiseNameAndFriendsName) -> Void ){
+
+        var temp2 = [String]()
         
-        let friendsName = tempTable.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
-        
-        for douc in friendsName {
-            //친구들 uid
+        for douc in tempTable.friendsName {
             self.getUserNameWithUID(id: douc) { (result) in
-                tempName.append(result)
-                
-                if friendsName.count == tempName.count {
-                    completion(tempName)
+                temp2.append(result)
+                if temp2.count == tempTable.friendsName.count {
+                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, friendsName: temp2)
+                    completion(temp3)
                 }
             }
         }
