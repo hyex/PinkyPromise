@@ -271,25 +271,27 @@ class MyApi: NSObject {
             } else {
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
                 
-                let MaxTime = tempResult.endIndex
-                let maxTimeDate = tempResult[MaxTime - 1].promiseEndTime
-                
-                var temp1 = [[PromiseTable]]()
-                
-                for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate.timeIntervalSince1970, by: 60*60*24) {
-                    //i는 하루하루의 타임스탬프
+                let MaxTime = tempResult.count
+                if MaxTime > 0 {
+                    let maxTimeDate = tempResult[MaxTime].promiseEndTime
                     
-                    var temp2 = [PromiseTable]()
+                    var temp1 = [[PromiseTable]]()
                     
-                    for douc in tempResult {
-                        if (i > douc.promiseStartTime.timeIntervalSince1970) && (i < douc.promiseEndTime.timeIntervalSince1970) {
-                            temp2.append(douc)
+                    for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate.timeIntervalSince1970, by: 60*60*24) {
+                        //i는 하루하루의 타임스탬프
+                        
+                        var temp2 = [PromiseTable]()
+                        
+                        for douc in tempResult {
+                            if (i > douc.promiseStartTime.timeIntervalSince1970) && (i < douc.promiseEndTime.timeIntervalSince1970) {
+                                temp2.append(douc)
+                            }
                         }
+                        temp1.append(temp2)
                     }
-                    temp1.append(temp2)
+                    
+                    completion(temp1)
                 }
-                
-                completion(temp1)
             }
         }
     }
@@ -407,9 +409,33 @@ class MyApi: NSObject {
     //의정쿤이 요청한 함수 졸라게 어려붐
     func getMothlyDataWithCurrentMonth(completion: @escaping ([PromiseAndProgress]) -> Void) {
         
+        let days = self.getTotalDate()//이번 달의 날짜 수
+        
+        
     }
     
-    
+    //제발.. 오늘을 기준으로 이번 달의 날짜를 반환
+    func getTotalDate() -> Int{
+        // choose the month and year you want to look
+        let date = Date()
+        let calendar = Calendar.current
+        let componentsYear = calendar.dateComponents([.year], from: date)
+        let year = componentsYear.year
+        let componentsMonth = calendar.dateComponents([.month], from: date)
+        let month = componentsYear.month
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+
+        let datez = calendar.date(from: dateComponents)
+        // change .month into .year to see the days available in the year
+        let interval = calendar.dateInterval(of: .month, for: datez!)!
+
+        let days = calendar.dateComponents([.day], from: interval.start, to: interval.end).day!
+        
+        return days
+    }
     
     //약속 데이터를 추가할 때 사용하는 함수
     func addPromiseData(_ promiseTable: PromiseTable) {
