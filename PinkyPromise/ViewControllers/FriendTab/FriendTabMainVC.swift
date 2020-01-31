@@ -40,6 +40,8 @@ class FriendTabMainVC: UIViewController {
         
         promiseCtnLabel.text = String(friendsInPromise.count)
         
+        self.getPromiseAndFriend()
+        
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
         friendMainTableView.tableFooterView = UIView()
@@ -70,6 +72,16 @@ class FriendTabMainVC: UIViewController {
 //            }
 //        }
 //    }
+    
+    private func getPromiseAndFriend() {
+        print("in getPromiseAndFriend")
+//        var result : [promiseNameAndFriendsName]? = nil
+        MyApi.shared.getPromiseNameAndFriendsName{result in DispatchQueue.main.async {
+            print("friend tab api test")
+            print(result)
+            }
+        }
+    }
 }
 
 extension FriendTabMainVC : UITableViewDelegate{

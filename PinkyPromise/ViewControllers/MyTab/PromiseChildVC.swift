@@ -200,19 +200,6 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         return cell
     }
-    
-//override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//    if segue.identifier == "detailPromise" {
-//        let promise = sender as? FriendsInfo
-//        if promise != nil{
-//            let FriendTabDetailVC = segue.destination as? FriendTabDetailVC
-//            if FriendTabDetailVC != nil {
-//                FriendTabDetailVC?.detailPromise = promise
-//            }
-//        }
-//    }
-//}
 
 }
         
