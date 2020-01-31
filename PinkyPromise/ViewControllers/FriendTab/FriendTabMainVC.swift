@@ -6,12 +6,6 @@
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
-struct FriendsInfo {
-    var img : String
-    var friendname : String
-    var promisename : String
-}
-
 struct PromiseWithFriend {
     var promiseId : String
     var promiseName : String
@@ -30,22 +24,8 @@ class FriendTabMainVC: UIViewController {
         didSet {friendMainTableView.reloadData() }
     }
     
-    //임시 친구약속 데이터
-    let friendsInPromise : [FriendsInfo] = [
-    FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
-    FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
-    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "2시 전 취침 10시 전 기상"),
-    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "One day One commit"),
-    FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
-    FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
-    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "2시 전 취침 10시 전 기상"),
-    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "One day One commit")
-    ]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.navigationBar.isHidden = true
-//        getAllPromiseData()
         setPlusBtn()
         
         self.getPromiseAndFriend()
@@ -72,14 +52,11 @@ class FriendTabMainVC: UIViewController {
     }
     
     private func getPromiseAndFriend() {
-        print("in getPromiseAndFriend")
         MyApi.shared.getPromiseNameAndFriendsName { (result) in
             for douc in result {
-                print("douc : ", douc)
                 self.PromiseList.append(PromiseWithFriend(promiseId: douc.promiseId, promiseName: douc.promiseName, friendsName: douc.friendsName))
             }
         }
-        print("PromiseList : ", self.PromiseList)
     }
 }
 
@@ -94,7 +71,7 @@ extension FriendTabMainVC : UITableViewDelegate{
         
         
         self.present(vc, animated: false) {
-            vc.detailPromise = self.friendsInPromise[indexPath.row]
+            vc.detailPromise = self.PromiseList[indexPath.row]
         }
     }
 }
@@ -107,8 +84,6 @@ extension FriendTabMainVC : UITableViewDataSource{
     
     //table view cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("in tableview")
-        print(self.PromiseList)
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         
         let promiseData = self.PromiseList[indexPath.row]
@@ -141,7 +116,7 @@ extension FriendTabMainVC : UITableViewDataSource{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "detailPromise" {
-            let promise = sender as? FriendsInfo
+            let promise = sender as? PromiseWithFriend
             if promise != nil{
                 let FriendTabDetailVC = segue.destination as? FriendTabDetailVC
                 if FriendTabDetailVC != nil {

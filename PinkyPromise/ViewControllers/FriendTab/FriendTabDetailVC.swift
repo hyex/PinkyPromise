@@ -32,7 +32,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
     ]
     
-    var detailPromise : FriendsInfo? = nil {
+    var detailPromise : PromiseWithFriend? = nil {
         didSet {
             print(self.detailPromise!)
         }
