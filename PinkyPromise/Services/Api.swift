@@ -508,12 +508,15 @@ class MyApi: NSObject {
         var temp = [ProgressTable]()
         for douc in promiseData {
             
-            progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+            progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
                 if let err = error {
                     print("this is err..1 \(err.localizedDescription)")
                 } else {
                     let temp2 = ProgressTable.parseData(snapShot: snapShot)
-                    temp.append(temp2[0])
+                    
+                    if temp2.count > 0 {
+                        temp.append(temp2[0])
+                    }
                     
                     if temp.count == promiseData.count {
                         completion(PromiseAndProgress(Day: day, promiseData: promiseData, progressData: temp))
