@@ -26,34 +26,33 @@ class AddPromiseVC: UIViewController {
     
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
     
-//    private var isStartCalSelected: Bool!
-//    private var isEndCalSelected: Bool!
+    //    private var isStartCalSelected: Bool!
+    //    private var isEndCalSelected: Bool!
     private var selectedColor: Int! = 2
     private var selectedIcon: Int! = 0
-//    private var selectedFriends: [Int]!
-//    private var myFriends: [Int : [String]]! = [ : ]
+    //    private var selectedFriends: [Int]!
+    //    private var myFriends: [Int : [String]]! = [ : ]
     private var myFriends: [FriendData] = []
     
     private var selectedFriends: [FriendData]!
     
     private var panaltyName: String!
-//    private var myFriendsImg: [UIImage]! = []
+    //    private var myFriendsImg: [UIImage]! = []
     
-      let colors: [String] = [ "mySkyBlue"
-      , "myDarkBlue"
-      , "myPurple"
-      , "myRedOrange"
-      , "myGreen"
-      , "myEmerald"
-      , "myPink"
-      , "myRed"
-      , "myLightGreen"
-      , "myYellowGreen"
-      , "myYellow"
-      , "myLightOrange" ]
+    let colors: [String] = [ "mySkyBlue"
+        , "myDarkBlue"
+        , "myPurple"
+        , "myRedOrange"
+        , "myGreen"
+        , "myEmerald"
+        , "myPink"
+        , "myRed"
+        , "myLightGreen"
+        , "myYellowGreen"
+        , "myYellow"
+        , "myLightOrange" ]
     
-    let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep", "star", "book", "drugs", "english" ]
-    
+    let icons: [String] = [ "star", "timer", "gym", "weight-scale", "sleep", "list", "ebook", "award", "family",  "couple",  "no-smoking", "beer" ]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,9 +68,9 @@ class AddPromiseVC: UIViewController {
         promiseTableView.delegate = self
         promiseTableView.dataSource = self
         
-//        // logic
-//        isStartCalSelected = true
-//        isEndCalSelected = true
+        //        // logic
+        //        isStartCalSelected = true
+        //        isEndCalSelected = true
         
         //data setting
         DispatchQueue.global().async {
@@ -110,13 +109,13 @@ class AddPromiseVC: UIViewController {
         
         // error
         if dataName == "" { alertData(name: "title"); return }
-
+        
         
         
         let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: dataPromiseAchievement, promisePanalty: promisePanalty, promiseId: "")
         print(newPromise)
         MyApi.shared.addPromiseData(newPromise)
-//        MyApi.shared.addProgressData(newPromise)
+        //        MyApi.shared.addProgressData(newPromise)
         
         self.dismiss(animated: false, completion: nil)
     }
@@ -195,7 +194,7 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
             cell.calendar.delegate = self
             cell.calendar.dataSource = self
             cell.calendar.allowsMultipleSelection = true
-
+            
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell") as! FriendCellTVC
@@ -237,7 +236,7 @@ extension AddPromiseVC: FSCalendarDataSource {
     // 날짜 선택 시 콜백
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let secondCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-
+        
         let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! PromiseInputTVC
         
         if cell.firstDate == nil {
@@ -248,10 +247,10 @@ extension AddPromiseVC: FSCalendarDataSource {
             secondCell.setFirstDate(date: date)
             secondCell.setLastDate(date: date)
             
-//            print("datesRange contains: \(cell.datesRange!)")
+            //            print("datesRange contains: \(cell.datesRange!)")
             return
         }
-        
+            
         else if cell.firstDate != nil && cell.lastDate == nil {
             // handle the case of if the last date is less than the first date:
             if date <= cell.firstDate! {
@@ -259,10 +258,10 @@ extension AddPromiseVC: FSCalendarDataSource {
                 cell.firstDate = date
                 secondCell.setFirstDate(date: date)
                 secondCell.setLastDate(date: date)
-
+                
                 cell.datesRange = [cell.firstDate!]
                 
-//                print("datesRange contains: \(cell.datesRange!)")
+                //                print("datesRange contains: \(cell.datesRange!)")
                 return
             }
             
@@ -305,7 +304,7 @@ extension AddPromiseVC: FSCalendarDataSource {
             cell.firstDate = nil
             
             cell.datesRange = []
-//            print("datesRange contains: \(cell.datesRange!)")
+            //            print("datesRange contains: \(cell.datesRange!)")
             
         }
         
@@ -324,7 +323,7 @@ extension AddPromiseVC: FSCalendarDataSource {
             cell.firstDate = nil
             
             cell.datesRange = []
-//            print("datesRange contains: \(cell.datesRange!)")
+            //            print("datesRange contains: \(cell.datesRange!)")
             
             let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
             cell.setFirstDate(date: Date())
@@ -375,7 +374,7 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
             vc.withFriendsList = self.myFriends
-//            vc.myFriendsImg = self.myFriendsImg
+            //            vc.myFriendsImg = self.myFriendsImg
         }
         else if segue.identifier == "PanaltyVC" {
             let vc = segue.destination as! AddPanaltyVC

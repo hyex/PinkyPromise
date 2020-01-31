@@ -20,7 +20,7 @@ class AddIconVC: UIViewController {
     
     var selectedIcon: Int = 0
     
-    let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep", "gym", "list", "meditation", "sleep" ]
+    let icons: [String] = [ "star", "timer", "gym", "weight-scale", "sleep", "list", "ebook", "award", "family",  "couple",  "no-smoking", "beer" ]
     
     @IBOutlet weak var cancelBtn: UIButton!
     
