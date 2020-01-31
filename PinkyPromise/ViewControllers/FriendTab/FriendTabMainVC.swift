@@ -12,6 +12,12 @@ struct FriendsInfo {
     var promisename : String
 }
 
+struct PromiseWithFriend {
+    var promiseId : String
+    var promiseName : String
+    var friendsName : [String]
+}
+
 import UIKit
 
 class FriendTabMainVC: UIViewController {
@@ -19,6 +25,10 @@ class FriendTabMainVC: UIViewController {
     @IBOutlet weak var addNewPromiseBtn: UIButton!
     @IBOutlet weak var promiseCtnLabel: UILabel!
     @IBOutlet weak var friendMainTableView: UITableView!
+    
+    var PromiseList : [PromiseWithFriend] = []{
+        didSet {friendMainTableView.reloadData() }
+    }
     
     //임시 친구약속 데이터
     let friendsInPromise : [FriendsInfo] = [
@@ -37,8 +47,6 @@ class FriendTabMainVC: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
 //        getAllPromiseData()
         setPlusBtn()
-        
-        promiseCtnLabel.text = String(friendsInPromise.count)
         
         self.getPromiseAndFriend()
         
@@ -65,15 +73,13 @@ class FriendTabMainVC: UIViewController {
     
     private func getPromiseAndFriend() {
         print("in getPromiseAndFriend")
-        
         MyApi.shared.getPromiseNameAndFriendsName { (result) in
             for douc in result {
-                print("api test")
-                print(douc.promiseId!)
-                print(douc.promiseName!)
-                print(douc.friendsName)
+                print("douc : ", douc)
+                self.PromiseList.append(PromiseWithFriend(promiseId: douc.promiseId, promiseName: douc.promiseName, friendsName: douc.friendsName))
             }
         }
+        print("PromiseList : ", self.PromiseList)
     }
 }
 
@@ -96,21 +102,29 @@ extension FriendTabMainVC : UITableViewDelegate{
 extension FriendTabMainVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return self.friendsInPromise.count
+           return self.PromiseList.count
     }
     
     //table view cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("in tableview")
+        print(self.PromiseList)
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         
-        let rowData = self.friendsInPromise[indexPath.row]
+        let promiseData = self.PromiseList[indexPath.row]
         
+        promiseCtnLabel.text = String(PromiseList.count)
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
         
-        cell.friendProfileImg.image = UIImage(named: rowData.img)
-        cell.friendNameLabel.text = rowData.friendname
-        cell.promiseNameLabel.text = rowData.promisename
+        //이미지 수정해야 함
+        cell.friendProfileImg.image = UIImage(named: "seonyoung")
+        if (promiseData.friendsName.count == 1) {
+            cell.friendNameLabel.text = promiseData.friendsName[0]
+        }else{
+            cell.friendNameLabel.text = promiseData.friendsName[0] + " 외 \(promiseData.friendsName.count - 1)명"
+        }
+        cell.promiseNameLabel.text = promiseData.promiseName
 
         let purpleArrow : UIImage = UIImage(named: "next")!
         cell.friendDatailBtn.setImage(purpleArrow, for: UIControl.State.normal)
