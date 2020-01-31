@@ -10,15 +10,17 @@ import UIKit
 
 class PromiseCustomCell: UITableViewCell {
 
+    @IBOutlet weak var colorBtn: UIButton!
+    
     @IBOutlet weak var colorButton: UIButton! = {
         let button = UIButton()
-        button.tintColor = UIColor.systemPurple
+        button.tintColor = UIColor.appColor
         return button
     }()
 
     @IBOutlet weak var iconButton: UIButton! {
         didSet {
-            iconButton.tintColor = colorButton.tintColor ?? UIColor.systemPurple
+            iconButton.tintColor = colorButton.tintColor ?? UIColor.appColor
         }
     }
         
