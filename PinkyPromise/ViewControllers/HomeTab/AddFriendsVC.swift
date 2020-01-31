@@ -57,6 +57,9 @@ class AddFriendsVC: UIViewController {
         searchController.searchBar.tintColor = .appColor
         
 //        searchController.searchBar.setImage(UIImage(systemName: "multiple.circle.fill"), for: UISearchBar.Icon.clear, state: .normal)
+        
+        backBtn.tintColor = UIColor.appColor
+        saveBtn.tintColor = UIColor.appColor
     }
     
     // MARK: - Navigation

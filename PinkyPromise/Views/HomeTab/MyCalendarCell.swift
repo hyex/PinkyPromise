@@ -19,7 +19,7 @@ class MyCalendarCell: FSCalendarCell {
 //        self.shapeLayer.isHidden = true
         
         let view = UIView(frame: self.bounds)
-        view.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.12)
+        view.backgroundColor = UIColor.appColor.withAlphaComponent(0.12)
         self.backgroundView = view;
     }
     override func layoutSubviews() {
@@ -27,9 +27,18 @@ class MyCalendarCell: FSCalendarCell {
         self.backgroundView?.frame = self.bounds.insetBy(dx: 1, dy: 1)
     }
     
-    func setBackgroundColor(progress: CGFloat) {
+    func setBackgroundColor(progress: Double) {
         let alpha = progress * 0.2
-        self.backgroundView?.backgroundColor = UIColor.systemPurple.withAlphaComponent(alpha)
+//        print(alpha)
+//        if alpha > 0.4 {
+//            self.appearance.titleDefaultColor = UIColor(white: 1.0, alpha: 1.0)
+////            self.appearance.titlePlaceholderColor = UIColor(white: 1.0, alpha: 1.0)
+//        }
+//        else if alpha <= 0.4 && alpha > 0.01 {
+//            self.appearance.titlePlaceholderColor = UIColor.darkText
+//        }
+        
+        self.backgroundView?.backgroundColor = UIColor.appColor.withAlphaComponent(CGFloat(alpha))
     }
     
 //    override func configureAppearance() {

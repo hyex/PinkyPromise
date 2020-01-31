@@ -358,9 +358,9 @@
 			isa = PBXGroup;
 			children = (
 				3F8F103523E03884002D2BDA /* DayPromiseListTVC.xib */,
+				3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */,
 				3F8F103323E0387A002D2BDA /* DayPromiseListTVC.swift */,
 				3F2612CD23D5994700E86CC1 /* PromiseInputTVC.swift */,
-				3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */,
 				3F6DAE4823DCD53A00599661 /* MyCalendarCell.swift */,
 				3F6DAE5823DE30D800599661 /* AddPromiseBtn.swift */,
 				3F6DAE5A23DF158300599661 /* PromiseCustomCell.swift */,
