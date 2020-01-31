@@ -14,6 +14,7 @@ class EndedPromiseVC: UIViewController {
     @IBOutlet weak var endedPromiseCollectionView: UICollectionView!
     
     var promiseList: [PromiseTable] = []
+    var friendList: [PromiseUser] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,33 +110,10 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         cell.promiseDuration.text = duration
         
         let promiseColor = rowData.promiseColor!
-        let selector = Selector("\(promiseColor)")
-//        let selector = Selector("\(rowData.promiseColor)Color")
-        print(selector)
-        if UIColor.self.responds(to: selector) {
-            var color = UIColor.self.perform(selector).takeUnretainedValue()
-            color = color.withAlphaComponent(0.15)
-            let cgColor = color.cgColor
-            cell.backgroundColor = color as? UIColor
-//            cell.layer.backgroundColor = cgColor
-//            cell.layer.borderColor = cgColor
-            cell.layer.shadowColor = cgColor
-        } else {
-            print("get color Fail")
-        }
-        
-//        print(rowData.promiseColor)
-//        if let colorName = rowData.promiseColor {
-//            print(colorName)
-//            print(UIColor(named: colorName))
-//            cell.backgroundColor = UIColor(named: "appColor")
-//            cell.backgroundColor = UIColor(named: colorName)
-//            cell.layer.shadowColor = UIColor(named: colorName)?.cgColor
-//        }
-//        print(UIColor(named: rowData.promiseColor))
-//        cell.backgroundColor = UIColor(named: rowData.promiseColor)!
-        
-//        cell.layer.borderWidth = 1
+
+        cell.backgroundColor = UIColor(named :promiseColor)
+        cell.layer.shadowColor = UIColor(named :promiseColor)?.cgColor
+
         
         return cell
     }
@@ -144,14 +122,15 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
         print(indexPath.row)
-        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
+//        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
+        performSegue(withIdentifier: "promiseDetail", sender: promiseList[indexPath.row])
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("in prepare func")
         if segue.identifier == "promiseDetail"{
-            let promiseDetail = sender as? Promise
+            let promiseDetail = sender as? PromiseTable
             if promiseDetail != nil{
                 let PromiseDetailVC = segue.destination as? PromiseDetailVC
                 if PromiseDetailVC != nil {
