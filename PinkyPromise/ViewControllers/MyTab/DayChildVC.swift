@@ -22,6 +22,24 @@ class DayChildVC: UIViewController {
         super.viewDidLoad()
         getMyPageData()
         setUpTableView()
+        initRefresh()
+    }
+    
+    func initRefresh() {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateUI(refresh:)), for: .valueChanged)
+        refresh.attributedTitle = NSAttributedString(string: "")
+        
+        if #available(iOS 10.0, *) {
+            dayTableView.refreshControl = refresh
+        } else {
+            dayTableView.addSubview(refresh)
+        }
+    }
+    
+    @objc func updateUI(refresh: UIRefreshControl) {
+        refresh.endRefreshing()
+        dayTableView.reloadData()
     }
 
     private func setUpTableView() {
@@ -62,6 +80,7 @@ extension DayChildVC: UITableViewDataSource {
             let today = Date()
             if dateFormatter.string(from: list[indexPath.row].Day) == dateFormatter.string(from: today) {
 //                firstIndex = indexPath
+                // MARK: - NO working
                 self.dayTableView.scrollToRow(at: indexPath, at: .top, animated: false)
             }
         }
