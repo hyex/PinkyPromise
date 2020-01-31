@@ -37,7 +37,7 @@ class DayPromiseListTVC: UITableViewCell {
         promiseName.text? = name
     }
     func setIcon(name: String) {
-        promiseIcon = UIImageView(image: UIImage(named: "trash")) 
+//        promiseIcon = UIImageView(image: UIImage(named: "trash"))
         
     }
 }

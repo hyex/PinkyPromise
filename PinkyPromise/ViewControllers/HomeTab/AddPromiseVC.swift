@@ -74,14 +74,14 @@ class AddPromiseVC: UIViewController {
         
         //data setting
         DispatchQueue.global().async {
-            MyApi.shared.getUserData { (result) in
+            MyApi.shared.getUsersFriendsData { (result) in
                 var i = 0
                 result[0].userFriends.forEach { (friendId) in
                     MyApi.shared.getUserDataWithUID(id: friendId, completion: { (friend) in
                         let temp = FriendData(tag: i, name: friend.userName, image: friend.userImage, isChecked: nil)
                         self.myFriends.append(temp)
                     })
-                    i += 0
+                    i += 1
                 }
             }
         }
