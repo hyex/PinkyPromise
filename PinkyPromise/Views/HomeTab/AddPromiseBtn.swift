@@ -21,7 +21,7 @@ class AddPromiseBtn: Floaty {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.buttonColor = UIColor.systemPurple
+        self.buttonColor = UIColor.appColor
         self.plusColor = .white
     }
     
