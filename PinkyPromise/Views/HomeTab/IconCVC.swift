@@ -9,13 +9,12 @@
 import UIKit
 
 class IconCVC: UICollectionViewCell {
-
+    
     @IBOutlet weak var iconButton: UIButton!
     
     var iconName: String!
     var iconInt: Int!
-    let icons: [String] = [ "star", "book", "drugs", "english", "gym", "list", "meditation", "sleep" ]
-
+    let icons: [String] = [ "star", "timer", "gym", "weight-scale", "sleep", "list", "ebook", "award", "family",  "couple",  "no-smoking", "beer" ]
     var delegate: SelectedIconDelegate!
     
     override func awakeFromNib() {
