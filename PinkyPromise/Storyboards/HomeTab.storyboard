@@ -588,10 +588,12 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="bigView" destination="2FD-vn-Kze" id="uSZ-XP-wpC"/>
                         <outlet property="cancelBtn" destination="cpm-4k-2Se" id="fQS-q4-5xS"/>
                         <outlet property="panaltyName" destination="14C-Gu-SQ2" id="kg1-Kf-J0z"/>
                         <outlet property="saveBtn" destination="KzT-96-LcH" id="x9W-k2-eRL"/>
                         <outlet property="smallView" destination="ooP-re-hx5" id="RRR-Rm-ow5"/>
+                        <outlet property="textField" destination="14C-Gu-SQ2" id="u34-qW-uII"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mxd-Et-N1V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

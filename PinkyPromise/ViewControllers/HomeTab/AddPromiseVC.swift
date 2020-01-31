@@ -104,16 +104,13 @@ class AddPromiseVC: UIViewController {
         let dataColor = colors[selectedColor]
         let dataIcon = icons[selectedIcon]
         let dataUsers: Array<String>? = []
-        let dataPromiseAchievement = false
         let promisePanalty = self.panaltyName ?? "벌칙없음"
         
         // error
         if dataName == "" { alertData(name: "title"); return }
         
+        let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: false, promisePanalty: promisePanalty, promiseId: MyApi.shared.randomNonceString())
         
-        
-        let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: dataPromiseAchievement, promisePanalty: promisePanalty, promiseId: "")
-        print(newPromise)
         MyApi.shared.addPromiseData(newPromise)
         //        MyApi.shared.addProgressData(newPromise)
         
@@ -340,7 +337,7 @@ extension AddPromiseVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
-        return newLength <= 15
+        return newLength <= 30
         
     }
     
