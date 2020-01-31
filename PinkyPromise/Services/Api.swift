@@ -309,7 +309,7 @@ class MyApi: NSObject {
                 for douc in tempResult {
                     let FriendsList = douc.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
                     
-                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: FriendsList)
+                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, FirstuserImage: FriendsList[0] ?? "nil" ,friendsName: FriendsList)
                     
                     if FriendsList.count == 0 {//친구가 없으면 패스하고 check에 1을 더해준다.
                         check += 1
@@ -335,7 +335,7 @@ class MyApi: NSObject {
             self.getUserNameWithUID(id: douc) { (result) in
                 temp2.append(result)
                 if temp2.count == tempTable.friendsName.count {
-                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, friendsName: temp2)
+                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, FirstuserImage: douc, friendsName: temp2)
                     completion(temp3)
                 }
             }
@@ -411,6 +411,30 @@ class MyApi: NSObject {
         
         let days = self.getTotalDate()//이번 달의 날짜 수
         
+        let cal = Calendar.current
+        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: Date())
+        components.month //이번 달이 몇번째 달인지
+        
+        let calendar = Calendar(identifier: .gregorian)
+        
+        let comps = DateComponents(calendar:calendar, year:components.year, month:components.month, day:1) //그 달 1일
+        
+        //components.day => 오늘날짜
+        
+        var temp = [PromiseAndProgress]()
+        
+        for i in 0..<days {
+            
+            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISESTARTTIME, isLessThanOrEqualTo: Date()).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Date()).getDocuments { (snapShot, error) in
+                if let err = error {
+                    debugPrint(err.localizedDescription)
+                } else {
+                    let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                    
+                   // progressCollectionRef.whereField(PROMISEID, isEqualTo: <#T##Any#>)
+                }
+            }
+        }
         
     }
     

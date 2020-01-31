@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08506C9A7B0CF0C05C72A6FB /* Pods_PinkyPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091DA1DC9578F66849434C4F /* Pods_PinkyPromise.framework */; };
+		1808C1D923E41AA6004D5ED2 /* API-Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808C1D823E41AA6004D5ED2 /* API-Auth.swift */; };
 		186D855423D41C94006DA619 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855323D41C94006DA619 /* Constants.swift */; };
 		186D855923D42174006DA619 /* promiseUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855823D42174006DA619 /* promiseUsers.swift */; };
 		186D855B23D42486006DA619 /* promiseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855A23D42486006DA619 /* promiseTable.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		091DA1DC9578F66849434C4F /* Pods_PinkyPromise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinkyPromise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1808C1D823E41AA6004D5ED2 /* API-Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API-Auth.swift"; sourceTree = "<group>"; };
 		181D739B23D5DE32006797A2 /* PinkyPromise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinkyPromise.entitlements; sourceTree = "<group>"; };
 		186D855323D41C94006DA619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		186D855823D42174006DA619 /* promiseUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseUsers.swift; sourceTree = "<group>"; };
@@ -193,6 +195,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1808C1D723E41A73004D5ED2 /* AppleAuth */ = {
+			isa = PBXGroup;
+			children = (
+				1808C1D823E41AA6004D5ED2 /* API-Auth.swift */,
+			);
+			path = AppleAuth;
+			sourceTree = "<group>";
+		};
 		186D855523D42124006DA619 /* promiseData */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +236,7 @@
 		33028C5E23CDB208004E0104 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1808C1D723E41A73004D5ED2 /* AppleAuth */,
 				33028C5F23CDB21B004E0104 /* Api.swift */,
 				186D855323D41C94006DA619 /* Constants.swift */,
 				1875B63523D876FE00751947 /* FirebaseStorageService.swift */,
@@ -648,6 +659,7 @@
 				33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */,
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
+				1808C1D923E41AA6004D5ED2 /* API-Auth.swift in Sources */,
 				3F6DAE5923DE30D800599661 /* AddPromiseBtn.swift in Sources */,
 				3F7F7E7723DFB7960033856F /* IconCVC.swift in Sources */,
 				3F8F103423E0387A002D2BDA /* DayPromiseListTVC.swift in Sources */,
@@ -879,7 +891,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PinkyPromise/PinkyPromise.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M96L4WMU9C;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				INFOPLIST_FILE = PinkyPromise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

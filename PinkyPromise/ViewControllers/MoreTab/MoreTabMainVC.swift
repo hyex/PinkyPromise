@@ -85,6 +85,23 @@ class MoreTabMainVC: UIViewController {
     }
     
     @IBAction func logOutBtnAction(_ sender: Any) {
+        
+        FirebaseUserService.signOut(success: {
+            
+            if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
+                tempVC.modalPresentationStyle = .fullScreen
+                self.present(tempVC, animated: true, completion: nil)
+                
+                print("finished")
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
     }
 }
 

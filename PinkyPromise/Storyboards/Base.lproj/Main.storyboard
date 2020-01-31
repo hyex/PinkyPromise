@@ -117,6 +117,9 @@
                                 <state key="normal" title="애플로 로그인!">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="appleSignIn" destination="7gk-GH-tO2" eventType="touchUpInside" id="Yag-pL-CM5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
