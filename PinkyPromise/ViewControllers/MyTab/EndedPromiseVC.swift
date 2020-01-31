@@ -14,7 +14,7 @@ class EndedPromiseVC: UIViewController {
     @IBOutlet weak var endedPromiseCollectionView: UICollectionView!
     
     var promiseList: [PromiseTable] = []
-    var friendList: [PromiseUser] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +27,10 @@ class EndedPromiseVC: UIViewController {
         MyApi.shared.getCompletedPromiseData(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
-                print(result)
                 self.endedPromiseCollectionView.reloadData()
             }
         })
+        
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
@@ -43,7 +43,7 @@ class EndedPromiseVC: UIViewController {
 
 extension EndedPromiseVC {
     private func initView() {
-        backBtn.tintColor = .black
+        backBtn.tintColor = UIColor.appColor
         addSwipeGesture()
     }
     func addSwipeGesture() {
@@ -84,10 +84,6 @@ extension EndedPromiseVC: UICollectionViewDelegateFlowLayout {
 extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-//        guard let promiseList = promiseList else {
-//            return 1
-        //        }
         return self.promiseList.count
     }
     
@@ -96,6 +92,22 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         let cell = endedPromiseCollectionView.dequeueReusableCell(withReuseIdentifier: "EndedPromiseCVC", for: indexPath) as! EndedPromiseCVC
         
         let rowData = promiseList[indexPath.row]
+        
+        cell.promiseFriends.text = "WITH "
+        
+        print(rowData.promiseId!)
+        if let id = rowData.promiseId {
+            MyApi.shared.getPromiseFriendsNameWithPID(promiseID: id, completion: { result in
+                DispatchQueue.main.async {
+                    for friend in result {
+                        cell.promiseFriends.text! += friend + " "
+                    }
+                    print(result)
+                }
+            })
+        }
+        
+        
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"

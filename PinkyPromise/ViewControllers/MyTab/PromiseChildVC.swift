@@ -162,13 +162,13 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
                 var promiseAchievement:Int = 0
 
-                for progress in progressList! {
-                    if progress.promiseId == list[indexPath.item].promiseId {
-//                        if progress.progressDegree == 4 {
-//                            promiseAchievement += 1
-//                        }
-                    }
-                }
+//                for progress in progressList! {
+//                    if progress.promiseId == list[indexPath.item].promiseId {
+////                        if progress.progressDegree == 4 {
+////                            promiseAchievement += 1
+////                        }
+//                    }
+//                }
                     
                 // 날짜만 비교해서 며칠 남았는지 뽑아낸다
                 let dateFormatter = DateFormatter()

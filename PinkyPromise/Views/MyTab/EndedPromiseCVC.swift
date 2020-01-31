@@ -13,7 +13,7 @@ class EndedPromiseCVC: UICollectionViewCell {
     @IBOutlet weak var promiseIcon: UIImageView!
     @IBOutlet weak var promiseName: UILabel!
     @IBOutlet weak var promiseDuration: UILabel!
-    
+    @IBOutlet weak var promiseFriends: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
