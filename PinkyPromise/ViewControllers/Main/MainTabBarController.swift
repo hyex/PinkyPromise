@@ -61,15 +61,16 @@ class MainTabBarController: UITabBarController {
 //                    print(result)
 //                }
         
-//        MyApi.shared.getPromiseNameAndFriendsName { (result) in
-//            for douc in result {
-//                print(douc.promiseId)
-//                print(douc.promiseName)
-//                print(douc.friendsName)
-//            }
-//        }
+        MyApi.shared.getPromiseNameAndFriendsName { (result) in
+            for douc in result {
+                print(douc.promiseId)
+                print(douc.promiseName)
+                print(douc.FirstuserImage)
+                print(douc.friendsName)
+            }
+        }
         
-        print ( MyApi.shared.getTotalDate() )
+ //       print ( MyApi.shared.getTotalDate() )
         
 //        MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
 //            print(result.promiseName)
@@ -127,6 +128,7 @@ class MainTabBarController: UITabBarController {
             
             print("finished")
         }
+        
     }
     
 }

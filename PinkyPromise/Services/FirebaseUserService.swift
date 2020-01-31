@@ -47,6 +47,18 @@ class FirebaseUserService {
         do {
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance()?.signOut()
+            
+            UserDefaults.standard.set(false, forKey: "loggedIn")
+            
+//            if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+//
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
+//                tempVC.modalPresentationStyle = .fullScreen
+//
+//                print("finished")
+//            }
+            
         }
         catch let signOutError {
             failure(signOutError)

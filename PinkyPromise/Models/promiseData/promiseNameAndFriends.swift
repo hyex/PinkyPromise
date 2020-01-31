@@ -14,6 +14,7 @@ import Foundation
 struct promiseNameAndFriendsName {
     var promiseName: String!//약속 명
     var promiseId: String!//약속 id
+    var FirstuserImage: String!
     var friendsName: Array<String>//로그인 유저가 함께 약속중인 친구들 이름
 }
 
