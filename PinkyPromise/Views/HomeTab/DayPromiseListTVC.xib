@@ -32,13 +32,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BlN-g8-1U9">
+                                <rect key="frame" x="232" y="26.5" width="40" height="37.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Ytm-B0-wcN"/>
+                                    <constraint firstAttribute="width" constant="40" id="avx-Hn-aPf"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="BlN-g8-1U9" firstAttribute="centerY" secondItem="AG7-v5-4Qd" secondAttribute="centerY" id="A1K-vs-jj0"/>
                             <constraint firstItem="saw-N7-UzL" firstAttribute="centerY" secondItem="AG7-v5-4Qd" secondAttribute="centerY" id="AlU-Mg-q9j"/>
                             <constraint firstItem="45T-WY-RS9" firstAttribute="centerY" secondItem="AG7-v5-4Qd" secondAttribute="centerY" id="DVe-M6-pyW"/>
                             <constraint firstItem="45T-WY-RS9" firstAttribute="leading" secondItem="saw-N7-UzL" secondAttribute="trailing" constant="16" id="SwV-b2-sg6"/>
                             <constraint firstItem="saw-N7-UzL" firstAttribute="leading" secondItem="AG7-v5-4Qd" secondAttribute="leading" constant="16" id="ZYg-Za-NiX"/>
+                            <constraint firstAttribute="trailing" secondItem="BlN-g8-1U9" secondAttribute="trailing" constant="16" id="mcu-eH-hVf"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -59,6 +68,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="heart.fill" catalog="system" width="64" height="54"/>
         <image name="trash.slash" catalog="system" width="60" height="64"/>
     </resources>
 </document>

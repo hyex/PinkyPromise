@@ -13,9 +13,6 @@ import Floaty
 
 class HomeTabMainVC: UIViewController {
     
-    //    @IBOutlet weak var addPromiseBtn: UIButton!
-    //    @IBOutlet weak var nearPromiseLabel: UILabel!
-    //    @IBOutlet weak var nearPromise: UILabel!
     fileprivate weak var calendar: FSCalendar!
     fileprivate weak var eventLabel: UILabel!
     var addPromiseBtn: AddPromiseBtn!
@@ -42,7 +39,7 @@ class HomeTabMainVC: UIViewController {
     }
     
     var days: [Day] = [
-         
+        
         Day(day: Date(), promise: [
             Promise(promiseName: "독서", promiseColor: "red", progress: 0),
             Promise(promiseName: "1DAY 1COMMIT", promiseColor: "yellow", progress: 1)
@@ -63,25 +60,33 @@ class HomeTabMainVC: UIViewController {
         ])
     ]
     
-    override func loadView() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //        initView()
         
         // initialize UI
         let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        //        let guide = view.safeAreaLayoutGuide
         self.view = view
+
+
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 33))
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.boldSystemFont(ofSize: 27.0)
         titleLabel.attributedText = NSAttributedString(string: "PinkyPromise")
-        view.addSubview(titleLabel)
+        self.view.addSubview(titleLabel)
         
-        //        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
-        let calendar = FSCalendar(frame: CGRect(x: 0, y: titleLabel.frame.maxY, width: view.frame.size.width, height: view.frame.size.width - 90))
+        //        let ScreenSize: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
+        
+        
+        let calendar = FSCalendar(frame: CGRect(x: 0, y: titleLabel.frame.maxY, width: self.view.frame.size.width, height: self.view.frame.size.height / 2 - titleLabel.frame.maxY))
         calendar.dataSource = self
         calendar.delegate = self
         //        calendar.allowsMultipleSelection = true
-        view.addSubview(calendar)
+        self.view.addSubview(calendar)
         self.calendar = calendar
         
         calendar.appearance.headerTitleColor = UIColor.appColor
@@ -119,7 +124,7 @@ class HomeTabMainVC: UIViewController {
         
         let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY - CGFloat(5), width: self.view.frame.size.width, height: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - self.eventLabel.frame.maxY))
         
-        view.addSubview(myTableView)
+        self.view.addSubview(myTableView)
         
         self.tableView = myTableView
         
@@ -129,34 +134,28 @@ class HomeTabMainVC: UIViewController {
         let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
         
-        addPromiseBtn = AddPromiseBtn(frame: CGRect(x: self.view.center.x - 25, y: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - 110, width: 50, height: 50));
+        addPromiseBtn = AddPromiseBtn(frame: CGRect(x: self.view.frame.size.width / 2 - 25, y: self.view.frame.size.height - 94 - self.tabBarController!.tabBar.frame.size.height, width: 50, height: 50));
         
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
-        
+        //        self.safearea.addSubview(view)
         // data setting
         
-//        MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
-//            DispatchQueue.main.sync {
-//                self.promiseListforDates = result
-//                print(self.promiseListforDates[0].progressDay ?? "data nil")
-//            }
-//        })
-//        MyApi.shared.getPromiseData(completion:  { (result) in
-//            DispatchQueue.main.async {
-//                result.forEach { (promise) in
-//                    <#code#>
-//                }
-////                self.promiseListforDates = result
-//                print(self.promiseListforDates[0].progressDay)
-//            }
-//        })
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //        initView()
+        //        MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
+        //            DispatchQueue.main.sync {
+        //                self.promiseListforDates = result
+        //                print(self.promiseListforDates[0].progressDay ?? "data nil")
+        //            }
+        //        })
+        //        MyApi.shared.getPromiseData(completion:  { (result) in
+        //            DispatchQueue.main.async {
+        //                result.forEach { (promise) in
+        //                    <#code#>
+        //                }
+        ////                self.promiseListforDates = result
+        //                print(self.promiseListforDates[0].progressDay)
+        //            }
+        //        })
         setTableViewUI()
     }
     
@@ -332,3 +331,14 @@ extension HomeTabMainVC: FloatyDelegate {
         
     }
 }
+//
+//extension UIDevice {
+//    var hasNotch: Bool {
+//        let keyWindow = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+//        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+//        let bottom = keyWindow?.safeAreaInsets.bottom ?? 0
+//        print(bottom)
+//        return bottom > 0
+//    }
+//}
+

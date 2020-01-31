@@ -72,6 +72,20 @@ class MainTabBarController: UITabBarController {
         
  //       print ( MyApi.shared.getTotalDate() )
         
+
+//        MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
+//            print(result.promiseName)
+//            print(result.promiseDay)
+//            print(result.promiseDaySinceStart)
+//
+//            for douc in result.friendsDetail {
+//                print(douc.friendName)
+//                print(douc.friendDegree)
+//                print(douc.friendImage)
+//            }
+//
+//        }
+
         MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
             print(result.promiseName)
             print(result.promiseDay)
@@ -87,7 +101,7 @@ class MainTabBarController: UITabBarController {
 //        var temp = PromiseTable(promiseName: "iOS 관두기", promiseStartTime: Date(timeIntervalSince1970: 1580428800 - 86400), promiseEndTime: Date(timeIntervalSince1970: 1580428800 + 86400), promiseColor: "Red", promiseIcon: "imacicon", promiseUsers: [], isPromiseAchievement: false, promisePanalty: "Android 시작하기", promiseId: MyApi.shared.randomNonceString())
 //
 //        MyApi.shared.addPromiseData(temp)
-        
+
 //        MyApi.shared.getUsersFriendsData { (result) in
 //            for douc in result {
 //                print(douc.userId)
@@ -113,9 +127,12 @@ class MainTabBarController: UITabBarController {
         //            print(error)
         //        }
         //    }
+        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == false {
             print("here is AppDeletage.swift 1")
