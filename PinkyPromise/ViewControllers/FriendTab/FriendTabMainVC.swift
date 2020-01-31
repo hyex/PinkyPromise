@@ -6,10 +6,10 @@
 //  Copyright © 2020 hyejikim. All rights reserved.
 //
 
-struct FriendsInfo {
-    var img : String
-    var friendname : String
-    var promisename : String
+struct PromiseWithFriend {
+    var promiseId : String
+    var promiseName : String
+    var friendsName : [String]
 }
 
 import UIKit
@@ -20,25 +20,13 @@ class FriendTabMainVC: UIViewController {
     @IBOutlet weak var promiseCtnLabel: UILabel!
     @IBOutlet weak var friendMainTableView: UITableView!
     
-    //임시 친구약속 데이터
-    let friendsInPromise : [FriendsInfo] = [
-    FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
-    FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
-    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "2시 전 취침 10시 전 기상"),
-    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "One day One commit"),
-    FriendsInfo(img: "seonyoung", friendname: "sunnyangee", promisename: "매일 성북천 3K 조깅"),
-    FriendsInfo(img: "heji", friendname: "hyex", promisename: "물 하루 1L 이상 마시기 "),
-    FriendsInfo(img: "hyunjae", friendname: "hyunJae", promisename: "2시 전 취침 10시 전 기상"),
-    FriendsInfo(img: "uijeong", friendname: "jeongUijeong", promisename: "One day One commit")
-    ]
+    var PromiseList : [PromiseWithFriend] = []{
+        didSet {friendMainTableView.reloadData() }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.navigationBar.isHidden = true
-//        getAllPromiseData()
         setPlusBtn()
-        
-        promiseCtnLabel.text = String(friendsInPromise.count)
         
         self.getPromiseAndFriend()
         
@@ -64,14 +52,9 @@ class FriendTabMainVC: UIViewController {
     }
     
     private func getPromiseAndFriend() {
-        print("in getPromiseAndFriend")
-        
         MyApi.shared.getPromiseNameAndFriendsName { (result) in
             for douc in result {
-                print("api test")
-                print(douc.promiseId!)
-                print(douc.promiseName!)
-                print(douc.friendsName)
+                self.PromiseList.append(PromiseWithFriend(promiseId: douc.promiseId, promiseName: douc.promiseName, friendsName: douc.friendsName))
             }
         }
     }
@@ -80,7 +63,6 @@ class FriendTabMainVC: UIViewController {
 extension FriendTabMainVC : UITableViewDelegate{
     //table segue 설정, modal 스타일 설정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "detailPromise", sender: self.friendsInPromise[indexPath.row])
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
         vc.modalTransitionStyle = .flipHorizontal
@@ -88,7 +70,7 @@ extension FriendTabMainVC : UITableViewDelegate{
         
         
         self.present(vc, animated: false) {
-            vc.detailPromise = self.friendsInPromise[indexPath.row]
+            vc.detailPromise = self.PromiseList[indexPath.row]
         }
     }
 }
@@ -96,21 +78,27 @@ extension FriendTabMainVC : UITableViewDelegate{
 extension FriendTabMainVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return self.friendsInPromise.count
+           return self.PromiseList.count
     }
     
     //table view cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         
-        let rowData = self.friendsInPromise[indexPath.row]
+        let promiseData = self.PromiseList[indexPath.row]
         
+        promiseCtnLabel.text = String(PromiseList.count)
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
         
-        cell.friendProfileImg.image = UIImage(named: rowData.img)
-        cell.friendNameLabel.text = rowData.friendname
-        cell.promiseNameLabel.text = rowData.promisename
+        //이미지 수정해야 함
+        cell.friendProfileImg.image = UIImage(named: "seonyoung")
+        if (promiseData.friendsName.count == 1) {
+            cell.friendNameLabel.text = promiseData.friendsName[0]
+        }else{
+            cell.friendNameLabel.text = promiseData.friendsName[0] + " 외 \(promiseData.friendsName.count - 1)명"
+        }
+        cell.promiseNameLabel.text = promiseData.promiseName
 
         let purpleArrow : UIImage = UIImage(named: "next")!
         cell.friendDatailBtn.setImage(purpleArrow, for: UIControl.State.normal)
@@ -127,7 +115,7 @@ extension FriendTabMainVC : UITableViewDataSource{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "detailPromise" {
-            let promise = sender as? FriendsInfo
+            let promise = sender as? PromiseWithFriend
             if promise != nil{
                 let FriendTabDetailVC = segue.destination as? FriendTabDetailVC
                 if FriendTabDetailVC != nil {

@@ -18,7 +18,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrQ-Qn-4Sk">
-                    <rect key="frame" x="10" y="10" width="42" height="20.5"/>
+                    <rect key="frame" x="10" y="10" width="42" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="l14-H1-087"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -27,7 +30,9 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="vrQ-Qn-4Sk" firstAttribute="centerY" secondItem="HqM-tz-Myr" secondAttribute="centerY" id="Mja-2r-diF"/>
+                <constraint firstItem="vrQ-Qn-4Sk" firstAttribute="top" secondItem="HqM-tz-Myr" secondAttribute="top" constant="10" id="NEq-61-UoB"/>
                 <constraint firstItem="vrQ-Qn-4Sk" firstAttribute="leading" secondItem="HqM-tz-Myr" secondAttribute="leading" constant="10" id="PlJ-Hw-EUk"/>
+                <constraint firstItem="rQG-Cl-rIE" firstAttribute="bottom" secondItem="vrQ-Qn-4Sk" secondAttribute="bottom" constant="10" id="vwa-ny-UQx"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

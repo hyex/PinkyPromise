@@ -81,7 +81,7 @@
                                         <color key="backgroundColor" red="0.55475924700000001" green="0.27558713709999999" blue="0.80382506909999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="로그아웃">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" name="selectedTextColor" catalog="System" colorSpace="catalog"/>
                                         </state>
                                         <connections>
                                             <action selector="logOutBtnAction:" destination="IwM-Qb-H7g" eventType="touchUpInside" id="Uw3-d1-Qi2"/>

@@ -13,7 +13,7 @@ class OnePromiseView: UIView {
     
     var vc : DayChildVC? = nil
     
-    private var promise: Promise? = nil
+    private var promise: PromiseTable? = nil
     private let xibName = "OnePromiseView"
 
 //    fileprivate let promiseHeight: CGFloat = 30
@@ -26,7 +26,7 @@ class OnePromiseView: UIView {
     }
     
     // 1
-    convenience init(frame:CGRect, promise: Promise) {
+    convenience init(frame:CGRect, promise: PromiseTable) {
         self.init(frame: frame) // 2
         self.promise = promise
         self.commonInit()
@@ -48,15 +48,23 @@ class OnePromiseView: UIView {
         view.frame = self.bounds
         view.layer.cornerRadius = 4
 
-        if promise != nil {
-            let unwrappedPromise = promise!
-            let selector = Selector("\(unwrappedPromise.promiseColor)Color")
-            if UIColor.self.responds(to: selector) {
-                let color = UIColor.self.perform(selector).takeUnretainedValue()
-                view.backgroundColor = color as? UIColor
-            } else {
-                print("fail")
-            }
+//        if promise != nil {
+        if let unwrappedPromise = promise {
+//            let unwrappedPromise = promise!
+            let colorName = unwrappedPromise.promiseColor!
+//            let selector = Selector("\(colorName)Color")
+//            let selector = Selector("systemRedColor")
+//            print(colorName)
+//            if UIColor.self.responds(to: selector) {
+//                let color = UIColor.self.perform(selector).takeUnretainedValue()
+//                print(color)
+//                view.backgroundColor = color as? UIColor
+//            } else {
+//                print("fail")
+//            }
+            
+//            color =
+            view.backgroundColor = UIColor(named: colorName)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
@@ -69,7 +77,8 @@ class OnePromiseView: UIView {
     @objc func handleTap(sender: UITapGestureRecognizer) {
         // 뷰 이동 여기다가 추가
         if let controller = self.vc {
-            controller.performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
+            controller.performSegue(withIdentifier: "promiseDetail", sender: self.promise!)
+//            controller.performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
 
         }
     }

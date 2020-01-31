@@ -12,6 +12,7 @@ import FirebaseUI
 import FirebaseStorage
 //import SVProgressHUD
 import GoogleSignIn
+import AuthenticationServices
 
 class LoginVC: UIViewController {
     
@@ -25,6 +26,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var tempImage: UIImageView!
     
     var indicator: UIActivityIndicatorView?
+    var currentNonce: String? = nil
     
     @IBAction func goToSignIn(){
         let controller = signInVC()
@@ -40,10 +42,9 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func appleSignIn(){
-        
+        self.currentNonce = API.shared.startSignInWithAppleFlow(vc: self)
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.indicator = UIActivityIndicatorView()
@@ -57,7 +58,6 @@ class LoginVC: UIViewController {
         self.bottomView.clipsToBounds = true
         self.bottomView.frame.size.width = width * 2
         self.bottomView.frame.size.height = height * 2
-
 
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
@@ -95,8 +95,6 @@ class LoginVC: UIViewController {
             break
         }
     }
-    
-    
 }
 
 extension LoginVC: GIDSignInDelegate {
@@ -174,6 +172,84 @@ extension LoginVC: GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.presentingViewController = self
     }
 }
+
+@available(iOS 13.0, *)
+extension LoginVC: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+}
+
+@available(iOS 13.0, *)
+extension LoginVC: ASAuthorizationControllerDelegate {
+
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+        guard let nonce = currentNonce else {
+            fatalError("Invalid state: A login callback was received, but no login request was sent.")
+        }
+        guard let appleIDToken = appleIDCredential.identityToken else {
+            print("Unable to fetch identity token")
+            return
+        }
+        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+            print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+        return
+        }
+        // Initialize a Firebase credential.
+        let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+        // Sign in with Firebase.
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                print(error)
+            } else if let user = authResult?.user {
+                print(user.uid)
+                
+                if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+                    print("not yet logined...")
+                    self.navigationController?.isNavigationBarHidden = true
+                    UserDefaults.standard.set(true, forKey: "loggedIn")
+                    
+                    //let i = (authResult?.user.email)!.firstIndex(of: "@")
+                    
+                    var temp = PromiseUser(userName: (authResult?.user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: (authResult?.user.uid)!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                    MyApi.shared.addUserData(temp)
+                    
+                    let tempimage = UIImage(named: "user_male")
+                    
+                    guard let imageData = tempimage!.jpegData(compressionQuality: 1) else {
+                         return
+                    }
+                        FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                            switch result {
+                            case .success(let url):
+                                //self?.imageURL = url
+                                print("store default user Image + \(url)")
+                                //print(self?.imageURL)
+                            case .failure(let error):
+                                print("this is error + \(error)")
+                                //print(error)
+                            }
+                        }
+                    
+                } else {
+                    print("go login!!")
+                    self.navigationController?.isNavigationBarHidden = true
+                }
+                
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+  }
+
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+    // Handle error.
+    print("Sign in with Apple errored: \(error)")
+  }
+
+}
+
 
 
 //FireStoreService

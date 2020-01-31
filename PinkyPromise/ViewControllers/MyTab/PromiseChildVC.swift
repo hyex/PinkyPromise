@@ -17,12 +17,12 @@ class PromiseChildVC: UIViewController {
     var promiseList: [PromiseTable]? {
         didSet { collectionView.reloadData() }
     }
-    
-    var progressList: [ProgressTable]? {
-        didSet { collectionView.reloadData() }
-    }
+//
+//    var progressList: [ProgressTable]? {
+//        didSet { collectionView.reloadData() }
+//    }
 //    var allProgressList: [eachProgressList]? = []
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +48,11 @@ class PromiseChildVC: UIViewController {
             }
         })
         
-        MyApi.shared.getAllProgressData(completion: { result in
-            DispatchQueue.main.async {
-                self.progressList = result
-            }
-        })
+//        MyApi.shared.getAllProgressData(completion: { result in
+//            DispatchQueue.main.async {
+//                self.progressList = result
+//            }
+//        })
         
 //        for idx in 0...self.promiseList!.count {
 //            MyApi.shared.getProgressData(promiseid: self.promiseList![idx].promiseId, completion: { result in
@@ -117,12 +117,28 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
     
-    // 클릭 시 실행되는 함수
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
-//        print(indexPath.row)
-//        
-//    }
+    // 선영 추가 부분 --> 클릭 시 실행되는 함수
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
+        print(indexPath.row)
+//        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
+        
+    }
+    
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("in prepare func")
+        if segue.identifier == "promiseDetail"{
+            let promiseDetail = sender as? PromiseTable
+            if promiseDetail != nil{
+                let PromiseDetailVC = segue.destination as? PromiseDetailVC
+                if PromiseDetailVC != nil {
+                    PromiseDetailVC?.promiseDetail = promiseDetail
+                }
+            }
+        }
+    }
+    
+    
 }
 
 extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -133,9 +149,9 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         return promiseList.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         var cell = UICollectionViewCell()
         
         if let promiseCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "PromiseCVC", for: indexPath) as? PromiseCVC {
@@ -143,17 +159,47 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
             if let list = promiseList {
                 
                 let rowData = list[indexPath.item]
-
+                
+                //                var progressList: [ProgressTable] = []
+                
                 var promiseAchievement:Int = 0
-
-                for progress in progressList! {
-                    if progress.promiseId == list[indexPath.item].promiseId {
-//                        if progress.progressDegree == 4 {
-//                            promiseAchievement += 1
-//                        }
-                    }
+                let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
+                let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
+                
+                if let id = rowData.promiseId {
+                    MyApi.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
+                        DispatchQueue.main.async {
+                            print(result)
+                            if result.isEmpty != true {
+//                                print(rowData.promiseName)
+//                                print(result[0].promiseId)
+//                                print(result[0].progressDegree)
+                                
+                                for degree in result[0].progressDegree {
+                                    if degree == 4 {
+                                        promiseAchievement += 1
+                                    }
+                                }
+                                print(promiseAchievement)
+                                print(">>>>\n")
+                            }
+                            
+                            promiseCell.appSlider.value = Float(promiseAchievement)
+                            promiseCell.showSliderValue.text = String(promiseAchievement)
+                            
+                            
+                            let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
+                            
+                            promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue //- CGFloat(2.0)
+                            promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
+                            
+                        }
+                        
+                    })
                 }
-                    
+                
+                //                print(progressList)
+                
                 // 날짜만 비교해서 며칠 남았는지 뽑아낸다
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -185,15 +231,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 
                 promiseCell.promiseIcon.image = UIImage(named: rowData.promiseIcon)
                 promiseCell.promiseName.text = rowData.promiseName
-                promiseCell.appSlider.value = Float(promiseAchievement)
-                promiseCell.showSliderValue.text = String(promiseAchievement)
                 
-                let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
-                let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
-                let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
-                
-                promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue //- CGFloat(2.0)
-                promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
 
             }
             cell = promiseCell

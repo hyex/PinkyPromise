@@ -111,6 +111,27 @@ class MyApi: NSObject {
         }
     }
     
+    //약속 아이디를 가지고 약속한 친구의 이름들을 반환하는 함수
+    func getPromiseFriendsNameWithPID(promiseID: String, completion: @escaping ([String]) -> Void) {
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapsHot, error ) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let tempResult = PromiseTable.parseData(snapShot: snapsHot)
+                var temp = [String]()
+                
+                for douc in tempResult[0].promiseUsers {
+                    self.getUserNameWithUID(id: douc) { (result) in
+                        temp.append(result)
+                        if temp.count == tempResult[0].promiseUsers.count {
+                            completion(temp)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //약속 데이터를 반환// 내가 포함되어 있는 녀석들만
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
@@ -189,13 +210,15 @@ class MyApi: NSObject {
     
     //프로그레스테이블의 정보 반환 약속 id를 반환하면 
     func getProgressDataWithPromiseId(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
-        var result = [ProgressTable]()
+        var result: [ProgressTable] = [] //[ProgressTable]()]
+//        var result: [ProgressTable]? = nil
         progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
             } else {
                 result = ProgressTable.parseData(snapShot: snapShot)
                 completion(result)
+                
             }
         }
     }
@@ -229,6 +252,7 @@ class MyApi: NSObject {
     }
     
     //오늘을 기준으로 10일 이전 약속들을 [PromiseTable]을 하나의 배열 요소로 가지는 배열
+    //업데이트됨 
     func getPromiseData10ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
         let result = Timestamp()
         let now = Date()
@@ -240,8 +264,8 @@ class MyApi: NSObject {
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
                 var temp1 = [DayAndPromise]()
                 
-                //10일 전부터 오늘까지
-                for i in stride(from: now.timeIntervalSince1970 - 864000, through: now.timeIntervalSince1970, by: 86400) {
+                //10일 전부터 10일 후까지
+                for i in stride(from: now.timeIntervalSince1970 - 864000, through: now.timeIntervalSince1970 + 864000, by: 86400) {
                     var temp2 = [PromiseTable]()
                     
                     for douc in tempResult {
@@ -309,7 +333,7 @@ class MyApi: NSObject {
                 for douc in tempResult {
                     let FriendsList = douc.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
                     
-                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: FriendsList)
+                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, FirstuserImage: douc.promiseName, friendsName: FriendsList)
                     
                     if FriendsList.count == 0 {//친구가 없으면 패스하고 check에 1을 더해준다.
                         check += 1
@@ -330,12 +354,12 @@ class MyApi: NSObject {
     func getFriendsName(tempTable: promiseNameAndFriendsName, completion: @escaping (promiseNameAndFriendsName) -> Void ){
 
         var temp2 = [String]()
-        
-        for douc in tempTable.friendsName {
+        let temp4 = tempTable.friendsName.sorted()
+        for douc in temp4 {
             self.getUserNameWithUID(id: douc) { (result) in
                 temp2.append(result)
                 if temp2.count == tempTable.friendsName.count {
-                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, friendsName: temp2)
+                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, FirstuserImage: temp4[0], friendsName: temp2.sorted())
                     completion(temp3)
                 }
             }
@@ -343,8 +367,9 @@ class MyApi: NSObject {
     }
     
     //선영쿤이 요청한 detailView 진행중인 약속에 한해 들어간다.
+    //이거 쿼리 물어봐야함 도대체 왜 세개하면 invalid라고 뜰
     func getDataforDetailViewjr1(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
-        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapshot, error) in
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Timestamp()).getDocuments { (snapshot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -406,11 +431,35 @@ class MyApi: NSObject {
         }
     }
     
-    //의정쿤이 요청한 함수 졸라게 어려붐
+    //의정쿤이 요청한 함수 졸라게 어려붐 펔큉 극강빌런임
     func getMothlyDataWithCurrentMonth(completion: @escaping ([PromiseAndProgress]) -> Void) {
         
         let days = self.getTotalDate()//이번 달의 날짜 수
         
+        let cal = Calendar.current
+        let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: Date())
+        components.month //이번 달이 몇번째 달인지
+        
+        let calendar = Calendar(identifier: .gregorian)
+        
+        let comps = DateComponents(calendar:calendar, year:components.year, month:components.month, day:1) //그 달 1일
+        
+        //components.day => 오늘날짜
+        
+        var temp = [PromiseAndProgress]()
+        
+        for i in 0..<days {
+            
+            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISESTARTTIME, isLessThanOrEqualTo: Date()).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Date()).getDocuments { (snapShot, error) in
+                if let err = error {
+                    debugPrint(err.localizedDescription)
+                } else {
+                    let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                    
+                   // progressCollectionRef.whereField(PROMISEID, isEqualTo: <#T##Any#>)
+                }
+            }
+        }
         
     }
     

@@ -29,7 +29,7 @@ class FirebaseAuthentication: NSObject {
     
     private override init() {}
     
-    func signInWithApple() {
+    func signInWithApple( ) {
         let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -63,6 +63,7 @@ class FirebaseAuthentication: NSObject {
             postNotificationSignOutError()
         }
     }
+    
 }
 
 extension FirebaseAuthentication: ASAuthorizationControllerDelegate {
@@ -89,6 +90,7 @@ extension FirebaseAuthentication: ASAuthorizationControllerDelegate {
                     self?.postNotificationSignInError()
                     return
                 }
+                
                 self?.postNotificationSignInSuccess()
             }
         }
