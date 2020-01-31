@@ -84,9 +84,6 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.progressView.tintColor = UIColor.appColor
         cell.progressView.progress = Float(nowProgressed)
         
-
-        print(cell.friendNameLabel!)
-        
         return cell
     }
     

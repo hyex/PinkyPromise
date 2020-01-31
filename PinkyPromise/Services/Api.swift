@@ -67,7 +67,7 @@ class MyApi: NSObject {
             if let err = err {
                 debugPrint(err)
             }else {
-                var result = PromiseUser.parseData(snapShot: sanpShot)
+                let result = PromiseUser.parseData(snapShot: sanpShot)
                 completion(result[0].userName)
             }
         }
@@ -271,25 +271,27 @@ class MyApi: NSObject {
             } else {
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
                 
-                let MaxTime = tempResult.endIndex
-                let maxTimeDate = tempResult[MaxTime - 1].promiseEndTime
-                
-                var temp1 = [[PromiseTable]]()
-                
-                for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate.timeIntervalSince1970, by: 60*60*24) {
-                    //i는 하루하루의 타임스탬프
+                let MaxTime = tempResult.count
+                if MaxTime > 0 {
+                    let maxTimeDate = tempResult[MaxTime].promiseEndTime
                     
-                    var temp2 = [PromiseTable]()
+                    var temp1 = [[PromiseTable]]()
                     
-                    for douc in tempResult {
-                        if (i > douc.promiseStartTime.timeIntervalSince1970) && (i < douc.promiseEndTime.timeIntervalSince1970) {
-                            temp2.append(douc)
+                    for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate.timeIntervalSince1970, by: 60*60*24) {
+                        //i는 하루하루의 타임스탬프
+                        
+                        var temp2 = [PromiseTable]()
+                        
+                        for douc in tempResult {
+                            if (i > douc.promiseStartTime.timeIntervalSince1970) && (i < douc.promiseEndTime.timeIntervalSince1970) {
+                                temp2.append(douc)
+                            }
                         }
+                        temp1.append(temp2)
                     }
-                    temp1.append(temp2)
+                    
+                    completion(temp1)
                 }
-                
-                completion(temp1)
             }
         }
     }
@@ -301,33 +303,40 @@ class MyApi: NSObject {
             if let err = error {
                 debugPrint(err.localizedDescription)
             }else {
-                //먼저
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
-                var resultData = [promiseNameAndFriendsName]()
+                var result1 = [promiseNameAndFriendsName]()
                 var check = 0
-                
                 for douc in tempResult {
+                    let FriendsList = douc.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
                     
+                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: FriendsList)
                     
-                    
+                    if FriendsList.count == 0 {//친구가 없으면 패스하고 check에 1을 더해준다.
+                        check += 1
+                    } else {
+                        self.getFriendsName(tempTable: temp) { (result) in
+                            result1.append(result)
+                            if result1.count + check >= tempResult.count {
+                                completion(result1)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
     //getPromiseNameAndFriendsName의 부속함수, 약속테이블의 사용자의 친구들의 이름을 반환함
-    func getFriendsName(tempTable: PromiseTable, completion: @escaping ([String]) -> Void ){
-        var tempName = [String]()
+    func getFriendsName(tempTable: promiseNameAndFriendsName, completion: @escaping (promiseNameAndFriendsName) -> Void ){
+
+        var temp2 = [String]()
         
-        let friendsName = tempTable.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
-        
-        for douc in friendsName {
-            //친구들 uid
+        for douc in tempTable.friendsName {
             self.getUserNameWithUID(id: douc) { (result) in
-                tempName.append(result)
-                
-                if friendsName.count == tempName.count {
-                    completion(tempName)
+                temp2.append(result)
+                if temp2.count == tempTable.friendsName.count {
+                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, friendsName: temp2)
+                    completion(temp3)
                 }
             }
         }
@@ -400,9 +409,33 @@ class MyApi: NSObject {
     //의정쿤이 요청한 함수 졸라게 어려붐
     func getMothlyDataWithCurrentMonth(completion: @escaping ([PromiseAndProgress]) -> Void) {
         
+        let days = self.getTotalDate()//이번 달의 날짜 수
+        
+        
     }
     
-    
+    //제발.. 오늘을 기준으로 이번 달의 날짜를 반환
+    func getTotalDate() -> Int{
+        // choose the month and year you want to look
+        let date = Date()
+        let calendar = Calendar.current
+        let componentsYear = calendar.dateComponents([.year], from: date)
+        let year = componentsYear.year
+        let componentsMonth = calendar.dateComponents([.month], from: date)
+        let month = componentsYear.month
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+
+        let datez = calendar.date(from: dateComponents)
+        // change .month into .year to see the days available in the year
+        let interval = calendar.dateInterval(of: .month, for: datez!)!
+
+        let days = calendar.dateComponents([.day], from: interval.start, to: interval.end).day!
+        
+        return days
+    }
     
     //약속 데이터를 추가할 때 사용하는 함수
     func addPromiseData(_ promiseTable: PromiseTable) {

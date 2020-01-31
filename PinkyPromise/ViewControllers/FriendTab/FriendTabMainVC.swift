@@ -40,6 +40,8 @@ class FriendTabMainVC: UIViewController {
         
         promiseCtnLabel.text = String(friendsInPromise.count)
         
+        self.getPromiseAndFriend()
+        
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
         friendMainTableView.tableFooterView = UIView()
@@ -61,15 +63,18 @@ class FriendTabMainVC: UIViewController {
         self.present(vc, animated: false, completion: nil)
     }
     
-    //나의 모든 약속 데이터 가져오기
-//    private func getAllPromiseData() {
-//        print("in get AllPromiseData func")
-//        MyApi.shared.allPromise { result in DispatchQueue.main.async {
-//            print("**********promise data from db**********")
-//            print("첫 데이터 : ", result[0])
-//            }
-//        }
-//    }
+    private func getPromiseAndFriend() {
+        print("in getPromiseAndFriend")
+        
+        MyApi.shared.getPromiseNameAndFriendsName { (result) in
+            for douc in result {
+                print("api test")
+                print(douc.promiseId!)
+                print(douc.promiseName!)
+                print(douc.friendsName)
+            }
+        }
+    }
 }
 
 extension FriendTabMainVC : UITableViewDelegate{
