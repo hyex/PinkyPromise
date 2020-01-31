@@ -99,8 +99,8 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         //        let today = Date()
-        let startDate = rowData.promiseStartTime!
-        let endDate = rowData.promiseEndTime!
+        let startDate = rowData.promiseStartTime
+        let endDate = rowData.promiseEndTime
         
         //        cell.promiseIcon = rowData.promiseIcon
         cell.promiseName.text = rowData.promiseName
