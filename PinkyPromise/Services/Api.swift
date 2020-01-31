@@ -111,6 +111,27 @@ class MyApi: NSObject {
         }
     }
     
+    //약속 아이디를 가지고 약속한 친구의 이름들을 반환하는 함수
+    func getPromiseFriendsNameWithPID(promiseID: String, completion: @escaping ([String]) -> Void) {
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapsHot, error ) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let tempResult = PromiseTable.parseData(snapShot: snapsHot)
+                var temp = [String]()
+                
+                for douc in tempResult[0].promiseUsers {
+                    self.getUserNameWithUID(id: douc) { (result) in
+                        temp.append(result)
+                        if temp.count == tempResult[0].promiseUsers.count {
+                            completion(temp)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //약속 데이터를 반환// 내가 포함되어 있는 녀석들만
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         var result = [PromiseTable]()
@@ -229,6 +250,7 @@ class MyApi: NSObject {
     }
     
     //오늘을 기준으로 10일 이전 약속들을 [PromiseTable]을 하나의 배열 요소로 가지는 배열
+    //업데이트됨 
     func getPromiseData10ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
         let result = Timestamp()
         let now = Date()
@@ -240,8 +262,8 @@ class MyApi: NSObject {
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
                 var temp1 = [DayAndPromise]()
                 
-                //10일 전부터 오늘까지
-                for i in stride(from: now.timeIntervalSince1970 - 864000, through: now.timeIntervalSince1970, by: 86400) {
+                //10일 전부터 10일 후까지
+                for i in stride(from: now.timeIntervalSince1970 - 864000, through: now.timeIntervalSince1970 + 864000, by: 86400) {
                     var temp2 = [PromiseTable]()
                     
                     for douc in tempResult {
@@ -343,8 +365,9 @@ class MyApi: NSObject {
     }
     
     //선영쿤이 요청한 detailView 진행중인 약속에 한해 들어간다.
+    //이거 쿼리 물어봐야함 도대체 왜 세개하면 invalid라고 뜰
     func getDataforDetailViewjr1(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
-        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapshot, error) in
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Timestamp()).getDocuments { (snapshot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -406,7 +429,7 @@ class MyApi: NSObject {
         }
     }
     
-    //의정쿤이 요청한 함수 졸라게 어려붐
+    //의정쿤이 요청한 함수 졸라게 어려붐 펔큉 극강빌런임
     func getMothlyDataWithCurrentMonth(completion: @escaping ([PromiseAndProgress]) -> Void) {
         
         let days = self.getTotalDate()//이번 달의 날짜 수
