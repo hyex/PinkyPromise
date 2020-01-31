@@ -3,10 +3,9 @@
 
 # Integration with an existing workspace
 workspace 'PinkyPromise'
+use_frameworks!
 
 target 'PinkyPromise' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
 
 pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'

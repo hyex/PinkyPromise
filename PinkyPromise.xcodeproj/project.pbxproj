@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08506C9A7B0CF0C05C72A6FB /* Pods_PinkyPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091DA1DC9578F66849434C4F /* Pods_PinkyPromise.framework */; };
 		186D855423D41C94006DA619 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855323D41C94006DA619 /* Constants.swift */; };
 		186D855923D42174006DA619 /* promiseUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855823D42174006DA619 /* promiseUsers.swift */; };
 		186D855B23D42486006DA619 /* promiseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855A23D42486006DA619 /* promiseTable.swift */; };
@@ -77,6 +76,7 @@
 		3FE061D723E0E4C900CD2F6A /* AddFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */; };
 		3FE061D923E0E6C200CD2F6A /* CheckFriendsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */; };
 		3FE061DF23E24BE700CD2F6A /* PanaltyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */; };
+		8F310D7CFA387BF03FCCEF1D /* Pods_PinkyPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */; };
 		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
@@ -92,7 +92,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		091DA1DC9578F66849434C4F /* Pods_PinkyPromise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinkyPromise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		181D739B23D5DE32006797A2 /* PinkyPromise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinkyPromise.entitlements; sourceTree = "<group>"; };
 		186D855323D41C94006DA619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		186D855823D42174006DA619 /* promiseUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseUsers.swift; sourceTree = "<group>"; };
@@ -179,6 +178,7 @@
 		A9A3E83023E0357300EDFE1C /* ColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorVC.swift; sourceTree = "<group>"; };
 		A9A3E83223E0358C00EDFE1C /* IconVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVC.swift; sourceTree = "<group>"; };
 		A9A3E83423E0359D00EDFE1C /* AlarmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmVC.swift; sourceTree = "<group>"; };
+		BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinkyPromise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08506C9A7B0CF0C05C72A6FB /* Pods_PinkyPromise.framework in Frameworks */,
+				8F310D7CFA387BF03FCCEF1D /* Pods_PinkyPromise.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +497,7 @@
 		BDFE7D20C7BEE704036DD9C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				091DA1DC9578F66849434C4F /* Pods_PinkyPromise.framework */,
+				BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -513,8 +513,8 @@
 				33FF2C2B23CB55DC0040003A /* Sources */,
 				33FF2C2C23CB55DC0040003A /* Frameworks */,
 				33FF2C2D23CB55DC0040003A /* Resources */,
-				10D865B5DB29162BDF5E4DDA /* [CP] Embed Pods Frameworks */,
 				58C828DB36754099C38B0814 /* [CP] Copy Pods Resources */,
+				E88292807733262F607D11F6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -582,23 +582,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		10D865B5DB29162BDF5E4DDA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		58C828DB36754099C38B0814 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -636,6 +619,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E88292807733262F607D11F6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
