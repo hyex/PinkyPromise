@@ -309,7 +309,7 @@ class MyApi: NSObject {
                 for douc in tempResult {
                     let FriendsList = douc.promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
                     
-                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, FirstuserImage: FriendsList[0] ?? "nil" ,friendsName: FriendsList)
+                    let temp = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, FirstuserImage: douc.promiseName, friendsName: FriendsList)
                     
                     if FriendsList.count == 0 {//친구가 없으면 패스하고 check에 1을 더해준다.
                         check += 1
@@ -330,12 +330,12 @@ class MyApi: NSObject {
     func getFriendsName(tempTable: promiseNameAndFriendsName, completion: @escaping (promiseNameAndFriendsName) -> Void ){
 
         var temp2 = [String]()
-        
-        for douc in tempTable.friendsName {
+        let temp4 = tempTable.friendsName.sorted()
+        for douc in temp4 {
             self.getUserNameWithUID(id: douc) { (result) in
                 temp2.append(result)
                 if temp2.count == tempTable.friendsName.count {
-                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, FirstuserImage: douc, friendsName: temp2)
+                    let temp3 = promiseNameAndFriendsName(promiseName: tempTable.promiseName, promiseId: tempTable.promiseId, FirstuserImage: temp4[0], friendsName: temp2.sorted())
                     completion(temp3)
                 }
             }
