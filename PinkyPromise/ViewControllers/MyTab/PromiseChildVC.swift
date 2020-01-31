@@ -1,4 +1,4 @@
-//
+///
 //  PromiseChildVC.swift
 //  PinkyPromise
 //
@@ -121,6 +121,7 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
         print(indexPath.row)
+        performSegue(withIdentifier: "promiseDetail", sender: promiseList?[indexPath.row])
 //        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
         
     }
@@ -160,28 +161,28 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 
                 let rowData = list[indexPath.item]
                 
-                //                var progressList: [ProgressTable] = []
-                
                 var promiseAchievement:Int = 0
                 let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
                 let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
                 
+                // MARK:- FIX 데이터가 군데군데 들어옴
                 if let id = rowData.promiseId {
                     MyApi.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
                         DispatchQueue.main.async {
                             print(result)
                             if result.isEmpty != true {
-//                                print(rowData.promiseName)
-//                                print(result[0].promiseId)
-//                                print(result[0].progressDegree)
-                                
+
                                 for degree in result[0].progressDegree {
                                     if degree == 4 {
                                         promiseAchievement += 1
                                     }
                                 }
-                                print(promiseAchievement)
-                                print(">>>>\n")
+//                                print(rowData.promiseName)
+//                                print(rowData.promiseId)
+//                                print(result[0].promiseId)
+//                                print(result[0].progressDegree)
+//                                print(promiseAchievement)
+//                                print(">>>>\n")
                             }
                             
                             promiseCell.appSlider.value = Float(promiseAchievement)
@@ -197,8 +198,6 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                         
                     })
                 }
-                
-                //                print(progressList)
                 
                 // 날짜만 비교해서 며칠 남았는지 뽑아낸다
                 let dateFormatter = DateFormatter()
