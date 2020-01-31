@@ -19,7 +19,6 @@ class LoginVC: UIViewController {
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var googleSignInBtn: UIButton!
     @IBOutlet weak var appleSignInBtn: UIButton!
-    @IBOutlet weak var anomynousSignbtn: UIButton!
     @IBOutlet weak var pinkyTitle: UILabel!
     
     @IBOutlet weak var bottomView: UIImageView!
@@ -43,18 +42,7 @@ class LoginVC: UIViewController {
     @IBAction func appleSignIn(){
         
     }
-    
-    @IBAction func anomynousSignIn() {
-        //        Auth.auth().signInAnonymously { (authResult, error) in
-        //            if let error = error {
-        //                print(error.localizedDescription)
-        //            }
-        //            guard let user = authResult?.user else { return }
-        //            let isAnonymous = user.isAnonymous //true
-        //            let uid = user.uid
-        //            //self.performSegue(withIdentifier: "loginSegue", sender: nil)
-        //        }
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +58,7 @@ class LoginVC: UIViewController {
         self.bottomView.frame.size.width = width * 2
         self.bottomView.frame.size.height = height * 2
 
-        self.anomynousSignbtn.layer.cornerRadius = 10
+
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
         self.appleSignInBtn.layer.cornerRadius = 10
@@ -82,26 +70,18 @@ class LoginVC: UIViewController {
         }, completion: nil)
         
         print(Auth.auth().currentUser?.email ?? "")
-        
-        FirebaseStorageService.shared.getPromiseImageWithName(name: "IMG_0001.PNG") { (result) in
-            switch result {
-            case .failure(let error): print(error)
-            case .success(let firebaseimage): self.tempImage.image = firebaseimage
-            }
-        }
 
         var temp3 = [String]()
-        
         var temp4 = [[PromiseTable]]()
         
-        MyApi.shared.getPromiseDataSorted { (temp4) in
-            for douc1 in temp4 {
-                print("this is douc1...")
-                for douc2 in douc1 {
-                    print("this is douc2.. +\(douc2.promiseName) + \(douc2.promiseColor)" )
-                }
-            }
-        }
+//        MyApi.shared.getPromiseDataSorted { (temp4) in
+//            for douc1 in temp4 {
+//                print("this is douc1...")
+//                for douc2 in douc1 {
+//                    print("this is douc2.. +\(douc2.promiseName) + \(douc2.promiseColor)" )
+//                }
+//            }
+//        }
         
     }
     
@@ -178,6 +158,8 @@ extension LoginVC: GIDSignInDelegate {
                     print("go login!!")
                     self.navigationController?.isNavigationBarHidden = true
                 }
+                
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
