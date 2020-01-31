@@ -32,7 +32,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
     ]
     
-    var detailPromise : FriendsInfo? = nil {
+    var detailPromise : PromiseWithFriend? = nil {
         didSet {
             print(self.detailPromise!)
         }
@@ -41,11 +41,27 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackBtn()
+        getDetailPromiseData()
         
         friendDatailTableView.delegate = self
         friendDatailTableView.dataSource = self
         friendDatailTableView.tableFooterView = UIView()
-        
+    }
+    
+    private func getDetailPromiseData(){
+        print("in getDatailPromiseData")
+        MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
+//            print("promiseName : ", result.promiseName!)
+//            print("promiseDay : ", result.promiseDay!)
+//            print("promiseDaySinceStart : ", result.promiseDaySinceStart!)
+//
+//            for douc in result.friendsDetail {
+//                print("friendName : ", douc.friendName!)
+//                print("friendDegree : ", douc.friendDegree!)
+//                print("friendImage : ", douc.friendImage!)
+//            }
+            
+        }
         
     }
     
@@ -83,9 +99,6 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         nowProgressed = (p1 + p2 + p3 + p4) / 30.0
         cell.progressView.tintColor = UIColor.appColor
         cell.progressView.progress = Float(nowProgressed)
-        
-
-        print(cell.friendNameLabel!)
         
         return cell
     }
