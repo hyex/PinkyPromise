@@ -276,7 +276,7 @@ class MyApi: NSObject {
                 
                 var temp1 = [[PromiseTable]]()
                 
-                for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate!.timeIntervalSince1970, by: 60*60*24) {
+                for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate.timeIntervalSince1970, by: 60*60*24) {
                     //i는 하루하루의 타임스탬프
                     
                     var temp2 = [PromiseTable]()
@@ -308,16 +308,7 @@ class MyApi: NSObject {
                 
                 for douc in tempResult {
                     
-                    self.getFriendsName(tempTable: douc, completion: { result in
-                        let tempData = promiseNameAndFriendsName(promiseName: douc.promiseName, promiseId: douc.promiseId, friendsName: result)
-                        
-                        resultData.append(tempData)
-                        
-                        if tempResult.count <= resultData.count {
-                            completion(resultData)
-                        }
-                        check += 1
-                    })
+                    
                     
                 }
             }
@@ -343,21 +334,54 @@ class MyApi: NSObject {
     }
     
     //선영쿤이 요청한 detailView 진행중인 약속에 한해 들어간다.
-    func getDataforDetailView(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
-        promiseCollectionRef.whereField(PROMISEID, isEqualTo: PROMISEID).getDocuments { (snapshot, error) in
+    func getDataforDetailViewjr1(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapshot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
                 let result = PromiseTable.parseData(snapShot: snapshot)
                 
-                let promiseDay = Int((result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400)
-                
-                let promiseDaysinceToday = Int( ( Date().timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
-                
-                
+                if result.count > 0 {
+                    let promiseDay = Double( (result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400)
+                    
+                    let promiseDaysinceToday = Double( ( Date().timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
+                    
+                    let tempUsers = result[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
+                    
+                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: tempUsers)
+                    
+                    //completion(temp)
+                    
+                    self.getDataForDetailViewjr2(detailData1: temp) { (result2) in
+                        completion(result2)
+                    }
+                }
             }
         }
     }
+    
+    func getDataForDetailViewjr2(detailData1: promiseDetailjunior1, completion: @escaping (promiseDetail) -> Void) {
+        
+        var temp3 = [promiseDetail]()
+        
+        var temp4 = [promiseDetailChild]()
+        
+        for douc in detailData1.friendsUIDList {
+            self.getUserDataWithUID(id: douc) { (result3) in
+                
+                self.getProgressDataWithUid(userid: douc) { (result4) in
+                    
+                    let zek = promiseDetailChild(friendName: result3.userName, friendImage: result3.userImage, friendDegree: result4[0].progressDegree)
+                    temp4.append(zek)
+                    
+                    if temp4.count == detailData1.friendsUIDList.count {
+                        completion(promiseDetail(promiseName: detailData1.promiseName, promiseDay: detailData1.promiseDay, promiseDaySinceStart: detailData1.promiseDaySinceStart, friendsDetail: temp4))
+                    }
+                }
+            }
+        }
+    }
+
     
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
@@ -373,6 +397,13 @@ class MyApi: NSObject {
         }
     }
     
+    //의정쿤이 요청한 함수 졸라게 어려붐
+    func getMothlyDataWithCurrentMonth(completion: @escaping ([PromiseAndProgress]) -> Void) {
+        
+    }
+    
+    
+    
     //약속 데이터를 추가할 때 사용하는 함수
     func addPromiseData(_ promiseTable: PromiseTable) {
         
@@ -384,7 +415,8 @@ class MyApi: NSObject {
             PROMISESTARTTIME: promiseTable.promiseStartTime ?? Date(),
             PROMISEENDTIME: promiseTable.promiseEndTime ?? Date(),
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
-            PROMISEUSERS: promiseTable.promiseUsers ?? []
+            PROMISEUSERS: promiseTable.promiseUsers ?? [],
+            PROMISEID: promiseTable.promiseId ?? "nil"
         ]) { error in
             if let err = error {
                 debugPrint("Error adding document : \(err)")

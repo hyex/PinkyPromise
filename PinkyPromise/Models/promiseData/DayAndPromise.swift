@@ -18,3 +18,7 @@ struct PromiseAndProgress {
     var promiseData: [PromiseTable]
     var progressData: [ProgressTable]
 }
+
+struct MonthlyData {
+    var DayPAP: [PromiseAndProgress]
+}

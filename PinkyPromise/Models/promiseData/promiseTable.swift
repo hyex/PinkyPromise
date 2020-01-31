@@ -10,11 +10,11 @@ import Firebase
 
 class PromiseTable {
     private(set) var promiseName: String!
-    private(set) var promiseStartTime: Date!
-    private(set) var promiseEndTime: Date!
+    private(set) var promiseStartTime: Date
+    private(set) var promiseEndTime: Date
     private(set) var promiseColor: String!
     private(set) var promiseIcon: String!
-    private(set) var promiseUsers: Array<String>!
+    private(set) var promiseUsers: Array<String>
     private(set) var isPromiseAchievement: Bool!
     private(set) var promisePanalty: String!
     private(set) var promiseId: String!

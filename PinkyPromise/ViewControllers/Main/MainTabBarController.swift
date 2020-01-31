@@ -69,15 +69,23 @@ class MainTabBarController: UITabBarController {
 //            }
 //        }
         
-        FirebaseStorageService.shared.getUserImageURLWithName(name: "heji.jpeg") { (result) in
-            switch result {
-                    case .success(let url):
-                        print("\(url)")
-                    case .failure(let error):
-                        print("this is error")
-                        
-                    }
-        }
+//        MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
+//            print(result.promiseName)
+//            print(result.promiseDay)
+//            print(result.promiseDaySinceStart)
+//
+//            for douc in result.friendsDetail {
+//                print(douc.friendName)
+//                print(douc.friendDegree)
+//                print(douc.friendImage)
+//            }
+//
+//        }
+        
+        var temp = PromiseTable(promiseName: "iOS 관두기", promiseStartTime: Date(timeIntervalSince1970: 1580428800 - 86400), promiseEndTime: Date(timeIntervalSince1970: 1580428800 + 86400), promiseColor: "Red", promiseIcon: "imacicon", promiseUsers: [], isPromiseAchievement: false, promisePanalty: "Android 시작하기", promiseId: MyApi.shared.randomNonceString())
+        
+        MyApi.shared.addPromiseData(temp)
+        
 //        MyApi.shared.getUsersFriendsData { (result) in
 //            for douc in result {
 //                print(douc.userId)
