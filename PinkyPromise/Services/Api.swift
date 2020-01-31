@@ -120,14 +120,17 @@ class MyApi: NSObject {
                 let tempResult = PromiseTable.parseData(snapShot: snapsHot)
                 var temp = [String]()
                 
-                for douc in tempResult[0].promiseUsers {
+                let usersNotMe = tempResult[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
+                
+                for douc in usersNotMe {
                     self.getUserNameWithUID(id: douc) { (result) in
                         temp.append(result)
-                        if temp.count == tempResult[0].promiseUsers.count {
+                        if temp.count == usersNotMe.count {
                             completion(temp)
                         }
                     }
                 }
+                
             }
         }
     }
@@ -250,7 +253,7 @@ class MyApi: NSObject {
     }
     
     //오늘을 기준으로 10일 이전 약속들을 [PromiseTable]을 하나의 배열 요소로 가지는 배열
-    //업데이트됨 
+    //업데이트됨
     func getPromiseData10ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
         let result = Timestamp()
         let now = Date()
@@ -403,11 +406,35 @@ class MyApi: NSObject {
                 
                 self.getProgressDataWithUid(userid: douc) { (result4) in
                     
-                    let zek = promiseDetailChild(friendName: result3.userName, friendImage: result3.userImage, friendDegree: result4[0].progressDegree)
+                    var temp6 = Array<Int>(repeating: 0, count: 5)
+                    
+                    for i in result4[0].progressDegree {
+                        switch i {
+                        case 0:
+                            temp6[i] += 1
+                        case 1:
+                            temp6[i] += 1
+                        case 2:
+                            temp6[i] += 1
+                        case 3:
+                            temp6[i] += 1
+                        case 4:
+                            temp6[i] += 1
+                        case -1:
+                            print("")
+                            //-1은 안한거다.
+                        default:
+                            print("cuase default at getDataForDetailViewjr2")
+                        }
+                    }
+                    
+                    let zek = promiseDetailChild(friendName: result3.userName, friendImage: result3.userImage, friendDegree: temp6)
                     temp4.append(zek)
                     
                     if temp4.count == detailData1.friendsUIDList.count {
+                        
                         completion(promiseDetail(promiseName: detailData1.promiseName, promiseDay: detailData1.promiseDay, promiseDaySinceStart: detailData1.promiseDaySinceStart, friendsDetail: temp4))
+                        
                     }
                 }
             }
@@ -432,30 +459,65 @@ class MyApi: NSObject {
     //의정쿤이 요청한 함수 졸라게 어려붐 펔큉 극강빌런임
     func getMothlyDataWithCurrentMonth(completion: @escaping ([PromiseAndProgress]) -> Void) {
         
-        let days = self.getTotalDate()//이번 달의 날짜 수
+        let days = self.getTotalDate()//이번 달의 날짜 수 31일
         
         let cal = Calendar.current
         let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: Date())
-        components.month //이번 달이 몇번째 달인지
+        
+        let todayMonth = components.month //이번 달이 몇번째 달인지
+        let todayDay = components.day // 오늘이 며칠째인지
+        
+        let firstDay = Date(timeIntervalSince1970: Date().timeIntervalSince1970 - Double(86400 * (todayDay! - 1)) + 32400)//이번달의 첫번째 날
         
         let calendar = Calendar(identifier: .gregorian)
         
         let comps = DateComponents(calendar:calendar, year:components.year, month:components.month, day:1) //그 달 1일
         
         //components.day => 오늘날짜
-        
         var temp = [PromiseAndProgress]()
         
-        for i in 0..<days {
+        for i in 0 ..< days {//이번달 일수만큼
             
-            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISESTARTTIME, isLessThanOrEqualTo: Date()).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Date()).getDocuments { (snapShot, error) in
+            var firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 - Double(i * 86400) )
+            
+            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDayPlusi ).getDocuments { (snapShot, error ) in
                 if let err = error {
                     debugPrint(err.localizedDescription)
                 } else {
-                    let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                    let tempResult1 = PromiseTable.parseData(snapShot: snapShot)
                     
-                   // progressCollectionRef.whereField(PROMISEID, isEqualTo: <#T##Any#>)
+                    let tempResult2 = tempResult1.filter { $0.promiseStartTime.timeIntervalSince1970 <= firstDayPlusi.timeIntervalSince1970 }
+                    
+                    self.getMothlyDataWithCurrentMonth2(day: firstDayPlusi, promiseData: tempResult2) { (result2) in
+                        //result2는 PromiseAndProgress객체임
+                        temp.append(result2)
+                        
+                        if temp.count >= days {
+                            completion(temp)
+                        }
+                    }
                 }
+            }
+        }
+    }
+    
+    func getMothlyDataWithCurrentMonth2(day: Date, promiseData: [PromiseTable], completion: @escaping (PromiseAndProgress) -> Void ) {
+        
+        var temp = [ProgressTable]()
+        for douc in promiseData {
+            
+            progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+                if let err = error {
+                    print("this is err..1 \(err.localizedDescription)")
+                } else {
+                    let temp2 = ProgressTable.parseData(snapShot: snapShot)
+                    temp.append(temp2[0])
+                    
+                    if temp.count == promiseData.count {
+                        completion(PromiseAndProgress(Day: day, promiseData: promiseData, progressData: temp))
+                    }
+                }
+                
             }
         }
         

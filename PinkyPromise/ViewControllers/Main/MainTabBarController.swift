@@ -72,17 +72,30 @@ class MainTabBarController: UITabBarController {
         
  //       print ( MyApi.shared.getTotalDate() )
         
-        MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
-            print(result.promiseName)
-            print(result.promiseDay)
-            print(result.promiseDaySinceStart)
-
-            for douc in result.friendsDetail {
-                print(douc.friendName)
-                print(douc.friendDegree)
-                print(douc.friendImage)
-            }
-        }
+//        MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
+//            print(result.promiseName)
+//            print(result.promiseDay)
+//            print(result.promiseDaySinceStart)
+//
+//            for douc in result.friendsDetail {
+//                print(douc.friendName)
+//                print(douc.friendDegree)
+//                print(douc.friendImage)
+//            }
+//        }
+        
+//        MyApi.shared.getMothlyDataWithCurrentMonth { result in
+//            for douc in result {
+//                print("test")
+//                print(douc.Day)
+//                for douc2 in douc.promiseData {
+//                    print(douc2.promiseName)
+//                }
+//                for douc2 in douc.progressData {
+//                    print(douc2.progressDegree)
+//                }
+//            }
+//        }
         
 //        var temp = PromiseTable(promiseName: "iOS 관두기", promiseStartTime: Date(timeIntervalSince1970: 1580428800 - 86400), promiseEndTime: Date(timeIntervalSince1970: 1580428800 + 86400), promiseColor: "Red", promiseIcon: "imacicon", promiseUsers: [], isPromiseAchievement: false, promisePanalty: "Android 시작하기", promiseId: MyApi.shared.randomNonceString())
 //

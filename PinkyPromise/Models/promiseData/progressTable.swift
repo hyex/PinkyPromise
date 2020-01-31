@@ -19,7 +19,7 @@ class ProgressTable {
         self.progressDegree = progressDegree
         self.promiseId = promiseId
         self.userId = userId
-        self.promiseId = progressId
+        self.progressId = progressId
     }
     
     class func parseData(snapShot: QuerySnapshot?) -> [ProgressTable] {

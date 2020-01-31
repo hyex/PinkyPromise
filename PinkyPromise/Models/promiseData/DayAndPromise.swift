@@ -13,6 +13,12 @@ struct DayAndPromise {
     var promiseData: [PromiseTable]!
 }
 
+struct PromiseAndProgressforDate {
+    var Day: Date
+    var promiseData: PromiseTable
+    var progressData: PromiseTable
+}
+
 struct PromiseAndProgress {
     var Day: Date!
     var promiseData: [PromiseTable]

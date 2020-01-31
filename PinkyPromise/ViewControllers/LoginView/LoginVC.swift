@@ -127,31 +127,34 @@ extension LoginVC: GIDSignInDelegate {
                 print(fullName)
                 print(email)
                 
-                if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+                //signin을 만들어서 더 추가하면됨
+                if UserDefaults.standard.bool(forKey: "loggedIn") == false || UserDefaults.standard.bool(forKey: "signedIn") == false {
                     print("not yet logined...")
                     self.navigationController?.isNavigationBarHidden = true
                     UserDefaults.standard.set(true, forKey: "loggedIn")
                     
-                    var temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "nil", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                    let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                     MyApi.shared.addUserData(temp)
                     
-                    let tempimage = UIImage(named: "user_male")
-                    
-                    guard let imageData = tempimage!.jpegData(compressionQuality: 1) else {
-                         return
-                    }
+                    if UserDefaults.standard.bool(forKey: "signedIn") == false{
+                        let tempimage = UIImage(named: "user_male")
+                        
+                        guard let imageData = tempimage!.jpegData(compressionQuality: 1) else { return }
+                        
                         FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
                             switch result {
                             case .success(let url):
                                 //self?.imageURL = url
-                                print("store default user Image")
+                                print("store default user Image with \(url)")
                                 //print(self?.imageURL)
                             case .failure(let error):
-                                print("this is error")
+                                print("this is \(error.localizedDescription)")
                                 //print(error)
                             }
                         }
-                    
+                        
+                        UserDefaults.standard.set(true, forKey: "signedIn")
+                    }
                 } else {
                     print("go login!!")
                     self.navigationController?.isNavigationBarHidden = true
@@ -205,7 +208,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
             } else if let user = authResult?.user {
                 print(user.uid)
                 
-                if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+                if UserDefaults.standard.bool(forKey: "loggedIn") == false || UserDefaults.standard.bool(forKey: "signedIn") == false {
                     print("not yet logined...")
                     self.navigationController?.isNavigationBarHidden = true
                     UserDefaults.standard.set(true, forKey: "loggedIn")
@@ -215,22 +218,25 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                     var temp = PromiseUser(userName: (authResult?.user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: (authResult?.user.uid)!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                     MyApi.shared.addUserData(temp)
                     
-                    let tempimage = UIImage(named: "user_male")
-                    
-                    guard let imageData = tempimage!.jpegData(compressionQuality: 1) else {
-                         return
-                    }
-                        FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
-                            switch result {
-                            case .success(let url):
-                                //self?.imageURL = url
-                                print("store default user Image + \(url)")
-                                //print(self?.imageURL)
-                            case .failure(let error):
-                                print("this is error + \(error)")
-                                //print(error)
-                            }
+                    if UserDefaults.standard.bool(forKey: "signedIn") == false {
+                        let tempimage = UIImage(named: "user_male")
+                        
+                        guard let imageData = tempimage!.jpegData(compressionQuality: 1) else {
+                             return
                         }
+                            FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                                switch result {
+                                case .success(let url):
+                                    //self?.imageURL = url
+                                    print("store default user Image + \(url)")
+                                    //print(self?.imageURL)
+                                case .failure(let error):
+                                    print("this is error + \(error)")
+                                    //print(error)
+                                }
+                            }
+                        UserDefaults.standard.set(true, forKey: "signedIn")
+                    }
                     
                 } else {
                     print("go login!!")
