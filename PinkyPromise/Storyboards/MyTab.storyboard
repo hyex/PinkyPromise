@@ -152,7 +152,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTN-it-WGO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-73" y="1042"/>
+            <point key="canvasLocation" x="389" y="1315"/>
         </scene>
         <!--Promise ChildVC-->
         <scene sceneID="hGw-I9-EdB">
@@ -290,11 +290,12 @@
                     <connections>
                         <outlet property="collectionView" destination="Tnr-cN-QzZ" id="RdZ-pd-ya4"/>
                         <outlet property="endedPromiseBtn" destination="twJ-mp-PWk" id="SdN-I6-fYq"/>
+                        <segue destination="ufB-NV-DCf" kind="show" identifier="promiseDetail" id="GAV-dP-3s6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dy3-Lt-huf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="416.80000000000001" y="864.53201970443354"/>
+            <point key="canvasLocation" x="609" y="851"/>
         </scene>
         <!--Ended PromiseVC-->
         <scene sceneID="Guq-yJ-jdF">
@@ -403,6 +404,7 @@
                     <connections>
                         <outlet property="backBtn" destination="RMZ-La-v0W" id="w7L-Jx-rIX"/>
                         <outlet property="endedPromiseCollectionView" destination="ETO-Ah-llx" id="2dt-Sg-C2x"/>
+                        <segue destination="ufB-NV-DCf" kind="show" identifier="promiseDetail" id="9jx-JB-U3x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWc-k7-CJI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -416,4 +418,7 @@
         <image name="list.bullet.indent" catalog="system" width="64" height="36"/>
         <image name="uijeong" width="1008" height="1008"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9jx-JB-U3x"/>
+    </inferredMetricsTieBreakers>
 </document>

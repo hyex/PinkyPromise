@@ -63,7 +63,6 @@ class FriendTabMainVC: UIViewController {
 extension FriendTabMainVC : UITableViewDelegate{
     //table segue 설정, modal 스타일 설정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "detailPromise", sender: self.friendsInPromise[indexPath.row])
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
         vc.modalTransitionStyle = .flipHorizontal
