@@ -85,6 +85,12 @@ class MoreTabMainVC: UIViewController {
     }
     
     @IBAction func logOutBtnAction(_ sender: Any) {
+//        FirebaseUserService.signOut(success: {
+//            print("success")
+//            // 로그인 페이지로 다시 가야할 듯 싶은디
+//        }) { (err) in
+//            print(err)
+//        }
         
         FirebaseUserService.signOut(success: {
             

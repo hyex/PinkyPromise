@@ -29,7 +29,7 @@ class PromiseDetailVC: UIViewController {
         Friend(profileImg: "seonyoung", name: "sunnyangee"),
     ]
     
-    var promiseDetail : Promise? = nil {
+    var promiseDetail : PromiseTable? = nil {
         didSet{
             print(promiseDetail!)
         }

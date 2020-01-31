@@ -18,7 +18,6 @@ class MyTabMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-//        self.view.bringSubviewToFront(dayChildView)
         dayChildView.isHidden = false
         promiseChildView.isHidden = true
 
@@ -29,11 +28,9 @@ class MyTabMainVC: UIViewController {
         
         switch segmentedControl.selectedSegmentIndex{
         case 0:
-//            self.view.bringSubviewToFront(dayChildView)
             dayChildView.isHidden = false
             promiseChildView.isHidden = true
         case 1:
-//            self.view.bringSubviewToFront(promiseChildView)
             dayChildView.isHidden = true
             promiseChildView.isHidden = false
         default:
