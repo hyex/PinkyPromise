@@ -21,23 +21,23 @@ struct FriendData {
 }
 
 class AddFriendsVC: UIViewController {
-
+    
     @IBOutlet weak var backBtn: UIBarButtonItem!
-
+    
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var searchController = UISearchController(searchResultsController: nil)
     
-//    var checkBoxesState: [Int : Bool] = [:]
-//
+    //    var checkBoxesState: [Int : Bool] = [:]
+    //
     var delegate: SendSelectedFriendsDelegate!
-//
-//    var myFriends: [Int : [String]]!
-//
-//    var myFriendsImg: [UIImage]!
-
+    //
+    //    var myFriends: [Int : [String]]!
+    //
+    //    var myFriendsImg: [UIImage]!
+    
     var withFriendsList: [FriendData]!
     var filteredData = [FriendData]()
     
@@ -46,17 +46,17 @@ class AddFriendsVC: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        	
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "이름 검색"
         definesPresentationContext = true
-
+        
         tableView.tableHeaderView = searchController.searchBar
-//        tableView.tableHeaderView?.frame.size.height = 80
+        //        tableView.tableHeaderView?.frame.size.height = 80
         searchController.searchBar.tintColor = .appColor
         
-//        searchController.searchBar.setImage(UIImage(systemName: "multiple.circle.fill"), for: UISearchBar.Icon.clear, state: .normal)
+        //        searchController.searchBar.setImage(UIImage(systemName: "multiple.circle.fill"), for: UISearchBar.Icon.clear, state: .normal)
         
         backBtn.tintColor = UIColor.appColor
         saveBtn.tintColor = UIColor.appColor
@@ -71,7 +71,7 @@ class AddFriendsVC: UIViewController {
     @IBAction func saveBtnAction(_ sender: Any) {
         let arr = withFriendsList.filter({ (friend) -> Bool in
             return friend.isChecked ? true : false
-            })
+        })
         
         self.delegate.sendSelectedFriends(data: Array(arr))
         self.navigationController?.popViewController(animated: false)
@@ -108,19 +108,18 @@ extension AddFriendsVC: UITableViewDataSource {
         
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
-    
-        DispatchQueue.global().sync {
-            FirebaseStorageService.shared.getUserImageWithName(name: (friend.image)!) { (result) in
-                switch result {
-                case .failure(let err):
-                    print(err)
-                    break
-                case .success(let userImage):
-                    cell.friendProfileImg.image = userImage
-                    break
-                }
+        
+        FirebaseStorageService.shared.getPromiseImageWithName(name: (friend.image)!) { (result) in
+            switch result {
+            case .failure(let err):
+                print(err)
+                break
+            case .success(let userImage):
+                cell.friendProfileImg.image = userImage
+                break
             }
         }
+        
         
         cell.friendNameLabel.text = friend.name
         //        cell.promiseNameLabel.text = rowData.promisename
@@ -134,10 +133,10 @@ extension AddFriendsVC: UITableViewDataSource {
         }
         
         if isSearched {
-             withFriendsList[filteredData[indexPath.row].tag].isChecked = cell.checkBox.on
-         } else {
-             withFriendsList[indexPath.row].isChecked = cell.checkBox.on
-         }
+            withFriendsList[filteredData[indexPath.row].tag].isChecked = cell.checkBox.on
+        } else {
+            withFriendsList[indexPath.row].isChecked = cell.checkBox.on
+        }
         
         return cell
     }
@@ -162,10 +161,10 @@ extension AddFriendsVC: UITableViewDataSource {
         }
         
         if isSearched {
-             withFriendsList[filteredData[indexPath.row].tag].isChecked = cell.checkBox.on
-         } else {
-             withFriendsList[indexPath.row].isChecked = cell.checkBox.on
-         }
+            withFriendsList[filteredData[indexPath.row].tag].isChecked = cell.checkBox.on
+        } else {
+            withFriendsList[indexPath.row].isChecked = cell.checkBox.on
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
         

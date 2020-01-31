@@ -378,6 +378,7 @@
                                         <size key="customSize" width="343" height="156"/>
                                         <connections>
                                             <outlet property="promiseDuration" destination="yiD-I6-3OU" id="5To-WL-4vB"/>
+                                            <outlet property="promiseFriends" destination="yf9-l7-IFW" id="xpa-v3-CuJ"/>
                                             <outlet property="promiseIcon" destination="EqE-SH-sT8" id="aOj-1f-5up"/>
                                             <outlet property="promiseName" destination="LSo-nQ-Noe" id="qO3-n1-oaY"/>
                                         </connections>

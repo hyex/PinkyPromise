@@ -31,6 +31,7 @@ class MoreTabMainVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        getUserData()
     }
     
     @IBAction func imageChangeBtnAction(_ sender: Any) {
@@ -61,13 +62,20 @@ class MoreTabMainVC: UIViewController {
                 self.user = result[0]
                 self.userName.text = result[0].userName
                 imageName = self.user?.userImage ?? (self.user?.userId)!
-                FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
+                FirebaseStorageService.shared.getUserImageURLWithName(name: imageName, completion: { result in
                     switch result {
                     case .failure(let err):
                         print(err)
                         self.userImage.image = UIImage(named: "user_male")
-                    case .success(let image):
-                        self.userImage.image = image
+                    case .success(let url):
+                        let imageUrl = URL(string: url)
+                        do {
+                            let data = try Data(contentsOf: imageUrl!)
+                            self.userImage.image = UIImage(data: data)
+                        } catch {
+                            print("get image url failed")
+                            self.userImage.image = UIImage(named: "user_male")
+                        }
                     }
                 })
             }
@@ -85,25 +93,14 @@ class MoreTabMainVC: UIViewController {
     }
     
     @IBAction func logOutBtnAction(_ sender: Any) {
-//        FirebaseUserService.signOut(success: {
-//            print("success")
-//            // 로그인 페이지로 다시 가야할 듯 싶은디
-//        }) { (err) in
-//            print(err)
-//        }
         
         FirebaseUserService.signOut(success: {
-            
             if UserDefaults.standard.bool(forKey: "loggedIn") == false {
-                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
                 tempVC.modalPresentationStyle = .fullScreen
                 self.present(tempVC, animated: true, completion: nil)
-                
-                print("finished")
             }
-            
         }) { (error) in
             print(error.localizedDescription)
         }

@@ -22,6 +22,10 @@ class AddPanaltyVC: UIViewController {
     
     @IBOutlet weak var panaltyName: UITextField!
     
+    @IBOutlet var bigView: UIView!
+    
+    @IBOutlet weak var textField: UITextField!
+    
     var delegate: SendPanaltyNameDelegate!
     
     override func viewDidLoad() {
@@ -32,9 +36,15 @@ class AddPanaltyVC: UIViewController {
         self.smallView.layer.shadowOffset = CGSize(width: 0, height: 4)
         self.smallView.layer.shadowRadius = 8
         self.smallView.layer.shadowOpacity = 0.3
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(AddPanaltyVC.dismissPage(sender:)))
+        self.bigView.addGestureRecognizer(gesture)
+        self.textField.delegate = self
     }
     
-    // MARK: - Navigation
+    @objc func dismissPage(sender: UIGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
+    }    // MARK: - Navigation
 
     @IBAction func cancelBtnAction(_ sender: Any) {
         dismiss(animated: false, completion: nil)
@@ -46,4 +56,12 @@ class AddPanaltyVC: UIViewController {
         dismiss(animated: false, completion: nil)
     }
     
+}
+
+extension AddPanaltyVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= 30
+    }
 }
