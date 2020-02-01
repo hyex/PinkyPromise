@@ -92,30 +92,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day 00" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbZ-8Y-8NH">
-                                                    <rect key="frame" x="16" y="10" width="51" height="51"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day 00" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbZ-8Y-8NH">
+                                                    <rect key="frame" x="16" y="10" width="53" height="53"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="EbZ-8Y-8NH" secondAttribute="height" multiplier="1:1" id="1vc-WC-pzM"/>
-                                                        <constraint firstAttribute="width" constant="51" id="5aL-ys-Yz2"/>
+                                                        <constraint firstAttribute="width" constant="53" id="sdR-1k-F49"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="9rw-23-m7o">
-                                                    <rect key="frame" x="83" y="10" width="276" height="120"/>
+                                                    <rect key="frame" x="97.666666666666657" y="10" width="261.33333333333337" height="120"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EbZ-8Y-8NH" firstAttribute="top" secondItem="bg5-Lm-a1m" secondAttribute="top" constant="9.9999999999999982" id="MsM-za-bJ4"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EbZ-8Y-8NH" secondAttribute="bottom" constant="-1" id="Vrw-1k-T4d"/>
                                                 <constraint firstItem="EbZ-8Y-8NH" firstAttribute="leading" secondItem="bg5-Lm-a1m" secondAttribute="leading" constant="16" id="c8G-Lo-FNS"/>
                                                 <constraint firstItem="EbZ-8Y-8NH" firstAttribute="top" secondItem="9rw-23-m7o" secondAttribute="top" id="g6A-Us-a0C"/>
                                                 <constraint firstAttribute="bottom" secondItem="9rw-23-m7o" secondAttribute="bottom" constant="10" id="gbw-g9-w09"/>
                                                 <constraint firstItem="9rw-23-m7o" firstAttribute="top" secondItem="bg5-Lm-a1m" secondAttribute="top" constant="10" id="lfs-Qm-nX5"/>
                                                 <constraint firstAttribute="trailing" secondItem="9rw-23-m7o" secondAttribute="trailing" constant="16" id="qes-cv-f0p"/>
-                                                <constraint firstItem="9rw-23-m7o" firstAttribute="leading" secondItem="EbZ-8Y-8NH" secondAttribute="trailing" constant="16" id="xo1-jm-BQm"/>
+                                                <constraint firstItem="9rw-23-m7o" firstAttribute="leading" secondItem="EbZ-8Y-8NH" secondAttribute="trailing" constant="28.670000000000002" id="vnY-wG-N8x"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -142,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zep-An-3as" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-695" y="865"/>
+            <point key="canvasLocation" x="-695.20000000000005" y="864.53201970443354"/>
         </scene>
         <!--PromiseDetailVC-->
         <scene sceneID="xaD-yy-MVu">
@@ -420,6 +419,6 @@
         <image name="uijeong" width="1008" height="1008"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9jx-JB-U3x"/>
+        <segue reference="TPX-JL-d6I"/>
     </inferredMetricsTieBreakers>
 </document>
