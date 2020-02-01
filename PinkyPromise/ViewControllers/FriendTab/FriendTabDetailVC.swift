@@ -39,6 +39,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         setBackBtn()
         setPromiseName()
+        addSwipeGesture()
         friendDatailTableView.delegate = self
         friendDatailTableView.dataSource = self
         friendDatailTableView.tableFooterView = UIView()
@@ -133,6 +134,17 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 122
+    }
+    
+    func addSwipeGesture() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        friendDatailTableView.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .right) {
+            self.dismiss(animated: false, completion: nil)}
     }
     
 }
