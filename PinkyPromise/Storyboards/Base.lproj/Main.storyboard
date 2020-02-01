@@ -10,7 +10,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="Ywh-tB-qcM">
             <objects>
-                <tabBarController storyboardIdentifier="mainSB" id="s3e-cr-Y8S" customClass="MainTabBarController" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainSB" id="s3e-cr-Y8S" customClass="MainTabBarController" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="YCX-MY-h3h"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQ6-gr-eiv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -18,10 +18,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="1Y9-n8-BL0" kind="relationship" relationship="viewControllers" id="sD7-ee-U2j"/>
-                        <segue destination="d8H-Rr-ysJ" kind="relationship" relationship="viewControllers" id="tqc-2j-3Vr"/>
-                        <segue destination="U92-7d-Zsq" kind="relationship" relationship="viewControllers" id="Fzo-Qo-iIp"/>
-                        <segue destination="AWH-Lp-Z8T" kind="relationship" relationship="viewControllers" id="KYb-JC-Kxn"/>
+                        <segue destination="1Y9-n8-BL0" kind="relationship" relationship="viewControllers" id="ZES-JK-hdB"/>
+                        <segue destination="9A6-Fn-mi0" kind="relationship" relationship="viewControllers" id="2gD-Er-2X9"/>
+                        <segue destination="U92-7d-Zsq" kind="relationship" relationship="viewControllers" id="7oz-lQ-y7b"/>
+                        <segue destination="AWH-Lp-Z8T" kind="relationship" relationship="viewControllers" id="718-T9-JLy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KG4-a5-u6L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -37,17 +37,35 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCy-hh-IFP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="473" y="-273"/>
+            <point key="canvasLocation" x="468" y="-752"/>
         </scene>
         <!--MyTab-->
         <scene sceneID="p0e-hp-102">
             <objects>
                 <viewControllerPlaceholder storyboardName="MyTab" referencedIdentifier="MyTab" id="d8H-Rr-ysJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="dIH-t5-37w"/>
+                    <navigationItem key="navigationItem" id="cII-N3-mNQ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85u-KD-6P4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="-149"/>
+            <point key="canvasLocation" x="1784" y="-158"/>
+        </scene>
+        <!--promise-->
+        <scene sceneID="Kgx-qN-RBe">
+            <objects>
+                <navigationController id="9A6-Fn-mi0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="promise" image="list.bullet.indent" catalog="system" id="YfQ-ac-wrG"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pJE-9y-fpM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="d8H-Rr-ysJ" kind="relationship" relationship="rootViewController" id="QcX-UU-nOz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="53f-r9-x6J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="964" y="-158"/>
         </scene>
         <!--FriendTab-->
         <scene sceneID="gkg-mQ-chQ">
@@ -57,12 +75,12 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c71-b1-eCS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="484" y="-38"/>
+            <point key="canvasLocation" x="480" y="239"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="pra-p0-TaT">
             <objects>
-                <viewController id="7gk-GH-tO2" customClass="LoginVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7gk-GH-tO2" customClass="LoginVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GGH-Wg-MjO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,7 +186,7 @@
         <!--SignUp-->
         <scene sceneID="07C-jO-U0O">
             <objects>
-                <viewController id="JGA-uc-ThS" customClass="signUpVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JGA-uc-ThS" customClass="signUpVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FAc-Fa-hFs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,7 +257,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXp-gg-DuP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1301" y="325"/>
+            <point key="canvasLocation" x="1709" y="978"/>
         </scene>
         <!--My-->
         <scene sceneID="6zS-wD-6jC">
@@ -256,7 +274,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btw-gJ-0EQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="384"/>
+            <point key="canvasLocation" x="1001" y="978"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="98s-j3-pDt">
@@ -282,7 +300,7 @@
         <!--SignIn-->
         <scene sceneID="5Iy-M7-cPl">
             <objects>
-                <viewController id="jzd-xX-aeV" customClass="signInVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jzd-xX-aeV" customClass="signInVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wh3-1N-ijZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,6 +348,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="list.bullet.indent" catalog="system" width="64" height="36"/>
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
     </resources>

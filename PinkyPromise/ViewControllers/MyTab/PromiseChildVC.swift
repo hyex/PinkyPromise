@@ -48,7 +48,8 @@ class PromiseChildVC: UIViewController {
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
         
-        self.present(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: false)
+//        self.present(vc, animated: false)
     }
     
 }

@@ -17,6 +17,7 @@ class MyTabMainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
         initView()
         dayChildView.isHidden = false
         promiseChildView.isHidden = true
