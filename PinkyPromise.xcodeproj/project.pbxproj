@@ -77,6 +77,7 @@
 		3FE061D723E0E4C900CD2F6A /* AddFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */; };
 		3FE061D923E0E6C200CD2F6A /* CheckFriendsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */; };
 		3FE061DF23E24BE700CD2F6A /* PanaltyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */; };
+		3FEC413223E5EF56006C318E /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC413123E5EF56006C318E /* Progress.swift */; };
 		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
@@ -141,7 +142,7 @@
 		33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendVC.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
-		33FF2C2F23CB55DC0040003A /* 나랑약속해.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "나랑약속해.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33FF2C2F23CB55DC0040003A /* 나랑약속해.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "나랑약속해.app"; path = "나랑약속해.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPanaltyVC.swift; sourceTree = "<group>"; };
 		3F02329723E2A58700BB0E23 /* FriendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendData.swift; path = PinkyPromise/ViewControllers/HomeTab/FriendData.swift; sourceTree = SOURCE_ROOT; };
@@ -166,6 +167,7 @@
 		3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsVC.swift; sourceTree = "<group>"; };
 		3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFriendsTVC.swift; sourceTree = "<group>"; };
 		3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaltyTVC.swift; sourceTree = "<group>"; };
+		3FEC413123E5EF56006C318E /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Progress.swift; path = PinkyPromise/ViewControllers/HomeTab/Progress.swift; sourceTree = SOURCE_ROOT; };
 		45752F0852F9A5F9940CA4DA /* Pods-PinkyPromise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinkyPromise.debug.xcconfig"; path = "Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise.debug.xcconfig"; sourceTree = "<group>"; };
 		A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabDetailVC.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 			children = (
 				3F02329723E2A58700BB0E23 /* FriendData.swift */,
 				3F08320723E5752C000B2F49 /* Colors.swift */,
+				3FEC413123E5EF56006C318E /* Progress.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -471,7 +474,7 @@
 		33FF2C3023CB55DC0040003A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				33FF2C2F23CB55DC0040003A /* 나랑약속해.app */,
+				33FF2C2F23CB55DC0040003A /* 나랑약속해.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -530,7 +533,7 @@
 			);
 			name = PinkyPromise;
 			productName = PinkyPromise;
-			productReference = 33FF2C2F23CB55DC0040003A /* 나랑약속해.app */;
+			productReference = 33FF2C2F23CB55DC0040003A /* 나랑약속해.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -662,6 +665,7 @@
 				186D855B23D42486006DA619 /* promiseTable.swift in Sources */,
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,
 				3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */,
+				3FEC413223E5EF56006C318E /* Progress.swift in Sources */,
 				33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
