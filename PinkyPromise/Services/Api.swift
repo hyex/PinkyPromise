@@ -482,7 +482,7 @@ class MyApi: NSObject {
             
             var firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 - Double(i * 86400) )
             
-            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDayPlusi ).getDocuments { (snapShot, error ) in
+            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDayPlusi ).getDocuments { (snapShot, error ) in
                 if let err = error {
                     debugPrint(err.localizedDescription)
                 } else {
@@ -638,7 +638,7 @@ class MyApi: NSObject {
                             if tempadd == false {
                                 temp?.append(result[0].userId)
                             }
-                          self.userCollectionRef.document(FirebaseUserService.currentUserID).setData( [USERFRIENDS : temp], merge: true )
+                            self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp], merge: true )
                         }
                     }
                     

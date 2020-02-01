@@ -50,19 +50,18 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     private func getDetailPromiseData(){
         print("in getDatailPromiseData")
-        MyApi.shared.getDataforDetailViewjr1(promiseID: "8ttBEtiVlShS038GHvlI") { (result) in
-//            print("promiseName : ", result.promiseName!)
-//            print("promiseDay : ", result.promiseDay!)
-//            print("promiseDaySinceStart : ", result.promiseDaySinceStart!)
-//
-//            for douc in result.friendsDetail {
-//                print("friendName : ", douc.friendName!)
-//                print("friendDegree : ", douc.friendDegree!)
-//                print("friendImage : ", douc.friendImage!)
-//            }
-            
-        }
         
+//        guard let promiseId = self.detailPromise?.promiseId , where promiseId != nil else {
+//            MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
+//                for douc in result.friendsDetail {
+//                    print("--------douc--------")
+//                    print(douc.friendName!)
+//                    print(douc.friendDegree!)
+//                    print(douc.friendImage!)
+//                }
+//
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -96,8 +96,11 @@ class FirebaseUserService {
         return Auth.auth().currentUser!
     }
     
-    static var currentUserID: String {
-        return Auth.auth().currentUser!.uid
+    static var currentUserID: String? {
+//        guard let uid = Auth.auth().currentUser.uid else {
+//            return nil
+//        }
+//        return uid
+         return Auth.auth().currentUser!.uid
     }
-    
 }
