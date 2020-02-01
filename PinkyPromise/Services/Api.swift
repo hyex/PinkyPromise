@@ -494,11 +494,8 @@ class MyApi: NSObject {
             
             var firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(i * 86400) )
             
-<<<<<<< HEAD
-            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDayPlusi ).getDocuments { (snapShot, error ) in
-=======
             promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDay ).getDocuments { (snapShot, error ) in
->>>>>>> 2a9e4773fa60189af9d5ba157a276b4a1ef226d5
+                
                 if let err = error {
                     debugPrint(err.localizedDescription)
                 } else {
@@ -506,7 +503,7 @@ class MyApi: NSObject {
                     let tempResult1 = PromiseTable.parseData(snapShot: snapShot)
                     
                     let tempResult2 = tempResult1.filter { $0.promiseStartTime.timeIntervalSince1970 <= firstDayPlusi.timeIntervalSince1970 && $0.promiseEndTime.timeIntervalSince1970 >= firstDayPlusi.timeIntervalSince1970 }
-                    
+                    // FIXME: 임시 주석 처리
                     self.getMothlyDataWithCurrentMonth2(day: firstDayPlusi, promiseData: tempResult2) { (result2) in
                         //result2는 PromiseAndProgress객체임
                         
@@ -530,31 +527,30 @@ class MyApi: NSObject {
     }
     
     func getMothlyDataWithCurrentMonth2(day: Date, promiseData: [PromiseTable], completion: @escaping (PromiseAndProgress) -> Void ) {
-        
+
         var temp = [ProgressTable]()
         for douc in promiseData {
-            
+
             progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
                 if let err = error {
                     print("this is err..1 \(err.localizedDescription)")
                 } else {
                     let temp2 = ProgressTable.parseData(snapShot: snapShot)
-                    
+
                     if temp2.count > 0 {
                         temp.append(temp2[0])
                     } else {
-                        let tmmppg = ProgressTable(progressDegree: [], promiseId: douc.promiseId, userId: FirebaseUserService.currentUserID, progressId: MyApi.shared.randomNonceString())
+                        let tmmppg = ProgressTable(progressDegree: [], promiseId: douc.promiseId, userId: FirebaseUserService.currentUserID!, progressId: MyApi.shared.randomNonceString())
                         temp.append(tmmppg)
                     }
-                    
+
                     if temp.count >= promiseData.count {
                         completion(PromiseAndProgress(Day: day, promiseData: promiseData, progressData: temp))
                     }
                 }
-                
+
             }
         }
-        
     }
     
     //제발.. 오늘을 기준으로 이번 달의 날짜를 반환
@@ -667,11 +663,9 @@ class MyApi: NSObject {
                             if tempadd == false {
                                 temp?.append(result[0].userId)
                             }
-<<<<<<< HEAD
+
                             self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp], merge: true )
-=======
-                            self.userCollectionRef.document(FirebaseUserService.currentUserID).setData( [USERFRIENDS : temp], merge: true )
->>>>>>> 2a9e4773fa60189af9d5ba157a276b4a1ef226d5
+
                         }
                     }
                     
@@ -774,64 +768,7 @@ class MyApi: NSObject {
     //               }
     //           })
     
-    func allPromise(completion: @escaping ([PromiseData]) -> Void) {
-        //}, onError: @escaping (Error) -> Void) {
-        
-        dateFormatter.locale = Locale(identifier: "ko")
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        
-        let defaultDate = Date(timeIntervalSince1970: 0)
-        
-        let result = [
-            PromiseData(promiseName: "10시에 기상하기",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-18 10:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-28 10:00") ?? defaultDate,
-                        promiseColor: "green",
-                        promiseAchievement: 3),
-            PromiseData(promiseName: "4시에는 쿨쿨하기",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-20 13:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-25 14:00") ?? defaultDate,
-                        promiseColor: "lightGray",
-                        promiseAchievement: 4),
-            PromiseData(promiseName: "완료된 약속",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-25 13:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-27 14:00") ?? defaultDate,
-                        promiseColor: "purple",
-                        promiseAchievement: 3),
-            PromiseData(promiseName: "DARARARARA",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-18 10:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-28 10:00") ?? defaultDate,
-                        promiseColor: "orange",
-                        promiseAchievement: 3),
-            PromiseData(promiseName: "4시에는 쿨쿨하기",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-20 13:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-25 14:00") ?? defaultDate,
-                        promiseColor: "yellow",
-                        promiseAchievement: 4),
-            PromiseData(promiseName: "완료된 약속",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-25 13:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-27 14:00") ?? defaultDate,
-                        promiseColor: "purple",
-                        promiseAchievement: 3),
-            PromiseData(promiseName: "aassddff",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-18 10:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-28 10:00") ?? defaultDate,
-                        promiseColor: "systemPink",
-                        promiseAchievement: 3),
-            PromiseData(promiseName: "4시에는 쿨쿨하기",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-20 13:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-25 14:00") ?? defaultDate,
-                        promiseColor: "blue",
-                        promiseAchievement: 4),
-            PromiseData(promiseName: "완료된 약속",
-                        promiseStartTime: dateFormatter.date(from:"2020-01-25 13:00") ?? defaultDate,
-                        promiseEndTime: dateFormatter.date(from:"2020-01-27 14:00") ?? defaultDate,
-                        promiseColor: "purple",
-                        promiseAchievement: 3),
-        ]
-        completion(result)
-        
-    }
+   
     
     
 }

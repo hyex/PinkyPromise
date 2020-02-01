@@ -341,6 +341,26 @@ extension AddPromiseVC: UITextFieldDelegate {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        textField.resignFirstResponder()
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+    // Called just before UITextField is edited
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
+        
+    }
+    
+    // Called immediately after UITextField is edited
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+        
+    }
+    
 }
 
 extension AddPromiseVC: SendSelectedColorDelegate {
