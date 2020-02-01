@@ -19,6 +19,9 @@ class HomeTabMainVC: UIViewController {
     weak var tableView: UITableView!
     private var promiseListforDates: [ProgressTable]!
     
+    
+    
+    
     let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -66,10 +69,10 @@ class HomeTabMainVC: UIViewController {
         //        initView()
         
         // initialize UI
-        let view = UIView(frame: UIScreen.main.bounds)
+        //let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         //        let guide = view.safeAreaLayoutGuide
-        self.view = view
+        //self.view = view
 
 
         
@@ -136,8 +139,12 @@ class HomeTabMainVC: UIViewController {
         
         addPromiseBtn = AddPromiseBtn(frame: CGRect(x: self.view.frame.size.width / 2 - 25, y: self.view.frame.size.height - 94 - self.tabBarController!.tabBar.frame.size.height, width: 50, height: 50));
         
+        
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
+        
+        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
         //        self.safearea.addSubview(view)
         // data setting
         
