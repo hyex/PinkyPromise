@@ -161,44 +161,6 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 
                 let rowData = list[indexPath.item]
                 
-                var promiseAchievement:Int = 0
-                let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
-                let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
-                
-                // MARK:- FIX 데이터가 군데군데 들어옴
-                if let id = rowData.promiseId {
-                    MyApi.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
-                        DispatchQueue.main.async {
-                            print(result)
-                            if result.isEmpty != true {
-
-                                for degree in result[0].progressDegree {
-                                    if degree == 4 {
-                                        promiseAchievement += 1
-                                    }
-                                }
-//                                print(rowData.promiseName)
-//                                print(rowData.promiseId)
-//                                print(result[0].promiseId)
-//                                print(result[0].progressDegree)
-//                                print(promiseAchievement)
-//                                print(">>>>\n")
-                            }
-                            
-                            promiseCell.appSlider.value = Float(promiseAchievement)
-                            promiseCell.showSliderValue.text = String(promiseAchievement)
-                            
-                            
-                            let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
-                            
-                            promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue //- CGFloat(2.0)
-                            promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
-                            
-                        }
-                        
-                    })
-                }
-                
                 // 날짜만 비교해서 며칠 남았는지 뽑아낸다
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -231,6 +193,37 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 promiseCell.promiseIcon.image = UIImage(named: rowData.promiseIcon)
                 promiseCell.promiseName.text = rowData.promiseName
                 
+                
+                var promiseAchievement:Int = 0
+                let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
+                let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
+
+                if let id = rowData.promiseId {
+                    MyApi.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
+                        DispatchQueue.main.async {
+                            print(result)
+                            if result.isEmpty != true {
+
+                                for degree in result[0].progressDegree {
+                                    if degree == 4 {
+                                        promiseAchievement += 1
+                                    }
+                                }
+                            }
+                            
+                            promiseCell.appSlider.value = Float(promiseAchievement)
+                            promiseCell.showSliderValue.text = String(promiseAchievement)
+
+
+                            let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
+
+                            promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue //- CGFloat(2.0)
+                            promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
+
+                        }
+                        
+                    })
+                }
 
             }
             cell = promiseCell
