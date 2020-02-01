@@ -84,6 +84,7 @@ class MainTabBarController: UITabBarController {
 
 //        }
         
+//        print("teset")
 //        MyApi.shared.getMothlyDataWithCurrentMonth { result in
 //            for douc in result {
 //                print("test")
@@ -158,6 +159,7 @@ class MainTabBarController: UITabBarController {
             print("finished")
         }
         
+        MyApi.shared.fireStoreSetting()
     }
     
 }

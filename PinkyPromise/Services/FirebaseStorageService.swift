@@ -48,12 +48,12 @@ class FirebaseStorageService: NSObject {
         metadata.contentType = "image/jpeg"
         //let uuid = UUID()
         //let imageLocation = userFolderRef.child(uuid.description)
-        let imageLocation = userFolderRef.child(FirebaseUserService.currentUserID)
+        let imageLocation = userFolderRef.child(FirebaseUserService.currentUserID!)
         imageLocation.putData(image, metadata: metadata) { (responseMetadata, error) in
             if let err = error {
                 completion(.failure(err))
             } else {
-                Firestore.firestore().collection(PROMISEUSERREF).document(FirebaseUserService.currentUserID).setData([USERIMAGE : FirebaseUserService.currentUserID], merge: true)
+                Firestore.firestore().collection(PROMISEUSERREF).document(FirebaseUserService.currentUserID!).setData([USERIMAGE : FirebaseUserService.currentUserID], merge: true)
                 imageLocation.downloadURL { (url, error) in
                     guard error == nil else {
                         completion(.failure(error!))

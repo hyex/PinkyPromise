@@ -48,7 +48,6 @@
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
 		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
-		33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */; };
 		33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */; };
 		33B7E8DE23E1E02E00B2D6C0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */; };
 		33B7E8DF23E1E02E00B2D6C0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */; };
@@ -89,7 +88,7 @@
 		A9A3E82F23E0355400EDFE1C /* FinalDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */; };
 		A9A3E83123E0357300EDFE1C /* ColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83023E0357300EDFE1C /* ColorVC.swift */; };
 		A9A3E83323E0358C00EDFE1C /* IconVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83223E0358C00EDFE1C /* IconVC.swift */; };
-		A9A3E83523E0359D00EDFE1C /* AlarmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83423E0359D00EDFE1C /* AlarmVC.swift */; };
+		DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,14 +135,13 @@
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
 		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
-		33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabApi.swift; sourceTree = "<group>"; };
 		33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendVC.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
-		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33FF2C2F23CB55DC0040003A /* 나랑약속해.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "나랑약속해.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPanaltyVC.swift; sourceTree = "<group>"; };
 		3F02329723E2A58700BB0E23 /* FriendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendData.swift; path = PinkyPromise/ViewControllers/HomeTab/FriendData.swift; sourceTree = SOURCE_ROOT; };
@@ -180,7 +178,6 @@
 		A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDateVC.swift; sourceTree = "<group>"; };
 		A9A3E83023E0357300EDFE1C /* ColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorVC.swift; sourceTree = "<group>"; };
 		A9A3E83223E0358C00EDFE1C /* IconVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVC.swift; sourceTree = "<group>"; };
-		A9A3E83423E0359D00EDFE1C /* AlarmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmVC.swift; sourceTree = "<group>"; };
 		BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinkyPromise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -189,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +239,6 @@
 				186D855323D41C94006DA619 /* Constants.swift */,
 				1875B63523D876FE00751947 /* FirebaseStorageService.swift */,
 				18BA607723DFF02E00925578 /* FirebaseUserService.swift */,
-				33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -397,7 +394,6 @@
 				A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */,
 				A9A3E83023E0357300EDFE1C /* ColorVC.swift */,
 				A9A3E83223E0358C00EDFE1C /* IconVC.swift */,
-				A9A3E83423E0359D00EDFE1C /* AlarmVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -475,7 +471,7 @@
 		33FF2C3023CB55DC0040003A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				33FF2C2F23CB55DC0040003A /* PinkyPromise.app */,
+				33FF2C2F23CB55DC0040003A /* 나랑약속해.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -534,7 +530,7 @@
 			);
 			name = PinkyPromise;
 			productName = PinkyPromise;
-			productReference = 33FF2C2F23CB55DC0040003A /* PinkyPromise.app */;
+			productReference = 33FF2C2F23CB55DC0040003A /* 나랑약속해.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -657,7 +653,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */,
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				1808C1D923E41AA6004D5ED2 /* API-Auth.swift in Sources */,
@@ -668,7 +663,6 @@
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,
 				3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */,
 				33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */,
-				A9A3E83523E0359D00EDFE1C /* AlarmVC.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				3FE061CF23E0CF9900CD2F6A /* FriendCellTVC.swift in Sources */,
@@ -880,7 +874,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "나랑약속해";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -900,7 +894,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "나랑약속해";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

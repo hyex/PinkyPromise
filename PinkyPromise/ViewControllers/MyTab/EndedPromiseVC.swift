@@ -33,8 +33,14 @@ class EndedPromiseVC: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
+//        self.dismiss(animated: false, completion: nil)
+    }
+    
     @IBAction func backBtnAction(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+//        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
 
@@ -100,12 +106,15 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 DispatchQueue.main.async {
                     for friend in result {
                         cell.promiseFriends.text! += friend + " "
+                        if result[1] == friend {
+                            let peoples = result.count - 2
+                            cell.promiseFriends.text! += " 와 \(String(peoples))명"
+                            break
+                        }
                     }
                 }
             })
         }
-        
-        
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"

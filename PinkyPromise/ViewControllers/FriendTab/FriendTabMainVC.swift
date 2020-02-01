@@ -7,6 +7,7 @@
 //
 
 struct PromiseWithFriend {
+    var userimg : String
     var promiseId : String
     var promiseName : String
     var friendsName : [String]
@@ -40,7 +41,7 @@ class FriendTabMainVC: UIViewController {
         let purplePlus : UIImage = UIImage(named: "plus")!
         addNewPromiseBtn.setImage(purplePlus, for: UIControl.State.normal)
     }
-
+    
     //약속 추가 버튼 액션
     @IBAction func addPromiseBtnAction(_ sender: Any) {
         let homeTabStoryboard = UIStoryboard(name: "HomeTab", bundle: nil)
@@ -54,7 +55,7 @@ class FriendTabMainVC: UIViewController {
     private func getPromiseAndFriend() {
         MyApi.shared.getPromiseNameAndFriendsName { (result) in
             for douc in result {
-                self.PromiseList.append(PromiseWithFriend(promiseId: douc.promiseId, promiseName: douc.promiseName, friendsName: douc.friendsName))
+                self.PromiseList.append(PromiseWithFriend(userimg : douc.FirstuserImage, promiseId: douc.promiseId, promiseName: douc.promiseName, friendsName: douc.friendsName))
             }
         }
     }
@@ -67,8 +68,8 @@ extension FriendTabMainVC : UITableViewDelegate{
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
-        
-        
+        vc.detailPromise = self.PromiseList[indexPath.row]
+//
         self.present(vc, animated: false) {
             vc.detailPromise = self.PromiseList[indexPath.row]
         }
@@ -78,7 +79,7 @@ extension FriendTabMainVC : UITableViewDelegate{
 extension FriendTabMainVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return self.PromiseList.count
+        return self.PromiseList.count
     }
     
     //table view cell 설정
@@ -91,21 +92,37 @@ extension FriendTabMainVC : UITableViewDataSource{
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
         
-        //이미지 수정해야 함
-        cell.friendProfileImg.image = UIImage(named: "seonyoung")
+        //이미지 수정
+        FirebaseStorageService.shared.getUserImageURLWithName(name: promiseData.userimg, completion: { imgResult in
+            switch imgResult {
+            case .failure(let err):
+                print(err)
+                cell.friendProfileImg.image = UIImage(named: "user_male")
+            case .success(let url):
+                let imgURL = URL(string: url)
+                do{
+                    let data = try Data(contentsOf: imgURL!)
+                    cell.friendProfileImg.image = UIImage(data: data)
+                } catch{
+                    print("get img url failed")
+                    cell.friendProfileImg.image = UIImage(named: "user_male")
+                }
+            }
+        })
+        
+        
         if (promiseData.friendsName.count == 1) {
             cell.friendNameLabel.text = promiseData.friendsName[0]
         }else{
             cell.friendNameLabel.text = promiseData.friendsName[0] + " 외 \(promiseData.friendsName.count - 1)명"
         }
         cell.promiseNameLabel.text = promiseData.promiseName
-
+        
         let purpleArrow : UIImage = UIImage(named: "next")!
         cell.friendDatailBtn.setImage(purpleArrow, for: UIControl.State.normal)
-
+        
         return cell
     }
-    
     //tableview cell 높이 수정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70

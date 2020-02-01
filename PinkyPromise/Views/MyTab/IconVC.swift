@@ -13,5 +13,4 @@ class IconVC: UITableViewCell {
     @IBOutlet weak var iconImg: UIImageView!
     
     @IBOutlet weak var icon: UILabel!
-    @IBOutlet weak var editIconBtn: UIButton!
 }

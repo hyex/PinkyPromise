@@ -14,31 +14,28 @@ struct Friend{
 }
 
 class PromiseDetailVC: UIViewController {
-
+    
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var promiseNameLabel: UILabel!
-
+    
     @IBOutlet weak var promiseInfoTableView: UITableView!
     @IBOutlet weak var promiseFriendTableView: UITableView!
     
-    let PromiseFriends : [Friend] = [
-        Friend(profileImg: "seonyoung", name: "sunnyangee"),
-        Friend(profileImg: "seonyoung", name: "sunnyangee"),
-        Friend(profileImg: "seonyoung", name: "sunnyangee"),
-        Friend(profileImg: "seonyoung", name: "sunnyangee"),
-        Friend(profileImg: "seonyoung", name: "sunnyangee"),
-    ]
+    var promiseFriends : [FriendDatailInfo] = []{
+        didSet{ promiseFriendTableView.reloadData() }
+    }
     
     var promiseDetail : PromiseTable? = nil {
         didSet{
-            print(promiseDetail!)
+            print("promiseDetail : ", promiseDetail!)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        promiseNameLabel.text = "10시 전에 일어나기"
+        promiseNameLabel.text = promiseDetail?.promiseName
+        
         promiseInfoTableView.delegate = self
         promiseInfoTableView.dataSource = self
         promiseInfoTableView.tableFooterView = UIView()
@@ -48,9 +45,13 @@ class PromiseDetailVC: UIViewController {
         promiseFriendTableView.tableFooterView = UIView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getPromiseFriendData()
+    }
+    
     /*@IBAction func backBtnAction(_ sender : Any) {
-        self.dismiss(animated: false, completion: nil)
-    }**/
+     self.dismiss(animated: false, completion: nil)
+     }**/
     @IBAction func backBtnAction(_ sender : Any) {
         self.dismiss(animated: false, completion: nil)
     }
@@ -62,71 +63,121 @@ extension PromiseDetailVC : UITableViewDataSource{
         var rowCnt : Int = 0
         
         if(tableView == promiseInfoTableView) {
-            rowCnt = 5
+            rowCnt = 4
         }else if(tableView == promiseFriendTableView){
-            rowCnt = self.PromiseFriends.count
+            rowCnt = self.promiseFriends.count
         }
         return rowCnt
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy / MM / dd"
+        dateFormatter.locale = Locale.init(identifier: "en_GB")
         
         if(tableView == promiseInfoTableView){
             switch (indexPath.row) {
-            case 0:
+            case 0:  //시작 날짜
                 let startCell = tableView.dequeueReusableCell(withIdentifier: "StartDateVC") as! StartDateVC
-                startCell.startDateLabel.text = "2020년 1월 30일 수요일 오전 9시"
+                
+                if let start = promiseDetail?.promiseStartTime {
+                    startCell.startDateLabel.text = dateFormatter.string(from: start)
+                }else{
+                    print("date to string fail")
+                    startCell.startDateLabel.text = "-"
+                }
                 
                 startCell.startDateImg.tintColor = UIColor.appColor
-                startCell.editStartDateBtn.tintColor = UIColor.appColor
                 
                 return startCell
-            case 1:
+            case 1:  //종료 날짜
                 let finalCell = tableView.dequeueReusableCell(withIdentifier: "FinalDateVC") as! FinalDateVC
-                finalCell.finalDateLabel.text = "2020년 2월 20일 월요일 오후 11시"
+                
+                if let final = promiseDetail?.promiseEndTime {
+                    finalCell.finalDateLabel.text = dateFormatter.string(from: final)
+                }else{
+                    print("date to string fail")
+                    finalCell.finalDateLabel.text = "-"
+                }
                 
                 finalCell.finalDateImg.tintColor = UIColor.appColor
-                finalCell.editFinalDateBtn.tintColor = UIColor.appColor
                 
                 return finalCell
-            case 2:
+            case 2:  //약속 색상
                 let colorCell = tableView.dequeueReusableCell(withIdentifier: "ColorVC") as! ColorVC
                 
-                colorCell.colorImg.tintColor = UIColor.appColor
-                colorCell.editColorBtn.tintColor = UIColor.appColor
+                if let color = promiseDetail?.promiseColor {
+                    colorCell.colorImg.tintColor = UIColor(named: color)
+                }else{
+                    print("no promise color")
+                    colorCell.colorImg.tintColor = UIColor.appColor
+                }
+                 
                 
                 return colorCell
-            case 3:
+             default :  //약속 아이콘
                 let iconCell = tableView.dequeueReusableCell(withIdentifier: "IconVC") as! IconVC
                 
-                iconCell.iconImg.tintColor = UIColor.appColor
-                iconCell.editIconBtn.tintColor = UIColor.appColor
+                if let icon = promiseDetail?.promiseIcon {
+                    iconCell.iconImg.image = UIImage(named: "gym")
+                }else{
+                    print("no promise icon")
+                    iconCell.iconImg.tintColor = UIColor.appColor
+                }
                 
                 return iconCell
-            default:
-                let alarmCell = tableView.dequeueReusableCell(withIdentifier: "AlarmVC") as! AlarmVC
-                
-                alarmCell.alarmImg.tintColor = UIColor.appColor
-                
-                return alarmCell
+//            default:
+//                let alarmCell = tableView.dequeueReusableCell(withIdentifier: "AlarmVC") as! AlarmVC
+//
+//                alarmCell.alarmImg.tintColor = UIColor.appColor
+//
+//                return alarmCell
                 
             }
         }else {
             let friendCell = tableView.dequeueReusableCell(withIdentifier: "PromiseFriendTVC", for: indexPath) as! PromiseFriendTVC
             
-            let rowData = self.PromiseFriends[indexPath.row]
+            let rowData = self.promiseFriends[indexPath.row]
             
             friendCell.friendProfileImg.layer.cornerRadius = friendCell.friendProfileImg.frame.width/2
             friendCell.friendProfileImg.clipsToBounds = true
-            friendCell.friendProfileImg.image = UIImage(named: rowData.profileImg)
             
+            FirebaseStorageService.shared.getUserImageURLWithName(name: rowData.image, completion: { imgResult in
+                switch imgResult {
+                case .failure(let err):
+                    print(err)
+                    friendCell.friendProfileImg.image = UIImage(named: "user_male")
+                case .success(let url):
+                    let imgURL = URL(string: url)
+                    do{
+                        let data = try Data(contentsOf: imgURL!)
+                        friendCell.friendProfileImg.image = UIImage(data: data)
+                    } catch{
+                        print("get img url failed")
+                        friendCell.friendProfileImg.image = UIImage(named: "user_male")
+                    }
+                }
+            })
             friendCell.friendNameLabel.text = rowData.name
             
             return friendCell
         }
         
     }
-
+    
+    func getPromiseFriendData() {
+        if let promiseId = promiseDetail?.promiseId {
+            MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
+                for douc in result.friendsDetail {
+                    self.promiseFriends.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
+                }
+            }
+        }else{
+            print("promise id is nil")
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(tableView == promiseFriendTableView){
             return 60

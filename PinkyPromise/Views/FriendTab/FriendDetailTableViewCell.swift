@@ -24,4 +24,8 @@ class FriendDetailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var progressView: UIProgressView!
     
+    override func awakeFromNib() {
+        self.selectionStyle = .none
+    }
+    
 }

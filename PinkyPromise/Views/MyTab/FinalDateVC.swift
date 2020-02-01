@@ -12,5 +12,4 @@ class FinalDateVC: UITableViewCell {
     @IBOutlet weak var finalDateImg: UIImageView!
     @IBOutlet weak var final: UILabel!
     @IBOutlet weak var finalDateLabel: UILabel!
-    @IBOutlet weak var editFinalDateBtn: UIButton!
 }
