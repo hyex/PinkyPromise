@@ -455,7 +455,6 @@ class MyApi: NSObject {
         }
     }
     
-    
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
         let result = Timestamp()
@@ -499,19 +498,36 @@ class MyApi: NSObject {
                     debugPrint(err.localizedDescription)
                 } else {
                     
+//                    func a() {
+//                        a { r1, r2, r3 in
+//
+//                        }
+//                    }
+//
+//                    func b() {
+//
+//                        getUserfirebase { snapshot
+//                            let users = snapshot
+//                            getPromise  { sn2
+//
+//                                let promises = sn2
+//                                getProgress { sn3
+//                                    let progress = sn3
+//                                    completion(sn1, sn2, sn3)
+//                                }
+//                            }
+//                        }
+//                    }
+                    
+                    
                     let tempResult1 = PromiseTable.parseData(snapShot: snapShot)
                     
                     let tempResult2 = tempResult1.filter { $0.promiseStartTime.timeIntervalSince1970 <= firstDayPlusi.timeIntervalSince1970 && $0.promiseEndTime.timeIntervalSince1970 >= firstDayPlusi.timeIntervalSince1970 }
                     
-                    self.getMothlyDataWithCurrentMonth2(day: firstDayPlusi, promiseData: tempResult2) { (result2) in
+                    self.getMothlyDataWithCurrentMonth2(day1: firstDayPlusi, promiseData: tempResult2) { (result2) in
                         //result2는 PromiseAndProgress객체임
                         
-                        if result2.promiseData.count > 0 {
-                            temp.append(result2)
-                        } else {
-                            let tempresult3 = PromiseAndProgress(Day: firstDayPlusi, promiseData: [], progressData: [])
-                            temp.append(tempresult3)
-                        }
+                        temp.append(result2)
                         
                         if temp.count >= days {
                             completion(temp)
@@ -525,31 +541,35 @@ class MyApi: NSObject {
         }
     }
     
-    func getMothlyDataWithCurrentMonth2(day: Date, promiseData: [PromiseTable], completion: @escaping (PromiseAndProgress) -> Void ) {
+    func getMothlyDataWithCurrentMonth2(day1: Date, promiseData: [PromiseTable], completion: @escaping (PromiseAndProgress) -> Void ) {
         
-        var temp = [ProgressTable]()
-        for douc in promiseData {
-            
-            progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
-                if let err = error {
-                    print("this is err..1 \(err.localizedDescription)")
-                } else {
-                    let temp2 = ProgressTable.parseData(snapShot: snapShot)
-                    
-                    if temp2.count > 0 {
-                        temp.append(temp2[0])
+        var temp11 = [ProgressTable]()
+        
+        if promiseData.count > 0 {
+            for douc in promiseData {
+                
+                progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+                    if let err = error {
+                        print("this is err..1 \(err.localizedDescription)")
                     } else {
-                        let tmmppg = ProgressTable(progressDegree: [], promiseId: douc.promiseId, userId: FirebaseUserService.currentUserID, progressId: MyApi.shared.randomNonceString())
-                        temp.append(tmmppg)
-                    }
-                    
-                    if temp.count >= promiseData.count {
-                        completion(PromiseAndProgress(Day: day, promiseData: promiseData, progressData: temp))
+                        let temp2 = ProgressTable.parseData(snapShot: snapShot)
+                        
+                        temp11.append(temp2[0])
+                        
+                        if temp11.count >= promiseData.count {
+                            completion(PromiseAndProgress(Day: day1, promiseData: promiseData, progressData: temp11))
+                        }
                     }
                 }
                 
             }
         }
+        else {
+            let temp1 = [PromiseTable]()
+            let temp2 = [ProgressTable]()
+            completion(PromiseAndProgress(Day: day1, promiseData: temp1, progressData: temp2))
+        }
+        
         
     }
     

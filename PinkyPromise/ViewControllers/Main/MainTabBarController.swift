@@ -84,18 +84,19 @@ class MainTabBarController: UITabBarController {
 
 //        }
         
-//        MyApi.shared.getMothlyDataWithCurrentMonth { result in
-//            for douc in result {
-//                print("test")
-//                print(douc.Day)
-//                for douc2 in douc.promiseData {
-//                    print(douc2.promiseName)
-//                }
-//                for douc2 in douc.progressData {
-//                    print(douc2.progressDegree)
-//                }
-//            }
-//        }
+        print("teset")
+        MyApi.shared.getMothlyDataWithCurrentMonth { result in
+            for douc in result {
+                print("test")
+                print(douc.Day)
+                for douc2 in douc.promiseData {
+                    print(douc2.promiseName)
+                }
+                for douc2 in douc.progressData {
+                    print(douc2.progressDegree)
+                }
+            }
+        }
 //
 //        }
 
