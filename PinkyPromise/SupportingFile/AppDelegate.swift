@@ -19,7 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-     FirebaseApp.configure()
+        
+        FirebaseApp.configure()
+        Firestore.firestore().settings.isPersistenceEnabled = true
+        
+        let store = Firestore.firestore()
+
+        let setting = FirestoreSettings()
+        setting.isPersistenceEnabled = true
+        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
+
+        store.settings = setting
+        
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
         notificationCenter.delegate = self
