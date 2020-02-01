@@ -9,11 +9,12 @@
 struct FriendDatailInfo{
     var image : String
     var name : String
-    var perfect : String
-    var threeQuarter : String
-    var half : String
-    var quarter : String
-    var zero : String
+    var degree : [Int]
+//    var perfect : String
+//    var threeQuarter : String
+//    var half : String
+//    var quarter : String
+//    var zero : String
 }
 
 import UIKit
@@ -23,55 +24,57 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var promiseTitleLabel: UILabel!
     @IBOutlet weak var friendDatailTableView: UITableView!
-    
-    let datailPromiseInfo : [FriendDatailInfo] = [
-    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
-    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
-    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
-    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
-    FriendDatailInfo(image: "heji", name: "hyex", perfect: "10", threeQuarter: "7", half: "12", quarter: "3", zero: "2"),
-    ]
-    
+ 
+    var friendsList : [FriendDatailInfo] = [] {
+        didSet {friendDatailTableView.reloadData()}
+    }
+
     var detailPromise : PromiseWithFriend? = nil {
         didSet {
-            print(self.detailPromise!)
+            print("detailPromise : ", self.detailPromise!)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackBtn()
-        getDetailPromiseData()
-        
+        setPromiseName()
         friendDatailTableView.delegate = self
         friendDatailTableView.dataSource = self
         friendDatailTableView.tableFooterView = UIView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getDetailPromiseData()
+    }
+    
     private func getDetailPromiseData(){
         print("in getDatailPromiseData")
         
-//        guard let promiseId = self.detailPromise?.promiseId , where promiseId != nil else {
-//            MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
-//                for douc in result.friendsDetail {
-//                    print("--------douc--------")
-//                    print(douc.friendName!)
-//                    print(douc.friendDegree!)
-//                    print(douc.friendImage!)
-//                }
-//
-//            }
-//        }
+        if let promiseId = detailPromise?.promiseId {
+            MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
+                for douc in result.friendsDetail {
+                    print("--------douc--------")
+                    print(douc.friendName!)
+                    print(douc.friendDegree!)
+                    print(douc.friendImage!)
+
+                    self.friendsList.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
+                }
+            }
+        }else{
+            print("promise id is nil")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.datailPromiseInfo.count
+        return self.friendsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendDetailTableViewCell", for: indexPath) as! FriendDetailTableViewCell
         
-        let rowData = self.datailPromiseInfo[indexPath.row]
+        let rowData = self.friendsList[indexPath.row]
         
         cell.crownImg.image = UIImage(named: "crown")
         if(!(indexPath.row == 0)) {
@@ -80,21 +83,39 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
-        cell.friendProfileImg.image = UIImage(named: rowData.image)
+//        cell.friendProfileImg.image = UIImage(named: rowData.image)
+        
+        //이미지 수정
+        FirebaseStorageService.shared.getUserImageURLWithName(name: rowData.image, completion: { imgResult in
+            switch imgResult {
+            case .failure(let err):
+                print(err)
+                cell.friendProfileImg.image = UIImage(named: "user_male")
+            case .success(let url):
+                let imgURL = URL(string: url)
+                do{
+                    let data = try Data(contentsOf: imgURL!)
+                    cell.friendProfileImg.image = UIImage(data: data)
+                } catch{
+                    print("get img url failed")
+                    cell.friendProfileImg.image = UIImage(named: "user_male")
+                }
+            }
+        })
         
         cell.friendNameLabel.text = rowData.name
-        cell.perfectCnt.text = rowData.perfect
-        cell.threeQuarterCnt.text = rowData.threeQuarter
-        cell.halfCnt.text = rowData.half
-        cell.quarterCnt.text = rowData.quarter
-        cell.zeroCnt.text = rowData.zero
-        
+        cell.perfectCnt.text = String(rowData.degree[4])
+        cell.threeQuarterCnt.text = String(rowData.degree[3])
+        cell.halfCnt.text = String(rowData.degree[2])
+        cell.quarterCnt.text = String(rowData.degree[1])
+        cell.zeroCnt.text = String(rowData.degree[0])
+
         var nowProgressed : Double
-        let p1 = 1.0 * Double(rowData.perfect)!
-        let p2 = 0.75 * Double(rowData.threeQuarter)!
-        let p3 = 0.5 * Double(rowData.half)!
-        let p4 = 0.25 * Double(rowData.quarter)!
-        
+        let p1 = 1.0 * Double(rowData.degree[4])
+        let p2 = 0.75 * Double(rowData.degree[3])
+        let p3 = 0.5 * Double(rowData.degree[2])
+        let p4 = 0.25 * Double(rowData.degree[1])
+
         nowProgressed = (p1 + p2 + p3 + p4) / 30.0
         cell.progressView.tintColor = UIColor.appColor
         cell.progressView.progress = Float(nowProgressed)
@@ -108,6 +129,10 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func setBackBtn() {
         self.backBtn.tintColor = UIColor.purple
+    }
+    
+    func setPromiseName() {
+        self.promiseTitleLabel.text = self.detailPromise?.promiseName
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

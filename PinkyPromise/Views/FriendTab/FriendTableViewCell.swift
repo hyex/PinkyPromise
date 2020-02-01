@@ -20,4 +20,8 @@ class FriendTableViewCell: UITableViewCell {
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    override func awakeFromNib() {
+        self.selectionStyle = .none
+    }
 }

@@ -31,14 +31,14 @@ class PromiseDetailVC: UIViewController {
     
     var promiseDetail : PromiseTable? = nil {
         didSet{
-            print(promiseDetail!)
+            print("promiseDetail : ", promiseDetail!)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        promiseNameLabel.text = "10시 전에 일어나기"
+        promiseNameLabel.text = promiseDetail?.promiseName
         promiseInfoTableView.delegate = self
         promiseInfoTableView.dataSource = self
         promiseInfoTableView.tableFooterView = UIView()
@@ -71,11 +71,32 @@ extension PromiseDetailVC : UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        /*private(set) var promiseName: String!
+        private(set) var promiseStartTime: Date
+        private(set) var promiseEndTime: Date
+        private(set) var promiseColor: String!
+        private(set) var promiseIcon: String!
+        private(set) var promiseUsers: Array<String>
+        private(set) var isPromiseAchievement: Bool!
+        private(set) var promisePanalty: String!
+        private(set) var promiseId: String!**/
+        
+        let date : Date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = Locale.init(identifier: "en_GB")
+        if let start = promiseDetail?.promiseStartTime {
+            print(dateFormatter.string(from: start))
+        }else{
+            print("date to string fail")
+        }
+        
         if(tableView == promiseInfoTableView){
             switch (indexPath.row) {
             case 0:
                 let startCell = tableView.dequeueReusableCell(withIdentifier: "StartDateVC") as! StartDateVC
                 startCell.startDateLabel.text = "2020년 1월 30일 수요일 오전 9시"
+//                startCell.startDateLabel.text = String(promiseDetail?.promiseStartTime)
                 
                 startCell.startDateImg.tintColor = UIColor.appColor
                 startCell.editStartDateBtn.tintColor = UIColor.appColor

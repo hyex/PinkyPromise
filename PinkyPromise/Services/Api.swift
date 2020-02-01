@@ -422,25 +422,27 @@ class MyApi: NSObject {
                     
                     var temp6 = Array<Int>(repeating: 0, count: 5)
                     
-                    for i in result4[0].progressDegree {
-                        switch i {
-                        case 0:
-                            temp6[i] += 1
-                        case 1:
-                            temp6[i] += 1
-                        case 2:
-                            temp6[i] += 1
-                        case 3:
-                            temp6[i] += 1
-                        case 4:
-                            temp6[i] += 1
-                        case -1:
-                            print("")
-                        //-1은 안한거다.
-                        default:
-                            print("cuase default at getDataForDetailViewjr2")
+                    if result4.count > 0 {
+                        for i in result4[0].progressDegree {
+                            switch i {
+                            case 0:
+                                temp6[i] += 1
+                            case 1:
+                                temp6[i] += 1
+                            case 2:
+                                temp6[i] += 1
+                            case 3:
+                                temp6[i] += 1
+                            case 4:
+                                temp6[i] += 1
+                            case -1:
+                                print("")
+                            //-1은 안한거다.
+                            default:
+                                print("cuase default at getDataForDetailViewjr2")
+                            }
                         }
-                    }
+                    } 
                     
                     let zek = promiseDetailChild(friendName: result3.userName, friendImage: result3.userImage, friendDegree: temp6)
                     temp4.append(zek)
@@ -494,11 +496,8 @@ class MyApi: NSObject {
             
             var firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(i * 86400) )
             
-<<<<<<< HEAD
-            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDayPlusi ).getDocuments { (snapShot, error ) in
-=======
             promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDay ).getDocuments { (snapShot, error ) in
->>>>>>> 2a9e4773fa60189af9d5ba157a276b4a1ef226d5
+                
                 if let err = error {
                     debugPrint(err.localizedDescription)
                 } else {
@@ -543,7 +542,7 @@ class MyApi: NSObject {
                     if temp2.count > 0 {
                         temp.append(temp2[0])
                     } else {
-                        let tmmppg = ProgressTable(progressDegree: [], promiseId: douc.promiseId, userId: FirebaseUserService.currentUserID, progressId: MyApi.shared.randomNonceString())
+                        let tmmppg = ProgressTable(progressDegree: [], promiseId: douc.promiseId, userId: FirebaseUserService.currentUserID!, progressId: MyApi.shared.randomNonceString())
                         temp.append(tmmppg)
                     }
                     
@@ -667,11 +666,9 @@ class MyApi: NSObject {
                             if tempadd == false {
                                 temp?.append(result[0].userId)
                             }
-<<<<<<< HEAD
+                            
                             self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp], merge: true )
-=======
-                            self.userCollectionRef.document(FirebaseUserService.currentUserID).setData( [USERFRIENDS : temp], merge: true )
->>>>>>> 2a9e4773fa60189af9d5ba157a276b4a1ef226d5
+                            
                         }
                     }
                     

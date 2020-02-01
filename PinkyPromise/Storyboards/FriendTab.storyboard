@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="29N-sA-g8s">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Friends-->
+        <!--Item-->
         <scene sceneID="IWu-z6-Uac">
             <objects>
                 <viewController storyboardIdentifier="FriendTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="29N-sA-g8s" customClass="FriendTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
@@ -129,7 +129,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iMH-qh-w1K"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friends" image="person.2.fill" catalog="system" id="kDv-dV-tdh"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="person.2.fill" catalog="system" id="IRF-iG-Hzg"/>
                     <navigationItem key="navigationItem" id="kYT-OT-jys"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -141,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omB-Uh-6N2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1144.8" y="46.551724137931039"/>
+            <point key="canvasLocation" x="2087.1999999999998" y="46.551724137931039"/>
         </scene>
         <!--Friend Tab DetailVC-->
         <scene sceneID="QYR-wt-IyZ">
@@ -183,8 +183,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hyex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiO-ym-dmb">
-                                                    <rect key="frame" x="47.333333333333343" y="99" width="35.666666666666657" height="20.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="46.333333333333343" y="99" width="37.666666666666657" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -409,7 +409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXb-nu-nLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1992.8" y="46.551724137931039"/>
+            <point key="canvasLocation" x="2935.1999999999998" y="46.551724137931039"/>
         </scene>
     </scenes>
     <resources>

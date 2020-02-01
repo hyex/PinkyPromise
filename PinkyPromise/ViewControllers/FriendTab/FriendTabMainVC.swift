@@ -68,8 +68,8 @@ extension FriendTabMainVC : UITableViewDelegate{
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
-        
-        
+        vc.detailPromise = self.PromiseList[indexPath.row]
+//
         self.present(vc, animated: false) {
             vc.detailPromise = self.PromiseList[indexPath.row]
         }
