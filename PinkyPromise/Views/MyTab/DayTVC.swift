@@ -19,8 +19,11 @@ class DayTVC: UITableViewCell {
     
     func setPromise(day: DayAndPromise){
         
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             
+        promiseView.subviews.map{ $0.removeFromSuperview() }
+
+        
             let date = day.Day
             let calendar = Calendar(identifier: .gregorian)
             let offsetComps = calendar.dateComponents([.year,.month,.day], from:date!, to:Date())
@@ -43,7 +46,7 @@ class DayTVC: UITableViewCell {
                     self.promiseView.addArrangedSubview(viewToAdd)
                 }
             }
-        }
+        //}
     }
     
     func setToday() {

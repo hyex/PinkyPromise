@@ -13,7 +13,7 @@ import FirebaseStorage
 
 class FirebaseStorageService: NSObject {
     static let shared = FirebaseStorageService()
-    
+
     private let promiseFolderRef: StorageReference = Storage.storage().reference().child("promiseImage")
     private let userFolderRef: StorageReference = Storage.storage().reference().child("userImage")
     

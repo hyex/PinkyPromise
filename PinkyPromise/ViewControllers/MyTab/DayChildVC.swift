@@ -89,6 +89,10 @@ extension DayChildVC: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140.0
+    }
+    
     //****선영 추가 부분****
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("in prepare func")

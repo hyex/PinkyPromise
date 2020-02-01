@@ -25,6 +25,16 @@ class MyApi: NSObject {
     
     let dateFormatter = DateFormatter()
     
+    func fireStoreSetting() {
+        let store = Firestore.firestore()
+        
+        let setting = FirestoreSettings()
+        setting.isPersistenceEnabled = true
+        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
+        
+        store.settings = setting
+    }
+    
     // Api 예시
     func allMore(completion: ([MoreTableData]) -> Void) { //}, onError: @escaping (Error) -> Void) {
         let result = [
@@ -80,15 +90,17 @@ class MyApi: NSObject {
                 debugPrint(err.localizedDescription)
             } else {
                 let tempResult = PromiseUser.parseData(snapShot: snapShot)
-                
                 var temp = [PromiseUser]()
                 var check1 = 0
-                for douc in tempResult[0].userFriends {
-                    self.getUserDataWithUID(id: douc) { (result) in
-                        temp.append(result)
-                        check1 += 1
-                        if tempResult[0].userFriends.count <= check1 {
-                            completion(temp)
+                
+                if tempResult.count > 0 {
+                    for douc in tempResult[0].userFriends {
+                        self.getUserDataWithUID(id: douc) { (result) in
+                            temp.append(result)
+                            check1 += 1
+                            if tempResult[0].userFriends.count <= check1 {
+                                completion(temp)
+                            }
                         }
                     }
                 }
@@ -214,7 +226,7 @@ class MyApi: NSObject {
     //프로그레스테이블의 정보 반환 약속 id를 반환하면 
     func getProgressDataWithPromiseId(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
         var result: [ProgressTable] = [] //[ProgressTable]()]
-//        var result: [ProgressTable]? = nil
+        //        var result: [ProgressTable]? = nil
         progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
@@ -355,7 +367,7 @@ class MyApi: NSObject {
     
     //getPromiseNameAndFriendsName의 부속함수, 약속테이블의 사용자의 친구들의 이름을 반환함
     func getFriendsName(tempTable: promiseNameAndFriendsName, completion: @escaping (promiseNameAndFriendsName) -> Void ){
-
+        
         var temp2 = [String]()
         let temp4 = tempTable.friendsName.sorted()
         for douc in temp4 {
@@ -424,7 +436,7 @@ class MyApi: NSObject {
                             temp6[i] += 1
                         case -1:
                             print("")
-                            //-1은 안한거다.
+                        //-1은 안한거다.
                         default:
                             print("cuase default at getDataForDetailViewjr2")
                         }
@@ -442,7 +454,7 @@ class MyApi: NSObject {
             }
         }
     }
-
+    
     
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
@@ -477,27 +489,41 @@ class MyApi: NSObject {
         
         //components.day => 오늘날짜
         var temp = [PromiseAndProgress]()
-        
+        var check = 1
         for i in 0 ..< days {//이번달 일수만큼
             
-            var firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 - Double(i * 86400) )
+            var firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(i * 86400) )
             
+<<<<<<< HEAD
             promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDayPlusi ).getDocuments { (snapShot, error ) in
+=======
+            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDay ).getDocuments { (snapShot, error ) in
+>>>>>>> 2a9e4773fa60189af9d5ba157a276b4a1ef226d5
                 if let err = error {
                     debugPrint(err.localizedDescription)
                 } else {
+                    
                     let tempResult1 = PromiseTable.parseData(snapShot: snapShot)
                     
-                    let tempResult2 = tempResult1.filter { $0.promiseStartTime.timeIntervalSince1970 <= firstDayPlusi.timeIntervalSince1970 }
+                    let tempResult2 = tempResult1.filter { $0.promiseStartTime.timeIntervalSince1970 <= firstDayPlusi.timeIntervalSince1970 && $0.promiseEndTime.timeIntervalSince1970 >= firstDayPlusi.timeIntervalSince1970 }
                     
                     self.getMothlyDataWithCurrentMonth2(day: firstDayPlusi, promiseData: tempResult2) { (result2) in
                         //result2는 PromiseAndProgress객체임
-                        temp.append(result2)
+                        
+                        if result2.promiseData.count > 0 {
+                            temp.append(result2)
+                        } else {
+                            let tempresult3 = PromiseAndProgress(Day: firstDayPlusi, promiseData: [], progressData: [])
+                            temp.append(tempresult3)
+                        }
                         
                         if temp.count >= days {
                             completion(temp)
                         }
+                        
                     }
+                    
+                    
                 }
             }
         }
@@ -516,9 +542,12 @@ class MyApi: NSObject {
                     
                     if temp2.count > 0 {
                         temp.append(temp2[0])
+                    } else {
+                        let tmmppg = ProgressTable(progressDegree: [], promiseId: douc.promiseId, userId: FirebaseUserService.currentUserID, progressId: MyApi.shared.randomNonceString())
+                        temp.append(tmmppg)
                     }
                     
-                    if temp.count == promiseData.count {
+                    if temp.count >= promiseData.count {
                         completion(PromiseAndProgress(Day: day, promiseData: promiseData, progressData: temp))
                     }
                 }
@@ -536,16 +565,16 @@ class MyApi: NSObject {
         let componentsYear = calendar.dateComponents([.year], from: date)
         let year = componentsYear.year
         let componentsMonth = calendar.dateComponents([.month], from: date)
-        let month = componentsYear.month
+        let month = componentsMonth.month
         
         var dateComponents = DateComponents()
         dateComponents.year = year
         dateComponents.month = month
-
+        
         let datez = calendar.date(from: dateComponents)
         // change .month into .year to see the days available in the year
         let interval = calendar.dateInterval(of: .month, for: datez!)!
-
+        
         let days = calendar.dateComponents([.day], from: interval.start, to: interval.end).day!
         
         return days
@@ -628,7 +657,7 @@ class MyApi: NSObject {
                     
                     if result[0].userId != FirebaseUserService.currentUserID {
                         //본인이 아닐 경우 사용자에 친구 추가 누름
-                       
+                        
                         self.getUserData { (result2) in
                             
                             var temp = result2[0].userFriends
@@ -638,7 +667,11 @@ class MyApi: NSObject {
                             if tempadd == false {
                                 temp?.append(result[0].userId)
                             }
+<<<<<<< HEAD
                             self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp], merge: true )
+=======
+                            self.userCollectionRef.document(FirebaseUserService.currentUserID).setData( [USERFRIENDS : temp], merge: true )
+>>>>>>> 2a9e4773fa60189af9d5ba157a276b4a1ef226d5
                         }
                     }
                     
