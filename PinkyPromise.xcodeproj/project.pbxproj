@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08506C9A7B0CF0C05C72A6FB /* Pods_PinkyPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091DA1DC9578F66849434C4F /* Pods_PinkyPromise.framework */; };
 		1808C1D923E41AA6004D5ED2 /* API-Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808C1D823E41AA6004D5ED2 /* API-Auth.swift */; };
 		186D855423D41C94006DA619 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855323D41C94006DA619 /* Constants.swift */; };
 		186D855923D42174006DA619 /* promiseUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D855823D42174006DA619 /* promiseUsers.swift */; };
@@ -90,10 +89,10 @@
 		A9A3E83123E0357300EDFE1C /* ColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83023E0357300EDFE1C /* ColorVC.swift */; };
 		A9A3E83323E0358C00EDFE1C /* IconVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83223E0358C00EDFE1C /* IconVC.swift */; };
 		A9A3E83523E0359D00EDFE1C /* AlarmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83423E0359D00EDFE1C /* AlarmVC.swift */; };
+		DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		091DA1DC9578F66849434C4F /* Pods_PinkyPromise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinkyPromise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1808C1D823E41AA6004D5ED2 /* API-Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API-Auth.swift"; sourceTree = "<group>"; };
 		181D739B23D5DE32006797A2 /* PinkyPromise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinkyPromise.entitlements; sourceTree = "<group>"; };
 		186D855323D41C94006DA619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -189,7 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F310D7CFA387BF03FCCEF1D /* Pods_PinkyPromise.framework in Frameworks */,
+				DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

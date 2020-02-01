@@ -68,8 +68,8 @@ class LoginVC: UIViewController {
             self.pinkyTitle.center.x += self.view.bounds.width
             self.view.layoutIfNeeded()
         }, completion: nil)
-        
-        //print(Auth.auth().currentUser?.email ?? "")
+
+        print(Auth.auth().currentUser?.email ?? "")
 
         var temp3 = [String]()
         var temp4 = [[PromiseTable]]()

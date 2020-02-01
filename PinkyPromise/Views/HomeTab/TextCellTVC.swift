@@ -14,7 +14,8 @@ class TextCellTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//        self.textField.delegate = self
+        
         
     }
 
@@ -27,4 +28,30 @@ class TextCellTVC: UITableViewCell {
     func getValue() -> String {
         return textField.text ?? ""
     }
+}
+
+extension TextCellTVC: UITextFieldDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.textField.resignFirstResponder()
+        self.textField.endEditing(true)
+    }
+
+    // Called when the line feed button is pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.textField.resignFirstResponder()
+
+    }
+
+    // Called just before UITextField is edited
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
+
+    }
+
+    // Called immediately after UITextField is edited
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+
+    }
+
 }
