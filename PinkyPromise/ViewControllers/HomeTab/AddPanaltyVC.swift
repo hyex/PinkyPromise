@@ -64,4 +64,24 @@ extension AddPanaltyVC: UITextFieldDelegate {
         let newLength = text.count + string.count - range.length
         return newLength <= 30
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //        textField.resignFirstResponder()
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+    // Called just before UITextField is edited
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        //        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
+        
+    }
+    
+    // Called immediately after UITextField is edited
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        //        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+        
+    }
 }

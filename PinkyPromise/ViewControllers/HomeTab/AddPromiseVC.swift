@@ -351,13 +351,13 @@ extension AddPromiseVC: UITextFieldDelegate {
     }
     // Called just before UITextField is edited
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
+//        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
         
     }
     
     // Called immediately after UITextField is edited
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+//        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
         
     }
     
