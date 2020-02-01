@@ -119,6 +119,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func backBtnAction(_ sender : Any) {
+        self.backBtn.tintColor = UIColor.appColor
         self.dismiss(animated: false, completion: nil)
     }
     

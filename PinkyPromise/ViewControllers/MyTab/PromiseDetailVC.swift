@@ -35,6 +35,7 @@ class PromiseDetailVC: UIViewController {
         super.viewDidLoad()
         
         promiseNameLabel.text = promiseDetail?.promiseName
+        
         promiseInfoTableView.delegate = self
         promiseInfoTableView.dataSource = self
         promiseInfoTableView.tableFooterView = UIView()

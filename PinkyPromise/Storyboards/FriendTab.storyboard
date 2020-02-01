@@ -368,18 +368,19 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fx6-nS-YDU">
-                                <rect key="frame" x="17" y="17" width="15" height="25"/>
+                                <rect key="frame" x="12" y="17" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="kkO-hc-Jvn"/>
-                                    <constraint firstAttribute="width" constant="15" id="z75-pW-RJr"/>
+                                    <constraint firstAttribute="height" constant="30" id="kkO-hc-Jvn"/>
+                                    <constraint firstAttribute="width" constant="30" id="z75-pW-RJr"/>
                                 </constraints>
-                                <state key="normal" image="back"/>
+                                <color key="tintColor" red="0.41807892250000001" green="0.1821653235" blue="0.75279584389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="arrow.left" catalog="system"/>
                                 <connections>
                                     <action selector="backBtnAction:" destination="kn5-MZ-B4N" eventType="touchUpInside" id="nuv-mg-dpt"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MF-hb-Y2q">
-                                <rect key="frame" x="140" y="17" width="95" height="25.333333333333329"/>
+                                <rect key="frame" x="140" y="19.333333333333336" width="95" height="25.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -387,7 +388,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="fx6-nS-YDU" firstAttribute="leading" secondItem="3WB-cR-HFr" secondAttribute="leading" constant="17" id="0Le-og-Ycp"/>
+                            <constraint firstItem="fx6-nS-YDU" firstAttribute="leading" secondItem="3WB-cR-HFr" secondAttribute="leading" constant="12" id="0Le-og-Ycp"/>
                             <constraint firstItem="fx6-nS-YDU" firstAttribute="top" secondItem="3WB-cR-HFr" secondAttribute="top" constant="17" id="3Ox-rx-kcz"/>
                             <constraint firstItem="3WB-cR-HFr" firstAttribute="trailing" secondItem="5n2-Gh-GXV" secondAttribute="trailing" id="7eR-0H-OXx"/>
                             <constraint firstItem="5n2-Gh-GXV" firstAttribute="top" secondItem="Hu2-Em-yhM" secondAttribute="bottom" constant="10" id="Ht8-8g-2O9"/>
@@ -413,7 +414,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="256" height="256"/>
+        <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="next" width="256" height="256"/>
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="plus" width="256" height="256"/>
