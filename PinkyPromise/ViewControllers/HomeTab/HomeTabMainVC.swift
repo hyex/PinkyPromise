@@ -19,9 +19,6 @@ class HomeTabMainVC: UIViewController {
     weak var tableView: UITableView!
     private var promiseListforDates: [ProgressTable]!
     
-    
-    
-    
     let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -69,12 +66,20 @@ class HomeTabMainVC: UIViewController {
         //        initView()
         
         // initialize UI
-        //let view = UIView(frame: UIScreen.main.bounds)
+        let view = UIView()
+        self.view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         //        let guide = view.safeAreaLayoutGuide
-        //self.view = view
-
-
+        view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(view)
+        
+        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+//        self.view.addSubview(view)
+//        self.view.translatesAutoresizingMaskIntoConstraints = false
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 33))
         titleLabel.textAlignment = .center
@@ -137,13 +142,15 @@ class HomeTabMainVC: UIViewController {
         let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
         
-        addPromiseBtn = AddPromiseBtn(frame: CGRect(x: self.view.frame.size.width / 2 - 25, y: self.view.frame.size.height - 94 - self.tabBarController!.tabBar.frame.size.height, width: 50, height: 50));
-        
-        
+        addPromiseBtn = AddPromiseBtn()
+                
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
-        
-        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        addPromiseBtn.translatesAutoresizingMaskIntoConstraints = false
+        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
+        addPromiseBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        addPromiseBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        addPromiseBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //        self.safearea.addSubview(view)
         // data setting
