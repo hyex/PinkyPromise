@@ -34,12 +34,13 @@ class EndedPromiseVC: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+//        self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+//        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
 
