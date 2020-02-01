@@ -9,20 +9,13 @@
 import UIKit
 
 class PromiseChildVC: UIViewController {
-
+    
     @IBOutlet weak var endedPromiseBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-//    var promiseList: [PromiseData]? {
     var promiseList: [PromiseTable]? {
         didSet { collectionView.reloadData() }
     }
-//
-//    var progressList: [ProgressTable]? {
-//        didSet { collectionView.reloadData() }
-//    }
-//    var allProgressList: [eachProgressList]? = []
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,24 +37,8 @@ class PromiseChildVC: UIViewController {
         MyApi.shared.getPromiseDataSinceToday(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
-//                self.collectionView.reloadData()
             }
         })
-        
-//        MyApi.shared.getAllProgressData(completion: { result in
-//            DispatchQueue.main.async {
-//                self.progressList = result
-//            }
-//        })
-        
-//        for idx in 0...self.promiseList!.count {
-//            MyApi.shared.getProgressData(promiseid: self.promiseList![idx].promiseId, completion: { result in
-//                DispatchQueue.main.async {
-//                    self.progressList![idx] = result
-//                    print(self.progressList)
-//                }
-//            })
-//        }
         
     }
     
@@ -122,11 +99,11 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
         // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
         print(indexPath.row)
         performSegue(withIdentifier: "promiseDetail", sender: promiseList?[indexPath.row])
-//        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
+        //        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
         
     }
     
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("in prepare func")
         if segue.identifier == "promiseDetail"{
             let promiseDetail = sender as? PromiseTable
@@ -197,13 +174,12 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 var promiseAchievement:Int = 0
                 let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
                 let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
-
+                
                 if let id = rowData.promiseId {
                     MyApi.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
                         DispatchQueue.main.async {
-                            print(result)
                             if result.isEmpty != true {
-
+                                
                                 for degree in result[0].progressDegree {
                                     if degree == 4 {
                                         promiseAchievement += 1
@@ -213,23 +189,23 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                             
                             promiseCell.appSlider.value = Float(promiseAchievement)
                             promiseCell.showSliderValue.text = String(promiseAchievement)
-
-
+                            
+                            
                             let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
-
+                            
                             promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue //- CGFloat(2.0)
                             promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
-
+                            
                         }
                         
                     })
                 }
-
+                
             }
             cell = promiseCell
         }
         return cell
     }
-
+    
 }
-        
+

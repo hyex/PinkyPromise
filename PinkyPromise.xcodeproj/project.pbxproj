@@ -48,7 +48,6 @@
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
 		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
-		33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */; };
 		33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */; };
 		33B7E8DE23E1E02E00B2D6C0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */; };
 		33B7E8DF23E1E02E00B2D6C0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */; };
@@ -136,7 +135,6 @@
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
 		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
-		33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabApi.swift; sourceTree = "<group>"; };
 		33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 				186D855323D41C94006DA619 /* Constants.swift */,
 				1875B63523D876FE00751947 /* FirebaseStorageService.swift */,
 				18BA607723DFF02E00925578 /* FirebaseUserService.swift */,
-				33B7E8D523E0701A00B2D6C0 /* MyTabApi.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -656,7 +653,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33B7E8D623E0701A00B2D6C0 /* MyTabApi.swift in Sources */,
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				1808C1D923E41AA6004D5ED2 /* API-Auth.swift in Sources */,
