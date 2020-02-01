@@ -77,7 +77,7 @@ extension AddPanaltyVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         //        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
         
-    }
+    } 
     
     // Called immediately after UITextField is edited
     func textFieldDidEndEditing(_ textField: UITextField) {

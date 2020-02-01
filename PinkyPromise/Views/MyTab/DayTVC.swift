@@ -20,32 +20,31 @@ class DayTVC: UITableViewCell {
     func setPromise(day: DayAndPromise){
         
         //DispatchQueue.main.async {
-            
-        promiseView.subviews.map{ $0.removeFromSuperview() }
-
         
-            let date = day.Day
-            let calendar = Calendar(identifier: .gregorian)
-            let offsetComps = calendar.dateComponents([.year,.month,.day], from:date!, to:Date())
-            
-            if(offsetComps.day! == 0) {
-                self.dayLabel.backgroundColor = UIColor.purple.withAlphaComponent(0.2)
-            } else {
-                self.dayLabel.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        promiseView.subviews.map{ $0.removeFromSuperview() }
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en")
+        
+        let date = day.Day
+//        let today = Date()
+//        let df = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        if(dateFormatter.string(from: Date()) == dateFormatter.string(from: date!)){
+            self.dayLabel.backgroundColor = UIColor.purple.withAlphaComponent(0.2)
+        } else {
+            self.dayLabel.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        }
+        
+        dateFormatter.dateFormat = "EEEEEEE\nd"
+        self.dayLabel.text = dateFormatter.string(from: date!)
+        
+        if self.promiseView.arrangedSubviews.count != day.promiseData.count {
+            for promise in day.promiseData {
+                let viewToAdd = OnePromiseView(frame: CGRect.zero, promise: promise)
+                viewToAdd.vc = self.vc
+                self.promiseView.addArrangedSubview(viewToAdd)
             }
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en")
-            dateFormatter.dateFormat = "EEEEEEE\nd"
-            self.dayLabel.text = dateFormatter.string(from: date!)
-            
-            if self.promiseView.arrangedSubviews.count != day.promiseData.count {
-                for promise in day.promiseData {
-                    let viewToAdd = OnePromiseView(frame: CGRect.zero, promise: promise)
-                    viewToAdd.vc = self.vc
-                    self.promiseView.addArrangedSubview(viewToAdd)
-                }
-            }
+        }
         //}
     }
     

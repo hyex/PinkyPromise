@@ -13,16 +13,23 @@ class DayChildVC: UIViewController {
     @IBOutlet weak var dayTableView: UITableView!
     
     var dayList: [DayAndPromise]? {
-        didSet { dayTableView.reloadData() }
+        didSet {
+            dayTableView.reloadData()
+            self.dayTableView.scrollToRow(at: IndexPath(row: 10, section: 0), at: .top, animated: false)
+        }
     }
     
-//    var firstIndex: IndexPath? = nil
+    var firstIndex: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getMyPageData()
         setUpTableView()
         initRefresh()
+        if let firstIndex = self.firstIndex {
+            print(firstIndex)
+            self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
+        }
     }
     
     func initRefresh() {
@@ -47,7 +54,7 @@ class DayChildVC: UIViewController {
         self.dayTableView.dataSource = self
         self.dayTableView.rowHeight = UITableView.automaticDimension;
         self.dayTableView.estimatedRowHeight = 100;
-
+//        self.dayTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
     // 통신
@@ -55,6 +62,10 @@ class DayChildVC: UIViewController {
         MyApi.shared.getPromiseData10ToNow(completion: { result in
             DispatchQueue.main.async {
                 self.dayList = result
+                if let firstIndex = self.firstIndex {
+                    print(firstIndex)
+                    self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
+                }
             }
         })
     }
@@ -79,7 +90,7 @@ extension DayChildVC: UITableViewDataSource {
             dateFormatter.dateFormat = "yy mm dd"
             let today = Date()
             if dateFormatter.string(from: list[indexPath.row].Day) == dateFormatter.string(from: today) {
-//                firstIndex = indexPath
+                firstIndex = indexPath
                 // MARK: - NO working
                 self.dayTableView.scrollToRow(at: indexPath, at: .top, animated: false)
             }
@@ -114,7 +125,7 @@ extension DayChildVC: UITableViewDataSource {
 extension DayChildVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let dayList = dayList else { return 0 }
-        let height:CGFloat = CGFloat(dayList[indexPath.row].promiseData.count * 43 + 10)
+        let height:CGFloat = CGFloat(dayList[indexPath.row].promiseData.count * 43 + 20)
         
         return height
 //        return UITableView.automaticDimension;
