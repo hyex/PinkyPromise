@@ -120,10 +120,7 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
     // 선영 추가 부분 --> 클릭 시 실행되는 함수
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
-        print(indexPath.row)
         performSegue(withIdentifier: "promiseDetail", sender: promiseList?[indexPath.row])
-//        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
-        
     }
     
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

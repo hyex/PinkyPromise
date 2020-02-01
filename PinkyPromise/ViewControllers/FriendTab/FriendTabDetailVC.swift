@@ -54,11 +54,6 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         if let promiseId = detailPromise?.promiseId {
             MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
                 for douc in result.friendsDetail {
-                    print("--------douc--------")
-                    print(douc.friendName!)
-                    print(douc.friendDegree!)
-                    print(douc.friendImage!)
-
                     self.friendsList.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
                 }
             }

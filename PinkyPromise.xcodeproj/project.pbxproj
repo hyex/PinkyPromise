@@ -88,7 +88,6 @@
 		A9A3E82F23E0355400EDFE1C /* FinalDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */; };
 		A9A3E83123E0357300EDFE1C /* ColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83023E0357300EDFE1C /* ColorVC.swift */; };
 		A9A3E83323E0358C00EDFE1C /* IconVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83223E0358C00EDFE1C /* IconVC.swift */; };
-		A9A3E83523E0359D00EDFE1C /* AlarmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83423E0359D00EDFE1C /* AlarmVC.swift */; };
 		DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,7 +178,6 @@
 		A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDateVC.swift; sourceTree = "<group>"; };
 		A9A3E83023E0357300EDFE1C /* ColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorVC.swift; sourceTree = "<group>"; };
 		A9A3E83223E0358C00EDFE1C /* IconVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVC.swift; sourceTree = "<group>"; };
-		A9A3E83423E0359D00EDFE1C /* AlarmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmVC.swift; sourceTree = "<group>"; };
 		BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinkyPromise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -397,7 +395,6 @@
 				A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */,
 				A9A3E83023E0357300EDFE1C /* ColorVC.swift */,
 				A9A3E83223E0358C00EDFE1C /* IconVC.swift */,
-				A9A3E83423E0359D00EDFE1C /* AlarmVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -667,7 +664,6 @@
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,
 				3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */,
 				33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */,
-				A9A3E83523E0359D00EDFE1C /* AlarmVC.swift in Sources */,
 				330AE60B23CB56DC00706769 /* SceneDelegate.swift in Sources */,
 				334AACDD23CC262D00AAF955 /* HomeTabMainVC.swift in Sources */,
 				3FE061CF23E0CF9900CD2F6A /* FriendCellTVC.swift in Sources */,
