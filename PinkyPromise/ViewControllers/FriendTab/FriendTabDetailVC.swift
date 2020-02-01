@@ -72,7 +72,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let rowData = self.friendsList[indexPath.row]
         
-        cell.crownImg.image = UIImage(named: "crown")
+        cell.crownImg.image = UIImage(named: "yellowcrown")
         if(!(indexPath.row == 0)) {
             cell.crownImg.isHidden = true
         }
