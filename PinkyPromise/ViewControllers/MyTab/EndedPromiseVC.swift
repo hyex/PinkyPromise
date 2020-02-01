@@ -106,12 +106,15 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 DispatchQueue.main.async {
                     for friend in result {
                         cell.promiseFriends.text! += friend + " "
+                        if result[1] == friend {
+                            let peoples = result.count - 2
+                            cell.promiseFriends.text! += " 와 \(String(peoples))명"
+                            break
+                        }
                     }
                 }
             })
         }
-        
-        
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"

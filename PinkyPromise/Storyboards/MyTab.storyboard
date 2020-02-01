@@ -11,7 +11,7 @@
         <!--My Tab MainVC-->
         <scene sceneID="yla-xl-dry">
             <objects>
-                <viewController storyboardIdentifier="MyTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a3a-jh-vKq" customClass="MyTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a3a-jh-vKq" customClass="MyTabMainVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wgx-UX-f04">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
         <!--Day ChildVC-->
         <scene sceneID="vX8-P9-Dap">
             <objects>
-                <viewController id="zAP-ia-IDl" customClass="DayChildVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zAP-ia-IDl" customClass="DayChildVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wfU-bv-KSO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,7 +82,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayTVC" rowHeight="140" id="nVj-Kc-6yL" customClass="DayTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayTVC" rowHeight="140" id="nVj-Kc-6yL" customClass="DayTVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nVj-Kc-6yL" id="bg5-Lm-a1m">
@@ -153,7 +153,7 @@
         <!--Promise ChildVC-->
         <scene sceneID="hGw-I9-EdB">
             <objects>
-                <viewController id="3Tx-Tk-fAw" customClass="PromiseChildVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Tx-Tk-fAw" customClass="PromiseChildVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SIm-ge-yQd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,14 +168,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PromiseCVC" id="59y-eh-3rL" customClass="PromiseCVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PromiseCVC" id="59y-eh-3rL" customClass="PromiseCVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nFN-Zu-oJD">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-sJ-Zrn" customClass="CustomSlider" customModule="PinkyPromise" customModuleProvider="target">
+                                                <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-sJ-Zrn" customClass="CustomSlider" customModule="나랑약속해" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="63" width="317" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="l5p-CN-VWY"/>
@@ -201,7 +201,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heji" translatesAutoresizingMaskIntoConstraints="NO" id="ych-3u-9kM">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="ych-3u-9kM">
                                                     <rect key="frame" x="14" y="12" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="49Q-gh-xgy"/>
@@ -296,7 +296,7 @@
         <!--Ended PromiseVC-->
         <scene sceneID="Guq-yJ-jdF">
             <objects>
-                <viewController storyboardIdentifier="EndedPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Kk-fu-Wu9" customClass="EndedPromiseVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EndedPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Kk-fu-Wu9" customClass="EndedPromiseVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UJd-de-cn6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -327,14 +327,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EndedPromiseCVC" id="GQh-6U-JIy" customClass="EndedPromiseCVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EndedPromiseCVC" id="GQh-6U-JIy" customClass="EndedPromiseCVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="343" height="156"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ad8-yA-9pi">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="156"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uijeong" translatesAutoresizingMaskIntoConstraints="NO" id="EqE-SH-sT8">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EqE-SH-sT8">
                                                     <rect key="frame" x="14" y="12" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="ELS-yn-0bU"/>
@@ -411,10 +411,9 @@
     </scenes>
     <resources>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
-        <image name="heji" width="375" height="372"/>
-        <image name="uijeong" width="1008" height="1008"/>
+        <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TPX-JL-d6I"/>
+        <segue reference="9jx-JB-U3x"/>
     </inferredMetricsTieBreakers>
 </document>
