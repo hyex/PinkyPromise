@@ -69,7 +69,7 @@ class LoginVC: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: nil)
 
-        print(Auth.auth().currentUser?.email ?? "")
+        //print(Auth.auth().currentUser?.email ?? "")
 
         var temp3 = [String]()
         var temp4 = [[PromiseTable]]()

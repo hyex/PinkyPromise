@@ -11,4 +11,8 @@ import UIKit
 class PromiseFriendTVC: UITableViewCell {
     @IBOutlet weak var friendProfileImg: UIImageView!
     @IBOutlet weak var friendNameLabel: UILabel!
+    
+    override func awakeFromNib() {
+           self.selectionStyle = .none
+    }
 }

@@ -41,32 +41,38 @@ class HomeTabMainVC: UIViewController {
         var promise: [Promise]
     }
     
-    var days: [Day] = [
-        
-        Day(day: Date(), promise: [
-            Promise(promiseName: "독서", promiseIcon: "star", promiseColor: "red", progress: 0),
-            Promise(promiseName: "1DAY 1COMMIT", promiseIcon: "star", promiseColor: "yellow", progress: 1)
-        ]),
-        Day(day: Date(timeInterval: 86400, since: Date()), promise: [
-            Promise(promiseName: "yellow", promiseIcon: "star", promiseColor: "yellow", progress: 2),
-            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 1),
-            Promise(promiseName: "blue", promiseIcon: "star", promiseColor: "blue", progress: 0),
-            Promise(promiseName: "purple", promiseIcon: "star", promiseColor: "purple", progress: 2),
-            Promise(promiseName: "blue", promiseIcon: "star", promiseColor: "blue", progress: 1),
-            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 1),
-            Promise(promiseName: "systemPink", promiseIcon: "star", promiseColor: "systemPink", progress: 0)
-        ]),
-        Day(day: Date(timeInterval: 172800, since: Date()), promise: [
-            Promise(promiseName: "purple", promiseIcon: "star", promiseColor: "purple", progress: 4),
-            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 4),
-            Promise(promiseName: "systemPink", promiseIcon: "star", promiseColor: "systemPink", progress: 4)
-        ])
-    ]
+//    var days: [Day] = [
+//
+//        Day(day: Date(), promise: [
+//            Promise(promiseName: "독서", promiseIcon: "star", promiseColor: "red", progress: 0),
+//            Promise(promiseName: "1DAY 1COMMIT", promiseIcon: "star", promiseColor: "yellow", progress: 1)
+//        ]),
+//        Day(day: Date(timeInterval: 86400, since: Date()), promise: [
+//            Promise(promiseName: "yellow", promiseIcon: "star", promiseColor: "yellow", progress: 2),
+//            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 1),
+//            Promise(promiseName: "blue", promiseIcon: "star", promiseColor: "blue", progress: 0),
+//            Promise(promiseName: "purple", promiseIcon: "star", promiseColor: "purple", progress: 2),
+//            Promise(promiseName: "blue", promiseIcon: "star", promiseColor: "blue", progress: 1),
+//            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 1),
+//            Promise(promiseName: "systemPink", promiseIcon: "star", promiseColor: "systemPink", progress: 0)
+//        ]),
+//        Day(day: Date(timeInterval: 172800, since: Date()), promise: [
+//            Promise(promiseName: "purple", promiseIcon: "star", promiseColor: "purple", progress: 4),
+//            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 4),
+//            Promise(promiseName: "systemPink", promiseIcon: "star", promiseColor: "systemPink", progress: 4)
+//        ])
+//    ]
+    
+    var days: [PromiseAndProgress1] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //        initView()
+        
+        MyApi.shared.getAllHome { (result) in
+            self.days = result
+        }
         
         // initialize UI
         let view = UIView()
@@ -238,13 +244,15 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
             let date = calendar.date(for: cell)
             
             days.forEach { (day) in
-                if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date!) {
+                if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date!) {
                     
                     var progress: Int = 0
-                    day.promise.forEach { (pm) in
-                        progress += pm.progress
+                    for pm in day.PAPD {
+                        for pm2 in pm.progressData.progressDegree {
+                            progress += pm2
+                        }
                     }
-                    cell.setBackgroundColor(progress: ceil(Double(progress / day.promise.count)))
+                    cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
                 }
             }
         }
@@ -286,8 +294,8 @@ extension HomeTabMainVC: UITableViewDataSource {
         var count = 0
         
         days.forEach { (day) in
-            if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
-                count = day.promise.count
+            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
+                count = day.PAPD.count
             }
         }
         return count
@@ -299,10 +307,16 @@ extension HomeTabMainVC: UITableViewDataSource {
         let date = calendar.selectedDate ?? Date()
         cell.delegate = self
         days.forEach { (day) in
-            if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
-                cell.setName(name: day.promise[indexPath.row].promiseName)
-                cell.setIcon(name: day.promise[indexPath.row].promiseIcon, color: day.promise[indexPath.row].promiseColor)
-                cell.setProgress(progress: day.promise[indexPath.row].progress)
+            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
+                cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
+                cell.setIcon(name: day.PAPD[indexPath.row].promiseData.promiseIcon, color: day.PAPD[indexPath.row].promiseData.promiseColor)
+                
+                var temp = 0
+                for i in day.PAPD[indexPath.row].progressData.progressDegree {
+                    temp += i
+                }
+                
+                cell.setProgress(progress: temp )
             }
         }
         

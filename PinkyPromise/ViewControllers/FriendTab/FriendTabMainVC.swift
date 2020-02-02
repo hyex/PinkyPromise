@@ -28,9 +28,11 @@ class FriendTabMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPlusBtn()
-        
-        self.getPromiseAndFriend()
-        
+        getPromiseAndFriend()
+        setUpTableView()
+    }
+    
+    func setUpTableView() {
         friendMainTableView.delegate = self
         friendMainTableView.dataSource = self
         friendMainTableView.tableFooterView = UIView()
@@ -123,6 +125,7 @@ extension FriendTabMainVC : UITableViewDataSource{
         
         return cell
     }
+    
     //tableview cell 높이 수정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70

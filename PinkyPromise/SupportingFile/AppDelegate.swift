@@ -22,15 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         Firestore.firestore().settings.isPersistenceEnabled = true
+        Firestore.firestore().settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
         
-        let store = Firestore.firestore()
-
-        let setting = FirestoreSettings()
-        setting.isPersistenceEnabled = true
-        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
-
-        store.settings = setting
-        
+//        let store = Firestore.firestore()
+//
+//        let setting = FirestoreSettings()
+//        setting.isPersistenceEnabled = true
+//        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
+//
+//        store.settings = setting
+//        
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
         notificationCenter.delegate = self

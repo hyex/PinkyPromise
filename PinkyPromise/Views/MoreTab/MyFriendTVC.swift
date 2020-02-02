@@ -15,6 +15,7 @@ class MyFriendTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        userImage.makeCircle()
         // Initialization code
     }
 

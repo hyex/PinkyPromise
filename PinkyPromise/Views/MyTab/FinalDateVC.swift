@@ -12,4 +12,7 @@ class FinalDateVC: UITableViewCell {
     @IBOutlet weak var finalDateImg: UIImageView!
     @IBOutlet weak var final: UILabel!
     @IBOutlet weak var finalDateLabel: UILabel!
+    override func awakeFromNib() {
+           self.selectionStyle = .none
+    }
 }

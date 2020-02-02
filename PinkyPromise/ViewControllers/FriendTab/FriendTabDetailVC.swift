@@ -37,9 +37,13 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
         setBackBtn()
         setPromiseName()
         addSwipeGesture()
+    }
+    
+    func setUpTableView(){
         friendDatailTableView.delegate = self
         friendDatailTableView.dataSource = self
         friendDatailTableView.tableFooterView = UIView()
@@ -49,11 +53,16 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         getDetailPromiseData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     private func getDetailPromiseData(){
         print("in getDatailPromiseData")
         
         if let promiseId = detailPromise?.promiseId {
             MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
+                print("result : ", result)
                 for douc in result.friendsDetail {
                     self.friendsList.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
                 }
@@ -79,7 +88,6 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
-//        cell.friendProfileImg.image = UIImage(named: rowData.image)
         
         //이미지 수정
         FirebaseStorageService.shared.getUserImageURLWithName(name: rowData.image, completion: { imgResult in
@@ -99,6 +107,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         })
         
+        //cell 값 setting
         cell.friendNameLabel.text = rowData.name
         cell.perfectCnt.text = String(rowData.degree[4])
         cell.threeQuarterCnt.text = String(rowData.degree[3])
