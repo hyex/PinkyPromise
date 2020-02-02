@@ -301,15 +301,18 @@ extension HomeTabMainVC: UITableViewDataSource {
                 cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
                 cell.setIcon(name: day.PAPD[indexPath.row].promiseData.promiseIcon, color: day.PAPD[indexPath.row].promiseData.promiseColor)
                 
-                var temp = 0
-                for i in day.PAPD[indexPath.row].progressData.progressDegree {
-                    
-                    if i >= 0 {
-                        temp += i
-                    }
-                }
+                let interval = date.timeIntervalSince(day.PAPD[indexPath.row].promiseData.promiseStartTime)
+                let idxDay = Int(interval/86400)
+                cell.setProgress(progress: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
+//                var temp = 0
+//                for i in day.PAPD[indexPath.row].progressData.progressDegree {
+//
+//                    if i >= 0 {
+//                        temp += i
+//                    }
+//                }
                 
-                cell.setProgress(progress: temp )
+//                cell.setProgress(progress: day.PAPD[indexPath.row].progressData.progressDegree )
             }
         }
         
