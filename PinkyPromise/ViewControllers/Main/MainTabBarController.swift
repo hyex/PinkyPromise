@@ -147,16 +147,17 @@ class MainTabBarController: UITabBarController {
 //
 //        MyApi.shared.addPromiseData(temp)
 //        MyApi.shared.addProgressData(temp)
-        MyApi.shared.getAllHome { (result) in
-                   print("test")
-                   for douc in result {
-                       print(douc.Day)
-                       for douc2 in douc.PAPD {
-                           print(douc2.progressData.promiseId)
-                           print(douc2.promiseData.promiseName)
-                       }
-                   }
-               }
+        
+//        MyApi.shared.getAllHome { (result) in
+//                   print("test")
+//                   for douc in result {
+//                       print(douc.Day)
+//                       for douc2 in douc.PAPD {
+//                           print(douc2.progressData.promiseId)
+//                           print(douc2.promiseData.promiseName)
+//                       }
+//                   }
+//               }
 
     }
     

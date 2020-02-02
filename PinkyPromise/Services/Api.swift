@@ -81,9 +81,16 @@ class MyApi: NSObject {
                 debugPrint(err)
             }else {
                 let result = PromiseUser.parseData(snapShot: sanpShot)
-                completion(result[0].userName)
+                if result.count > 0 {
+                    completion(result[0].userName)
+                }
+                
             }
         }
+    }
+    
+    func getFriends(completion: @escaping ([PromiseUser]) -> Void ) {
+       
     }
     
     //유저의 친구들의 promiseUser들 가져온다.
@@ -748,7 +755,7 @@ class MyApi: NSObject {
             PROMISESTARTTIME: promiseTable.promiseStartTime ,
             PROMISEENDTIME: promiseTable.promiseEndTime ,
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
-            PROMISEUSERS: temp ,
+            PROMISEUSERS: temp,
             PROMISEID: promiseTable.promiseId ?? "nil"
         ]) { error in
             if let err = error {
@@ -782,11 +789,14 @@ class MyApi: NSObject {
     //프로그레스테이블에 데이터 추가, addPromiseTable 직후 같은 promiseTable을 넣어준다.
     func addProgressData(_ promiseTable: PromiseTable) {
         
+        var temp = promiseTable.promiseUsers
+        temp.append(FirebaseUserService.currentUserID!)
+        
         let indexTime = Int(promiseTable.promiseEndTime.timeIntervalSince1970 - promiseTable.promiseStartTime.timeIntervalSince1970) / 86400
         let indexPromiseId = promiseTable.promiseId
         
-        for douc in promiseTable.promiseUsers {//약속에 있는 유저 개수만큼 progressTable을 만든다.
-            let temp1 = [Int](repeating: -1, count: indexTime)
+        for douc in temp {//약속에 있는 유저 개수만큼 progressTable을 만든다.
+            let temp1 = [Int](repeating: -1, count: indexTime + 1)
             
             progressCollectionRef.addDocument( data: [
                 PROGRESSDEGREE: temp1,
@@ -888,17 +898,22 @@ class MyApi: NSObject {
     }
     
     //프로그레스 입력뷰
-    func updateProgress(day: Date, userId: String, promiseId: String, progress: ProgressTable ){
-        progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promiseId).getDocuments { (snapShot, error) in
+    func updateProgress(day: Date, userId: String, data: Int, promise: PromiseTable, progress: ProgressTable ){
+        progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promise.promiseId).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
-                self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : progress]) { err in
+               
+                let datindex = Int(day.timeIntervalSince1970 - promise.promiseStartTime.timeIntervalSince1970)
+                var temp = progress.progressDegree
+                temp![datindex] = data
+                self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : temp]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
                         print("Document successfully updated")
                     }
+                    
                     
                 }
             }
