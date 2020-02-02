@@ -10,14 +10,13 @@ import Foundation
 import UIKit
 
 class MyProgress {
-//    var progressIcons: [UIImage] = {
-//        var progressIcons: [UIImage] = []
-//        progressIcons.append(UIImage(named: "progress0")!)
-//        progressIcons.append(UIImage(named: "progress1")!)
-//        progressIcons.append(UIImage(named: "progress2")!)
-//        progressIcons.append(UIImage(named: "progress3")!)
-//        progressIcons.append(UIImage(named: "progress4")!)
-//
-//       return progressIcons
-//    }()
+    var progressIcons: [UIImage] = {
+        var progressIcons: [Any] = []
+        progressIcons.append(UIImage(named: "progress0")!)
+        progressIcons.append(UIImage(named: "progress1")!)
+        progressIcons.append(UIImage(named: "progress2")!)
+        progressIcons.append(UIImage(named: "progress3")!)
+        progressIcons.append(UIImage(named: "progress4")!)
+        return progressIcons as! [UIImage]
+    }()
 }
