@@ -37,7 +37,7 @@ class AddPromiseVC: UIViewController {
     private var selectedFriends: [FriendData]!
     
     private var panaltyName: String!
-    //    private var myFriendsImg: [UIImage]! = []
+    //   private var myFriendsImg: [UIImage]! = []
     
     let colors: [String] = [ "mySkyBlue"
         , "myDarkBlue"
@@ -73,18 +73,31 @@ class AddPromiseVC: UIViewController {
         //        isEndCalSelected = true
         
         //data setting
-        DispatchQueue.global().async {
-            MyApi.shared.getUsersFriendsData { (result) in
-                var i = 0
-                result[0].userFriends.forEach { (friendId) in
-                    MyApi.shared.getUserDataWithUID(id: friendId, completion: { (friend) in
-                        let temp = FriendData(tag: i, name: friend.userName, image: friend.userImage, isChecked: nil)
-                        self.myFriends.append(temp)
-                    })
-                    i += 1
+        MyApi.shared.getUserData { (result) in
+            var i = 0
+            result[0].userFriends.forEach { (friendId) in
+                MyApi.shared.getUserDataWithUID(id: friendId) { (friend) in
+                      let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
+                      self.myFriends.append(temp)
                 }
+                i += 1
             }
         }
+//        }
+//        DispatchQueue.global().async {
+//            MyApi.shared.getUsersFriendsData { (result) in
+//                var i = 0
+//
+//                result[1].userFriends.forEach { (friendId) in
+//                    MyApi.shared.getUserDataWithUID(id: friendId, completion: { (friend) in
+//                        let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
+//                        self.myFriends.append(temp)
+//                        print(temp)
+//                    })
+//                    i += 1
+//                }
+//            }
+//        }
         
     }
     
@@ -103,7 +116,14 @@ class AddPromiseVC: UIViewController {
         let dataEndTime = dateCell.getLastDate()
         let dataColor = colors[selectedColor]
         let dataIcon = icons[selectedIcon]
-        let dataUsers: Array<String>? = []
+        let dataUsers: Array<String> = {
+            var friends = Array<String>()
+            selectedFriends.forEach { (friend) in
+                friends.append(friend.id)
+            }
+            return friends
+        }()
+        
         let promisePanalty = self.panaltyName ?? "벌칙없음"
         
         // error
