@@ -112,7 +112,7 @@ class AddPromiseVC: UIViewController {
         let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: false, promisePanalty: promisePanalty, promiseId: MyApi.shared.randomNonceString())
         
         MyApi.shared.addPromiseData(newPromise)
-        //        MyApi.shared.addProgressData(newPromise)
+        MyApi.shared.addProgressData(newPromise)
         
         self.dismiss(animated: false, completion: nil)
     }

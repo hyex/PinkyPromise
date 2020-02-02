@@ -143,20 +143,21 @@ class MainTabBarController: UITabBarController {
         //        }
         //    }
         
-//               let temp = PromiseTable(promiseName: "테스트테스트1", promiseStartTime: Date(timeIntervalSince1970: 1579989600), promiseEndTime: Date(timeIntervalSince1970: 1581199200), promiseColor: "blueblack", promiseIcon: "maybe", promiseUsers: [ "xF2R2vcXdhdY1PutfR7yTeTE6542", "Z42iyamWUEMXnPcOi0iwPRrGU4q1", ], isPromiseAchievement: true, promisePanalty: "벌칙벌칙", promiseId: MyApi.shared.randomNonceString() )
-//
-//        MyApi.shared.addPromiseData(temp)
-//        MyApi.shared.addProgressData(temp)
-        MyApi.shared.getAllHome { (result) in
-                   print("test")
-                   for douc in result {
-                       print(douc.Day)
-                       for douc2 in douc.PAPD {
-                           print(douc2.progressData.promiseId)
-                           print(douc2.promiseData.promiseName)
-                       }
-                   }
-               }
+               let temp = PromiseTable(promiseName: "테스트테스트1", promiseStartTime: Date(timeIntervalSince1970: 1579989600), promiseEndTime: Date(timeIntervalSince1970: 1581199200), promiseColor: "blueblack", promiseIcon: "maybe", promiseUsers: [ "xF2R2vcXdhdY1PutfR7yTeTE6542", "Z42iyamWUEMXnPcOi0iwPRrGU4q1", ], isPromiseAchievement: true, promisePanalty: "벌칙벌칙", promiseId: MyApi.shared.randomNonceString() )
+
+        MyApi.shared.addPromiseData(temp)
+        MyApi.shared.addProgressData(temp)
+        
+//        MyApi.shared.getAllHome { (result) in
+//                   print("test")
+//                   for douc in result {
+//                       print(douc.Day)
+//                       for douc2 in douc.PAPD {
+//                           print(douc2.progressData.promiseId)
+//                           print(douc2.promiseData.promiseName)
+//                       }
+//                   }
+//               }
 
     }
     
