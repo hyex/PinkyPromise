@@ -59,7 +59,7 @@ class AddProgressVC: UIViewController {
 
 extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -69,8 +69,7 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.progressInt = selectedProgress
             cell.setSelectedBox()
         }
-        cell.setButtonIcon(name: icons[indexPath.row])
-        
+        cell.setButtonColor()
         return cell
     }
     
