@@ -348,7 +348,6 @@ extension HomeTabMainVC: FloatyDelegate {
         vc.modalPresentationStyle = .overCurrentContext
         
         self.present(vc, animated: false, completion: nil)
-        
     }
 }
 
