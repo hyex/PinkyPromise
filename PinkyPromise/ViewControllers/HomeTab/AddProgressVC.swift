@@ -90,11 +90,10 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! IconCVC
         
         self.selectedProgress = 4 - indexPath.row
         for i in 0...4 {
-            let cell = collectionView.cellForItem(at: NSIndexPath(row: 4 - i, section: 0) as! IndexPath)
+            let cell = collectionView.cellForItem(at: NSIndexPath(row: 4 - i, section: 0) as IndexPath) as! ProgressCVC
             //
             // MyApi.shared.addProgressData !!!!@@@ hunjae
             dismiss(animated: false, completion: nil)

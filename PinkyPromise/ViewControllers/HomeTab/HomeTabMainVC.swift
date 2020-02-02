@@ -294,8 +294,8 @@ extension HomeTabMainVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: DayPromiseListTVC = (tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC
+
         let date = calendar.selectedDate ?? Date()
         cell.delegate = self
         days.forEach { (day) in
