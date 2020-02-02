@@ -33,7 +33,7 @@ class PromiseDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setBackBtn()
         promiseNameLabel.text = promiseDetail?.promiseName
         
         promiseInfoTableView.delegate = self
@@ -48,12 +48,16 @@ class PromiseDetailVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         getPromiseFriendData()
     }
-    
-    /*@IBAction func backBtnAction(_ sender : Any) {
-     self.dismiss(animated: false, completion: nil)
-     }**/
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     @IBAction func backBtnAction(_ sender : Any) {
+        print("back btn action")
         self.dismiss(animated: false, completion: nil)
+    }
+    func setBackBtn() {
+        self.backBtn.tintColor = UIColor.purple
     }
 }
 
@@ -113,10 +117,10 @@ extension PromiseDetailVC : UITableViewDataSource{
                     print("no promise color")
                     colorCell.colorImg.tintColor = UIColor.appColor
                 }
-                 
+                
                 
                 return colorCell
-             default :  //약속 아이콘
+            default :  //약속 아이콘
                 let iconCell = tableView.dequeueReusableCell(withIdentifier: "IconVC") as! IconVC
                 
                 if let icon = promiseDetail?.promiseIcon {
@@ -127,12 +131,12 @@ extension PromiseDetailVC : UITableViewDataSource{
                 }
                 
                 return iconCell
-//            default:
-//                let alarmCell = tableView.dequeueReusableCell(withIdentifier: "AlarmVC") as! AlarmVC
-//
-//                alarmCell.alarmImg.tintColor = UIColor.appColor
-//
-//                return alarmCell
+                //            default:
+                //                let alarmCell = tableView.dequeueReusableCell(withIdentifier: "AlarmVC") as! AlarmVC
+                //
+                //                alarmCell.alarmImg.tintColor = UIColor.appColor
+                //
+                //                return alarmCell
                 
             }
         }else {
@@ -183,6 +187,18 @@ extension PromiseDetailVC : UITableViewDataSource{
             return 60
         }
         return 50
+    }
+    
+    func addSwipeGesture() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        promiseInfoTableView.addGestureRecognizer(rightSwipe)
+        promiseFriendTableView.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .right) {
+            self.dismiss(animated: false, completion: nil)}
     }
 }
 

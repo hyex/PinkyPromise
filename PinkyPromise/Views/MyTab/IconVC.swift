@@ -13,4 +13,8 @@ class IconVC: UITableViewCell {
     @IBOutlet weak var iconImg: UIImageView!
     
     @IBOutlet weak var icon: UILabel!
+    
+    override func awakeFromNib() {
+           self.selectionStyle = .none
+    }
 }

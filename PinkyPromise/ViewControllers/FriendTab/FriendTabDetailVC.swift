@@ -49,6 +49,10 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         getDetailPromiseData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     private func getDetailPromiseData(){
         print("in getDatailPromiseData")
         

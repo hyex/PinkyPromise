@@ -59,6 +59,6 @@ class DayPromiseListTVC: UITableViewCell {
     
     func setProgress(progress: Int){
         let myProgress = MyProgress()
-        promiseProgress.image = myProgress.progressIcons[progress]
+//        promiseProgress.image = myProgress.progressIcons[progress]
     }
 }
