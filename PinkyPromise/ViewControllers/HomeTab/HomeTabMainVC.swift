@@ -252,7 +252,14 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
                             progress += pm2
                         }
                     }
-                    cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
+                    
+                    if day.PAPD.count > 0
+                    {
+                        cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
+                    }else {
+                        cell.setBackgroundColor(progress: ceil( 0.0 ))
+                    }
+                    
                 }
             }
         }
@@ -313,7 +320,10 @@ extension HomeTabMainVC: UITableViewDataSource {
                 
                 var temp = 0
                 for i in day.PAPD[indexPath.row].progressData.progressDegree {
-                    temp += i
+                    
+                    if i >= 0 {
+                        temp += i
+                    }
                 }
                 
                 cell.setProgress(progress: temp )

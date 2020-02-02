@@ -81,9 +81,16 @@ class MyApi: NSObject {
                 debugPrint(err)
             }else {
                 let result = PromiseUser.parseData(snapShot: sanpShot)
-                completion(result[0].userName)
+                if result.count > 0 {
+                    completion(result[0].userName)
+                }
+                
             }
         }
+    }
+    
+    func getFriends(completion: @escaping ([PromiseUser]) -> Void ) {
+       
     }
     
     //유저의 친구들의 promiseUser들 가져온다.
