@@ -19,6 +19,16 @@ struct PromiseAndProgressforDate {
     var progressData: PromiseTable
 }
 
+struct PromiseAndProgressNotDay {
+    var promiseData: PromiseTable
+    var progressData: ProgressTable
+}
+
+struct PromiseAndProgress1 {
+    var Day: Date!
+    var PAPD: [PromiseAndProgressNotDay]
+}
+
 struct PromiseAndProgress {
     var Day: Date!
     var promiseData: [PromiseTable]

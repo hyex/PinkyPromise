@@ -391,6 +391,7 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
             vc.withFriendsList = self.myFriends
+            print(self.myFriends)
             //            vc.myFriendsImg = self.myFriendsImg
         }
         else if segue.identifier == "PanaltyVC" {
