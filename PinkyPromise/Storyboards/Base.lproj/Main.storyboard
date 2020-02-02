@@ -53,10 +53,9 @@
         <!--friend-->
         <scene sceneID="5c4-6K-fLd">
             <objects>
-                <navigationController id="frM-Iu-c1z" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="frM-Iu-c1z" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="friend" image="person.2.fill" catalog="system" id="Axa-Jp-CQl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QGD-co-Jo3">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
