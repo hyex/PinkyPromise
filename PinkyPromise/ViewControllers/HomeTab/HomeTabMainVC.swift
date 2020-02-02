@@ -47,9 +47,10 @@ class HomeTabMainVC: UIViewController {
         super.viewDidLoad()
         
         //        initView()
-        
+        DispatchQueue.global().sync {
         MyApi.shared.getAllHome { (result) in
             self.days = result
+        }
         }
         
         // initialize UI
@@ -348,7 +349,6 @@ extension HomeTabMainVC: FloatyDelegate {
         vc.modalPresentationStyle = .overCurrentContext
         
         self.present(vc, animated: false, completion: nil)
-        
     }
 }
 
