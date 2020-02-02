@@ -79,8 +79,8 @@ class AddPromiseVC: UIViewController {
                 MyApi.shared.getUserDataWithUID(id: friendId) { (friend) in
                       let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
                       self.myFriends.append(temp)
+                    i += 1
                 }
-                i += 1
             }
         }
 //        }
