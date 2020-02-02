@@ -20,7 +20,7 @@ class DayPromiseListTVC: UITableViewCell {
     
     @IBOutlet weak var promiseIcon: UIImageView! = {
         let imgView = UIImageView()
-        imgView.image = UIImage(named: "star")
+        imgView.image = UIImage(named: "ebook")
         imgView.image?.withTintColor(UIColor.myPurple)
         return imgView
     }()
@@ -60,10 +60,14 @@ class DayPromiseListTVC: UITableViewCell {
     }
     
     func setIcon(name: String, color: String) {
-        let icon = UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
-        icon?.withTintColor(UIColor(named: color) ?? UIColor.myPurple)
         
-        promiseIcon.image = icon
+        let icon = UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
+        
+        let colors = MyColor(rawValue: color)
+        icon?.withTintColor(colors?.create ?? UIColor.appColor)
+        
+        self.promiseIcon.image = icon
+        promiseIcon.tintColor = colors?.create
     }
     
     func setProgress(progress: Int){
