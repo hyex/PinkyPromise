@@ -300,7 +300,7 @@ class MyApi: NSObject {
                 var temp1 = [DayAndPromise]()
                 
                 //10일 전부터 10일 후까지
-                for i in stride(from: now.timeIntervalSince1970 - 864000, through: now.timeIntervalSince1970 + 864000, by: 86400) {
+                for i in stride(from: now.timeIntervalSince1970 - 2592000, through: now.timeIntervalSince1970 + 2592000, by: 86400) {
                     var temp2 = [PromiseTable]()
                     
                     for douc in tempResult {
