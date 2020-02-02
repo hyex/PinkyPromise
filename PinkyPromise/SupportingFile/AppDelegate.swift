@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         Firestore.firestore().settings.isPersistenceEnabled = true
+        Firestore.firestore().settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
         
         let store = Firestore.firestore()
 

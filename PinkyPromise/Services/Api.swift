@@ -353,7 +353,7 @@ class MyApi: NSObject {
     func getPromiseNameAndFriendsName(completion: @escaping ([promiseNameAndFriendsName]) -> Void) {
         
         //self.fireStoreSetting()
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Date() ).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             }else {
