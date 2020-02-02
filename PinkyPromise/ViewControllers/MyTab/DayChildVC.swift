@@ -26,10 +26,14 @@ class DayChildVC: UIViewController {
         getMyPageData()
         setUpTableView()
         initRefresh()
-        if let firstIndex = self.firstIndex {
-            print(firstIndex)
-            self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
-        }
+//        if let firstIndex = self.firstIndex {
+//            print(firstIndex)
+//            self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
+//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getMyPageData()
     }
     
     func initRefresh() {
@@ -52,8 +56,8 @@ class DayChildVC: UIViewController {
     private func setUpTableView() {
         self.dayTableView.delegate = self
         self.dayTableView.dataSource = self
-        self.dayTableView.rowHeight = UITableView.automaticDimension;
-        self.dayTableView.estimatedRowHeight = 100;
+//        self.dayTableView.rowHeight = UITableView.automaticDimension;
+//        self.dayTableView.estimatedRowHeight = 100;
 //        self.dayTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
@@ -73,8 +77,9 @@ class DayChildVC: UIViewController {
 
 extension DayChildVC: UITableViewDataSource {
 
+    // 1
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let dayList = dayList else { return 0 }
+        guard let dayList = dayList else { return 0 } // nil
         return dayList.count
     }
     
@@ -106,7 +111,6 @@ extension DayChildVC: UITableViewDataSource {
     
     //****선영 추가 부분****
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("in prepare func")
         if segue.identifier == "promiseDetail"{
             let promiseDetail = sender as? PromiseTable
             if promiseDetail != nil{
@@ -125,10 +129,12 @@ extension DayChildVC: UITableViewDataSource {
 extension DayChildVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let dayList = dayList else { return 0 }
+        if dayList[indexPath.row].promiseData.count == 0 {
+            return CGFloat(0.0)
+        }
         let height:CGFloat = CGFloat(dayList[indexPath.row].promiseData.count * 43 + 20)
         
         return height
-//        return UITableView.automaticDimension;
     }
 }
 
