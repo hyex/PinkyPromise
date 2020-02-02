@@ -11,7 +11,5 @@ import UIKit
 class ColorVC: UITableViewCell {
     
     @IBOutlet weak var colorImg: UIImageView!
-    @IBOutlet weak var color: UILabel!
-    @IBOutlet weak var editColorBtn: UIButton!
-    
+    @IBOutlet weak var color: UILabel!    
 }

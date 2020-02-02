@@ -19,9 +19,6 @@ class HomeTabMainVC: UIViewController {
     weak var tableView: UITableView!
     private var promiseListforDates: [ProgressTable]!
     
-    
-    
-    
     let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -32,6 +29,7 @@ class HomeTabMainVC: UIViewController {
     
     struct Promise {
         let promiseName: String
+        let promiseIcon: String
         let promiseColor: String
         let progress: Int
     }
@@ -44,22 +42,22 @@ class HomeTabMainVC: UIViewController {
     var days: [Day] = [
         
         Day(day: Date(), promise: [
-            Promise(promiseName: "독서", promiseColor: "red", progress: 0),
-            Promise(promiseName: "1DAY 1COMMIT", promiseColor: "yellow", progress: 1)
+            Promise(promiseName: "독서", promiseIcon: "star", promiseColor: "red", progress: 0),
+            Promise(promiseName: "1DAY 1COMMIT", promiseIcon: "star", promiseColor: "yellow", progress: 1)
         ]),
         Day(day: Date(timeInterval: 86400, since: Date()), promise: [
-            Promise(promiseName: "yellow", promiseColor: "yellow", progress: 2),
-            Promise(promiseName: "green", promiseColor: "green", progress: 1),
-            Promise(promiseName: "blue", promiseColor: "blue", progress: 0),
-            Promise(promiseName: "purple", promiseColor: "purple", progress: 2),
-            Promise(promiseName: "blue", promiseColor: "blue", progress: 1),
-            Promise(promiseName: "green", promiseColor: "green", progress: 1),
-            Promise(promiseName: "systemPink", promiseColor: "systemPink", progress: 0)
+            Promise(promiseName: "yellow", promiseIcon: "star", promiseColor: "yellow", progress: 2),
+            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 1),
+            Promise(promiseName: "blue", promiseIcon: "star", promiseColor: "blue", progress: 0),
+            Promise(promiseName: "purple", promiseIcon: "star", promiseColor: "purple", progress: 2),
+            Promise(promiseName: "blue", promiseIcon: "star", promiseColor: "blue", progress: 1),
+            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 1),
+            Promise(promiseName: "systemPink", promiseIcon: "star", promiseColor: "systemPink", progress: 0)
         ]),
         Day(day: Date(timeInterval: 172800, since: Date()), promise: [
-            Promise(promiseName: "purple", promiseColor: "purple", progress: 4),
-            Promise(promiseName: "green", promiseColor: "green", progress: 4),
-            Promise(promiseName: "systemPink", promiseColor: "systemPink", progress: 4)
+            Promise(promiseName: "purple", promiseIcon: "star", promiseColor: "purple", progress: 4),
+            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 4),
+            Promise(promiseName: "systemPink", promiseIcon: "star", promiseColor: "systemPink", progress: 4)
         ])
     ]
     
@@ -69,12 +67,20 @@ class HomeTabMainVC: UIViewController {
         //        initView()
         
         // initialize UI
-        //let view = UIView(frame: UIScreen.main.bounds)
+        let view = UIView()
+        self.view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         //        let guide = view.safeAreaLayoutGuide
-        //self.view = view
-
-
+        view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(view)
+        
+        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+//        self.view.addSubview(view)
+//        self.view.translatesAutoresizingMaskIntoConstraints = false
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 33))
         titleLabel.textAlignment = .center
@@ -137,15 +143,16 @@ class HomeTabMainVC: UIViewController {
         let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
         
-        addPromiseBtn = AddPromiseBtn(frame: CGRect(x: self.view.frame.size.width / 2 - 25, y: self.view.frame.size.height - 94 - self.tabBarController!.tabBar.frame.size.height, width: 50, height: 50));
-        
-        
+        addPromiseBtn = AddPromiseBtn()
+                
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
+        addPromiseBtn.translatesAutoresizingMaskIntoConstraints = false
+        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
+        addPromiseBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        addPromiseBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        addPromiseBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        
-        //        self.safearea.addSubview(view)
         // data setting
         
         //        MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
@@ -159,7 +166,7 @@ class HomeTabMainVC: UIViewController {
         //                result.forEach { (promise) in
         //                    <#code#>
         //                }
-        ////                self.promiseListforDates = result
+        //                self.promiseListforDates = result
         //                print(self.promiseListforDates[0].progressDay)
         //            }
         //        })
@@ -282,12 +289,8 @@ extension HomeTabMainVC: UITableViewDataSource {
             }
         }
         return count
-        
-        
     }
-    
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DayPromiseListTVC = (tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC)
         
@@ -295,7 +298,9 @@ extension HomeTabMainVC: UITableViewDataSource {
         
         days.forEach { (day) in
             if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
-                cell.promiseName.text = day.promise[indexPath.row].promiseName
+                cell.setName(name: day.promise[indexPath.row].promiseName)
+                cell.setIcon(name: day.promise[indexPath.row].promiseIcon, color: day.promise[indexPath.row].promiseColor)
+                cell.setProgress(progress: day.promise[indexPath.row].progress)
             }
         }
         

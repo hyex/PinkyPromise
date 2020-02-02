@@ -33,7 +33,6 @@ class AddColorVC: UIViewController {
     , "myYellow"
     , "myLightOrange" ]
     
-    
     @IBOutlet weak var cancelBtn: UIButton!
     
     @IBOutlet weak var collectionView: UICollectionView!
