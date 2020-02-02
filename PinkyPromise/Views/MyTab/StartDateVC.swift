@@ -14,4 +14,7 @@ class StartDateVC: UITableViewCell {
     @IBOutlet weak var start: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     
+    override func awakeFromNib() {
+           self.selectionStyle = .none
+    }
 }

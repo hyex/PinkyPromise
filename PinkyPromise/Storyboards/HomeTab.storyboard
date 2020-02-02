@@ -3,6 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +12,7 @@
         <!--Home-->
         <scene sceneID="lmf-iy-dqg">
             <objects>
-                <viewController storyboardIdentifier="HomeTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nu8-v0-LSz" customClass="HomeTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nu8-v0-LSz" customClass="HomeTabMainVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vej-n3-Vbq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,10 +39,110 @@
             </objects>
             <point key="canvasLocation" x="1756" y="133.74384236453201"/>
         </scene>
+        <!--Add ProgressVC-->
+        <scene sceneID="qna-tO-WT6">
+            <objects>
+                <viewController storyboardIdentifier="ProgressVC" id="YeJ-Qz-hKT" customClass="AddProgressVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2R1-Jl-HJV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixZ-gN-Mfb">
+                                <rect key="frame" x="67.666666666666686" y="221" width="240" height="380"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="2qo-dB-g1e">
+                                        <rect key="frame" x="12" y="12" width="216" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h30-KW-IoD">
+                                                <rect key="frame" x="0.0" y="0.0" width="66.333333333333329" height="30"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelBtnAction:" destination="1Us-ud-zRS" eventType="touchUpInside" id="hpK-I5-iqU"/>
+                                                    <action selector="cancelBtnAction:" destination="YeJ-Qz-hKT" eventType="touchUpInside" id="rkx-Go-TeX"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fo1-Ej-sQ9">
+                                                <rect key="frame" x="66.333333333333329" y="0.0" width="82.999999999999986" height="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qY-yE-jEZ">
+                                                <rect key="frame" x="149.33333333333331" y="0.0" width="66.666666666666686" height="30"/>
+                                                <state key="normal" title="Save">
+                                                    <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="saveBtnAction:" destination="1Us-ud-zRS" eventType="touchUpInside" id="Ykc-bZ-eq1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uQM-OB-e5B">
+                                        <rect key="frame" x="60" y="82" width="120" height="269"/>
+                                        <color key="backgroundColor" name="Darkred"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="00d-Qg-oEr"/>
+                                            <constraint firstAttribute="height" constant="269" id="0EJ-NT-agz"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="q7J-dm-1tL">
+                                            <size key="itemSize" width="120" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ProgressCell" reuseIdentifier="IconCollectionCell" id="zS2-Zc-U5C" customClass="IconCVC" customModule="나랑약속해" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zbj-GC-GmD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </collectionViewCellContentView>
+                                                <size key="customSize" width="120" height="50"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="uQM-OB-e5B" firstAttribute="centerX" secondItem="ixZ-gN-Mfb" secondAttribute="centerX" id="7t9-LO-bgB"/>
+                                    <constraint firstItem="2qo-dB-g1e" firstAttribute="leading" secondItem="ixZ-gN-Mfb" secondAttribute="leading" constant="12" id="8N6-vL-Y7e"/>
+                                    <constraint firstItem="2qo-dB-g1e" firstAttribute="top" secondItem="ixZ-gN-Mfb" secondAttribute="top" constant="12" id="C8G-7E-uWE"/>
+                                    <constraint firstAttribute="width" constant="240" id="CAh-z1-lWI"/>
+                                    <constraint firstItem="fo1-Ej-sQ9" firstAttribute="centerX" secondItem="ixZ-gN-Mfb" secondAttribute="centerX" id="EsV-xg-Gdb"/>
+                                    <constraint firstAttribute="height" constant="380" id="Sp2-ob-T4h"/>
+                                    <constraint firstAttribute="trailing" secondItem="2qo-dB-g1e" secondAttribute="trailing" constant="12" id="kbp-VM-AV8"/>
+                                    <constraint firstItem="uQM-OB-e5B" firstAttribute="top" secondItem="fo1-Ej-sQ9" secondAttribute="bottom" constant="40" id="rTt-0d-dlg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ixZ-gN-Mfb" firstAttribute="centerY" secondItem="IvD-uR-k0d" secondAttribute="centerY" id="mZr-nK-GsF"/>
+                            <constraint firstItem="ixZ-gN-Mfb" firstAttribute="centerX" secondItem="IvD-uR-k0d" secondAttribute="centerX" id="xqM-7n-HhB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IvD-uR-k0d"/>
+                    </view>
+                    <connections>
+                        <outlet property="bigView" destination="2R1-Jl-HJV" id="ru0-Hp-q7R"/>
+                        <outlet property="cancelBtn" destination="2R1-Jl-HJV" id="YK6-7K-gx3"/>
+                        <outlet property="collectionView" destination="uQM-OB-e5B" id="YFk-2U-rOj"/>
+                        <outlet property="saveBtn" destination="3qY-yE-jEZ" id="3cR-3R-3wI"/>
+                        <outlet property="smallView" destination="ixZ-gN-Mfb" id="ZYs-uW-Yse"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z2T-OA-v5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1738.4000000000001" y="978.32512315270935"/>
+        </scene>
         <!--New Promise-->
         <scene sceneID="xm5-Dn-tBW">
             <objects>
-                <viewController storyboardIdentifier="AddPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n3T-qC-QZ6" customClass="AddPromiseVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n3T-qC-QZ6" customClass="AddPromiseVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="br8-9D-0fk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +151,7 @@
                                 <rect key="frame" x="0.0" y="34" width="375" height="744"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TextCellTVC" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="textCell" rowHeight="75" id="x9x-sm-wFL" customClass="TextCellTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TextCellTVC" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="textCell" rowHeight="75" id="x9x-sm-wFL" customClass="TextCellTVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x9x-sm-wFL" id="aXK-MX-pLe">
@@ -79,7 +180,7 @@
                                             <outlet property="textField" destination="rDk-Mk-bdE" id="Pnv-lk-m1h"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="cell" id="igz-Es-wHT" customClass="PromiseCustomCell" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="cell" id="igz-Es-wHT" customClass="PromiseCustomCell" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="103" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="igz-Es-wHT" id="jj9-h8-sIL">
@@ -169,7 +270,7 @@
                                             <outlet property="iconButton" destination="9gY-iT-02K" id="yvj-Nv-rTn"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="dateCell" rowHeight="80" id="Nm1-KM-4fC" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="dateCell" rowHeight="80" id="Nm1-KM-4fC" customClass="PromiseInputTVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="146.66666793823242" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nm1-KM-4fC" id="UZT-rs-kAm">
@@ -220,7 +321,7 @@
                                             <outlet property="startDateLabel" destination="rOY-xs-jq1" id="DzE-9H-yhY"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="calendarCell" rowHeight="250" id="gfe-NN-uhc" customClass="PromiseInputTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="calendarCell" rowHeight="250" id="gfe-NN-uhc" customClass="PromiseInputTVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="226.66666793823242" width="375" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gfe-NN-uhc" id="umz-WS-F5L">
@@ -272,7 +373,7 @@
                                             <outlet property="calendar" destination="Hd0-jb-nME" id="oBh-Ld-AC8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="friendCell" rowHeight="67.333335876464844" id="MPz-AI-g1D" customClass="FriendCellTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="friendCell" rowHeight="67.333335876464844" id="MPz-AI-g1D" customClass="FriendCellTVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="476.66666793823242" width="375" height="67.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MPz-AI-g1D" id="F8d-DH-rfV">
@@ -317,7 +418,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="panaltyCell" id="x3B-0r-zJZ" customClass="PanaltyTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="panaltyCell" id="x3B-0r-zJZ" customClass="PanaltyTVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="544.00000381469727" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x3B-0r-zJZ" id="Qbu-2O-DgR">
@@ -410,7 +511,7 @@
         <!--Add PanaltyVC-->
         <scene sceneID="TBP-TS-feA">
             <objects>
-                <viewController id="1Us-ud-zRS" customClass="AddPanaltyVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1Us-ud-zRS" customClass="AddPanaltyVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="center" id="2FD-vn-Kze">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -513,7 +614,7 @@
         <!--약속 상대 초대-->
         <scene sceneID="M8A-eC-f7p">
             <objects>
-                <viewController id="9ol-aW-ZeM" customClass="AddFriendsVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9ol-aW-ZeM" customClass="AddFriendsVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5K6-qK-8J4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -522,7 +623,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendCheckCell" rowHeight="80" id="99a-s7-skb" customClass="CheckFriendsTVC" customModule="PinkyPromise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendCheckCell" rowHeight="80" id="99a-s7-skb" customClass="CheckFriendsTVC" customModule="나랑약속해" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="99a-s7-skb" id="yQw-5R-Hh5">
@@ -619,7 +720,7 @@
         <!--Add IconVC-->
         <scene sceneID="psr-VS-loV">
             <objects>
-                <viewController id="VJv-wj-nrX" customClass="AddIconVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VJv-wj-nrX" customClass="AddIconVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7KR-fA-UZf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -654,7 +755,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IconCollectionCell" id="mFU-tm-uLf" customClass="IconCVC" customModule="PinkyPromise" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IconCollectionCell" id="mFU-tm-uLf" customClass="IconCVC" customModule="나랑약속해" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Eud-0Q-eZc">
@@ -705,7 +806,7 @@
         <!--Add ColorVC-->
         <scene sceneID="Sbm-Ev-jYr">
             <objects>
-                <viewController id="K88-yF-qKH" customClass="AddColorVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="K88-yF-qKH" customClass="AddColorVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="bottom" id="7R9-PZ-2yW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -739,7 +840,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCollectionCell" id="cHh-jL-eEK" customClass="ColorCVC" customModule="PinkyPromise" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCollectionCell" id="cHh-jL-eEK" customClass="ColorCVC" customModule="나랑약속해" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hPv-iw-uqe">
@@ -791,7 +892,7 @@
         <!--Home Navigation Controller-->
         <scene sceneID="9y8-7z-wY5">
             <objects>
-                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uGs-YE-KiT" customClass="HomeNavigationController" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uGs-YE-KiT" customClass="HomeNavigationController" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CfD-Ga-Xq2">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -816,5 +917,8 @@
         <image name="lawyer" width="64" height="64"/>
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="star.fill" catalog="system" width="64" height="58"/>
+        <namedColor name="Darkred">
+            <color red="0.40784313725490196" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

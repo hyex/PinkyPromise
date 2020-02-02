@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol ClickProgressDelegate {
+    func clickProgress(promiseId: String, progressId: String)
+}
+
 class DayPromiseListTVC: UITableViewCell {
+    
+    var promiseId: String! = "0"
+    var progressId: String! = "0"
+    var delegate: ClickProgressDelegate!
     
     @IBOutlet weak var promiseIcon: UIImageView! = {
         let imgView = UIImageView()
@@ -23,23 +31,24 @@ class DayPromiseListTVC: UITableViewCell {
         return label
     }()
     
-    @IBOutlet weak var promiseProgress: UIImageView! = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "star")
-        imgView.image?.withTintColor(UIColor.myPurple)
-        //        let icon = UIImage(named: icons[selectedIcon])?.withRenderingMode(.alwaysTemplate)
-        //        icon?.withTintColor(customCell.colorButton.tintColor ?? UIColor.appColor)
-        //        customCell.iconButton.setImage(icon, for: .normal)
-        return imgView
+    @IBOutlet weak var promiseProgress: UIButton! = {
+        let button = UIButton()
+        return button
     }()
     
-    
     @IBOutlet weak var view: UIView!
+    
+    var myProgress: MyProgress = MyProgress()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
+    }
+    
+    @IBAction func progressBtnAction(_ sender: Any) {
+
+        self.delegate.clickProgress(promiseId: self.promiseId, progressId: self.progressId)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -58,7 +67,9 @@ class DayPromiseListTVC: UITableViewCell {
     }
     
     func setProgress(progress: Int){
-        let myProgress = MyProgress()
-        //promiseProgress.image = myProgress.progressIcons[progress]
+
+        self.tag = 4 - progress
+        self.promiseProgress.setBackgroundImage(myProgress.progressIcons[self.tag], for: .normal)
+
     }
 }
