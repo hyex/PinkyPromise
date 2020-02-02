@@ -72,7 +72,7 @@ class DayPromiseListTVC: UITableViewCell {
         if self.tag < 0 {
             self.tag = 0
         }
-        
+
         self.promiseProgress.setBackgroundImage(myProgress.progressIcons[self.tag], for: .normal)
 
     }

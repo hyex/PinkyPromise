@@ -15,6 +15,7 @@ protocol SendSelectedFriendsDelegate {
 
 struct FriendData {
     var tag: Int!
+    var id: String!
     var name: String!
     var image: String!
     var isChecked: Bool!

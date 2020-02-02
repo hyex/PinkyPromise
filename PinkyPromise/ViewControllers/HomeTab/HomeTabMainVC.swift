@@ -40,29 +40,7 @@ class HomeTabMainVC: UIViewController {
         var day: Date
         var promise: [Promise]
     }
-    
-//    var days: [Day] = [
-//
-//        Day(day: Date(), promise: [
-//            Promise(promiseName: "독서", promiseIcon: "star", promiseColor: "red", progress: 0),
-//            Promise(promiseName: "1DAY 1COMMIT", promiseIcon: "star", promiseColor: "yellow", progress: 1)
-//        ]),
-//        Day(day: Date(timeInterval: 86400, since: Date()), promise: [
-//            Promise(promiseName: "yellow", promiseIcon: "star", promiseColor: "yellow", progress: 2),
-//            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 1),
-//            Promise(promiseName: "blue", promiseIcon: "star", promiseColor: "blue", progress: 0),
-//            Promise(promiseName: "purple", promiseIcon: "star", promiseColor: "purple", progress: 2),
-//            Promise(promiseName: "blue", promiseIcon: "star", promiseColor: "blue", progress: 1),
-//            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 1),
-//            Promise(promiseName: "systemPink", promiseIcon: "star", promiseColor: "systemPink", progress: 0)
-//        ]),
-//        Day(day: Date(timeInterval: 172800, since: Date()), promise: [
-//            Promise(promiseName: "purple", promiseIcon: "star", promiseColor: "purple", progress: 4),
-//            Promise(promiseName: "green", promiseIcon: "star", promiseColor: "green", progress: 4),
-//            Promise(promiseName: "systemPink", promiseIcon: "star", promiseColor: "systemPink", progress: 4)
-//        ])
-//    ]
-    
+     
     var days: [PromiseAndProgress1] = []
     
     override func viewDidLoad() {
@@ -399,15 +377,3 @@ extension HomeTabMainVC: ClickProgressDelegate {
         self.present(vc, animated: false, completion: nil)
     }
 }
-
-//
-//extension UIDevice {
-//    var hasNotch: Bool {
-//        let keyWindow = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-//        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-//        let bottom = keyWindow?.safeAreaInsets.bottom ?? 0
-//        print(bottom)
-//        return bottom > 0
-//    }
-//}
-
