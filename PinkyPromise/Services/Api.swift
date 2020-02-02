@@ -419,6 +419,7 @@ class MyApi: NSObject {
                     //completion(temp)
                     
                     self.getDataForDetailViewjr2(detailData1: temp) { (result2) in
+                        
                         completion(result2)
                     }
                 }
@@ -427,8 +428,6 @@ class MyApi: NSObject {
     }
     
     func getDataForDetailViewjr2(detailData1: promiseDetailjunior1, completion: @escaping (promiseDetail) -> Void) {
-        
-        var temp3 = [promiseDetail]()
         
         var temp4 = [promiseDetailChild]()
         
@@ -465,6 +464,8 @@ class MyApi: NSObject {
                     temp4.append(zek)
                     
                     if temp4.count == detailData1.friendsUIDList.count {
+                    
+                        temp4.sort { $0.friendName < $1.friendName }
                         
                         completion(promiseDetail(promiseName: detailData1.promiseName, promiseDay: detailData1.promiseDay, promiseDaySinceStart: detailData1.promiseDaySinceStart, friendsDetail: temp4))
                         
@@ -508,12 +509,12 @@ class MyApi: NSObject {
         
         //components.day => 오늘날짜
         var temp = [PromiseAndProgress]()
-        var check = 1
+        
         for i in 0 ..< days {//이번달 일수만큼
             
-            var firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(i * 86400) )
+            let firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(i * 86400) )
             
-            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDay ).getDocuments { (snapShot, error ) in
+            promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: firstDay ).getDocuments { (snapShot, error ) in
                 
                 if let err = error {
                     debugPrint(err.localizedDescription)
@@ -620,6 +621,22 @@ class MyApi: NSObject {
         return days
     }
     
+    //homeTab
+    func getAllDataWithCurrentMonth (completion: @escaping ([PromiseAndProgress]) -> Void) {
+        let Days = self.getTotalDate()
+        let tempResult = [PromiseAndProgress]()
+       
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            } else {
+                let promises = PromiseTable.parseData(snapShot: snapShot)
+                
+                let promises2 = promises.filter { $0.promiseEndTime.timeIntervalSince1970 > Date().timeIntervalSince1970 && $0.promiseStartTime.timeIntervalSince1970 < Date().timeIntervalSince1970 }
+            }
+        }
+    }
+    
     //약속 데이터를 추가할 때 사용하는 함수
     func addPromiseData(_ promiseTable: PromiseTable) {
         
@@ -628,10 +645,10 @@ class MyApi: NSObject {
             PROMISECOLOR: promiseTable.promiseColor ?? "nil",
             PROMISEICON: promiseTable.promiseIcon ?? "nil",
             ISPROMISEACHIEVEMENT: promiseTable.isPromiseAchievement ?? false,
-            PROMISESTARTTIME: promiseTable.promiseStartTime ?? Date(),
-            PROMISEENDTIME: promiseTable.promiseEndTime ?? Date(),
+            PROMISESTARTTIME: promiseTable.promiseStartTime ,
+            PROMISEENDTIME: promiseTable.promiseEndTime ,
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
-            PROMISEUSERS: promiseTable.promiseUsers ?? [],
+            PROMISEUSERS: promiseTable.promiseUsers ,
             PROMISEID: promiseTable.promiseId ?? "nil"
         ]) { error in
             if let err = error {
@@ -707,7 +724,7 @@ class MyApi: NSObject {
                             if tempadd == false {
                                 temp?.append(result[0].userId)
                             }
-                            self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp], merge: true )
+                            self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp!], merge: true )
                         }
                     }
                     
