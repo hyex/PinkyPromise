@@ -142,7 +142,7 @@
 		33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendVC.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
-		33FF2C2F23CB55DC0040003A /* 나랑약속해.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "나랑약속해.app"; path = "나랑약속해.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33FF2C2F23CB55DC0040003A /* PromiseWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromiseWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPanaltyVC.swift; sourceTree = "<group>"; };
 		3F02329723E2A58700BB0E23 /* FriendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendData.swift; path = PinkyPromise/ViewControllers/HomeTab/FriendData.swift; sourceTree = SOURCE_ROOT; };
@@ -474,7 +474,7 @@
 		33FF2C3023CB55DC0040003A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				33FF2C2F23CB55DC0040003A /* 나랑약속해.app */,
+				33FF2C2F23CB55DC0040003A /* PromiseWithMe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -533,7 +533,7 @@
 			);
 			name = PinkyPromise;
 			productName = PinkyPromise;
-			productReference = 33FF2C2F23CB55DC0040003A /* 나랑약속해.app */;
+			productReference = 33FF2C2F23CB55DC0040003A /* PromiseWithMe.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -878,7 +878,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
-				PRODUCT_NAME = "나랑약속해";
+				PRODUCT_NAME = PromiseWithMe;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -898,7 +898,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
-				PRODUCT_NAME = "나랑약속해";
+				PRODUCT_NAME = PromiseWithMe;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
