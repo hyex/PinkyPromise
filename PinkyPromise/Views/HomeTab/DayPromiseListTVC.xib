@@ -32,12 +32,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pMu-Wb-4He">
-                                <rect key="frame" x="228" y="15" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeE-za-dpp">
+                                <rect key="frame" x="222" y="20" width="50" height="50.000000000000114"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ze3-YG-8NF"/>
+                                    <constraint firstAttribute="width" constant="50" id="aZr-EC-eRh"/>
+                                </constraints>
                                 <state key="normal" backgroundImage="progress0"/>
                                 <connections>
-                                    <action selector="progressBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ax5-21-Nef"/>
+                                    <action selector="progressBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2lb-G0-Fvj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -45,8 +48,9 @@
                         <constraints>
                             <constraint firstItem="saw-N7-UzL" firstAttribute="centerY" secondItem="AG7-v5-4Qd" secondAttribute="centerY" id="AlU-Mg-q9j"/>
                             <constraint firstItem="45T-WY-RS9" firstAttribute="centerY" secondItem="AG7-v5-4Qd" secondAttribute="centerY" id="DVe-M6-pyW"/>
+                            <constraint firstItem="VeE-za-dpp" firstAttribute="centerY" secondItem="AG7-v5-4Qd" secondAttribute="centerY" id="Jyh-pO-7Ea"/>
+                            <constraint firstAttribute="trailing" secondItem="VeE-za-dpp" secondAttribute="trailing" constant="16" id="SLV-z8-5KH"/>
                             <constraint firstItem="45T-WY-RS9" firstAttribute="leading" secondItem="saw-N7-UzL" secondAttribute="trailing" constant="16" id="SwV-b2-sg6"/>
-                            <constraint firstItem="pMu-Wb-4He" firstAttribute="centerY" secondItem="45T-WY-RS9" secondAttribute="centerY" id="T4o-iI-rOL"/>
                             <constraint firstItem="saw-N7-UzL" firstAttribute="leading" secondItem="AG7-v5-4Qd" secondAttribute="leading" constant="16" id="ZYg-Za-NiX"/>
                         </constraints>
                     </view>
@@ -62,7 +66,7 @@
             <connections>
                 <outlet property="promiseIcon" destination="saw-N7-UzL" id="vzW-dq-zb7"/>
                 <outlet property="promiseName" destination="45T-WY-RS9" id="EE3-vG-hBh"/>
-                <outlet property="promiseProgress" destination="pMu-Wb-4He" id="Hlv-BT-a5B"/>
+                <outlet property="promiseProgress" destination="VeE-za-dpp" id="zWv-D7-NB6"/>
                 <outlet property="view" destination="AG7-v5-4Qd" id="2Oq-yd-Wmf"/>
             </connections>
             <point key="canvasLocation" x="11.594202898550726" y="31.473214285714285"/>

@@ -27,6 +27,8 @@ class HomeTabMainVC: UIViewController {
         return formatter
     }()
     
+    var clickedProgress: [String]!
+    
     struct Promise {
         let promiseName: String
         let promiseIcon: String
@@ -295,7 +297,7 @@ extension HomeTabMainVC: UITableViewDataSource {
         let cell: DayPromiseListTVC = (tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC)
         
         let date = calendar.selectedDate ?? Date()
-        
+        cell.delegate = self
         days.forEach { (day) in
             if self.dateFormat.string(from: day.day) == self.dateFormat.string(from: date) {
                 cell.setName(name: day.promise[indexPath.row].promiseName)
@@ -343,6 +345,37 @@ extension HomeTabMainVC: FloatyDelegate {
         
     }
 }
+
+extension HomeTabMainVC {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProgressVC" {
+            let vc = segue.destination as! AddProgressVC
+            vc.delegate = self
+            vc.promiseId = self.clickedProgress[0]
+            vc.progressId = self.clickedProgress[1]
+            
+        }
+    }
+    
+}
+
+extension HomeTabMainVC: SendProgressDelegate {
+    func sendProgress(data: Int) {
+        self.tableView.reloadData()
+    }
+}
+
+extension HomeTabMainVC: ClickProgressDelegate {
+    func clickProgress(promiseId: String, progressId: String) {
+        self.clickedProgress = [promiseId, progressId]
+        self.performSegue(withIdentifier: "ProgressVC", sender: nil)
+        
+        let storyBoard = UIStoryboard(name: "HomeTab", bundle: nil)
+        let vc = storyBoard.instantiateViewController(identifier: "AddProgressVC")
+        self.present(vc, animated: false, completion: nil)
+    }
+}
+
 //
 //extension UIDevice {
 //    var hasNotch: Bool {

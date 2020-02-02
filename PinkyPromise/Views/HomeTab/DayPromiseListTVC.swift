@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol ClickProgressDelegate {
+    func clickProgress(promiseId: String, progressId: String)
+}
+
 class DayPromiseListTVC: UITableViewCell {
+    
+    var promiseId: String! = "0"
+    var progressId: String! = "0"
+    var delegate: ClickProgressDelegate!
     
     @IBOutlet weak var promiseIcon: UIImageView! = {
         let imgView = UIImageView()
@@ -23,7 +31,10 @@ class DayPromiseListTVC: UITableViewCell {
         return label
     }()
     
-    @IBOutlet weak var promiseProgress: UIButton!
+    @IBOutlet weak var promiseProgress: UIButton! = {
+        let button = UIButton()
+        return button
+    }()
     
     @IBOutlet weak var view: UIView!
     
@@ -36,13 +47,8 @@ class DayPromiseListTVC: UITableViewCell {
     }
     
     @IBAction func progressBtnAction(_ sender: Any) {
-        
-        let storyboard = UIStoryboard(name: "HomeTab", bundle: nil)
-        let tempVC = storyboard.instantiateViewController(withIdentifier: "ProgressVC") as! UINavigationController
-        tempVC.modalPresentationStyle = .overCurrentContext
-        
-        let VC = storyboard.instantiateViewController(withIdentifier: "HomeTabMainVC") as! UINavigationController
-        VC.present(tempVC, animated: true, completion: nil)
+
+        self.delegate.clickProgress(promiseId: self.promiseId, progressId: self.progressId)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -61,7 +67,8 @@ class DayPromiseListTVC: UITableViewCell {
     }
     
     func setProgress(progress: Int){
-        
+        self.tag = 4 - progress
+        self.promiseProgress.setImage(myProgress.progressIcons[self.tag], for: .normal)
         promiseProgress.setImage(myProgress.progressIcons[progress], for: .normal)
     }
 }

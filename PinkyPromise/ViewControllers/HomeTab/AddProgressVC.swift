@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol SendProgressDelegate {
+    func sendProgress(data: Int)
+}
+
 class AddProgressVC: UIViewController {
-    
+    var promiseId: String!
+    var progressId: String!
     var selectedProgress: Int = 0
     
     @IBOutlet weak var saveBtn: UIButton!
@@ -21,6 +26,8 @@ class AddProgressVC: UIViewController {
     @IBOutlet weak var smallView: UIView!
     
     @IBOutlet var bigView: UIView!
+    
+    var delegate: SendProgressDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,12 +71,17 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCell", for: indexPath) as! ProgressCVC
- 
-        if indexPath.row == selectedProgress {
-            cell.progressInt = selectedProgress
-            cell.setSelectedBox()
+        
+//        cell.delegate = self
+        cell.progressInt = 4 - indexPath.row
+        // cell.setProgressLabel()
+        
+        if cell.progressInt <= selectedProgress {
+            cell.setColor(progress: cell.progressInt)
+        } else {
+            cell.setColor(progress: 0)
         }
-        cell.setButtonColor()
+
         return cell
     }
     
@@ -79,9 +91,13 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate {
  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! IconCVC
-        cell.layer.borderColor = UIColor.gray.cgColor
         
-        //        cell.getButtonColor()
-        
+        self.selectedProgress = 4 - indexPath.row
+        for i in 0...4 {
+            let cell = collectionView.cellForItem(at: NSIndexPath(row: 4 - i, section: 0) as! IndexPath)
+            //
+            // MyApi.shared.addProgressData !!!!@@@ hunjae
+            dismiss(animated: false, completion: nil)
+        }
     }
 }
