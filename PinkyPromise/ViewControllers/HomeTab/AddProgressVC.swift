@@ -63,10 +63,10 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCell", for: indexPath) as! ProgressCVC
  
         if indexPath.row == selectedProgress {
-            cell.progress
+            cell.progressInt = selectedProgress
             cell.setSelectedBox()
         }
         cell.setButtonIcon(name: icons[indexPath.row])

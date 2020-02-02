@@ -27,7 +27,9 @@ class ProgressCVC: UICollectionViewCell {
         self.delegate.backSelectedProgress(data: self.progressInt)
         
     }
-    
+    func setButtonColor() {
+        self.progressButton.tintColor = UIColor.appColor.withAlphaComponent(CGFloat(progressInt/5))
+    }
     func dismissSelectedBox() {
         self.layer.borderColor = nil
         self.layer.borderWidth = .nan
