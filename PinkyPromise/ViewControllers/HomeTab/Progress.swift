@@ -17,5 +17,6 @@ class MyProgress {
         progressIcons.append(UIImage(named: "progress2")!)
         progressIcons.append(UIImage(named: "progress3")!)
         progressIcons.append(UIImage(named: "progress4")!)
+        return progressIcons as! [UIImage]
     }()
 }

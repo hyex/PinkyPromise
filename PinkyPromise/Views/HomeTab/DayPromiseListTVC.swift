@@ -23,23 +23,26 @@ class DayPromiseListTVC: UITableViewCell {
         return label
     }()
     
-    @IBOutlet weak var promiseProgress: UIImageView! = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "star")
-        imgView.image?.withTintColor(UIColor.myPurple)
-        //        let icon = UIImage(named: icons[selectedIcon])?.withRenderingMode(.alwaysTemplate)
-        //        icon?.withTintColor(customCell.colorButton.tintColor ?? UIColor.appColor)
-        //        customCell.iconButton.setImage(icon, for: .normal)
-        return imgView
-    }()
-    
+    @IBOutlet weak var promiseProgress: UIButton!
     
     @IBOutlet weak var view: UIView!
+    
+    var myProgress: MyProgress = MyProgress()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
+    }
+    
+    @IBAction func progressBtnAction(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "HomeTab", bundle: nil)
+        let tempVC = storyboard.instantiateViewController(withIdentifier: "ProgressVC") as! UINavigationController
+        tempVC.modalPresentationStyle = .overCurrentContext
+        
+        let VC = storyboard.instantiateViewController(withIdentifier: "HomeTabMainVC") as! UINavigationController
+        VC.present(tempVC, animated: true, completion: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -58,7 +61,7 @@ class DayPromiseListTVC: UITableViewCell {
     }
     
     func setProgress(progress: Int){
-        let myProgress = MyProgress()
-        promiseProgress.image = myProgress.progressIcons[progress]
+        
+        promiseProgress.setImage(myProgress.progressIcons[progress], for: .normal)
     }
 }

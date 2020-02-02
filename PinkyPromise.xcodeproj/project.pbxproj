@@ -69,6 +69,8 @@
 		3F7F7E7A23DFBA4F0033856F /* AddIconVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F7E7923DFBA4F0033856F /* AddIconVC.swift */; };
 		3F8F103423E0387A002D2BDA /* DayPromiseListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8F103323E0387A002D2BDA /* DayPromiseListTVC.swift */; };
 		3F8F103623E03884002D2BDA /* DayPromiseListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8F103523E03884002D2BDA /* DayPromiseListTVC.xib */; };
+		3F97E6D823E684250031A2E1 /* ProgressCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F97E6D623E684250031A2E1 /* ProgressCVC.swift */; };
+		3F97E6D923E684250031A2E1 /* ProgressCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F97E6D723E684250031A2E1 /* ProgressCVC.xib */; };
 		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
 		3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */; };
 		3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */; };
@@ -78,6 +80,7 @@
 		3FE061D923E0E6C200CD2F6A /* CheckFriendsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */; };
 		3FE061DF23E24BE700CD2F6A /* PanaltyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */; };
 		3FEC413223E5EF56006C318E /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC413123E5EF56006C318E /* Progress.swift */; };
+		3FEC413423E5F9C0006C318E /* AddProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC413323E5F9C0006C318E /* AddProgressVC.swift */; };
 		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
@@ -159,6 +162,8 @@
 		3F7F7E7923DFBA4F0033856F /* AddIconVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIconVC.swift; sourceTree = "<group>"; };
 		3F8F103323E0387A002D2BDA /* DayPromiseListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayPromiseListTVC.swift; sourceTree = "<group>"; };
 		3F8F103523E03884002D2BDA /* DayPromiseListTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayPromiseListTVC.xib; sourceTree = "<group>"; };
+		3F97E6D623E684250031A2E1 /* ProgressCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCVC.swift; sourceTree = "<group>"; };
+		3F97E6D723E684250031A2E1 /* ProgressCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressCVC.xib; sourceTree = "<group>"; };
 		3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
 		3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPromiseVC.swift; sourceTree = "<group>"; };
 		3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectColorVC.swift; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 		3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFriendsTVC.swift; sourceTree = "<group>"; };
 		3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaltyTVC.swift; sourceTree = "<group>"; };
 		3FEC413123E5EF56006C318E /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Progress.swift; path = PinkyPromise/ViewControllers/HomeTab/Progress.swift; sourceTree = SOURCE_ROOT; };
+		3FEC413323E5F9C0006C318E /* AddProgressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressVC.swift; sourceTree = "<group>"; };
 		45752F0852F9A5F9940CA4DA /* Pods-PinkyPromise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinkyPromise.debug.xcconfig"; path = "Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise.debug.xcconfig"; sourceTree = "<group>"; };
 		A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabDetailVC.swift; sourceTree = "<group>"; };
@@ -317,6 +323,7 @@
 				3F7F7E7923DFBA4F0033856F /* AddIconVC.swift */,
 				3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */,
 				3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */,
+				3FEC413323E5F9C0006C318E /* AddProgressVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -378,6 +385,8 @@
 				3FE061CE23E0CF9900CD2F6A /* FriendCellTVC.swift */,
 				3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */,
 				3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */,
+				3F97E6D623E684250031A2E1 /* ProgressCVC.swift */,
+				3F97E6D723E684250031A2E1 /* ProgressCVC.xib */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -579,6 +588,7 @@
 				3F7F7E7823DFB7960033856F /* IconCVC.xib in Resources */,
 				33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */,
 				A9A3E82723E01D7900EDFE1C /* DetailPromise.storyboard in Resources */,
+				3F97E6D923E684250031A2E1 /* ProgressCVC.xib in Resources */,
 				334AACD223CC249D00AAF955 /* MyTab.storyboard in Resources */,
 				18A7B4F823CF663900598AF5 /* GoogleService-Info.plist in Resources */,
 				330AE60923CB56DC00706769 /* Assets.xcassets in Resources */,
@@ -675,6 +685,7 @@
 				33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */,
 				A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */,
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
+				3F97E6D823E684250031A2E1 /* ProgressCVC.swift in Sources */,
 				1875B63A23D99F7400751947 /* signInVC.swift in Sources */,
 				33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */,
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,
@@ -707,6 +718,7 @@
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				18BA607E23E1834200925578 /* DayAndPromise.swift in Sources */,
 				3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */,
+				3FEC413423E5F9C0006C318E /* AddProgressVC.swift in Sources */,
 				188AAA3723D5CE8400E8BB70 /* FirebaseAuthentication.swift in Sources */,
 				1875B63C23D99F8600751947 /* signUpVC.swift in Sources */,
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
