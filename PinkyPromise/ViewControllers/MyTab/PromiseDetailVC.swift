@@ -33,9 +33,16 @@ class PromiseDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
         setBackBtn()
+        setPromieName()
+    }
+    
+    func setPromieName(){
         promiseNameLabel.text = promiseDetail?.promiseName
-        
+    }
+    
+    func setUpTableView(){
         promiseInfoTableView.delegate = self
         promiseInfoTableView.dataSource = self
         promiseInfoTableView.tableFooterView = UIView()
@@ -123,6 +130,7 @@ extension PromiseDetailVC : UITableViewDataSource{
             default :  //약속 아이콘
                 let iconCell = tableView.dequeueReusableCell(withIdentifier: "IconVC") as! IconVC
                 
+                //DB 정리되면 icon 지정 해야 함!
                 if let icon = promiseDetail?.promiseIcon {
                     iconCell.iconImg.image = UIImage(named: "gym")
                 }else{
@@ -131,12 +139,6 @@ extension PromiseDetailVC : UITableViewDataSource{
                 }
                 
                 return iconCell
-                //            default:
-                //                let alarmCell = tableView.dequeueReusableCell(withIdentifier: "AlarmVC") as! AlarmVC
-                //
-                //                alarmCell.alarmImg.tintColor = UIColor.appColor
-                //
-                //                return alarmCell
                 
             }
         }else {
@@ -173,6 +175,7 @@ extension PromiseDetailVC : UITableViewDataSource{
     func getPromiseFriendData() {
         if let promiseId = promiseDetail?.promiseId {
             MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
+            
                 for douc in result.friendsDetail {
                     self.promiseFriends.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
                 }
