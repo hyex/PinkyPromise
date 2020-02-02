@@ -159,6 +159,10 @@ class HomeTabMainVC: UIViewController {
         setTableViewUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     @IBAction func addPromiseBtnAction(_ sender: Any) {
         let vc = storyboard!.instantiateViewController(withIdentifier: "HomeNavigationController")
         
