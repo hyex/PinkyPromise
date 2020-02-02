@@ -49,7 +49,7 @@ class MyApi: NSObject {
     func getUserUpdate(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         //self.fireStoreSetting()
-        promiseListner = userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).addSnapshotListener({ (snapShot, error) in
+        promiseListner = userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).addSnapshotListener({ (snapShot, error) in
             if let err = error {
                 debugPrint(err)
             } else {
@@ -63,7 +63,7 @@ class MyApi: NSObject {
     func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         //self.fireStoreSetting()
-        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (sanpShot, err) in
+        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
             }else {
@@ -96,7 +96,7 @@ class MyApi: NSObject {
     //유저의 친구들의 promiseUser들 가져온다.
     func getUsersFriendsData(completion: @escaping ([PromiseUser]) -> Void) {
         //self.fireStoreSetting()
-        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -164,7 +164,7 @@ class MyApi: NSObject {
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         //self.fireStoreSetting()
         var result = [PromiseTable]()
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (sanpShot, err) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
             }else {
@@ -178,7 +178,7 @@ class MyApi: NSObject {
     func getCompletedPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         let result = Timestamp()
         //self.fireStoreSetting()
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isLessThan: result).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isLessThan: result).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -198,7 +198,7 @@ class MyApi: NSObject {
         
         var countcheck = 0
         for douc in promises {
-            progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
+            progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
                 if let err = error {
                     debugPrint(err.localizedDescription)
                 } else {
@@ -229,7 +229,7 @@ class MyApi: NSObject {
         //self.fireStoreSetting()
         
         //        promiseListner = promiseCollectionRef.order(by: PROMISEACHIEVEMENT, descending: true).addSnapshotListener({ (snapShot, error) in
-        promiseListner = promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).addSnapshotListener({ (snapShot, error) in
+        promiseListner = promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).addSnapshotListener({ (snapShot, error) in
             if let err = error {
                 debugPrint(err)
             } else {
@@ -244,7 +244,7 @@ class MyApi: NSObject {
         //self.fireStoreSetting()
         var result: [ProgressTable] = [] //[ProgressTable]()]
         //        var result: [ProgressTable]? = nil
-        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
             } else {
@@ -275,7 +275,7 @@ class MyApi: NSObject {
     func getAllProgressData(completion: @escaping ([ProgressTable]) -> Void ){
         //self.fireStoreSetting()
         var result = [ProgressTable]()
-        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
             } else {
@@ -289,10 +289,10 @@ class MyApi: NSObject {
     //업데이트됨
     func getPromiseData10ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
         //self.fireStoreSetting()
-        let result = Timestamp()
+        
         let now = Date()
         
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThan: now).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: now).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -323,9 +323,8 @@ class MyApi: NSObject {
         //self.fireStoreSetting()
         let result = Timestamp()
         let now = Date()
-        let tommorow = Date(timeIntervalSince1970: now.timeIntervalSince1970 + 60*60*24)
         
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThan: result).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: result).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -360,7 +359,7 @@ class MyApi: NSObject {
     func getPromiseNameAndFriendsName(completion: @escaping ([promiseNameAndFriendsName]) -> Void) {
         
         //self.fireStoreSetting()
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Date() ).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Date() ).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             }else {
@@ -487,7 +486,7 @@ class MyApi: NSObject {
         let result = Timestamp()
         //self.fireStoreSetting()
         
-         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: result).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: result).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -512,7 +511,7 @@ class MyApi: NSObject {
         
         let calendar = Calendar(identifier: .gregorian)
         
-        let comps = DateComponents(calendar:calendar, year:components.year, month:components.month, day:1) //그 달 1일
+        _ = DateComponents(calendar:calendar, year:components.year, month:components.month, day:1) //그 달 1일
         
         //components.day => 오늘날짜
         var temp = [PromiseAndProgress]()
@@ -557,7 +556,7 @@ class MyApi: NSObject {
         if promiseData.count > 0 {
             for douc in promiseData {
                 
-                progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in
+                progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
                     if let err = error {
                         print("this is err..1 \(err.localizedDescription)")
                     } else {
@@ -615,9 +614,11 @@ class MyApi: NSObject {
         
         let todayDay = components.day // 오늘이 며칠째인지
         
-        let firstDay = Date(timeIntervalSince1970: Date().timeIntervalSince1970 - Double(86400 * (todayDay! - 1)) + 32400)//이번달의 첫번째 날
+        var firstDay = Date(timeIntervalSince1970: Date().timeIntervalSince1970 - Double(86400 * (todayDay! - 1)) + 32400)//이번달의 첫번째 날
         
-        let firstDayPlusi = Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(1 * 86400) )
+        let secondDay = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: firstDay)
+        let thirdDay = Date(timeIntervalSince1970: secondDay!.timeIntervalSince1970 + Double(32400))
+        firstDay = thirdDay
         
         var temp3 = [PromiseAndProgress1]()
         
@@ -667,7 +668,6 @@ class MyApi: NSObject {
             temp3.append(result2)
         self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(22 * 86400) ) ) { (result2) in
              temp3.append(result2)
-                                                                                    
         self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(23 * 86400)) ) { (result2) in
             temp3.append(result2)                         
         self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(24 * 86400) ) ) { (result2) in
@@ -676,32 +676,23 @@ class MyApi: NSObject {
              temp3.append(result2)
         self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(26 * 86400) ) ) { (result2) in
             temp3.append(result2)
-                                                                                                    
         self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(27 * 86400) ) ) { (result2) in
             temp3.append(result2)
-                                                             
         self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(28 * 86400) ) ) { (result2) in
         temp3.append(result2)
-                    
             if days > 29 {
-            
        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(29 * 86400) ) ) { (result2) in
                 temp3.append(result2)
         if days > 30 {
-            
             self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(30 * 86400) ) ) { (result2) in
                 temp3.append(result2)
-                
                 completion(temp3)
             }
         } else {
             completion(temp3)
-        }}
-            } else {
+        }}} else {
                 completion(temp3)
-            }
-            
-            }}}}}}}}}}}}}}}}}}}}} }}}}}}}}
+            }}}}}}}}}}}}}}}}}}}}}} }}}}}}}}
     }
     
     
@@ -899,7 +890,7 @@ class MyApi: NSObject {
     
     //프로그레스 입력뷰
     func updateProgress(day: Date, userId: String, data: Int, promise: PromiseTable, progress: ProgressTable ){
-        progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promise.promiseId).getDocuments { (snapShot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promise.promiseId!).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -907,7 +898,7 @@ class MyApi: NSObject {
                 let datindex = Int(day.timeIntervalSince1970 - promise.promiseStartTime.timeIntervalSince1970)
                 var temp = progress.progressDegree
                 temp![datindex] = data
-                self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : temp]) { err in
+                self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : temp!]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
