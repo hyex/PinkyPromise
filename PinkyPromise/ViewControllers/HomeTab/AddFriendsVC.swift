@@ -23,19 +23,15 @@ struct FriendData {
 class AddFriendsVC: UIViewController {
     
     @IBOutlet weak var backBtn: UIBarButtonItem!
-    
     @IBOutlet weak var saveBtn: UIBarButtonItem!
-    
     @IBOutlet weak var tableView: UITableView!
-    
     fileprivate var searchController = UISearchController(searchResultsController: nil)
     
     //    var checkBoxesState: [Int : Bool] = [:]
     //
     var delegate: SendSelectedFriendsDelegate!
-    //
+    
     //    var myFriends: [Int : [String]]!
-    //
     //    var myFriendsImg: [UIImage]!
     
     var withFriendsList: [FriendData]!
