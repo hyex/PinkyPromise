@@ -826,7 +826,10 @@ class MyApi: NSObject {
                             if tempadd == false {
                                 temp?.append(result[0].userId)
                             }
-                            self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp!], merge: true )
+                            
+                            var temp2 = result[0].userFriends
+                            temp2?.append(FirebaseUserService.currentUserID!)
+                            self.userCollectionRef.document(result[0].userId).setData([USERFRIENDS : temp2], merge: true); self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp!], merge: true )
                         }
                     }
                     

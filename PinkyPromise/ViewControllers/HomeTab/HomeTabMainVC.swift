@@ -46,11 +46,16 @@ class HomeTabMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        initView()
-       
-//        MyApi.shared.getAllHome { (result) in
-//            self.days = result
-//        }
+        if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+            print("here is AppDeletage.swift 1")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
+            tempVC.modalPresentationStyle = .fullScreen
+            self.present(tempVC, animated: true, completion: nil)
+            
+            print("finished")
+        }
         
         // initialize UI
         let view = UIView()
@@ -160,8 +165,15 @@ class HomeTabMainVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        MyApi.shared.getAllHome { (result) in
-            self.days = result
+//        MyApi.shared.getAllHome { (result) in
+//            self.days = result
+//        }
+        if UserDefaults.standard.bool(forKey: "loggedIn") == true {
+            DispatchQueue.global().async {
+                MyApi.shared.getAllHome { (result) in
+                        self.days = result
+                }
+            }
         }
         tableView.reloadData()
     }

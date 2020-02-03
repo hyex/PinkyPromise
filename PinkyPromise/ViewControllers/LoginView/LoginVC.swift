@@ -59,8 +59,6 @@ class LoginVC: UIViewController {
         self.bottomView.frame.size.width = width * 2
         self.bottomView.frame.size.height = height * 2
 
-        self.signInBtn.layer.cornerRadius = 10
-        self.signUpBtn.layer.cornerRadius = 10
         self.appleSignInBtn.layer.cornerRadius = 10
         self.googleSignInBtn.layer.cornerRadius = 10
 

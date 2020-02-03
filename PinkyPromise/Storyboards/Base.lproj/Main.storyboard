@@ -113,7 +113,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAc-Yg-8b8">
-                                <rect key="frame" x="49" y="721" width="316" height="33"/>
+                                <rect key="frame" x="49" y="599" width="316" height="33"/>
                                 <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="구글로 로그인!">
@@ -124,7 +124,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-Af-EWM">
-                                <rect key="frame" x="49" y="773" width="316" height="33"/>
+                                <rect key="frame" x="49" y="651" width="316" height="33"/>
                                 <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="애플로 로그인!">
@@ -139,12 +139,12 @@
                         <constraints>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="70" id="3gb-ef-Jre"/>
                             <constraint firstItem="rAc-Yg-8b8" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="49" id="8Jn-SF-ERL"/>
+                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="bottom" secondItem="f7c-Af-EWM" secondAttribute="bottom" constant="178" id="AsG-WB-RoU"/>
                             <constraint firstItem="f7c-Af-EWM" firstAttribute="top" secondItem="rAc-Yg-8b8" secondAttribute="bottom" constant="19" id="ELY-yO-3C7"/>
                             <constraint firstItem="e1Y-nh-Miw" firstAttribute="top" secondItem="QeS-Az-vfb" secondAttribute="bottom" constant="78" id="EgO-Wh-SwA"/>
                             <constraint firstItem="f7c-Af-EWM" firstAttribute="top" secondItem="rAc-Yg-8b8" secondAttribute="bottom" constant="19" id="FVD-M5-zJX"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="QeS-Az-vfb" secondAttribute="trailing" constant="70" id="Fcg-ta-D1t"/>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="centerX" secondItem="GGH-Wg-MjO" secondAttribute="centerX" id="Hb3-Af-nQj"/>
-                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="bottom" secondItem="f7c-Af-EWM" secondAttribute="bottom" constant="56" id="HyY-lW-DRp"/>
                             <constraint firstItem="f7c-Af-EWM" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="49" id="IxV-cO-uyR"/>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="top" secondItem="fHf-WZ-sbP" secondAttribute="top" constant="159" id="JEo-Lf-EHR"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="rAc-Yg-8b8" secondAttribute="trailing" constant="49" id="MEI-wx-iMS"/>
