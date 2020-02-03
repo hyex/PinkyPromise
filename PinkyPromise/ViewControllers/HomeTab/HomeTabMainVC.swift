@@ -47,11 +47,10 @@ class HomeTabMainVC: UIViewController {
         super.viewDidLoad()
         
         //        initView()
-        DispatchQueue.global().sync {
-        MyApi.shared.getAllHome { (result) in
-            self.days = result
-        }
-        }
+       
+//        MyApi.shared.getAllHome { (result) in
+//            self.days = result
+//        }
         
         // initialize UI
         let view = UIView()
@@ -161,6 +160,9 @@ class HomeTabMainVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        MyApi.shared.getAllHome { (result) in
+            self.days = result
+        }
         tableView.reloadData()
     }
     

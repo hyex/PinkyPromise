@@ -117,8 +117,10 @@ class AddPromiseVC: UIViewController {
         let dataColor = colors[selectedColor]
         let dataIcon = icons[selectedIcon]
         let dataUsers: Array<String> = {
+            
             var friends = Array<String>()
-            if friends.count != 0 {
+            
+            if friends.count >= 0 {
             selectedFriends.forEach { (friend) in
                 friends.append(friend.id)
                 }
