@@ -71,11 +71,12 @@ class DayPromiseListTVC: UITableViewCell {
     }
     
     func setProgress(progress: Int){
-        if self.tag < 0 {
-            self.tag = 0
+        if progress < 0 {
+            self.promiseProgress.setBackgroundImage(myProgress.progressIcons[0], for: .normal)
+        } else {
+            self.promiseProgress.setBackgroundImage(myProgress.progressIcons[progress], for: .normal)
         }
         
-        self.promiseProgress.setBackgroundImage(myProgress.progressIcons[self.tag], for: .normal)
 
     }
 }
