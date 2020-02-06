@@ -27,7 +27,7 @@ class HomeTabMainVC: UIViewController {
         return formatter
     }()
     
-    var clickedProgress: [String]!
+    var clickedProgress: [Any]!
     
     struct Promise {
         let promiseName: String
@@ -165,13 +165,12 @@ class HomeTabMainVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        MyApi.shared.getAllHome { (result) in
-//            self.days = result
-//        }
+        
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
-            DispatchQueue.global().async {
-                MyApi.shared.getAllHome { (result) in
-                        self.days = result
+            
+            MyApi.shared.getAllHome { (result) in
+                DispatchQueue.main.async {
+                    self.days = result
                 }
             }
         }
@@ -188,24 +187,6 @@ class HomeTabMainVC: UIViewController {
         
     }
 }
-
-// MARK: Init
-extension HomeTabMainVC {
-    //    private func initView() {
-    //        setupLabel()
-    //        setupBtn()
-    //    }
-}
-
-extension HomeTabMainVC {
-    
-    //    func setupBtn() {
-    ////        addPromiseBtn.layer.cornerRadius = addPromiseBtn.layer.frame.height/2
-    //        addPromiseBtn.makeCircle()
-    //    }
-}
-
-
 
 extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     
@@ -317,16 +298,7 @@ extension HomeTabMainVC: UITableViewDataSource {
                 
                 let interval = date.timeIntervalSince(day.PAPD[indexPath.row].promiseData.promiseStartTime)
                 let idxDay = Int(interval/86400)
-                cell.setProgress(progress: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
-//                var temp = 0
-//                for i in day.PAPD[indexPath.row].progressData.progressDegree {
-//
-//                    if i >= 0 {
-//                        temp += i
-//                    }
-//                }
-                
-//                cell.setProgress(progress: day.PAPD[indexPath.row].progressData.progressDegree )
+                cell.setProgress(promiseId: day.PAPD[indexPath.row].promiseData.promiseId, progressId: day.PAPD[indexPath.row].progressData.progressId, progressDegree: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
             }
         }
         
@@ -374,9 +346,10 @@ extension HomeTabMainVC {
         if segue.identifier == "ProgressVC" {
             let vc = segue.destination as! AddProgressVC
             vc.delegate = self
-            vc.promiseId = self.clickedProgress[0]
-            vc.progressId = self.clickedProgress[1]
-            
+            vc.promiseId = self.clickedProgress[0] as? String
+            vc.progressId = self.clickedProgress[1] as? String
+            vc.selectedProgress = self.clickedProgress[2] as! Int
+            vc.day = self.calendar.selectedDate
         }
     }
     
@@ -389,12 +362,12 @@ extension HomeTabMainVC: SendProgressDelegate {
 }
 
 extension HomeTabMainVC: ClickProgressDelegate {
-    func clickProgress(promiseId: String, progressId: String) {
-        self.clickedProgress = [promiseId, progressId]
+    func clickProgress(promiseId: String, progressId: String, progressDegree: Int) {
+        self.clickedProgress = [promiseId, progressId, progressDegree]
         self.performSegue(withIdentifier: "ProgressVC", sender: nil)
-        
-        let storyBoard = UIStoryboard(name: "HomeTab", bundle: nil)
-        let vc = storyBoard.instantiateViewController(identifier: "AddProgressVC")
-        self.present(vc, animated: false, completion: nil)
+//
+//        let storyBoard = UIStoryboard(name: "HomeTab", bundle: nil)
+//        let vc = storyBoard.instantiateViewController(identifier: "AddProgressVC")
+//        self.present(vc, animated: false, completion: nil)
     }
 }
