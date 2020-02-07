@@ -8,24 +8,23 @@
 
 import UIKit
 
-
-
 class ProgressCVC: UICollectionViewCell {
     
-
-    @IBOutlet weak var progressView: UIView!
-    
-    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressButton: UIButton!
     
     var progressInt: Int! = 0
+    
+    var delegate: SelectedProgressDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        progressView.layer.cornerRadius = 4
+        progressButton.layer.cornerRadius = 4
     }
  
-
+    @IBAction func progressButtonAction(_ sender: Any) {
+        self.delegate.backSelectedProgress(num: progressInt)
+    }
     
     func setProgress(progress: Int) {
         self.progressInt = progress
@@ -37,15 +36,15 @@ class ProgressCVC: UICollectionViewCell {
     
     func setColor(progress: Int) {
         if progress == -1 {
-            self.progressView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.6)
+            self.progressButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.6)
         }
         else {
-            self.progressView.backgroundColor = UIColor.appColor.withAlphaComponent(CGFloat(Double(progress + 1) * 0.2))
+            self.progressButton.backgroundColor = UIColor.appColor.withAlphaComponent(CGFloat(Double(progress + 1) * 0.2))
         }
     }
     
     func setProgressLabel(progress: Int) {
         let percent = 25 * progress
-        self.progressLabel.text = "\(percent)%"
+        self.progressButton.setTitle("\(percent)%", for: .normal)
     }
 }

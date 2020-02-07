@@ -13,6 +13,11 @@ protocol SendProgressDelegate {
     func sendProgress(data: Int)
 }
 
+protocol SelectedProgressDelegate {
+    func backSelectedProgress(num: Int)
+}
+
+
 class AddProgressVC: UIViewController {
     var promiseId: String!
     var progressId: String!
@@ -36,7 +41,7 @@ class AddProgressVC: UIViewController {
         
         let nibName = UINib(nibName: "ProgressCVC", bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: "ProgressCell")
-
+        
         self.smallView.layer.shadowColor = UIColor.black.cgColor
         self.smallView.layer.masksToBounds = false
         self.smallView.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -48,10 +53,10 @@ class AddProgressVC: UIViewController {
         collectionView.dataSource = self
         
         cancelBtn.tintColor = UIColor.appColor
-
         
-//        let gesture = UITapGestureRecognizer(target: self, action: #selector(AddIconVC.dismissPage(sender:)))
-//        self.bigView.addGestureRecognizer(gesture)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(AddProgressVC.dismissPage(sender:)))
+        self.bigView.addGestureRecognizer(gesture)
+
         // Do any additional setup after loading the view.
         // Do any additional setup after loading the view.
     }
@@ -105,6 +110,8 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCell", for: indexPath) as! ProgressCVC
 
+        cell.delegate = self
+        
         cell.progressInt = 4 - indexPath.row
         
         cell.setProgressLabel(progress: 4 - indexPath.row)
@@ -138,9 +145,24 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate, U
         self.selectedProgress = 4 - indexPath.row
         for i in 0...4 {
             let cell = collectionView.cellForItem(at: NSIndexPath(row: 4 - i, section: 0) as IndexPath) as! ProgressCVC
-            print("-----------")
-            print(cell.progressInt)
-            print(selectedProgress)
+            
+            if selectedProgress == -1 {
+                cell.setColor(progress: -1)
+            } else if cell.progressInt <= selectedProgress {
+                cell.setColor(progress: cell.progressInt)
+            } else {
+                cell.setColor(progress: -1)
+            }
+        }
+    }
+}
+
+extension AddProgressVC: SelectedProgressDelegate {
+    func backSelectedProgress(num: Int) {
+        self.selectedProgress = num
+        for i in 0...4 {
+            let cell = collectionView.cellForItem(at: NSIndexPath(row: 4 - i, section: 0) as IndexPath) as! ProgressCVC
+            
             if selectedProgress == -1 {
                 cell.setColor(progress: -1)
             } else if cell.progressInt <= selectedProgress {
