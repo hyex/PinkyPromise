@@ -9,13 +9,14 @@
 import UIKit
 
 protocol ClickProgressDelegate {
-    func clickProgress(promiseId: String, progressId: String)
+    func clickProgress(promiseId: String, progressId: String, progressDegree: Int)
 }
 
 class DayPromiseListTVC: UITableViewCell {
     
     var promiseId: String! = "0"
     var progressId: String! = "0"
+    var progressDegree: Int = 0
     var delegate: ClickProgressDelegate!
     
     @IBOutlet weak var promiseIcon: UIImageView! = {
@@ -48,7 +49,7 @@ class DayPromiseListTVC: UITableViewCell {
     
     @IBAction func progressBtnAction(_ sender: Any) {
 
-        self.delegate.clickProgress(promiseId: self.promiseId, progressId: self.progressId)
+        self.delegate.clickProgress(promiseId: self.promiseId, progressId: self.progressId, progressDegree: self.progressDegree)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -70,11 +71,16 @@ class DayPromiseListTVC: UITableViewCell {
         promiseIcon.tintColor = colors?.create
     }
     
-    func setProgress(progress: Int){
-        if progress < 0 {
+    func setProgress(promiseId: String, progressId: String, progressDegree: Int){
+        
+        self.promiseId = promiseId
+        self.progressId = progressId
+        self.progressDegree = progressDegree
+        
+        if progressDegree < 0 {
             self.promiseProgress.setBackgroundImage(myProgress.progressIcons[0], for: .normal)
         } else {
-            self.promiseProgress.setBackgroundImage(myProgress.progressIcons[progress], for: .normal)
+            self.promiseProgress.setBackgroundImage(myProgress.progressIcons[progressDegree], for: .normal)
         }
         
 
