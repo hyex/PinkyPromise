@@ -112,47 +112,84 @@
                                 <color key="textColor" red="0.24938773689999999" green="0.11845667410000001" blue="0.35368416879999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAc-Yg-8b8">
-                                <rect key="frame" x="49" y="599" width="316" height="33"/>
-                                <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="구글로 로그인!">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="googleSignIn" destination="7gk-GH-tO2" eventType="touchUpInside" id="Bjw-ct-Y3X"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-Af-EWM">
-                                <rect key="frame" x="49" y="651" width="316" height="33"/>
-                                <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="애플로 로그인!">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="appleSignIn" destination="7gk-GH-tO2" eventType="touchUpInside" id="Yag-pL-CM5"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="K7y-fX-vax">
+                                <rect key="frame" x="60" y="555" width="294" height="237"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-hO-TX6">
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="33"/>
+                                        <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="로그인!">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="googleSignIn" destination="7gk-GH-tO2" eventType="touchUpInside" id="QZ9-tx-US3"/>
+                                            <segue destination="jzd-xX-aeV" kind="show" id="cSf-0g-Uc4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgC-CJ-1fL">
+                                        <rect key="frame" x="0.0" y="51" width="294" height="33"/>
+                                        <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="회원가입!">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="googleSignIn" destination="7gk-GH-tO2" eventType="touchUpInside" id="g2K-7y-OuN"/>
+                                            <segue destination="JGA-uc-ThS" kind="show" id="C9P-6p-HvA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iyh-M5-ynh">
+                                        <rect key="frame" x="0.0" y="102" width="294" height="33"/>
+                                        <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="카톡으로 로그인!">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="googleSignIn" destination="7gk-GH-tO2" eventType="touchUpInside" id="Dqe-v6-h5s"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAc-Yg-8b8">
+                                        <rect key="frame" x="0.0" y="153" width="294" height="33"/>
+                                        <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="구글로 로그인!">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="googleSignIn" destination="7gk-GH-tO2" eventType="touchUpInside" id="Bjw-ct-Y3X"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-Af-EWM">
+                                        <rect key="frame" x="0.0" y="204" width="294" height="33"/>
+                                        <color key="backgroundColor" red="0.39314034580000001" green="0.39348837730000003" blue="0.96476286649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="애플로 로그인!">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="appleSignIn" destination="7gk-GH-tO2" eventType="touchUpInside" id="Yag-pL-CM5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="70" id="3gb-ef-Jre"/>
-                            <constraint firstItem="rAc-Yg-8b8" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="49" id="8Jn-SF-ERL"/>
-                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="bottom" secondItem="f7c-Af-EWM" secondAttribute="bottom" constant="178" id="AsG-WB-RoU"/>
-                            <constraint firstItem="f7c-Af-EWM" firstAttribute="top" secondItem="rAc-Yg-8b8" secondAttribute="bottom" constant="19" id="ELY-yO-3C7"/>
                             <constraint firstItem="e1Y-nh-Miw" firstAttribute="top" secondItem="QeS-Az-vfb" secondAttribute="bottom" constant="78" id="EgO-Wh-SwA"/>
-                            <constraint firstItem="f7c-Af-EWM" firstAttribute="top" secondItem="rAc-Yg-8b8" secondAttribute="bottom" constant="19" id="FVD-M5-zJX"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="QeS-Az-vfb" secondAttribute="trailing" constant="70" id="Fcg-ta-D1t"/>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="centerX" secondItem="GGH-Wg-MjO" secondAttribute="centerX" id="Hb3-Af-nQj"/>
-                            <constraint firstItem="f7c-Af-EWM" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="49" id="IxV-cO-uyR"/>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="top" secondItem="fHf-WZ-sbP" secondAttribute="top" constant="159" id="JEo-Lf-EHR"/>
-                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="rAc-Yg-8b8" secondAttribute="trailing" constant="49" id="MEI-wx-iMS"/>
+                            <constraint firstItem="K7y-fX-vax" firstAttribute="top" secondItem="QeS-Az-vfb" secondAttribute="bottom" constant="254" id="LcI-VC-VbG"/>
+                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="bottom" secondItem="K7y-fX-vax" secondAttribute="bottom" constant="70" id="T1i-UD-usB"/>
                             <constraint firstAttribute="bottom" secondItem="e1Y-nh-Miw" secondAttribute="bottom" constant="20" symbolic="YES" id="W4l-mi-4Qn"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="e1Y-nh-Miw" secondAttribute="trailing" id="cPZ-7J-gM0"/>
                             <constraint firstItem="e1Y-nh-Miw" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" id="h8u-8i-4J3"/>
-                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="f7c-Af-EWM" secondAttribute="trailing" constant="49" id="lNV-AW-TVL"/>
+                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="K7y-fX-vax" secondAttribute="trailing" constant="60" id="k4Y-op-cCA"/>
                             <constraint firstAttribute="bottom" secondItem="e1Y-nh-Miw" secondAttribute="bottom" constant="20" symbolic="YES" id="qVN-Js-jEA"/>
+                            <constraint firstItem="K7y-fX-vax" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="60" id="uKc-oJ-Iud"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fHf-WZ-sbP"/>
                     </view>
@@ -161,7 +198,10 @@
                         <outlet property="appleSignInBtn" destination="f7c-Af-EWM" id="OaO-1F-ll0"/>
                         <outlet property="bottomView" destination="e1Y-nh-Miw" id="yjn-Ne-bfV"/>
                         <outlet property="googleSignInBtn" destination="rAc-Yg-8b8" id="4eQ-t3-wsU"/>
+                        <outlet property="kakaoSignInBtn" destination="Iyh-M5-ynh" id="4uZ-sQ-RWl"/>
                         <outlet property="pinkyTitle" destination="QeS-Az-vfb" id="tSs-G7-ZCv"/>
+                        <outlet property="signInBtn" destination="cP7-hO-TX6" id="46E-tb-t4B"/>
+                        <outlet property="signUpBtn" destination="bgC-CJ-1fL" id="dcf-pI-ych"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3D-Dt-wQR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -177,24 +217,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="32R-2h-KKX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="276"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="232"/>
                                 <color key="backgroundColor" red="1" green="0.46935845230000001" blue="0.45063036369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2fQ-Mh-uJJ">
-                                <rect key="frame" x="41" y="94" width="332" height="176"/>
+                                <rect key="frame" x="41" y="138" width="332" height="132"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="TxW-Nt-77V">
-                                        <rect key="frame" x="0.0" y="0.0" width="332" height="48.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="332" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="I4e-oU-g96">
-                                        <rect key="frame" x="0.0" y="63.666666666666657" width="332" height="48.666666666666657"/>
+                                        <rect key="frame" x="0.0" y="49" width="332" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-NS-8ox">
-                                        <rect key="frame" x="0.0" y="127.33333333333336" width="332" height="48.666666666666671"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NickName" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-NS-8ox">
+                                        <rect key="frame" x="0.0" y="98" width="332" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -231,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWy-U3-x1o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1762" y="-408"/>
+            <point key="canvasLocation" x="-1848" y="-56"/>
         </scene>
         <!--MoreTab-->
         <scene sceneID="mmR-XI-oQV">
@@ -291,14 +331,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fdp-2N-E5t">
-                                <rect key="frame" x="0.0" y="44" width="414" height="242"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="198"/>
                                 <color key="backgroundColor" red="1" green="0.46935845230000001" blue="0.45063036369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fdp-2N-E5t" secondAttribute="height" multiplier="23:11" id="wmk-5g-XTD"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="OF0-23-ycj">
-                                <rect key="frame" x="41" y="94" width="332" height="90"/>
+                                <rect key="frame" x="41" y="138" width="332" height="90"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="mY1-Eh-jhj">
                                         <rect key="frame" x="0.0" y="0.0" width="332" height="34"/>
@@ -329,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7np-d3-e5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1762" y="230"/>
+            <point key="canvasLocation" x="-1933" y="-401"/>
         </scene>
     </scenes>
     <resources>
