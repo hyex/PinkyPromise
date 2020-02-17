@@ -160,6 +160,22 @@ class MyApi: NSObject {
         }
     }
     
+    //약속 데이터를 반환// Input: PromiseID   Output: PromiseTable
+    func getPromiseDataWithPromiseId(promiseid: String, completion: @escaping ([PromiseTable]) -> Void ){
+        //self.fireStoreSetting()
+        var result: [PromiseTable] = [] //[ProgressTable]()]
+        //        var result: [ProgressTable]? = nil
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint("debug print \(err)")
+            } else {
+                result = PromiseTable.parseData(snapShot: snapShot)
+                completion(result)
+                
+            }
+        }
+    }
+    
     //약속 데이터를 반환// 내가 포함되어 있는 녀석들만
     func getPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         //self.fireStoreSetting()
@@ -173,6 +189,7 @@ class MyApi: NSObject {
             }
         }
     }
+    
     
     //이미 끝난 약속 데이터만 반환하는 함수
     func getCompletedPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
@@ -898,10 +915,10 @@ class MyApi: NSObject {
                 debugPrint(err.localizedDescription)
             } else {
                
-                let datindex = Int(day.timeIntervalSince1970 - promise.promiseStartTime.timeIntervalSince1970)
-                var temp = progress.progressDegree
-                temp![datindex] = data
-                self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : temp!]) { err in
+                let datindex = Int(day.timeIntervalSince1970 - promise.promiseStartTime.timeIntervalSince1970) / 86400
+                var temp: [Int] = progress.progressDegree
+                temp[datindex] = data
+                self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : temp]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {

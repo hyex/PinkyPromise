@@ -34,6 +34,9 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="i0x-YA-DAy"/>
                     <navigationItem key="navigationItem" id="LNs-G4-npE"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="YeJ-Qz-hKT" kind="presentation" identifier="ProgressVC" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="EiB-Ou-oG0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eis-o0-auC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -42,7 +45,7 @@
         <!--Add ProgressVC-->
         <scene sceneID="qna-tO-WT6">
             <objects>
-                <viewController storyboardIdentifier="ProgressVC" id="YeJ-Qz-hKT" customClass="AddProgressVC" customModule="PromiseWithMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddProgressVC" id="YeJ-Qz-hKT" customClass="AddProgressVC" customModule="PromiseWithMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2R1-Jl-HJV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,18 +79,19 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="saveBtnAction:" destination="1Us-ud-zRS" eventType="touchUpInside" id="Ykc-bZ-eq1"/>
+                                                    <action selector="saveBtnAction:" destination="YeJ-Qz-hKT" eventType="touchUpInside" id="gc1-Vk-Y8R"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uQM-OB-e5B">
-                                        <rect key="frame" x="60" y="82" width="120" height="269"/>
-                                        <color key="backgroundColor" name="Darkred"/>
+                                        <rect key="frame" x="60" y="67" width="120" height="269"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="00d-Qg-oEr"/>
                                             <constraint firstAttribute="height" constant="269" id="0EJ-NT-agz"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="q7J-dm-1tL">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="q7J-dm-1tL">
                                             <size key="itemSize" width="120" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -95,14 +99,14 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ProgressCell" reuseIdentifier="IconCollectionCell" id="zS2-Zc-U5C" customClass="IconCVC" customModule="PromiseWithMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zbj-GC-GmD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </collectionViewCellContentView>
-                                                <size key="customSize" width="120" height="50"/>
+                                                <size key="customSize" width="120" height="40"/>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
@@ -116,17 +120,19 @@
                                     <constraint firstItem="fo1-Ej-sQ9" firstAttribute="centerX" secondItem="ixZ-gN-Mfb" secondAttribute="centerX" id="EsV-xg-Gdb"/>
                                     <constraint firstAttribute="height" constant="380" id="Sp2-ob-T4h"/>
                                     <constraint firstAttribute="trailing" secondItem="2qo-dB-g1e" secondAttribute="trailing" constant="12" id="kbp-VM-AV8"/>
-                                    <constraint firstItem="uQM-OB-e5B" firstAttribute="top" secondItem="fo1-Ej-sQ9" secondAttribute="bottom" constant="40" id="rTt-0d-dlg"/>
+                                    <constraint firstItem="uQM-OB-e5B" firstAttribute="top" secondItem="fo1-Ej-sQ9" secondAttribute="bottom" constant="25" id="rTt-0d-dlg"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ixZ-gN-Mfb" firstAttribute="centerY" secondItem="IvD-uR-k0d" secondAttribute="centerY" id="mZr-nK-GsF"/>
                             <constraint firstItem="ixZ-gN-Mfb" firstAttribute="centerX" secondItem="IvD-uR-k0d" secondAttribute="centerX" id="xqM-7n-HhB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IvD-uR-k0d"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bigView" destination="2R1-Jl-HJV" id="ru0-Hp-q7R"/>
                         <outlet property="cancelBtn" destination="2R1-Jl-HJV" id="YK6-7K-gx3"/>
@@ -137,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z2T-OA-v5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1738.4000000000001" y="978.32512315270935"/>
+            <point key="canvasLocation" x="1756" y="897"/>
         </scene>
         <!--New Promise-->
         <scene sceneID="xm5-Dn-tBW">
@@ -784,7 +790,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="69l-2R-crd" firstAttribute="centerX" secondItem="Tum-iX-MX9" secondAttribute="centerX" id="HAe-TM-HX2"/>
                             <constraint firstItem="Tum-iX-MX9" firstAttribute="bottom" secondItem="69l-2R-crd" secondAttribute="bottom" id="bnc-gJ-3gt"/>
@@ -869,7 +875,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.15337423312883436" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.15337423312883436" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="O1S-rJ-5vd" firstAttribute="centerX" secondItem="14U-MJ-gTH" secondAttribute="centerX" id="eHT-to-wkJ"/>
                             <constraint firstItem="14U-MJ-gTH" firstAttribute="bottom" secondItem="O1S-rJ-5vd" secondAttribute="bottom" id="kNL-aw-DSy"/>
@@ -917,8 +923,5 @@
         <image name="lawyer" width="64" height="64"/>
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="star.fill" catalog="system" width="64" height="58"/>
-        <namedColor name="Darkred">
-            <color red="0.40784313725490196" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>
