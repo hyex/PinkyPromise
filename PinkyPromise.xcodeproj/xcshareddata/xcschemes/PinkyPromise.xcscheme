@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33FF2C2E23CB55DC0040003A"
-               BuildableName = "PromiseWithMe.app"
+               BuildableName = "PinkyPromise.app"
                BlueprintName = "PinkyPromise"
                ReferencedContainer = "container:PinkyPromise.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33FF2C2E23CB55DC0040003A"
-            BuildableName = "PromiseWithMe.app"
+            BuildableName = "PinkyPromise.app"
             BlueprintName = "PinkyPromise"
             ReferencedContainer = "container:PinkyPromise.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33FF2C2E23CB55DC0040003A"
-            BuildableName = "PromiseWithMe.app"
+            BuildableName = "PinkyPromise.app"
             BlueprintName = "PinkyPromise"
             ReferencedContainer = "container:PinkyPromise.xcodeproj">
          </BuildableReference>

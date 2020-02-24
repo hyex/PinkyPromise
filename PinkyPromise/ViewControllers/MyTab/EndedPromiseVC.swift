@@ -106,6 +106,7 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 DispatchQueue.main.async {
                     for friend in result {
                         cell.promiseFriends.text! += friend + " "
+                        // MARK: error : index out of range
                         if result[1] == friend {
                             let peoples = result.count - 2
                             cell.promiseFriends.text! += " 와 \(String(peoples))명"
