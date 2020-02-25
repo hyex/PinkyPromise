@@ -96,37 +96,17 @@ class MoreTabMainVC: UIViewController {
     
     @IBAction func addFriendKakaoBtnAction(_ sender: Any) {
         
-        // Location 타입 템플릿 오브젝트 생성
-        let template = KMTLocationTemplate { (locationTemplateBuilder) in
+        let template = KMTTextTemplate { (textTemplateBuilder) in
             
-            // 주소
-            locationTemplateBuilder.address = "경기 성남시 분당구 판교역로 235 에이치스퀘어 N동 8층"
-            locationTemplateBuilder.addressTitle = "카카오 판교오피스 카페톡"
-            
-            // 컨텐츠
-            locationTemplateBuilder.content = KMTContentObject(builderBlock: { (contentBuilder) in
-                contentBuilder.title = "신메뉴 출시❤️ 체리블라썸라떼"
-                contentBuilder.desc = "이번 주는 체리블라썸라떼 1+1"
-                contentBuilder.imageURL = URL(string: "http://mud-kage.kakao.co.kr/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png")!
-                contentBuilder.link = KMTLinkObject(builderBlock: { (linkBuilder) in
-                    linkBuilder.mobileWebURL = URL(string: "https://developers.kakao.com")
-                })
+            textTemplateBuilder.text = "나랑 친구하자"
+            textTemplateBuilder.buttonTitle = "친구 추가하기"
+            textTemplateBuilder.link = KMTLinkObject(builderBlock: { (linkBuilder) in
+                linkBuilder.mobileWebURL = URL(string: "https://developers.kakao.com")
             })
             
-            // 소셜
-            locationTemplateBuilder.social = KMTSocialObject(builderBlock: { (socialBuilder) in
-                socialBuilder.likeCount = 286
-                socialBuilder.commnentCount = 45
-                socialBuilder.sharedCount = 845
-            })
         }
-
-        // 서버에서 콜백으로 받을 정보
-//        let serverCallbackArgs = ["user_id": "abcd",
-//                                  "product_id": "1234"]
         
         // 카카오링크 실행
-//        KLKTalkLinkCenter.shared().sendDefault(with: template, serverCallbackArgs: serverCallbackArgs, success: { (warningMsg, argumentMsg) in
         KLKTalkLinkCenter.shared().sendDefault(with: template, success: { (warningMsg, argumentMsg) in
             
             // 성공
@@ -177,10 +157,12 @@ extension MoreTabMainVC {
         
         myFriendBtn.applyRadius(radius: 8)
         addFriendCodeBtn.applyRadius(radius: 8)
+        addFriendKakaoBtn.applyRadius(radius: 8)
         logOutBtn.applyRadius(radius: 8)
         
         myFriendBtn.backgroundColor = color
         addFriendCodeBtn.backgroundColor = color
+        addFriendKakaoBtn.backgroundColor = color
         logOutBtn.backgroundColor = color
     }
 }
