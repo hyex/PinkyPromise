@@ -14,6 +14,7 @@ class MoreTabMainVC: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var myFriendBtn: UIButton!
     @IBOutlet weak var addFriendCodeBtn: UIButton!
+    @IBOutlet weak var addFriendKakaoBtn: UIButton!
     @IBOutlet weak var logOutBtn: UIButton!
     
     let picker = UIImagePickerController()
@@ -90,6 +91,56 @@ class MoreTabMainVC: UIViewController {
     @IBAction func addFriendCodeBtnAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "AddFriendCodeVC") as! AddFriendCodeVC
         self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    
+    @IBAction func addFriendKakaoBtnAction(_ sender: Any) {
+        
+        // Location 타입 템플릿 오브젝트 생성
+        let template = KMTLocationTemplate { (locationTemplateBuilder) in
+            
+            // 주소
+            locationTemplateBuilder.address = "경기 성남시 분당구 판교역로 235 에이치스퀘어 N동 8층"
+            locationTemplateBuilder.addressTitle = "카카오 판교오피스 카페톡"
+            
+            // 컨텐츠
+            locationTemplateBuilder.content = KMTContentObject(builderBlock: { (contentBuilder) in
+                contentBuilder.title = "신메뉴 출시❤️ 체리블라썸라떼"
+                contentBuilder.desc = "이번 주는 체리블라썸라떼 1+1"
+                contentBuilder.imageURL = URL(string: "http://mud-kage.kakao.co.kr/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png")!
+                contentBuilder.link = KMTLinkObject(builderBlock: { (linkBuilder) in
+                    linkBuilder.mobileWebURL = URL(string: "https://developers.kakao.com")
+                })
+            })
+            
+            // 소셜
+            locationTemplateBuilder.social = KMTSocialObject(builderBlock: { (socialBuilder) in
+                socialBuilder.likeCount = 286
+                socialBuilder.commnentCount = 45
+                socialBuilder.sharedCount = 845
+            })
+        }
+
+        // 서버에서 콜백으로 받을 정보
+//        let serverCallbackArgs = ["user_id": "abcd",
+//                                  "product_id": "1234"]
+        
+        // 카카오링크 실행
+//        KLKTalkLinkCenter.shared().sendDefault(with: template, serverCallbackArgs: serverCallbackArgs, success: { (warningMsg, argumentMsg) in
+        KLKTalkLinkCenter.shared().sendDefault(with: template, success: { (warningMsg, argumentMsg) in
+            
+            // 성공
+            print("warning message: \(String(describing: warningMsg))")
+            print("argument message: \(String(describing: argumentMsg))")
+
+        }, failure: { (error) in
+            
+            // 실패
+//            UIAlertController.showMessage(error.localizedDescription)
+            print("error \(error)")
+            
+        })
+        
     }
     
     @IBAction func logOutBtnAction(_ sender: Any) {
