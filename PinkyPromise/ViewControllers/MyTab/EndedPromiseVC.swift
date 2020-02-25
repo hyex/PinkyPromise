@@ -15,7 +15,6 @@ class EndedPromiseVC: UIViewController {
     
     var promiseList: [PromiseTable] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,7 +22,7 @@ class EndedPromiseVC: UIViewController {
         self.endedPromiseCollectionView.delegate = self
         self.endedPromiseCollectionView.dataSource = self
         
-        // 날짜가 끝났고, 성취률 100%인 약속들만 넘겨오는 함수 만들기 Api 에서
+        // 날짜가 끝났고, 성취률 100%인 약속들만 넘겨오는 함수
         MyApi.shared.getCompletedPromiseData(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
@@ -35,17 +34,13 @@ class EndedPromiseVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
-//        self.dismiss(animated: false, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
-    
 
 }
-
 
 extension EndedPromiseVC {
     private func initView() {
@@ -60,7 +55,8 @@ extension EndedPromiseVC {
     
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
         if (sender.direction == .right) {
-            self.dismiss(animated: false, completion: nil)}
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -80,6 +76,7 @@ extension EndedPromiseVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = collectionView.bounds.width - CGFloat(32.0)
+        print(collectionView.bounds.height)
         let height = CGFloat(140.0)//collectionView.bounds.height
         return CGSize(width: width, height: height)
     }
@@ -104,13 +101,15 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         if let id = rowData.promiseId {
             MyApi.shared.getPromiseFriendsNameWithPID(promiseID: id, completion: { result in
                 DispatchQueue.main.async {
+                    // 친구 3명까지만 이름 노출, 그 외에는 "와 x명"으로 표시
                     for friend in result {
                         cell.promiseFriends.text! += friend + " "
-                        // MARK: error : index out of range
-                        if result[1] == friend {
-                            let peoples = result.count - 2
-                            cell.promiseFriends.text! += " 와 \(String(peoples))명"
-                            break
+                        if result.count > 3 {
+                            if result[2] == friend { //
+                                let peoples = result.count - 3
+                                cell.promiseFriends.text! += "외 \(String(peoples))명"
+                                break
+                            }
                         }
                     }
                 }
@@ -119,11 +118,9 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        //        let today = Date()
         let startDate = rowData.promiseStartTime
         let endDate = rowData.promiseEndTime
-        
-        //        cell.promiseIcon = rowData.promiseIcon
+        cell.promiseIcon.image = UIImage(named: rowData.promiseIcon)
         cell.promiseName.text = rowData.promiseName
 
         let duration = dateFormatter.string(from: startDate) + " ~ " + dateFormatter.string(from: endDate)
@@ -134,21 +131,18 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         cell.backgroundColor = UIColor(named :promiseColor)
         cell.layer.shadowColor = UIColor(named :promiseColor)?.cgColor
 
-        
         return cell
     }
 
     // 선영 추가 부분 --> 클릭 시 실행되는 함수
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
-        print(indexPath.row)
 //        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
         performSegue(withIdentifier: "promiseDetail", sender: promiseList[indexPath.row])
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("in prepare func")
         if segue.identifier == "promiseDetail"{
             let promiseDetail = sender as? PromiseTable
             if promiseDetail != nil{
