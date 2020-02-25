@@ -96,6 +96,18 @@
 		A9A3E82F23E0355400EDFE1C /* FinalDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */; };
 		A9A3E83123E0357300EDFE1C /* ColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83023E0357300EDFE1C /* ColorVC.swift */; };
 		A9A3E83323E0358C00EDFE1C /* IconVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3E83223E0358C00EDFE1C /* IconVC.swift */; };
+		A9FD48012405046400DFDF20 /* HomeTabMainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD48002405046400DFDF20 /* HomeTabMainService.swift */; };
+		A9FD48032405059600DFDF20 /* AddPromiseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD48022405059600DFDF20 /* AddPromiseService.swift */; };
+		A9FD48052405074D00DFDF20 /* AddProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD48042405074C00DFDF20 /* AddProgressService.swift */; };
+		A9FD48072405099600DFDF20 /* DayChildService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD48062405099600DFDF20 /* DayChildService.swift */; };
+		A9FD480924050A8B00DFDF20 /* PromiseChildService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD480824050A8B00DFDF20 /* PromiseChildService.swift */; };
+		A9FD480B24050BB900DFDF20 /* EndedPromiseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD480A24050BB900DFDF20 /* EndedPromiseService.swift */; };
+		A9FD480D24050C6B00DFDF20 /* FriendTabMainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD480C24050C6B00DFDF20 /* FriendTabMainService.swift */; };
+		A9FD480F24050CE700DFDF20 /* FriendTabDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD480E24050CE700DFDF20 /* FriendTabDetailService.swift */; };
+		A9FD481124050D5100DFDF20 /* PromiseDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD481024050D5100DFDF20 /* PromiseDetailService.swift */; };
+		A9FD481324050E3B00DFDF20 /* MoreTabMainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD481224050E3B00DFDF20 /* MoreTabMainService.swift */; };
+		A9FD481524050E7C00DFDF20 /* MyFriendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD481424050E7C00DFDF20 /* MyFriendService.swift */; };
+		A9FD481724050EDF00DFDF20 /* AddFriendCodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD481624050EDF00DFDF20 /* AddFriendCodeService.swift */; };
 		DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +207,18 @@
 		A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDateVC.swift; sourceTree = "<group>"; };
 		A9A3E83023E0357300EDFE1C /* ColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorVC.swift; sourceTree = "<group>"; };
 		A9A3E83223E0358C00EDFE1C /* IconVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVC.swift; sourceTree = "<group>"; };
+		A9FD48002405046400DFDF20 /* HomeTabMainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabMainService.swift; sourceTree = "<group>"; };
+		A9FD48022405059600DFDF20 /* AddPromiseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromiseService.swift; sourceTree = "<group>"; };
+		A9FD48042405074C00DFDF20 /* AddProgressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressService.swift; sourceTree = "<group>"; };
+		A9FD48062405099600DFDF20 /* DayChildService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChildService.swift; sourceTree = "<group>"; };
+		A9FD480824050A8B00DFDF20 /* PromiseChildService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseChildService.swift; sourceTree = "<group>"; };
+		A9FD480A24050BB900DFDF20 /* EndedPromiseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseService.swift; sourceTree = "<group>"; };
+		A9FD480C24050C6B00DFDF20 /* FriendTabMainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabMainService.swift; sourceTree = "<group>"; };
+		A9FD480E24050CE700DFDF20 /* FriendTabDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabDetailService.swift; sourceTree = "<group>"; };
+		A9FD481024050D5100DFDF20 /* PromiseDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseDetailService.swift; sourceTree = "<group>"; };
+		A9FD481224050E3B00DFDF20 /* MoreTabMainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabMainService.swift; sourceTree = "<group>"; };
+		A9FD481424050E7C00DFDF20 /* MyFriendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendService.swift; sourceTree = "<group>"; };
+		A9FD481624050EDF00DFDF20 /* AddFriendCodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCodeService.swift; sourceTree = "<group>"; };
 		BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinkyPromise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -254,6 +278,7 @@
 		33028C5E23CDB208004E0104 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A9FD47F92405031300DFDF20 /* API */,
 				1808C1D723E41A73004D5ED2 /* AppleAuth */,
 				33028C5F23CDB21B004E0104 /* Api.swift */,
 				186D855323D41C94006DA619 /* Constants.swift */,
@@ -528,6 +553,57 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A9FD47F92405031300DFDF20 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A9FD47FD2405035600DFDF20 /* MoreTab */,
+				A9FD47FC2405034C00DFDF20 /* FriendTab */,
+				A9FD47FB2405034000DFDF20 /* MyTab */,
+				A9FD47FA2405033700DFDF20 /* HomeTab */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		A9FD47FA2405033700DFDF20 /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				A9FD48002405046400DFDF20 /* HomeTabMainService.swift */,
+				A9FD48022405059600DFDF20 /* AddPromiseService.swift */,
+				A9FD48042405074C00DFDF20 /* AddProgressService.swift */,
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		A9FD47FB2405034000DFDF20 /* MyTab */ = {
+			isa = PBXGroup;
+			children = (
+				A9FD48062405099600DFDF20 /* DayChildService.swift */,
+				A9FD480824050A8B00DFDF20 /* PromiseChildService.swift */,
+				A9FD480A24050BB900DFDF20 /* EndedPromiseService.swift */,
+			);
+			path = MyTab;
+			sourceTree = "<group>";
+		};
+		A9FD47FC2405034C00DFDF20 /* FriendTab */ = {
+			isa = PBXGroup;
+			children = (
+				A9FD480C24050C6B00DFDF20 /* FriendTabMainService.swift */,
+				A9FD480E24050CE700DFDF20 /* FriendTabDetailService.swift */,
+				A9FD481024050D5100DFDF20 /* PromiseDetailService.swift */,
+			);
+			path = FriendTab;
+			sourceTree = "<group>";
+		};
+		A9FD47FD2405035600DFDF20 /* MoreTab */ = {
+			isa = PBXGroup;
+			children = (
+				A9FD481224050E3B00DFDF20 /* MoreTabMainService.swift */,
+				A9FD481424050E7C00DFDF20 /* MyFriendService.swift */,
+				A9FD481624050EDF00DFDF20 /* AddFriendCodeService.swift */,
+			);
+			path = MoreTab;
+			sourceTree = "<group>";
+		};
 		BDFE7D20C7BEE704036DD9C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +650,7 @@
 				TargetAttributes = {
 					33FF2C2E23CB55DC0040003A = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -684,10 +761,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */,
+				A9FD481524050E7C00DFDF20 /* MyFriendService.swift in Sources */,
 				334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */,
 				1808C1D923E41AA6004D5ED2 /* API-Auth.swift in Sources */,
 				3F6DAE5923DE30D800599661 /* AddPromiseBtn.swift in Sources */,
+				A9FD480924050A8B00DFDF20 /* PromiseChildService.swift in Sources */,
 				3F7F7E7723DFB7960033856F /* IconCVC.swift in Sources */,
+				A9FD48072405099600DFDF20 /* DayChildService.swift in Sources */,
 				3F8F103423E0387A002D2BDA /* DayPromiseListTVC.swift in Sources */,
 				186D855B23D42486006DA619 /* promiseTable.swift in Sources */,
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,
@@ -700,6 +780,7 @@
 				3F2612CE23D5994700E86CC1 /* PromiseInputTVC.swift in Sources */,
 				3F02329623E28C7E00BB0E23 /* AddPanaltyVC.swift in Sources */,
 				33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */,
+				A9FD48012405046400DFDF20 /* HomeTabMainService.swift in Sources */,
 				A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */,
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
 				3F97E6D823E684250031A2E1 /* ProgressCVC.swift in Sources */,
@@ -710,14 +791,19 @@
 				A9A3E82B23E02EFD00EDFE1C /* PromiseFriendTVC.swift in Sources */,
 				3303394523E3051F00B84316 /* MyFriendTVC.swift in Sources */,
 				3F02329823E2A58700BB0E23 /* FriendData.swift in Sources */,
+				A9FD48032405059600DFDF20 /* AddPromiseService.swift in Sources */,
 				3FE061D923E0E6C200CD2F6A /* CheckFriendsTVC.swift in Sources */,
 				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
 				3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */,
 				33B7E8E323E1E4B200B2D6C0 /* MyFriendVC.swift in Sources */,
 				3F08320823E5752C000B2F49 /* Colors.swift in Sources */,
+				A9FD48052405074D00DFDF20 /* AddProgressService.swift in Sources */,
 				3FE061D723E0E4C900CD2F6A /* AddFriendsVC.swift in Sources */,
+				A9FD481724050EDF00DFDF20 /* AddFriendCodeService.swift in Sources */,
 				3F7F7E7A23DFBA4F0033856F /* AddIconVC.swift in Sources */,
 				33B7E8DF23E1E02E00B2D6C0 /* UIViewController+Extension.swift in Sources */,
+				A9FD480D24050C6B00DFDF20 /* FriendTabMainService.swift in Sources */,
+				A9FD480F24050CE700DFDF20 /* FriendTabDetailService.swift in Sources */,
 				33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */,
 				1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */,
 				334AACE123CC294000AAF955 /* MyTabMainVC.swift in Sources */,
@@ -733,6 +819,7 @@
 				186D855923D42174006DA619 /* promiseUsers.swift in Sources */,
 				A9A3E82F23E0355400EDFE1C /* FinalDateVC.swift in Sources */,
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
+				A9FD481124050D5100DFDF20 /* PromiseDetailService.swift in Sources */,
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				18BA607E23E1834200925578 /* DayAndPromise.swift in Sources */,
 				3317B3E123CEF31B006A5BF5 /* PromiseCVC.swift in Sources */,
@@ -742,6 +829,7 @@
 				330AE60A23CB56DC00706769 /* AppDelegate.swift in Sources */,
 				3317B3E923CF1354006A5BF5 /* HomeNavigationController.swift in Sources */,
 				A9A3E82923E02E6F00EDFE1C /* PromiseDetailVC.swift in Sources */,
+				A9FD480B24050BB900DFDF20 /* EndedPromiseService.swift in Sources */,
 				18BA607C23E0D08100925578 /* promiseNameAndFriends.swift in Sources */,
 				18BA607823DFF02E00925578 /* FirebaseUserService.swift in Sources */,
 				A9A3E83123E0357300EDFE1C /* ColorVC.swift in Sources */,
@@ -750,6 +838,7 @@
 				332A24C923DF65B1004377DA /* AddFriendCodeVC.swift in Sources */,
 				18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */,
 				33B7E8DE23E1E02E00B2D6C0 /* UIView+Extension.swift in Sources */,
+				A9FD481324050E3B00DFDF20 /* MoreTabMainService.swift in Sources */,
 				3F035C5323DF5BC40037A4BA /* AddColorVC.swift in Sources */,
 				332A24C723DEF670004377DA /* EndedPromiseCVC.swift in Sources */,
 				A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */,
@@ -899,6 +988,7 @@
 			baseConfigurationReference = 45752F0852F9A5F9940CA4DA /* Pods-PinkyPromise.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PinkyPromise/PinkyPromise.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4QG3GC35LA;
@@ -1047,6 +1137,7 @@
 			baseConfigurationReference = 2BDC4506C0E7546CBE6D7E26 /* Pods-PinkyPromise.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PinkyPromise/PinkyPromise.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4QG3GC35LA;
