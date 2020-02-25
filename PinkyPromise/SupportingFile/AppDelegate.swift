@@ -111,7 +111,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         let date = Date()
         var triggerDaily = Calendar.current.dateComponents([.hour,.minute,.second,], from: date)
-        triggerDaily.hour = 00
+        triggerDaily.hour = 22
         triggerDaily.minute = 00
         triggerDaily.second = 00
         

@@ -108,7 +108,7 @@ class MoreTabMainVC: UIViewController {
     }
 }
 
-
+// MARK:- Initialization
 extension MoreTabMainVC {
     private func initView() {
         self.userImage.makeCircle()
