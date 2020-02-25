@@ -43,7 +43,7 @@ class MyFriendVC: UIViewController {
 
 }
 
-// MARK:- initialization
+// MARK:- Initialization
 extension MyFriendVC {
     private func initView() {
         setNavigationBar()

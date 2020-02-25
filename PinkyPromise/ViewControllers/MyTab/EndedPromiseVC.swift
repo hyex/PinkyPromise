@@ -42,6 +42,7 @@ class EndedPromiseVC: UIViewController {
 
 }
 
+// MARK:- Initialization
 extension EndedPromiseVC {
     private func initView() {
         backBtn.tintColor = UIColor.appColor

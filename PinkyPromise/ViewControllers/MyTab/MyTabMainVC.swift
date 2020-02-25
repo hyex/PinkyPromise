@@ -41,6 +41,7 @@ class MyTabMainVC: UIViewController {
     
 }
 
+// MARK:- Initialization
 extension MyTabMainVC {
     func initView() {
         addSwipeGesture()
