@@ -130,20 +130,4 @@ class PromiseDetailService : NSObject {
             
         }
     }
-
-    //프로그레스테이블에 원하는 유저의 uid를 인풋으로 그 유저의 프로그레스 정보를 알 수 있다
-    func getProgressDataWithUid(userid: String, completion: @escaping ([ProgressTable]) -> Void ) {
-        //self.fireStoreSetting()
-        var result = [ProgressTable]()
-        progressCollectionRef.whereField(USERID, isEqualTo: userid).getDocuments { (snapShot, error) in
-            
-            if let err = error {
-                debugPrint("debug print \(err)")
-            } else {
-                result = ProgressTable.parseData(snapShot: snapShot)
-                completion(result)
-            }
-            
-        }
-    }
 }
