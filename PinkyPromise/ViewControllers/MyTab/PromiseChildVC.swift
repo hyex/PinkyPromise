@@ -54,6 +54,7 @@ class PromiseChildVC: UIViewController {
     
 }
 
+// MARK:- Initialization
 extension PromiseChildVC {
     private func initView() {
         setupBtn()

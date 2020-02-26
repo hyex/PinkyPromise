@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Kakao Corp.
+ * Copyright 2015-2016 Kakao Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 #ifndef KakaoLinkSenderForSwift_KakaoOpenSDK_Bridging_Header_h
 #define KakaoLinkSenderForSwift_KakaoOpenSDK_Bridging_Header_h
 
-#import <KakaoOpenSDK/KakaoOpenSDK.h>
-//#import <KakaoMessageTemplate/KakaoMessageTemplate.h>
+#import <KakaoLink/KakaoLink.h>
+#import <KakaoMessageTemplate/KakaoMessageTemplate.h>
 
 #endif

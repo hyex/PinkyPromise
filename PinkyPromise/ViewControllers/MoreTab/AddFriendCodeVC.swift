@@ -63,7 +63,7 @@ class AddFriendCodeVC: UIViewController {
     
 }
 
-// MARK:- initialize
+// MARK:- Initialization
 extension AddFriendCodeVC {
     private func initView() {
         setNavigationBar()

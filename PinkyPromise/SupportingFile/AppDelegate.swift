@@ -16,7 +16,7 @@ import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     let notificationCenter = UNUserNotificationCenter.current()
     
@@ -27,14 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Firestore.firestore().settings.isPersistenceEnabled = true
         Firestore.firestore().settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
         
-//        let store = Firestore.firestore()
-//
-//        let setting = FirestoreSettings()
-//        setting.isPersistenceEnabled = true
-//        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
-//
-//        store.settings = setting
-//        
+        //        let store = Firestore.firestore()
+        //
+        //        let setting = FirestoreSettings()
+        //        setting.isPersistenceEnabled = true
+        //        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
+        //
+        //        store.settings = setting
+        //
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -49,17 +49,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("User has declined notifications")
             }
         }
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         return true
     }
-
+    
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
       -> Bool {
         
-//        if KOSession.isKakaoAccountLoginCallback(url.absoluteURL) {
-//            return KOSession.handleOpen(url)
-//        }
         let handled  = ApplicationDelegate.shared.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
         
         GIDSignIn.sharedInstance().handle(url)
@@ -68,11 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        
-//        if KOSession.isKakaoAccountLoginCallback(url.absoluteURL) {
-//            return KOSession.handleOpen(url)
-//        }
-        
+        print("in openurl source")
+        if KLKTalkLinkCenter.shared().isTalkLinkCallback(url) {
+            let params = url.query
+            print("카카오링크 메시지 액션\n\(params ?? "파라미터 없음")")
+            UIAlertController.showMessage("카카오링크 메시지 액션\n\(params ?? "파라미터 없음")")
+        }   
         return GIDSignIn.sharedInstance().handle(url)
     }
     
@@ -88,8 +87,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
+    
+//    func applicationDidBecomeActive(_ application: UIApplication) {
+//        UIApplication.shared.applicationIconBadgeNumber = 0
+//    }
 }
 
 
@@ -127,7 +128,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         let date = Date()
         var triggerDaily = Calendar.current.dateComponents([.hour,.minute,.second,], from: date)
-        triggerDaily.hour = 00
+        triggerDaily.hour = 22
         triggerDaily.minute = 00
         triggerDaily.second = 00
         

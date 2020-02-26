@@ -13,10 +13,18 @@ import Floaty
 
 class HomeTabMainVC: UIViewController {
     
-    fileprivate weak var calendar: FSCalendar!
-    fileprivate weak var eventLabel: UILabel!
+//    fileprivate weak var calendar: FSCalendar!
+//    fileprivate weak var eventLabel: UILabel!
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var eventLabel: UILabel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     var addPromiseBtn: AddPromiseBtn!
-    weak var tableView: UITableView!
+//    weak var tableView: UITableView!
     private var promiseListforDates: [ProgressTable]!
     
     let dateFormat: DateFormatter = {
@@ -58,92 +66,38 @@ class HomeTabMainVC: UIViewController {
         }
         
         // initialize UI
-        let view = UIView()
-        self.view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        //        let guide = view.safeAreaLayoutGuide
-        view.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(view)
-        
-        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        
-//        self.view.addSubview(view)
-//        self.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 33))
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 27.0)
-        titleLabel.attributedText = NSAttributedString(string: "PinkyPromise")
-        self.view.addSubview(titleLabel)
-        
-        //        let ScreenSize: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
-        
-        
-        let calendar = FSCalendar(frame: CGRect(x: 0, y: titleLabel.frame.maxY, width: self.view.frame.size.width, height: self.view.frame.size.height / 2 - titleLabel.frame.maxY))
         calendar.dataSource = self
         calendar.delegate = self
-        //        calendar.allowsMultipleSelection = true
-        self.view.addSubview(calendar)
-        self.calendar = calendar
-        
-        calendar.appearance.headerTitleColor = UIColor.appColor
-        
-        calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20.0)
-        calendar.appearance.weekdayTextColor = UIColor.darkText
-        calendar.appearance.borderSelectionColor = UIColor.appColor
-        calendar.appearance.selectionColor = UIColor.clear
-        calendar.appearance.titleSelectionColor = UIColor.darkText
-        
-        calendar.appearance.headerMinimumDissolvedAlpha = 0
-        
-        calendar.appearance.todayColor = UIColor.appColor
-        
+
         calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
         calendar.register(MyCalendarCell.self, forCellReuseIdentifier: "cell")
-        //        calendar.clipsToBounds = true // Remove top/bottom line
-        
+                calendar.clipsToBounds = true // Remove top/bottom line
+//
         calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
-        
+//
         let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
         calendar.addGestureRecognizer(scopeGesture)
-        
-        let yAxis = calendar.frame.maxY - CGFloat(20)
-        let label = UILabel(frame: CGRect(x: 0, y: yAxis, width: self.view.frame.size.width, height: 50))
-        label.textAlignment = .center
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
-        self.view.addSubview(label)
-        self.eventLabel = label
-        
+
         let attributedText = NSMutableAttributedString(string: "")
         attributedText.append(NSAttributedString(string: "Today"))
         self.eventLabel.attributedText = attributedText
-        
-        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY - CGFloat(5), width: self.view.frame.size.width, height: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - self.eventLabel.frame.maxY))
-        
-        self.view.addSubview(myTableView)
-        
-        self.tableView = myTableView
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
+        self.tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
         
         addPromiseBtn = AddPromiseBtn()
                 
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
-        addPromiseBtn.translatesAutoresizingMaskIntoConstraints = false
-        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
-        addPromiseBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+         addPromiseBtn.translatesAutoresizingMaskIntoConstraints = false
+        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        addPromiseBtn.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         addPromiseBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
         addPromiseBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+
         // data setting
         
         //        MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
@@ -174,7 +128,9 @@ class HomeTabMainVC: UIViewController {
                 }
             }
         }
+
         tableView.reloadData()
+        
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {

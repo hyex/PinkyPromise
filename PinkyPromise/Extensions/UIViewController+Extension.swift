@@ -31,4 +31,12 @@ extension UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true)
     }
+    
+    func simpleAlertMessage(message: String) {
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
+    }
+    
 }

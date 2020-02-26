@@ -23,7 +23,7 @@ class AddPromiseVC: UIViewController {
     @IBOutlet weak var promiseTableView: UITableView!
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
-    
+
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
     
     //    private var isStartCalSelected: Bool!
@@ -63,14 +63,10 @@ class AddPromiseVC: UIViewController {
         setNavigationUI()
         setBackBtn()
         setNavigationUI()
-        
+
         // detegate & dataSource
         promiseTableView.delegate = self
         promiseTableView.dataSource = self
-        
-        //        // logic
-        //        isStartCalSelected = true
-        //        isEndCalSelected = true
         
         //data setting
         MyApi.shared.getUserData { (result) in
@@ -235,8 +231,13 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
 extension AddPromiseVC {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return indexPath.row != 3 ? 75 : 240
+        if indexPath.row == 2 {
+            return 75
+        }
+        else if indexPath.row == 3 {
+            return 240
+        }
+        else { return 55 }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

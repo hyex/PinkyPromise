@@ -10,11 +10,15 @@ import UIKit
 
 class FriendCellTVC: UITableViewCell {
 
-    
+    @IBOutlet weak var friendIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let image = UIImage(named: "withFriends")?.withRenderingMode(.alwaysTemplate)
+        friendIcon.image = image
+        
+        friendIcon.tintColor = UIColor.myPurple
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
