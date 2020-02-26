@@ -180,7 +180,7 @@
 		3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPromiseVC.swift; sourceTree = "<group>"; };
 		3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectColorVC.swift; sourceTree = "<group>"; };
 		3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCellTVC.swift; sourceTree = "<group>"; };
-		3FE061CE23E0CF9900CD2F6A /* FriendCellTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellTVC.swift; sourceTree = "<group>"; };
+		3FE061CE23E0CF9900CD2F6A /* FriendCellTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellTVC.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsVC.swift; sourceTree = "<group>"; };
 		3FE061D823E0E6C200CD2F6A /* CheckFriendsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFriendsTVC.swift; sourceTree = "<group>"; };
 		3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaltyTVC.swift; sourceTree = "<group>"; };

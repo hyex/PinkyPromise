@@ -12,9 +12,15 @@ class PanaltyTVC: UITableViewCell {
 
     @IBOutlet weak var addBtn: UIButton!
     
+    @IBOutlet weak var panaltyIcon: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let image = UIImage(named: "panalty")?.withRenderingMode(.alwaysTemplate)
+        panaltyIcon.image = image
+        
+        panaltyIcon.tintColor = UIColor.myPurple
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
