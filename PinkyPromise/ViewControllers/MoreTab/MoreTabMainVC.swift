@@ -14,6 +14,7 @@ class MoreTabMainVC: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var myFriendBtn: UIButton!
     @IBOutlet weak var addFriendCodeBtn: UIButton!
+    @IBOutlet weak var addFriendKakaoBtn: UIButton!
     @IBOutlet weak var logOutBtn: UIButton!
     
     let picker = UIImagePickerController()
@@ -92,6 +93,42 @@ class MoreTabMainVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
+    
+    @IBAction func addFriendKakaoBtnAction(_ sender: Any) {
+        
+        let template = KMTTextTemplate { (textTemplateBuilder) in
+            let param = "param1=" + FirebaseUserService.currentUserID!
+            textTemplateBuilder.text = "나랑 친구하자"
+            textTemplateBuilder.addButton(KMTButtonObject(builderBlock: { (buttonBuilder) in
+                buttonBuilder.title = "친구하러 가기"
+                buttonBuilder.link = KMTLinkObject(builderBlock: { (linkBuilder) in
+                    linkBuilder.iosExecutionParams = param
+//                    print(param)
+                })
+            }))
+            textTemplateBuilder.link = KMTLinkObject(builderBlock: { (linkBuilder) in
+                linkBuilder.iosExecutionParams = param
+                print(param)
+                //linkBuilder.mobileWebURL = URL(string: "https://developers.kakao.com")
+            })
+            
+        }
+        
+        // 카카오링크 실행
+        KLKTalkLinkCenter.shared().sendDefault(with: template, success: { (warningMsg, argumentMsg) in
+            // 성공
+            print("warning message: \(String(describing: warningMsg))")
+            print("argument message: \(String(describing: argumentMsg))")
+
+        }, failure: { (error) in
+            // 실패
+            UIAlertController.showMessage(error.localizedDescription)
+            print("error \(error)")
+            
+        })
+        
+    }
+    
     @IBAction func logOutBtnAction(_ sender: Any) {
         
         FirebaseUserService.signOut(success: {
@@ -126,10 +163,12 @@ extension MoreTabMainVC {
         
         myFriendBtn.applyRadius(radius: 8)
         addFriendCodeBtn.applyRadius(radius: 8)
+        addFriendKakaoBtn.applyRadius(radius: 8)
         logOutBtn.applyRadius(radius: 8)
         
         myFriendBtn.backgroundColor = color
         addFriendCodeBtn.backgroundColor = color
+        addFriendKakaoBtn.backgroundColor = color
         logOutBtn.backgroundColor = color
     }
 }

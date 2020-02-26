@@ -46,6 +46,10 @@
 		334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE423CC296100AAF955 /* MoreTabMainVC.swift */; };
 		334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */; };
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
+		33719528240537A400753F99 /* KakaoLink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33719527240537A400753F99 /* KakaoLink.framework */; };
+		3371952A240537DD00753F99 /* KakaoCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33719529240537DD00753F99 /* KakaoCommon.framework */; };
+		3371952C24053C0F00753F99 /* KakaoMessageTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3371952B24053C0F00753F99 /* KakaoMessageTemplate.framework */; };
+		3371952F24058DA600753F99 /* UIAlertController+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3371952E24058DA600753F99 /* UIAlertController+Extention.swift */; };
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
 		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
 		33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */; };
@@ -149,6 +153,11 @@
 		334AACE423CC296100AAF955 /* MoreTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabMainVC.swift; sourceTree = "<group>"; };
 		334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTVC.swift; sourceTree = "<group>"; };
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
+		33719527240537A400753F99 /* KakaoLink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoLink.framework; sourceTree = "<group>"; };
+		33719529240537DD00753F99 /* KakaoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoCommon.framework; sourceTree = "<group>"; };
+		3371952B24053C0F00753F99 /* KakaoMessageTemplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoMessageTemplate.framework; sourceTree = "<group>"; };
+		3371952D24053DEA00753F99 /* KakaoOpenSDK-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KakaoOpenSDK-Bridging-Header.h"; sourceTree = "<group>"; };
+		3371952E24058DA600753F99 /* UIAlertController+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extention.swift"; sourceTree = "<group>"; };
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
 		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
 		33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -219,6 +228,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */,
+				3371952A240537DD00753F99 /* KakaoCommon.framework in Frameworks */,
+				3371952C24053C0F00753F99 /* KakaoMessageTemplate.framework in Frameworks */,
+				33719528240537A400753F99 /* KakaoLink.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +503,7 @@
 				33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */,
 				33B7E8DB23E1E02E00B2D6C0 /* UIView+Extension.swift */,
 				33B7E8DC23E1E02E00B2D6C0 /* UIViewController+Extension.swift */,
+				3371952E24058DA600753F99 /* UIAlertController+Extention.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -498,6 +511,7 @@
 		33FF2C2623CB55DC0040003A = {
 			isa = PBXGroup;
 			children = (
+				3371952D24053DEA00753F99 /* KakaoOpenSDK-Bridging-Header.h */,
 				33FF2C3123CB55DC0040003A /* PinkyPromise */,
 				33FF2C3023CB55DC0040003A /* Products */,
 				36455313227D00FADAE19D69 /* Pods */,
@@ -593,6 +607,9 @@
 		BDFE7D20C7BEE704036DD9C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3371952B24053C0F00753F99 /* KakaoMessageTemplate.framework */,
+				33719529240537DD00753F99 /* KakaoCommon.framework */,
+				33719527240537A400753F99 /* KakaoLink.framework */,
 				BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */,
 			);
 			name = Frameworks;
@@ -797,6 +814,7 @@
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
 				3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */,
 				3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */,
+				3371952F24058DA600753F99 /* UIAlertController+Extention.swift in Sources */,
 				18BA606C23DC82B100925578 /* progressTable.swift in Sources */,
 				186D855923D42174006DA619 /* promiseUsers.swift in Sources */,
 				A9A3E82F23E0355400EDFE1C /* FinalDateVC.swift in Sources */,
@@ -1108,7 +1126,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
 				PRODUCT_NAME = PinkyPromise;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OBJC_BRIDGING_HEADER = "KakaoOpenSDK-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1257,6 +1275,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
 				PRODUCT_NAME = PinkyPromise;
+				SWIFT_OBJC_BRIDGING_HEADER = "KakaoOpenSDK-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
