@@ -13,12 +13,14 @@ import FirebaseStorage
 //import SVProgressHUD
 import GoogleSignIn
 import AuthenticationServices
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class LoginVC: UIViewController {
     
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
-    @IBOutlet weak var kakaoSignInBtn: UIButton!
+    @IBOutlet weak var faceSignInBtn: UIButton!
     @IBOutlet weak var googleSignInBtn: UIButton!
     @IBOutlet weak var appleSignInBtn: UIButton!
     @IBOutlet weak var pinkyTitle: UILabel!
@@ -30,8 +32,7 @@ class LoginVC: UIViewController {
     var currentNonce: String? = nil
     
     @IBAction func goToSignIn(){
-        let controller = signInVC()
-        self.navigationController?.pushViewController(controller, animated: true)
+
     }
     
     @IBAction func goToSignUp(){
@@ -62,9 +63,12 @@ class LoginVC: UIViewController {
         
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
-        self.kakaoSignInBtn.layer.cornerRadius = 10
+        self.faceSignInBtn.setTitle("페이스북으로 로그인!", for: .normal)
+        self.faceSignInBtn.layer.cornerRadius = 10
         self.appleSignInBtn.layer.cornerRadius = 10
         self.googleSignInBtn.layer.cornerRadius = 10
+        
+        self.faceSignInBtn.addTarget(self, action: #selector(self.handleCustomFBLogin), for: .touchUpInside)
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
             self.pinkyTitle.center.x += self.view.bounds.width
@@ -73,8 +77,8 @@ class LoginVC: UIViewController {
         
         //print(Auth.auth().currentUser?.email ?? "")
         
-        var temp3 = [String]()
-        var temp4 = [[PromiseTable]]()
+        //        var temp3 = [String]()
+        //        var temp4 = [[PromiseTable]]()
         
         //        MyApi.shared.getPromiseDataSorted { (temp4) in
         //            for douc1 in temp4 {
@@ -88,14 +92,172 @@ class LoginVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.identifier)
+        print("here is LoginVC in func prepare. \(segue.identifier)")
         
         switch segue.identifier {
         case "loginSegue":
             let mainVC = segue.destination as! MainTabBarController
+        case "signInSegue":
+            let signInVc = segue.destination as! signInVC
+        case "signUpSegue":
+            let signUpSegue = segue.destination as! signUpVC
         default:
             break
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       if UserDefaults.standard.bool(forKey: "loggedIn") == true {
+        self.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+extension LoginVC: LoginButtonDelegate {
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        print("did log out of facebook")
+    }
+    
+    func loginButton(_ loginButton: FBLoginButton!, didCompleteWith result: LoginManagerLoginResult!, error: Error!) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+        Auth.auth().signIn(with: credential, completion: { (user, error) in
+            if error != nil {
+                print("Something is wrong with FB user: \(error)")
+            }
+            print("successfully logged in with our user: \(user)")
+        })
+        
+        GraphRequest(graphPath: "/me", parameters: ["fields": "email, id, name"]).start { (connection, result, err) in
+            
+            if err != nil {
+                print("failed to login: \(err)")
+                return
+            }
+            print(result ?? "")
+        }
+    }
+    
+    @objc func handleCustomFBLogin() {
+        LoginManager().logIn(permissions: ["email", "public_profile"], from: self) { (result, err) in
+            
+            if err != nil {
+                print("FB login failed: \(err)")
+                return
+            }
+            let accessToken = AccessToken.current
+            guard let accessTokenString = accessToken?.tokenString else { return }
+            
+            let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+            Auth.auth().signIn(with: credentials) { (user, error) in
+                if error != nil {
+                    print("Something is wrong with FB user: \(error)")
+                    return
+                }
+                let userID = user?.user.uid
+                let fullName = user?.user.displayName
+                print(user?.user.email)
+                
+                //signin을 만들어서 더 추가하면됨
+                if UserDefaults.standard.bool(forKey: "loggedIn") == false || UserDefaults.standard.bool(forKey: "signedIn") == false {
+                    print("not yet logined...")
+                    self.navigationController?.isNavigationBarHidden = true
+                    UserDefaults.standard.set(true, forKey: "loggedIn")
+                    
+                    let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                    MyApi.shared.addUserData(temp)
+                    
+                    if UserDefaults.standard.bool(forKey: "signedIn") == false{
+                        let tempimage = UIImage(named: "user_male")
+                        
+                        guard let imageData = tempimage!.jpegData(compressionQuality: 1) else { return }
+                        
+                        FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                            switch result {
+                            case .success(let url):
+                                //self?.imageURL = url
+                                print("store default user Image with \(url)")
+                            //print(self?.imageURL)
+                            case .failure(let error):
+                                print("this is \(error.localizedDescription)")
+                                //print(error)
+                            }
+                        }
+                        
+                        UserDefaults.standard.set(true, forKey: "signedIn")
+                    }
+                } else {
+                    print("go login!!")
+                    self.navigationController?.isNavigationBarHidden = true
+                }
+                
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func showEmailAddress() {
+        
+        let accessToken = AccessToken.current
+        guard let accessTokenString = accessToken?.tokenString else { return }
+        
+        let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+        Auth.auth().signIn(with: credentials) { (user, error) in
+            if error != nil {
+                print("Something is wrong with FB user: \(error)")
+                return
+            }
+            let userID = user?.user.uid
+            let fullName = user?.user.displayName
+            print(user?.user.email)
+            
+            //signin을 만들어서 더 추가하면됨
+            if UserDefaults.standard.bool(forKey: "loggedIn") == false || UserDefaults.standard.bool(forKey: "signedIn") == false {
+                print("not yet logined...")
+                self.navigationController?.isNavigationBarHidden = true
+                UserDefaults.standard.set(true, forKey: "loggedIn")
+                
+                let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                MyApi.shared.addUserData(temp)
+                
+                if UserDefaults.standard.bool(forKey: "signedIn") == false{
+                    let tempimage = UIImage(named: "user_male")
+                    
+                    guard let imageData = tempimage!.jpegData(compressionQuality: 1) else { return }
+                    
+                    FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                        switch result {
+                        case .success(let url):
+                            //self?.imageURL = url
+                            print("store default user Image with \(url)")
+                        //print(self?.imageURL)
+                        case .failure(let error):
+                            print("this is \(error.localizedDescription)")
+                            //print(error)
+                        }
+                    }
+                    
+                    UserDefaults.standard.set(true, forKey: "signedIn")
+                }
+            } else {
+                print("go login!!")
+                self.navigationController?.isNavigationBarHidden = true
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+//        GraphRequest(graphPath: "/me", parameters: ["fields": "email, id, name"]).start { (connection, result, err) in
+//            if err != nil {
+//                print("failed to login: \(err)")
+//                return
+//            }
+//            print(result ?? "")
+//        }
+        
     }
 }
 

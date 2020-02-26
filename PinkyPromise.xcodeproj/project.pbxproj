@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,9 @@
 		1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63523D876FE00751947 /* FirebaseStorageService.swift */; };
 		1875B63A23D99F7400751947 /* signInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63923D99F7400751947 /* signInVC.swift */; };
 		1875B63C23D99F8600751947 /* signUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63B23D99F8600751947 /* signUpVC.swift */; };
+		188A334F23F90E6500C1D846 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188A334E23F90E6500C1D846 /* KakaoOpenSDK.framework */; };
+		188A335A23FAB2D000C1D846 /* Facebook.SDKFolder in Resources */ = {isa = PBXBuildFile; fileRef = 188A335923FAB2D000C1D846 /* Facebook.SDKFolder */; };
+		188A335E23FD22E200C1D846 /* ResetPWVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A335D23FD22E200C1D846 /* ResetPWVC.swift */; };
 		188AAA3723D5CE8400E8BB70 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188AAA3623D5CE8400E8BB70 /* FirebaseAuthentication.swift */; };
 		18A7B4F823CF663900598AF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A7B4F723CF663900598AF5 /* GoogleService-Info.plist */; };
 		18AE1EA223D5A3C400C786C5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE1EA123D5A3C400C786C5 /* LoginVC.swift */; };
@@ -98,12 +101,16 @@
 /* Begin PBXFileReference section */
 		1808C1D823E41AA6004D5ED2 /* API-Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API-Auth.swift"; sourceTree = "<group>"; };
 		181D739B23D5DE32006797A2 /* PinkyPromise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinkyPromise.entitlements; sourceTree = "<group>"; };
+		183187BB23F9099600B738F2 /* KakaoOpenSDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KakaoOpenSDK-Bridging-Header.h"; sourceTree = "<group>"; };
 		186D855323D41C94006DA619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		186D855823D42174006DA619 /* promiseUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseUsers.swift; sourceTree = "<group>"; };
 		186D855A23D42486006DA619 /* promiseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseTable.swift; sourceTree = "<group>"; };
 		1875B63523D876FE00751947 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		1875B63923D99F7400751947 /* signInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInVC.swift; sourceTree = "<group>"; };
 		1875B63B23D99F8600751947 /* signUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpVC.swift; sourceTree = "<group>"; };
+		188A334E23F90E6500C1D846 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
+		188A335923FAB2D000C1D846 /* Facebook.SDKFolder */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Facebook.SDKFolder; sourceTree = "<group>"; };
+		188A335D23FD22E200C1D846 /* ResetPWVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWVC.swift; sourceTree = "<group>"; };
 		188AAA3623D5CE8400E8BB70 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		18A7B4F723CF663900598AF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18AE1EA123D5A3C400C786C5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -195,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */,
+				188A334F23F90E6500C1D846 /* KakaoOpenSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +243,7 @@
 				18AE1EA123D5A3C400C786C5 /* LoginVC.swift */,
 				1875B63923D99F7400751947 /* signInVC.swift */,
 				1875B63B23D99F8600751947 /* signUpVC.swift */,
+				188A335D23FD22E200C1D846 /* ResetPWVC.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -473,6 +482,7 @@
 		33FF2C2623CB55DC0040003A = {
 			isa = PBXGroup;
 			children = (
+				183187BB23F9099600B738F2 /* KakaoOpenSDK-Bridging-Header.h */,
 				33FF2C3123CB55DC0040003A /* PinkyPromise */,
 				33FF2C3023CB55DC0040003A /* Products */,
 				36455313227D00FADAE19D69 /* Pods */,
@@ -517,6 +527,8 @@
 		BDFE7D20C7BEE704036DD9C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				188A335923FAB2D000C1D846 /* Facebook.SDKFolder */,
+				188A334E23F90E6500C1D846 /* KakaoOpenSDK.framework */,
 				BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */,
 			);
 			name = Frameworks;
@@ -569,6 +581,9 @@
 				Base,
 			);
 			mainGroup = 33FF2C2623CB55DC0040003A;
+			packageReferences = (
+				188A335023FA5A0000C1D846 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 33FF2C3023CB55DC0040003A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -594,6 +609,7 @@
 				330AE60923CB56DC00706769 /* Assets.xcassets in Resources */,
 				3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */,
 				334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */,
+				188A335A23FAB2D000C1D846 /* Facebook.SDKFolder in Resources */,
 				334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */,
 				330AE60D23CB56DC00706769 /* Main.storyboard in Resources */,
 				330AE60C23CB56DC00706769 /* LaunchScreen.storyboard in Resources */,
@@ -671,6 +687,7 @@
 				1808C1D923E41AA6004D5ED2 /* API-Auth.swift in Sources */,
 				3F6DAE5923DE30D800599661 /* AddPromiseBtn.swift in Sources */,
 				3F7F7E7723DFB7960033856F /* IconCVC.swift in Sources */,
+				188A335E23FD22E200C1D846 /* ResetPWVC.swift in Sources */,
 				3F8F103423E0387A002D2BDA /* DayPromiseListTVC.swift in Sources */,
 				186D855B23D42486006DA619 /* promiseTable.swift in Sources */,
 				A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */,
@@ -884,13 +901,142 @@
 				CODE_SIGN_ENTITLEMENTS = PinkyPromise/PinkyPromise.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = PinkyPromise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AppAuth\"",
+					"-framework",
+					"\"BEMCheckBox\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FIRAnalyticsConnector\"",
+					"-framework",
+					"\"FSCalendar\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseDatabase\"",
+					"-framework",
+					"\"FirebaseFirestore\"",
+					"-framework",
+					"\"FirebaseFirestoreSwift\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseStorage\"",
+					"-framework",
+					"\"FirebaseUI\"",
+					"-framework",
+					"\"Floaty\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GTMAppAuth\"",
+					"-framework",
+					"\"GTMSessionFetcher\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleDataTransportCCTSupport\"",
+					"-framework",
+					"\"GoogleSignIn\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"LocalAuthentication\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"absl\"",
+					"-framework",
+					"\"grpc\"",
+					"-framework",
+					"\"grpcpp\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"openssl_grpc\"",
+					"-weak_framework",
+					"\"Accelerate\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"AuthenticationServices\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"CoreLocation\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
 				PRODUCT_NAME = PromiseWithMe;
+				SWIFT_OBJC_BRIDGING_HEADER = "KakaoOpenSDK-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -904,13 +1050,142 @@
 				CODE_SIGN_ENTITLEMENTS = PinkyPromise/PinkyPromise.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = PinkyPromise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AppAuth\"",
+					"-framework",
+					"\"BEMCheckBox\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FIRAnalyticsConnector\"",
+					"-framework",
+					"\"FSCalendar\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseDatabase\"",
+					"-framework",
+					"\"FirebaseFirestore\"",
+					"-framework",
+					"\"FirebaseFirestoreSwift\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseStorage\"",
+					"-framework",
+					"\"FirebaseUI\"",
+					"-framework",
+					"\"Floaty\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GTMAppAuth\"",
+					"-framework",
+					"\"GTMSessionFetcher\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleDataTransportCCTSupport\"",
+					"-framework",
+					"\"GoogleSignIn\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"LocalAuthentication\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"absl\"",
+					"-framework",
+					"\"grpc\"",
+					"-framework",
+					"\"grpcpp\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"openssl_grpc\"",
+					"-weak_framework",
+					"\"Accelerate\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"AuthenticationServices\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"CoreLocation\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
 				PRODUCT_NAME = PromiseWithMe;
+				SWIFT_OBJC_BRIDGING_HEADER = "KakaoOpenSDK-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -938,6 +1213,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		188A335023FA5A0000C1D846 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 33FF2C2723CB55DC0040003A /* Project object */;
 }

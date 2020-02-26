@@ -30,15 +30,26 @@ class FirebaseUserService {
                 failure(error!)
                 return
             }
-            //let userID = authDataResult?.user.uid
+            let userID = authDataResult?.user.uid
             
             if let chosenImage = image {
                 guard let imageData = chosenImage.jpegData(compressionQuality: 0.1) else {
                     return
                 }
                 //아직 구현단계 여기서는 뭘해야하는지모르겠군
+                FirebaseStorageService.shared.storeUserImage(image: imageData, completion: { result in
+                    switch result {
+                    case .failure(let err):
+                        print(err)
+                    case .success:
+                        success()
+                    }
+                })
+                
+                //또한 여기서 사용자를 만들어야하는듯하다
             }
             else {
+                print("this is FirebaseUserService. here is signUp else part.")
             }
         }
     }

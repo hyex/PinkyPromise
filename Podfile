@@ -13,6 +13,10 @@ pod 'Firebase/Core'
 pod 'FirebaseUI'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
+pod 'FBSDKCoreKit', :git => 'https://github.com/facebook/facebook-objc-sdk.git', :branch => 'master'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
 pod 'Firebase/Storage'
 
 # Optionally, include the Swift extension if you're using Swift
