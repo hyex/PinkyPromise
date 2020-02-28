@@ -18,6 +18,7 @@ class signInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.loginBtn.layer.cornerRadius = 10
         loginBtn.addTarget(self, action: #selector(signIn), for: .touchUpInside)
     }
     
@@ -28,10 +29,12 @@ class signInVC: UIViewController {
         else {
             FirebaseUserService.signIn_(withEmail: emailTextField.text!, password: PWTextFiled.text!, success: {
                 UserDefaults.standard.set(true, forKey: "loggedIn")
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 //have to move maintapbar. dismiss해야한다.
                 //여기서 어떻게 다음 화면으로 이동하는가?
+                
                 self.navigationController?.popViewController(animated: true)
+            
             }) { (error) in
                 //SVProgressHUD.showError(withStatus: error.localizedDescription)
                 self.showAlert(message: "이메일 혹은 비밀번호를 다시한번 확인해 주세요!")
