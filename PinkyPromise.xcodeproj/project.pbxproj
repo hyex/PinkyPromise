@@ -14,7 +14,6 @@
 		1875B63623D876FE00751947 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63523D876FE00751947 /* FirebaseStorageService.swift */; };
 		1875B63A23D99F7400751947 /* signInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63923D99F7400751947 /* signInVC.swift */; };
 		1875B63C23D99F8600751947 /* signUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B63B23D99F8600751947 /* signUpVC.swift */; };
-		188A334F23F90E6500C1D846 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188A334E23F90E6500C1D846 /* KakaoOpenSDK.framework */; };
 		188A335A23FAB2D000C1D846 /* Facebook.SDKFolder in Resources */ = {isa = PBXBuildFile; fileRef = 188A335923FAB2D000C1D846 /* Facebook.SDKFolder */; };
 		188A335E23FD22E200C1D846 /* ResetPWVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A335D23FD22E200C1D846 /* ResetPWVC.swift */; };
 		188AAA3723D5CE8400E8BB70 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188AAA3623D5CE8400E8BB70 /* FirebaseAuthentication.swift */; };
@@ -49,10 +48,11 @@
 		334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACE423CC296100AAF955 /* MoreTabMainVC.swift */; };
 		334AACEC23CC2E7D00AAF955 /* MoreTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */; };
 		334AACEF23CC2FF600AAF955 /* MoreTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AACEE23CC2FF600AAF955 /* MoreTableData.swift */; };
-		33719528240537A400753F99 /* KakaoLink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33719527240537A400753F99 /* KakaoLink.framework */; };
-		3371952A240537DD00753F99 /* KakaoCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33719529240537DD00753F99 /* KakaoCommon.framework */; };
-		3371952C24053C0F00753F99 /* KakaoMessageTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3371952B24053C0F00753F99 /* KakaoMessageTemplate.framework */; };
 		3371952F24058DA600753F99 /* UIAlertController+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3371952E24058DA600753F99 /* UIAlertController+Extention.swift */; };
+		337195362406DA0000753F99 /* KakaoCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337195312406D9FF00753F99 /* KakaoCommon.framework */; };
+		337195372406DA0000753F99 /* KakaoLink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337195332406D9FF00753F99 /* KakaoLink.framework */; };
+		337195382406DA0000753F99 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337195342406D9FF00753F99 /* KakaoOpenSDK.framework */; };
+		337195392406DA0000753F99 /* KakaoMessageTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337195352406D9FF00753F99 /* KakaoMessageTemplate.framework */; };
 		33A782AD23D21E110055D6C5 /* PromiseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AC23D21E110055D6C5 /* PromiseData.swift */; };
 		33A782AF23D22B6C0055D6C5 /* EndedPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */; };
 		33B7E8DD23E1E02E00B2D6C0 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */; };
@@ -117,14 +117,12 @@
 /* Begin PBXFileReference section */
 		1808C1D823E41AA6004D5ED2 /* API-Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API-Auth.swift"; sourceTree = "<group>"; };
 		181D739B23D5DE32006797A2 /* PinkyPromise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinkyPromise.entitlements; sourceTree = "<group>"; };
-		183187BB23F9099600B738F2 /* KakaoOpenSDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KakaoOpenSDK-Bridging-Header.h"; sourceTree = "<group>"; };
 		186D855323D41C94006DA619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		186D855823D42174006DA619 /* promiseUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseUsers.swift; sourceTree = "<group>"; };
 		186D855A23D42486006DA619 /* promiseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseTable.swift; sourceTree = "<group>"; };
 		1875B63523D876FE00751947 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		1875B63923D99F7400751947 /* signInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInVC.swift; sourceTree = "<group>"; };
 		1875B63B23D99F8600751947 /* signUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpVC.swift; sourceTree = "<group>"; };
-		188A334E23F90E6500C1D846 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		188A335923FAB2D000C1D846 /* Facebook.SDKFolder */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Facebook.SDKFolder; sourceTree = "<group>"; };
 		188A335D23FD22E200C1D846 /* ResetPWVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWVC.swift; sourceTree = "<group>"; };
 		188AAA3623D5CE8400E8BB70 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
@@ -160,11 +158,12 @@
 		334AACE423CC296100AAF955 /* MoreTabMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabMainVC.swift; sourceTree = "<group>"; };
 		334AACEB23CC2E7D00AAF955 /* MoreTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTVC.swift; sourceTree = "<group>"; };
 		334AACEE23CC2FF600AAF955 /* MoreTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableData.swift; sourceTree = "<group>"; };
-		33719527240537A400753F99 /* KakaoLink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoLink.framework; sourceTree = "<group>"; };
-		33719529240537DD00753F99 /* KakaoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoCommon.framework; sourceTree = "<group>"; };
-		3371952B24053C0F00753F99 /* KakaoMessageTemplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoMessageTemplate.framework; sourceTree = "<group>"; };
-		3371952D24053DEA00753F99 /* KakaoOpenSDK-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KakaoOpenSDK-Bridging-Header.h"; sourceTree = "<group>"; };
 		3371952E24058DA600753F99 /* UIAlertController+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extention.swift"; sourceTree = "<group>"; };
+		337195312406D9FF00753F99 /* KakaoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoCommon.framework; sourceTree = "<group>"; };
+		337195332406D9FF00753F99 /* KakaoLink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoLink.framework; sourceTree = "<group>"; };
+		337195342406D9FF00753F99 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
+		337195352406D9FF00753F99 /* KakaoMessageTemplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoMessageTemplate.framework; sourceTree = "<group>"; };
+		3371953A2406DA6B00753F99 /* KakaoOpenSDK-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KakaoOpenSDK-Bridging-Header.h"; sourceTree = "<group>"; };
 		33A782AC23D21E110055D6C5 /* PromiseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseData.swift; sourceTree = "<group>"; };
 		33A782AE23D22B6C0055D6C5 /* EndedPromiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedPromiseVC.swift; sourceTree = "<group>"; };
 		33B7E8DA23E1E02E00B2D6C0 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -234,12 +233,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337195382406DA0000753F99 /* KakaoOpenSDK.framework in Frameworks */,
+				337195362406DA0000753F99 /* KakaoCommon.framework in Frameworks */,
+				337195392406DA0000753F99 /* KakaoMessageTemplate.framework in Frameworks */,
 				DE39B3E808300DE84784C935 /* Pods_PinkyPromise.framework in Frameworks */,
-				
-				3371952A240537DD00753F99 /* KakaoCommon.framework in Frameworks */,
-				3371952C24053C0F00753F99 /* KakaoMessageTemplate.framework in Frameworks */,
-				33719528240537A400753F99 /* KakaoLink.framework in Frameworks */,
-
+				337195372406DA0000753F99 /* KakaoLink.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +505,17 @@
 			path = FriendTab;
 			sourceTree = "<group>";
 		};
+		337195302406D9FF00753F99 /* Kakao.SDKFolder */ = {
+			isa = PBXGroup;
+			children = (
+				337195312406D9FF00753F99 /* KakaoCommon.framework */,
+				337195332406D9FF00753F99 /* KakaoLink.framework */,
+				337195342406D9FF00753F99 /* KakaoOpenSDK.framework */,
+				337195352406D9FF00753F99 /* KakaoMessageTemplate.framework */,
+			);
+			path = Kakao.SDKFolder;
+			sourceTree = "<group>";
+		};
 		33B7E8D923E1E02E00B2D6C0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,8 +530,7 @@
 		33FF2C2623CB55DC0040003A = {
 			isa = PBXGroup;
 			children = (
-				3371952D24053DEA00753F99 /* KakaoOpenSDK-Bridging-Header.h */,
-
+				3371953A2406DA6B00753F99 /* KakaoOpenSDK-Bridging-Header.h */,
 				33FF2C3123CB55DC0040003A /* PinkyPromise */,
 				33FF2C3023CB55DC0040003A /* Products */,
 				36455313227D00FADAE19D69 /* Pods */,
@@ -618,12 +626,8 @@
 		BDFE7D20C7BEE704036DD9C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				337195302406D9FF00753F99 /* Kakao.SDKFolder */,
 				188A335923FAB2D000C1D846 /* Facebook.SDKFolder */,
-
-				3371952B24053C0F00753F99 /* KakaoMessageTemplate.framework */,
-				33719529240537DD00753F99 /* KakaoCommon.framework */,
-				33719527240537A400753F99 /* KakaoLink.framework */,
-
 				BFCBDC959DB9F6493646E382 /* Pods_PinkyPromise.framework */,
 			);
 			name = Frameworks;
@@ -1014,6 +1018,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Kakao.SDKFolder",
 				);
 				INFOPLIST_FILE = PinkyPromise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1026,9 +1031,7 @@
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"sqlite3\"",
-
 					"-l\"stdc++\"",
-
 					"-l\"z\"",
 					"-framework",
 					"\"AppAuth\"",
@@ -1147,9 +1150,7 @@
 					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
-
 				PRODUCT_NAME = PinkyPromise;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "KakaoOpenSDK-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1168,6 +1169,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Kakao.SDKFolder",
 				);
 				INFOPLIST_FILE = PinkyPromise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1299,9 +1301,7 @@
 					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hyex.PinkyPromise;
-
 				PRODUCT_NAME = PinkyPromise;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "KakaoOpenSDK-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
