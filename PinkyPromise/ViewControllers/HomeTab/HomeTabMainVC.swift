@@ -47,7 +47,7 @@ class HomeTabMainVC: UIViewController {
         var promise: [Promise]
     }
      
-    var days: [PromiseAndProgress1] = []
+    var days: [Date: PromiseAndProgress1] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,11 +128,11 @@ class HomeTabMainVC: UIViewController {
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
             
-            HomeTabMainService.shared.getAllHome { (result) in
-                DispatchQueue.main.async {
-                    self.days = result
-                }
-            }
+//            HomeTabMainService.shared.getAllHome { (result) in
+//                DispatchQueue.main.async {
+//                    self.days = result
+//                }
+//            }
         }
 
         tableView.reloadData()
@@ -178,10 +178,9 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     private func configureVisibleCell(date: Date, cell: MyCalendarCell) {
-        print("calendar:")
-        print(date)
+        
         HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
-            
+            self.days[date] = day
             var progress: Int = 0
             for pm in day.PAPD {
                 for pm2 in pm.progressData.progressDegree {
@@ -253,12 +252,12 @@ extension HomeTabMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let date = calendar.selectedDate ?? Date()
-        print("table:")
-        print(date)
         var count = 0
-        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
-            count = day.PAPD.count
-        }
+//        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
+//
+//            count = day.PAPD.count
+//        }
+        count = days[date]?.PAPD.count ?? 0
 //
 //        days.forEach { (day) in
 //            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
@@ -274,15 +273,18 @@ extension HomeTabMainVC: UITableViewDataSource {
 
         let date = calendar.selectedDate ?? Date()
         cell.delegate = self
-        
-        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
-              cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
-               cell.setIcon(name: day.PAPD[indexPath.row].promiseData.promiseIcon, color: day.PAPD[indexPath.row].promiseData.promiseColor)
-               
-               let interval = date.timeIntervalSince(day.PAPD[indexPath.row].promiseData.promiseStartTime)
-               let idxDay = Int(interval/86400)
-               cell.setProgress(promiseId: day.PAPD[indexPath.row].promiseData.promiseId, progressId: day.PAPD[indexPath.row].progressData.progressId, progressDegree: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
+        if let day = days[date] {
+            cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
+            cell.setIcon(name: day.PAPD[indexPath.row].promiseData.promiseIcon, color: day.PAPD[indexPath.row].promiseData.promiseColor)
+            
+            let interval = date.timeIntervalSince(day.PAPD[indexPath.row].promiseData.promiseStartTime)
+            let idxDay = Int(interval/86400)
+            cell.setProgress(promiseId: day.PAPD[indexPath.row].promiseData.promiseId, progressId: day.PAPD[indexPath.row].progressData.progressId, progressDegree: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
+        } else {
+            print("nil")
         }
+        
+        
 //        days.forEach { (day) in
 //            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
 //                cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
@@ -358,11 +360,11 @@ extension HomeTabMainVC {
 
 extension HomeTabMainVC: SendProgressDelegate {
     func sendProgress(data: Int) {
-        HomeTabMainService.shared.getAllHome { (result) in
-            DispatchQueue.main.async {
-                self.days = result
-            }
-        }
+//        HomeTabMainService.shared.getAllHome { (result) in
+//            DispatchQueue.main.async {
+//                self.days = result
+//            }
+//        }
         self.tableView.reloadData()
     }
 }
