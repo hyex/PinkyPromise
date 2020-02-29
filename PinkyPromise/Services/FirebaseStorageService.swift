@@ -36,6 +36,7 @@ class FirebaseStorageService: NSObject {
                         completion(.failure(error!))
                         return
                     }
+                    
                     completion(.success(url))
                 }
             }
@@ -49,6 +50,7 @@ class FirebaseStorageService: NSObject {
         //let uuid = UUID()
         //let imageLocation = userFolderRef.child(uuid.description)
         let imageLocation = userFolderRef.child(FirebaseUserService.currentUserID!)
+        
         imageLocation.putData(image, metadata: metadata) { (responseMetadata, error) in
             if let err = error {
                 completion(.failure(err))
@@ -69,7 +71,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
-    //약속 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
+    //약속 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름 반환은 사진데이터
     func getPromiseImageWithName(name: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         promiseFolderRef.storage.reference(withPath: "promiseImage/\(name)").getData(maxSize: 20000000) { (data, error) in
             if let err = error {
@@ -80,7 +82,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
-    //약속 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
+    //약속 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름 반환은 사진 URL
     func getPromiseImageURLWithName(name: String, completion: @escaping (Result<String, Error>) -> ()) {
         promiseFolderRef.storage.reference().child("promiseImage/\(name)").downloadURL { (url, error) in
             guard error == nil else {
@@ -108,7 +110,7 @@ class FirebaseStorageService: NSObject {
 //    }
     
     
-    //유저 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
+    //유저 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름 반환은 사진데이터
     func getUserImageWithName(name: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         
         userFolderRef.storage.reference(withPath: "userImage/\(name)").getData(maxSize: 20000000) { (data, error) in
@@ -120,7 +122,7 @@ class FirebaseStorageService: NSObject {
         }
     }
     
-    //유저 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름
+    //유저 이미지를 받아올 때 사용하는 함수 인풋은 파이어베이스 스토리지에 저장되어있는 사진이름 반환은 사진 URL
     func getUserImageURLWithName(name: String, completion: @escaping (Result<String, Error>) -> ()) {
         userFolderRef.storage.reference().child("userImage/\(name)").downloadURL { (url, error) in
             guard error == nil else {

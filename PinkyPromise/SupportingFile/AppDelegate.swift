@@ -11,13 +11,14 @@ import Firebase
 import FirebaseFirestore
 import GoogleSignIn
 import UserNotifications
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     let notificationCenter = UNUserNotificationCenter.current()
-    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -36,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         notificationCenter.delegate = self
         
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
@@ -53,16 +56,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
-        -> Bool {
-            
-            print("in openurl options")
-            if KLKTalkLinkCenter.shared().isTalkLinkCallback(url) {
-                let params = url.query
-                print("카카오링크 메시지 액션\n\(params ?? "파라미터 없음")")
-                UIAlertController.showMessage("카카오링크 메시지 액션\n\(params ?? "파라미터 없음")")
-            }
-            
-            return GIDSignIn.sharedInstance().handle(url)
+      -> Bool {
+        
+        let handled  = ApplicationDelegate.shared.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        
+        GIDSignIn.sharedInstance().handle(url)
+        
+        return handled
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -71,8 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let params = url.query
             print("카카오링크 메시지 액션\n\(params ?? "파라미터 없음")")
             UIAlertController.showMessage("카카오링크 메시지 액션\n\(params ?? "파라미터 없음")")
-        }
-        
+        }   
         return GIDSignIn.sharedInstance().handle(url)
     }
     

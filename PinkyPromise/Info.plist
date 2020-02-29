@@ -29,6 +29,22 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>fb177898870293951</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kakao5434acef1a6702b20d839d559e2d4f03</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
 				<string>com.googleusercontent.apps.980488432892-5ocsnhvtoijfhdk4neq0vumod000hhru</string>
                 <string>kakao4cf32df962b456615adcc792615c9b3a</string>
 			</array>
@@ -46,8 +62,31 @@
     </array>
 	<key>FacebookAdvertiserIDCollectionEnabled</key>
 	<true/>
+	<key>FacebookAppID</key>
+	<string>177898870293951</string>
 	<key>FacebookAutoLogAppEventsEnabled</key>
 	<true/>
+	<key>FacebookDisplayName</key>
+	<string>PinkyPromise</string>
+	<key>KAKAO_APP_KEY</key>
+	<string> 5434acef1a6702b20d839d559e2d4f03</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fbapi20130214</string>
+		<string>fbapi20130410</string>
+		<string>fbapi20130702</string>
+		<string>fbapi20131010</string>
+		<string>fbapi20131219</string>
+		<string>fbapi20140410</string>
+		<string>fbapi20140116</string>
+		<string>fbapi20150313</string>
+		<string>fbapi20150629</string>
+		<string>fbapi20160328</string>
+		<string>fbauth</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>

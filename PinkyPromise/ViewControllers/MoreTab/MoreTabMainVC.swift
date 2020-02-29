@@ -197,7 +197,7 @@ extension MoreTabMainVC: UIImagePickerControllerDelegate, UINavigationController
             self.userImage.image = image
             
             // type convert to jpeg
-            guard let imageData = image.jpegData(compressionQuality: 1) else {
+            guard let imageData = image.jpegData(compressionQuality: 0.1) else {
                 print("image convert error")
                 return
             }
