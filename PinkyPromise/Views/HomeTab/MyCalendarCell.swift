@@ -19,7 +19,7 @@ class MyCalendarCell: FSCalendarCell {
 //        self.shapeLayer.isHidden = true
         
         let view = UIView(frame: self.bounds)
-        view.backgroundColor = UIColor.appColor.withAlphaComponent(0.12)
+        view.backgroundColor = UIColor.appColor.withAlphaComponent(0)
         self.backgroundView = view;
     }
     

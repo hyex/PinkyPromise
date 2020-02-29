@@ -178,21 +178,20 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     private func configureVisibleCell(date: Date, cell: MyCalendarCell) {
-        
         HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
             self.days[date] = day
             var progress: Int = 0
+            
             for pm in day.PAPD {
-                for pm2 in pm.progressData.progressDegree {
-                    progress += pm2
-                }
+                let datindex = Int(date.timeIntervalSince1970 - pm.promiseData.promiseStartTime.timeIntervalSince1970) / 86400
+                progress += pm.progressData.progressDegree[datindex]
             }
             
             if day.PAPD.count > 0
             {
                 cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
             }else {
-                cell.setBackgroundColor(progress: ceil( 0.0 ))
+                cell.setBackgroundColor(progress: ceil(0.0))
             }
         }
 //        let idx = date.timeIntervalSince1970 / 83600
@@ -264,7 +263,6 @@ extension HomeTabMainVC: UITableViewDataSource {
 //                count = day.PAPD.count
 //            }
 //        }
-        print(count)
         return count
     }
 
