@@ -34,7 +34,7 @@ class AddPromiseVC: UIViewController {
     //    private var myFriends: [Int : [String]]! = [ : ]
     private var myFriends: [FriendData] = []
     
-    private var selectedFriends: [FriendData]!
+    private var selectedFriends: [FriendData] = []
     
     private var panaltyName: String!
     //   private var myFriendsImg: [UIImage]! = []
