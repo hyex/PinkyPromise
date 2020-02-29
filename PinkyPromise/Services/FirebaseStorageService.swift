@@ -36,6 +36,7 @@ class FirebaseStorageService: NSObject {
                         completion(.failure(error!))
                         return
                     }
+                    
                     completion(.success(url))
                 }
             }

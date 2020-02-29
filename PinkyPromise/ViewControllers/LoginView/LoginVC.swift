@@ -173,7 +173,7 @@ extension LoginVC: LoginButtonDelegate {
                     if UserDefaults.standard.bool(forKey: "signedIn") == false{
                         let tempimage = UIImage(named: "user_male")
                         
-                        guard let imageData = tempimage!.jpegData(compressionQuality: 1) else { return }
+                        guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                         
                         FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
                             switch result {
@@ -226,7 +226,7 @@ extension LoginVC: LoginButtonDelegate {
                 if UserDefaults.standard.bool(forKey: "signedIn") == false{
                     let tempimage = UIImage(named: "user_male")
                     
-                    guard let imageData = tempimage!.jpegData(compressionQuality: 1) else { return }
+                    guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                     
                     FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
                         switch result {
@@ -303,7 +303,7 @@ extension LoginVC: GIDSignInDelegate {
                     if UserDefaults.standard.bool(forKey: "signedIn") == false{
                         let tempimage = UIImage(named: "user_male")
                         
-                        guard let imageData = tempimage!.jpegData(compressionQuality: 1) else { return }
+                        guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                         
                         FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
                             switch result {
@@ -385,7 +385,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                         if UserDefaults.standard.bool(forKey: "signedIn") == false {
                             let tempimage = UIImage(named: "user_male")
                             
-                            guard let imageData = tempimage!.jpegData(compressionQuality: 1) else {
+                            guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else {
                                 return
                             }
                             FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
