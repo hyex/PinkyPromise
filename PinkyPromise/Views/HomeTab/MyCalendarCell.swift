@@ -22,6 +22,7 @@ class MyCalendarCell: FSCalendarCell {
         view.backgroundColor = UIColor.appColor.withAlphaComponent(0.12)
         self.backgroundView = view;
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.backgroundView?.frame = self.bounds.insetBy(dx: 1, dy: 1)
@@ -32,7 +33,7 @@ class MyCalendarCell: FSCalendarCell {
 //        print(alpha)
 //        if alpha > 0.4 {
 //            self.appearance.titleDefaultColor = UIColor(white: 1.0, alpha: 1.0)
-////            self.appearance.titlePlaceholderColor = UIColor(white: 1.0, alpha: 1.0)
+//           self.appearance.titlePlaceholderColor = UIColor(white: 1.0, alpha: 1.0)
 //        }
 //        else if alpha <= 0.4 && alpha > 0.01 {
 //            self.appearance.titlePlaceholderColor = UIColor.darkText

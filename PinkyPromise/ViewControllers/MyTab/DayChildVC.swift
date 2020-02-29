@@ -122,8 +122,6 @@ extension DayChildVC: UITableViewDataSource {
         }
     }
     
-    
-    
 }
 
 extension DayChildVC: UITableViewDelegate {

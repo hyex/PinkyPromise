@@ -13,10 +13,16 @@ import Floaty
 
 class HomeTabMainVC: UIViewController {
     
-    fileprivate weak var calendar: FSCalendar!
-    fileprivate weak var eventLabel: UILabel!
+//    fileprivate weak var calendar: FSCalendar!
+//    fileprivate weak var eventLabel: UILabel!
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var eventLabel: UILabel!
+    @IBOutlet weak var underView: UIView!
+    fileprivate weak var tableView: UITableView!
+    
     var addPromiseBtn: AddPromiseBtn!
-    weak var tableView: UITableView!
     private var promiseListforDates: [ProgressTable]!
     
     let dateFormat: DateFormatter = {
@@ -58,92 +64,47 @@ class HomeTabMainVC: UIViewController {
         }
         
         // initialize UI
-        let view = UIView()
-        self.view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        //        let guide = view.safeAreaLayoutGuide
-        view.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(view)
-        
-        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        
-//        self.view.addSubview(view)
-//        self.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 33))
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 27.0)
-        titleLabel.attributedText = NSAttributedString(string: "PinkyPromise")
-        self.view.addSubview(titleLabel)
-        
-        //        let ScreenSize: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
-        
-        
-        let calendar = FSCalendar(frame: CGRect(x: 0, y: titleLabel.frame.maxY, width: self.view.frame.size.width, height: self.view.frame.size.height / 2 - titleLabel.frame.maxY))
+            
         calendar.dataSource = self
         calendar.delegate = self
-        //        calendar.allowsMultipleSelection = true
-        self.view.addSubview(calendar)
-        self.calendar = calendar
-        
-        calendar.appearance.headerTitleColor = UIColor.appColor
-        
-        calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 20.0)
-        calendar.appearance.weekdayTextColor = UIColor.darkText
-        calendar.appearance.borderSelectionColor = UIColor.appColor
-        calendar.appearance.selectionColor = UIColor.clear
-        calendar.appearance.titleSelectionColor = UIColor.darkText
-        
-        calendar.appearance.headerMinimumDissolvedAlpha = 0
-        
-        calendar.appearance.todayColor = UIColor.appColor
-        
+
         calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
         calendar.register(MyCalendarCell.self, forCellReuseIdentifier: "cell")
-        //        calendar.clipsToBounds = true // Remove top/bottom line
-        
-        calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
-        
-        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
-        calendar.addGestureRecognizer(scopeGesture)
-        
-        let yAxis = calendar.frame.maxY - CGFloat(20)
-        let label = UILabel(frame: CGRect(x: 0, y: yAxis, width: self.view.frame.size.width, height: 50))
-        label.textAlignment = .center
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
-        self.view.addSubview(label)
-        self.eventLabel = label
-        
+//                calendar.clipsToBounds = true // Remove top/bottom line
+//
+//        calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
+//
+//        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
+//        calendar.addGestureRecognizer(scopeGesture)
+
+//        print(calendar.frame.maxY)
+//        let label = UILabel(frame: CGRect(x: 0, y: calendar.frame.maxY + self.view.safeAreaInsets.top, width: self.view.frame.size.width, height: 50))
+//        label.textAlignment = .center
+//        label.font = UIFont.boldSystemFont(ofSize: 20.0)
+//        self.view.addSubview(label)
+//        self.eventLabel = label
+
         let attributedText = NSMutableAttributedString(string: "")
         attributedText.append(NSAttributedString(string: "Today"))
         self.eventLabel.attributedText = attributedText
-        
-        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: eventLabel.frame.maxY - CGFloat(5), width: self.view.frame.size.width, height: self.view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - self.eventLabel.frame.maxY))
-        
-        self.view.addSubview(myTableView)
-        
-        self.tableView = myTableView
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+
+        setTableViewUI()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         let nibName = UINib(nibName: "DayPromiseListTVC", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
+        self.tableView.register(nibName, forCellReuseIdentifier: "DayPromiseListCell")
         
         addPromiseBtn = AddPromiseBtn()
-                
+        
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
-        addPromiseBtn.translatesAutoresizingMaskIntoConstraints = false
-        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
-        addPromiseBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+         addPromiseBtn.translatesAutoresizingMaskIntoConstraints = false
+        addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        addPromiseBtn.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         addPromiseBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
         addPromiseBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+
         // data setting
         
         //        MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
@@ -161,20 +122,21 @@ class HomeTabMainVC: UIViewController {
         //                print(self.promiseListforDates[0].progressDay)
         //            }
         //        })
-        setTableViewUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
             
-            MyApi.shared.getAllHome { (result) in
+            HomeTabMainService.shared.getAllHome { (result) in
                 DispatchQueue.main.async {
                     self.days = result
                 }
             }
         }
+
         tableView.reloadData()
+        
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {
@@ -204,8 +166,8 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position) as! MyCalendarCell
-        cell.setBackgroundColor(progress: 0)
-        configureVisibleCells()
+
+        configureVisibleCell(date: date, cell: cell)
         return cell
     }
     
@@ -215,34 +177,49 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
         self.tableView.frame.origin.y = eventLabel.frame.maxY + 10
     }
     
-    private func configureVisibleCells() {
-        
-        let cells = calendar.visibleCells() as! [MyCalendarCell]
-        cells.forEach { (cell) in
-            let date = calendar.date(for: cell)
+    private func configureVisibleCell(date: Date, cell: MyCalendarCell) {
+        print("calendar:")
+        print(date)
+        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
             
-            days.forEach { (day) in
-                if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date!) {
-                    
-                    var progress: Int = 0
-                    for pm in day.PAPD {
-                        for pm2 in pm.progressData.progressDegree {
-                            progress += pm2
-                        }
-                    }
-                    
-                    if day.PAPD.count > 0
-                    {
-                        cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
-                    }else {
-                        cell.setBackgroundColor(progress: ceil( 0.0 ))
-                    }
-                    
+            var progress: Int = 0
+            for pm in day.PAPD {
+                for pm2 in pm.progressData.progressDegree {
+                    progress += pm2
                 }
             }
+            
+            if day.PAPD.count > 0
+            {
+                cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
+            }else {
+                cell.setBackgroundColor(progress: ceil( 0.0 ))
+            }
         }
+//        let idx = date.timeIntervalSince1970 / 83600
+//        print(idx)
+//        days.forEach { (day) in
+//            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
+//
+//                var progress: Int = 0
+//                for pm in day.PAPD {
+//                    for pm2 in pm.progressData.progressDegree {
+//                        progress += pm2
+//                    }
+//                }
+//                print(day.PAPD.count)
+//                if day.PAPD.count > 0
+//                {
+//                    cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
+//                }else {
+////                        print(progress)
+//                    cell.setBackgroundColor(progress: ceil( 0.0 ))
+//                }
+//
+//            }
+//        }
     }
-    
+  
 }
 
 
@@ -276,13 +253,19 @@ extension HomeTabMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let date = calendar.selectedDate ?? Date()
+        print("table:")
+        print(date)
         var count = 0
-        
-        days.forEach { (day) in
-            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
-                count = day.PAPD.count
-            }
+        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
+            count = day.PAPD.count
         }
+//
+//        days.forEach { (day) in
+//            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
+//                count = day.PAPD.count
+//            }
+//        }
+        print(count)
         return count
     }
 
@@ -291,16 +274,25 @@ extension HomeTabMainVC: UITableViewDataSource {
 
         let date = calendar.selectedDate ?? Date()
         cell.delegate = self
-        days.forEach { (day) in
-            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
-                cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
-                cell.setIcon(name: day.PAPD[indexPath.row].promiseData.promiseIcon, color: day.PAPD[indexPath.row].promiseData.promiseColor)
-                
-                let interval = date.timeIntervalSince(day.PAPD[indexPath.row].promiseData.promiseStartTime)
-                let idxDay = Int(interval/86400)
-                cell.setProgress(promiseId: day.PAPD[indexPath.row].promiseData.promiseId, progressId: day.PAPD[indexPath.row].progressData.progressId, progressDegree: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
-            }
+        
+        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
+              cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
+               cell.setIcon(name: day.PAPD[indexPath.row].promiseData.promiseIcon, color: day.PAPD[indexPath.row].promiseData.promiseColor)
+               
+               let interval = date.timeIntervalSince(day.PAPD[indexPath.row].promiseData.promiseStartTime)
+               let idxDay = Int(interval/86400)
+               cell.setProgress(promiseId: day.PAPD[indexPath.row].promiseData.promiseId, progressId: day.PAPD[indexPath.row].progressData.progressId, progressDegree: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
         }
+//        days.forEach { (day) in
+//            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
+//                cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
+//                cell.setIcon(name: day.PAPD[indexPath.row].promiseData.promiseIcon, color: day.PAPD[indexPath.row].promiseData.promiseColor)
+//
+//                let interval = date.timeIntervalSince(day.PAPD[indexPath.row].promiseData.promiseStartTime)
+//                let idxDay = Int(interval/86400)
+//                cell.setProgress(promiseId: day.PAPD[indexPath.row].promiseData.promiseId, progressId: day.PAPD[indexPath.row].progressData.progressId, progressDegree: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
+//            }
+//        }
         
         cell.view.layer.backgroundColor = UIColor.appColor.withAlphaComponent(CGFloat(0.1)).cgColor
         //        cell.layer.borderWidth = 1
@@ -322,6 +314,15 @@ extension HomeTabMainVC: UITableViewDataSource {
 extension HomeTabMainVC {
     func setTableViewUI() {
         // tableView 뷰 변경
+        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.underView.frame.size.height))
+        self.tableView = myTableView
+        self.underView.addSubview(myTableView)
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.leadingAnchor.constraint(equalTo: self.underView.leadingAnchor).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: self.underView.topAnchor).isActive = true
+        self.tableView.trailingAnchor.constraint(equalTo: self.underView.trailingAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.underView.bottomAnchor).isActive = true
+        
         let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
         self.tableView.tableFooterView = dummyView;
         self.tableView.clipsToBounds = false
@@ -357,6 +358,11 @@ extension HomeTabMainVC {
 
 extension HomeTabMainVC: SendProgressDelegate {
     func sendProgress(data: Int) {
+        HomeTabMainService.shared.getAllHome { (result) in
+            DispatchQueue.main.async {
+                self.days = result
+            }
+        }
         self.tableView.reloadData()
     }
 }

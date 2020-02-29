@@ -9,9 +9,38 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        print("in scene oepnURL")
+        UIAlertController.showMessage("scene의 func 실행")
+        if let url = URLContexts.first?.url {
+            if KLKTalkLinkCenter.shared().isTalkLinkCallback(url) {
+                let params = url.query
+                print("카카오링크 메시지 액션\n\(params ?? "파라미터 없음")")
+                // 이제 여기에 params으로 가져온 거 파싱해서 보낸 uid 만 꺼내고, currentUserID 구해서 서버에 친구 추가 요청(API 함수)
+                if let param = Int(params!) {
+                    MyApi.shared.addFriendWithCode(code: param, completion: { result in
+                        if result == nil {
+                            print("그런 코드를 가진 사용자가 없음")
+//                            self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
+                        } //else {
+//                            let username = result?.userName
+//                            if (result?.userId == FirebaseUserService.currentUserID) {
+//                                self.simpleAlert(title: "친구추가실패", message: "이 코드는 본인 코드입니다!")
+//                            } else {
+//                                self.simpleAlert(title: "친구추가성공", message: "\(username!)님과 친구 성공! \n 이제 약속하러 가볼까요?")
+//                            }
+//                        }
+                    })
+                }
+                
+                
+            }
+        }
 
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
