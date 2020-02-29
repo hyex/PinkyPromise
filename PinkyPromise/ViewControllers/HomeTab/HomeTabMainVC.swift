@@ -133,9 +133,9 @@ class HomeTabMainVC: UIViewController {
                     self.days = result
                 }
             }
-        }
 
-        tableView.reloadData()
+            tableView.reloadData()
+        }
         
     }
     
@@ -167,7 +167,9 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position) as! MyCalendarCell
 
-        configureVisibleCell(date: date, cell: cell)
+        if UserDefaults.standard.bool(forKey: "loggedIn") == true {
+            configureVisibleCell(date: date, cell: cell)
+        }
         return cell
     }
     
@@ -256,8 +258,11 @@ extension HomeTabMainVC: UITableViewDataSource {
         print("table:")
         print(date)
         var count = 0
-        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
-            count = day.PAPD.count
+        
+        if UserDefaults.standard.bool(forKey: "loggedIn") == true {
+            HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
+                count = day.PAPD.count
+            }
         }
 //
 //        days.forEach { (day) in
