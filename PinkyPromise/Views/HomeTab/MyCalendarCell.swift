@@ -29,7 +29,7 @@ class MyCalendarCell: FSCalendarCell {
     }
     
     func setBackgroundColor(progress: Double) {
-        let alpha = progress * 0.2
+        let alpha = progress * 0.25
 //        print(alpha)
 //        if alpha > 0.4 {
 //            self.appearance.titleDefaultColor = UIColor(white: 1.0, alpha: 1.0)

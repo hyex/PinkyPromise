@@ -70,6 +70,8 @@ class HomeTabMainVC: UIViewController {
 
         calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
         calendar.register(MyCalendarCell.self, forCellReuseIdentifier: "cell")
+        
+        AddProgressService.shared.delegate = self
 //                calendar.clipsToBounds = true // Remove top/bottom line
 //
 //        calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
@@ -184,38 +186,21 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
             
             for pm in day.PAPD {
                 let datindex = Int(date.timeIntervalSince1970 - pm.promiseData.promiseStartTime.timeIntervalSince1970) / 86400
-                progress += pm.progressData.progressDegree[datindex]
+                if pm.progressData.progressDegree[datindex] == -1 {
+                    continue
+                } else {
+                    progress += pm.progressData.progressDegree[datindex]
+                }
             }
             
             if day.PAPD.count > 0
             {
                 cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
-            }else {
+            } else {
                 cell.setBackgroundColor(progress: ceil(0.0))
             }
+            self.tableView.reloadData()
         }
-//        let idx = date.timeIntervalSince1970 / 83600
-//        print(idx)
-//        days.forEach { (day) in
-//            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
-//
-//                var progress: Int = 0
-//                for pm in day.PAPD {
-//                    for pm2 in pm.progressData.progressDegree {
-//                        progress += pm2
-//                    }
-//                }
-//                print(day.PAPD.count)
-//                if day.PAPD.count > 0
-//                {
-//                    cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
-//                }else {
-////                        print(progress)
-//                    cell.setBackgroundColor(progress: ceil( 0.0 ))
-//                }
-//
-//            }
-//        }
     }
   
 }
@@ -252,17 +237,9 @@ extension HomeTabMainVC: UITableViewDataSource {
         
         let date = calendar.selectedDate ?? Date()
         var count = 0
-//        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
-//
-//            count = day.PAPD.count
-//        }
+
         count = days[date]?.PAPD.count ?? 0
-//
-//        days.forEach { (day) in
-//            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
-//                count = day.PAPD.count
-//            }
-//        }
+
         return count
     }
 
@@ -281,18 +258,6 @@ extension HomeTabMainVC: UITableViewDataSource {
         } else {
             print("nil")
         }
-        
-        
-//        days.forEach { (day) in
-//            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
-//                cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
-//                cell.setIcon(name: day.PAPD[indexPath.row].promiseData.promiseIcon, color: day.PAPD[indexPath.row].promiseData.promiseColor)
-//
-//                let interval = date.timeIntervalSince(day.PAPD[indexPath.row].promiseData.promiseStartTime)
-//                let idxDay = Int(interval/86400)
-//                cell.setProgress(promiseId: day.PAPD[indexPath.row].promiseData.promiseId, progressId: day.PAPD[indexPath.row].progressData.progressId, progressDegree: day.PAPD[indexPath.row].progressData.progressDegree[idxDay])
-//            }
-//        }
         
         cell.view.layer.backgroundColor = UIColor.appColor.withAlphaComponent(CGFloat(0.1)).cgColor
         //        cell.layer.borderWidth = 1
@@ -347,10 +312,22 @@ extension HomeTabMainVC {
         if segue.identifier == "ProgressVC" {
             let vc = segue.destination as! AddProgressVC
             vc.delegate = self
-            vc.promiseId = self.clickedProgress[0] as? String
-            vc.progressId = self.clickedProgress[1] as? String
-            vc.selectedProgress = self.clickedProgress[2] as! Int
-            vc.day = self.calendar.selectedDate
+            
+            let date = calendar.selectedDate ?? Date()
+            if let day = days[date] {
+                if let cell = self.clickedProgress[3] as? UITableViewCell {
+                    let pm = day.PAPD[tableView.indexPath(for: cell)!.row]
+                    
+                    vc.promiseTable = pm.promiseData
+                    vc.progressTable = pm.progressData
+//                    vc.promiseId = self.clickedProgress[0] as? String
+//                    vc.progressId = self.clickedProgress[1] as? String
+                    vc.selectedProgress = self.clickedProgress[2] as! Int
+                    vc.day = self.calendar.selectedDate
+                } else {  }
+            } else {
+                print("nil")
+            }
         }
     }
     
@@ -358,18 +335,27 @@ extension HomeTabMainVC {
 
 extension HomeTabMainVC: SendProgressDelegate {
     func sendProgress(data: Int) {
-//        HomeTabMainService.shared.getAllHome { (result) in
-//            DispatchQueue.main.async {
-//                self.days = result
-//            }
+
+        let date = self.calendar.selectedDate
+        let cell = calendar.collectionView.cellForItem(at: calendar.calculator.indexPath(for: date)) as! MyCalendarCell
+        
+//        let item = DispatchWorkItem {
+//            self.configureVisibleCell(date: date!, cell: cell)
 //        }
-        self.tableView.reloadData()
+//        DispatchQueue.main.async(execute: item)
+//
+//        item.notify(queue: .main) {
+//            self.tableView.reloadData()
+//            print("table")
+//        }
+        self.configureVisibleCell(date: date!, cell: cell)
+        
     }
 }
 
 extension HomeTabMainVC: ClickProgressDelegate {
-    func clickProgress(promiseId: String, progressId: String, progressDegree: Int) {
-        self.clickedProgress = [promiseId, progressId, progressDegree]
+    func clickProgress(promiseId: String, progressId: String, progressDegree: Int, cell: DayPromiseListTVC) {
+        self.clickedProgress = [promiseId, progressId, progressDegree, cell]
         self.performSegue(withIdentifier: "ProgressVC", sender: nil)
 //
 //        let storyBoard = UIStoryboard(name: "HomeTab", bundle: nil)
