@@ -69,10 +69,12 @@ class AddPromiseVC: UIViewController {
         promiseTableView.dataSource = self
         
         //data setting
-        MyApi.shared.getUserData { (result) in
+        AddPromiseService.shared.getUserData { (result) in
             var i = 0
+            print("here")
             result[0].userFriends.forEach { (friendId) in
-                MyApi.shared.getUserDataWithUID(id: friendId) { (friend) in
+                AddPromiseService.shared.getUserDataWithUID(id: friendId) { (friend) in
+                    print("here2")
                       let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
                       self.myFriends.append(temp)
                     i += 1
@@ -132,8 +134,8 @@ class AddPromiseVC: UIViewController {
         
         let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: false, promisePanalty: promisePanalty, promiseId: MyApi.shared.randomNonceString())
         
-        MyApi.shared.addPromiseData(newPromise)
-        MyApi.shared.addProgressData(newPromise)
+        AddPromiseService.shared.addPromiseData(newPromise)
+        AddPromiseService.shared.addProgressData(newPromise)
         
         self.dismiss(animated: false, completion: nil)
     }
