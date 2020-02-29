@@ -77,7 +77,7 @@ class AddProgressVC: UIViewController {
         let myGroup = DispatchGroup()
         
         myGroup.enter()
-        MyApi.shared.getPromiseDataWithPromiseId(promiseid: promiseId) { (result) in
+        AddProgressService.shared.getPromiseDataWithPromiseId(promiseid: promiseId) { (result) in
             queue.async(group: myGroup){
                 promiseTable = result[0]
                 myGroup.leave()
@@ -85,7 +85,7 @@ class AddProgressVC: UIViewController {
         }
             
         myGroup.enter()
-        MyApi.shared.getProgressDataWithPromiseId(promiseid: promiseId) { (result) in
+        AddProgressService.shared.getProgressDataWithPromiseId(promiseid: promiseId) { (result) in
             queue.async(group: myGroup) {
                 progressTable = result[0]
                 myGroup.leave()
@@ -93,7 +93,7 @@ class AddProgressVC: UIViewController {
         }
 
         myGroup.notify(queue: queue) {
-            MyApi.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: promiseTable, progress: progressTable)
+            AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: promiseTable, progress: progressTable)
         }
 
         DispatchQueue.main.async {
