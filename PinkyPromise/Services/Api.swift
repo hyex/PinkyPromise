@@ -837,13 +837,10 @@ class MyApi: NSObject {
                         self.getUserData { (result2) in
                             
                             var temp = result2[0].userFriends
-                            
                             let tempadd = temp!.contains { $0 == (result[0].userId) }
-                            
                             if tempadd == false {
                                 temp?.append(result[0].userId)
                             }
-                            
                             var temp2 = result[0].userFriends
                             temp2?.append(FirebaseUserService.currentUserID!)
                             self.userCollectionRef.document(result[0].userId).setData([USERFRIENDS : temp2], merge: true); self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp!], merge: true )
@@ -860,7 +857,6 @@ class MyApi: NSObject {
             }
         }
     }
-    
     
     //유저를 uid를 이용해서 유저를 삭제하는 함수
     func deleteUserWithUid(Uid: String) {
