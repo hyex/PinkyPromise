@@ -37,7 +37,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao5434acef1a6702b20d839d559e2d4f03</string>
+				<string>kakao4cf32df962b456615adcc792615c9b3a</string>
 			</array>
 		</dict>
 		<dict>
@@ -46,20 +46,12 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.980488432892-5ocsnhvtoijfhdk4neq0vumod000hhru</string>
-                <string>kakao4cf32df962b456615adcc792615c9b3a</string>
+				
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>KAKAO_APP_KEY</key>
-	<string>4cf32df962b456615adcc792615c9b3a</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>kakao4cf32df962b456615adcc792615c9b3a</string>
-        <string>kakaolink</string>
-        <string>kakaotalk-5.9.7</string>
-    </array>
 	<key>FacebookAdvertiserIDCollectionEnabled</key>
 	<true/>
 	<key>FacebookAppID</key>
@@ -69,7 +61,7 @@
 	<key>FacebookDisplayName</key>
 	<string>PinkyPromise</string>
 	<key>KAKAO_APP_KEY</key>
-	<string> 5434acef1a6702b20d839d559e2d4f03</string>
+	<string>4cf32df962b456615adcc792615c9b3a</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -86,6 +78,9 @@
 		<string>fbauth</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+        <string>kakao4cf32df962b456615adcc792615c9b3a</string>
+        <string>kakaolink</string>
+        <string>kakaotalk-5.9.7</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
