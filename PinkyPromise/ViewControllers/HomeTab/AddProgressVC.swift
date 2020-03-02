@@ -19,8 +19,9 @@ protocol SelectedProgressDelegate {
 
 
 class AddProgressVC: UIViewController {
-    var promiseId: String!
-    var progressId: String!
+    var promiseTable: PromiseTable!
+    var progressTable: ProgressTable!
+    
     var selectedProgress: Int = -1
     var day: Date!
     
@@ -70,35 +71,51 @@ class AddProgressVC: UIViewController {
     }
     
     @IBAction func saveBtnAction(_ sender: Any) {
-        var promiseTable: PromiseTable!
-        var progressTable: ProgressTable!
-        
-        let queue = DispatchQueue(label: "queue")
-        let myGroup = DispatchGroup()
-        
-        myGroup.enter()
-        AddProgressService.shared.getPromiseDataWithPromiseId(promiseid: promiseId) { (result) in
-            queue.async(group: myGroup){
-                promiseTable = result[0]
-                myGroup.leave()
-            }
-        }
-            
-        myGroup.enter()
-        AddProgressService.shared.getProgressDataWithPromiseId(promiseid: promiseId) { (result) in
-            queue.async(group: myGroup) {
-                progressTable = result[0]
-                myGroup.leave()
-            }
-        }
+//        var promiseTable: PromiseTable!
+//        var progressTable: ProgressTable!
+//
+//        let queue = DispatchQueue(label: "queue")
+//        let myGroup = DispatchGroup()
+//
+//        myGroup.enter()
+//        AddProgressService.shared.getPromiseDataWithPromiseId(promiseid: promiseId) { (result) in
+//            queue.async(group: myGroup){
+//                promiseTable = result[0]
+//                myGroup.leave()
+//            }
+//        }
+//
+//        myGroup.enter()
+//        AddProgressService.shared.getProgressDataWithPromiseId(promiseid: promiseId) { (result) in
+//            queue.async(group: myGroup) {
+//                progressTable = result[0]
+//                myGroup.leave()
+//            }
+//        }
 
-        myGroup.notify(queue: queue) {
-            AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: promiseTable, progress: progressTable)
-        }
+//        myGroup.notify(queue: queue) {
 
-        DispatchQueue.main.async {
-            self.dismiss(animated: false, completion: nil)
-        }
+//        }
+
+        AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable, progress: self.progressTable)
+        self.dismiss(animated: false, completion: nil)
+//        DispatchQueue.main.async {
+//            AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable, progress: self.progressTable)
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            self.delegate.sendProgress(data: self.selectedProgress)
+//            self.dismiss(animated: false, completion: nil)
+//        }
+//        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+//            guard let self = self else {
+//                return
+//            }
+//            AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable, progress: self.progressTable)
+//            DispatchQueue.main.async { [weak self] in
+//                self?.delegate.sendProgress(data: self!.selectedProgress)
+//                self?.dismiss(animated: false, completion: nil)
+//            }
+//        }
     }
 }
 

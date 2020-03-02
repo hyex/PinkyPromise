@@ -22,7 +22,7 @@ class MyApi: NSObject {
     fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
     
     var promiseListner: ListenerRegistration!
-    
+    var delegate: SendProgressDelegate!
     let dateFormatter = DateFormatter()
     
 //    func fireStoreSetting() {
@@ -919,6 +919,7 @@ class MyApi: NSObject {
                         print("Error updating document: \(err)")
                     } else {
                         print("Document successfully updated")
+                        self.delegate.sendProgress(data: data)
                     }
                     
                     
