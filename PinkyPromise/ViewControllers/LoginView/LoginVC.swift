@@ -25,7 +25,6 @@ class LoginVC: UIViewController {
     @IBOutlet weak var appleSignInBtn: UIButton!
     @IBOutlet weak var pinkyTitle: UILabel!
     
-    @IBOutlet weak var bottomView: UIImageView!
     @IBOutlet weak var tempImage: UIImageView!
     
     var indicator: UIActivityIndicatorView?
@@ -54,12 +53,6 @@ class LoginVC: UIViewController {
         
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
-        
-        self.bottomView.clipsToBounds = true
-        self.bottomView.layer.cornerRadius = bottomView.frame.height/2
-        self.bottomView.clipsToBounds = true
-        self.bottomView.frame.size.width = width * 2
-        self.bottomView.frame.size.height = height * 2
         
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
