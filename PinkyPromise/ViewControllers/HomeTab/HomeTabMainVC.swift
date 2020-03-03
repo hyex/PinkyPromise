@@ -184,7 +184,7 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
         HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
             self.days[date] = day
             var progress: Int = 0
-            
+
             for pm in day.PAPD {
                 let datindex = Int(date.timeIntervalSince1970 - pm.promiseData.promiseStartTime.timeIntervalSince1970) / 86400
                 if pm.progressData.progressDegree[datindex] == -1 {
@@ -193,7 +193,7 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
                     progress += pm.progressData.progressDegree[datindex]
                 }
             }
-            
+
             if day.PAPD.count > 0
             {
                 cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
@@ -201,7 +201,7 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
                 cell.setBackgroundColor(progress: ceil(0.0))
             }
             self.tableView.reloadData()
-        }
+//        }
     }
   
 }
