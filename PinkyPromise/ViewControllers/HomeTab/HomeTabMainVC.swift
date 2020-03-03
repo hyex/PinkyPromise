@@ -201,7 +201,7 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
                 cell.setBackgroundColor(progress: ceil(0.0))
             }
             self.tableView.reloadData()
-//        }
+        }
     }
   
 }
