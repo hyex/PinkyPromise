@@ -173,7 +173,13 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     
     @objc func keyboardWillShow(_ note: NSNotification) {
         let height = self.inputCodeView.frame.size.height
-        self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
+        if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
+//            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
+        }
+        
     }
     
     @objc func keyboardWillHide(_ note: NSNotification) {

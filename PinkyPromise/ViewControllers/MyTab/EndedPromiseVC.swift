@@ -77,7 +77,7 @@ extension EndedPromiseVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = collectionView.bounds.width - CGFloat(32.0)
-        print(collectionView.bounds.height)
+//        print(collectionView.bounds.height)
         let height = CGFloat(140.0)//collectionView.bounds.height
         return CGSize(width: width, height: height)
     }
@@ -127,10 +127,12 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         let duration = dateFormatter.string(from: startDate) + " ~ " + dateFormatter.string(from: endDate)
         cell.promiseDuration.text = duration
         
-        let promiseColor = rowData.promiseColor!
-
-        cell.backgroundColor = UIColor(named :promiseColor)
-        cell.layer.shadowColor = UIColor(named :promiseColor)?.cgColor
+//        let promiseColor = rowData.promiseColor!
+//        cell.backgroundColor = UIColor(named :promiseColor)
+//        cell.layer.shadowColor = UIColor(named :promiseColor)?.cgColor
+        cell.applyBorder(width: 1.0, color: UIColor.appColor)
+        cell.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        cell.layer.shadowColor = UIColor.appColor.cgColor
 
         return cell
     }

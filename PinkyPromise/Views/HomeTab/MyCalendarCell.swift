@@ -19,7 +19,7 @@ class MyCalendarCell: FSCalendarCell {
 //        self.shapeLayer.isHidden = true
         
         let view = UIView(frame: self.bounds)
-        view.backgroundColor = UIColor.appColor.withAlphaComponent(0.12)
+        view.backgroundColor = UIColor.appColor.withAlphaComponent(0)
         self.backgroundView = view;
     }
     
@@ -29,7 +29,7 @@ class MyCalendarCell: FSCalendarCell {
     }
     
     func setBackgroundColor(progress: Double) {
-        let alpha = progress * 0.2
+        let alpha = progress * 0.25
 //        print(alpha)
 //        if alpha > 0.4 {
 //            self.appearance.titleDefaultColor = UIColor(white: 1.0, alpha: 1.0)

@@ -46,7 +46,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.980488432892-5ocsnhvtoijfhdk4neq0vumod000hhru</string>
-				
 			</array>
 		</dict>
 	</array>
@@ -78,9 +77,9 @@
 		<string>fbauth</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
-        <string>kakao4cf32df962b456615adcc792615c9b3a</string>
-        <string>kakaolink</string>
-        <string>kakaotalk-5.9.7</string>
+		<string>kakao4cf32df962b456615adcc792615c9b3a</string>
+		<string>kakaolink</string>
+		<string>kakaotalk-5.9.7</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -118,8 +117,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

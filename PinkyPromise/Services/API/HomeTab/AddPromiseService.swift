@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class AddPromiseService : NSObject {
-    static let shared = MyApi()
+    static let shared = AddPromiseService()
         
         fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
         fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
