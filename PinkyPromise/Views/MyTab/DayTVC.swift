@@ -22,6 +22,7 @@ class DayTVC: UITableViewCell {
         //DispatchQueue.main.async {
         
         promiseView.subviews.map{ $0.removeFromSuperview() }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en")
         

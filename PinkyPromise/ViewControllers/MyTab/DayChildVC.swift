@@ -25,7 +25,7 @@ class DayChildVC: UIViewController {
         super.viewDidLoad()
         getMyPageData()
         setUpTableView()
-        initRefresh()
+//        initRefresh()
 //        if let firstIndex = self.firstIndex {
 //            print(firstIndex)
 //            self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
@@ -105,9 +105,9 @@ extension DayChildVC: UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140.0
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 140.0
+//    }
     
     //****선영 추가 부분****
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
