@@ -87,6 +87,8 @@ extension PromiseDetailVC : UITableViewDataSource{
         dateFormatter.dateFormat = "yyyy / MM / dd"
         dateFormatter.locale = Locale.init(identifier: "en_GB")
         
+        print("**********PromiseDetail************ : ", self.promiseDetail )
+        
         if(tableView == promiseInfoTableView){
             switch (indexPath.row) {
             case 0:  //시작 날짜

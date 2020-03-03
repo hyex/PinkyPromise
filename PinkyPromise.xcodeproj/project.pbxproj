@@ -322,6 +322,7 @@
 		330AE60023CB56DC00706769 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A936DB86240E62820063C8D7 /* PromiseDetail */,
 				334AACE723CC2E3A00AAF955 /* HomeTab */,
 				334AACE823CC2E4300AAF955 /* MyTab */,
 				334AACE923CC2E4A00AAF955 /* FriendTab */,
@@ -445,11 +446,6 @@
 				3317B3E423CEF3D2006A5BF5 /* CustomSlider.swift */,
 				3317B3E023CEF31B006A5BF5 /* PromiseCVC.swift */,
 				332A24C623DEF670004377DA /* EndedPromiseCVC.swift */,
-				A9A3E82A23E02EFD00EDFE1C /* PromiseFriendTVC.swift */,
-				A9A3E82C23E0354500EDFE1C /* StartDateVC.swift */,
-				A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */,
-				A9A3E83023E0357300EDFE1C /* ColorVC.swift */,
-				A9A3E83223E0358C00EDFE1C /* IconVC.swift */,
 			);
 			path = MyTab;
 			sourceTree = "<group>";
@@ -570,6 +566,18 @@
 				2BDC4506C0E7546CBE6D7E26 /* Pods-PinkyPromise.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A936DB86240E62820063C8D7 /* PromiseDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A9A3E83223E0358C00EDFE1C /* IconVC.swift */,
+				A9A3E82C23E0354500EDFE1C /* StartDateVC.swift */,
+				A9A3E82E23E0355400EDFE1C /* FinalDateVC.swift */,
+				A9A3E83023E0357300EDFE1C /* ColorVC.swift */,
+				A9A3E82A23E02EFD00EDFE1C /* PromiseFriendTVC.swift */,
+			);
+			path = PromiseDetail;
 			sourceTree = "<group>";
 		};
 		A9FD47F92405031300DFDF20 /* API */ = {
