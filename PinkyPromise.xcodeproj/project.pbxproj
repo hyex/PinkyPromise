@@ -583,10 +583,10 @@
 		A9FD47F92405031300DFDF20 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				A9FD47FD2405035600DFDF20 /* MoreTab */,
-				A9FD47FC2405034C00DFDF20 /* FriendTab */,
-				A9FD47FB2405034000DFDF20 /* MyTab */,
 				A9FD47FA2405033700DFDF20 /* HomeTab */,
+				A9FD47FB2405034000DFDF20 /* MyTab */,
+				A9FD47FC2405034C00DFDF20 /* FriendTab */,
+				A9FD47FD2405035600DFDF20 /* MoreTab */,
 			);
 			path = API;
 			sourceTree = "<group>";

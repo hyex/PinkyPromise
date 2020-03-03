@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s3e-cr-Y8S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s3e-cr-Y8S">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,7 +10,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="Ywh-tB-qcM">
             <objects>
-                <tabBarController storyboardIdentifier="mainSB" id="s3e-cr-Y8S" customClass="MainTabBarController" customModule="PromiseWithMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainSB" id="s3e-cr-Y8S" customClass="MainTabBarController" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="YCX-MY-h3h"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQ6-gr-eiv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -37,7 +37,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCy-hh-IFP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="468" y="-752"/>
+            <point key="canvasLocation" x="2322" y="-938"/>
         </scene>
         <!--MyTab-->
         <scene sceneID="p0e-hp-102">
@@ -48,7 +48,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85u-KD-6P4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1784" y="-158"/>
+            <point key="canvasLocation" x="2407" y="-287"/>
         </scene>
         <!--friend-->
         <scene sceneID="5c4-6K-fLd">
@@ -64,7 +64,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1lp-zB-FZM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1878" y="408"/>
+            <point key="canvasLocation" x="1245" y="468"/>
         </scene>
         <!--promise-->
         <scene sceneID="Kgx-qN-RBe">
@@ -81,7 +81,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53f-r9-x6J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="964" y="-158"/>
+            <point key="canvasLocation" x="1245" y="-286"/>
         </scene>
         <!--FriendTab-->
         <scene sceneID="gkg-mQ-chQ">
@@ -92,12 +92,12 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c71-b1-eCS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2851" y="278"/>
+            <point key="canvasLocation" x="2392" y="467"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="pra-p0-TaT">
             <objects>
-                <viewController id="7gk-GH-tO2" customClass="LoginVC" customModule="PromiseWithMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7gk-GH-tO2" customClass="LoginVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GGH-Wg-MjO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,7 +208,7 @@
         <!--SignUp-->
         <scene sceneID="07C-jO-U0O">
             <objects>
-                <viewController id="JGA-uc-ThS" customClass="signUpVC" customModule="PromiseWithMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JGA-uc-ThS" customClass="signUpVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FAc-Fa-hFs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,7 +286,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXp-gg-DuP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1709" y="978"/>
+            <point key="canvasLocation" x="2325" y="1339"/>
         </scene>
         <!--My-->
         <scene sceneID="6zS-wD-6jC">
@@ -303,7 +303,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btw-gJ-0EQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="978"/>
+            <point key="canvasLocation" x="1245" y="1339"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="98s-j3-pDt">
@@ -329,7 +329,7 @@
         <!--SignIn-->
         <scene sceneID="5Iy-M7-cPl">
             <objects>
-                <viewController id="jzd-xX-aeV" customClass="signInVC" customModule="PromiseWithMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jzd-xX-aeV" customClass="signInVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wh3-1N-ijZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
