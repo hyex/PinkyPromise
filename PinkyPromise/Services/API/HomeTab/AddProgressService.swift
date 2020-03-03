@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class AddProgressService : NSObject {
-    static let shared = MyApi()
+    static let shared = AddProgressService()
         
         fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
         fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
@@ -21,6 +21,8 @@ class AddProgressService : NSObject {
         var promiseListner: ListenerRegistration!
         
         let dateFormatter = DateFormatter()
+    
+        var delegate: SendProgressDelegate!
     
     //약속 데이터를 반환// Input: PromiseID   Output: PromiseTable
     func getPromiseDataWithPromiseId(promiseid: String, completion: @escaping ([PromiseTable]) -> Void ){
@@ -69,9 +71,8 @@ class AddProgressService : NSObject {
                         print("Error updating document: \(err)")
                     } else {
                         print("Document successfully updated")
+                        self.delegate.sendProgress(data: data)
                     }
-                    
-                    
                 }
             }
         }

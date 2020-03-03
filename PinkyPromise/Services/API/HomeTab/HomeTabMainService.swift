@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class HomeTabMainService : NSObject {
-    static let shared = MyApi()
+    static let shared = HomeTabMainService()
         
         fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
         fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
