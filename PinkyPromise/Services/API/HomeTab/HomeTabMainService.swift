@@ -119,8 +119,8 @@ class HomeTabMainService : NSObject {
                 print(err.localizedDescription)
             } else {
                 let promises = PromiseTable.parseData(snapShot: snapShot)
-                
-                let promises2 = promises.filter { $0.promiseEndTime.timeIntervalSince1970 >= day.timeIntervalSince1970 && $0.promiseStartTime.timeIntervalSince1970 <= day.timeIntervalSince1970 }
+                let dayT = floor(day.timeIntervalSince1970/86400)*86400+54000
+                let promises2 = promises.filter { $0.promiseEndTime.timeIntervalSince1970 >= dayT && $0.promiseStartTime.timeIntervalSince1970 <= dayT }
                 
                 var temp = [PromiseAndProgressNotDay]()
                 
@@ -131,11 +131,13 @@ class HomeTabMainService : NSObject {
                             print(err.localizedDescription)
                         } else {
                             let progress1 = ProgressTable.parseData(snapShot: snapShot)
-                            let temp2 = PromiseAndProgressNotDay(promiseData: douc, progressData: progress1[0])
-                            temp.append(temp2)
+                            if progress1.count > 0 {
+                                let temp2 = PromiseAndProgressNotDay(promiseData: douc, progressData: progress1[0])
+                                temp.append(temp2)
                             
-                            if temp.count == promises2.count {
-                                completion(PromiseAndProgress1(Day: day, PAPD: temp))
+                                if temp.count == promises2.count {
+                                    completion(PromiseAndProgress1(Day: day, PAPD: temp))
+                                }
                             }
                         }
                     }
