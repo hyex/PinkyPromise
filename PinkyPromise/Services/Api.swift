@@ -793,8 +793,8 @@ class MyApi: NSObject {
             PROMISECOLOR: promiseTable.promiseColor ?? "nil",
             PROMISEICON: promiseTable.promiseIcon ?? "nil",
             ISPROMISEACHIEVEMENT: promiseTable.isPromiseAchievement ?? false,
-            PROMISESTARTTIME: promiseTable.promiseStartTime ,
-            PROMISEENDTIME: promiseTable.promiseEndTime ,
+            PROMISESTARTTIME: promiseTable.promiseStartTime,
+            PROMISEENDTIME: promiseTable.promiseEndTime,
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
             PROMISEUSERS: temp,
             PROMISEID: promiseTable.promiseId ?? "nil"

@@ -19,7 +19,9 @@ class AddPromiseService : NSObject {
         fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
         
         var promiseListner: ListenerRegistration!
-        
+    
+        var delegate: SendPromiseDelegate!
+    
         let dateFormatter = DateFormatter()
     
     //유저 데이터를 반환해줌
@@ -62,8 +64,8 @@ class AddPromiseService : NSObject {
             PROMISECOLOR: promiseTable.promiseColor ?? "nil",
             PROMISEICON: promiseTable.promiseIcon ?? "nil",
             ISPROMISEACHIEVEMENT: promiseTable.isPromiseAchievement ?? false,
-            PROMISESTARTTIME: promiseTable.promiseStartTime ,
-            PROMISEENDTIME: promiseTable.promiseEndTime ,
+            PROMISESTARTTIME: promiseTable.promiseStartTime,
+            PROMISEENDTIME: promiseTable.promiseEndTime,
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
             PROMISEUSERS: temp,
             PROMISEID: promiseTable.promiseId ?? "nil"
@@ -71,10 +73,9 @@ class AddPromiseService : NSObject {
             if let err = error {
                 debugPrint("Error adding document : \(err)")
             } else {
-                print("parsing success")
+                print("AddPromiseData API is success")
             }
         }
-        
     }
     
     //프로그레스테이블에 데이터 추가, addPromiseTable 직후 같은 promiseTable을 넣어준다.
@@ -97,7 +98,8 @@ class AddPromiseService : NSObject {
                 if let err = error {
                     debugPrint("error adding document : \(err)")
                 } else {
-                    print("this is API success")
+                    print("AddProgressData API is success")
+                    self.delegate.sendPromise()
                 }
             }
         }
