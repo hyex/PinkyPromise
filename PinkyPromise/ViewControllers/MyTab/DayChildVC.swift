@@ -15,7 +15,7 @@ class DayChildVC: UIViewController {
     var dayList: [DayAndPromise]? {
         didSet {
             dayTableView.reloadData()
-//            self.dayTableView.scrollToRow(at: IndexPath(row: 10, section: 0), at: .top, animated: false)
+            self.dayTableView.scrollToRow(at: IndexPath(row: 89, section: 0), at: .top, animated: false)
         }
     }
     
@@ -26,12 +26,9 @@ class DayChildVC: UIViewController {
         getMyPageData()
         setUpTableView()
         initRefresh()
-        if let firstIndex = self.firstIndex {
-            print(firstIndex)
-            self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
-        }
     }
     
+    // MARK: FIX
     override func viewWillAppear(_ animated: Bool) {
         getMyPageData()
     }
@@ -67,7 +64,6 @@ class DayChildVC: UIViewController {
             DispatchQueue.main.async {
                 self.dayList = result
                 if let firstIndex = self.firstIndex {
-                    print(firstIndex)
                     self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
                 }
             }
@@ -92,12 +88,10 @@ extension DayChildVC: UITableViewDataSource {
             let rowData = list[indexPath.row]
             cell.setPromise(day: rowData)
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yy mm dd"
+            dateFormatter.dateFormat = "yy MM dd"
             let today = Date()
             if dateFormatter.string(from: list[indexPath.row].Day) == dateFormatter.string(from: today) {
                 firstIndex = indexPath
-                // MARK: - NO working
-                self.dayTableView.scrollToRow(at: indexPath, at: .top, animated: false)
             }
         }
         
