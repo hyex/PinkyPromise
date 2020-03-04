@@ -15,7 +15,7 @@ class DayChildVC: UIViewController {
     var dayList: [DayAndPromise]? {
         didSet {
             dayTableView.reloadData()
-            self.dayTableView.scrollToRow(at: IndexPath(row: 10, section: 0), at: .top, animated: false)
+//            self.dayTableView.scrollToRow(at: IndexPath(row: 10, section: 0), at: .top, animated: false)
         }
     }
     
@@ -25,11 +25,11 @@ class DayChildVC: UIViewController {
         super.viewDidLoad()
         getMyPageData()
         setUpTableView()
-//        initRefresh()
-//        if let firstIndex = self.firstIndex {
-//            print(firstIndex)
-//            self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
-//        }
+        initRefresh()
+        if let firstIndex = self.firstIndex {
+            print(firstIndex)
+            self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,8 +56,8 @@ class DayChildVC: UIViewController {
     private func setUpTableView() {
         self.dayTableView.delegate = self
         self.dayTableView.dataSource = self
-//        self.dayTableView.rowHeight = UITableView.automaticDimension;
-//        self.dayTableView.estimatedRowHeight = 100;
+        self.dayTableView.rowHeight = UITableView.automaticDimension;
+        self.dayTableView.estimatedRowHeight = 100;
 //        self.dayTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
@@ -105,9 +105,9 @@ extension DayChildVC: UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 140.0
-//    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140.0
+    }
     
     //****선영 추가 부분****
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -131,7 +131,7 @@ extension DayChildVC: UITableViewDelegate {
             return CGFloat(0.0)
         }
         let height:CGFloat = CGFloat(dayList[indexPath.row].promiseData.count * 43 + 20)
-        
+
         return height
     }
 }

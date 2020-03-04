@@ -11,7 +11,7 @@
         <!--My Tab MainVC-->
         <scene sceneID="yla-xl-dry">
             <objects>
-                <viewController storyboardIdentifier="MyTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a3a-jh-vKq" customClass="MyTabMainVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyTab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a3a-jh-vKq" customClass="MyTabMainVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wgx-UX-f04">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
         <!--Day ChildVC-->
         <scene sceneID="vX8-P9-Dap">
             <objects>
-                <viewController id="zAP-ia-IDl" customClass="DayChildVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zAP-ia-IDl" customClass="DayChildVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wfU-bv-KSO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,7 +82,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayTVC" rowHeight="140" id="nVj-Kc-6yL" customClass="DayTVC" customModule="나랑약속해" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayTVC" rowHeight="140" id="nVj-Kc-6yL" customClass="DayTVC" customModule="PinkyPromise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nVj-Kc-6yL" id="bg5-Lm-a1m">
@@ -92,26 +92,25 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day 00" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbZ-8Y-8NH">
                                                     <rect key="frame" x="16" y="10" width="53" height="53"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="EbZ-8Y-8NH" secondAttribute="height" multiplier="1:1" id="1vc-WC-pzM"/>
-                                                        <constraint firstAttribute="width" constant="53" id="sdR-1k-F49"/>
+                                                        <constraint firstAttribute="width" secondItem="EbZ-8Y-8NH" secondAttribute="height" multiplier="1:1" identifier="$label11$" id="1vc-WC-pzM"/>
+                                                        <constraint firstAttribute="width" constant="53" identifier="$labelWidth$" id="sdR-1k-F49"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="9rw-23-m7o">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="9rw-23-m7o">
                                                     <rect key="frame" x="97.666666666666657" y="10" width="261.33333333333337" height="120"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="EbZ-8Y-8NH" firstAttribute="top" secondItem="bg5-Lm-a1m" secondAttribute="top" constant="9.9999999999999982" id="MsM-za-bJ4"/>
-                                                <constraint firstItem="EbZ-8Y-8NH" firstAttribute="leading" secondItem="bg5-Lm-a1m" secondAttribute="leading" constant="16" id="c8G-Lo-FNS"/>
-                                                <constraint firstItem="EbZ-8Y-8NH" firstAttribute="top" secondItem="9rw-23-m7o" secondAttribute="top" id="g6A-Us-a0C"/>
-                                                <constraint firstAttribute="bottom" secondItem="9rw-23-m7o" secondAttribute="bottom" constant="10" id="gbw-g9-w09"/>
-                                                <constraint firstItem="9rw-23-m7o" firstAttribute="top" secondItem="bg5-Lm-a1m" secondAttribute="top" constant="10" id="lfs-Qm-nX5"/>
-                                                <constraint firstAttribute="trailing" secondItem="9rw-23-m7o" secondAttribute="trailing" constant="16" id="qes-cv-f0p"/>
-                                                <constraint firstItem="9rw-23-m7o" firstAttribute="leading" secondItem="EbZ-8Y-8NH" secondAttribute="trailing" constant="28.670000000000002" id="vnY-wG-N8x"/>
+                                                <constraint firstItem="EbZ-8Y-8NH" firstAttribute="leading" secondItem="bg5-Lm-a1m" secondAttribute="leading" constant="16" identifier="$labelLeading$" id="c8G-Lo-FNS"/>
+                                                <constraint firstItem="EbZ-8Y-8NH" firstAttribute="top" secondItem="9rw-23-m7o" secondAttribute="top" identifier="$label&amp;stackTopequal$" id="g6A-Us-a0C"/>
+                                                <constraint firstAttribute="bottom" secondItem="9rw-23-m7o" secondAttribute="bottom" priority="750" constant="10" identifier="$stackBottom$" id="gbw-g9-w09"/>
+                                                <constraint firstItem="9rw-23-m7o" firstAttribute="top" secondItem="bg5-Lm-a1m" secondAttribute="top" priority="750" constant="10" identifier="$stackTop$" id="lfs-Qm-nX5"/>
+                                                <constraint firstAttribute="trailing" secondItem="9rw-23-m7o" secondAttribute="trailing" constant="16" identifier="$stackTrailing$" id="qes-cv-f0p"/>
+                                                <constraint firstItem="9rw-23-m7o" firstAttribute="leading" secondItem="EbZ-8Y-8NH" secondAttribute="trailing" constant="28.670000000000002" identifier="$label&amp;stackleadingtrailing$" id="vnY-wG-N8x"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -153,7 +152,7 @@
         <!--Promise ChildVC-->
         <scene sceneID="hGw-I9-EdB">
             <objects>
-                <viewController id="3Tx-Tk-fAw" customClass="PromiseChildVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Tx-Tk-fAw" customClass="PromiseChildVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SIm-ge-yQd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,14 +167,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PromiseCVC" id="59y-eh-3rL" customClass="PromiseCVC" customModule="나랑약속해" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PromiseCVC" id="59y-eh-3rL" customClass="PromiseCVC" customModule="PinkyPromise" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nFN-Zu-oJD">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-sJ-Zrn" customClass="CustomSlider" customModule="나랑약속해" customModuleProvider="target">
+                                                <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-sJ-Zrn" customClass="CustomSlider" customModule="PinkyPromise" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="63" width="317" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="l5p-CN-VWY"/>
@@ -296,7 +295,7 @@
         <!--Ended PromiseVC-->
         <scene sceneID="Guq-yJ-jdF">
             <objects>
-                <viewController storyboardIdentifier="EndedPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Kk-fu-Wu9" customClass="EndedPromiseVC" customModule="나랑약속해" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EndedPromiseVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Kk-fu-Wu9" customClass="EndedPromiseVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UJd-de-cn6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -327,7 +326,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EndedPromiseCVC" id="GQh-6U-JIy" customClass="EndedPromiseCVC" customModule="나랑약속해" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EndedPromiseCVC" id="GQh-6U-JIy" customClass="EndedPromiseCVC" customModule="PinkyPromise" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="343" height="156"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ad8-yA-9pi">
@@ -414,6 +413,6 @@
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9jx-JB-U3x"/>
+        <segue reference="TPX-JL-d6I"/>
     </inferredMetricsTieBreakers>
 </document>
