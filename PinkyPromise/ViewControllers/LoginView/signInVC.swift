@@ -25,10 +25,10 @@ class signInVC: UIViewController {
         emailTextField.textColor = UIColor.white
         
         PWTextFiled.borderStyle = .none
-        //let border = CALayer()
-        border.frame = CGRect(x: 0, y: PWTextFiled.frame.size.height-1, width: PWTextFiled.frame.width, height: 1)
-        border.backgroundColor = UIColor.white.cgColor
-        PWTextFiled.layer.addSublayer(border)
+        let border2 = CALayer()
+        border2.frame = CGRect(x: 0, y: PWTextFiled.frame.size.height-1, width: PWTextFiled.frame.width, height: 1)
+        border2.backgroundColor = UIColor.white.cgColor
+        PWTextFiled.layer.addSublayer(border2)
         //emailTextField.textAlignment = .center
         PWTextFiled.textColor = UIColor.white
     }
@@ -36,6 +36,7 @@ class signInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.loginBtn.layer.cornerRadius = 10
         loginBtn.addTarget(self, action: #selector(signIn), for: .touchUpInside)
     }
