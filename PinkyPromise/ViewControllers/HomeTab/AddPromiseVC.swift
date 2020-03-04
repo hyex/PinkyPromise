@@ -9,12 +9,9 @@
 import UIKit
 import FSCalendar
 
-//struct FriendData {
-//    let tag: Int!
-//    var name: String!
-//    var image: String!
-//    var isChecked: Bool!
-//}
+protocol SendPromiseDelegate {
+    func sendPromise()
+}
 
 class AddPromiseVC: UIViewController {
     
@@ -39,6 +36,8 @@ class AddPromiseVC: UIViewController {
     private var panaltyName: String!
     //   private var myFriendsImg: [UIImage]! = []
     
+    private var todayDate: Date!
+    
     let colors: [String] = [ "mySkyBlue"
         , "myDarkBlue"
         , "myPurple"
@@ -53,6 +52,8 @@ class AddPromiseVC: UIViewController {
         , "myLightOrange" ]
     
     let icons: [String] = [ "star", "timer", "gym", "weight-scale", "sleep", "list", "ebook", "award", "family",  "couple",  "no-smoking", "beer" ]
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,22 +82,7 @@ class AddPromiseVC: UIViewController {
                 }
             }
         }
-//        }
-//        DispatchQueue.global().async {
-//            MyApi.shared.getUsersFriendsData { (result) in
-//                var i = 0
-//
-//                result[1].userFriends.forEach { (friendId) in
-//                    MyApi.shared.getUserDataWithUID(id: friendId, completion: { (friend) in
-//                        let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
-//                        self.myFriends.append(temp)
-//                        print(temp)
-//                    })
-//                    i += 1
-//                }
-//            }
-//        }
-        
+        todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
@@ -110,8 +96,11 @@ class AddPromiseVC: UIViewController {
         
         let dateCell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
         let dataName = textCell.getValue()
-        let dataStartTime = dateCell.getFirstDate()
-        let dataEndTime = dateCell.getLastDate()
+        
+        let dataStartTime = Date(timeIntervalSince1970: ceil(dateCell.getFirstDate().timeIntervalSince1970/86400)*86400+21600)
+        let dataEndTime = Date(timeIntervalSince1970: ceil(dateCell.getLastDate().timeIntervalSince1970/86400)*86400+21600)
+        print(dataStartTime)
+        print(dataEndTime)
         let dataColor = colors[selectedColor]
         let dataIcon = icons[selectedIcon]
         let dataUsers: Array<String> = {
@@ -136,7 +125,6 @@ class AddPromiseVC: UIViewController {
         
         AddPromiseService.shared.addPromiseData(newPromise)
         AddPromiseService.shared.addProgressData(newPromise)
-        
         self.dismiss(animated: false, completion: nil)
     }
 }
@@ -206,8 +194,8 @@ extension AddPromiseVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell") as! PromiseInputTVC
-            cell.setFirstDate(date: Date())
-            cell.setLastDate(date: Date())
+            cell.setFirstDate(date: todayDate)
+            cell.setLastDate(date: todayDate)
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell") as! PromiseInputTVC
@@ -310,11 +298,11 @@ extension AddPromiseVC: FSCalendarDataSource {
                 cell.datesRange = []
                 
                 let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-                cell.setFirstDate(date: Date())
-                cell.setLastDate(date: Date())
+                cell.setFirstDate(date: todayDate)
+                cell.setLastDate(date: todayDate)
                 
                 self.alertData(name: "calendar")
-                calendar.setCurrentPage(Date(), animated: true)
+                calendar.setCurrentPage(todayDate, animated: true)
             }
             
             return
@@ -351,8 +339,8 @@ extension AddPromiseVC: FSCalendarDataSource {
             //            print("datesRange contains: \(cell.datesRange!)")
             
             let cell = promiseTableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as! PromiseInputTVC
-            cell.setFirstDate(date: Date())
-            cell.setLastDate(date: Date())
+            cell.setFirstDate(date: todayDate)
+            cell.setLastDate(date: todayDate)
         }
     }
     

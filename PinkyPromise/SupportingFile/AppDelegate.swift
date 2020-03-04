@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        let setting = FirestoreSettings()
         //        setting.isPersistenceEnabled = true
         //        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
-        //
+        //$
         //        store.settings = setting
         //
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID

@@ -33,7 +33,7 @@ class FirebaseUserService {
             let userID = authDataResult?.user.uid
             
             if let chosenImage = image {
-                guard let imageData = chosenImage.jpegData(compressionQuality: 0.1) else {
+                guard let imageData = chosenImage.jpegData(compressionQuality: 0.05) else {
                     return
                 }
                 //아직 구현단계 여기서는 뭘해야하는지모르겠군

@@ -45,6 +45,21 @@ class MyApi: NSObject {
         completion(result)
     }
     
+    //20200229 회의록에 기재된 함수
+    //Ended에서 사용하는 API 함수 두 개 삭제하고 achievement가 true 이면서 내 약속인 거 가져오는 API 함수 만들기
+    func getPromiseDataWithTrueAchievement(completion: @escaping ([PromiseTable]) -> Void) {
+        var result = [PromiseTable]()
+        
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(ISPROMISEACHIEVEMENT, isEqualTo: false).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let tempResult = PromiseTable.parseData(snapShot: snapShot)
+                completion(tempResult)
+            }
+        }
+    }
+    
     //유저 데이터가 업데이트될때마다 실행되며 업데이트된 데이터를 반환해줌, 클로저 사용
     func getUserUpdate(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
@@ -87,10 +102,6 @@ class MyApi: NSObject {
                 
             }
         }
-    }
-    
-    func getFriends(completion: @escaping ([PromiseUser]) -> Void ) {
-       
     }
     
     //유저의 친구들의 promiseUser들 가져온다.
@@ -256,8 +267,25 @@ class MyApi: NSObject {
         })
     }
     
-    //프로그레스테이블의 정보 반환 약속 id를 반환하면 
+    //약속 id를 인풋으로 프로그레스테이블의 정보 반환
     func getProgressDataWithPromiseId(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
+        //self.fireStoreSetting()
+        var result: [ProgressTable] = [] //[ProgressTable]()]
+        //        var result: [ProgressTable]? = nil
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint("debug print \(err)")
+            } else {
+                result = ProgressTable.parseData(snapShot: snapShot)
+                completion(result)
+                
+            }
+        }
+    }
+    
+    //겉
+    //약속 id와 uid를 인풋으로 프로그레스테이블의 정보 반환
+    func getProgressDataWithPromiseIdAndUid(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
         //self.fireStoreSetting()
         var result: [ProgressTable] = [] //[ProgressTable]()]
         //        var result: [ProgressTable]? = nil
@@ -308,6 +336,8 @@ class MyApi: NSObject {
         //self.fireStoreSetting()
         
         let now = Date()
+        let now2 = Timestamp()
+        let now3 = now2.dateValue() + 36000
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: now).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
@@ -317,7 +347,7 @@ class MyApi: NSObject {
                 var temp1 = [DayAndPromise]()
                 
                 //10일 전부터 10일 후까지
-                for i in stride(from: now.timeIntervalSince1970 - 2592000, through: now.timeIntervalSince1970 + 2592000, by: 86400) {
+                for i in stride(from: now3.timeIntervalSince1970 - (2592000 * 3), through: now3.timeIntervalSince1970 + (2592000 * 3), by: 86400) {
                     var temp2 = [PromiseTable]()
                     
                     for douc in tempResult {
@@ -340,6 +370,8 @@ class MyApi: NSObject {
         //self.fireStoreSetting()
         let result = Timestamp()
         let now = Date()
+        let now2 = Timestamp()
+        let now3 = now2.dateValue() + 36000
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: result).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
@@ -353,7 +385,7 @@ class MyApi: NSObject {
                     
                     var temp1 = [[PromiseTable]]()
                     
-                    for i in stride(from: now.timeIntervalSince1970, through: maxTimeDate.timeIntervalSince1970, by: 60*60*24) {
+                    for i in stride(from: now3.timeIntervalSince1970, through: maxTimeDate.timeIntervalSince1970, by: 60*60*24) {
                         //i는 하루하루의 타임스탬프
                         
                         var temp2 = [PromiseTable]()
@@ -375,8 +407,11 @@ class MyApi: NSObject {
     //선영쿤이 요청한 함수 -> friendTab에 들어갈 데이터
     func getPromiseNameAndFriendsName(completion: @escaping ([promiseNameAndFriendsName]) -> Void) {
         
+        let now2 = Timestamp()
+        let now3 = now2.dateValue() + 36000
+        
         //self.fireStoreSetting()
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Date() ).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: now3).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             }else {
@@ -424,7 +459,7 @@ class MyApi: NSObject {
     //이거 쿼리 물어봐야함 도대체 왜 세개하면 invalid라고 뜰
     func getDataforDetailViewjr1(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
         //self.fireStoreSetting()
-        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Timestamp()).getDocuments { (snapshot, error) in
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapshot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -726,7 +761,6 @@ class MyApi: NSObject {
                 var temp = [PromiseAndProgressNotDay]()
                 
                 for douc in promises2 {
-                    
                     self.progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
                         if let err = error {
                             print(err.localizedDescription)
@@ -740,7 +774,6 @@ class MyApi: NSObject {
                             }
                         }
                     }
-                    
                 }
                 if promises2.count == 0 {
                     completion(PromiseAndProgress1(Day: day, PAPD: temp))
@@ -760,8 +793,8 @@ class MyApi: NSObject {
             PROMISECOLOR: promiseTable.promiseColor ?? "nil",
             PROMISEICON: promiseTable.promiseIcon ?? "nil",
             ISPROMISEACHIEVEMENT: promiseTable.isPromiseAchievement ?? false,
-            PROMISESTARTTIME: promiseTable.promiseStartTime ,
-            PROMISEENDTIME: promiseTable.promiseEndTime ,
+            PROMISESTARTTIME: promiseTable.promiseStartTime,
+            PROMISEENDTIME: promiseTable.promiseEndTime,
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
             PROMISEUSERS: temp,
             PROMISEID: promiseTable.promiseId ?? "nil"
@@ -772,7 +805,6 @@ class MyApi: NSObject {
                 print("parsing success")
             }
         }
-        
     }
     
     //사용자 데이터를 추가할 때 사용하는 함수

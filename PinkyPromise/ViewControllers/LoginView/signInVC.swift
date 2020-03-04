@@ -15,6 +15,24 @@ class signInVC: UIViewController {
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var resetPwBtn: UIButton!
     
+    override func viewDidLayoutSubviews() {
+        emailTextField.borderStyle = .none
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: emailTextField.frame.size.height-1, width: emailTextField.frame.width, height: 1)
+        border.backgroundColor = UIColor.white.cgColor
+        emailTextField.layer.addSublayer(border)
+        //emailTextField.textAlignment = .center
+        emailTextField.textColor = UIColor.white
+        
+        PWTextFiled.borderStyle = .none
+        //let border = CALayer()
+        border.frame = CGRect(x: 0, y: PWTextFiled.frame.size.height-1, width: PWTextFiled.frame.width, height: 1)
+        border.backgroundColor = UIColor.white.cgColor
+        PWTextFiled.layer.addSublayer(border)
+        //emailTextField.textAlignment = .center
+        PWTextFiled.textColor = UIColor.white
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

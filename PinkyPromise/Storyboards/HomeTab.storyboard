@@ -991,6 +991,7 @@
         <!--Home Navigation Controller-->
         <scene sceneID="9y8-7z-wY5">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ygR-Qq-Ajd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uGs-YE-KiT" customClass="HomeNavigationController" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CfD-Ga-Xq2">
@@ -1002,7 +1003,6 @@
                         <segue destination="n3T-qC-QZ6" kind="relationship" relationship="rootViewController" id="Mvs-gv-54c"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ygR-Qq-Ajd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2845.5999999999999" y="133.74384236453201"/>
         </scene>

@@ -33,6 +33,8 @@ class HomeTabMainVC: UIViewController {
         return formatter
     }()
     
+    private var yesterdayDate: Date!
+    
     var clickedProgress: [Any]!
     
     struct Promise {
@@ -72,6 +74,7 @@ class HomeTabMainVC: UIViewController {
         calendar.register(MyCalendarCell.self, forCellReuseIdentifier: "cell")
         
         AddProgressService.shared.delegate = self
+        AddPromiseService.shared.delegate = self
 //                calendar.clipsToBounds = true // Remove top/bottom line
 //
 //        calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
@@ -109,21 +112,7 @@ class HomeTabMainVC: UIViewController {
 
         // data setting
         
-        //        MyApi.shared.getProgressDataWithUid(userid: FirebaseUserService.currentUserID, completion: { (result) in
-        //            DispatchQueue.main.sync {
-        //                self.promiseListforDates = result
-        //                print(self.promiseListforDates[0].progressDay ?? "data nil")
-        //            }
-        //        })
-        //        MyApi.shared.getPromiseData(completion:  { (result) in
-        //            DispatchQueue.main.async {
-        //                result.forEach { (promise) in
-        //                    <#code#>
-        //                }
-        //                self.promiseListforDates = result
-        //                print(self.promiseListforDates[0].progressDay)
-        //            }
-        //        })
+        yesterdayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-39600)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +124,6 @@ class HomeTabMainVC: UIViewController {
 //                    self.days = result
 //                }
 //            }
-            tableView.reloadData()
         }
         
     }
@@ -170,6 +158,7 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
 
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
             configureVisibleCell(date: date, cell: cell)
+            
         }
         return cell
     }
@@ -181,10 +170,11 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     private func configureVisibleCell(date: Date, cell: MyCalendarCell) {
+        let date = Date(timeInterval: 86400, since: date)
         HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
             self.days[date] = day
             var progress: Int = 0
-            
+
             for pm in day.PAPD {
                 let datindex = Int(date.timeIntervalSince1970 - pm.promiseData.promiseStartTime.timeIntervalSince1970) / 86400
                 if pm.progressData.progressDegree[datindex] == -1 {
@@ -193,7 +183,7 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
                     progress += pm.progressData.progressDegree[datindex]
                 }
             }
-            
+
             if day.PAPD.count > 0
             {
                 cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
@@ -236,18 +226,13 @@ extension HomeTabMainVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let date = calendar.selectedDate ?? Date()
+        let todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
+        let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? todayDate)
         var count = 0
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
             count = days[date]?.PAPD.count ?? 0
         }
-//
-//        days.forEach { (day) in
-//            if self.dateFormat.string(from: day.Day) == self.dateFormat.string(from: date) {
-//                count = day.PAPD.count
-//            }
-//        }
 
         return count
     }
@@ -255,7 +240,8 @@ extension HomeTabMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC
 
-        let date = calendar.selectedDate ?? Date()
+        let todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
+        let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? todayDate)
         cell.delegate = self
         if let day = days[date] {
             cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
@@ -274,6 +260,7 @@ extension HomeTabMainVC: UITableViewDataSource {
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
@@ -322,7 +309,8 @@ extension HomeTabMainVC {
             let vc = segue.destination as! AddProgressVC
             vc.delegate = self
             
-            let date = calendar.selectedDate ?? Date()
+            let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? yesterdayDate)
+            print(date)
             if let day = days[date] {
                 if let cell = self.clickedProgress[3] as? UITableViewCell {
                     let pm = day.PAPD[tableView.indexPath(for: cell)!.row]
@@ -332,7 +320,7 @@ extension HomeTabMainVC {
 //                    vc.promiseId = self.clickedProgress[0] as? String
 //                    vc.progressId = self.clickedProgress[1] as? String
                     vc.selectedProgress = self.clickedProgress[2] as! Int
-                    vc.day = self.calendar.selectedDate
+                    vc.day = date
                 } else {  }
             } else {
                 print("nil")
@@ -347,18 +335,14 @@ extension HomeTabMainVC: SendProgressDelegate {
 
         let date = self.calendar.selectedDate
         let cell = calendar.collectionView.cellForItem(at: calendar.calculator.indexPath(for: date)) as! MyCalendarCell
-        
-//        let item = DispatchWorkItem {
-//            self.configureVisibleCell(date: date!, cell: cell)
-//        }
-//        DispatchQueue.main.async(execute: item)
-//
-//        item.notify(queue: .main) {
-//            self.tableView.reloadData()
-//            print("table")
-//        }
         self.configureVisibleCell(date: date!, cell: cell)
-        
+    }
+}
+
+extension HomeTabMainVC: SendPromiseDelegate {
+    func sendPromise() {
+        print("sendPromise")
+        calendar.reloadData()
     }
 }
 
@@ -366,9 +350,5 @@ extension HomeTabMainVC: ClickProgressDelegate {
     func clickProgress(promiseId: String, progressId: String, progressDegree: Int, cell: DayPromiseListTVC) {
         self.clickedProgress = [promiseId, progressId, progressDegree, cell]
         self.performSegue(withIdentifier: "ProgressVC", sender: nil)
-//
-//        let storyBoard = UIStoryboard(name: "HomeTab", bundle: nil)
-//        let vc = storyBoard.instantiateViewController(identifier: "AddProgressVC")
-//        self.present(vc, animated: false, completion: nil)
     }
 }

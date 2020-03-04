@@ -58,8 +58,6 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     private func getDetailPromiseData(){
-        print("in getDatailPromiseData")
-        
         if let promiseId = detailPromise?.promiseId {
             MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
                 print("result : ", result)
