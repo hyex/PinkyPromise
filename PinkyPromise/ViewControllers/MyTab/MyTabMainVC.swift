@@ -24,7 +24,6 @@ class MyTabMainVC: UIViewController {
 
     }
     
-    
     @IBAction func indexChanged(_ sender: Any) {
         
         switch segmentedControl.selectedSegmentIndex{
@@ -48,29 +47,29 @@ extension MyTabMainVC {
     }
     
     func addSwipeGesture() {
-            
-            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-            let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-            
-            leftSwipe.direction = .left
-            rightSwipe.direction = .right
-            
-            dayChildView.addGestureRecognizer(leftSwipe)
-            promiseChildView.addGestureRecognizer(rightSwipe)
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        
+        dayChildView.addGestureRecognizer(leftSwipe)
+        promiseChildView.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        
+        if (sender.direction == .left) {
+            segmentedControl.selectedSegmentIndex = 1
+            dayChildView.isHidden = true
+            promiseChildView.isHidden = false
         }
         
-        @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-                
-            if (sender.direction == .left) {
-                segmentedControl.selectedSegmentIndex = 1
-                dayChildView.isHidden = true
-                promiseChildView.isHidden = false
-            }
-                
-            if (sender.direction == .right) {
-                segmentedControl.selectedSegmentIndex = 0
-                dayChildView.isHidden = false
-                promiseChildView.isHidden = true
-            }
+        if (sender.direction == .right) {
+            segmentedControl.selectedSegmentIndex = 0
+            dayChildView.isHidden = false
+            promiseChildView.isHidden = true
         }
+    }
 }

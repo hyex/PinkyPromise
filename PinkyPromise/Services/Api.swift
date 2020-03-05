@@ -48,7 +48,7 @@ class MyApi: NSObject {
     //20200229 회의록에 기재된 함수
     //Ended에서 사용하는 API 함수 두 개 삭제하고 achievement가 true 이면서 내 약속인 거 가져오는 API 함수 만들기
     func getPromiseDataWithTrueAchievement(completion: @escaping ([PromiseTable]) -> Void) {
-        var result = [PromiseTable]()
+        //var result = [PromiseTable]()
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(ISPROMISEACHIEVEMENT, isEqualTo: false).getDocuments { (snapShot, error) in
             if let err = error {
@@ -64,33 +64,59 @@ class MyApi: NSObject {
     func getUserUpdate(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         //self.fireStoreSetting()
-        promiseListner = userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).addSnapshotListener({ (snapShot, error) in
+        
+//        userCollectionRef.document(FirebaseUserService.currentUserID!).add
+//        promiseListner = userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).addSnapshotListener({ (snapShot, error) in
+//            if let err = error {
+//                debugPrint(err)
+//            } else {
+//                result = PromiseUser.parseData(snapShot: snapShot)
+//                completion(result)
+//            }
+//        })
+        
+        userCollectionRef.document(FirebaseUserService.currentUserID!).addSnapshotListener { (document, error) in
             if let err = error {
                 debugPrint(err)
             } else {
-                result = PromiseUser.parseData(snapShot: snapShot)
+                //let dataDescription = document?.data()
+                
+                result = PromiseUser.parseDouc(snapShot: document)
                 completion(result)
             }
-        })
+        }
     }
     
     //유저 데이터를 반환해줌
     func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         //self.fireStoreSetting()
-        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (sanpShot, err) in
-            if let err = err {
+        
+        userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (document, error) in
+            if let err = error {
                 debugPrint(err)
-            }else {
-                result = PromiseUser.parseData(snapShot: sanpShot)
+            } else {
+                //let dataDescription = document?.data()
+                
+                result = PromiseUser.parseDouc(snapShot: document)
                 completion(result)
             }
         }
+        
+//        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (sanpShot, err) in
+//            if let err = err {
+//                debugPrint(err)
+//            }else {
+//                result = PromiseUser.parseData(snapShot: sanpShot)
+//                completion(result)
+//            }
+//        }
     }
     
     //UID에 맞는 유저 이름을 반환해줌
     func getUserNameWithUID(id: String, completion: @escaping (String) -> Void) {
         //self.fireStoreSetting()
+        
         userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
@@ -107,16 +133,38 @@ class MyApi: NSObject {
     //유저의 친구들의 promiseUser들 가져온다.
     func getUsersFriendsData(completion: @escaping ([PromiseUser]) -> Void) {
         //self.fireStoreSetting()
-        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
+//        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
+//            if let err = error {
+//                debugPrint(err.localizedDescription)
+//            } else {
+//                let tempResult = PromiseUser.parseData(snapShot: snapShot)
+//                var temp = [PromiseUser]()
+//                var check1 = 0
+//
+//                if tempResult.count > 0 {
+//                    for douc in tempResult[0].userFriends {
+//                        self.getUserDataWithUID(id: douc) { (result) in
+//                            temp.append(result)
+//                            check1 += 1
+//                            if tempResult[0].userFriends.count <= check1 {
+//                                completion(temp)
+//                            }
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
+        
+        userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
-                let tempResult = PromiseUser.parseData(snapShot: snapShot)
+                let tempResult = PromiseUser.parseDouc(snapShot: snapShot)
                 var temp = [PromiseUser]()
                 var check1 = 0
                 
-                if tempResult.count > 0 {
-                    for douc in tempResult[0].userFriends {
+                for douc in tempResult[0].userFriends {
                         self.getUserDataWithUID(id: douc) { (result) in
                             temp.append(result)
                             check1 += 1
@@ -124,8 +172,8 @@ class MyApi: NSObject {
                                 completion(temp)
                             }
                         }
-                    }
                 }
+                
                 
             }
         }
@@ -134,12 +182,23 @@ class MyApi: NSObject {
     //UID에 맞는 유저 데이터를 반환해줌
     func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
         //self.fireStoreSetting()
+//        var result = [PromiseUser]()
+//        userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
+//            if let err = err {
+//                debugPrint(err)
+//            }else {
+//                result = PromiseUser.parseData(snapShot: sanpShot)
+//                let result2 = result[result.startIndex]
+//                completion(result2)
+//            }
+//        }
+        
         var result = [PromiseUser]()
-        userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
+        userCollectionRef.document(id).getDocument { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
             }else {
-                result = PromiseUser.parseData(snapShot: sanpShot)
+                result = PromiseUser.parseDouc(snapShot: sanpShot)
                 let result2 = result[result.startIndex]
                 completion(result2)
             }
@@ -285,11 +344,10 @@ class MyApi: NSObject {
     
     //겉
     //약속 id와 uid를 인풋으로 프로그레스테이블의 정보 반환
-    func getProgressDataWithPromiseIdAndUid(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
+    func getProgressDataWithPromiseIdAndUid(promiseid: String, uid: String, completion: @escaping ([ProgressTable]) -> Void ){
         //self.fireStoreSetting()
         var result: [ProgressTable] = [] //[ProgressTable]()]
-        //        var result: [ProgressTable]? = nil
-        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: uid).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
             } else {
@@ -369,7 +427,6 @@ class MyApi: NSObject {
         
         //self.fireStoreSetting()
         let result = Timestamp()
-        let now = Date()
         let now2 = Timestamp()
         let now3 = now2.dateValue() + 36000
         
@@ -556,7 +613,7 @@ class MyApi: NSObject {
         let cal = Calendar.current
         let components = cal.dateComponents([.year, .month, .day, .weekday, .hour, .minute], from: Date())
         
-        let todayMonth = components.month //이번 달이 몇번째 달인지
+        //let todayMonth = components.month //이번 달이 몇번째 달인지
         let todayDay = components.day // 오늘이 며칠째인지
         
         let firstDay = Date(timeIntervalSince1970: Date().timeIntervalSince1970 - Double(86400 * (todayDay! - 1)) + 32400)//이번달의 첫번째 날
@@ -793,8 +850,8 @@ class MyApi: NSObject {
             PROMISECOLOR: promiseTable.promiseColor ?? "nil",
             PROMISEICON: promiseTable.promiseIcon ?? "nil",
             ISPROMISEACHIEVEMENT: promiseTable.isPromiseAchievement ?? false,
-            PROMISESTARTTIME: promiseTable.promiseStartTime ,
-            PROMISEENDTIME: promiseTable.promiseEndTime ,
+            PROMISESTARTTIME: promiseTable.promiseStartTime,
+            PROMISEENDTIME: promiseTable.promiseEndTime,
             PROMSISEPANALTY: promiseTable.promisePanalty ?? "nil",
             PROMISEUSERS: temp,
             PROMISEID: promiseTable.promiseId ?? "nil"
@@ -858,7 +915,7 @@ class MyApi: NSObject {
                 debugPrint(err.localizedDescription)
             }else {
                 let result = PromiseUser.parseData(snapShot: snapShot)
-                //result는 원소가 1인 배열이거나 혹은 0인 배열
+                //result는 원소가 1인 배열이거나 혹은 0인 배열, 코드를 입력했을때 그코드에 맞는 사용자가 있다.
                 
                 if result.count > 0 {
                     //code를 가지는 사용자가 있다는 의미
@@ -868,14 +925,17 @@ class MyApi: NSObject {
                         
                         self.getUserData { (result2) in
                             
-                            var temp = result2[0].userFriends
-                            let tempadd = temp!.contains { $0 == (result[0].userId) }
-                            if tempadd == false {
-                                temp?.append(result[0].userId)
+                            var temp = result2[0].userFriends//나의 친구들
+                            let tempadd = temp!.contains { $0 == (result[0].userId) }//나의 친구들 중에 친구가 이미 있는지검사
+                            if tempadd == false {//친구가 없으면
+                                temp?.append(result[0].userId)//내 친구목록에 추가
                             }
-                            var temp2 = result[0].userFriends
-                            temp2?.append(FirebaseUserService.currentUserID!)
-                            self.userCollectionRef.document(result[0].userId).setData([USERFRIENDS : temp2], merge: true); self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp!], merge: true )
+                            var temp2 = result[0].userFriends//친구의 친구들
+                            let tempadd2 = temp2!.contains { $0 == FirebaseUserService.currentUserID }//친구의 친구목록중 내가 있는지 검사
+                            if tempadd2 == false {//친구가 없으면
+                                temp2?.append(FirebaseUserService.currentUserID!)
+                            }
+                            self.userCollectionRef.document(result[0].userId).setData([USERFRIENDS : temp2!], merge: true); self.userCollectionRef.document(FirebaseUserService.currentUserID!).setData( [USERFRIENDS : temp!], merge: true )
                         }
                     }
                     
@@ -953,7 +1013,6 @@ class MyApi: NSObject {
                         print("Document successfully updated")
                         self.delegate.sendProgress(data: data)
                     }
-                    
                     
                 }
             }

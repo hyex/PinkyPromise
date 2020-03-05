@@ -60,7 +60,7 @@ class LoginVC: UIViewController {
         self.faceSignInBtn.layer.cornerRadius = 10
         self.appleSignInBtn.layer.cornerRadius = 10
         self.googleSignInBtn.layer.cornerRadius = 10
-        
+            
         self.faceSignInBtn.addTarget(self, action: #selector(self.handleCustomFBLogin), for: .touchUpInside)
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
@@ -100,6 +100,7 @@ class LoginVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
        if UserDefaults.standard.bool(forKey: "loggedIn") == true {
         self.dismiss(animated: true, completion: nil)
         }

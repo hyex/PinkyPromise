@@ -23,7 +23,7 @@ let PROMISEUSERS = "users"
 let PROMSISEPANALTY = "promisePanalty"
 
 //유저 테이블과 그 필드들
-let PROMISEUSERREF = "promiseUsers"
+let PROMISEUSERREF = "UsersTable"
 
 let USERNAME = "userName"
 let USERFRIENDS = "userFriends"
@@ -32,7 +32,7 @@ let USERIMAGE = "userImage"
 let USERCODE = "userCode"
 
 //약속 진행상황 테이블
-let PROGRESSTABLEREF = "progressTable"
+let PROGRESSTABLEREF = "ProgressTable"
 
 let PROGRESSDEGREE = "progressDegree"
 let PROMISEID = "promiseId"
