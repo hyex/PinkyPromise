@@ -61,6 +61,7 @@ class DayTVC: UITableViewCell {
         self.selectionStyle = .none
         self.dayLabel.layer.masksToBounds = true
         self.dayLabel.layer.cornerRadius = self.dayLabel.layer.frame.height/2
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
