@@ -74,6 +74,7 @@ class AddProgressService : NSObject {
                         self.delegate.sendProgress(data: data)
                     }
                 }
+                
             }
         }
     }

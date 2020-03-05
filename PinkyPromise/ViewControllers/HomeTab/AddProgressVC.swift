@@ -55,6 +55,8 @@ class AddProgressVC: UIViewController {
         
         cancelBtn.tintColor = UIColor.appColor
         
+        print(self.progressTable)
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(AddProgressVC.dismissPage(sender:)))
         self.bigView.addGestureRecognizer(gesture)
 
