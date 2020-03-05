@@ -20,7 +20,7 @@ class AddIconVC: UIViewController {
     
     var selectedIcon: Int = 0
     
-    let icons: [String] = [ "star", "timer", "gym", "weight-scale", "sleep", "list", "ebook", "award", "family",  "couple",  "no-smoking", "beer" ]
+    let icons: [String] = [  "promiseIcon_star", "promiseIcon_heart", "promiseIcon_dumbell", "promiseIcon_book", "promiseIcon_check",   "promiseIcon_money", "promiseIcon_music",  "promiseIcon_people",  "promiseIcon_sleep", "promiseIcon_timer", "promiseIcon_alchol", "promiseIcon_noSmoke" ]
     
     @IBOutlet weak var cancelBtn: UIButton!
     
