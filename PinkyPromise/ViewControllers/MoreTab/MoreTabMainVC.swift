@@ -72,7 +72,9 @@ class MoreTabMainVC: UIViewController {
                         let imageUrl = URL(string: url)
                         do {
                             let data = try Data(contentsOf: imageUrl!)
-                            self.userImage.image = UIImage(data: data)
+//                            self.userImage.image = UIImage(data: data)
+                            self.userImage.image = UIImage(named: "user_fill")
+            
                         } catch {
                             print("get image url failed")
                             self.userImage.image = UIImage(named: "user_male")
