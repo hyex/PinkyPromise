@@ -1014,7 +1014,6 @@ class MyApi: NSObject {
                         self.delegate.sendProgress(data: data)
                     }
                     
-                    
                 }
             }
         }
