@@ -44,4 +44,23 @@ class PromiseUser {
         
         return promiseuser
     }
+    
+    class func parseDouc(snapShot: DocumentSnapshot?) -> [PromiseUser] {
+        var promiseuser = [PromiseUser]()
+        
+        guard let snap = snapShot else { return promiseuser }
+        
+        let data = snap.data()
+        let datauser = data![USERNAME] as? String ?? "Anonymous"
+        let datauserFriends = data![USERFRIENDS] as? Array<String> ?? []
+        let datauserId = data![USERID] as? String ?? "nil"
+        let datauserImage = data![USERIMAGE] as? String ?? "404"
+        let datauserCode = data![USERCODE] as? Int ?? Int.random(in: 100000...999999)
+        let datadocumentId = snap.documentID
+        let newdatauser = PromiseUser(userName: datauser, userFriends: datauserFriends, userId: datauserId, userImage: datauserImage, userCode: datauserCode, documentId: datadocumentId)
+        promiseuser.append(newdatauser)
+        
+        return promiseuser
+    }
+    
 }
