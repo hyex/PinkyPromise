@@ -165,7 +165,7 @@ extension LoginVC: LoginButtonDelegate {
                     MyApi.shared.addUserData(temp)
                     
                     if UserDefaults.standard.bool(forKey: "signedIn") == false{
-                        let tempimage = UIImage(named: "user_male")
+                        let tempimage = UIImage(named: "userDefaultImage")
                         
                         guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                         
@@ -218,7 +218,7 @@ extension LoginVC: LoginButtonDelegate {
                 MyApi.shared.addUserData(temp)
                 
                 if UserDefaults.standard.bool(forKey: "signedIn") == false{
-                    let tempimage = UIImage(named: "user_male")
+                    let tempimage = UIImage(named: "userDefaultImage")
                     
                     guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                     
@@ -295,7 +295,7 @@ extension LoginVC: GIDSignInDelegate {
                     MyApi.shared.addUserData(temp)
                     
                     if UserDefaults.standard.bool(forKey: "signedIn") == false{
-                        let tempimage = UIImage(named: "user_male")
+                        let tempimage = UIImage(named: "userDefaultImage")
                         
                         guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                         
@@ -377,7 +377,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                         MyApi.shared.addUserData(temp)
                         
                         if UserDefaults.standard.bool(forKey: "signedIn") == false {
-                            let tempimage = UIImage(named: "user_male")
+                            let tempimage = UIImage(named: "userDefaultImage")
                             
                             guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else {
                                 return

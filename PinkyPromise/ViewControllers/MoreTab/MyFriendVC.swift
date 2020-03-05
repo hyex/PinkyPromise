@@ -117,7 +117,7 @@ extension MyFriendVC: UITableViewDataSource {
                         switch result {
                         case .failure(let err):
                             print(err)
-                            friendCell.userImage.image = UIImage(named: "user_male")
+                            friendCell.userImage.image = UIImage(named: "userDefaultImage")
                         case .success(let image):
                             friendCell.userImage.image = image
                         }

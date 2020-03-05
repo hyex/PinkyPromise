@@ -24,8 +24,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Qs9-h7-0X9">
-                                <rect key="frame" x="50" y="109.33333333333334" width="275" height="271.66666666666669"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userDefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="Qs9-h7-0X9">
+                                <rect key="frame" x="50" y="107.33333333333331" width="275" height="275"/>
                                 <color key="tintColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Qs9-h7-0X9" secondAttribute="height" multiplier="1:1" id="Iwj-05-sTd"/>
@@ -311,6 +311,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="person.fill" catalog="system" width="64" height="60"/>
+        <image name="userDefaultImage" width="101" height="101"/>
     </resources>
 </document>

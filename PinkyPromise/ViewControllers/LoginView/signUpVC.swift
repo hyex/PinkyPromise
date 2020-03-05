@@ -46,7 +46,7 @@ class signUpVC: UIViewController {
                 
 //                let tempDouble: CGFloat
 //
-//                if self.profileImage.image == UIImage(named: "user_male") {
+//                if self.profileImage.image == UIImage(named: "userDefaultImage") {
 //                    tempDouble = 1.0
 //                } else {
 //                    tempDouble = 0.1
