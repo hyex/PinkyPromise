@@ -204,7 +204,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2fQ-Mh-uJJ">
-                                <rect key="frame" x="40" y="282" width="334" height="132"/>
+                                <rect key="frame" x="40" y="361" width="334" height="132"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="TxW-Nt-77V">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
@@ -223,46 +223,33 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="UTr-vg-Agc">
-                                <rect key="frame" x="143" y="121" width="128" height="123"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="userDefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="UTr-vg-Agc">
+                                <rect key="frame" x="143" y="121" width="128" height="202"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1m4-cb-mmn">
-                                <rect key="frame" x="115" y="434" width="184" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6K-dt-6Hy">
-                                        <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="취소">
-                                            <color key="titleColor" name="myPurple"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27C-t1-Bap">
-                                        <rect key="frame" x="107" y="0.0" width="77" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="로그인">
-                                            <color key="titleColor" name="myPurple"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="signUpButton:" destination="JGA-uc-ThS" eventType="touchUpInside" id="3k3-v6-XWG"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27C-t1-Bap">
+                                <rect key="frame" x="40" y="512" width="334" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="로그인">
+                                    <color key="titleColor" name="myPurple"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpButton:" destination="JGA-uc-ThS" eventType="touchUpInside" id="3k3-v6-XWG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="myPurple"/>
                         <constraints>
                             <constraint firstItem="2fQ-Mh-uJJ" firstAttribute="leading" secondItem="7od-BY-4d6" secondAttribute="leading" constant="40" id="5Rh-w7-CNj"/>
-                            <constraint firstItem="2fQ-Mh-uJJ" firstAttribute="top" secondItem="FAc-Fa-hFs" secondAttribute="top" constant="282" id="Jqy-F6-ZDL"/>
+                            <constraint firstItem="27C-t1-Bap" firstAttribute="leading" secondItem="7od-BY-4d6" secondAttribute="leading" constant="40" id="9ie-TE-9jV"/>
+                            <constraint firstItem="27C-t1-Bap" firstAttribute="top" secondItem="2fQ-Mh-uJJ" secondAttribute="bottom" constant="19" id="MWr-YS-pkV"/>
                             <constraint firstItem="2fQ-Mh-uJJ" firstAttribute="top" secondItem="UTr-vg-Agc" secondAttribute="bottom" constant="38" id="bQu-T9-IAv"/>
                             <constraint firstItem="7od-BY-4d6" firstAttribute="trailing" secondItem="2fQ-Mh-uJJ" secondAttribute="trailing" constant="40" id="dSU-uG-6Tn"/>
-                            <constraint firstItem="UTr-vg-Agc" firstAttribute="leading" secondItem="7od-BY-4d6" secondAttribute="leading" constant="143" id="jrN-Mk-sTA"/>
+                            <constraint firstItem="7od-BY-4d6" firstAttribute="trailing" secondItem="27C-t1-Bap" secondAttribute="trailing" constant="40" id="els-oD-F1t"/>
+                            <constraint firstItem="UTr-vg-Agc" firstAttribute="leading" relation="lessThanOrEqual" secondItem="7od-BY-4d6" secondAttribute="leading" constant="143" id="jrN-Mk-sTA"/>
                             <constraint firstItem="UTr-vg-Agc" firstAttribute="top" secondItem="7od-BY-4d6" secondAttribute="top" constant="33" id="kWa-Vq-1d3"/>
-                            <constraint firstItem="7od-BY-4d6" firstAttribute="trailing" secondItem="1m4-cb-mmn" secondAttribute="trailing" constant="115" id="n5K-HX-aLC"/>
-                            <constraint firstItem="7od-BY-4d6" firstAttribute="trailing" secondItem="UTr-vg-Agc" secondAttribute="trailing" constant="143" id="nLL-Vr-Ula"/>
-                            <constraint firstItem="1m4-cb-mmn" firstAttribute="top" secondItem="2fQ-Mh-uJJ" secondAttribute="bottom" constant="20" id="qlW-IS-PRK"/>
-                            <constraint firstItem="1m4-cb-mmn" firstAttribute="leading" secondItem="7od-BY-4d6" secondAttribute="leading" constant="115" id="sIs-Nk-hFR"/>
+                            <constraint firstItem="7od-BY-4d6" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="UTr-vg-Agc" secondAttribute="trailing" constant="143" id="nLL-Vr-Ula"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7od-BY-4d6"/>
                     </view>
@@ -277,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWy-U3-x1o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1726" y="208"/>
+            <point key="canvasLocation" x="-1726.0869565217392" y="207.58928571428569"/>
         </scene>
         <!--MoreTab-->
         <scene sceneID="mmR-XI-oQV">
@@ -404,7 +391,7 @@
         <image name="list.bullet.indent" catalog="system" width="64" height="36"/>
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
-        <image name="user_male" width="30" height="30"/>
+        <image name="userDefaultImage" width="101" height="101"/>
         <namedColor name="myLightGreen">
             <color red="0.45490196078431372" green="0.83921568627450982" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

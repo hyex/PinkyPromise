@@ -16,10 +16,12 @@ class signUpVC: UIViewController {
     @IBOutlet weak var passwordBtn: UITextField!
     @IBOutlet weak var nickNameBtn: UITextField!
     @IBOutlet weak var startBtn: UIButton!
+    @IBOutlet weak var cancleBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.profileImage.layer.cornerRadius = 20
         self.profileImage.clipsToBounds = true
