@@ -96,26 +96,22 @@ class AddProgressVC: UIViewController {
 //        myGroup.notify(queue: queue) {
 
 //        }
-
+//        if self.promiseTable.promiseEndTime == self.day {
+//            var flag = true
+//            for progress in progressTable.progressDegree {
+//                if progress != 4 {
+//                    flag = false
+//                    break
+//                }
+//            }
+//            if flag {
+//                AddProimseService.shared.updatePromise()
+//            }
+//        }
+        
         AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable, progress: self.progressTable)
         self.dismiss(animated: false, completion: nil)
-//        DispatchQueue.main.async {
-//            AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable, progress: self.progressTable)
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.delegate.sendProgress(data: self.selectedProgress)
-//            self.dismiss(animated: false, completion: nil)
-//        }
-//        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-//            guard let self = self else {
-//                return
-//            }
-//            AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable, progress: self.progressTable)
-//            DispatchQueue.main.async { [weak self] in
-//                self?.delegate.sendProgress(data: self!.selectedProgress)
-//                self?.dismiss(animated: false, completion: nil)
-//            }
-//        }
+
     }
 }
 
