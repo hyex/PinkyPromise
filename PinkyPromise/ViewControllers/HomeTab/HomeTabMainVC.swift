@@ -310,7 +310,7 @@ extension HomeTabMainVC {
             vc.delegate = self
             
             let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? yesterdayDate)
-            print(date)
+
             if let day = days[date] {
                 if let cell = self.clickedProgress[3] as? UITableViewCell {
                     let pm = day.PAPD[tableView.indexPath(for: cell)!.row]
