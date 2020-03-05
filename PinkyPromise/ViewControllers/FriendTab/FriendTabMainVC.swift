@@ -99,7 +99,7 @@ extension FriendTabMainVC : UITableViewDataSource{
             switch imgResult {
             case .failure(let err):
                 print(err)
-                cell.friendProfileImg.image = UIImage(named: "user_male")
+                cell.friendProfileImg.image = UIImage(named: "userDefaultImage")
             case .success(let url):
                 let imgURL = URL(string: url)
                 do{
@@ -107,7 +107,7 @@ extension FriendTabMainVC : UITableViewDataSource{
                     cell.friendProfileImg.image = UIImage(data: data)
                 } catch{
                     print("get img url failed")
-                    cell.friendProfileImg.image = UIImage(named: "user_male")
+                    cell.friendProfileImg.image = UIImage(named: "userDefaultImage")
                 }
             }
         })

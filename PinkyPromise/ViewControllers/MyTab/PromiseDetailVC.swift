@@ -153,7 +153,7 @@ extension PromiseDetailVC : UITableViewDataSource{
                 switch imgResult {
                 case .failure(let err):
                     print(err)
-                    friendCell.friendProfileImg.image = UIImage(named: "user_male")
+                    friendCell.friendProfileImg.image = UIImage(named: "userDefaultImage")
                 case .success(let url):
                     let imgURL = URL(string: url)
                     do{
@@ -161,7 +161,7 @@ extension PromiseDetailVC : UITableViewDataSource{
                         friendCell.friendProfileImg.image = UIImage(data: data)
                     } catch{
                         print("get img url failed")
-                        friendCell.friendProfileImg.image = UIImage(named: "user_male")
+                        friendCell.friendProfileImg.image = UIImage(named: "userDefaultImage")
                     }
                 }
             })
