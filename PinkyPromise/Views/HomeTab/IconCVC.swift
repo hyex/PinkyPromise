@@ -14,7 +14,7 @@ class IconCVC: UICollectionViewCell {
     
     var iconName: String!
     var iconInt: Int!
-    let icons: [String] = [ "star", "timer", "gym", "weight-scale", "sleep", "list", "ebook", "award", "family",  "couple",  "no-smoking", "beer" ]
+    let icons: [String] = [ "promiseIcon_alchol", "promiseIcon_book", "promiseIcon_check", "promiseIcon_dumbell", "promiseIcon_heart", "promiseIcon_money", "promiseIcon_music", "promiseIcon_noSmoke", "promiseIcon_people",  "promiseIcon_sleep",  "promiseIcon_star", "promiseIcon_timer" ]
     var delegate: SelectedIconDelegate!
     
     override func awakeFromNib() {
