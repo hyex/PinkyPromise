@@ -21,7 +21,7 @@ class PromiseChildVC: UIViewController {
         super.viewDidLoad()
         
         setUpCollectionView()
-        getAllPromiseData()
+        // getAllPromiseData()
         initView()
         
     }
@@ -29,6 +29,7 @@ class PromiseChildVC: UIViewController {
     // MARK: wantToFix
     override func viewWillAppear(_ animated: Bool) {
         getAllPromiseData()
+        
     }
     
     private func setUpCollectionView() {
@@ -38,10 +39,9 @@ class PromiseChildVC: UIViewController {
     
     // 통신
     private func getAllPromiseData() {
-        MyApi.shared.getPromiseDataSinceToday(completion: { result in
+        PromiseChildService.shared.getPromiseDataSinceToday(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
-                
             }
         })
         
@@ -177,7 +177,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
                 
                 if let id = rowData.promiseId {
-                    MyApi.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
+                    PromiseChildService.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
                         DispatchQueue.main.async {
                             if result.isEmpty != true {
                                 

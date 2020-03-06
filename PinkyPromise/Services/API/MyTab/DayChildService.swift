@@ -17,12 +17,11 @@ class DayChildService : NSObject {
     
     fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
     
-    func getPromiseData10ToNow(completion: @escaping ([PromiseWithDay]) -> Void ) {
-        
-        let now = Date()
+    func getPromiseData30ToNow(completion: @escaping ([PromiseWithDay]) -> Void ) {
+    
         let now3 = Date(timeIntervalSince1970: ceil( Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
         
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: now).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -39,11 +38,13 @@ class DayChildService : NSObject {
                         }
                     }
                     
-                    let temp3 = PromiseWithDay(Day: Date(timeIntervalSince1970: i), promiseData: temp2)
+                    let temp3 = PromiseWithDay(Day: Date(timeIntervalSince1970: i + 21600 - (15 * 3600)), promiseData: temp2)
                     temp1.append(temp3)
                 }
                 completion(temp1)
             }
         }
     }
+    
+    
 }
