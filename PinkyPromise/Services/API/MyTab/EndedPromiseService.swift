@@ -12,16 +12,13 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class EndedPromiseService: NSObject {
+    
     static let shared = EndedPromiseService()
     
     fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
     fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
     fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
-    
-    var promiseListner: ListenerRegistration!
-    
-    let dateFormatter = DateFormatter()
-    
+
     //이미 끝난 약속 데이터만 반환하는 함수
     func getCompletedPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))

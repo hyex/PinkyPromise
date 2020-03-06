@@ -23,7 +23,7 @@ class EndedPromiseVC: UIViewController {
         self.endedPromiseCollectionView.dataSource = self
         
         // 날짜가 끝났고, 성취률 100%인 약속들만 넘겨오는 함수
-        MyApi.shared.getCompletedPromiseData(completion: { result in
+        EndedPromiseService.shared.getCompletedPromiseData(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
                 self.endedPromiseCollectionView.reloadData()
@@ -100,7 +100,7 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         cell.promiseFriends.text = "WITH "
         
         if let id = rowData.promiseId {
-            MyApi.shared.getPromiseFriendsNameWithPID(promiseID: id, completion: { result in
+            EndedPromiseService.shared.getPromiseFriendsNameWithPID(promiseID: id, completion: { result in
                 DispatchQueue.main.async {
                     // 친구 3명까지만 이름 노출, 그 외에는 "와 x명"으로 표시
                     for friend in result {
@@ -137,10 +137,7 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         return cell
     }
 
-    // 선영 추가 부분 --> 클릭 시 실행되는 함수
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
-//        performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
         performSegue(withIdentifier: "promiseDetail", sender: promiseList[indexPath.row])
         
     }

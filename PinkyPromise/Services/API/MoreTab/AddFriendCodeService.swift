@@ -12,15 +12,10 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class AddFriendCodeService : NSObject {
+    
     static let shared = AddFriendCodeService()
     
-    fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
     fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
-    fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
-    
-    var promiseListner: ListenerRegistration!
-    
-    let dateFormatter = DateFormatter()
     
     func addFriendWithCode(code: Int, completion: @escaping (PromiseUser?) -> Void) {
         userCollectionRef.whereField(USERCODE, isEqualTo: code).getDocuments { (snapShot, error) in

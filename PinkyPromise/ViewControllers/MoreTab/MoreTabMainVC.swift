@@ -58,7 +58,7 @@ class MoreTabMainVC: UIViewController {
         
         var imageName: String = ""
         
-        MyApi.shared.getUserData(completion: { result in
+        MoreTabMainService.shared.getUserData(completion: { result in
             DispatchQueue.main.async {
                 self.user = result[0]
                 self.userName.text = result[0].userName

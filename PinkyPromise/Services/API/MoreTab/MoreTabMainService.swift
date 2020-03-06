@@ -14,29 +14,23 @@ import FirebaseFirestore
 class MoreTabMainService : NSObject {
     static let shared = MoreTabMainService()
     
-    fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
     fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
-    fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
-    
-    var promiseListner: ListenerRegistration!
-    
-    let dateFormatter = DateFormatter()
     
     //유저 데이터를 반환해줌
-        func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
-            var result = [PromiseUser]()
-            //self.fireStoreSetting()
-            
-            userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (document, error) in
-                if let err = error {
-                    debugPrint(err)
-                    completion(result)
-                } else {
-                    //let dataDescription = document?.data()
-                    result = PromiseUser.parseDouc(snapShot: document)
-                    completion(result)
-                }
+    func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
+        var result = [PromiseUser]()
+        //self.fireStoreSetting()
+        
+        userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (document, error) in
+            if let err = error {
+                debugPrint(err)
+                completion(result)
+            } else {
+                //let dataDescription = document?.data()
+                result = PromiseUser.parseDouc(snapShot: document)
+                completion(result)
             }
         }
-
+    }
+    
 }
