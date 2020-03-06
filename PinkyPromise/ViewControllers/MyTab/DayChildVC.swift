@@ -99,7 +99,7 @@ extension DayChildVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140.0
+        return 170.0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -122,7 +122,7 @@ extension DayChildVC: UITableViewDelegate {
         if dayList[indexPath.row].promiseData.count == 0 {
             return CGFloat(0.0)
         }
-        let height:CGFloat = CGFloat(dayList[indexPath.row].promiseData.count * 43 + 20)
+        let height:CGFloat = CGFloat(dayList[indexPath.row].promiseData.count * 45 + 20)
 
         return height
     }

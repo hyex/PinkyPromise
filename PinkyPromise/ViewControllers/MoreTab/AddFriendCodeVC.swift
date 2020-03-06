@@ -43,7 +43,7 @@ class AddFriendCodeVC: UIViewController {
         let text = friendCodeTextField.text!
         
         if let textInt = Int(text) {
-            MyApi.shared.addFriendWithCode(code: textInt, completion: { result in
+            AddFriendCodeService.shared.addFriendWithCode(code: textInt, completion: { result in
 
                 if result == nil {
                     self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
@@ -129,7 +129,7 @@ extension AddFriendCodeVC {
         self.myCodeLabel.textColor = UIColor.appColor
         self.myCode.textColor = UIColor.appColor
         
-        MyApi.shared.getUserData(completion: { result in
+        AddFriendCodeService.shared.getUserData(completion: { result in
             DispatchQueue.main.async {
                 self.myCode.text = String(result[0].userCode)
                 self.user = result[0]
@@ -196,7 +196,7 @@ extension AddFriendCodeVC: UITextFieldDelegate {
         let text = friendCodeTextField.text!
         
         if let textInt = Int(text) {
-            MyApi.shared.addFriendWithCode(code: textInt, completion: { result in
+            AddFriendCodeService.shared.addFriendWithCode(code: textInt, completion: { result in
 
                 if result == nil {
                     self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")

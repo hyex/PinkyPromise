@@ -76,6 +76,7 @@ class AddPromiseService : NSObject {
                 debugPrint("Error adding document : \(err)")
             } else {
                 print("AddPromiseData API is success")
+                self.delegate.sendPromise()
             }
         }
     }
@@ -89,7 +90,7 @@ class AddPromiseService : NSObject {
         let indexTime = Int(promiseTable.promiseEndTime.timeIntervalSince1970 - promiseTable.promiseStartTime.timeIntervalSince1970) / 86400
         let indexPromiseId = promiseTable.promiseId
         
-        for douc in temp {//약속에 있는 유저 개수만큼 progressTable을 만든다.
+        for douc in temp { //약속에 있는 유저 개수만큼 progressTable을 만든다.
             let temp1 = [Int](repeating: -1, count: indexTime + 1)
             
             progressCollectionRef.addDocument( data: [
@@ -101,7 +102,6 @@ class AddPromiseService : NSObject {
                     debugPrint("error adding document : \(err)")
                 } else {
                     print("AddProgressData API is success")
-                    self.delegate.sendPromise()
                 }
             }
         }

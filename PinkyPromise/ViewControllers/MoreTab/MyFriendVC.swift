@@ -34,7 +34,7 @@ class MyFriendVC: UIViewController {
     }
     
     private func getFriendData() {
-        MyApi.shared.getUsersFriendsData(completion: { result in
+        MyFriendService.shared.getUsersFriendsData(completion: { result in
             DispatchQueue.main.async {
                 self.friendList = result
             }

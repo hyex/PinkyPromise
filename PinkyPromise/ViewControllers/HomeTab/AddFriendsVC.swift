@@ -120,7 +120,7 @@ extension AddFriendsVC: UITableViewDataSource {
                     break
                 }
             }
-            }
+        }
         
         
         cell.friendNameLabel.text = friend.name
