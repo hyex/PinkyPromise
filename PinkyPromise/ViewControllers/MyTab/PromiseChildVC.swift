@@ -21,13 +21,15 @@ class PromiseChildVC: UIViewController {
         super.viewDidLoad()
         
         setUpCollectionView()
-//        getAllPromiseData()
+        // getAllPromiseData()
         initView()
         
     }
     
+    // MARK: wantToFix
     override func viewWillAppear(_ animated: Bool) {
         getAllPromiseData()
+        
     }
     
     private func setUpCollectionView() {
@@ -37,8 +39,7 @@ class PromiseChildVC: UIViewController {
     
     // 통신
     private func getAllPromiseData() {
-        
-        MyApi.shared.getPromiseDataSinceToday(completion: { result in
+        PromiseChildService.shared.getPromiseDataSinceToday(completion: { result in
             DispatchQueue.main.async {
                 self.promiseList = result
             }
@@ -53,7 +54,6 @@ class PromiseChildVC: UIViewController {
         vc.modalPresentationStyle = .overCurrentContext
         
         self.navigationController?.pushViewController(vc, animated: false)
-//        self.present(vc, animated: false)
     }
     
 }
@@ -65,7 +65,6 @@ extension PromiseChildVC {
     }
     
     func setupBtn() {
-        
         endedPromiseBtn.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         endedPromiseBtn.layer.cornerRadius = 8.0
         
@@ -100,7 +99,6 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
     
-    // 선영 추가 부분 --> 클릭 시 실행되는 함수
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 약속 디테일 뷰로 이동해야함. 약속 정보를 가지고
         performSegue(withIdentifier: "promiseDetail", sender: promiseList?[indexPath.row])
@@ -108,7 +106,6 @@ extension PromiseChildVC: UICollectionViewDelegateFlowLayout {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("in prepare func")
         if segue.identifier == "promiseDetail"{
             let promiseDetail = sender as? PromiseTable
             if promiseDetail != nil{
@@ -180,7 +177,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
                 
                 if let id = rowData.promiseId {
-                    MyApi.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
+                    PromiseChildService.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
                         DispatchQueue.main.async {
                             if result.isEmpty != true {
                                 
@@ -193,7 +190,6 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                             
                             promiseCell.appSlider.value = Float(promiseAchievement)
                             promiseCell.showSliderValue.text = String(promiseAchievement)
-                            
                             
                             let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
                             

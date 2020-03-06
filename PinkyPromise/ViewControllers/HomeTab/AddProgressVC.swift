@@ -98,20 +98,9 @@ class AddProgressVC: UIViewController {
 //        myGroup.notify(queue: queue) {
 
 //        }
-//        if self.promiseTable.promiseEndTime == self.day {
-//            var flag = true
-//            for progress in progressTable.progressDegree {
-//                if progress != 4 {
-//                    flag = false
-//                    break
-//                }
-//            }
-//            if flag {
-//                AddProimseService.shared.updatePromise()
-//            }
-//        }
         
         AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable, progress: self.progressTable)
+        
         self.dismiss(animated: false, completion: nil)
 
     }

@@ -72,12 +72,28 @@ class AddProgressService : NSObject {
                     } else {
                         print("Document successfully updated")
                         self.delegate.sendProgress(data: data)
+                        // if endDate
+                        if temp.count - 1 == datindex {
+                            var flag = true
+                            for progress in temp {
+                                if progress != 4 {
+                                    flag = false
+                                    break
+                                }
+                            }
+                            if flag {
+                                AddProgressService.shared.updatePromiseAchievement(promiseID: promise.promiseId)
+                            }
+                        }
                     }
                 }
-                
             }
         }
     }
-        
+
+    //프로미스 어치브먼트 바꾸는함수
+    func updatePromiseAchievement(promiseID: String) {
+        promiseCollectionRef.document(promiseID).updateData([ISPROMISEACHIEVEMENT : true])
+    }
         
 }
