@@ -79,8 +79,6 @@ class OnePromiseView: UIView {
         print("handleTap : ", self.promise!)
         if let controller = self.vc {
             controller.performSegue(withIdentifier: "promiseDetail", sender: self.promise!)
-//            controller.performSegue(withIdentifier: "promiseDetail", sender: Promise(promiseName: "약속이름", promiseColor: "약속 컬러"))
-
         }
     }
 }

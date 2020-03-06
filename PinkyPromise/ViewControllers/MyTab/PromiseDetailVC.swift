@@ -61,8 +61,16 @@ class PromiseDetailVC: UIViewController {
 
     @IBAction func backBtnAction(_ sender : Any) {
         print("back btn action")
-        self.dismiss(animated: false, completion: nil)
+        let dayTabStoryboard = UIStoryboard(name: "MyTab", bundle: nil)
+        let vc = dayTabStoryboard.instantiateViewController(withIdentifier: "MyTab") as! MyTabMainVC
+        
+        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        self.present(vc, animated: false, completion: nil)
+        
     }
+    
     func setBackBtn() {
         self.backBtn.tintColor = UIColor.purple
     }
