@@ -11,8 +11,8 @@ import Firebase
 import FirebaseStorage
 import FirebaseFirestore
 
-class PromiseChild: NSObject {
-    static let shared = MyApi()
+class PromiseChildService: NSObject {
+    static let shared = PromiseChildService()
         
         fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
         fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
@@ -22,7 +22,7 @@ class PromiseChild: NSObject {
         
         let dateFormatter = DateFormatter()
     
-    //프로그레스테이블의 정보 반환 약속 id를 반환하면
+    //약속 id를 인풋으로 프로그레스테이블의 정보 반환
     func getProgressDataWithPromiseId(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
         //self.fireStoreSetting()
         var result: [ProgressTable] = [] //[ProgressTable]()]
