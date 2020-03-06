@@ -258,7 +258,7 @@ extension HomeTabMainVC: UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: false)
         let cell = tableView.cellForRow(at: indexPath) as! DayPromiseListTVC
-        self.clickedProgress = [cell.promiseId as String, cell.promiseId as String, cell.progressDegree as Int, cell as DayPromiseListTVC]
+        self.clickedProgress = [cell.progressDegree as Int, cell as DayPromiseListTVC]
         self.performSegue(withIdentifier: "ProgressVC", sender: nil)
     }
     
@@ -306,14 +306,11 @@ extension HomeTabMainVC {
 //            let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? yesterdayDate)
 
             if let day = self.days[date] {
-                if let cell = self.clickedProgress[3] as? UITableViewCell {
+                if let cell = self.clickedProgress[1] as? UITableViewCell {
                     let pm = day.PAPD[tableView.indexPath(for: cell)!.row]
                     
                     vc.promiseTable = pm.promiseData
-                    vc.progressTable = pm.progressData
-//                    vc.promiseId = self.clickedProgress[0] as? String
-//                    vc.progressId = self.clickedProgress[1] as? String
-                    vc.selectedProgress = self.clickedProgress[2] as! Int
+                    vc.selectedProgress = self.clickedProgress[0] as! Int
                     vc.day = date
                 } else {  }
             } else {
@@ -339,8 +336,8 @@ extension HomeTabMainVC: SendPromiseDelegate {
 }
 
 extension HomeTabMainVC: ClickProgressDelegate {
-    func clickProgress(promiseId: String, progressId: String, progressDegree: Int, cell: DayPromiseListTVC) {
-        self.clickedProgress = [promiseId, progressId, progressDegree, cell]
+    func clickProgress(progressDegree: Int, cell: DayPromiseListTVC) {
+        self.clickedProgress = [progressDegree, cell]
         self.performSegue(withIdentifier: "ProgressVC", sender: nil)
     }
 }
