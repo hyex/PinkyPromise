@@ -23,16 +23,19 @@ class AddPromiseService : NSObject {
         var delegate: SendPromiseDelegate!
     
         let dateFormatter = DateFormatter()
-    
+
     //유저 데이터를 반환해줌
     func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
         var result = [PromiseUser]()
         //self.fireStoreSetting()
-        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (sanpShot, err) in
-            if let err = err {
+        
+        userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (document, error) in
+            if let err = error {
                 debugPrint(err)
-            }else {
-                result = PromiseUser.parseData(snapShot: sanpShot)
+            } else {
+                //let dataDescription = document?.data()
+                
+                result = PromiseUser.parseDouc(snapShot: document)
                 completion(result)
             }
         }
@@ -40,13 +43,12 @@ class AddPromiseService : NSObject {
     
     //UID에 맞는 유저 데이터를 반환해줌
     func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
-        //self.fireStoreSetting()
         var result = [PromiseUser]()
-        userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
+        userCollectionRef.document(id).getDocument { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
             }else {
-                result = PromiseUser.parseData(snapShot: sanpShot)
+                result = PromiseUser.parseDouc(snapShot: sanpShot)
                 let result2 = result[result.startIndex]
                 completion(result2)
             }
@@ -77,7 +79,7 @@ class AddPromiseService : NSObject {
             }
         }
     }
-    
+
     //프로그레스테이블에 데이터 추가, addPromiseTable 직후 같은 promiseTable을 넣어준다.
     func addProgressData(_ promiseTable: PromiseTable) {
         
