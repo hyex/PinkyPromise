@@ -12,7 +12,7 @@ class DayChildVC: UIViewController {
     
     @IBOutlet weak var dayTableView: UITableView!
     
-    var dayList: [DayAndPromise]? {
+    var dayList: [PromiseWithDay]? {
         didSet {
             dayTableView.reloadData()
             self.dayTableView.scrollToRow(at: IndexPath(row: 89, section: 0), at: .top, animated: false)
@@ -59,7 +59,7 @@ class DayChildVC: UIViewController {
     
     // 통신
     private func getMyPageData() {
-        MyApi.shared.getPromiseData10ToNow(completion: { result in
+        DayChildService.shared.getPromiseData10ToNow(completion: { result in
             DispatchQueue.main.async {
                 self.dayList = result
                 if let firstIndex = self.firstIndex {
@@ -67,6 +67,14 @@ class DayChildVC: UIViewController {
                 }
             }
         })
+//        MyApi.shared.getPromiseData10ToNow(completion: { result in
+//            DispatchQueue.main.async {
+//                self.dayList = result
+//                if let firstIndex = self.firstIndex {
+//                    self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
+//                }
+//            }
+//        })
     }
 }
 
@@ -85,7 +93,7 @@ extension DayChildVC: UITableViewDataSource {
         
         if let list = self.dayList {
             let rowData = list[indexPath.row]
-            cell.setPromise(day: rowData)
+            cell.setPromise(promiseWithDay: rowData)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yy MM dd"
             let today = Date()

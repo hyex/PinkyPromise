@@ -15,20 +15,14 @@ class DayTVC: UITableViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var promiseView: UIStackView!
     
-//    fileprivate let promiseHeight: CGFloat = 30
-    
-    func setPromise(day: DayAndPromise){
-        
-        //DispatchQueue.main.async {
+    func setPromise(promiseWithDay: PromiseWithDay){
         
         promiseView.subviews.map{ $0.removeFromSuperview() }
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en")
         
-        let date = day.Day
-//        let today = Date()
-//        let df = DateFormatter()
+        let date = promiseWithDay.Day
         dateFormatter.dateFormat = "yyyyMMdd"
         if(dateFormatter.string(from: Date()) == dateFormatter.string(from: date!)){
             self.dayLabel.backgroundColor = UIColor.purple.withAlphaComponent(0.2)
@@ -39,14 +33,13 @@ class DayTVC: UITableViewCell {
         dateFormatter.dateFormat = "EEEEEEE\nd"
         self.dayLabel.text = dateFormatter.string(from: date!)
         
-        if self.promiseView.arrangedSubviews.count != day.promiseData.count {
-            for promise in day.promiseData {
+        if self.promiseView.arrangedSubviews.count != promiseWithDay.promiseData.count {
+            for promise in promiseWithDay.promiseData {
                 let viewToAdd = OnePromiseView(frame: CGRect.zero, promise: promise)
                 viewToAdd.vc = self.vc
                 self.promiseView.addArrangedSubview(viewToAdd)
             }
         }
-        //}
     }
     
     func setToday() {
@@ -71,7 +64,5 @@ class DayTVC: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
     }
-
 }
