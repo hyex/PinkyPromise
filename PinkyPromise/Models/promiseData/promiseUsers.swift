@@ -51,6 +51,10 @@ class PromiseUser {
         guard let snap = snapShot else { return promiseuser }
         
         let data = snap.data()
+        
+        if data == nil {
+            return promiseuser
+        }
         let datauser = data![USERNAME] as? String ?? "Anonymous"
         let datauserFriends = data![USERFRIENDS] as? Array<String> ?? []
         let datauserId = data![USERID] as? String ?? "nil"

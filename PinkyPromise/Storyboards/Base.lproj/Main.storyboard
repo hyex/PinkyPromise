@@ -173,8 +173,8 @@
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="70" id="3gb-ef-Jre"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="QeS-Az-vfb" secondAttribute="trailing" constant="70" id="Fcg-ta-D1t"/>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="centerX" secondItem="GGH-Wg-MjO" secondAttribute="centerX" id="Hb3-Af-nQj"/>
-                            <constraint firstItem="QeS-Az-vfb" firstAttribute="top" secondItem="fHf-WZ-sbP" secondAttribute="top" constant="159" id="JEo-Lf-EHR"/>
-                            <constraint firstItem="K7y-fX-vax" firstAttribute="top" secondItem="QeS-Az-vfb" secondAttribute="bottom" constant="254" id="LcI-VC-VbG"/>
+                            <constraint firstItem="QeS-Az-vfb" firstAttribute="top" relation="lessThanOrEqual" secondItem="fHf-WZ-sbP" secondAttribute="top" constant="159" id="JEo-Lf-EHR"/>
+                            <constraint firstItem="K7y-fX-vax" firstAttribute="top" relation="lessThanOrEqual" secondItem="QeS-Az-vfb" secondAttribute="bottom" constant="254" id="LcI-VC-VbG"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="bottom" secondItem="K7y-fX-vax" secondAttribute="bottom" constant="70" id="T1i-UD-usB"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="K7y-fX-vax" secondAttribute="trailing" constant="60" id="k4Y-op-cCA"/>
                             <constraint firstItem="K7y-fX-vax" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="60" id="uKc-oJ-Iud"/>
@@ -329,48 +329,61 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="OF0-23-ycj">
-                                <rect key="frame" x="41" y="656" width="332" height="194"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOj-Ef-15a">
+                                <rect key="frame" x="0.0" y="638" width="414" height="238"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="mY1-Eh-jhj">
-                                        <rect key="frame" x="0.0" y="0.0" width="332" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="TIj-up-q7X">
-                                        <rect key="frame" x="0.0" y="56" width="332" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sev-ha-13W">
-                                        <rect key="frame" x="0.0" y="112" width="332" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="로그인!">
-                                            <color key="titleColor" name="myPurple"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dU-Fw-NLF">
-                                        <rect key="frame" x="0.0" y="164" width="332" height="30"/>
-                                        <color key="tintColor" red="0.097053804610917296" green="0.097845443577542671" blue="0.24383171167766493" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="비밀번호를 잊어 버리셨나요?">
-                                            <color key="titleColor" name="myLightGreen"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="forgotPasswordLabelTapped" destination="jzd-xX-aeV" eventType="touchUpInside" id="htU-fi-5Hx"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="OF0-23-ycj">
+                                        <rect key="frame" x="40" y="40" width="334" height="158"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="mY1-Eh-jhj">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="37.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="TIj-up-q7X">
+                                                <rect key="frame" x="0.0" y="40.333333333333371" width="334" height="37.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sev-ha-13W">
+                                                <rect key="frame" x="0.0" y="80.666666666666629" width="334" height="37"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="로그인!">
+                                                    <color key="titleColor" name="myPurple"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dU-Fw-NLF">
+                                                <rect key="frame" x="0.0" y="120.66666666666661" width="334" height="37.333333333333329"/>
+                                                <color key="tintColor" red="0.097053804610917296" green="0.097845443577542671" blue="0.24383171167766493" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" title="비밀번호를 잊어 버리셨나요?">
+                                                    <color key="titleColor" name="myLightGreen"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="forgotPasswordLabelTapped" destination="jzd-xX-aeV" eventType="touchUpInside" id="htU-fi-5Hx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" name="myPurple"/>
+                                <constraints>
+                                    <constraint firstItem="OF0-23-ycj" firstAttribute="leading" secondItem="qOj-Ef-15a" secondAttribute="leading" constant="40" id="TAR-Kx-VSu"/>
+                                    <constraint firstItem="OF0-23-ycj" firstAttribute="top" secondItem="qOj-Ef-15a" secondAttribute="top" constant="40" id="UQo-A8-3oI"/>
+                                    <constraint firstAttribute="trailing" secondItem="OF0-23-ycj" secondAttribute="trailing" constant="40" id="Vh9-i1-cd9"/>
+                                    <constraint firstAttribute="bottom" secondItem="OF0-23-ycj" secondAttribute="bottom" constant="40" id="som-87-Mej"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="myPurple"/>
                         <constraints>
-                            <constraint firstItem="wqX-1B-sjf" firstAttribute="trailing" secondItem="OF0-23-ycj" secondAttribute="trailing" constant="41" id="0eg-7z-wZC"/>
-                            <constraint firstItem="wqX-1B-sjf" firstAttribute="bottom" secondItem="OF0-23-ycj" secondAttribute="bottom" constant="12" id="CpK-2p-JX8"/>
+                            <constraint firstAttribute="bottom" secondItem="qOj-Ef-15a" secondAttribute="bottom" constant="20" symbolic="YES" id="Zi0-qg-WqI"/>
+                            <constraint firstItem="qOj-Ef-15a" firstAttribute="trailing" secondItem="wqX-1B-sjf" secondAttribute="trailing" id="d0G-N4-iTG"/>
                             <constraint firstItem="SBy-Ul-bJa" firstAttribute="top" secondItem="wqX-1B-sjf" secondAttribute="top" constant="159" id="d4w-8V-d6Q"/>
                             <constraint firstItem="SBy-Ul-bJa" firstAttribute="leading" relation="lessThanOrEqual" secondItem="wqX-1B-sjf" secondAttribute="leading" constant="70" id="exF-Ep-SB4"/>
+                            <constraint firstItem="qOj-Ef-15a" firstAttribute="leading" secondItem="wqX-1B-sjf" secondAttribute="leading" id="hYv-tf-iWR"/>
                             <constraint firstItem="wqX-1B-sjf" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="SBy-Ul-bJa" secondAttribute="trailing" constant="70" id="tg4-MC-lQM"/>
-                            <constraint firstItem="OF0-23-ycj" firstAttribute="leading" secondItem="wqX-1B-sjf" secondAttribute="leading" constant="41" id="vcG-7m-lKT"/>
+                            <constraint firstItem="qOj-Ef-15a" firstAttribute="top" relation="lessThanOrEqual" secondItem="SBy-Ul-bJa" secondAttribute="bottom" constant="337" id="yFs-UW-gfo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wqX-1B-sjf"/>
                     </view>
@@ -378,13 +391,14 @@
                     <connections>
                         <outlet property="PWTextFiled" destination="TIj-up-q7X" id="fDf-08-sSN"/>
                         <outlet property="emailTextField" destination="mY1-Eh-jhj" id="Jwe-Sn-7h4"/>
+                        <outlet property="inputCodeView" destination="qOj-Ef-15a" id="Hkx-dm-RVR"/>
                         <outlet property="loginBtn" destination="sev-ha-13W" id="6lH-Up-iaa"/>
                         <outlet property="resetPwBtn" destination="8dU-Fw-NLF" id="Y7Z-L3-v7a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7np-d3-e5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1997" y="-433"/>
+            <point key="canvasLocation" x="-1997.1014492753625" y="-433.25892857142856"/>
         </scene>
     </scenes>
     <resources>

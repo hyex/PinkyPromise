@@ -111,18 +111,19 @@ extension MyFriendVC: UITableViewDataSource {
                 let rowData = friendList[indexPath.row]
                 friendCell.userName.text = rowData.userName!
                 let imageName = rowData.userImage!
-                
-                FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .failure(let err):
-                            print(err)
-                            friendCell.userImage.image = UIImage(named: "userDefaultImage")
-                        case .success(let image):
-                            friendCell.userImage.image = image
+                if imageName == FirebaseUserService.currentUserID! {
+                    FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
+                        DispatchQueue.main.async {
+                            switch result {
+                            case .failure(let err):
+                                print(err)
+                                friendCell.userImage.image = UIImage(named: "userDefaultImage")
+                            case .success(let image):
+                                friendCell.userImage.image = image
+                            }
                         }
-                    }
-                })
+                    })
+                }
          
                 cell = friendCell
             }
