@@ -14,15 +14,16 @@ import FirebaseFirestore
 class AddPromiseService : NSObject {
     static let shared = AddPromiseService()
         
-        fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
-        fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
-        fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
-        
-        var promiseListner: ListenerRegistration!
+    fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
+    fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
+    fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
     
-        var delegate: SendPromiseDelegate!
-    
-        let dateFormatter = DateFormatter()
+    var promiseListner: ListenerRegistration!
+
+    var delegate: SendPromiseDelegate!
+
+    let dateFormatter = DateFormatter()
+
 
     //유저 데이터를 반환해줌
     func getUserData(completion: @escaping ([PromiseUser]) -> Void) {
@@ -32,22 +33,23 @@ class AddPromiseService : NSObject {
         userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (document, error) in
             if let err = error {
                 debugPrint(err)
+                completion(result)
             } else {
                 //let dataDescription = document?.data()
-                
                 result = PromiseUser.parseDouc(snapShot: document)
                 completion(result)
             }
         }
     }
     
-    //UID에 맞는 유저 데이터를 반환해줌
+   //UID에 맞는 유저 데이터를 반환해줌
     func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
+        
         var result = [PromiseUser]()
         userCollectionRef.document(id).getDocument { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
-            }else {
+            } else {
                 result = PromiseUser.parseDouc(snapShot: sanpShot)
                 let result2 = result[result.startIndex]
                 completion(result2)
