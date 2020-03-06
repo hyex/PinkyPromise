@@ -66,7 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        print("in openurl source")
         if KLKTalkLinkCenter.shared().isTalkLinkCallback(url) {
             let params = url.query
             print("카카오링크 메시지 액션\n\(params ?? "파라미터 없음")")

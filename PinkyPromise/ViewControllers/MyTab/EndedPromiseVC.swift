@@ -139,9 +139,9 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "promiseDetail", sender: promiseList[indexPath.row])
-        
+
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "promiseDetail"{
             let promiseDetail = sender as? PromiseTable
