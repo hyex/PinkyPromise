@@ -230,9 +230,8 @@ extension HomeTabMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC
 
-//        let todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
         let date = Date(timeInterval: 86400, since: self.calendar.selectedDate ?? self.calendar.today!)
-//        let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? todayDate)
+
         cell.delegate = self
         if let day = self.days[date] {
             cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
@@ -246,7 +245,6 @@ extension HomeTabMainVC: UITableViewDataSource {
         }
         
         cell.view.layer.backgroundColor = UIColor.appColor.withAlphaComponent(CGFloat(0.1)).cgColor
-        //        cell.layer.borderWidth = 1
         cell.view.layer.cornerRadius = 8
         
         return cell
@@ -259,6 +257,9 @@ extension HomeTabMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: false)
+        let cell = tableView.cellForRow(at: indexPath) as! DayPromiseListTVC
+        self.clickedProgress = [cell.promiseId as String, cell.promiseId as String, cell.progressDegree as Int, cell as DayPromiseListTVC]
+        self.performSegue(withIdentifier: "ProgressVC", sender: nil)
     }
     
 }
