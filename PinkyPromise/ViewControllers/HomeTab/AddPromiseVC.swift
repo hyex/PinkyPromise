@@ -70,7 +70,6 @@ class AddPromiseVC: UIViewController {
         promiseTableView.dataSource = self
         
         //data setting
-        getFriendsData()
         todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
     }
     
@@ -144,6 +143,7 @@ extension AddPromiseVC {
 // about Data
 extension AddPromiseVC {
     func getFriendsData() {
+        self.myFriends = []
         AddPromiseService.shared.getUserData { (result) in
             var i = 0
             result[0].userFriends.forEach { (friendId) in
@@ -414,7 +414,6 @@ extension AddPromiseVC: SendSelectedColorDelegate {
             let vc = segue.destination as! AddFriendsVC
             vc.delegate = self
             vc.withFriendsList = self.myFriends
-            print(self.myFriends)
             //            vc.myFriendsImg = self.myFriendsImg
         }
         else if segue.identifier == "PanaltyVC" {
