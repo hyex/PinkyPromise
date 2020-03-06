@@ -68,7 +68,7 @@ class MoreTabMainVC: UIViewController {
                             switch result {
                             case .failure(let err):
                                 print(err)
-//                                self.userImage.image = UIImage(named: "userDefaultImage")
+                                self.userImage.image = UIImage(named: "userDefaultImage")
                             case .success(let url):
                                 let imageUrl = URL(string: url)
                                 do {
@@ -78,7 +78,7 @@ class MoreTabMainVC: UIViewController {
                     
                                 } catch {
                                     print("get image url failed")
-//                                    self.userImage.image = UIImage(named: "userDefaultImage")
+                                    self.userImage.image = UIImage(named: "userDefaultImage")
                                 }
                             }
                         })
