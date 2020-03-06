@@ -55,7 +55,7 @@ class FriendTabMainVC: UIViewController {
     }
     
     private func getPromiseAndFriend() {
-        MyApi.shared.getPromiseNameAndFriendsName { (result) in
+        FriendTabMainService.shared.getPromiseNameAndFriendsName { (result) in
             for douc in result {
                 self.PromiseList.append(PromiseWithFriend(userimg : douc.FirstuserImage, promiseId: douc.promiseId, promiseName: douc.promiseName, friendsName: douc.friendsName))
             }
