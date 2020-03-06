@@ -31,7 +31,7 @@ class LoginVC: UIViewController {
     var currentNonce: String? = nil
     
     @IBAction func goToSignIn(){
-
+        
     }
     
     @IBAction func goToSignUp(){
@@ -51,16 +51,13 @@ class LoginVC: UIViewController {
         self.indicator = UIActivityIndicatorView()
         //        self.pinkyTitle.center.x -= view.bounds.width
         
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-        
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
         self.faceSignInBtn.setTitle("페이스북으로 로그인!", for: .normal)
         self.faceSignInBtn.layer.cornerRadius = 10
         self.appleSignInBtn.layer.cornerRadius = 10
         self.googleSignInBtn.layer.cornerRadius = 10
-            
+        
         self.faceSignInBtn.addTarget(self, action: #selector(self.handleCustomFBLogin), for: .touchUpInside)
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
@@ -84,25 +81,10 @@ class LoginVC: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("here is LoginVC in func prepare. \(segue.identifier)")
-        
-        switch segue.identifier {
-        case "loginSegue":
-            let mainVC = segue.destination as! MainTabBarController
-        case "signInSegue":
-            let signInVc = segue.destination as! signInVC
-        case "signUpSegue":
-            let signUpSegue = segue.destination as! signUpVC
-        default:
-            break
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-       if UserDefaults.standard.bool(forKey: "loggedIn") == true {
-        self.dismiss(animated: true, completion: nil)
+        if UserDefaults.standard.bool(forKey: "loggedIn") == true {
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
@@ -120,15 +102,15 @@ extension LoginVC: LoginButtonDelegate {
         let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
         Auth.auth().signIn(with: credential, completion: { (user, error) in
             if error != nil {
-                print("Something is wrong with FB user: \(error)")
+                print("Something is wrong with FB user: \(String(describing: error))")
             }
-            print("successfully logged in with our user: \(user)")
+            print("successfully logged in with our user: \(String(describing: user))")
         })
         
         GraphRequest(graphPath: "/me", parameters: ["fields": "email, id, name"]).start { (connection, result, err) in
             
             if err != nil {
-                print("failed to login: \(err)")
+                print("failed to login: \(String(describing: err))")
                 return
             }
             print(result ?? "")
@@ -139,7 +121,7 @@ extension LoginVC: LoginButtonDelegate {
         LoginManager().logIn(permissions: ["email", "public_profile"], from: self) { (result, err) in
             
             if err != nil {
-                print("FB login failed: \(err)")
+                print("FB login failed: \(String(describing: err))")
                 return
             }
             let accessToken = AccessToken.current
@@ -148,12 +130,11 @@ extension LoginVC: LoginButtonDelegate {
             let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
             Auth.auth().signIn(with: credentials) { (user, error) in
                 if error != nil {
-                    print("Something is wrong with FB user: \(error)")
+                    print("Something is wrong with FB user: \(String(describing: error))")
                     return
                 }
                 let userID = user?.user.uid
                 let fullName = user?.user.displayName
-                print(user?.user.email)
                 
                 //signin을 만들어서 더 추가하면됨
                 if UserDefaults.standard.bool(forKey: "loggedIn") == false || UserDefaults.standard.bool(forKey: "signedIn") == false {
@@ -161,28 +142,33 @@ extension LoginVC: LoginButtonDelegate {
                     self.navigationController?.isNavigationBarHidden = true
                     UserDefaults.standard.set(true, forKey: "loggedIn")
                     
-                    let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
-                    MyApi.shared.addUserData(temp)
-                    
-                    if UserDefaults.standard.bool(forKey: "signedIn") == false{
-                        let tempimage = UIImage(named: "userDefaultImage")
-                        
-                        guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
-                        
-                        FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
-                            switch result {
-                            case .success(let url):
-                                //self?.imageURL = url
-                                print("store default user Image with \(url)")
-                            //print(self?.imageURL)
-                            case .failure(let error):
-                                print("this is \(error.localizedDescription)")
-                                //print(error)
+                    MyApi.shared.getUserData(completion: { (result) in
+                        if result.count == 0 {
+                            let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                            MyApi.shared.addUserData(temp)
+                            
+                            if UserDefaults.standard.bool(forKey: "signedIn") == false{
+                                let tempimage = UIImage(named: "userDefaultImage")
+                                
+                                guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
+                                
+                                FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                                    switch result {
+                                    case .success(let url):
+                                        //self?.imageURL = url
+                                        print("store default user Image with \(url)")
+                                    //print(self?.imageURL)
+                                    case .failure(let error):
+                                        print("this is \(error.localizedDescription)")
+                                        //print(error)
+                                    }
+                                }
+                                
+                                UserDefaults.standard.set(true, forKey: "signedIn")
                             }
                         }
-                        
-                        UserDefaults.standard.set(true, forKey: "signedIn")
-                    }
+                    })
+                    
                 } else {
                     print("go login!!")
                     self.navigationController?.isNavigationBarHidden = true
@@ -201,12 +187,12 @@ extension LoginVC: LoginButtonDelegate {
         let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
         Auth.auth().signIn(with: credentials) { (user, error) in
             if error != nil {
-                print("Something is wrong with FB user: \(error)")
+                print("Something is wrong with FB user: \(String(describing: error))")
                 return
             }
             let userID = user?.user.uid
             let fullName = user?.user.displayName
-            print(user?.user.email)
+            //print(user?.user.email)
             
             //signin을 만들어서 더 추가하면됨
             if UserDefaults.standard.bool(forKey: "loggedIn") == false || UserDefaults.standard.bool(forKey: "signedIn") == false {
@@ -244,13 +230,13 @@ extension LoginVC: LoginButtonDelegate {
             self.dismiss(animated: true, completion: nil)
         }
         
-//        GraphRequest(graphPath: "/me", parameters: ["fields": "email, id, name"]).start { (connection, result, err) in
-//            if err != nil {
-//                print("failed to login: \(err)")
-//                return
-//            }
-//            print(result ?? "")
-//        }
+        //        GraphRequest(graphPath: "/me", parameters: ["fields": "email, id, name"]).start { (connection, result, err) in
+        //            if err != nil {
+        //                print("failed to login: \(err)")
+        //                return
+        //            }
+        //            print(result ?? "")
+        //        }
         
     }
 }
@@ -259,12 +245,12 @@ extension LoginVC: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error != nil {
             //SVProgressHUD.showError(withStatus: error.localizedDescription)
-            print(error?.localizedDescription)
+            print(error.localizedDescription)
         } else {
             //SVProgressHUD.show()
             //self.indicator?.startAnimating()
-            let fullName = user.profile.name
-            let email = user.profile.email
+            //            let fullName = user.profile.name
+            //            let email = user.profile.email
             
             guard let idToken = user.authentication.idToken else { return }
             guard let accessToken = user.authentication.accessToken else { return }
@@ -277,13 +263,10 @@ extension LoginVC: GIDSignInDelegate {
                 }
                 
                 let userID = user?.user.uid
-                
+                let fullName = user?.user.displayName
                 self.indicator?.stopAnimating()
                 //SVProgressHUD.dismiss()
                 //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                print(fullName)
-                print(email)
                 
                 //signin을 만들어서 더 추가하면됨
                 if UserDefaults.standard.bool(forKey: "loggedIn") == false || UserDefaults.standard.bool(forKey: "signedIn") == false {
@@ -291,28 +274,32 @@ extension LoginVC: GIDSignInDelegate {
                     self.navigationController?.isNavigationBarHidden = true
                     UserDefaults.standard.set(true, forKey: "loggedIn")
                     
-                    let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
-                    MyApi.shared.addUserData(temp)
-                    
-                    if UserDefaults.standard.bool(forKey: "signedIn") == false{
-                        let tempimage = UIImage(named: "userDefaultImage")
-                        
-                        guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
-                        
-                        FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
-                            switch result {
-                            case .success(let url):
-                                //self?.imageURL = url
-                                print("store default user Image with \(url)")
-                            //print(self?.imageURL)
-                            case .failure(let error):
-                                print("this is \(error.localizedDescription)")
-                                //print(error)
+                    MyApi.shared.getUserData(completion: { (result) in
+                        if result.count == 0 {
+                            let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                            MyApi.shared.addUserData(temp)
+                            
+                            if UserDefaults.standard.bool(forKey: "signedIn") == false{
+                                let tempimage = UIImage(named: "userDefaultImage")
+                                
+                                guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
+                                
+                                FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                                    switch result {
+                                    case .success(let url):
+                                        //self?.imageURL = url
+                                        print("store default user Image with \(url)")
+                                    //print(self?.imageURL)
+                                    case .failure(let error):
+                                        print("this is \(error.localizedDescription)")
+                                        //print(error)
+                                    }
+                                }
+                                
+                                UserDefaults.standard.set(true, forKey: "signedIn")
                             }
                         }
-                        
-                        UserDefaults.standard.set(true, forKey: "signedIn")
-                    }
+                    })
                 } else {
                     print("go login!!")
                     self.navigationController?.isNavigationBarHidden = true
@@ -373,28 +360,32 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                         
                         //let i = (authResult?.user.email)!.firstIndex(of: "@")
                         
-                        var temp = PromiseUser(userName: (authResult?.user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: (authResult?.user.uid)!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
-                        MyApi.shared.addUserData(temp)
-                        
-                        if UserDefaults.standard.bool(forKey: "signedIn") == false {
-                            let tempimage = UIImage(named: "userDefaultImage")
-                            
-                            guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else {
-                                return
-                            }
-                            FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
-                                switch result {
-                                case .success(let url):
-                                    //self?.imageURL = url
-                                    print("store default user Image + \(url)")
-                                //print(self?.imageURL)
-                                case .failure(let error):
-                                    print("this is error + \(error)")
-                                    //print(error)
+                        MyApi.shared.getUserData(completion: { (result) in
+                            if result.count == 0 {
+                                let temp = PromiseUser(userName: (user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: (authResult?.user.uid)!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                                MyApi.shared.addUserData(temp)
+                                
+                                if UserDefaults.standard.bool(forKey: "signedIn") == false {
+                                    let tempimage = UIImage(named: "userDefaultImage")
+                                    
+                                    guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else {
+                                        return
+                                    }
+                                    FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                                        switch result {
+                                        case .success(let url):
+                                            //self?.imageURL = url
+                                            print("store default user Image + \(url)")
+                                        //print(self?.imageURL)
+                                        case .failure(let error):
+                                            print("this is error + \(error)")
+                                            //print(error)
+                                        }
+                                    }
+                                    UserDefaults.standard.set(true, forKey: "signedIn")
                                 }
                             }
-                            UserDefaults.standard.set(true, forKey: "signedIn")
-                        }
+                        })
                         
                     } else {
                         print("go login!!")
