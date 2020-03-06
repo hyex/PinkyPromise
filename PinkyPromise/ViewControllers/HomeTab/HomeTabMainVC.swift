@@ -266,6 +266,7 @@ extension HomeTabMainVC: UITableViewDataSource {
 extension HomeTabMainVC {
     func setTableViewUI() {
         // tableView 뷰 변경
+        
         let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.underView.frame.size.height))
         self.tableView = myTableView
         self.underView.addSubview(myTableView)
@@ -277,7 +278,7 @@ extension HomeTabMainVC {
         
         let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
         self.tableView.tableFooterView = dummyView;
-        self.tableView.clipsToBounds = false
+        self.tableView.clipsToBounds = true
     }
 }
 
