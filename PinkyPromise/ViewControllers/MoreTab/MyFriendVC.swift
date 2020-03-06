@@ -19,7 +19,7 @@ class MyFriendVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
-        getFriendData()
+        //getFriendData()
         setUpTableView()
         initView()
     }
@@ -27,6 +27,10 @@ class MyFriendVC: UIViewController {
     private func setUpTableView() {
         myFriendTableView.delegate = self
         myFriendTableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getFriendData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,7 +70,7 @@ extension MyFriendVC {
         backButton.setImage(image, for: .normal)
         backButton.setImage(image, for: .selected)
         backButton.setTitle("", for: .normal)
-//        backButton.setTitleColor(backButton.tintColor, for: .normal) // You can change the TitleColor
+        //backButton.setTitleColor(backButton.tintColor, for: .normal) // You can change the TitleColor
         backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
@@ -106,7 +110,6 @@ extension MyFriendVC: UITableViewDataSource {
         
         var cell = UITableViewCell()
         if let friendCell = tableView.dequeueReusableCell(withIdentifier: "MyFriendTVC", for: indexPath) as? MyFriendTVC {
-            
             if let friendList = self.friendList {
                 let rowData = friendList[indexPath.row]
                 friendCell.userName.text = rowData.userName!
@@ -117,20 +120,17 @@ extension MyFriendVC: UITableViewDataSource {
                             switch result {
                             case .failure(let err):
                                 print(err)
-                                friendCell.userImage.image = UIImage(named: "userDefaultImage")
+                                //friendCell.userImage.image = UIImage(named: "userDefaultImage")
                             case .success(let image):
                                 friendCell.userImage.image = image
                             }
                         }
                     })
                 }
-         
                 cell = friendCell
             }
         }
-        
         return cell
     }
-    
     
 }

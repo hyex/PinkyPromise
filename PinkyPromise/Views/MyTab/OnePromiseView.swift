@@ -40,7 +40,6 @@ class OnePromiseView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
-        print("required")
     }
 
     private func commonInit(){
@@ -48,22 +47,8 @@ class OnePromiseView: UIView {
         view.frame = self.bounds
         view.layer.cornerRadius = 4
 
-//        if promise != nil {
         if let unwrappedPromise = promise {
-//            let unwrappedPromise = promise!
             let colorName = unwrappedPromise.promiseColor!
-//            let selector = Selector("\(colorName)Color")
-//            let selector = Selector("systemRedColor")
-//            print(colorName)
-//            if UIColor.self.responds(to: selector) {
-//                let color = UIColor.self.perform(selector).takeUnretainedValue()
-//                print(color)
-//                view.backgroundColor = color as? UIColor
-//            } else {
-//                print("fail")
-//            }
-            
-//            color =
             view.backgroundColor = UIColor(named: colorName)
         }
         
@@ -73,10 +58,7 @@ class OnePromiseView: UIView {
         self.addSubview(view)
     }
     
-    // MARK: need to add
     @objc func handleTap(sender: UITapGestureRecognizer) {
-        // 뷰 이동 여기다가 추가
-        print("handleTap : ", self.promise!)
         if let controller = self.vc {
             controller.performSegue(withIdentifier: "promiseDetail", sender: self.promise!)
         }

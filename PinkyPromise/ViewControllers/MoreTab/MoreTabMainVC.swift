@@ -208,6 +208,4 @@ extension MoreTabMainVC: UIImagePickerControllerDelegate, UINavigationController
         }
         dismiss(animated: true, completion: nil)
     }
-
-
 }

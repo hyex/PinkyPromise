@@ -44,7 +44,6 @@ class AddFriendCodeVC: UIViewController {
         
         if let textInt = Int(text) {
             AddFriendCodeService.shared.addFriendWithCode(code: textInt, completion: { result in
-
                 if result == nil {
                     self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
                 } else {
@@ -81,24 +80,6 @@ extension AddFriendCodeVC {
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
         bar.backgroundColor = UIColor.clear
-
-//        self.navigationItem.setHidesBackButton(true, animated:false)
-//
-//        //your custom view for back image with custom size
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-//        let imageView = UIImageView(frame: CGRect(x: 2, y: 10, width: 30, height: 20))
-//
-//        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.appColor, renderingMode: .alwaysOriginal)
-//        if let imgBackArrow = image {
-//            imageView.image = imgBackArrow
-//        }
-//        view.addSubview(imageView)
-//
-//        let backTap = UITapGestureRecognizer(target: self, action: #selector(backToMain))
-//        view.addGestureRecognizer(backTap)
-//
-//        let leftBarButtonItem = UIBarButtonItem(customView: view)
-//        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
 
     @objc func backToMain() {
@@ -110,19 +91,6 @@ extension AddFriendCodeVC {
         navigationController?.navigationBar.backIndicatorImage = image
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
         self.navigationController?.navigationBar.backItem?.title = ""
-        
-//        navigationItem.leftItemsSupplementBackButton = true
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-//        self.navigationController?.navigationBar.backIndicatorImage = image
-//        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-//        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = ""
-//        self.navigationController?.navigationBar.backItem?.rightBarButtonItem?.title = ""
-//        self.navigationController?.navigationBar.backItem
-//        let backItem = UIBarButtonItem()
-//        backItem.title = ""
-//        backItem.image = image
-//        self.navigationController?.navigationBar.backItem?.leftBarButtonItem = backItem
-
     }
     
     private func setMyCode() {
@@ -172,12 +140,11 @@ extension AddFriendCodeVC: UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(_ note: NSNotification) {
-        let height = self.inputCodeView.frame.size.height
+        //let height = self.inputCodeView.frame.size.height
         if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
-//            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
         }
         
     }
@@ -197,7 +164,6 @@ extension AddFriendCodeVC: UITextFieldDelegate {
         
         if let textInt = Int(text) {
             AddFriendCodeService.shared.addFriendWithCode(code: textInt, completion: { result in
-
                 if result == nil {
                     self.simpleAlert(title: "친구추가실패", message: "그런 코드를 가진 사용자가 없습니다.")
                 } else {
