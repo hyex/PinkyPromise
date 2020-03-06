@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ClickProgressDelegate {
-    func clickProgress(promiseId: String, progressId: String, progressDegree: Int, cell: DayPromiseListTVC)
+    func clickProgress(progressDegree: Int, cell: DayPromiseListTVC)
 }
 
 class DayPromiseListTVC: UITableViewCell {
@@ -49,7 +49,7 @@ class DayPromiseListTVC: UITableViewCell {
     
     @IBAction func progressBtnAction(_ sender: Any) {
 
-        self.delegate.clickProgress(promiseId: self.promiseId, progressId: self.progressId, progressDegree: self.progressDegree, cell: self)
+        self.delegate.clickProgress(progressDegree: self.progressDegree, cell: self)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -55,16 +55,17 @@ class AddProgressService : NSObject {
             }
         }
     }
-    
     //프로그레스 입력뷰
-    func updateProgress(day: Date, userId: String, data: Int, promise: PromiseTable, progress: ProgressTable ){
+    func updateProgress(day: Date, userId: String, data: Int, promise: PromiseTable){
         progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promise.promiseId!).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
-               
+                //프로그레스 갖고오기
+                let progressTemp = ProgressTable.parseData(snapShot: snapShot)
+                
                 let datindex = Int(day.timeIntervalSince1970 - promise.promiseStartTime.timeIntervalSince1970) / 86400
-                var temp: [Int] = progress.progressDegree
+                var temp: [Int] = progressTemp[0].progressDegree
                 temp[datindex] = data
                 self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : temp]) { err in
                     if let err = err {
@@ -86,6 +87,7 @@ class AddProgressService : NSObject {
                             }
                         }
                     }
+                    
                 }
             }
         }

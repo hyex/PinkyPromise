@@ -20,7 +20,6 @@ protocol SelectedProgressDelegate {
 
 class AddProgressVC: UIViewController {
     var promiseTable: PromiseTable!
-    var progressTable: ProgressTable!
     
     var selectedProgress: Int = -1
     var day: Date!
@@ -55,7 +54,6 @@ class AddProgressVC: UIViewController {
         
         cancelBtn.tintColor = UIColor.appColor
         
-        print(self.progressTable)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(AddProgressVC.dismissPage(sender:)))
         self.bigView.addGestureRecognizer(gesture)
@@ -99,7 +97,7 @@ class AddProgressVC: UIViewController {
 
 //        }
         
-        AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable, progress: self.progressTable)
+        AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable)
         
         self.dismiss(animated: false, completion: nil)
 
