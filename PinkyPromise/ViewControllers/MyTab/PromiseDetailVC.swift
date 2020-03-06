@@ -27,12 +27,13 @@ class PromiseDetailVC: UIViewController {
     
     var promiseDetail : PromiseTable? = nil {
         didSet{
-            print("promiseDetail : ", promiseDetail!)
+            print("promiseDetail : ", promiseDetail!.promiseUsers)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("in viewDidLoad")
         setUpTableView()
         setBackBtn()
         setPromieName()
@@ -53,21 +54,23 @@ class PromiseDetailVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("in viewWillAppear")
         getPromiseFriendData()
     }
     override func viewWillDisappear(_ animated: Bool) {
+        print("in viewWillDisappear")
         self.navigationController?.popViewController(animated: true)
     }
 
     @IBAction func backBtnAction(_ sender : Any) {
-        print("back btn action")
-        let dayTabStoryboard = UIStoryboard(name: "MyTab", bundle: nil)
-        let vc = dayTabStoryboard.instantiateViewController(withIdentifier: "MyTab") as! MyTabMainVC
-        
-        vc.modalTransitionStyle = .flipHorizontal
-        vc.modalPresentationStyle = .overCurrentContext
-        
-        self.present(vc, animated: false, completion: nil)
+//        let dayTabStoryboard = UIStoryboard(name: "MyTab", bundle: nil)
+//        let vc = dayTabStoryboard.instantiateViewController(withIdentifier: "MyTab") as! MyTabMainVC
+//
+//        vc.modalTransitionStyle = .flipHorizontal
+//        vc.modalPresentationStyle = .overCurrentContext
+//
+//        self.present(vc, animated: false, completion: nil)
+        self.dismiss(animated: false, completion: nil)
         
     }
     
@@ -154,6 +157,7 @@ extension PromiseDetailVC : UITableViewDataSource{
             
             let rowData = self.promiseFriends[indexPath.row]
             
+            
             friendCell.friendProfileImg.layer.cornerRadius = friendCell.friendProfileImg.frame.width/2
             friendCell.friendProfileImg.clipsToBounds = true
             
@@ -187,8 +191,7 @@ extension PromiseDetailVC : UITableViewDataSource{
     
     func getPromiseFriendData() {
         if let promiseId = promiseDetail?.promiseId {
-            PromiseDetailService.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
-            
+            PromiseDetailService.shared.getDataforDetailViewjrWithoutMe(promiseID: promiseId) { (result) in
                 for douc in result.friendsDetail {
                     self.promiseFriends.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
                 }
@@ -196,6 +199,8 @@ extension PromiseDetailVC : UITableViewDataSource{
         }else{
             print("promise id is nil")
         }
+        
+        print(self.promiseFriends)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -214,7 +219,8 @@ extension PromiseDetailVC : UITableViewDataSource{
     
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
         if (sender.direction == .right) {
-            self.dismiss(animated: false, completion: nil)}
+            self.dismiss(animated: false, completion: nil)
+        }
     }
 }
 
