@@ -400,7 +400,7 @@
                     <connections>
                         <outlet property="backBtn" destination="RMZ-La-v0W" id="w7L-Jx-rIX"/>
                         <outlet property="endedPromiseCollectionView" destination="ETO-Ah-llx" id="2dt-Sg-C2x"/>
-                        <segue destination="ufB-NV-DCf" kind="show" identifier="promiseDetail" id="9jx-JB-U3x"/>
+                        <segue destination="ufB-NV-DCf" kind="show" identifier="promiseDetail" id="vZO-1b-okj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWc-k7-CJI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -413,6 +413,6 @@
         <image name="userDefaultImage" width="67.333335876464844" height="67.333335876464844"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GAV-dP-3s6"/>
+        <segue reference="vZO-1b-okj"/>
     </inferredMetricsTieBreakers>
 </document>

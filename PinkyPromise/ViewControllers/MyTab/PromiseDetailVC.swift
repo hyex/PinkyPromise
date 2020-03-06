@@ -57,9 +57,11 @@ class PromiseDetailVC: UIViewController {
         print("in viewWillAppear")
         getPromiseFriendData()
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         print("in viewWillDisappear")
-        self.navigationController?.popViewController(animated: true)
+//        self.dismiss(animated: false, completion: nil)
+//        self.navigationController?.popViewController(animated: true)
     }
 
     @IBAction func backBtnAction(_ sender : Any) {
@@ -79,7 +81,10 @@ class PromiseDetailVC: UIViewController {
     }
 }
 
-extension PromiseDetailVC : UITableViewDelegate{ }
+extension PromiseDetailVC : UITableViewDelegate{
+    
+}
+
 extension PromiseDetailVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowCnt : Int = 0
