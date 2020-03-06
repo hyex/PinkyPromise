@@ -10,7 +10,6 @@ import UIKit
 
 class MoreTVC: UITableViewCell {
 
-
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var button: UIButton!
     
