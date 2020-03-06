@@ -111,7 +111,8 @@ class HomeTabMainService : NSObject {
                 completion(temp3)
             }}}}}}}}}}}}}}}}}}}}}} }}}}}}}}
     }
-        
+    
+    
     func getAllDataWithDate(day: Date, completion: @escaping (PromiseAndProgress1) -> Void) {
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID).getDocuments { (snapShot, error) in

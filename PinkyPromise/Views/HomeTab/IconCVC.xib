@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="width" constant="40" id="bND-ew-J7j"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="book"/>
+                                <state key="normal" image="promiseIcon_star"/>
                                 <connections>
                                     <action selector="iconButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="dG9-FM-R73"/>
                                 </connections>
@@ -54,6 +54,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="book" width="64" height="64"/>
+        <image name="promiseIcon_star" width="64" height="64"/>
     </resources>
 </document>

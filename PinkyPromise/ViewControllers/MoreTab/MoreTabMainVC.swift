@@ -26,7 +26,7 @@ class MoreTabMainVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         picker.delegate = self
         
-        getUserData()
+//        getUserData()
         initView()
     }
     
@@ -62,25 +62,29 @@ class MoreTabMainVC: UIViewController {
             DispatchQueue.main.async {
                 self.user = result[0]
                 self.userName.text = result[0].userName
-                imageName = self.user?.userImage ?? (self.user?.userId)!
-                FirebaseStorageService.shared.getUserImageURLWithName(name: imageName, completion: { result in
-                    switch result {
-                    case .failure(let err):
-                        print(err)
-                        self.userImage.image = UIImage(named: "userDefaultImage")
-                    case .success(let url):
-                        let imageUrl = URL(string: url)
-                        do {
-                            let data = try Data(contentsOf: imageUrl!)
-                            self.userImage.image = UIImage(data: data)
+                imageName = (self.user?.userImage)!
+                if imageName == self.user?.userId {
+                    FirebaseStorageService.shared.getUserImageURLWithName(name: imageName, completion: { result in
+                            switch result {
+                            case .failure(let err):
+                                print(err)
+//                                self.userImage.image = UIImage(named: "userDefaultImage")
+                            case .success(let url):
+                                let imageUrl = URL(string: url)
+                                do {
+                                    let data = try Data(contentsOf: imageUrl!)
+                                    self.userImage.image = UIImage(data: data)
 
-            
-                        } catch {
-                            print("get image url failed")
-                            self.userImage.image = UIImage(named: "userDefaultImage")
-                        }
-                    }
-                })
+                    
+                                } catch {
+                                    print("get image url failed")
+//                                    self.userImage.image = UIImage(named: "userDefaultImage")
+                                }
+                            }
+                        })
+                }
+                
+                
             }
         })
     }

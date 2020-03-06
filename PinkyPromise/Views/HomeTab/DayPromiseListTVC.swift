@@ -21,7 +21,7 @@ class DayPromiseListTVC: UITableViewCell {
     
     @IBOutlet weak var promiseIcon: UIImageView! = {
         let imgView = UIImageView()
-        imgView.image = UIImage(named: "ebook")
+        imgView.image = UIImage(named: "promiseIcon_star")
         imgView.image?.withTintColor(UIColor.myPurple)
         return imgView
     }()

@@ -12,15 +12,15 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class EndedPromiseService: NSObject {
-    static let shared = MyApi()
-        
-        fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
-        fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
-        fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
-        
-        var promiseListner: ListenerRegistration!
-        
-        let dateFormatter = DateFormatter()
+    static let shared = EndedPromiseService()
+    
+    fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
+    fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
+    fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
+    
+    var promiseListner: ListenerRegistration!
+    
+    let dateFormatter = DateFormatter()
     
     //이미 끝난 약속 데이터만 반환하는 함수
     func getCompletedPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
@@ -96,6 +96,7 @@ class EndedPromiseService: NSObject {
     //UID에 맞는 유저 이름을 반환해줌
     func getUserNameWithUID(id: String, completion: @escaping (String) -> Void) {
         //self.fireStoreSetting()
+        
         userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
@@ -108,6 +109,5 @@ class EndedPromiseService: NSObject {
             }
         }
     }
-    
 }
 

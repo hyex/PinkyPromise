@@ -104,28 +104,21 @@ class HomeTabMainVC: UIViewController {
         
         addPromiseBtn.fabDelegate = self
         self.view.addSubview(addPromiseBtn)
-         addPromiseBtn.translatesAutoresizingMaskIntoConstraints = false
+        addPromiseBtn.translatesAutoresizingMaskIntoConstraints = false
         addPromiseBtn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
         addPromiseBtn.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         addPromiseBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
         addPromiseBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         // data setting
-        
         yesterdayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-39600)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
-            
-//            HomeTabMainService.shared.getAllHome { (result) in
-//                DispatchQueue.main.async {
-//                    self.days = result
-//                }
-//            }
+            calendar.reloadData()
         }
-        
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {
@@ -158,7 +151,6 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
 
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
             configureVisibleCell(date: date, cell: cell)
-            
         }
         return cell
     }
@@ -341,7 +333,6 @@ extension HomeTabMainVC: SendProgressDelegate {
 
 extension HomeTabMainVC: SendPromiseDelegate {
     func sendPromise() {
-        print("sendPromise")
         calendar.reloadData()
     }
 }

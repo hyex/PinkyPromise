@@ -14,7 +14,7 @@ class signInVC: UIViewController {
     @IBOutlet weak var PWTextFiled: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var resetPwBtn: UIButton!
-    
+    @IBOutlet weak var inputCodeView: UIView!
     override func viewDidLayoutSubviews() {
 //        emailTextField.borderStyle = .none
 //        let border = CALayer()
@@ -35,10 +35,14 @@ class signInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        registerForKeyboardNotifications()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.loginBtn.layer.cornerRadius = 10
         loginBtn.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        unregisterForKeyboardNotifications()
     }
     
     @objc func signIn(){
@@ -121,4 +125,54 @@ class signInVC: UIViewController {
     }
     */
 
+}
+
+extension signInVC: UITextFieldDelegate {
+    // 옵저버 등록
+    func registerForKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
+    // 옵저버 등록 해제
+    func unregisterForKeyboardNotifications() {
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ note: NSNotification) {
+        let height = self.inputCodeView.frame.size.height
+        if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight) + 100
+            
+//            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
+        }
+        
+    }
+    
+    @objc func keyboardWillHide(_ note: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    // Called just before UITextField is edited
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
+        
+    }
+    
+    // Called immediately after UITextField is edited
+    func textFieldDidEndEditing(_ textField: UITextField) {
+//        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+
+    }
+    
 }

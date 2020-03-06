@@ -95,9 +95,9 @@ class MyApi: NSObject {
         userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (document, error) in
             if let err = error {
                 debugPrint(err)
+                completion(result)
             } else {
                 //let dataDescription = document?.data()
-                
                 result = PromiseUser.parseDouc(snapShot: document)
                 completion(result)
             }
@@ -172,9 +172,7 @@ class MyApi: NSObject {
                                 completion(temp)
                             }
                         }
-                }
-                
-                
+                    }
             }
         }
     }
@@ -263,7 +261,8 @@ class MyApi: NSObject {
     
     //이미 끝난 약속 데이터만 반환하는 함수
     func getCompletedPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
-        let result = Timestamp()
+        let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
+        let result = now3.timeIntervalSince1970
         //self.fireStoreSetting()
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isLessThan: result).getDocuments { (snapShot, error) in
             if let err = error {
@@ -388,14 +387,16 @@ class MyApi: NSObject {
         }
     }
     
-    //오늘을 기준으로 10일 이전 약속들을 [PromiseTable]을 하나의 배열 요소로 가지는 배열
+    //오늘을 기준으로 30일 이전 약속들을 [PromiseTable]을 하나의 배열 요소로 가지는 배열
     //업데이트됨
     func getPromiseData10ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
         //self.fireStoreSetting()
         
         let now = Date()
         let now2 = Timestamp()
-        let now3 = now2.dateValue() + 36000
+        //let now21 = now2.dateValue() + 32400
+        
+        let now3 = Date(timeIntervalSince1970: ceil( Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: now).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
@@ -404,7 +405,7 @@ class MyApi: NSObject {
                 let tempResult = PromiseTable.parseData(snapShot: snapShot)
                 var temp1 = [DayAndPromise]()
                 
-                //10일 전부터 10일 후까지
+                //30일 전부터 30일 후까지
                 for i in stride(from: now3.timeIntervalSince1970 - (2592000 * 3), through: now3.timeIntervalSince1970 + (2592000 * 3), by: 86400) {
                     var temp2 = [PromiseTable]()
                     
@@ -425,10 +426,9 @@ class MyApi: NSObject {
     //오늘을 기준으로 약속이 끝날 때까지의 날짜별 데이터
     func getPromiseDataSorted(completion: @escaping ([[PromiseTable]]) -> Void ) {
         
-        //self.fireStoreSetting()
-        let result = Timestamp()
+        let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
+        let result = now3.timeIntervalSince1970
         let now2 = Timestamp()
-        let now3 = now2.dateValue() + 36000
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: result).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
@@ -465,7 +465,7 @@ class MyApi: NSObject {
     func getPromiseNameAndFriendsName(completion: @escaping ([promiseNameAndFriendsName]) -> Void) {
         
         let now2 = Timestamp()
-        let now3 = now2.dateValue() + 36000
+        let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
         
         //self.fireStoreSetting()
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: now3).getDocuments { (snapShot, error) in
@@ -525,11 +525,11 @@ class MyApi: NSObject {
                 if result.count > 0 {
                     let promiseDay = Double( (result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400)
                     
-                    let promiseDaysinceToday = Double( ( Date().timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
+                    let promiseDaysinceToday = Double( ( Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600)).timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
                     
-                    let tempUsers = result[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
+                    //let tempUsers = result[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
                     
-                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: tempUsers)
+                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: result[0].promiseUsers)
                     
                     //completion(temp)
                     
@@ -592,7 +592,8 @@ class MyApi: NSObject {
     
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
-        let result = Timestamp()
+        let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
+        let result = now3.timeIntervalSince1970
         //self.fireStoreSetting()
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: result).getDocuments { (snapShot, error) in
@@ -1019,6 +1020,10 @@ class MyApi: NSObject {
         }
     }
     
+    //프로미스 어치브먼트 바꾸는함수
+    func updatePromiseAchievement(promiseID: String) {
+        promiseCollectionRef.document(promiseID).updateData([ISPROMISEACHIEVEMENT : true])
+    }
     
     func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
@@ -1060,8 +1065,6 @@ class MyApi: NSObject {
     //                   self.moreTableView.reloadData()
     //               }
     //           })
-    
-    
     
     
 }
