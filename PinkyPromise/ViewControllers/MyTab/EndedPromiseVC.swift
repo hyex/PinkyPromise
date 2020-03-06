@@ -138,6 +138,7 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("before perform segue")
         performSegue(withIdentifier: "promiseDetail", sender: promiseList[indexPath.row])
         
     }

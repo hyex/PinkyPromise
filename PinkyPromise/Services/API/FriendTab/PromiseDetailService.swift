@@ -127,4 +127,32 @@ class PromiseDetailService : NSObject {
             
         }
     }
+    
+    func getDataforDetailViewjrWithoutMe(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
+        //self.fireStoreSetting()
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapshot, error) in
+            if let err = error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let result = PromiseTable.parseData(snapShot: snapshot)
+                
+                if result.count > 0 {
+                    let promiseDay = Double( (result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400)
+                    
+                    let promiseDaysinceToday = Double( ( Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600)).timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
+                    
+                    let tempUsers = result[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
+                    
+                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: tempUsers)
+                    
+                    //completion(temp)
+                    
+                    self.getDataForDetailViewjr2(detailData1: temp) { (result2) in
+                        
+                        completion(result2)
+                    }
+                }
+            }
+        }
+    }
 }
