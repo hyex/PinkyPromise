@@ -389,7 +389,7 @@ class MyApi: NSObject {
     
     //오늘을 기준으로 30일 이전 약속들을 [PromiseTable]을 하나의 배열 요소로 가지는 배열
     //업데이트됨
-    func getPromiseData10ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
+    func getPromiseData30ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
         //self.fireStoreSetting()
         
         let now = Date()
@@ -398,7 +398,7 @@ class MyApi: NSObject {
         
         let now3 = Date(timeIntervalSince1970: ceil( Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
         
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: now).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -415,7 +415,7 @@ class MyApi: NSObject {
                         }
                     }
                     
-                    let temp3 = DayAndPromise(Day: Date(timeIntervalSince1970: i), promiseData: temp2)
+                    let temp3 = DayAndPromise(Day: Date(timeIntervalSince1970: i + 21600 - (15 * 3600)), promiseData: temp2)
                     temp1.append(temp3)
                 }
                 completion(temp1)

@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class FriendTabMainService : NSObject {
-    static let shared = MyApi()
+    static let shared = FriendTabMainService()
         
         fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
         fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
@@ -22,11 +22,12 @@ class FriendTabMainService : NSObject {
         
         let dateFormatter = DateFormatter()
     
-    //약속한 친구들 이름과 약속명
     func getPromiseNameAndFriendsName(completion: @escaping ([promiseNameAndFriendsName]) -> Void) {
         
+        let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
+        
         //self.fireStoreSetting()
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Date() ).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: now3).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             }else {
@@ -55,8 +56,6 @@ class FriendTabMainService : NSObject {
     
     //getPromiseNameAndFriendsName의 부속함수, 약속테이블의 사용자의 친구들의 이름을 반환함
     func getFriendsName(tempTable: promiseNameAndFriendsName, completion: @escaping (promiseNameAndFriendsName) -> Void ){
-        
-        //self.fireStoreSetting()
         var temp2 = [String]()
         let temp4 = tempTable.friendsName.sorted()
         for douc in temp4 {
@@ -72,7 +71,6 @@ class FriendTabMainService : NSObject {
     
     //UID에 맞는 유저 이름을 반환해줌
     func getUserNameWithUID(id: String, completion: @escaping (String) -> Void) {
-        //self.fireStoreSetting()
         userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)

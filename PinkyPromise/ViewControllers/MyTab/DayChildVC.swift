@@ -12,7 +12,7 @@ class DayChildVC: UIViewController {
     
     @IBOutlet weak var dayTableView: UITableView!
     
-    var dayList: [DayAndPromise]? {
+    var dayList: [PromiseWithDay]? {
         didSet {
             dayTableView.reloadData()
             self.dayTableView.scrollToRow(at: IndexPath(row: 89, section: 0), at: .top, animated: false)
@@ -23,12 +23,12 @@ class DayChildVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getMyPageData()
+        //getMyPageData()
         setUpTableView()
         initRefresh()
     }
     
-    // MARK: FIX
+    // MARK: wantToFix
     override func viewWillAppear(_ animated: Bool) {
         getMyPageData()
     }
@@ -59,7 +59,7 @@ class DayChildVC: UIViewController {
     
     // 통신
     private func getMyPageData() {
-        MyApi.shared.getPromiseData10ToNow(completion: { result in
+        DayChildService.shared.getPromiseData10ToNow(completion: { result in
             DispatchQueue.main.async {
                 self.dayList = result
                 if let firstIndex = self.firstIndex {
@@ -85,7 +85,7 @@ extension DayChildVC: UITableViewDataSource {
         
         if let list = self.dayList {
             let rowData = list[indexPath.row]
-            cell.setPromise(day: rowData)
+            cell.setPromise(promiseWithDay: rowData)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yy MM dd"
             let today = Date()
@@ -102,7 +102,6 @@ extension DayChildVC: UITableViewDataSource {
         return 140.0
     }
     
-    //****선영 추가 부분****
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "promiseDetail"{
             let promiseDetail = sender as? PromiseTable

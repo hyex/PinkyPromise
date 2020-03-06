@@ -55,7 +55,7 @@ class FriendTabMainVC: UIViewController {
     }
     
     private func getPromiseAndFriend() {
-        MyApi.shared.getPromiseNameAndFriendsName { (result) in
+        FriendTabMainService.shared.getPromiseNameAndFriendsName { (result) in
             for douc in result {
                 self.PromiseList.append(PromiseWithFriend(userimg : douc.FirstuserImage, promiseId: douc.promiseId, promiseName: douc.promiseName, friendsName: douc.friendsName))
             }
@@ -94,24 +94,28 @@ extension FriendTabMainVC : UITableViewDataSource{
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
         
-        //이미지 수정
-        FirebaseStorageService.shared.getUserImageURLWithName(name: promiseData.userimg, completion: { imgResult in
-            switch imgResult {
-            case .failure(let err):
-                print(err)
-                cell.friendProfileImg.image = UIImage(named: "userDefaultImage")
-            case .success(let url):
-                let imgURL = URL(string: url)
-                do{
-                    let data = try Data(contentsOf: imgURL!)
-                    cell.friendProfileImg.image = UIImage(data: data)
-                } catch{
-                    print("get img url failed")
+        //사용자 프사가 default image 이면
+        if (promiseData.userimg == "userDefaultImage") {
+            cell.friendProfileImg.image = UIImage(named: "userDefaultImage")
+        }else{
+            //이미지 수정
+            FirebaseStorageService.shared.getUserImageURLWithName(name: promiseData.userimg, completion: { imgResult in
+                switch imgResult {
+                case .failure(let err):
+                    print(err)
                     cell.friendProfileImg.image = UIImage(named: "userDefaultImage")
+                case .success(let url):
+                    let imgURL = URL(string: url)
+                    do{
+                        let data = try Data(contentsOf: imgURL!)
+                        cell.friendProfileImg.image = UIImage(data: data)
+                    } catch{
+                        print("get img url failed")
+                        cell.friendProfileImg.image = UIImage(named: "userDefaultImage")
+                    }
                 }
-            }
-        })
-        
+            })
+        }
         
         if (promiseData.friendsName.count == 1) {
             cell.friendNameLabel.text = promiseData.friendsName[0]

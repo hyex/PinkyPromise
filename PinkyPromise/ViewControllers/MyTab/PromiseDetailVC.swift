@@ -149,22 +149,27 @@ extension PromiseDetailVC : UITableViewDataSource{
             friendCell.friendProfileImg.layer.cornerRadius = friendCell.friendProfileImg.frame.width/2
             friendCell.friendProfileImg.clipsToBounds = true
             
-            FirebaseStorageService.shared.getUserImageURLWithName(name: rowData.image, completion: { imgResult in
-                switch imgResult {
-                case .failure(let err):
-                    print(err)
-                    friendCell.friendProfileImg.image = UIImage(named: "userDefaultImage")
-                case .success(let url):
-                    let imgURL = URL(string: url)
-                    do{
-                        let data = try Data(contentsOf: imgURL!)
-                        friendCell.friendProfileImg.image = UIImage(data: data)
-                    } catch{
-                        print("get img url failed")
+            if (rowData.image == "userDefaultImage") {
+                friendCell.friendProfileImg.image = UIImage(named: "userDefaultImage")
+            }else{
+                FirebaseStorageService.shared.getUserImageURLWithName(name: rowData.image, completion: { imgResult in
+                    switch imgResult {
+                    case .failure(let err):
+                        print(err)
                         friendCell.friendProfileImg.image = UIImage(named: "userDefaultImage")
+                    case .success(let url):
+                        let imgURL = URL(string: url)
+                        do{
+                            let data = try Data(contentsOf: imgURL!)
+                            friendCell.friendProfileImg.image = UIImage(data: data)
+                        } catch{
+                            print("get img url failed")
+                            friendCell.friendProfileImg.image = UIImage(named: "userDefaultImage")
+                        }
                     }
-                }
-            })
+                })
+            }
+            
             friendCell.friendNameLabel.text = rowData.name
             
             return friendCell
@@ -174,7 +179,7 @@ extension PromiseDetailVC : UITableViewDataSource{
     
     func getPromiseFriendData() {
         if let promiseId = promiseDetail?.promiseId {
-            MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
+            PromiseDetailService.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
             
                 for douc in result.friendsDetail {
                     self.promiseFriends.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
