@@ -217,8 +217,7 @@ extension HomeTabMainVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
-        let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? todayDate)
+        let date = Date(timeInterval: 86400, since: self.calendar.selectedDate ?? self.calendar.today!)
         var count = 0
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
@@ -231,8 +230,9 @@ extension HomeTabMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC
 
-        let todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
-        let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? todayDate)
+//        let todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
+        let date = Date(timeInterval: 86400, since: self.calendar.selectedDate ?? self.calendar.today!)
+//        let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? todayDate)
         cell.delegate = self
         if let day = self.days[date] {
             cell.setName(name: day.PAPD[indexPath.row].promiseData.promiseName)
@@ -300,7 +300,8 @@ extension HomeTabMainVC {
             let vc = segue.destination as! AddProgressVC
             vc.delegate = self
             
-            let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? yesterdayDate)
+            let date = Date(timeInterval: 86400, since: self.calendar.selectedDate ?? self.calendar.today!)
+//            let date = Date(timeInterval: 86400, since: calendar.selectedDate ?? yesterdayDate)
 
             if let day = self.days[date] {
                 if let cell = self.clickedProgress[3] as? UITableViewCell {
@@ -323,9 +324,9 @@ extension HomeTabMainVC {
 
 extension HomeTabMainVC: SendProgressDelegate {
     func sendProgress(data: Int) {
-        let date = self.calendar.selectedDate
+        let date = self.calendar.selectedDate ?? self.calendar.today!
         let cell = calendar.collectionView.cellForItem(at: calendar.calculator.indexPath(for: date)) as! MyCalendarCell
-        self.configureVisibleCell(date: date!, cell: cell)
+        self.configureVisibleCell(date: date, cell: cell)
     }
 }
 
