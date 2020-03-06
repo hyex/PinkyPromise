@@ -41,3 +41,7 @@ struct PromiseData: Codable {
     
 }
 
+struct PromiseWithDay {
+    var Day: Date!
+    var promiseData: [PromiseTable]!
+}
