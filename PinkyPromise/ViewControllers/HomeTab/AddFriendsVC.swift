@@ -106,16 +106,21 @@ extension AddFriendsVC: UITableViewDataSource {
         cell.friendProfileImg.layer.cornerRadius = cell.friendProfileImg.frame.width/2
         cell.friendProfileImg.clipsToBounds = true
         
-        FirebaseStorageService.shared.getUserImageWithName(name: (friend.image)!) { (result) in
-            switch result {
-            case .failure(let err):
-                print(err)
-                break
-            case .success(let userImage):
-                cell.friendProfileImg.image = userImage
-                break
-            }
+        if friend.image == "userDefaultImage" {
+            cell.friendProfileImg.image = UIImage(named: "userDefaultImage")
         }
+        else {
+            FirebaseStorageService.shared.getUserImageWithName(name: (friend.image)!) { (result) in
+                switch result {
+                case .failure(let err):
+                    print(err)
+                    break
+                case .success(let userImage):
+                    cell.friendProfileImg.image = userImage
+                    break
+                }
+            }
+            }
         
         
         cell.friendNameLabel.text = friend.name
