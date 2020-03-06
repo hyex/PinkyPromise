@@ -43,6 +43,35 @@ class FirebaseStorageService: NSObject {
         }
     }
     
+    //처음에 이미지를 업로드할때 어떤 이름으로 업로드하고 싶을 때 사용, 이 앱에서는 처음 사용
+    //유저이미지를 업로드할때 사용하는 함수 image는 UIImage가 아니라 jpegData. 밑에 사용예시 추가함
+    func storeUserImage(imageName: String, image: Data, completion: @escaping (Result<String, Error>) -> () ) {
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        //let uuid = UUID()
+        //let imageLocation = userFolderRef.child(uuid.description)
+        let imageLocation = userFolderRef.child(FirebaseUserService.currentUserID!)
+        
+        imageLocation.putData(image, metadata: metadata) { (responseMetadata, error) in
+            if let err = error {
+                completion(.failure(err))
+            } else {
+                Firestore.firestore().collection(PROMISEUSERREF).document(imageName).setData([USERIMAGE : FirebaseUserService.currentUserID], merge: true)
+                imageLocation.downloadURL { (url, error) in
+                    guard error == nil else {
+                        completion(.failure(error!))
+                        return
+                    }
+                    guard let url = url?.absoluteString else {
+                        completion(.failure(error!))
+                        return
+                    }
+                    completion(.success(url))
+                }
+            }
+        }
+    }
+    
     //유저이미지를 업로드할때 사용하는 함수 image는 UIImage가 아니라 jpegData. 밑에 사용예시 추가함
     func storeUserImage(image: Data, completion: @escaping (Result<String, Error>) -> () ) {
         let metadata = StorageMetadata()

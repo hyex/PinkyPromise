@@ -208,7 +208,7 @@ extension LoginVC: LoginButtonDelegate {
                     
                     guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                     
-                    FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                    FirebaseStorageService.shared.storeUserImage(imageName: "userDefaultImage", image: imageData) { [weak self] (result) in
                         switch result {
                         case .success(let url):
                             //self?.imageURL = url
@@ -284,7 +284,7 @@ extension LoginVC: GIDSignInDelegate {
                                 
                                 guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                                 
-                                FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                                FirebaseStorageService.shared.storeUserImage(imageName: "userDefaultImage", image: imageData) { [weak self] (result) in
                                     switch result {
                                     case .success(let url):
                                         //self?.imageURL = url
@@ -371,7 +371,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                                     guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else {
                                         return
                                     }
-                                    FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                                    FirebaseStorageService.shared.storeUserImage(imageName: "userDefaultImage", image: imageData) { [weak self] (result) in
                                         switch result {
                                         case .success(let url):
                                             //self?.imageURL = url
