@@ -111,13 +111,13 @@ class HomeTabMainVC: UIViewController {
         addPromiseBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         // data setting
-        yesterdayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-39600)
+        yesterdayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
-            calendar.reloadData()
+            self.calendar.reloadData()
         }
     }
     
@@ -163,31 +163,28 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     
     private func configureVisibleCell(date: Date, cell: MyCalendarCell) {
         let date = Date(timeInterval: 86400, since: date)
-        DispatchQueue.main.async {
-            HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
-                self.days.updateValue(day, forKey: date)
-                var progress: Int = 0
+        HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
+            self.days[date] = day
+            var progress: Int = 0
 
-                for pm in day.PAPD {
-                    let datindex = Int(date.timeIntervalSince1970 - pm.promiseData.promiseStartTime.timeIntervalSince1970) / 86400
-                    if pm.progressData.progressDegree[datindex] == -1 {
-                        continue
-                    } else {
-                        progress += pm.progressData.progressDegree[datindex]
-                    }
-                }
-
-                if day.PAPD.count > 0
-                {
-                    cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
+            for pm in day.PAPD {
+                let datindex = Int(date.timeIntervalSince1970 - pm.promiseData.promiseStartTime.timeIntervalSince1970) / 86400
+                if pm.progressData.progressDegree[datindex] == -1 {
+                    continue
                 } else {
-                    cell.setBackgroundColor(progress: ceil(0.0))
+                    progress += pm.progressData.progressDegree[datindex]
                 }
-                self.tableView.reloadData()
             }
+
+            if day.PAPD.count > 0
+            {
+                cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
+            } else {
+                cell.setBackgroundColor(progress: ceil(0.0))
+            }
+            self.tableView.reloadData()
         }
     }
-  
 }
 
 
@@ -334,7 +331,7 @@ extension HomeTabMainVC: SendProgressDelegate {
 
 extension HomeTabMainVC: SendPromiseDelegate {
     func sendPromise() {
-        calendar.reloadData()
+        self.calendar.reloadData()
     }
 }
 
