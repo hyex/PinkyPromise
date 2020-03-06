@@ -76,6 +76,7 @@ class AddPromiseService : NSObject {
                 debugPrint("Error adding document : \(err)")
             } else {
                 print("AddPromiseData API is success")
+                self.delegate.sendPromise()
             }
         }
     }
@@ -101,7 +102,6 @@ class AddPromiseService : NSObject {
                     debugPrint("error adding document : \(err)")
                 } else {
                     print("AddProgressData API is success")
-                    self.delegate.sendPromise()
                 }
             }
         }

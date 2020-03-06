@@ -28,8 +28,13 @@ class FriendTabMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPlusBtn()
-        getPromiseAndFriend()
+        //getPromiseAndFriend()
+        AddPromiseService.shared.delegate = self
         setUpTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getPromiseAndFriend()
     }
     
     func setUpTableView() {
@@ -55,6 +60,7 @@ class FriendTabMainVC: UIViewController {
     }
     
     private func getPromiseAndFriend() {
+        self.PromiseList = []
         FriendTabMainService.shared.getPromiseNameAndFriendsName { (result) in
             for douc in result {
                 self.PromiseList.append(PromiseWithFriend(userimg : douc.FirstuserImage, promiseId: douc.promiseId, promiseName: douc.promiseName, friendsName: douc.friendsName))
@@ -147,5 +153,12 @@ extension FriendTabMainVC : UITableViewDataSource{
                 }
             }
         }
+    }
+}
+
+extension FriendTabMainVC : SendPromiseDelegate{
+    func sendPromise() {
+        self.getPromiseAndFriend()
+        friendMainTableView.reloadData()
     }
 }
