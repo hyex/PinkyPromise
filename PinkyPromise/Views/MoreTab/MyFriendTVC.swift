@@ -16,13 +16,10 @@ class MyFriendTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         userImage.makeCircle()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

@@ -18,7 +18,6 @@ class EndedPromiseCVC: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        self.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         self.layer.cornerRadius = 8.0
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 1.0)

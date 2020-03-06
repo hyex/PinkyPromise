@@ -28,7 +28,6 @@ class PromiseCVC: UICollectionViewCell {
         let temp = CGFloat(self.appSlider.value/10)*sliderWidth
 
         self.showSliderValue.layer.position.x = CGFloat(14.0) + temp
-//        self.showSliderValue.layer.position.x = self.appSlider.layer.position.x + self.appSlider.value
     }
     
     
@@ -47,7 +46,6 @@ class PromiseCVC: UICollectionViewCell {
 
         self.promiseIcon.layer.cornerRadius = self.promiseIcon.frame.height/2
         self.promiseIcon.layer.masksToBounds = true
-        
         
     }
 }
