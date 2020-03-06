@@ -14,9 +14,8 @@ import FirebaseFirestore
 class DayChildService : NSObject {
     
     static let shared = DayChildService()
-    fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
     
-    let dateFormatter = DateFormatter()
+    fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
     
     func getPromiseData10ToNow(completion: @escaping ([PromiseWithDay]) -> Void ) {
         

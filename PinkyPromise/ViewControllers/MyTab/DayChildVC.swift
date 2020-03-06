@@ -23,12 +23,12 @@ class DayChildVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getMyPageData()
+        //getMyPageData()
         setUpTableView()
         initRefresh()
     }
     
-    // MARK: FIX
+    // MARK: wantToFix
     override func viewWillAppear(_ animated: Bool) {
         getMyPageData()
     }
@@ -67,14 +67,6 @@ class DayChildVC: UIViewController {
                 }
             }
         })
-//        MyApi.shared.getPromiseData10ToNow(completion: { result in
-//            DispatchQueue.main.async {
-//                self.dayList = result
-//                if let firstIndex = self.firstIndex {
-//                    self.dayTableView.scrollToRow(at: firstIndex, at: .top, animated: false)
-//                }
-//            }
-//        })
     }
 }
 
@@ -110,7 +102,6 @@ extension DayChildVC: UITableViewDataSource {
         return 140.0
     }
     
-    //****선영 추가 부분****
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "promiseDetail"{
             let promiseDetail = sender as? PromiseTable
