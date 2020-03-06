@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nu8-v0-LSz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nu8-v0-LSz">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -30,9 +30,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4U6-qd-jdg" customClass="FSCalendar">
                                 <rect key="frame" x="0.0" y="91" width="375" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="4U6-qd-jdg" secondAttribute="height" multiplier="75:60" id="svs-ty-TIo"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
                                         <color key="value" red="0.55294117649999996" green="0.27450980390000002" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,9 +85,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EvK-oN-364">
                                 <rect key="frame" x="0.0" y="420" width="375" height="306"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="EvK-oN-364" secondAttribute="height" multiplier="125:102" id="Ncg-iK-vRZ"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -104,10 +98,14 @@
                             <constraint firstItem="93J-zj-7Cr" firstAttribute="trailing" secondItem="4U6-qd-jdg" secondAttribute="trailing" id="Haz-B1-aIE"/>
                             <constraint firstItem="93J-zj-7Cr" firstAttribute="trailing" secondItem="m4a-9p-KM5" secondAttribute="trailing" id="Jpz-co-slJ"/>
                             <constraint firstItem="4U6-qd-jdg" firstAttribute="leading" secondItem="93J-zj-7Cr" secondAttribute="leading" id="LaQ-Z9-wNc"/>
+                            <constraint firstItem="4U6-qd-jdg" firstAttribute="width" secondItem="Vej-n3-Vbq" secondAttribute="width" id="MPe-dj-cHI"/>
+                            <constraint firstItem="EvK-oN-364" firstAttribute="width" secondItem="Vej-n3-Vbq" secondAttribute="width" id="POY-rE-WyT"/>
                             <constraint firstItem="EvK-oN-364" firstAttribute="top" secondItem="mNj-PI-7qj" secondAttribute="bottom" constant="5" id="QVX-kS-Vsa"/>
                             <constraint firstItem="m4a-9p-KM5" firstAttribute="centerY" secondItem="mNj-PI-7qj" secondAttribute="centerY" id="TDg-eV-F1y"/>
+                            <constraint firstItem="EvK-oN-364" firstAttribute="height" secondItem="Vej-n3-Vbq" secondAttribute="height" multiplier="0.376847" id="TZo-FT-ObK"/>
                             <constraint firstItem="ha6-zz-ec1" firstAttribute="leading" secondItem="Vej-n3-Vbq" secondAttribute="leading" id="bls-L0-Jro"/>
                             <constraint firstItem="EvK-oN-364" firstAttribute="trailing" secondItem="93J-zj-7Cr" secondAttribute="trailing" id="cqL-Si-Yu8"/>
+                            <constraint firstItem="4U6-qd-jdg" firstAttribute="height" secondItem="Vej-n3-Vbq" secondAttribute="height" multiplier="0.369458" id="gzj-An-Epr"/>
                             <constraint firstItem="Kn3-jP-07k" firstAttribute="leading" secondItem="93J-zj-7Cr" secondAttribute="leading" id="kUE-3K-5hH"/>
                             <constraint firstItem="mNj-PI-7qj" firstAttribute="top" secondItem="4U6-qd-jdg" secondAttribute="bottom" id="wmY-bB-9mz"/>
                         </constraints>
@@ -482,7 +480,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="withFriends" translatesAutoresizingMaskIntoConstraints="NO" id="22Y-lo-ZfT">
-                                                    <rect key="frame" x="16" y="18.666666666666671" width="30" height="30"/>
+                                                    <rect key="frame" x="16" y="18.666666666666671" width="30" height="30.000000000000227"/>
                                                     <color key="tintColor" red="0.55294117647058827" green="0.27450980392156865" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="2y7-ga-YOc"/>

@@ -204,7 +204,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2fQ-Mh-uJJ">
-                                <rect key="frame" x="40" y="361" width="334" height="132"/>
+                                <rect key="frame" x="40" y="379" width="334" height="132"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="TxW-Nt-77V">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
@@ -223,12 +223,8 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="userDefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="UTr-vg-Agc">
-                                <rect key="frame" x="143" y="121" width="128" height="202"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27C-t1-Bap">
-                                <rect key="frame" x="40" y="512" width="334" height="30"/>
+                                <rect key="frame" x="40" y="530" width="334" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="로그인">
@@ -238,17 +234,26 @@
                                     <action selector="signUpButton:" destination="JGA-uc-ThS" eventType="touchUpInside" id="3k3-v6-XWG"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="userDefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="UTr-vg-Agc">
+                                <rect key="frame" x="89" y="119" width="237" height="232"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="232" id="HIn-Vw-JgY"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" name="myPurple"/>
                         <constraints>
+                            <constraint firstItem="2fQ-Mh-uJJ" firstAttribute="top" secondItem="UTr-vg-Agc" secondAttribute="bottom" constant="28" id="14e-4Z-Gub"/>
+                            <constraint firstItem="UTr-vg-Agc" firstAttribute="leading" secondItem="7od-BY-4d6" secondAttribute="leading" constant="89" id="2H7-Fo-8Pu"/>
                             <constraint firstItem="2fQ-Mh-uJJ" firstAttribute="leading" secondItem="7od-BY-4d6" secondAttribute="leading" constant="40" id="5Rh-w7-CNj"/>
+                            <constraint firstItem="UTr-vg-Agc" firstAttribute="centerX" secondItem="2fQ-Mh-uJJ" secondAttribute="centerX" id="7YB-Xy-fdA"/>
                             <constraint firstItem="27C-t1-Bap" firstAttribute="leading" secondItem="7od-BY-4d6" secondAttribute="leading" constant="40" id="9ie-TE-9jV"/>
                             <constraint firstItem="27C-t1-Bap" firstAttribute="top" secondItem="2fQ-Mh-uJJ" secondAttribute="bottom" constant="19" id="MWr-YS-pkV"/>
-                            <constraint firstItem="2fQ-Mh-uJJ" firstAttribute="top" secondItem="UTr-vg-Agc" secondAttribute="bottom" constant="38" id="bQu-T9-IAv"/>
+                            <constraint firstItem="UTr-vg-Agc" firstAttribute="top" secondItem="7od-BY-4d6" secondAttribute="top" constant="31" id="YHG-F0-ezD"/>
                             <constraint firstItem="7od-BY-4d6" firstAttribute="trailing" secondItem="2fQ-Mh-uJJ" secondAttribute="trailing" constant="40" id="dSU-uG-6Tn"/>
                             <constraint firstItem="7od-BY-4d6" firstAttribute="trailing" secondItem="27C-t1-Bap" secondAttribute="trailing" constant="40" id="els-oD-F1t"/>
                             <constraint firstItem="UTr-vg-Agc" firstAttribute="leading" relation="lessThanOrEqual" secondItem="7od-BY-4d6" secondAttribute="leading" constant="143" id="jrN-Mk-sTA"/>
-                            <constraint firstItem="UTr-vg-Agc" firstAttribute="top" secondItem="7od-BY-4d6" secondAttribute="top" constant="33" id="kWa-Vq-1d3"/>
                             <constraint firstItem="7od-BY-4d6" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="UTr-vg-Agc" secondAttribute="trailing" constant="143" id="nLL-Vr-Ula"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7od-BY-4d6"/>
@@ -405,7 +410,7 @@
         <image name="list.bullet.indent" catalog="system" width="64" height="36"/>
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
-        <image name="userDefaultImage" width="101" height="101"/>
+        <image name="userDefaultImage" width="67.333335876464844" height="67.333335876464844"/>
         <namedColor name="myLightGreen">
             <color red="0.45490196078431372" green="0.83921568627450982" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

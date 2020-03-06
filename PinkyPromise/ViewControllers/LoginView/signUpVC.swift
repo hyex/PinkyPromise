@@ -69,7 +69,7 @@ class signUpVC: UIViewController {
 //                    }
 //                }
                 
-                let tempUser = PromiseUser(userName: self.nickNameBtn.text!, userFriends: [], userId: FirebaseUserService.currentUserID!, userImage: FirebaseUserService.currentUserID!, userCode: Int.random(in: 100000...999999), documentId:  MyApi.shared.randomNonceString())
+                let tempUser = PromiseUser(userName: self.nickNameBtn.text!, userFriends: [], userId: FirebaseUserService.currentUserID!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId:  MyApi.shared.randomNonceString())
                 
                 MyApi.shared.addUserData(tempUser)
                 
