@@ -179,7 +179,7 @@ extension PromiseDetailVC : UITableViewDataSource{
     
     func getPromiseFriendData() {
         if let promiseId = promiseDetail?.promiseId {
-            MyApi.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
+            PromiseDetailService.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
             
                 for douc in result.friendsDetail {
                     self.promiseFriends.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
