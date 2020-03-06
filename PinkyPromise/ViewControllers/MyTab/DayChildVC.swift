@@ -23,7 +23,7 @@ class DayChildVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMyPageData()
+//        getMyPageData()
         setUpTableView()
         initRefresh()
     }
@@ -55,7 +55,6 @@ class DayChildVC: UIViewController {
         self.dayTableView.dataSource = self
         self.dayTableView.rowHeight = UITableView.automaticDimension;
         self.dayTableView.estimatedRowHeight = 100;
-//        self.dayTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
     // 통신

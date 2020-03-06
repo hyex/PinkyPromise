@@ -12,22 +12,23 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class DayChildService : NSObject {
-    static let shared = MyApi()
-        
-        fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
-        fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
-        fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
-        
-        var promiseListner: ListenerRegistration!
-        
-        let dateFormatter = DateFormatter()
+    static let shared = DayChildService()
     
+    fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
+    fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
+    fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
+    
+    var promiseListner: ListenerRegistration!
+    
+    let dateFormatter = DateFormatter()
+    
+    // MARK: Q
     //오늘을 기준으로 10일 이전 약속들을 [PromiseTable]을 하나의 배열 요소로 가지는 배열
-    //업데이트됨
     func getPromiseData10ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
-        //self.fireStoreSetting()
         
         let now = Date()
+        let now2 = Timestamp()
+        let now3 = now2.dateValue() + 36000
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: now).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
@@ -37,7 +38,7 @@ class DayChildService : NSObject {
                 var temp1 = [DayAndPromise]()
                 
                 //10일 전부터 10일 후까지
-                for i in stride(from: now.timeIntervalSince1970 - 2592000, through: now.timeIntervalSince1970 + 2592000, by: 86400) {
+                for i in stride(from: now3.timeIntervalSince1970 - (2592000 * 3), through: now3.timeIntervalSince1970 + (2592000 * 3), by: 86400) {
                     var temp2 = [PromiseTable]()
                     
                     for douc in tempResult {

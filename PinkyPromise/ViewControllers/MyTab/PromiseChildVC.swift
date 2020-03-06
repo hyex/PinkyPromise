@@ -21,9 +21,13 @@ class PromiseChildVC: UIViewController {
         super.viewDidLoad()
         
         setUpCollectionView()
-        getAllPromiseData()
+//        getAllPromiseData()
         initView()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getAllPromiseData()
     }
     
     private func setUpCollectionView() {
