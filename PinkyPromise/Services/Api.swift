@@ -264,7 +264,7 @@ class MyApi: NSObject {
         let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
         let result = now3.timeIntervalSince1970
         //self.fireStoreSetting()
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isLessThan: result).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isLessThan: now3).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -391,10 +391,6 @@ class MyApi: NSObject {
     //업데이트됨
     func getPromiseData30ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
         //self.fireStoreSetting()
-        
-        let now = Date()
-        let now2 = Timestamp()
-        //let now21 = now2.dateValue() + 32400
         
         let now3 = Date(timeIntervalSince1970: ceil( Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
         
@@ -596,7 +592,7 @@ class MyApi: NSObject {
         let result = now3.timeIntervalSince1970
         //self.fireStoreSetting()
         
-        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: result).getDocuments { (snapShot, error) in
+        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: now3).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -1003,9 +999,12 @@ class MyApi: NSObject {
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
-               
+                //프로그레스 갖고오기
+                
+                let progressTemp = ProgressTable.parseData(snapShot: snapShot)
+                
                 let datindex = Int(day.timeIntervalSince1970 - promise.promiseStartTime.timeIntervalSince1970) / 86400
-                var temp: [Int] = progress.progressDegree
+                var temp: [Int] = progressTemp[0].progressDegree
                 temp[datindex] = data
                 self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : temp]) { err in
                     if let err = err {

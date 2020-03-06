@@ -22,11 +22,9 @@ class MoreTabMainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.isHidden = true
         picker.delegate = self
-        
-//        getUserData()
+        // getUserData()
         initView()
     }
     
@@ -65,26 +63,21 @@ class MoreTabMainVC: UIViewController {
                 imageName = (self.user?.userImage)!
                 if imageName == self.user?.userId {
                     FirebaseStorageService.shared.getUserImageURLWithName(name: imageName, completion: { result in
-                            switch result {
-                            case .failure(let err):
-                                print(err)
-                                self.userImage.image = UIImage(named: "userDefaultImage")
-                            case .success(let url):
-                                let imageUrl = URL(string: url)
-                                do {
-                                    let data = try Data(contentsOf: imageUrl!)
-                                    self.userImage.image = UIImage(data: data)
-
-                    
-                                } catch {
-                                    print("get image url failed")
-                                    self.userImage.image = UIImage(named: "userDefaultImage")
-                                }
+                        switch result {
+                        case .failure(let err):
+                            print(err)
+                        case .success(let url):
+                            let imageUrl = URL(string: url)
+                            do {
+                                let data = try Data(contentsOf: imageUrl!)
+                                self.userImage.image = UIImage(data: data)
+                            } catch {
+                                print("get image url failed")
+                                //self.userImage.image = UIImage(named: "userDefaultImage")
                             }
-                        })
+                        }
+                    })
                 }
-                
-                
             }
         })
     }
@@ -109,13 +102,10 @@ class MoreTabMainVC: UIViewController {
                 buttonBuilder.title = "친구하러 가기"
                 buttonBuilder.link = KMTLinkObject(builderBlock: { (linkBuilder) in
                     linkBuilder.iosExecutionParams = param
-//                    print(param)
                 })
             }))
             textTemplateBuilder.link = KMTLinkObject(builderBlock: { (linkBuilder) in
                 linkBuilder.iosExecutionParams = param
-                print(param)
-                //linkBuilder.mobileWebURL = URL(string: "https://developers.kakao.com")
             })
             
         }
@@ -128,7 +118,6 @@ class MoreTabMainVC: UIViewController {
 
         }, failure: { (error) in
             // 실패
-            UIAlertController.showMessage(error.localizedDescription)
             print("error \(error)")
             
         })

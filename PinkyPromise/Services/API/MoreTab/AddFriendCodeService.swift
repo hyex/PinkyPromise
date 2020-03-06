@@ -79,7 +79,6 @@ class AddFriendCodeService : NSObject {
     //UID에 맞는 유저 데이터를 반환해줌
     func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
         
-        
         var result = [PromiseUser]()
         userCollectionRef.document(id).getDocument { (sanpShot, err) in
             if let err = err {
@@ -91,4 +90,6 @@ class AddFriendCodeService : NSObject {
             }
         }
     }
+    
+   
 }
