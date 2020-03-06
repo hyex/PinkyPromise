@@ -59,7 +59,7 @@ class DayChildVC: UIViewController {
     
     // 통신
     private func getMyPageData() {
-        DayChildService.shared.getPromiseData10ToNow(completion: { result in
+        DayChildService.shared.getPromiseData30ToNow(completion: { result in
             DispatchQueue.main.async {
                 self.dayList = result
                 if let firstIndex = self.firstIndex {
