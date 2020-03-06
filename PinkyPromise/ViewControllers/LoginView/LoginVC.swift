@@ -94,7 +94,7 @@ extension LoginVC: LoginButtonDelegate {
         print("did log out of facebook")
     }
     
-    func loginButton(_ loginButton: FBLoginButton!, didCompleteWith result: LoginManagerLoginResult!, error: Error!) {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         if let error = error {
             print(error.localizedDescription)
             return

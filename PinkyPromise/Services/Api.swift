@@ -392,10 +392,6 @@ class MyApi: NSObject {
     func getPromiseData30ToNow(completion: @escaping ([DayAndPromise]) -> Void ) {
         //self.fireStoreSetting()
         
-        let now = Date()
-        let now2 = Timestamp()
-        //let now21 = now2.dateValue() + 32400
-        
         let now3 = Date(timeIntervalSince1970: ceil( Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
