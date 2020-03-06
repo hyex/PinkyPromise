@@ -24,7 +24,8 @@ class EndedPromiseService: NSObject {
     
     //이미 끝난 약속 데이터만 반환하는 함수
     func getCompletedPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
-        let result = Timestamp()
+        let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
+        let result = now3.timeIntervalSince1970
         //self.fireStoreSetting()
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isLessThan: result).getDocuments { (snapShot, error) in
             if let err = error {
