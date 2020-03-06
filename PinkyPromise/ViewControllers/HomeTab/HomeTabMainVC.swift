@@ -118,14 +118,8 @@ class HomeTabMainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
-            
-//            HomeTabMainService.shared.getAllHome { (result) in
-//                DispatchQueue.main.async {
-//                    self.days = result
-//                }
-//            }
+            calendar.reloadData()
         }
-        
     }
     
     @IBAction func addPromiseBtnAction(_ sender: Any) {
@@ -341,7 +335,6 @@ extension HomeTabMainVC: SendProgressDelegate {
 
 extension HomeTabMainVC: SendPromiseDelegate {
     func sendPromise() {
-        print("sendPromise")
         calendar.reloadData()
     }
 }
