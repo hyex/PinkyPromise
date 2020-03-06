@@ -508,7 +508,7 @@ class MyApi: NSObject {
         }
     }
     
-    func getDataforDetailViewjrIncludeMe(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
+    func getDataforDetailViewjrWithoutMe(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
         //self.fireStoreSetting()
         promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapshot, error) in
             if let err = error {
