@@ -22,11 +22,8 @@ class FriendTabDetailService : NSObject {
         
         let dateFormatter = DateFormatter()
     
-    //선영쿤이 요청한 detailView 진행중인 약속에 한해 들어간다.
-    //이거 쿼리 물어봐야함 도대체 왜 세개하면 invalid라고 뜰
     func getDataforDetailViewjr1(promiseID: String, completion: @escaping (promiseDetail) -> Void) {
-        //self.fireStoreSetting()
-        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: Timestamp()).getDocuments { (snapshot, error) in
+        promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseID).getDocuments { (snapshot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             } else {
@@ -35,13 +32,9 @@ class FriendTabDetailService : NSObject {
                 if result.count > 0 {
                     let promiseDay = Double( (result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400)
                     
-                    let promiseDaysinceToday = Double( ( Date().timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
+                    let promiseDaysinceToday = Double( ( Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600)).timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
                     
-                    let tempUsers = result[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
-                    
-                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: tempUsers)
-                    
-                    //completion(temp)
+                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: result[0].promiseUsers)
                     
                     self.getDataForDetailViewjr2(detailData1: temp) { (result2) in
                         
@@ -101,19 +94,18 @@ class FriendTabDetailService : NSObject {
     }
     
     //UID에 맞는 유저 데이터를 반환해줌
-    func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
-        //self.fireStoreSetting()
-        var result = [PromiseUser]()
-        userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
-            if let err = err {
-                debugPrint(err)
-            }else {
-                result = PromiseUser.parseData(snapShot: sanpShot)
-                let result2 = result[result.startIndex]
-                completion(result2)
+        func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
+            var result = [PromiseUser]()
+            userCollectionRef.document(id).getDocument { (sanpShot, err) in
+                if let err = err {
+                    debugPrint(err)
+                }else {
+                    result = PromiseUser.parseDouc(snapShot: sanpShot)
+                    let result2 = result[result.startIndex]
+                    completion(result2)
+                }
             }
         }
-    }
     
     //프로그레스테이블에 원하는 유저의 uid를 인풋으로 그 유저의 프로그레스 정보를 알 수 있다
     func getProgressDataWithUid(userid: String, completion: @escaping ([ProgressTable]) -> Void ) {
