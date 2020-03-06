@@ -172,9 +172,7 @@ class MyApi: NSObject {
                                 completion(temp)
                             }
                         }
-                }
-                
-                
+                    }
             }
         }
     }

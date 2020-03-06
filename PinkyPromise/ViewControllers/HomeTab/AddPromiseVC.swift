@@ -70,19 +70,12 @@ class AddPromiseVC: UIViewController {
         promiseTableView.dataSource = self
         
         //data setting
-        AddPromiseService.shared.getUserData { (result) in
-            var i = 0
-            print("here")
-            result[0].userFriends.forEach { (friendId) in
-                AddPromiseService.shared.getUserDataWithUID(id: friendId) { (friend) in
-                    print("here2")
-                      let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
-                      self.myFriends.append(temp)
-                    i += 1
-                }
-            }
-        }
+        getFriendsData()
         todayDate = Date(timeIntervalSince1970: floor(Date().timeIntervalSince1970/86400)*86400-32400)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getFriendsData()
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
@@ -99,8 +92,7 @@ class AddPromiseVC: UIViewController {
         
         let dataStartTime = Date(timeIntervalSince1970: ceil(dateCell.getFirstDate().timeIntervalSince1970/86400)*86400+21600)
         let dataEndTime = Date(timeIntervalSince1970: ceil(dateCell.getLastDate().timeIntervalSince1970/86400)*86400+21600)
-        print(dataStartTime)
-        print(dataEndTime)
+
         let dataColor = colors[selectedColor]
         let dataIcon = icons[selectedIcon]
         let dataUsers: Array<String> = {
@@ -148,7 +140,22 @@ extension AddPromiseVC {
     }
 }
 
+
+// about Data
 extension AddPromiseVC {
+    func getFriendsData() {
+        AddPromiseService.shared.getUserData { (result) in
+            var i = 0
+            result[0].userFriends.forEach { (friendId) in
+                AddPromiseService.shared.getUserDataWithUID(id: friendId) { (friend) in
+                      let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
+                      self.myFriends.append(temp)
+                    i += 1
+                }
+            }
+        }
+    }
+    
     func alertData(name : String) {
         var text: String!
         switch name {

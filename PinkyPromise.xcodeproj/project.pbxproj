@@ -80,7 +80,6 @@
 		3F97E6D923E684250031A2E1 /* ProgressCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F97E6D723E684250031A2E1 /* ProgressCVC.xib */; };
 		3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */; };
 		3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */; };
-		3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */; };
 		3FB7CF1A23D8D6BA00C5DECA /* TextCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */; };
 		3FE061CF23E0CF9900CD2F6A /* FriendCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061CE23E0CF9900CD2F6A /* FriendCellTVC.swift */; };
 		3FE061D723E0E4C900CD2F6A /* AddFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */; };
@@ -193,7 +192,6 @@
 		3F97E6D723E684250031A2E1 /* ProgressCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressCVC.xib; sourceTree = "<group>"; };
 		3FB3AC0223CEF89300851FDA /* HomeTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
 		3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPromiseVC.swift; sourceTree = "<group>"; };
-		3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectColorVC.swift; sourceTree = "<group>"; };
 		3FB7CF1923D8D6BA00C5DECA /* TextCellTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCellTVC.swift; sourceTree = "<group>"; };
 		3FE061CE23E0CF9900CD2F6A /* FriendCellTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellTVC.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		3FE061D623E0E4C900CD2F6A /* AddFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsVC.swift; sourceTree = "<group>"; };
@@ -362,7 +360,6 @@
 			isa = PBXGroup;
 			children = (
 				3FB3AC0423CEF8AE00851FDA /* AddPromiseVC.swift */,
-				3FB3AC0523CEF8AE00851FDA /* selectColorVC.swift */,
 				334AACDC23CC262D00AAF955 /* HomeTabMainVC.swift */,
 				3317B3E823CF1354006A5BF5 /* HomeNavigationController.swift */,
 				3F035C5223DF5BC40037A4BA /* AddColorVC.swift */,
@@ -844,7 +841,6 @@
 				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
 				3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */,
-				3FB3AC0723CEF8AE00851FDA /* selectColorVC.swift in Sources */,
 				3371952F24058DA600753F99 /* UIAlertController+Extention.swift in Sources */,
 				18BA606C23DC82B100925578 /* progressTable.swift in Sources */,
 				186D855923D42174006DA619 /* promiseUsers.swift in Sources */,
