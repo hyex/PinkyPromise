@@ -28,6 +28,7 @@ class MoreTabMainVC: UIViewController {
         initView()
     }
     
+    // MARK: wantToFix
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
         getUserData()

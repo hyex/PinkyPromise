@@ -29,6 +29,7 @@ class MyFriendVC: UIViewController {
         myFriendTableView.dataSource = self
     }
     
+    // MARK: wantToFix
     override func viewWillAppear(_ animated: Bool) {
         getFriendData()
     }
