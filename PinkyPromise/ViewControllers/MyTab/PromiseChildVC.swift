@@ -182,7 +182,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                             if result.isEmpty != true {
                                 
                                 for degree in result[0].progressDegree {
-                                    if degree == 4 {
+                                    if degree > 0 {
                                         promiseAchievement += 1
                                     }
                                 }
