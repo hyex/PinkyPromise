@@ -24,7 +24,7 @@ class FirebaseUserService {
         }
     }
     
-    static func signUp(withEmail email: String, password: String, username: String, image: UIImage?, success: @escaping() -> Void, failure: @escaping(Error) -> Void){
+    static func signUp(withEmail email: String, password: String, username: String, image: UIImage?, defaultCheck: Bool, success: @escaping() -> Void, failure: @escaping(Error) -> Void){
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
             if error != nil {
                 failure(error!)
@@ -37,14 +37,27 @@ class FirebaseUserService {
                     return
                 }
                 //아직 구현단계 여기서는 뭘해야하는지모르겠군
-                FirebaseStorageService.shared.storeUserImage(image: imageData, completion: { result in
-                    switch result {
-                    case .failure(let err):
-                        print(err)
-                    case .success:
-                        success()
-                    }
-                })
+                if defaultCheck == true {
+                    FirebaseStorageService.shared.storeUserImage(image: imageData, completion: { result in
+                        switch result {
+                        case .failure(let err):
+                            print(err)
+                        case .success:
+                            success()
+                        }
+                    })
+                } else {
+                    FirebaseStorageService.shared.storeUserImage(imageName: "userDefaultImage", image: imageData, completion: { result in
+                        switch result {
+                        case .failure(let err):
+                            print(err)
+                        case .success:
+                            success()
+                        }
+                    })
+                }
+                
+                
                 
                 //또한 여기서 사용자를 만들어야하는듯하다
             }

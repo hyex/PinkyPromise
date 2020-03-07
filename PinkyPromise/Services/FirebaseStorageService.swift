@@ -50,7 +50,7 @@ class FirebaseStorageService: NSObject {
         metadata.contentType = "image/jpeg"
         //let uuid = UUID()
         //let imageLocation = userFolderRef.child(uuid.description)
-        let imageLocation = userFolderRef.child(FirebaseUserService.currentUserID!)
+        let imageLocation = userFolderRef.child(imageName)
         
         imageLocation.putData(image, metadata: metadata) { (responseMetadata, error) in
             if let err = error {
@@ -66,6 +66,7 @@ class FirebaseStorageService: NSObject {
                         completion(.failure(error!))
                         return
                     }
+                    MyApi.shared.updateUserImageName(userImageName: imageName)
                     completion(.success(url))
                 }
             }
@@ -94,6 +95,7 @@ class FirebaseStorageService: NSObject {
                         completion(.failure(error!))
                         return
                     }
+                    MyApi.shared.updateUserImageName(userImageName: FirebaseUserService.currentUserID!)
                     completion(.success(url))
                 }
             }

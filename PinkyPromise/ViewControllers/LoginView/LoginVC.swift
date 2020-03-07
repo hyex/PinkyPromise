@@ -144,7 +144,7 @@ extension LoginVC: LoginButtonDelegate {
                     
                     MyApi.shared.getUserData(completion: { (result) in
                         if result.count == 0 {
-                            let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                            let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                             MyApi.shared.addUserData(temp)
                             
                             if UserDefaults.standard.bool(forKey: "signedIn") == false{
@@ -200,7 +200,7 @@ extension LoginVC: LoginButtonDelegate {
                 self.navigationController?.isNavigationBarHidden = true
                 UserDefaults.standard.set(true, forKey: "loggedIn")
                 
-                let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                 MyApi.shared.addUserData(temp)
                 
                 if UserDefaults.standard.bool(forKey: "signedIn") == false{
@@ -276,7 +276,7 @@ extension LoginVC: GIDSignInDelegate {
                     
                     MyApi.shared.getUserData(completion: { (result) in
                         if result.count == 0 {
-                            let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: userID!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                            let temp = PromiseUser(userName: fullName!, userFriends: [], userId: userID!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                             MyApi.shared.addUserData(temp)
                             
                             if UserDefaults.standard.bool(forKey: "signedIn") == false{
@@ -360,9 +360,11 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                         
                         //let i = (authResult?.user.email)!.firstIndex(of: "@")
                         
+                        //Auth.auth().currentUser?.displayName
+                        
                         MyApi.shared.getUserData(completion: { (result) in
                             if result.count == 0 {
-                                let temp = PromiseUser(userName: (user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: (authResult?.user.uid)!, userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                                let temp = PromiseUser(userName: (user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                                 MyApi.shared.addUserData(temp)
                                 
                                 if UserDefaults.standard.bool(forKey: "signedIn") == false {

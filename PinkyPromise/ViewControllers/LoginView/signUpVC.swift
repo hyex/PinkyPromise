@@ -19,6 +19,8 @@ class signUpVC: UIViewController {
     @IBOutlet weak var cancleBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     
+    var checkImage = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -37,7 +39,7 @@ class signUpVC: UIViewController {
         if self.passwordBtn.text == "" || self.emailBtn.text == "" || self.nickNameBtn.text == "" {
             self.showAlert(message: "모든 필드는 모두 작성해주세요!")
         } else {
-            FirebaseUserService.signUp(withEmail: emailBtn.text!, password: passwordBtn.text!, username: nickNameBtn.text!, image: self.profileImage.image, success: {
+            FirebaseUserService.signUp(withEmail: emailBtn.text!, password: passwordBtn.text!, username: nickNameBtn.text!, image: self.profileImage.image, defaultCheck: checkImage, success: {
                 FirebaseUserService.sendEmailVerification(failure: { (error) in
                     //SVProgressHUD.showError(withStatus: error.localizedDescription)
                     self.showAlert(message: "\(error.localizedDescription)")
@@ -69,10 +71,16 @@ class signUpVC: UIViewController {
 //                    }
 //                }
                 
-                let tempUser = PromiseUser(userName: self.nickNameBtn.text!, userFriends: [], userId: FirebaseUserService.currentUserID!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId:  MyApi.shared.randomNonceString())
+                var imageName = ""
+                if self.checkImage == true {
+                    imageName = FirebaseUserService.currentUserID!
+                } else {
+                    imageName = "userDefaultImage"
+                }
+                
+                let tempUser = PromiseUser(userName: self.nickNameBtn.text!, userFriends: [], userId: FirebaseUserService.currentUserID!, userImage: imageName, userCode: Int.random(in: 100000...999999), documentId:  MyApi.shared.randomNonceString())
                 
                 MyApi.shared.addUserData(tempUser)
-                
                 //self.showToast(message: "회원가입에 성공했습니다!")
                 self.navigationController?.popViewController(animated: true)
                 
@@ -147,11 +155,12 @@ extension signUpVC: UITextFieldDelegate {
 extension signUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
-        guard var selectedImage = info[.originalImage] as? UIImage else {
+        guard let selectedImage = info[.originalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         //dismiss(animated: true, completion: nil)
         profileImage.image = selectedImage
+        self.checkImage = true
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

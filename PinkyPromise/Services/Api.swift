@@ -1052,6 +1052,10 @@ class MyApi: NSObject {
         promiseCollectionRef.document(promiseID).updateData([ISPROMISEACHIEVEMENT : true])
     }
     
+    func updateUserImageName(userImageName: String) {
+        userCollectionRef.document(FirebaseUserService.currentUserID!).updateData([USERIMAGE : userImageName])
+    }
+    
     func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         let charset: Array<Character> =

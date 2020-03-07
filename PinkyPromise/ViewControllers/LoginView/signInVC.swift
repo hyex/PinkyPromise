@@ -144,7 +144,7 @@ extension signInVC: UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(_ note: NSNotification) {
-        let height = self.inputCodeView.frame.size.height
+        //let height = self.inputCodeView.frame.size.height
         if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
