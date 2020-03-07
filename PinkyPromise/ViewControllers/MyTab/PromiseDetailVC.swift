@@ -16,6 +16,7 @@ struct Friend{
 class PromiseDetailVC: UIViewController {
     
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var coloredPromiseIcon: UIImageView!
     @IBOutlet weak var promiseNameLabel: UILabel!
     
     @IBOutlet weak var promiseInfoTableView: UITableView!
@@ -60,18 +61,18 @@ class PromiseDetailVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         print("in viewWillDisappear")
-//        self.dismiss(animated: false, completion: nil)
-//        self.navigationController?.popViewController(animated: true)
+        //        self.dismiss(animated: false, completion: nil)
+        //        self.navigationController?.popViewController(animated: true)
     }
-
+    
     @IBAction func backBtnAction(_ sender : Any) {
-//        let dayTabStoryboard = UIStoryboard(name: "MyTab", bundle: nil)
-//        let vc = dayTabStoryboard.instantiateViewController(withIdentifier: "MyTab") as! MyTabMainVC
-//
-//        vc.modalTransitionStyle = .flipHorizontal
-//        vc.modalPresentationStyle = .overCurrentContext
-//
-//        self.present(vc, animated: false, completion: nil)
+        //        let dayTabStoryboard = UIStoryboard(name: "MyTab", bundle: nil)
+        //        let vc = dayTabStoryboard.instantiateViewController(withIdentifier: "MyTab") as! MyTabMainVC
+        //
+        //        vc.modalTransitionStyle = .flipHorizontal
+        //        vc.modalPresentationStyle = .overCurrentContext
+        //
+        //        self.present(vc, animated: false, completion: nil)
         self.dismiss(animated: false, completion: nil)
         
     }
@@ -105,57 +106,41 @@ extension PromiseDetailVC : UITableViewDataSource{
         
         if(tableView == promiseInfoTableView){
             switch (indexPath.row) {
-            case 0:  //시작 날짜
-                let startCell = tableView.dequeueReusableCell(withIdentifier: "StartDateVC") as! StartDateVC
+                
+            case 0:
+                let dateCell = tableView.dequeueReusableCell(withIdentifier: "PromiseDateVC") as! PromiseDateVC
                 
                 if let start = promiseDetail?.promiseStartTime {
-                    startCell.startDateLabel.text = dateFormatter.string(from: start)
+                    dateCell.startDateLabel.text = dateFormatter.string(from: start)
                 }else{
                     print("date to string fail")
-                    startCell.startDateLabel.text = "-"
+                    dateCell.startDateLabel.text = "-"
                 }
-                
-                startCell.startDateImg.tintColor = UIColor.appColor
-                
-                return startCell
-            case 1:  //종료 날짜
-                let finalCell = tableView.dequeueReusableCell(withIdentifier: "FinalDateVC") as! FinalDateVC
                 
                 if let final = promiseDetail?.promiseEndTime {
-                    finalCell.finalDateLabel.text = dateFormatter.string(from: final)
+                    dateCell.finalDateLabel.text = dateFormatter.string(from: final)
                 }else{
                     print("date to string fail")
-                    finalCell.finalDateLabel.text = "-"
+                    dateCell.finalDateLabel.text = "-"
                 }
                 
-                finalCell.finalDateImg.tintColor = UIColor.appColor
+                return dateCell
+            case 1 :
+                let calendarCell = tableView.dequeueReusableCell(withIdentifier: "CalendarVC") as! CalendarVC
                 
-                return finalCell
-            case 2:  //약속 색상
-                let colorCell = tableView.dequeueReusableCell(withIdentifier: "ColorVC") as! ColorVC
+                return calendarCell
                 
-                if let color = promiseDetail?.promiseColor {
-                    colorCell.colorImg.tintColor = UIColor(named: color)
+            default :
+                let penaltyCell = tableView.dequeueReusableCell(withIdentifier: "PenaltyVC") as! PenaltyVC
+                
+                if (promiseDetail?.promisePanalty != "") {
+                    penaltyCell.PenaltyLabel.text = promiseDetail?.promisePanalty
                 }else{
-                    print("no promise color")
-                    colorCell.colorImg.tintColor = UIColor.appColor
+                    penaltyCell.PenaltyLabel.text = "벌칙 없음"
                 }
                 
-                
-                return colorCell
-            default :  //약속 아이콘
-                let iconCell = tableView.dequeueReusableCell(withIdentifier: "IconVC") as! IconVC
-                
-                //DB 정리되면 icon 지정 해야 함!
-                if let icon = promiseDetail?.promiseIcon {
-                    iconCell.iconImg.image = UIImage(named: "gym")
-                }else{
-                    print("no promise icon")
-                    iconCell.iconImg.tintColor = UIColor.appColor
-                }
-                
-                return iconCell
-                
+                penaltyCell.PenaltyImg.tintColor = UIColor.appColor
+                return penaltyCell
             }
         }else {
             let friendCell = tableView.dequeueReusableCell(withIdentifier: "PromiseFriendTVC", for: indexPath) as! PromiseFriendTVC
@@ -191,7 +176,6 @@ extension PromiseDetailVC : UITableViewDataSource{
             
             return friendCell
         }
-        
     }
     
     func getPromiseFriendData() {
@@ -211,6 +195,10 @@ extension PromiseDetailVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(tableView == promiseFriendTableView){
             return 60
+        }else{
+            if (indexPath.row == 0){
+                return 80
+            }
         }
         return 50
     }
