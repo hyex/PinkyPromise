@@ -1021,6 +1021,10 @@ class MyApi: NSObject {
         
     }
     
+//    func deletePromiseWithPromiseID(PromiseID: String) {
+//        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!)
+//    }
+    
     //프로그레스 입력뷰
     func updateProgress(day: Date, userId: String, data: Int, promise: PromiseTable, progress: ProgressTable ){
         progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promise.promiseId!).getDocuments { (snapShot, error) in
@@ -1050,6 +1054,10 @@ class MyApi: NSObject {
     //프로미스 어치브먼트 바꾸는함수
     func updatePromiseAchievement(promiseID: String) {
         promiseCollectionRef.document(promiseID).updateData([ISPROMISEACHIEVEMENT : true])
+    }
+    
+    func updateUserImageName(userImageName: String) {
+        userCollectionRef.document(FirebaseUserService.currentUserID!).updateData([USERIMAGE : userImageName])
     }
     
     func randomNonceString(length: Int = 32) -> String {

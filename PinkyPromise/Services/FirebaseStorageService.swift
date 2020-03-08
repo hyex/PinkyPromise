@@ -56,7 +56,7 @@ class FirebaseStorageService: NSObject {
             if let err = error {
                 completion(.failure(err))
             } else {
-                Firestore.firestore().collection(PROMISEUSERREF).document(imageName).setData([USERIMAGE : FirebaseUserService.currentUserID], merge: true)
+                Firestore.firestore().collection(PROMISEUSERREF).document(FirebaseUserService.currentUserID!).setData([USERIMAGE : imageName], merge: true)
                 imageLocation.downloadURL { (url, error) in
                     guard error == nil else {
                         completion(.failure(error!))
@@ -66,6 +66,7 @@ class FirebaseStorageService: NSObject {
                         completion(.failure(error!))
                         return
                     }
+                    //MyApi.shared.updateUserImageName(userImageName: imageName)
                     completion(.success(url))
                 }
             }
@@ -94,6 +95,7 @@ class FirebaseStorageService: NSObject {
                         completion(.failure(error!))
                         return
                     }
+                    //MyApi.shared.updateUserImageName(userImageName: FirebaseUserService.currentUserID!)
                     completion(.success(url))
                 }
             }

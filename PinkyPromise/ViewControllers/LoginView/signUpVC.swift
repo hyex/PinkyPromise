@@ -18,18 +18,46 @@ class signUpVC: UIViewController {
     @IBOutlet weak var startBtn: UIButton!
     @IBOutlet weak var cancleBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var inputCodeView: UIView!
+    @IBOutlet weak var backBtn: UIBarButtonItem!
+    var checkImage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
+        self.setNavigationBar()
+        self.setBackBtn()
+        
+        self.inputCodeView.backgroundColor = UIColor.appColor
+        
+        registerForKeyboardNotifications()
         self.profileImage.layer.cornerRadius = 20
         self.profileImage.clipsToBounds = true
         self.startBtn.layer.cornerRadius = 10
-        
+        self.backBtn.title = ""
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectImageView))
         profileImage.addGestureRecognizer(tapGesture)
         profileImage.isUserInteractionEnabled = true
+    }
+    
+    private func setNavigationBar() {
+        let bar:UINavigationBar! = self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        bar.shadowImage = UIImage()
+        
+        bar.backgroundColor = UIColor.clear
+    }
+
+    @objc func backToMain() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func setBackBtn() {
+        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        navigationController?.navigationBar.backIndicatorImage = image
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.backItem?.title = ""
     }
     
     @IBAction func signUpButton(_ sender: Any) {
@@ -37,7 +65,7 @@ class signUpVC: UIViewController {
         if self.passwordBtn.text == "" || self.emailBtn.text == "" || self.nickNameBtn.text == "" {
             self.showAlert(message: "모든 필드는 모두 작성해주세요!")
         } else {
-            FirebaseUserService.signUp(withEmail: emailBtn.text!, password: passwordBtn.text!, username: nickNameBtn.text!, image: self.profileImage.image, success: {
+            FirebaseUserService.signUp(withEmail: emailBtn.text!, password: passwordBtn.text!, username: nickNameBtn.text!, image: self.profileImage.image, defaultCheck: checkImage, success: {
                 FirebaseUserService.sendEmailVerification(failure: { (error) in
                     //SVProgressHUD.showError(withStatus: error.localizedDescription)
                     self.showAlert(message: "\(error.localizedDescription)")
@@ -69,10 +97,16 @@ class signUpVC: UIViewController {
 //                    }
 //                }
                 
-                let tempUser = PromiseUser(userName: self.nickNameBtn.text!, userFriends: [], userId: FirebaseUserService.currentUserID!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId:  MyApi.shared.randomNonceString())
+                var imageName = ""
+                if self.checkImage == true {
+                    imageName = FirebaseUserService.currentUserID!
+                } else {
+                    imageName = "userDefaultImage"
+                }
+                
+                let tempUser = PromiseUser(userName: self.nickNameBtn.text!, userFriends: [], userId: FirebaseUserService.currentUserID!, userImage: imageName, userCode: Int.random(in: 100000...999999), documentId:  MyApi.shared.randomNonceString())
                 
                 MyApi.shared.addUserData(tempUser)
-                
                 //self.showToast(message: "회원가입에 성공했습니다!")
                 self.navigationController?.popViewController(animated: true)
                 
@@ -139,6 +173,42 @@ class signUpVC: UIViewController {
 }
 
 extension signUpVC: UITextFieldDelegate {
+    // 옵저버 등록
+    func registerForKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
+
+    // 옵저버 등록 해제
+    func unregisterForKeyboardNotifications() {
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ note: NSNotification) {
+        let height = self.inputCodeView.frame.size.height
+        if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
+            //self.view.frame.origin.y = -self.view.layer.position.y + keyboardHeight
+        }
+    }
+    
+    @objc func keyboardWillHide(_ note: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.passwordBtn.resignFirstResponder()
+        self.emailBtn.resignFirstResponder()
+        self.nickNameBtn.resignFirstResponder()
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
@@ -147,11 +217,12 @@ extension signUpVC: UITextFieldDelegate {
 extension signUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
-        guard var selectedImage = info[.originalImage] as? UIImage else {
+        guard let selectedImage = info[.originalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         //dismiss(animated: true, completion: nil)
         profileImage.image = selectedImage
+        self.checkImage = true
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

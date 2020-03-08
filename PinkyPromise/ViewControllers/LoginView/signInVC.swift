@@ -35,10 +35,33 @@ class signInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setBackBtn()
+        self.setNavigationBar()
+        
         registerForKeyboardNotifications()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.loginBtn.layer.cornerRadius = 10
         loginBtn.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+    }
+    
+    private func setNavigationBar() {
+        let bar:UINavigationBar! = self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        bar.shadowImage = UIImage()
+        
+        bar.backgroundColor = UIColor.clear
+    }
+
+    @objc func backToMain() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func setBackBtn() {
+        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        navigationController?.navigationBar.backIndicatorImage = image
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.backItem?.title = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,11 +98,19 @@ class signInVC: UIViewController {
     func showAlertPWResetController(style: UIAlertController.Style) {
         let alertController: UIAlertController
         
-        alertController = UIAlertController(title: "새 비밀번호를 입력하세요", message: "비밀번호는 최소 6글자 이상입니다.", preferredStyle: style)
+        alertController = UIAlertController(title: "이메일 주소를 입력하세요", message: "새 비밀번호를 위한 링크가 보내집니다.", preferredStyle: style)
+        
+        let cancelActoin: UIAlertAction
+        cancelActoin = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        
+        alertController.addTextField { (field: UITextField ) in
+            field.placeholder = "test@test.com"
+            field.textContentType = UITextContentType.emailAddress
+        }
         
         let okAction: UIAlertAction
         okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
-            FirebaseUserService.forgotPassword(withEmail: self.emailTextField.text!, success: {
+            FirebaseUserService.forgotPassword(withEmail: (alertController.textFields![0] as UITextField).text! , success: {
                 //SVProgressHUD.showInfo(withStatus: "비밀번호 재설정 링크가 이메일 주소로 전송되었습니다.")
                 self.showAlert(message: "비밀번호 재설정 링크가 이메일 주소로 전송되었습니다.")
                 self.navigationController?.popViewController(animated: true)
@@ -90,16 +121,8 @@ class signInVC: UIViewController {
             }
         })
         
-        let cancelActoin: UIAlertAction
-        cancelActoin = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
-        
         alertController.addAction(okAction)
         alertController.addAction(cancelActoin)
-        
-        alertController.addTextField { (field: UITextField ) in
-            field.placeholder = "새 비밀번호를 입력하세요."
-            field.textContentType = UITextContentType.newPassword
-        }
         
         self.present(alertController, animated: true, completion: {
             print("alert controller shown")
@@ -148,11 +171,15 @@ extension signInVC: UITextFieldDelegate {
         if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight) + 100
-            
+            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
 //            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
         }
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.emailTextField.resignFirstResponder()
+        self.PWTextFiled.resignFirstResponder()
     }
     
     @objc func keyboardWillHide(_ note: NSNotification) {
