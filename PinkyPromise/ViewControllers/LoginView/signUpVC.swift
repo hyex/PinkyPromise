@@ -191,7 +191,8 @@ extension signUpVC: UITextFieldDelegate {
         if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            //self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
+            //self.view.frame.origin.y = -(self.view.layer.position.y - keyboardHeight)
+            self.view.frame.origin.y = -self.view.layer.position.y + keyboardHeight
         }
     }
     
