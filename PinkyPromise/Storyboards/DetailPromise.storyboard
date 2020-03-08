@@ -286,11 +286,20 @@
                         <outlet property="promiseFriendTableView" destination="xcI-7e-xuG" id="aey-cR-YSJ"/>
                         <outlet property="promiseInfoTableView" destination="zvs-jW-YzB" id="ZkO-Wz-GgQ"/>
                         <outlet property="promiseNameLabel" destination="qtw-Wo-ZuA" id="Otm-Qf-JC4"/>
+                        <segue destination="YeV-85-lQ8" kind="presentation" identifier="ProgressVC" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="Vuz-Ed-otF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Dh-QP-q9i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-139.13043478260872" y="-101.11607142857143"/>
+        </scene>
+        <!--AddProgressVC-->
+        <scene sceneID="tgl-UF-1aw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddProgress" referencedIdentifier="AddProgressVC" id="YeV-85-lQ8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lxE-hd-Afp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="520" y="-101"/>
         </scene>
     </scenes>
     <resources>

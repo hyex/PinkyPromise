@@ -34,16 +34,20 @@ class ProgressCVC: UICollectionViewCell {
         return progressInt
     }
     
-    func setColor(progress: Int) {
+    func setColor(progress: Int, name: String) {
+        let color = MyColor(rawValue: name)
+        
         if progress == -1 {
             self.progressButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.6)
+            self.progressButton.setTitleColor(color!.create, for: .normal)
         }
         else {
-            self.progressButton.backgroundColor = UIColor.appColor.withAlphaComponent(CGFloat(Double(progress + 1) * 0.2))
+            self.progressButton.backgroundColor = color!.create.withAlphaComponent(CGFloat(Double(progress + 1) * 0.2))
+            self.progressButton.setTitleColor(UIColor.white, for: .normal)
         }
     }
     
-    func setProgressLabel(progress: Int) {
+    func setProgressLabel(progress: Int, name: String) {
         let percent = 25 * progress
         self.progressButton.setTitle("\(percent)%", for: .normal)
     }

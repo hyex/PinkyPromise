@@ -30,7 +30,7 @@ enum MyColor: String {
         case .myDarkBlue:
             return UIColor.myDarkBlue
         case .myPurple:
-            return UIColor.myPurple
+            return UIColor.appColor
         case .myRedOrange:
             return UIColor.myRedOrange
         case .myGreen:

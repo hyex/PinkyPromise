@@ -36,6 +36,8 @@ class AddProgressVC: UIViewController {
     
     var delegate: SendProgressDelegate!
     
+    var iconColor: String! = "myPurple"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,32 +73,6 @@ class AddProgressVC: UIViewController {
     }
     
     @IBAction func saveBtnAction(_ sender: Any) {
-//        var promiseTable: PromiseTable!
-//        var progressTable: ProgressTable!
-//
-//        let queue = DispatchQueue(label: "queue")
-//        let myGroup = DispatchGroup()
-//
-//        myGroup.enter()
-//        AddProgressService.shared.getPromiseDataWithPromiseId(promiseid: promiseId) { (result) in
-//            queue.async(group: myGroup){
-//                promiseTable = result[0]
-//                myGroup.leave()
-//            }
-//        }
-//
-//        myGroup.enter()
-//        AddProgressService.shared.getProgressDataWithPromiseId(promiseid: promiseId) { (result) in
-//            queue.async(group: myGroup) {
-//                progressTable = result[0]
-//                myGroup.leave()
-//            }
-//        }
-
-//        myGroup.notify(queue: queue) {
-
-//        }
-        
         AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable)
         
         self.dismiss(animated: false, completion: nil)
@@ -116,14 +92,14 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate, U
         
         cell.progressInt = 4 - indexPath.row
         
-        cell.setProgressLabel(progress: 4 - indexPath.row)
+        cell.setProgressLabel(progress: 4 - indexPath.row, name: self.iconColor)
         
         if selectedProgress == -1 {
-            cell.setColor(progress: -1)
+            cell.setColor(progress: -1, name: self.iconColor)
         } else if cell.progressInt <= selectedProgress {
-            cell.setColor(progress: cell.progressInt)
+            cell.setColor(progress: cell.progressInt, name: self.iconColor)
         } else {
-            cell.setColor(progress: -1)
+            cell.setColor(progress: -1, name: self.iconColor)
         }
 
         return cell
@@ -149,11 +125,11 @@ extension AddProgressVC: UICollectionViewDataSource, UICollectionViewDelegate, U
             let cell = collectionView.cellForItem(at: NSIndexPath(row: 4 - i, section: 0) as IndexPath) as! ProgressCVC
             
             if selectedProgress == -1 {
-                cell.setColor(progress: -1)
+                cell.setColor(progress: -1, name: self.iconColor)
             } else if cell.progressInt <= selectedProgress {
-                cell.setColor(progress: cell.progressInt)
+                cell.setColor(progress: cell.progressInt, name: self.iconColor)
             } else {
-                cell.setColor(progress: -1)
+                cell.setColor(progress: -1, name: self.iconColor)
             }
         }
     }
@@ -166,11 +142,11 @@ extension AddProgressVC: SelectedProgressDelegate {
             let cell = collectionView.cellForItem(at: NSIndexPath(row: 4 - i, section: 0) as IndexPath) as! ProgressCVC
             
             if selectedProgress == -1 {
-                cell.setColor(progress: -1)
+                cell.setColor(progress: -1, name: self.iconColor)
             } else if cell.progressInt <= selectedProgress {
-                cell.setColor(progress: cell.progressInt)
+                cell.setColor(progress: cell.progressInt, name: self.iconColor)
             } else {
-                cell.setColor(progress: -1)
+                cell.setColor(progress: -1, name: self.iconColor)
             }
         }
     }

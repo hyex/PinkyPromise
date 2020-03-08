@@ -42,16 +42,30 @@ class PromiseDetailVC: UIViewController {
         }
     }
     
+    var clickedProgress: [Any]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("in viewDidLoad")
         setUpTableView()
         setBackBtn()
         setPromieName()
+        setPromiseIcon()
+        AddProgressService.shared.delegate = self
     }
     
     func setPromieName(){
         promiseNameLabel.text = promiseDetail?.promiseName
+    }
+    
+    func setPromiseIcon() {
+        let colorName = promiseDetail?.promiseColor!
+        let color = MyColor(rawValue: colorName ?? "myPurple")
+        self.coloredPromiseIcon.tintColor = color!.create
+        
+        let iconName = promiseDetail?.promiseIcon
+        let icon = UIImage(named: iconName!)?.withRenderingMode(.alwaysTemplate)
+        self.coloredPromiseIcon.image = icon
     }
     
     func setUpTableView(){
@@ -137,6 +151,11 @@ extension PromiseDetailVC : UITableViewDataSource{
                 calendarCell.calendar.dataSource = self
                 calendarCell.calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
                 calendarCell.calendar.register(MyCalendarCell.self, forCellReuseIdentifier: "calendarCell")
+                
+                let colorName = promiseDetail?.promiseColor!
+                let color = MyColor(rawValue: colorName ?? "myPurple")
+                calendarCell.calendar.appearance.todayColor = color!.create
+                calendarCell.calendar.appearance.selectionColor = color!.create.withAlphaComponent(0.5)
                 return calendarCell
                 
             default :
@@ -245,6 +264,13 @@ extension PromiseDetailVC: FSCalendarDataSource, FSCalendarDelegate {
     
     // 날짜 선택 시 콜백
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let date = Date(timeInterval: 86400, since: date)
+        let datindex = Int(date.timeIntervalSince1970 - promiseDetail!.promiseStartTime.timeIntervalSince1970) / 86400
+        let progressDegree: [Int] = progressTable?.progressDegree ?? []
+        if datindex >= 0 && datindex < progressDegree.count {
+            self.clickedProgress = [progressDegree[datindex] as Int, date as Date]
+            self.performSegue(withIdentifier: "ProgressVC", sender: nil)
+        }
         
 //        changeDateFormatKR(date: date)
     }
@@ -274,9 +300,29 @@ extension PromiseDetailVC: FSCalendarDataSource, FSCalendarDelegate {
             if progress == -1 {
                 cell.setBackgroundColor(progress: 0.0)
             } else {
-                cell.setBackgroundColor(progress: Double(progress))
+                cell.setBackgroundWithIconColor(progress: Double(progress), name: promiseDetail?.promiseColor ?? "myPurple")
             }
         }
     }
 }
 
+extension PromiseDetailVC {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProgressVC" {
+            let vc = segue.destination as! AddProgressVC
+            vc.delegate = self
+            vc.iconColor = self.promiseDetail?.promiseColor
+            vc.promiseTable = self.promiseDetail
+            vc.selectedProgress = self.clickedProgress[0] as! Int
+            vc.day = self.clickedProgress[1] as? Date
+        } else {
+            print("nil")
+        }
+    }
+}
+
+extension PromiseDetailVC: SendProgressDelegate {
+    func sendProgress(data: Int) {
+        getProgressData()
+    }
+}
