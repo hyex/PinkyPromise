@@ -49,8 +49,8 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.indicator = UIActivityIndicatorView()
-        //        self.pinkyTitle.center.x -= view.bounds.width
         
+        self.pinkyTitle.sizeToFit()
         self.view.backgroundColor = UIColor.appColor
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
@@ -88,6 +88,9 @@ class LoginVC: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    
+    
 }
 
 extension LoginVC: LoginButtonDelegate {
