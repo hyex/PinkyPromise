@@ -103,17 +103,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나랑 약속해" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeS-Az-vfb">
-                                <rect key="frame" x="70" y="98" width="274" height="70"/>
-                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="50"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="K7y-fX-vax">
-                                <rect key="frame" x="60" y="555" width="294" height="237"/>
+                                <rect key="frame" x="50" y="534" width="314" height="278"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-hO-TX6">
-                                        <rect key="frame" x="0.0" y="0.0" width="294" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="41.333333333333336"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="로그인">
@@ -124,7 +118,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgC-CJ-1fL">
-                                        <rect key="frame" x="0.0" y="51" width="294" height="33"/>
+                                        <rect key="frame" x="0.0" y="59.333333333333371" width="314" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="회원가입">
@@ -136,7 +130,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iyh-M5-ynh">
-                                        <rect key="frame" x="0.0" y="102" width="294" height="33"/>
+                                        <rect key="frame" x="0.0" y="118.33333333333336" width="314" height="41.333333333333329"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="페이스북으로 로그인">
@@ -144,7 +138,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAc-Yg-8b8">
-                                        <rect key="frame" x="0.0" y="153" width="294" height="33"/>
+                                        <rect key="frame" x="0.0" y="177.66666666666663" width="314" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="구글로 로그인">
@@ -155,7 +149,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-Af-EWM">
-                                        <rect key="frame" x="0.0" y="204" width="294" height="33"/>
+                                        <rect key="frame" x="0.0" y="236.66666666666666" width="314" height="41.333333333333343"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="애플로 로그인">
@@ -167,16 +161,31 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="ep5-iK-2vW">
+                                <rect key="frame" x="50" y="190" width="314" height="314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ep5-iK-2vW" secondAttribute="height" multiplier="1:1" id="HnJ-Vl-f7a"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나랑 약속해" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeS-Az-vfb">
+                                <rect key="frame" x="122.00000000000001" y="158" width="170.33333333333337" height="37"/>
+                                <fontDescription key="fontDescription" name="Rockwell-BoldItalic" family="Rockwell" pointSize="37"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="appColor"/>
                         <constraints>
-                            <constraint firstItem="QeS-Az-vfb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="70" id="3gb-ef-Jre"/>
-                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="QeS-Az-vfb" secondAttribute="trailing" constant="70" id="Fcg-ta-D1t"/>
-                            <constraint firstItem="QeS-Az-vfb" firstAttribute="centerX" secondItem="GGH-Wg-MjO" secondAttribute="centerX" id="Hb3-Af-nQj"/>
-                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="bottom" secondItem="K7y-fX-vax" secondAttribute="bottom" constant="70" id="T1i-UD-usB"/>
-                            <constraint firstItem="QeS-Az-vfb" firstAttribute="top" secondItem="fHf-WZ-sbP" secondAttribute="top" constant="10" id="bEr-B2-Qfy"/>
-                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="K7y-fX-vax" secondAttribute="trailing" constant="60" id="k4Y-op-cCA"/>
-                            <constraint firstItem="K7y-fX-vax" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="60" id="uKc-oJ-Iud"/>
+                            <constraint firstItem="ep5-iK-2vW" firstAttribute="top" secondItem="QeS-Az-vfb" secondAttribute="bottom" constant="-5" id="1Lw-eP-qni"/>
+                            <constraint firstItem="ep5-iK-2vW" firstAttribute="centerX" secondItem="QeS-Az-vfb" secondAttribute="centerX" id="FPb-sw-em2"/>
+                            <constraint firstItem="ep5-iK-2vW" firstAttribute="centerX" secondItem="K7y-fX-vax" secondAttribute="centerX" id="HMY-iT-vHj"/>
+                            <constraint firstItem="K7y-fX-vax" firstAttribute="top" secondItem="ep5-iK-2vW" secondAttribute="bottom" constant="30" id="I4C-GD-YCt"/>
+                            <constraint firstItem="QeS-Az-vfb" firstAttribute="top" secondItem="fHf-WZ-sbP" secondAttribute="top" constant="70" id="YQG-a7-7q9"/>
+                            <constraint firstItem="QeS-Az-vfb" firstAttribute="centerX" secondItem="fHf-WZ-sbP" secondAttribute="centerX" id="k1o-zo-htd"/>
+                            <constraint firstItem="ep5-iK-2vW" firstAttribute="width" secondItem="K7y-fX-vax" secondAttribute="width" id="mnE-FS-6BY"/>
+                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="ep5-iK-2vW" secondAttribute="trailing" constant="50" id="vUc-vD-UxE"/>
+                            <constraint firstItem="ep5-iK-2vW" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="50" id="vc3-Ms-flJ"/>
+                            <constraint firstItem="fHf-WZ-sbP" firstAttribute="bottom" secondItem="K7y-fX-vax" secondAttribute="bottom" constant="50" id="vw4-Va-TA5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fHf-WZ-sbP"/>
                     </view>
@@ -192,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3D-Dt-wQR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2784" y="-95"/>
+            <point key="canvasLocation" x="-2784.057971014493" y="-95.089285714285708"/>
         </scene>
         <!--SignUp-->
         <scene sceneID="07C-jO-U0O">
@@ -341,7 +350,7 @@
             </objects>
             <point key="canvasLocation" x="-3816" y="-95"/>
         </scene>
-        <!--SignIn-->
+        <!--로그인-->
         <scene sceneID="5Iy-M7-cPl">
             <objects>
                 <viewController id="jzd-xX-aeV" customClass="signInVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
@@ -412,9 +421,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wqX-1B-sjf"/>
                     </view>
-                    <navigationItem key="navigationItem" title="SignIn" id="5aa-LA-0l8"/>
+                    <navigationItem key="navigationItem" title="로그인" id="5aa-LA-0l8">
+                        <barButtonItem key="leftBarButtonItem" image="arrow.left" catalog="system" id="HbK-aY-pEo">
+                            <connections>
+                                <action selector="backBtnAction:" destination="jzd-xX-aeV" id="Dcp-EN-Gay"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="PWTextFiled" destination="TIj-up-q7X" id="fDf-08-sSN"/>
+                        <outlet property="backBtn" destination="HbK-aY-pEo" id="YyB-VL-ahB"/>
                         <outlet property="emailTextField" destination="mY1-Eh-jhj" id="Jwe-Sn-7h4"/>
                         <outlet property="inputCodeView" destination="qOj-Ef-15a" id="Hkx-dm-RVR"/>
                         <outlet property="loginBtn" destination="sev-ha-13W" id="6lH-Up-iaa"/>
@@ -427,6 +443,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="appIconImage" width="70.666664123535156" height="70"/>
         <image name="arrow.left" width="16" height="16"/>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="list.bullet.indent" catalog="system" width="64" height="36"/>

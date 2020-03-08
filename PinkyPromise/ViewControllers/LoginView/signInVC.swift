@@ -10,11 +10,13 @@ import UIKit
 
 class signInVC: UIViewController {
 
+    @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var PWTextFiled: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var resetPwBtn: UIButton!
     @IBOutlet weak var inputCodeView: UIView!
+    
     override func viewDidLayoutSubviews() {
 //        emailTextField.borderStyle = .none
 //        let border = CALayer()
@@ -36,13 +38,18 @@ class signInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setBackBtn()
         self.setNavigationBar()
+        addSwipeGesture()
         
         registerForKeyboardNotifications()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.loginBtn.layer.cornerRadius = 10
         loginBtn.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+    }
+    
+    
+    @IBAction func backBtnAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func setNavigationBar() {
@@ -55,13 +62,6 @@ class signInVC: UIViewController {
 
     @objc func backToMain() {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    private func setBackBtn() {
-        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
-        navigationController?.navigationBar.backIndicatorImage = image
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.backItem?.title = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,6 +87,8 @@ class signInVC: UIViewController {
                 print(error.localizedDescription)
             }
         }
+        
+        
     }
 
     @IBAction func forgotPasswordLabelTapped(){
@@ -147,6 +149,19 @@ class signInVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func addSwipeGesture() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .right) {
+            self.navigationController?.popViewController(animated: false)
+        }
+    }
+
 
 }
 
@@ -172,7 +187,6 @@ extension signInVC: UITextFieldDelegate {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
-//            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
         }
         
     }
@@ -203,3 +217,5 @@ extension signInVC: UITextFieldDelegate {
     }
     
 }
+
+
