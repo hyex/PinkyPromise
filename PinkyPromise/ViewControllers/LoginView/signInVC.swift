@@ -10,62 +10,60 @@ import UIKit
 
 class signInVC: UIViewController {
 
+    @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var PWTextFiled: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var resetPwBtn: UIButton!
     @IBOutlet weak var inputCodeView: UIView!
-    override func viewDidLayoutSubviews() {
-//        emailTextField.borderStyle = .none
-//        let border = CALayer()
-//        border.frame = CGRect(x: 0, y: emailTextField.frame.size.height-1, width: emailTextField.frame.width, height: 1)
-//        border.backgroundColor = UIColor.white.cgColor
-//        emailTextField.layer.addSublayer(border)
-//        //emailTextField.textAlignment = .center
-//        emailTextField.textColor = UIColor.white
-//
-//        PWTextFiled.borderStyle = .none
-//        let border2 = CALayer()
-//        border2.frame = CGRect(x: 0, y: PWTextFiled.frame.size.height-1, width: PWTextFiled.frame.width, height: 1)
-//        border2.backgroundColor = UIColor.white.cgColor
-//        PWTextFiled.layer.addSublayer(border2)
-//        //emailTextField.textAlignment = .center
-//        PWTextFiled.textColor = UIColor.white
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setBackBtn()
-        self.setNavigationBar()
-        
+        initView()
         registerForKeyboardNotifications()
+    }
+    
+    @IBAction func backBtnAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        unregisterForKeyboardNotifications()
+    }
+    
+    @IBAction func forgotPasswordLabelTapped(){
+//        let controller = ResetPWVC()
+//        self.navigationController?.pushViewController(controller, animated: true)
+        self.showAlertPWResetController(style: UIAlertController.Style.alert)
+    }
+
+}
+
+// MARK: Initialization
+extension signInVC {
+    func initView() {
+        self.setNavigationBar()
+        addSwipeGesture()
+        textFieldCustom(emailTextField)
+        textFieldCustom(PWTextFiled)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.loginBtn.layer.cornerRadius = 10
         loginBtn.addTarget(self, action: #selector(signIn), for: .touchUpInside)
     }
     
-    private func setNavigationBar() {
+    func setNavigationBar() {
         let bar:UINavigationBar! = self.navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
         
         bar.backgroundColor = UIColor.clear
     }
-
+    
     @objc func backToMain() {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    private func setBackBtn() {
-        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
-        navigationController?.navigationBar.backIndicatorImage = image
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.backItem?.title = ""
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        unregisterForKeyboardNotifications()
     }
     
     @objc func signIn(){
@@ -75,12 +73,12 @@ class signInVC: UIViewController {
         else {
             FirebaseUserService.signIn_(withEmail: emailTextField.text!, password: PWTextFiled.text!, success: {
                 UserDefaults.standard.set(true, forKey: "loggedIn")
-//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                //                let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 //have to move maintapbar. dismiss해야한다.
                 //여기서 어떻게 다음 화면으로 이동하는가?
                 
                 self.navigationController?.popViewController(animated: true)
-            
+                
             }) { (error) in
                 //SVProgressHUD.showError(withStatus: error.localizedDescription)
                 self.showAlert(message: "이메일 혹은 비밀번호를 다시한번 확인해 주세요!")
@@ -88,11 +86,31 @@ class signInVC: UIViewController {
             }
         }
     }
-
-    @IBAction func forgotPasswordLabelTapped(){
-//        let controller = ResetPWVC()
-//        self.navigationController?.pushViewController(controller, animated: true)
-        self.showAlertPWResetController(style: UIAlertController.Style.alert)
+    func addSwipeGesture() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .right) {
+            self.navigationController?.popViewController(animated: false)
+        }
+    }
+    
+    func textFieldCustom(_ textField:UITextField) {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor(white: 1.0, alpha: 1.0).cgColor
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
+        
+        border.borderWidth = width
+        textField.layer.addSublayer(border)
+        textField.layer.masksToBounds = true
+        
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "",
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor(white: 1.0, alpha: 0.5), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0)])
+        
     }
     
     func showAlertPWResetController(style: UIAlertController.Style) {
@@ -138,16 +156,6 @@ class signInVC: UIViewController {
         alert.addAction(action)
         self.present(alert, animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension signInVC: UITextFieldDelegate {
@@ -172,7 +180,6 @@ extension signInVC: UITextFieldDelegate {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
-//            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - height + CGFloat(49.0))
         }
         
     }
@@ -203,3 +210,5 @@ extension signInVC: UITextFieldDelegate {
     }
     
 }
+
+
