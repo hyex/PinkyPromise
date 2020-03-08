@@ -18,7 +18,7 @@ class signUpVC: UIViewController {
     @IBOutlet weak var startBtn: UIButton!
     @IBOutlet weak var cancleBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
-    
+    @IBOutlet weak var inputCodeView: UIView!
     @IBOutlet weak var backBtn: UIBarButtonItem!
     var checkImage = false
     
@@ -28,7 +28,8 @@ class signUpVC: UIViewController {
         
         self.setNavigationBar()
         self.setBackBtn()
-        
+        self.inputCodeView.backgroundColor = UIColor.appColor
+        registerForKeyboardNotifications()
         self.profileImage.layer.cornerRadius = 20
         self.profileImage.clipsToBounds = true
         self.startBtn.layer.cornerRadius = 10
@@ -187,12 +188,12 @@ extension signUpVC: UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(_ note: NSNotification) {
-        //let height = self.inputCodeView.frame.size.height
+        let height = self.inputCodeView.frame.size.height
         if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            //self.view.frame.origin.y = -(self.view.layer.position.y - keyboardHeight)
-            self.view.frame.origin.y = -self.view.layer.position.y + keyboardHeight
+            self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
+            //self.view.frame.origin.y = -self.view.layer.position.y + keyboardHeight
         }
     }
     
