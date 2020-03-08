@@ -100,9 +100,9 @@ extension PromiseDetailVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy / MM / dd"
-        dateFormatter.locale = Locale.init(identifier: "en_GB")
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy / MM / dd"
+//        dateFormatter.locale = Locale.init(identifier: "kr_KR")
         
         if(tableView == promiseInfoTableView){
             switch (indexPath.row) {
@@ -111,14 +111,14 @@ extension PromiseDetailVC : UITableViewDataSource{
                 let dateCell = tableView.dequeueReusableCell(withIdentifier: "PromiseDateVC") as! PromiseDateVC
                 
                 if let start = promiseDetail?.promiseStartTime {
-                    dateCell.startDateLabel.text = dateFormatter.string(from: start)
-                }else{
+                    dateCell.setFirstDate(date: start)
+                } else {
                     print("date to string fail")
                     dateCell.startDateLabel.text = "-"
                 }
                 
                 if let final = promiseDetail?.promiseEndTime {
-                    dateCell.finalDateLabel.text = dateFormatter.string(from: final)
+                    dateCell.setLastDate(date: final)
                 }else{
                     print("date to string fail")
                     dateCell.finalDateLabel.text = "-"

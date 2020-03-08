@@ -508,7 +508,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="withFriends" translatesAutoresizingMaskIntoConstraints="NO" id="22Y-lo-ZfT">
-                                                    <rect key="frame" x="16" y="18.666666666666671" width="30" height="30.000000000000227"/>
+                                                    <rect key="frame" x="16" y="18.666666666666671" width="30" height="30"/>
                                                     <color key="tintColor" red="0.55294117647058827" green="0.27450980392156865" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="2y7-ga-YOc"/>
