@@ -28,7 +28,9 @@ class signUpVC: UIViewController {
         
         self.setNavigationBar()
         self.setBackBtn()
+        
         self.inputCodeView.backgroundColor = UIColor.appColor
+        
         registerForKeyboardNotifications()
         self.profileImage.layer.cornerRadius = 20
         self.profileImage.clipsToBounds = true

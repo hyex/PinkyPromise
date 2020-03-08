@@ -1021,6 +1021,10 @@ class MyApi: NSObject {
         
     }
     
+//    func deletePromiseWithPromiseID(PromiseID: String) {
+//        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!)
+//    }
+    
     //프로그레스 입력뷰
     func updateProgress(day: Date, userId: String, data: Int, promise: PromiseTable, progress: ProgressTable ){
         progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promise.promiseId!).getDocuments { (snapShot, error) in
