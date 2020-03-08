@@ -51,6 +51,7 @@ class LoginVC: UIViewController {
         self.indicator = UIActivityIndicatorView()
         //        self.pinkyTitle.center.x -= view.bounds.width
         
+        self.view.backgroundColor = UIColor.appColor
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
         self.faceSignInBtn.setTitle("페이스북으로 로그인!", for: .normal)
@@ -152,7 +153,7 @@ extension LoginVC: LoginButtonDelegate {
                                 
                                 guard let imageData = tempimage!.jpegData(compressionQuality: 0.1) else { return }
                                 
-                                FirebaseStorageService.shared.storeUserImage(image: imageData) { [weak self] (result) in
+                                FirebaseStorageService.shared.storeUserImage(imageName: "userDefaultImage", image: imageData) { [weak self] (result) in
                                     switch result {
                                     case .success(let url):
                                         //self?.imageURL = url

@@ -19,19 +19,42 @@ class signUpVC: UIViewController {
     @IBOutlet weak var cancleBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     
+    @IBOutlet weak var backBtn: UIBarButtonItem!
     var checkImage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
+        self.setNavigationBar()
+        self.setBackBtn()
+        
         self.profileImage.layer.cornerRadius = 20
         self.profileImage.clipsToBounds = true
         self.startBtn.layer.cornerRadius = 10
-        
+        self.backBtn.title = ""
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectImageView))
         profileImage.addGestureRecognizer(tapGesture)
         profileImage.isUserInteractionEnabled = true
+    }
+    
+    private func setNavigationBar() {
+        let bar:UINavigationBar! = self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        bar.shadowImage = UIImage()
+        
+        bar.backgroundColor = UIColor.clear
+    }
+
+    @objc func backToMain() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func setBackBtn() {
+        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        navigationController?.navigationBar.backIndicatorImage = image
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        self.navigationController?.navigationBar.backItem?.title = ""
     }
     
     @IBAction func signUpButton(_ sender: Any) {
@@ -147,6 +170,41 @@ class signUpVC: UIViewController {
 }
 
 extension signUpVC: UITextFieldDelegate {
+    // 옵저버 등록
+    func registerForKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
+
+    // 옵저버 등록 해제
+    func unregisterForKeyboardNotifications() {
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ note: NSNotification) {
+        //let height = self.inputCodeView.frame.size.height
+        if let keyboardFrame: NSValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            //self.view.frame.origin.y = -(self.inputCodeView.layer.position.y - keyboardHeight)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ note: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.passwordBtn.resignFirstResponder()
+        self.emailBtn.resignFirstResponder()
+        self.nickNameBtn.resignFirstResponder()
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
