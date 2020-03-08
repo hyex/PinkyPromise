@@ -363,6 +363,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                         
                         //Auth.auth().currentUser?.displayName
                         
+                        
                         MyApi.shared.getUserData(completion: { (result) in
                             if result.count == 0 {
                                 let temp = PromiseUser(userName: (user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())

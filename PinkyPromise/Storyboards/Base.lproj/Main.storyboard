@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s3e-cr-Y8S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s3e-cr-Y8S">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -104,8 +104,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나랑 약속해" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeS-Az-vfb">
-                                <rect key="frame" x="70" y="247" width="274" height="54"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="45"/>
+                                <rect key="frame" x="70" y="98" width="274" height="70"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -168,19 +168,19 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="myPurple"/>
+                        <color key="backgroundColor" name="appColor"/>
                         <constraints>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="70" id="3gb-ef-Jre"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="QeS-Az-vfb" secondAttribute="trailing" constant="70" id="Fcg-ta-D1t"/>
                             <constraint firstItem="QeS-Az-vfb" firstAttribute="centerX" secondItem="GGH-Wg-MjO" secondAttribute="centerX" id="Hb3-Af-nQj"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="bottom" secondItem="K7y-fX-vax" secondAttribute="bottom" constant="70" id="T1i-UD-usB"/>
-                            <constraint firstItem="QeS-Az-vfb" firstAttribute="top" secondItem="fHf-WZ-sbP" secondAttribute="top" constant="107" id="bEr-B2-Qfy"/>
+                            <constraint firstItem="QeS-Az-vfb" firstAttribute="top" secondItem="fHf-WZ-sbP" secondAttribute="top" constant="10" id="bEr-B2-Qfy"/>
                             <constraint firstItem="fHf-WZ-sbP" firstAttribute="trailing" secondItem="K7y-fX-vax" secondAttribute="trailing" constant="60" id="k4Y-op-cCA"/>
                             <constraint firstItem="K7y-fX-vax" firstAttribute="leading" secondItem="fHf-WZ-sbP" secondAttribute="leading" constant="60" id="uKc-oJ-Iud"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fHf-WZ-sbP"/>
                     </view>
-                    <navigationItem key="navigationItem" id="RPL-nK-yMJ"/>
+                    <navigationItem key="navigationItem" id="fyx-KX-nme"/>
                     <connections>
                         <outlet property="appleSignInBtn" destination="f7c-Af-EWM" id="OaO-1F-ll0"/>
                         <outlet property="faceSignInBtn" destination="Iyh-M5-ynh" id="eJo-ez-Z51"/>
@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjr-wo-WLn">
-                                <rect key="frame" x="0.0" y="140" width="414" height="741"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="793"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2fQ-Mh-uJJ">
                                         <rect key="frame" x="40" y="285" width="334" height="132"/>
@@ -318,13 +318,13 @@
         <!--Navigation Controller-->
         <scene sceneID="98s-j3-pDt">
             <objects>
-                <navigationController storyboardIdentifier="loginSB" automaticallyAdjustsScrollViewInsets="NO" id="JaY-Tu-qeH" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginSB" id="JaY-Tu-qeH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="YqO-VL-b58">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" shadowImage="arrow.left" backIndicatorImage="arrow.left" backIndicatorTransitionMaskImage="arrow.left" id="YqO-VL-b58">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" name="myPurple"/>
+                        <color key="barTintColor" name="appColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -333,9 +333,6 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j0f-qK-jLa">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
                     <connections>
                         <segue destination="7gk-GH-tO2" kind="relationship" relationship="rootViewController" id="85y-nx-9WF"/>
                     </connections>
@@ -353,7 +350,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나랑 약속해" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBy-Ul-bJa">
-                                <rect key="frame" x="70" y="299" width="274" height="54"/>
+                                <rect key="frame" x="70" y="247" width="274" height="54"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="45"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -403,7 +400,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="myPurple"/>
+                        <color key="backgroundColor" name="appColor"/>
                         <constraints>
                             <constraint firstItem="qOj-Ef-15a" firstAttribute="top" secondItem="wh3-1N-ijZ" secondAttribute="top" constant="552" id="1uA-BT-Nsf"/>
                             <constraint firstAttribute="bottom" secondItem="qOj-Ef-15a" secondAttribute="bottom" constant="20" symbolic="YES" id="Zi0-qg-WqI"/>
@@ -430,11 +427,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left" width="16" height="16"/>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="list.bullet.indent" catalog="system" width="64" height="36"/>
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
         <image name="userDefaultImage" width="67.333335876464844" height="67.333335876464844"/>
+        <namedColor name="appColor">
+            <color red="0.55294117647058827" green="0.27450980392156865" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="myLightGreen">
             <color red="0.45490196078431372" green="0.83921568627450982" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
