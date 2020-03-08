@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,11 +22,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="promiseInfoTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zvs-jW-YzB">
-                                <rect key="frame" x="0.0" y="144.5" width="414" height="275"/>
+                                <rect key="frame" x="0.0" y="144.5" width="414" height="425"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="275" id="gav-Ho-r5x"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PromiseDateVC" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PromiseDateVC" rowHeight="80" id="gRg-sB-THX" customClass="PromiseDateVC" customModule="PinkyPromise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
@@ -84,16 +81,55 @@
                                             <outlet property="startDateLabel" destination="xSj-Je-hML" id="8tI-xX-raN"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CalendarVC" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarVC" id="lkA-G8-jyg" customClass="CalendarVC" customModule="PinkyPromise" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="108" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="CalendarVC" rowHeight="250" id="pqx-T5-gxk" customClass="CalendarVC" customModule="PinkyPromise" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="108" width="414" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lkA-G8-jyg" id="NAz-ja-sGd">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pqx-T5-gxk" id="Tfs-g2-uh4">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3xv-g5-PlR" customClass="FSCalendar">
+                                                    <rect key="frame" x="0.0" y="-25.5" width="414" height="277"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="headerMinimumDissolvedAlpha">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
+                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="useVeryShortWeekdaySymbols" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
+                                                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="selectionColor">
+                                                            <color key="value" red="0.55294117649999996" green="0.27450980390000002" blue="0.80392156859999997" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="titleSelectionColor">
+                                                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="todayColor">
+                                                            <color key="value" red="0.55294117649999996" green="0.27450980390000002" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="titleDefaultColor">
+                                                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3xv-g5-PlR" firstAttribute="centerX" secondItem="Tfs-g2-uh4" secondAttribute="centerX" id="1sT-e1-EEp"/>
+                                                <constraint firstItem="3xv-g5-PlR" firstAttribute="centerY" secondItem="Tfs-g2-uh4" secondAttribute="centerY" constant="-12" id="6Sz-Aa-f8o"/>
+                                                <constraint firstItem="3xv-g5-PlR" firstAttribute="height" secondItem="Tfs-g2-uh4" secondAttribute="height" multiplier="1.108" id="RC8-72-so2"/>
+                                                <constraint firstItem="3xv-g5-PlR" firstAttribute="width" secondItem="Tfs-g2-uh4" secondAttribute="width" id="ett-hw-zd2"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="calendar" destination="3xv-g5-PlR" id="yed-2B-eex"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PenaltyVC" id="dAZ-yM-Ex9" customClass="PenaltyVC" customModule="PinkyPromise" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="151.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="358" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dAZ-yM-Ex9" id="Nbo-b7-FjO">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -136,14 +172,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께 약속한 친구들" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfU-bz-Pg2">
-                                <rect key="frame" x="17" y="439.5" width="147.5" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xcI-7e-xuG">
-                                <rect key="frame" x="0.0" y="471.5" width="414" height="390.5"/>
+                                <rect key="frame" x="0.0" y="603.5" width="414" height="258.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PromiseFriendTVC" rowHeight="60" id="7g8-UX-0fb" customClass="PromiseFriendTVC" customModule="PinkyPromise" customModuleProvider="target">
@@ -215,22 +245,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께 약속한 친구들" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfU-bz-Pg2">
+                                <rect key="frame" x="17" y="579.5" width="147.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="qtw-Wo-ZuA" firstAttribute="leading" secondItem="Qrz-1J-w3i" secondAttribute="trailing" constant="16" id="1b0-uK-5ed"/>
                             <constraint firstItem="zvs-jW-YzB" firstAttribute="leading" secondItem="DEz-wr-1bL" secondAttribute="leading" id="2Qp-lu-L19"/>
+                            <constraint firstItem="zvs-jW-YzB" firstAttribute="height" secondItem="L5l-7G-A2D" secondAttribute="height" multiplier="0.47433" id="4On-CD-GdK"/>
                             <constraint firstItem="Qrz-1J-w3i" firstAttribute="leading" secondItem="DEz-wr-1bL" secondAttribute="leading" constant="17" id="6Ow-BR-1YG"/>
-                            <constraint firstItem="xcI-7e-xuG" firstAttribute="top" secondItem="zvs-jW-YzB" secondAttribute="bottom" constant="52" id="75D-Ee-QJ9"/>
+                            <constraint firstItem="xcI-7e-xuG" firstAttribute="top" secondItem="zfU-bz-Pg2" secondAttribute="bottom" id="7ip-wR-QBS"/>
                             <constraint firstItem="2u3-oq-U4H" firstAttribute="centerX" secondItem="MoX-1L-2bP" secondAttribute="centerX" id="8xT-4a-k3P"/>
                             <constraint firstItem="zfU-bz-Pg2" firstAttribute="leading" secondItem="DEz-wr-1bL" secondAttribute="leading" constant="17" id="A5k-OT-fxb"/>
                             <constraint firstItem="qtw-Wo-ZuA" firstAttribute="top" secondItem="2u3-oq-U4H" secondAttribute="bottom" constant="24" id="A8b-Vp-T67"/>
                             <constraint firstItem="MoX-1L-2bP" firstAttribute="top" secondItem="uDj-SH-NSE" secondAttribute="bottom" constant="10" id="C3a-Bw-0SK"/>
                             <constraint firstItem="2u3-oq-U4H" firstAttribute="top" secondItem="DEz-wr-1bL" secondAttribute="top" constant="17" id="FqH-ml-iyc"/>
+                            <constraint firstItem="zvs-jW-YzB" firstAttribute="width" secondItem="L5l-7G-A2D" secondAttribute="width" id="Gg8-Qg-a2l"/>
                             <constraint firstItem="2u3-oq-U4H" firstAttribute="centerX" secondItem="L5l-7G-A2D" secondAttribute="centerX" id="IIP-CK-lkN"/>
                             <constraint firstItem="Qrz-1J-w3i" firstAttribute="centerY" secondItem="qtw-Wo-ZuA" secondAttribute="centerY" id="LQP-lE-xAh"/>
                             <constraint firstItem="xcI-7e-xuG" firstAttribute="leading" secondItem="DEz-wr-1bL" secondAttribute="leading" id="N9h-Ko-8Bq"/>
-                            <constraint firstItem="xcI-7e-xuG" firstAttribute="centerX" secondItem="zvs-jW-YzB" secondAttribute="centerX" id="OZk-l0-3Cv"/>
                             <constraint firstItem="xcI-7e-xuG" firstAttribute="trailing" secondItem="DEz-wr-1bL" secondAttribute="trailing" id="QjB-MH-2tG"/>
                             <constraint firstItem="MoX-1L-2bP" firstAttribute="trailing" secondItem="DEz-wr-1bL" secondAttribute="trailing" id="R58-LQ-mKZ"/>
                             <constraint firstItem="zvs-jW-YzB" firstAttribute="top" secondItem="qtw-Wo-ZuA" secondAttribute="bottom" constant="10" id="SLa-2y-W3D"/>
@@ -239,7 +276,7 @@
                             <constraint firstItem="uDj-SH-NSE" firstAttribute="centerY" secondItem="2u3-oq-U4H" secondAttribute="centerY" id="rgu-YY-Osg"/>
                             <constraint firstItem="uDj-SH-NSE" firstAttribute="leading" secondItem="DEz-wr-1bL" secondAttribute="leading" constant="12" id="w6o-IE-4Iz"/>
                             <constraint firstItem="DEz-wr-1bL" firstAttribute="bottom" secondItem="xcI-7e-xuG" secondAttribute="bottom" id="wRn-tE-0nA"/>
-                            <constraint firstItem="zfU-bz-Pg2" firstAttribute="top" secondItem="zvs-jW-YzB" secondAttribute="bottom" constant="20" id="xZM-KK-rfV"/>
+                            <constraint firstItem="zfU-bz-Pg2" firstAttribute="top" secondItem="zvs-jW-YzB" secondAttribute="bottom" constant="10" id="ztI-ua-8tW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DEz-wr-1bL"/>
                     </view>

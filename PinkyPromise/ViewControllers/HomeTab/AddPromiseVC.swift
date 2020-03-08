@@ -232,7 +232,7 @@ extension AddPromiseVC {
             return 75
         }
         else if indexPath.row == 3 {
-            return 240
+            return self.view.frame.height/4
         }
         else { return 55 }
     }

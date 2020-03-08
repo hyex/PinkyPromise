@@ -155,4 +155,20 @@ class PromiseDetailService : NSObject {
             }
         }
     }
+    
+    //프로그레스테이블의 정보 반환 약속 id를 반환하면
+    func getProgressDataWithPromiseId(promiseid: String, completion: @escaping ([ProgressTable]) -> Void ){
+        //self.fireStoreSetting()
+        var result: [ProgressTable] = [] //[ProgressTable]()]
+        //        var result: [ProgressTable]? = nil
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
+            if let err = error {
+                debugPrint("debug print \(err)")
+            } else {
+                result = ProgressTable.parseData(snapShot: snapShot)
+                completion(result)
+                
+            }
+        }
+    }
 }

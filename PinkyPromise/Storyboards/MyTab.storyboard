@@ -132,7 +132,7 @@
                     </view>
                     <connections>
                         <outlet property="dayTableView" destination="XIc-NK-Ugw" id="Zou-ZQ-PNu"/>
-                        <segue destination="ufB-NV-DCf" kind="show" identifier="promiseDetail" id="TPX-JL-d6I"/>
+                        <segue destination="ufB-NV-DCf" kind="presentation" identifier="promiseDetail" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="TPX-JL-d6I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zep-An-3as" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -285,7 +285,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Tnr-cN-QzZ" id="RdZ-pd-ya4"/>
                         <outlet property="endedPromiseBtn" destination="twJ-mp-PWk" id="SdN-I6-fYq"/>
-                        <segue destination="ufB-NV-DCf" kind="show" identifier="promiseDetail" id="GAV-dP-3s6"/>
+                        <segue destination="ufB-NV-DCf" kind="presentation" identifier="promiseDetail" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="GAV-dP-3s6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dy3-Lt-huf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -400,7 +400,7 @@
                     <connections>
                         <outlet property="backBtn" destination="RMZ-La-v0W" id="w7L-Jx-rIX"/>
                         <outlet property="endedPromiseCollectionView" destination="ETO-Ah-llx" id="2dt-Sg-C2x"/>
-                        <segue destination="ufB-NV-DCf" kind="show" identifier="promiseDetail" id="vZO-1b-okj"/>
+                        <segue destination="ufB-NV-DCf" kind="presentation" identifier="promiseDetail" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="vZO-1b-okj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWc-k7-CJI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

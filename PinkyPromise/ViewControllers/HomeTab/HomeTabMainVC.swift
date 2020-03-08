@@ -85,13 +85,6 @@ class HomeTabMainVC: UIViewController {
 //        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
 //        calendar.addGestureRecognizer(scopeGesture)
 
-//        print(calendar.frame.maxY)
-//        let label = UILabel(frame: CGRect(x: 0, y: calendar.frame.maxY + self.view.safeAreaInsets.top, width: self.view.frame.size.width, height: 50))
-//        label.textAlignment = .center
-//        label.font = UIFont.boldSystemFont(ofSize: 20.0)
-//        self.view.addSubview(label)
-//        self.eventLabel = label
-
         let attributedText = NSMutableAttributedString(string: "")
         attributedText.append(NSAttributedString(string: "Today"))
         self.eventLabel.attributedText = attributedText

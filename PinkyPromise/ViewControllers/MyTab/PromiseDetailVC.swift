@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FSCalendar
 
 struct Friend{
     var profileImg : String
@@ -22,6 +23,9 @@ class PromiseDetailVC: UIViewController {
     @IBOutlet weak var promiseInfoTableView: UITableView!
     @IBOutlet weak var promiseFriendTableView: UITableView!
     
+    let queue:DispatchQueue = DispatchQueue(label: "queue")
+    let myGroup: DispatchGroup = DispatchGroup()
+    
     var promiseFriends : [FriendDatailInfo] = []{
         didSet{ promiseFriendTableView.reloadData() }
     }
@@ -29,6 +33,12 @@ class PromiseDetailVC: UIViewController {
     var promiseDetail : PromiseTable? = nil {
         didSet{
             print("promiseDetail : ", promiseDetail!.promiseUsers)
+        }
+    }
+    
+    var progressTable: ProgressTable? = nil {
+        didSet{
+            print("pogressTable is nil")
         }
     }
     
@@ -57,6 +67,10 @@ class PromiseDetailVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         print("in viewWillAppear")
         getPromiseFriendData()
+
+        
+        self.myGroup.enter()
+        getProgressData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,15 +80,7 @@ class PromiseDetailVC: UIViewController {
     }
     
     @IBAction func backBtnAction(_ sender : Any) {
-        //        let dayTabStoryboard = UIStoryboard(name: "MyTab", bundle: nil)
-        //        let vc = dayTabStoryboard.instantiateViewController(withIdentifier: "MyTab") as! MyTabMainVC
-        //
-        //        vc.modalTransitionStyle = .flipHorizontal
-        //        vc.modalPresentationStyle = .overCurrentContext
-        //
-        //        self.present(vc, animated: false, completion: nil)
         self.dismiss(animated: false, completion: nil)
-        
     }
     
     func setBackBtn() {
@@ -82,7 +88,7 @@ class PromiseDetailVC: UIViewController {
     }
 }
 
-extension PromiseDetailVC : UITableViewDelegate{
+extension PromiseDetailVC : UITableViewDelegate {
     
 }
 
@@ -91,7 +97,7 @@ extension PromiseDetailVC : UITableViewDataSource{
         var rowCnt : Int = 0
         
         if(tableView == promiseInfoTableView) {
-            rowCnt = 4
+            rowCnt = 3
         }else if(tableView == promiseFriendTableView){
             rowCnt = self.promiseFriends.count
         }
@@ -127,7 +133,10 @@ extension PromiseDetailVC : UITableViewDataSource{
                 return dateCell
             case 1 :
                 let calendarCell = tableView.dequeueReusableCell(withIdentifier: "CalendarVC") as! CalendarVC
-                
+                calendarCell.calendar.delegate = self
+                calendarCell.calendar.dataSource = self
+                calendarCell.calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
+                calendarCell.calendar.register(MyCalendarCell.self, forCellReuseIdentifier: "calendarCell")
                 return calendarCell
                 
             default :
@@ -185,19 +194,34 @@ extension PromiseDetailVC : UITableViewDataSource{
                     self.promiseFriends.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
                 }
             }
-        }else{
+        } else {
             print("promise id is nil")
         }
         
         print(self.promiseFriends)
     }
     
+    func getProgressData() {
+        if let promiseId = promiseDetail?.promiseId {
+        PromiseDetailService.shared.getProgressDataWithPromiseId(promiseid: promiseId) { (result) in
+                DispatchQueue.main.async {
+                    self.progressTable = result[0]
+                    let cell = self.promiseInfoTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! CalendarVC
+                    cell.calendar.reloadData()
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(tableView == promiseFriendTableView){
             return 60
-        }else{
-            if (indexPath.row == 0){
+        } else {
+            if indexPath.row == 0 {
                 return 80
+            }
+            else if indexPath.row == 1 {
+                return self.view.frame.height/4
             }
         }
         return 50
@@ -213,6 +237,45 @@ extension PromiseDetailVC : UITableViewDataSource{
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
         if (sender.direction == .right) {
             self.dismiss(animated: false, completion: nil)
+        }
+    }
+}
+
+extension PromiseDetailVC: FSCalendarDataSource, FSCalendarDelegate {
+    
+    // 날짜 선택 시 콜백
+    public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+//        changeDateFormatKR(date: date)
+    }
+    
+    // 날짜 선택 해제 시 콜백
+    public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosion: FSCalendarMonthPosition) {
+        
+    }
+    
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        let cell = calendar.dequeueReusableCell(withIdentifier: "calendarCell", for: date, at: position) as! MyCalendarCell
+        cell.setBackgroundColor(progress: 0.0)
+        configureVisibleCell(date: date, cell: cell)
+        return cell
+    }
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+//        self.calendar.frame.size.height = bounds.height
+    }
+    
+    private func configureVisibleCell(date: Date, cell: MyCalendarCell) {
+        let date = Date(timeInterval: 86400, since: date)
+        let datindex = Int(date.timeIntervalSince1970 - promiseDetail!.promiseStartTime.timeIntervalSince1970) / 86400
+        let progressDegree: [Int] = progressTable?.progressDegree ?? []
+        if datindex >= 0 && datindex < progressDegree.count {
+            let progress = progressDegree[datindex]
+            if progress == -1 {
+                cell.setBackgroundColor(progress: 0.0)
+            } else {
+                cell.setBackgroundColor(progress: Double(progress))
+            }
         }
     }
 }

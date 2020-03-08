@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import FSCalendar
 
 class CalendarVC: UITableViewCell {
 
+    @IBOutlet weak var calendar: FSCalendar!
+    
+    var firstDate: Date!
+    var lastDate: Date!
+    var datesRange: [Date]!
+    var date: Date!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +29,31 @@ class CalendarVC: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    let dateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        formatter.dateFormat = "eee"
+        
+        return formatter
+    }()
 }
+
+extension CalendarVC {
+
+    func datesRange(from: Date, to: Date) -> [Date] {
+        if from > to { return [Date]() }
+        
+        var tempDate = from
+        var array = [tempDate]
+        
+        while tempDate < to {
+            tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
+            array.append(tempDate)
+        }
+        return array
+        
+    }
+}
+

@@ -55,6 +55,7 @@ class AddProgressService : NSObject {
             }
         }
     }
+    
     //프로그레스 입력뷰
     func updateProgress(day: Date, userId: String, data: Int, promise: PromiseTable){
         progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promise.promiseId!).getDocuments { (snapShot, error) in
