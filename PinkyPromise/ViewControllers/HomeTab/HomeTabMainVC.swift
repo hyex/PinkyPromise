@@ -21,6 +21,8 @@ class HomeTabMainVC: UIViewController {
     @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var underView: UIView!
     fileprivate weak var tableView: UITableView!
+    @IBOutlet weak var noPromiseLabel1: UILabel!
+    @IBOutlet weak var noPromiseLabel2: UILabel!
     
     var addPromiseBtn: AddPromiseBtn!
     private var promiseListforDates: [ProgressTable]!
@@ -222,6 +224,9 @@ extension HomeTabMainVC: UITableViewDataSource {
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
             count = self.days[date]?.PAPD.count ?? 0
+//            if count == 0:
+//            noPromiseLabel1.
+//            else:
         }
 
         return count

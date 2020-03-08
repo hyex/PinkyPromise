@@ -84,7 +84,30 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EvK-oN-364">
                                 <rect key="frame" x="0.0" y="420" width="375" height="306"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iQN-FC-sae">
+                                        <rect key="frame" x="63.000000000000014" y="126.66666666666664" width="249.33333333333337" height="52.666666666666671"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 약속이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oR-ns-arG">
+                                                <rect key="frame" x="0.0" y="0.0" width="249.33333333333334" height="26.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 약속을 만들어볼까요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVa-lo-b4d">
+                                                <rect key="frame" x="0.0" y="26.333333333333371" width="249.33333333333334" height="26.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="iQN-FC-sae" firstAttribute="centerY" secondItem="EvK-oN-364" secondAttribute="centerY" id="Zt2-zE-vUE"/>
+                                    <constraint firstItem="iQN-FC-sae" firstAttribute="centerX" secondItem="EvK-oN-364" secondAttribute="centerX" id="iCU-Ui-Iae"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -118,6 +141,8 @@
                         <outlet property="calendar" destination="4U6-qd-jdg" id="4nL-Cu-bq9"/>
                         <outlet property="eventLabel" destination="mNj-PI-7qj" id="fTW-Qn-AMX"/>
                         <outlet property="navigationBar" destination="Kn3-jP-07k" id="DMo-FJ-WdA"/>
+                        <outlet property="noPromiseLabel1" destination="5oR-ns-arG" id="AJ2-1O-c5e"/>
+                        <outlet property="noPromiseLabel2" destination="hVa-lo-b4d" id="1yk-OM-5ua"/>
                         <outlet property="underView" destination="EvK-oN-364" id="4lw-kl-CJb"/>
                         <segue destination="YeJ-Qz-hKT" kind="presentation" identifier="ProgressVC" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="EiB-Ou-oG0"/>
                     </connections>
