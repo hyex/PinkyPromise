@@ -22,14 +22,12 @@ class EndedPromiseVC: UIViewController {
         self.endedPromiseCollectionView.delegate = self
         self.endedPromiseCollectionView.dataSource = self
         
-        // 날짜가 끝났고, 성취률 100%인 약속들만 넘겨오는 함수
-        EndedPromiseService.shared.getCompletedPromiseData(completion: { result in
-            DispatchQueue.main.async {
-                self.promiseList = result
-                self.endedPromiseCollectionView.reloadData()
-            }
-        })
-        
+        // getEndedPromise()
+    }
+    
+    // MARK: wantToFix
+    override func viewDidAppear(_ animated: Bool) {
+        getEndedPromise()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,6 +38,16 @@ class EndedPromiseVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    func getEndedPromise() {
+        // 날짜가 끝났고, 성취률 100%인 약속들만 넘겨오는 함수
+        EndedPromiseService.shared.getCompletedPromiseData(completion: { result in
+            DispatchQueue.main.async {
+                self.promiseList = result
+                self.endedPromiseCollectionView.reloadData()
+            }
+        })
+    }
+    
 }
 
 // MARK:- Initialization
@@ -138,22 +146,8 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("before perform segue")
-//        performSegue(withIdentifier: "promiseDetail", sender: promiseList[indexPath.row])
 
     }
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "promiseDetail"{
-//            let promiseDetail = sender as? PromiseTable
-//            if promiseDetail != nil{
-//                let PromiseDetailVC = segue.destination as? PromiseDetailVC
-//                if PromiseDetailVC != nil {
-//                    PromiseDetailVC?.promiseDetail = promiseDetail
-//                }
-//            }
-//        }
-//    }
-    
 }
 
