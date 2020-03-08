@@ -28,6 +28,10 @@ class MoreTabMainVC: UIViewController {
         initView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     // MARK: wantToFix
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true

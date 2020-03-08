@@ -16,10 +16,10 @@ class signUpVC: UIViewController {
     @IBOutlet weak var passwordBtn: UITextField!
     @IBOutlet weak var nickNameBtn: UITextField!
     @IBOutlet weak var startBtn: UIButton!
-    @IBOutlet weak var cancleBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var inputCodeView: UIView!
     @IBOutlet weak var backBtn: UIBarButtonItem!
+    
     var checkImage = false
     
     override func viewDidLoad() {
@@ -27,38 +27,33 @@ class signUpVC: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.setNavigationBar()
-        self.setBackBtn()
-        
+        textFieldCustom(emailBtn)
+        textFieldCustom(passwordBtn)
+        textFieldCustom(nickNameBtn)
+        addSwipeGesture() 
         self.inputCodeView.backgroundColor = UIColor.appColor
         
         registerForKeyboardNotifications()
         self.profileImage.layer.cornerRadius = 20
         self.profileImage.clipsToBounds = true
         self.startBtn.layer.cornerRadius = 10
-        self.backBtn.title = ""
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectImageView))
         profileImage.addGestureRecognizer(tapGesture)
         profileImage.isUserInteractionEnabled = true
     }
     
-    private func setNavigationBar() {
-        let bar:UINavigationBar! = self.navigationController?.navigationBar
-        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        bar.shadowImage = UIImage()
-        
-        bar.backgroundColor = UIColor.clear
-    }
-
-    @objc func backToMain() {
+    
+    @IBAction func backBtnAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    private func setBackBtn() {
-        let image = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
-        navigationController?.navigationBar.backIndicatorImage = image
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-        self.navigationController?.navigationBar.backItem?.title = ""
+    func setNavigationBar() {
+        let bar:UINavigationBar! = self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        bar.shadowImage = UIImage()
+        bar.backgroundColor = UIColor.clear
     }
+
     
     @IBAction func signUpButton(_ sender: Any) {
         
@@ -169,6 +164,33 @@ class signUpVC: UIViewController {
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
+    }
+    
+    func textFieldCustom(_ textField:UITextField) {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor(white: 1.0, alpha: 1.0).cgColor
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
+        
+        border.borderWidth = width
+        textField.layer.addSublayer(border)
+        textField.layer.masksToBounds = true
+        
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor(white: 1.0, alpha: 0.5), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0)])
+        
+    }
+    
+    func addSwipeGesture() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .right) {
+            self.navigationController?.popViewController(animated: false)
+        }
     }
 }
 

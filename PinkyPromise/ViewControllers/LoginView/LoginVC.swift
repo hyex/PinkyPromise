@@ -49,8 +49,8 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.indicator = UIActivityIndicatorView()
-        //        self.pinkyTitle.center.x -= view.bounds.width
         
+        self.pinkyTitle.sizeToFit()
         self.view.backgroundColor = UIColor.appColor
         self.signInBtn.layer.cornerRadius = 10
         self.signUpBtn.layer.cornerRadius = 10
@@ -88,6 +88,9 @@ class LoginVC: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    
+    
 }
 
 extension LoginVC: LoginButtonDelegate {
@@ -361,8 +364,6 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                         
                         //let i = (authResult?.user.email)!.firstIndex(of: "@")
                         
-                        //Auth.auth().currentUser?.displayName
-                        
                         MyApi.shared.getUserData(completion: { (result) in
                             if result.count == 0 {
                                 let temp = PromiseUser(userName: (user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
@@ -406,6 +407,55 @@ extension LoginVC: ASAuthorizationControllerDelegate {
         print("Sign in with Apple errored: \(error)")
     }
     
+    func forgotPasswordLabelTapped(){
+        //        let controller = ResetPWVC()
+        //        self.navigationController?.pushViewController(controller, animated: true)
+        self.showAlertPWResetController(style: UIAlertController.Style.alert)
+    }
+    
+    func showAlertPWResetController(style: UIAlertController.Style) {
+        let alertController: UIAlertController
+        
+        alertController = UIAlertController(title: "이름을 입력하세요", message: "새 비밀번호를 위한 링크가 보내집니다.", preferredStyle: style)
+        
+        let cancelActoin: UIAlertAction
+        cancelActoin = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        
+        alertController.addTextField { (field: UITextField ) in
+            field.placeholder = "test@test.com"
+            field.textContentType = UITextContentType.emailAddress
+        }
+        
+        let okAction: UIAlertAction
+        okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
+            FirebaseUserService.forgotPassword(withEmail: (alertController.textFields![0] as UITextField).text! , success: {
+                //SVProgressHUD.showInfo(withStatus: "비밀번호 재설정 링크가 이메일 주소로 전송되었습니다.")
+                self.showAlert(message: "비밀번호 재설정 링크가 이메일 주소로 전송되었습니다.")
+                self.navigationController?.popViewController(animated: true)
+                //SVProgressHUD.dismiss()
+            }) { (error) in
+                //SVProgressHUD.showError(withStatus: error.localizedDescription)
+                self.showAlert(message: "\(error.localizedDescription)")
+            }
+        })
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelActoin)
+        
+        self.present(alertController, animated: true, completion: {
+            print("alert controller shown")
+        })
+    }
+    
+    func showAlert(message: String){
+        let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.blueberry
+        alert.setValue(NSAttributedString(string: alert.title!, attributes: [NSAttributedString.Key.foregroundColor : UIColor.blueberry]), forKey: "attributedTitle")
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        action.setValue(UIColor.blueberry, forKey: "titleTextColor")
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
 }
 
 
