@@ -40,11 +40,16 @@ class signInVC: UIViewController {
         
         self.setNavigationBar()
         addSwipeGesture()
+        textFieldUnderline(emailTextField)
+        textFieldUnderline(PWTextFiled)
         
         registerForKeyboardNotifications()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.loginBtn.layer.cornerRadius = 10
         loginBtn.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+        
+        
+        
     }
     
     
@@ -162,6 +167,20 @@ class signInVC: UIViewController {
         }
     }
 
+    func textFieldUnderline(_ textField:UITextField) {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor(white: 1.0, alpha: 1.0).cgColor
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
+        
+        border.borderWidth = width
+        textField.layer.addSublayer(border)
+        textField.layer.masksToBounds = true
+        
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+    }
 
 }
 

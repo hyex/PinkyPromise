@@ -358,41 +358,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나랑 약속해" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBy-Ul-bJa">
-                                <rect key="frame" x="70" y="247" width="274" height="54"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="45"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOj-Ef-15a">
-                                <rect key="frame" x="0.0" y="552" width="414" height="324"/>
+                                <rect key="frame" x="0.0" y="479" width="414" height="324"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="OF0-23-ycj">
-                                        <rect key="frame" x="40" y="40" width="334" height="190"/>
+                                        <rect key="frame" x="40" y="40" width="334" height="174"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="mY1-Eh-jhj">
-                                                <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="mY1-Eh-jhj">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="TIj-up-q7X">
-                                                <rect key="frame" x="0.0" y="52" width="334" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="TIj-up-q7X">
+                                                <rect key="frame" x="0.0" y="48" width="334" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sev-ha-13W">
-                                                <rect key="frame" x="0.0" y="104" width="334" height="34"/>
+                                                <rect key="frame" x="0.0" y="96" width="334" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="로그인!">
-                                                    <color key="titleColor" name="myPurple"/>
+                                                <state key="normal" title="로그인">
+                                                    <color key="titleColor" name="appColor"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dU-Fw-NLF">
-                                                <rect key="frame" x="0.0" y="156" width="334" height="34"/>
+                                                <rect key="frame" x="0.0" y="144" width="334" height="30"/>
                                                 <color key="tintColor" red="0.097053804610917296" green="0.097845443577542671" blue="0.24383171167766493" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="비밀번호를 잊어 버리셨나요?">
-                                                    <color key="titleColor" name="myLightGreen"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="forgotPasswordLabelTapped" destination="jzd-xX-aeV" eventType="touchUpInside" id="htU-fi-5Hx"/>
@@ -408,16 +402,32 @@
                                     <constraint firstAttribute="trailing" secondItem="OF0-23-ycj" secondAttribute="trailing" constant="40" id="Vh9-i1-cd9"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나랑 약속해" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lP-nP-M4T">
+                                <rect key="frame" x="122.00000000000001" y="158" width="170.33333333333337" height="37"/>
+                                <fontDescription key="fontDescription" name="Rockwell-BoldItalic" family="Rockwell" pointSize="37"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="HrI-d6-k24">
+                                <rect key="frame" x="50" y="190" width="314" height="314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HrI-d6-k24" secondAttribute="height" multiplier="1:1" id="bbs-DA-kai"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" name="appColor"/>
                         <constraints>
-                            <constraint firstItem="qOj-Ef-15a" firstAttribute="top" secondItem="wh3-1N-ijZ" secondAttribute="top" constant="552" id="1uA-BT-Nsf"/>
-                            <constraint firstAttribute="bottom" secondItem="qOj-Ef-15a" secondAttribute="bottom" constant="20" symbolic="YES" id="Zi0-qg-WqI"/>
+                            <constraint firstItem="6lP-nP-M4T" firstAttribute="centerX" secondItem="HrI-d6-k24" secondAttribute="centerX" id="3ud-ty-y22"/>
+                            <constraint firstItem="qOj-Ef-15a" firstAttribute="top" secondItem="HrI-d6-k24" secondAttribute="bottom" constant="-25" id="8g2-Qw-muG"/>
+                            <constraint firstItem="6lP-nP-M4T" firstAttribute="top" secondItem="wqX-1B-sjf" secondAttribute="top" constant="70" id="DwK-rt-1RH"/>
+                            <constraint firstItem="wqX-1B-sjf" firstAttribute="trailing" secondItem="HrI-d6-k24" secondAttribute="trailing" constant="50" id="OUK-d3-ulE"/>
+                            <constraint firstItem="HrI-d6-k24" firstAttribute="leading" secondItem="wqX-1B-sjf" secondAttribute="leading" constant="50" id="Qht-tw-05g"/>
+                            <constraint firstAttribute="bottom" secondItem="qOj-Ef-15a" secondAttribute="bottom" constant="93" id="Zi0-qg-WqI"/>
                             <constraint firstItem="qOj-Ef-15a" firstAttribute="trailing" secondItem="wqX-1B-sjf" secondAttribute="trailing" id="d0G-N4-iTG"/>
-                            <constraint firstItem="SBy-Ul-bJa" firstAttribute="top" secondItem="wqX-1B-sjf" secondAttribute="top" constant="159" id="d4w-8V-d6Q"/>
-                            <constraint firstItem="SBy-Ul-bJa" firstAttribute="leading" relation="lessThanOrEqual" secondItem="wqX-1B-sjf" secondAttribute="leading" constant="70" id="exF-Ep-SB4"/>
                             <constraint firstItem="qOj-Ef-15a" firstAttribute="leading" secondItem="wqX-1B-sjf" secondAttribute="leading" id="hYv-tf-iWR"/>
-                            <constraint firstItem="wqX-1B-sjf" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="SBy-Ul-bJa" secondAttribute="trailing" constant="70" id="tg4-MC-lQM"/>
+                            <constraint firstItem="6lP-nP-M4T" firstAttribute="centerX" secondItem="wqX-1B-sjf" secondAttribute="centerX" id="q91-3M-rzQ"/>
+                            <constraint firstItem="HrI-d6-k24" firstAttribute="centerX" secondItem="qOj-Ef-15a" secondAttribute="centerX" id="vlz-RM-bhf"/>
+                            <constraint firstItem="HrI-d6-k24" firstAttribute="top" secondItem="6lP-nP-M4T" secondAttribute="bottom" constant="-5" id="xZh-Mm-7lc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wqX-1B-sjf"/>
                     </view>
@@ -452,9 +462,6 @@
         <image name="userDefaultImage" width="67.333335876464844" height="67.333335876464844"/>
         <namedColor name="appColor">
             <color red="0.55294117647058827" green="0.27450980392156865" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="myLightGreen">
-            <color red="0.45490196078431372" green="0.83921568627450982" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="myPurple">
             <color red="0.55294117647058827" green="0.27450980392156865" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
