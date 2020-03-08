@@ -37,7 +37,7 @@ class FirebaseUserService {
                     return
                 }
                 //아직 구현단계 여기서는 뭘해야하는지모르겠군
-                if defaultCheck == true {
+                if defaultCheck == true { // true면 바뀐 이미지가 들어간다. 따라서 userTable에도 그냥 UID가 들어간다.
                     FirebaseStorageService.shared.storeUserImage(image: imageData, completion: { result in
                         switch result {
                         case .failure(let err):
@@ -47,17 +47,8 @@ class FirebaseUserService {
                         }
                     })
                 } else {
-                    FirebaseStorageService.shared.storeUserImage(imageName: "userDefaultImage", image: imageData, completion: { result in
-                        switch result {
-                        case .failure(let err):
-                            print(err)
-                        case .success:
-                            success()
-                        }
-                    })
+                    success()
                 }
-                
-                
                 
                 //또한 여기서 사용자를 만들어야하는듯하다
             }
@@ -121,10 +112,14 @@ class FirebaseUserService {
     }
     
     static var currentUserID: String? {
-//        guard let uid = Auth.auth().currentUser.uid else {
-//            return nil
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return "nil"
+        }
+        return uid
+        
+//        if Auth.auth().currentUser!.uid == nil {
+//            return "nil"
 //        }
-//        return uid
-         return Auth.auth().currentUser!.uid
+//        return Auth.auth().currentUser!.uid
     }
 }
