@@ -174,8 +174,7 @@ class MainTabBarController: UITabBarController {
             
             print("finished")
         }
-        
-        //MyApi.shared.fireStoreSetting()
+
     }
     
 }
