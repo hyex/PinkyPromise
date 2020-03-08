@@ -76,6 +76,9 @@ class PromiseDetailVC: UIViewController {
         promiseFriendTableView.delegate = self
         promiseFriendTableView.dataSource = self
         promiseFriendTableView.tableFooterView = UIView()
+        let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.promiseInfoTableView.tableFooterView = dummyView;
+        self.promiseInfoTableView.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
