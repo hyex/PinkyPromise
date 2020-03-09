@@ -115,7 +115,7 @@ extension MyFriendVC: UITableViewDataSource {
                 let rowData = friendList[indexPath.row]
                 friendCell.userName.text = rowData.userName!
                 let imageName = rowData.userImage!
-                if imageName == FirebaseUserService.currentUserID! {
+                if imageName != "userDefaultImage" {
                     FirebaseStorageService.shared.getUserImageWithName(name: imageName, completion: { result in
                         DispatchQueue.main.async {
                             switch result {

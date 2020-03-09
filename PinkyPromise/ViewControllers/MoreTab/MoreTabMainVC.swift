@@ -82,6 +82,8 @@ class MoreTabMainVC: UIViewController {
                             }
                         }
                     })
+                } else {
+                    self.userImage.image = UIImage(named: "userDefaultImage")
                 }
             }
         })
