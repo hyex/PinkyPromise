@@ -29,17 +29,20 @@ class FriendTabMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPlusBtn()
-        
-        self.topBackground.backgroundColor = UIColor.appColor
-        self.topBackground.layer.borderWidth = 1.0
-        self.topBackground.layer.cornerRadius = 10
-        //getPromiseAndFriend()
+        setTitleBackground()
         AddPromiseService.shared.delegate = self
         setUpTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getPromiseAndFriend()
+    }
+    
+    func setTitleBackground() {
+        print("ui label func")
+        topBackground.backgroundColor = UIColor.backgroundGray
+        topBackground.layer.cornerRadius = 10
+        topBackground.layer.masksToBounds = true
     }
     
     func setUpTableView() {
@@ -165,14 +168,5 @@ extension FriendTabMainVC : SendPromiseDelegate{
     func sendPromise() {
         self.getPromiseAndFriend()
         friendMainTableView.reloadData()
-    }
-}
-
-extension UIColor {
-    convenience init(hex: Int, alpha: CGFloat = 1.0) {
-        let r = CGFloat((hex >> 16) & 0xff) / 255
-        let g = CGFloat((hex >> 08) & 0xff) / 255
-        let b = CGFloat((hex >> 00) & 0xff) / 255
-        self.init(red: r, green: g, blue: b, alpha: alpha)
     }
 }
