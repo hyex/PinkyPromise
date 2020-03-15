@@ -17,6 +17,7 @@ import UIKit
 
 class FriendTabMainVC: UIViewController {
     
+    @IBOutlet weak var topBackground: UILabel!
     @IBOutlet weak var addNewPromiseBtn: UIButton!
     @IBOutlet weak var promiseCtnLabel: UILabel!
     @IBOutlet weak var friendMainTableView: UITableView!
@@ -28,13 +29,20 @@ class FriendTabMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPlusBtn()
-        //getPromiseAndFriend()
+        setTitleBackground()
         AddPromiseService.shared.delegate = self
         setUpTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getPromiseAndFriend()
+    }
+    
+    func setTitleBackground() {
+        print("ui label func")
+        topBackground.backgroundColor = UIColor.backgroundGray
+        topBackground.layer.cornerRadius = 10
+        topBackground.layer.masksToBounds = true
     }
     
     func setUpTableView() {

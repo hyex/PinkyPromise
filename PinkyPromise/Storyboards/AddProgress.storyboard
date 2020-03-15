@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tWV-Wd-qc4">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Add ProgressVC-->
+        <scene sceneID="J9L-MF-Gyo">
+            <objects>
+                <viewController storyboardIdentifier="AddProgressVC" id="tWV-Wd-qc4" customClass="AddProgressVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eKs-iE-2EJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPO-ut-rYy">
+                                <rect key="frame" x="87" y="263" width="240" height="380"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="uLB-Sh-Urb">
+                                        <rect key="frame" x="12" y="12" width="216" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRK-v6-Gdo">
+                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="30"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelBtnAction:" destination="tWV-Wd-qc4" eventType="touchUpInside" id="S7s-Nq-2S6"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASq-NL-AxB">
+                                                <rect key="frame" x="66.5" y="0.0" width="83" height="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axd-Zh-IDB">
+                                                <rect key="frame" x="149.5" y="0.0" width="66.5" height="30"/>
+                                                <state key="normal" title="Save">
+                                                    <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="saveBtnAction:" destination="tWV-Wd-qc4" eventType="touchUpInside" id="yUP-AY-xSn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uhd-zG-RPA">
+                                        <rect key="frame" x="60" y="67" width="120" height="269"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="E8K-jo-OqR"/>
+                                            <constraint firstAttribute="height" constant="269" id="Qpn-QW-r96"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="fd4-Yt-aZW">
+                                            <size key="itemSize" width="120" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ProgressCell" reuseIdentifier="IconCollectionCell" id="57Q-Hu-wnI" customClass="IconCVC" customModule="PinkyPromise" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="q6U-5y-EUn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </collectionViewCellContentView>
+                                                <size key="customSize" width="120" height="40"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="uLB-Sh-Urb" firstAttribute="leading" secondItem="oPO-ut-rYy" secondAttribute="leading" constant="12" id="27k-fQ-21H"/>
+                                    <constraint firstItem="Uhd-zG-RPA" firstAttribute="top" secondItem="ASq-NL-AxB" secondAttribute="bottom" constant="25" id="HRE-jh-VLp"/>
+                                    <constraint firstAttribute="height" constant="380" id="Jzf-9J-eBt"/>
+                                    <constraint firstItem="ASq-NL-AxB" firstAttribute="centerX" secondItem="oPO-ut-rYy" secondAttribute="centerX" id="QIH-D1-rS8"/>
+                                    <constraint firstItem="Uhd-zG-RPA" firstAttribute="centerX" secondItem="oPO-ut-rYy" secondAttribute="centerX" id="Zgp-e3-Us4"/>
+                                    <constraint firstAttribute="width" constant="240" id="b40-a0-F86"/>
+                                    <constraint firstAttribute="trailing" secondItem="uLB-Sh-Urb" secondAttribute="trailing" constant="12" id="iLh-9e-ftJ"/>
+                                    <constraint firstItem="uLB-Sh-Urb" firstAttribute="top" secondItem="oPO-ut-rYy" secondAttribute="top" constant="12" id="o7q-uF-gjm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="oPO-ut-rYy" firstAttribute="centerY" secondItem="7H6-Lw-OSO" secondAttribute="centerY" id="TYy-Jg-oje"/>
+                            <constraint firstItem="oPO-ut-rYy" firstAttribute="centerX" secondItem="7H6-Lw-OSO" secondAttribute="centerX" id="f65-nr-kWc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7H6-Lw-OSO"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bigView" destination="eKs-iE-2EJ" id="ITo-Ib-e6W"/>
+                        <outlet property="cancelBtn" destination="eKs-iE-2EJ" id="ASK-10-pfj"/>
+                        <outlet property="collectionView" destination="Uhd-zG-RPA" id="geU-FQ-TR9"/>
+                        <outlet property="saveBtn" destination="axd-Zh-IDB" id="OoB-wU-NtW"/>
+                        <outlet property="smallView" destination="oPO-ut-rYy" id="uVm-QD-lfS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q3B-Oh-xYe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="705" y="978"/>
+        </scene>
+    </scenes>
+</document>

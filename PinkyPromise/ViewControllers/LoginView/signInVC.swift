@@ -109,9 +109,10 @@ extension signInVC {
         textField.layer.masksToBounds = true
         
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "",
-                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor(white: 1.0, alpha: 0.5), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0)])
         
     }
+    
     func showAlertPWResetController(style: UIAlertController.Style) {
         let alertController: UIAlertController
         

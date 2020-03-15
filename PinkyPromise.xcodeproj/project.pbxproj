@@ -87,6 +87,7 @@
 		3FE061DF23E24BE700CD2F6A /* PanaltyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */; };
 		3FEC413223E5EF56006C318E /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC413123E5EF56006C318E /* Progress.swift */; };
 		3FEC413423E5F9C0006C318E /* AddProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC413323E5F9C0006C318E /* AddProgressVC.swift */; };
+		3FFB28C924150B9E00BFB043 /* AddProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB28C824150B9E00BFB043 /* AddProgress.storyboard */; };
 		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
@@ -198,6 +199,7 @@
 		3FE061DE23E24BE700CD2F6A /* PanaltyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaltyTVC.swift; sourceTree = "<group>"; };
 		3FEC413123E5EF56006C318E /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Progress.swift; path = PinkyPromise/ViewControllers/HomeTab/Progress.swift; sourceTree = SOURCE_ROOT; };
 		3FEC413323E5F9C0006C318E /* AddProgressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressVC.swift; sourceTree = "<group>"; };
+		3FFB28C824150B9E00BFB043 /* AddProgress.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddProgress.storyboard; sourceTree = "<group>"; };
 		45752F0852F9A5F9940CA4DA /* Pods-PinkyPromise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinkyPromise.debug.xcconfig"; path = "Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise.debug.xcconfig"; sourceTree = "<group>"; };
 		A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabDetailVC.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				334AACD423CC24B100AAF955 /* FriendTab.storyboard */,
 				334AACD623CC24BA00AAF955 /* MoreTab.storyboard */,
 				A9A3E82623E01D7900EDFE1C /* DetailPromise.storyboard */,
+				3FFB28C824150B9E00BFB043 /* AddProgress.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				330AE60923CB56DC00706769 /* Assets.xcassets in Resources */,
 				3FB3AC0323CEF89300851FDA /* HomeTab.storyboard in Resources */,
 				334AACD523CC24B100AAF955 /* FriendTab.storyboard in Resources */,
+				3FFB28C924150B9E00BFB043 /* AddProgress.storyboard in Resources */,
 				188A335A23FAB2D000C1D846 /* Facebook.SDKFolder in Resources */,
 				334AACD723CC24BA00AAF955 /* MoreTab.storyboard in Resources */,
 				330AE60D23CB56DC00706769 /* Main.storyboard in Resources */,
