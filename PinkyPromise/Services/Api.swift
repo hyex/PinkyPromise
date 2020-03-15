@@ -262,7 +262,7 @@ class MyApi: NSObject {
     //이미 끝난 약속 데이터만 반환하는 함수
     func getCompletedPromiseData(completion: @escaping ([PromiseTable]) -> Void) {
         let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
-        let result = now3.timeIntervalSince1970
+        //let result = now3.timeIntervalSince1970
         //self.fireStoreSetting()
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isLessThan: now3).getDocuments { (snapShot, error) in
             if let err = error {
@@ -424,7 +424,7 @@ class MyApi: NSObject {
         
         let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
         let result = now3.timeIntervalSince1970
-        let now2 = Timestamp()
+        //let now2 = Timestamp()
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThan: result).order(by: PROMISEENDTIME).getDocuments { (snapShot, error) in
             if let err = error {
@@ -617,7 +617,7 @@ class MyApi: NSObject {
     //오늘을 기준으로 끝나지 않은 약속들만 반환
     func getPromiseDataSinceToday(completion: @escaping ([PromiseTable]) -> Void) {
         let now3 = Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600))
-        let result = now3.timeIntervalSince1970
+        //let result = now3.timeIntervalSince1970
         //self.fireStoreSetting()
         
         promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!).whereField(PROMISEENDTIME, isGreaterThanOrEqualTo: now3).getDocuments { (snapShot, error) in
@@ -1021,9 +1021,19 @@ class MyApi: NSObject {
         
     }
     
-//    func deletePromiseWithPromiseID(PromiseID: String) {
-//        promiseCollectionRef.whereField(PROMISEUSERS, arrayContains: FirebaseUserService.currentUserID!)
-//    }
+    func deletePromiseWithPromiseID(PromiseID: String) {
+        promiseCollectionRef.document(PromiseID).getDocument { (DocumentSnapshot, Error) in
+            if let err = Error {
+                debugPrint(err.localizedDescription)
+            } else {
+                let tempPromise = PromiseTable.parseDouc(snapShot: DocumentSnapshot)
+                
+                if tempPromise.count == 1{
+                    
+                }
+            }
+        }
+    }
     
     //프로그레스 입력뷰
     func updateProgress(day: Date, userId: String, data: Int, promise: PromiseTable, progress: ProgressTable ){

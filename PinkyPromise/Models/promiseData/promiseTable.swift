@@ -64,4 +64,32 @@ class PromiseTable {
         return promise
     }
     
+    
+    class func parseDouc(snapShot: DocumentSnapshot?) -> [PromiseTable] {
+        var promiseuser = [PromiseTable]()
+        
+        guard let snap = snapShot else { return promiseuser }
+        
+        let data = snap.data()
+        
+        if data == nil {
+            return promiseuser
+        }
+        let dataName = data![PROMISENAME] as? String ?? "Anonymous"
+        let dataStartTime = data![PROMISESTARTTIME] as? Timestamp ?? Timestamp()
+        let dataEndTime = data![PROMISEENDTIME] as? Timestamp ?? Timestamp()
+        let dataColor = data![PROMISECOLOR] as? String ?? "not given color"
+        let dataIcon = data![PROMISEICON] as? String ?? "Nothing Icon"
+        let dataUsers = data![PROMISEUSERS] as? Array<String> ?? []
+        let isDataAchievment = data![ISPROMISEACHIEVEMENT] as? Bool ?? false
+        let dataPromisePanalty = data![PROMSISEPANALTY] as? String ?? "not given coler"
+        let dataPromiseId = snap.documentID
+        
+       let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime.dateValue() + 32400, promiseEndTime: dataEndTime.dateValue() + 32400, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: isDataAchievment, promisePanalty: dataPromisePanalty, promiseId: dataPromiseId)
+        
+        promiseuser.append(newPromise)
+        
+        return promiseuser
+    }
+    
 }
