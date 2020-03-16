@@ -4,7 +4,7 @@
 > 약속을 지키지 못하는 모두에게,
 > 캘린더를 통해 약속 지킴 상황을 확인하고, 나 또는 친구와의 약속을 만들 수 있는 어플입니다.
 <br>
-![appIconImage](./PinkyPromise/SupportingFile/Assets.xcassets/AppIcon/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png)
+![appIconImage](https://github.com/ProjectInTheClass/PinkyPromise/blob/master/PinkyPromise/SupportingFile/Assets.xcassets/AppIcon/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png)
 <br>
 
 ## 개발 환경
