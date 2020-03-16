@@ -160,14 +160,13 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     private func configureVisibleCell(date: Date, cell: MyCalendarCell) {
         let date = Date(timeInterval: 86400, since: date)
         HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
+        
             self.days[date] = day
             var progress: Int = 0
 
             for pm in day.PAPD {
                 let datindex = Int(date.timeIntervalSince1970 - pm.promiseData.promiseStartTime.timeIntervalSince1970) / 86400
-                if pm.progressData.progressDegree[datindex] == -1 {
-                    continue
-                } else {
+                if pm.progressData.progressDegree[datindex] != -1 {
                     progress += pm.progressData.progressDegree[datindex]
                 }
             }
@@ -231,7 +230,8 @@ extension HomeTabMainVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC
-
+        
+        
         let date = Date(timeInterval: 86400, since: self.calendar.selectedDate ?? self.calendar.today!)
 
         cell.delegate = self
