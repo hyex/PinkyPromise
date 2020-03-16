@@ -75,17 +75,10 @@ class AddProgressService : NSObject {
                         print("Document successfully updated")
                         self.delegate.sendProgress(data: data)
                         // if endDate
-                        if temp.count - 1 == datindex {
-                            var flag = true
-                            for progress in temp {
-                                if progress != 4 {
-                                    flag = false
-                                    break
-                                }
-                            }
-                            if flag {
-                                AddProgressService.shared.updatePromiseAchievement(promiseID: promise.promiseId)
-                            }
+                        if temp.filter({$0 != 4}).count == 0 {
+                            AddProgressService.shared.updatePromiseAchievementTrue(promiseID: promise.promiseId)
+                        } else if promise.isPromiseAchievement == true {
+                            AddProgressService.shared.updatePromiseAchievementFalse(promiseID: promise.promiseId)
                         }
                     }
                     
@@ -95,8 +88,13 @@ class AddProgressService : NSObject {
     }
 
     //프로미스 어치브먼트 바꾸는함수
-    func updatePromiseAchievement(promiseID: String) {
+    func updatePromiseAchievementTrue(promiseID: String) {
         promiseCollectionRef.document(promiseID).updateData([ISPROMISEACHIEVEMENT : true])
+    }
+    
+    //프로미스 어치브먼트 바꾸는함수
+    func updatePromiseAchievementFalse(promiseID: String) {
+        promiseCollectionRef.document(promiseID).updateData([ISPROMISEACHIEVEMENT : false])
     }
         
 }
