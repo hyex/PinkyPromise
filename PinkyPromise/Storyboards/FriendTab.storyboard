@@ -61,6 +61,10 @@
                                                         <constraint firstAttribute="width" constant="20" id="AOH-Fo-s1Z"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="next"/>
+                                                    <connections>
+                                                        <action selector="promiseDetailBtnAction:" destination="29N-sA-g8s" eventType="touchUpInside" id="hxs-Sp-7tp"/>
+                                                        <segue destination="kn5-MZ-B4N" kind="show" identifier="detailPromiseSegue" id="48F-al-ZU6"/>
+                                                    </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-wo-kQn">
                                                     <rect key="frame" x="80" y="12.333333333333332" width="46" height="45.333333333333343"/>
@@ -439,4 +443,7 @@
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="plus" width="256" height="256"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="48F-al-ZU6"/>
+    </inferredMetricsTieBreakers>
 </document>
