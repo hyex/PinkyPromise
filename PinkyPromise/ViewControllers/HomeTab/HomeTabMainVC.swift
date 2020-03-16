@@ -173,9 +173,11 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
 
             if day.PAPD.count > 0
             {
-                cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
+                var calculatedProgress = Double(progress) / Double(day.PAPD.count)
+                calculatedProgress = calculatedProgress < 1 ? ceil(calculatedProgress) : floor(calculatedProgress)
+                cell.setBackgroundColor(progress: calculatedProgress)
             } else {
-                cell.setBackgroundColor(progress: ceil(0.0))
+                cell.setBackgroundColor(progress: 0.0)
             }
             self.tableView.reloadData()
         }
