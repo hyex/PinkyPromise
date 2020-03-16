@@ -10,11 +10,7 @@ struct FriendDatailInfo{
     var image : String
     var name : String
     var degree : [Int]
-//    var perfect : String
-//    var threeQuarter : String
-//    var half : String
-//    var quarter : String
-//    var zero : String
+    var progress : Double
 }
 
 import UIKit
@@ -64,8 +60,18 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
             FriendTabDetailService.shared.getDataforDetailViewjr1(promiseID: promiseId) { (result) in
                 print("result : ", result)
                 for douc in result.friendsDetail {
-                    self.friendsList.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
+                    var nowProgressed : Double
+                    
+                    let p1 = 1.0 * Double(douc.friendDegree[4])
+                    let p2 = 0.75 * Double(douc.friendDegree[3])
+                    let p3 = 0.5 * Double(douc.friendDegree[2])
+                    let p4 = 0.25 * Double(douc.friendDegree[1])
+
+                    nowProgressed = (p1 + p2 + p3 + p4) / 30.0
+                    
+                    self.friendsList.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree, progress: nowProgressed))
                 }
+                self.friendsList = self.friendsList.sorted(by: {$0.progress > $1.progress})
             }
         }else{
             print("promise id is nil")
@@ -118,16 +124,8 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.halfCnt.text = String(rowData.degree[2])
         cell.quarterCnt.text = String(rowData.degree[1])
         cell.zeroCnt.text = String(rowData.degree[0])
-
-        var nowProgressed : Double
-        let p1 = 1.0 * Double(rowData.degree[4])
-        let p2 = 0.75 * Double(rowData.degree[3])
-        let p3 = 0.5 * Double(rowData.degree[2])
-        let p4 = 0.25 * Double(rowData.degree[1])
-
-        nowProgressed = (p1 + p2 + p3 + p4) / 30.0
         cell.progressView.tintColor = UIColor.appColor
-        cell.progressView.progress = Float(nowProgressed)
+        cell.progressView.progress = Float(rowData.progress)
         
         return cell
     }

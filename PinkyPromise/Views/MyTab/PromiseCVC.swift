@@ -49,7 +49,7 @@ class PromiseCVC: UICollectionViewCell {
         self.layer.masksToBounds = false
 
         self.promiseIcon.layer.cornerRadius = self.promiseIcon.frame.height/2
-        self.promiseIcon.layer.masksToBounds = true
+        self.promiseIcon.layer.masksToBounds = false
         
     }
 }

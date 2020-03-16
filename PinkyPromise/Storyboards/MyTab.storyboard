@@ -292,8 +292,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="완벽히 지킨 약속들 :) " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZh-we-R6q">
-                                <rect key="frame" x="94" y="52.000000000000007" width="187" height="26.333333333333336"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="완벽히 지킨 약속들" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZh-we-R6q">
+                                <rect key="frame" x="106.66666666666667" y="52.000000000000007" width="161.66666666666663" height="26.333333333333336"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -308,61 +308,61 @@
                                     <action selector="backBtnAction:" destination="2Kk-fu-Wu9" eventType="touchUpInside" id="65T-1a-QjJ"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ETO-Ah-llx">
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ETO-Ah-llx">
                                 <rect key="frame" x="0.0" y="111" width="375" height="618"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AQ9-fp-Wta">
-                                    <size key="itemSize" width="343" height="156"/>
+                                    <size key="itemSize" width="350" height="127"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EndedPromiseCVC" id="GQh-6U-JIy" customClass="EndedPromiseCVC" customModule="PinkyPromise" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="0.0" width="343" height="156"/>
+                                        <rect key="frame" x="12.666666666666666" y="0.0" width="350" height="127"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ad8-yA-9pi">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="156"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="127"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EqE-SH-sT8">
-                                                    <rect key="frame" x="14" y="12" width="40" height="40"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EqE-SH-sT8">
+                                                    <rect key="frame" x="14" y="12" width="35" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="ELS-yn-0bU"/>
+                                                        <constraint firstAttribute="width" constant="35" id="ELS-yn-0bU"/>
                                                         <constraint firstAttribute="width" secondItem="EqE-SH-sT8" secondAttribute="height" multiplier="10:10" id="ZPf-DF-Ccl"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WITH 누구랑 누구랑 누구랑 누구랑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yf9-l7-IFW">
-                                                    <rect key="frame" x="14" y="101" width="237" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께 한 친구가 없는 약속이에요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yf9-l7-IFW">
+                                                    <rect key="frame" x="14" y="95" width="209" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000.00.00 ~ 0000.00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiD-I6-3OU">
-                                                    <rect key="frame" x="14" y="66" width="198" height="21"/>
+                                                    <rect key="frame" x="14" y="60" width="198" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약속명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSo-nQ-Noe">
-                                                    <rect key="frame" x="70" y="21.666666666666671" width="44.333333333333343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="70" y="19" width="44.333333333333343" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yiD-I6-3OU" firstAttribute="top" secondItem="EqE-SH-sT8" secondAttribute="bottom" constant="14" id="6Aw-qG-9ix"/>
+                                                <constraint firstItem="yiD-I6-3OU" firstAttribute="top" secondItem="EqE-SH-sT8" secondAttribute="bottom" constant="13" id="6Aw-qG-9ix"/>
                                                 <constraint firstItem="yiD-I6-3OU" firstAttribute="leading" secondItem="yf9-l7-IFW" secondAttribute="leading" id="JLt-wf-V7H"/>
                                                 <constraint firstItem="EqE-SH-sT8" firstAttribute="top" secondItem="ad8-yA-9pi" secondAttribute="top" constant="12" id="LfF-d4-dQO"/>
                                                 <constraint firstItem="EqE-SH-sT8" firstAttribute="leading" secondItem="yiD-I6-3OU" secondAttribute="leading" id="MqH-bn-Y9L"/>
                                                 <constraint firstItem="yf9-l7-IFW" firstAttribute="top" secondItem="yiD-I6-3OU" secondAttribute="bottom" constant="14" id="NIu-gy-sHg"/>
                                                 <constraint firstItem="EqE-SH-sT8" firstAttribute="leading" secondItem="ad8-yA-9pi" secondAttribute="leading" constant="14" id="SKI-p4-h16"/>
-                                                <constraint firstItem="LSo-nQ-Noe" firstAttribute="leading" secondItem="EqE-SH-sT8" secondAttribute="trailing" constant="16" id="j9s-of-U85"/>
+                                                <constraint firstItem="LSo-nQ-Noe" firstAttribute="leading" secondItem="EqE-SH-sT8" secondAttribute="trailing" constant="21" id="j9s-of-U85"/>
                                                 <constraint firstItem="EqE-SH-sT8" firstAttribute="centerY" secondItem="LSo-nQ-Noe" secondAttribute="centerY" id="xyC-3J-gmO"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="343" height="156"/>
+                                        <size key="customSize" width="350" height="127"/>
                                         <connections>
                                             <outlet property="promiseDuration" destination="yiD-I6-3OU" id="5To-WL-4vB"/>
                                             <outlet property="promiseFriends" destination="yf9-l7-IFW" id="xpa-v3-CuJ"/>
@@ -405,6 +405,6 @@
         <image name="userDefaultImage" width="67.333335876464844" height="67.333335876464844"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GAV-dP-3s6"/>
+        <segue reference="vZO-1b-okj"/>
     </inferredMetricsTieBreakers>
 </document>

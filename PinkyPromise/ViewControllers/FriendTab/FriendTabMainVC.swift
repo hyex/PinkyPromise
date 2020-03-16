@@ -17,6 +17,8 @@ import UIKit
 
 class FriendTabMainVC: UIViewController {
     
+    private var segueFlag : Bool = false
+    
     @IBOutlet weak var topBackground: UILabel!
     @IBOutlet weak var addNewPromiseBtn: UIButton!
     @IBOutlet weak var promiseCtnLabel: UILabel!
@@ -39,7 +41,6 @@ class FriendTabMainVC: UIViewController {
     }
     
     func setTitleBackground() {
-        print("ui label func")
         topBackground.backgroundColor = UIColor.backgroundGray
         topBackground.layer.cornerRadius = 10
         topBackground.layer.masksToBounds = true
@@ -67,6 +68,14 @@ class FriendTabMainVC: UIViewController {
         self.present(vc, animated: false, completion: nil)
     }
     
+    @IBAction func promiseDetailBtnAction(_ sender: Any) {
+        print("in ibaction")
+        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
+        print("false / segueFlag = ", self.segueFlag)
+        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .overCurrentContext
+        
+    }
     private func getPromiseAndFriend() {
         self.PromiseList = []
         FriendTabMainService.shared.getPromiseNameAndFriendsName { (result) in
@@ -82,6 +91,7 @@ extension FriendTabMainVC : UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
+        print("false / segueFlag = ", self.segueFlag)
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
         vc.detailPromise = self.PromiseList[indexPath.row]
@@ -89,6 +99,8 @@ extension FriendTabMainVC : UITableViewDelegate{
         self.present(vc, animated: false) {
             vc.detailPromise = self.PromiseList[indexPath.row]
         }
+        
+        print("end of the tableview didSelectRowAt")
     }
 }
 
@@ -151,8 +163,9 @@ extension FriendTabMainVC : UITableViewDataSource{
     
     //segue 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "detailPromise" {
+        print("prepare func doing?")
+        self.segueFlag = true
+        if segue.identifier == "detailPromiseSegue" {
             let promise = sender as? PromiseWithFriend
             if promise != nil{
                 let FriendTabDetailVC = segue.destination as? FriendTabDetailVC
