@@ -193,13 +193,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnF-ge-7BA">
-                                                    <rect key="frame" x="14" y="71" width="9" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userDefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="ych-3u-9kM">
                                                     <rect key="frame" x="14" y="12" width="30" height="30"/>
                                                     <constraints>
@@ -241,7 +234,6 @@
                                             <outlet property="leftDays" destination="7fH-SQ-okZ" id="Ozp-r4-E5D"/>
                                             <outlet property="promiseIcon" destination="ych-3u-9kM" id="ceg-IF-gy7"/>
                                             <outlet property="promiseName" destination="b3V-ol-Qk1" id="8PR-S5-PJV"/>
-                                            <outlet property="showSliderValue" destination="xnF-ge-7BA" id="03p-3y-0WQ"/>
                                             <outlet property="totalDays" destination="pf5-zx-yxK" id="qYk-sy-lnz"/>
                                         </connections>
                                     </collectionViewCell>
@@ -290,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dy3-Lt-huf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="609" y="851"/>
+            <point key="canvasLocation" x="608.79999999999995" y="850.49261083743841"/>
         </scene>
         <!--Ended PromiseVC-->
         <scene sceneID="Guq-yJ-jdF">
@@ -413,6 +405,6 @@
         <image name="userDefaultImage" width="67.333335876464844" height="67.333335876464844"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vZO-1b-okj"/>
+        <segue reference="GAV-dP-3s6"/>
     </inferredMetricsTieBreakers>
 </document>
