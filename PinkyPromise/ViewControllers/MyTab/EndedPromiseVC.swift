@@ -105,12 +105,11 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
         
         let rowData = promiseList[indexPath.row]
         
-        cell.promiseFriends.text = "WITH "
-        
         if let id = rowData.promiseId {
             EndedPromiseService.shared.getPromiseFriendsNameWithPID(promiseID: id, completion: { result in
                 DispatchQueue.main.async {
                     // 친구 3명까지만 이름 노출, 그 외에는 "와 x명"으로 표시
+                    cell.promiseFriends.text = "WITH "
                     for friend in result {
                         cell.promiseFriends.text! += friend + " "
                         if result.count > 3 {
@@ -120,6 +119,7 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
                                 break
                             }
                         }
+                        
                     }
                 }
             })
@@ -138,7 +138,7 @@ extension EndedPromiseVC: UICollectionViewDelegate, UICollectionViewDataSource{
 //        let promiseColor = rowData.promiseColor!
 //        cell.backgroundColor = UIColor(named :promiseColor)
 //        cell.layer.shadowColor = UIColor(named :promiseColor)?.cgColor
-        cell.applyBorder(width: 1.0, color: UIColor.appColor)
+//        cell.applyBorder(width: 1.0, color: UIColor.appColor)
         cell.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         cell.layer.shadowColor = UIColor.appColor.cgColor
 

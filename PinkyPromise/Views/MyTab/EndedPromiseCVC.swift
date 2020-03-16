@@ -26,8 +26,8 @@ class EndedPromiseCVC: UICollectionViewCell {
         self.layer.masksToBounds = false
         
         self.promiseIcon.layer.cornerRadius = self.promiseIcon.frame.height/2
-        self.promiseIcon.layer.masksToBounds = true
-        self.promiseIcon.clipsToBounds = true
+//        self.promiseIcon.layer.masksToBounds = false
+//        self.promiseIcon.clipsToBounds = true
         
     }
 
