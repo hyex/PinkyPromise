@@ -31,6 +31,11 @@ class MainTabBarController: UITabBarController {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: unselectedColor], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectedColor], for: .selected)
         
+//        if UserDefaults.standard.bool(forKey: "appleLogin") == true {
+//            self.showAlertPWResetController(style: UIAlertController.Style.alert)
+//            UserDefaults.standard.set(false, forKey: "appleLogin")
+//        }
+        
         //        let temp = PromiseTable(promiseName: "테스트테스트1", promiseStartTime: Date(timeIntervalSince1970: 1579989600), promiseEndTime: Date(timeIntervalSince1970: 1581199200), promiseColor: "blueblack", promiseIcon: "maybe", promiseUsers: [ "xF2R2vcXdhdY1PutfR7yTeTE6542", "Z42iyamWUEMXnPcOi0iwPRrGU4q1" ], isPromiseAchievement: false, promisePanalty: "벌칙벌칙", promiseId: MyApi.shared.randomNonceString() )
         //
         //        MyApi.shared.addPromiseData(temp)

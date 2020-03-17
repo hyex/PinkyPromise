@@ -20,6 +20,7 @@ struct promiseNameAndFriendsName {
 
 struct promiseDetailjunior1 {
     var promiseName: String!//약속이름
+    var promiseId: String!//약속 id
     var promiseDay: Double!//약속 기간 -> 약속시작일부터 약속종료일 뺀값
     var promiseDaySinceStart: Double!//현재 며칠짼지 약속시작일부터 오늘까지 뺀값
     var friendsUIDList: Array<String>!// 약속 이름 리스트

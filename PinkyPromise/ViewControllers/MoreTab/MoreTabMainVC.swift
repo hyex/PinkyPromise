@@ -26,10 +26,52 @@ class MoreTabMainVC: UIViewController {
         picker.delegate = self
         // getUserData()
         initView()
+        
+    }
+    
+    func showAlertPWResetController(style: UIAlertController.Style) {
+        let alertController: UIAlertController
+        
+        alertController = UIAlertController(title: "나의 이름을 입력하세요", message: "아무것도 없으면 이메일이 내 이름이 됩니다.", preferredStyle: style)
+        
+        let cancelActoin: UIAlertAction
+        cancelActoin = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        
+        alertController.addTextField { (field: UITextField ) in
+            field.placeholder = "NickName"
+            field.textContentType = UITextContentType.name
+        }
+        
+        let okAction: UIAlertAction
+        okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
+            
+//            FirebaseUserService.forgotPassword(withEmail: (alertController.textFields![0] as UITextField).text! , success: {
+//                //SVProgressHUD.showInfo(withStatus: "비밀번호 재설정 링크가 이메일 주소로 전송되었습니다.")
+//                self.showAlert(message: "비밀번호 재설정 링크가 이메일 주소로 전송되었습니다.")
+//                self.navigationController?.popViewController(animated: true)
+//                //SVProgressHUD.dismiss()
+//            }) { (error) in
+//                //SVProgressHUD.showError(withStatus: error.localizedDescription)
+//                self.showAlert(message: "\(error.localizedDescription)")
+//            }
+            MyApi.shared.updateUserNameinAppleLogin(name: (alertController.textFields![0] as UITextField).text ?? self.userName.text!)
+        })
+        
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true, completion: {
+            print("alert controller shown")
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.dismiss(animated: false, completion: nil)
+        
+        if UserDefaults.standard.bool(forKey: "appleLogin") == true {
+            self.showAlertPWResetController(style: UIAlertController.Style.alert)
+            UserDefaults.standard.set(false, forKey: "appleLogin")
+            self.userName.reloadInputViews()
+        }
     }
     
     // MARK: wantToFix

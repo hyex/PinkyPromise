@@ -361,7 +361,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                         print("not yet logined...")
                         self.navigationController?.isNavigationBarHidden = true
                         UserDefaults.standard.set(true, forKey: "loggedIn")
-                        
+                        UserDefaults.standard.set(true, forKey: "appleLogin")
                         //let i = (authResult?.user.email)!.firstIndex(of: "@")
                         
                         MyApi.shared.getUserData(completion: { (result) in

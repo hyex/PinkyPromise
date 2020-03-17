@@ -1061,6 +1061,16 @@ class MyApi: NSObject {
         }
     }
     
+    func updateUserNameinAppleLogin(name: String) {
+        userCollectionRef.document(FirebaseUserService.currentUserID!).updateData([USERNAME: name]) { err in
+            if let error = err {
+                debugPrint(error.localizedDescription)
+            } else {
+                print("update name success!!")
+            }
+        }
+    }
+    
     //프로미스 어치브먼트 바꾸는함수
     func updatePromiseAchievement(promiseID: String) {
         promiseCollectionRef.document(promiseID).updateData([ISPROMISEACHIEVEMENT : true])
