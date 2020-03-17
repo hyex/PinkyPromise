@@ -146,7 +146,7 @@ extension AddPromiseVC {
         self.myFriends = []
         AddPromiseService.shared.getUserData { (result) in
             var i = 0
-            result[0].userFriends.forEach { (friendId) in
+             result[0].userFriends.forEach { (friendId) in
                 AddPromiseService.shared.getUserDataWithUID(id: friendId) { (friend) in
                       let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
                       self.myFriends.append(temp)

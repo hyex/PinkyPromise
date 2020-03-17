@@ -120,13 +120,13 @@ class HomeTabMainService : NSObject {
                 print(err.localizedDescription)
             } else {
                 let promises = PromiseTable.parseData(snapShot: snapShot)
-                let dayT = floor(day.timeIntervalSince1970/86400)*86400+54000
-                let promises2 = promises.filter { $0.promiseEndTime.timeIntervalSince1970 >= dayT && $0.promiseStartTime.timeIntervalSince1970 <= dayT }
+                let dayT = Int(day.timeIntervalSince1970/86400)*86400+54000
+                let promises2 = promises.filter { $0.promiseEndTime.timeIntervalSince1970 >= Double(dayT) && $0.promiseStartTime.timeIntervalSince1970 <= Double(dayT) }
                 
                 var temp = [PromiseAndProgressNotDay]()
                 
                 for douc in promises2 {
-                    
+            
                     self.progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
                         if let err = error {
                             print(err.localizedDescription)
@@ -137,6 +137,7 @@ class HomeTabMainService : NSObject {
                                 temp.append(temp2)
                             
                                 if temp.count == promises2.count {
+                                    temp = temp.sorted(by: {$0.promiseData.promiseName < $1.promiseData.promiseName})
                                     completion(PromiseAndProgress1(Day: day, PAPD: temp))
                                 }
                             }

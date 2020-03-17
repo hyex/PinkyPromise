@@ -173,8 +173,7 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 
                 
                 var promiseAchievement:Int = 0
-                let sliderValueOriginX = promiseCell.showSliderValue.layer.position.x
-                let sliderValueOriginY = promiseCell.showSliderValue.layer.position.y
+                let sliderValueOriginX = CGFloat(15)
                 
                 if let id = rowData.promiseId {
                     PromiseChildService.shared.getProgressDataWithPromiseId(promiseid: id, completion: { result in
@@ -193,15 +192,12 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                             
                             let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
                             
-                            promiseCell.showSliderValue.layer.position.x = sliderValueOriginX + calcValue //- CGFloat(2.0)
-                            promiseCell.showSliderValue.layer.position.y = sliderValueOriginY
-                            
+                            promiseCell.showSliderValue.center = CGPoint(x: sliderValueOriginX + calcValue, y: 81)   
                         }
-                        
                     })
                 }
-                
             }
+            
             cell = promiseCell
         }
         return cell

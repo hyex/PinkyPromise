@@ -46,7 +46,6 @@ class PromiseDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("in viewDidLoad")
         setUpTableView()
         setBackBtn()
         setPromieName()
@@ -79,6 +78,9 @@ class PromiseDetailVC: UIViewController {
         let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
         self.promiseInfoTableView.tableFooterView = dummyView;
         self.promiseInfoTableView.clipsToBounds = true
+        
+        promiseInfoTableView.rowHeight = UITableView.automaticDimension
+        promiseFriendTableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -213,7 +215,7 @@ extension PromiseDetailVC : UITableViewDataSource{
         if let promiseId = promiseDetail?.promiseId {
             PromiseDetailService.shared.getDataforDetailViewjrWithoutMe(promiseID: promiseId) { (result) in
                 for douc in result.friendsDetail {
-                    self.promiseFriends.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree))
+                    self.promiseFriends.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree, progress: 100))
                 }
             }
         } else {

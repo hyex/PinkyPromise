@@ -16,7 +16,7 @@ class PromiseCVC: UICollectionViewCell {
     @IBOutlet weak var leftDays: UILabel!
     @IBOutlet weak var totalDays: UILabel!
     @IBOutlet weak var appSlider: CustomSlider!
-    @IBOutlet weak var showSliderValue: UILabel!
+    let showSliderValue = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
     
     
     // 사용자가 값을 변경할 수 없게 user interaction enabled 를 false로 만들어 이 함수는 실행 되지 않을 것임
@@ -35,6 +35,10 @@ class PromiseCVC: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.showSliderValue.textAlignment = .center
+        self.showSliderValue.font = UIFont.systemFont(ofSize: CGFloat(14))
+        self.addSubview(showSliderValue)
+        
         // view setup
         self.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         self.layer.cornerRadius = 8.0
@@ -45,7 +49,7 @@ class PromiseCVC: UICollectionViewCell {
         self.layer.masksToBounds = false
 
         self.promiseIcon.layer.cornerRadius = self.promiseIcon.frame.height/2
-        self.promiseIcon.layer.masksToBounds = true
+        self.promiseIcon.layer.masksToBounds = false
         
     }
 }
