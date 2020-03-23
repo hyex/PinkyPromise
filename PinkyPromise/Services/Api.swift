@@ -693,6 +693,7 @@ class MyApi: NSObject {
                 progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
                     if let err = error {
                         print("this is err..1 \(err.localizedDescription)")
+                        
                     } else {
                         let temp2 = ProgressTable.parseData(snapShot: snapShot)
                         

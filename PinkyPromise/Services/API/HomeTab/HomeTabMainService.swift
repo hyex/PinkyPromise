@@ -13,14 +13,15 @@ import FirebaseFirestore
 
 class HomeTabMainService : NSObject {
     static let shared = HomeTabMainService()
-        
-        fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
-        fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
-        fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
-        
-        var promiseListner: ListenerRegistration!
-        
-        let dateFormatter = DateFormatter()
+    
+    fileprivate let promiseCollectionRef = Firestore.firestore().collection(PROMISETABLEREF)
+    fileprivate let userCollectionRef = Firestore.firestore().collection(PROMISEUSERREF)
+    fileprivate let progressCollectionRef = Firestore.firestore().collection(PROGRESSTABLEREF)
+    
+    var promiseListner: ListenerRegistration!
+    
+    let dateFormatter = DateFormatter()
+    var networkDelegate: SendNetWorkConnectionDelegate!
     
     //real homeTab
     func getAllHome(completion: @escaping ([PromiseAndProgress1]) -> Void){
@@ -41,75 +42,75 @@ class HomeTabMainService : NSObject {
         
         self.getAllDataWithDate(day: firstDay) { (result) in
             temp3.append(result)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(1 * 86400) ) ) { (result2) in
+            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(1 * 86400) ) ) { (result2) in
                 temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(2 * 86400) ) ) { (result2) in
+                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(2 * 86400) ) ) { (result2) in
                     temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(3 * 86400)) ) { (result2) in
+                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(3 * 86400)) ) { (result2) in
                         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(4 * 86400) ) ) { (result2) in
+                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(4 * 86400) ) ) { (result2) in
                             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(5 * 86400)) ) { (result2) in
+                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(5 * 86400)) ) { (result2) in
                                 temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(6 * 86400) ) ) { (result2) in
+                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(6 * 86400) ) ) { (result2) in
                                     temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(7 * 86400)) ) { (result2) in
+                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(7 * 86400)) ) { (result2) in
                                         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(8 * 86400) ) ) { (result2) in
+                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(8 * 86400) ) ) { (result2) in
                                             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(9 * 86400) ) ) { (result2) in
+                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(9 * 86400) ) ) { (result2) in
                                                 temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(10 * 86400) ) ) { (result2) in
+                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(10 * 86400) ) ) { (result2) in
                                                     temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(11 * 86400)) ) { (result2) in
+                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(11 * 86400)) ) { (result2) in
                                                         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(12 * 86400) ) ) { (result2) in
+                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(12 * 86400) ) ) { (result2) in
                                                             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(13 * 86400) ) ) { (result2) in
+                                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(13 * 86400) ) ) { (result2) in
                                                                 temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(14 * 86400)) ) { (result2) in
+                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(14 * 86400)) ) { (result2) in
                                                                     temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(15 * 86400)) ) { (result2) in
+                                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(15 * 86400)) ) { (result2) in
                                                                         temp3.append(result2)
-         self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(16 * 86400) ) ) { (result2) in
+                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(16 * 86400) ) ) { (result2) in
                                                                             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(17 * 86400)) ) { (result2) in
-             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(18 * 86400)) ) { (result2) in
-                         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(19 * 86400) ) ) { (result2) in
-         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(20 * 86400)) ) { (result2) in
-              temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(21 * 86400) ) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(22 * 86400) ) ) { (result2) in
-             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(23 * 86400)) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(24 * 86400) ) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(25 * 86400) ) ) { (result2) in
-             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(26 * 86400) ) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(27 * 86400) ) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(28 * 86400) ) ) { (result2) in
-        temp3.append(result2)
-            if days > 29 {
-       self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(29 * 86400) ) ) { (result2) in
-                temp3.append(result2)
-        if days > 30 {
-            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(30 * 86400) ) ) { (result2) in
-                temp3.append(result2)
-                completion(temp3)
-            }
-        } else {
-            completion(temp3)
-        }}} else {
-                completion(temp3)
-            }}}}}}}}}}}}}}}}}}}}}} }}}}}}}}
+                                                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(17 * 86400)) ) { (result2) in
+                                                                                temp3.append(result2)
+                                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(18 * 86400)) ) { (result2) in
+                                                                                    temp3.append(result2)
+                                                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(19 * 86400) ) ) { (result2) in
+                                                                                        temp3.append(result2)
+                                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(20 * 86400)) ) { (result2) in
+                                                                                            temp3.append(result2)
+                                                                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(21 * 86400) ) ) { (result2) in
+                                                                                                temp3.append(result2)
+                                                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(22 * 86400) ) ) { (result2) in
+                                                                                                    temp3.append(result2)
+                                                                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(23 * 86400)) ) { (result2) in
+                                                                                                        temp3.append(result2)
+                                                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(24 * 86400) ) ) { (result2) in
+                                                                                                            temp3.append(result2)
+                                                                                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(25 * 86400) ) ) { (result2) in
+                                                                                                                temp3.append(result2)
+                                                                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(26 * 86400) ) ) { (result2) in
+                                                                                                                    temp3.append(result2)
+                                                                                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(27 * 86400) ) ) { (result2) in
+                                                                                                                        temp3.append(result2)
+                                                                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(28 * 86400) ) ) { (result2) in
+                                                                                                                            temp3.append(result2)
+                                                                                                                            if days > 29 {
+                                                                                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(29 * 86400) ) ) { (result2) in
+                                                                                                                                    temp3.append(result2)
+                                                                                                                                    if days > 30 {
+                                                                                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(30 * 86400) ) ) { (result2) in
+                                                                                                                                            temp3.append(result2)
+                                                                                                                                            completion(temp3)
+                                                                                                                                        }
+                                                                                                                                    } else {
+                                                                                                                                        completion(temp3)
+                                                                                                                                    }}} else {
+                                                                                                                                completion(temp3)
+                                                                                                                            }}}}}}}}}}}}}}}}}}}}}} }}}}}}}}
     }
     
     
@@ -126,16 +127,24 @@ class HomeTabMainService : NSObject {
                 var temp = [PromiseAndProgressNotDay]()
                 
                 for douc in promises2 {
-            
+                    
                     self.progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
                         if let err = error {
                             print(err.localizedDescription)
+                            if connectedToNetwork == false {
+                                print("check wifi")
+                                self.networkDelegate.sendData(data: connectedToNetwork)
+                            }
                         } else {
+                            if connectedToNetwork == false {
+                                print("check wifi")
+                                self.networkDelegate.sendData(data: connectedToNetwork)
+                            }
                             let progress1 = ProgressTable.parseData(snapShot: snapShot)
                             if progress1.count > 0 {
                                 let temp2 = PromiseAndProgressNotDay(promiseData: douc, progressData: progress1[0])
                                 temp.append(temp2)
-                            
+                                
                                 if temp.count == promises2.count {
                                     temp = temp.sorted(by: {$0.promiseData.promiseName < $1.promiseData.promiseName})
                                     completion(PromiseAndProgress1(Day: day, PAPD: temp))
@@ -174,5 +183,5 @@ class HomeTabMainService : NSObject {
         
         return days
     }
-        
+    
 }

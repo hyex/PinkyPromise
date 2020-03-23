@@ -105,7 +105,7 @@ class MoreTabMainVC: UIViewController {
         
         MoreTabMainService.shared.getUserData(completion: { result in
             DispatchQueue.main.async {
-                self.user = result[0]
+                       self.user = result[0]
                 self.userName.text = result[0].userName
                 imageName = (self.user?.userImage)!
                 if imageName == self.user?.userId {
