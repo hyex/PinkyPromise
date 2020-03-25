@@ -116,7 +116,8 @@ class AddPromiseVC: UIViewController {
         
         AddPromiseService.shared.addPromiseData(newPromise)
         AddPromiseService.shared.addProgressData(newPromise)
-        self.dismiss(animated: false, completion: nil)
+        
+        alertData(name: "save")
     }
 }
 
@@ -158,22 +159,27 @@ extension AddPromiseVC {
     
     func alertData(name : String) {
         var text: String!
+        var action: UIAlertAction!
+        
         switch name {
         case "calendar":
             text = "365일이상 선택할 수 없습니다."
+            action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
             break
         case "title":
             text = "제목을 입력해주세요."
+            action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
             break
         default:
+            text = "약속이 생성되었습니다!"
+            action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { (action) in
+                self.dismiss(animated: false, completion: nil)
+            }
             break
         }
         
         let dialog = UIAlertController(title: text, message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
         dialog.addAction(action)
-        
         self.present(dialog, animated: true, completion: nil)
     }
 }
