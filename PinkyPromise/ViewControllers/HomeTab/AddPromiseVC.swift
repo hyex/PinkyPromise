@@ -238,7 +238,7 @@ extension AddPromiseVC {
             return 75
         }
         else if indexPath.row == 3 {
-            return self.view.frame.height/4
+            return self.view.frame.height/3.5
         }
         else { return 55 }
     }

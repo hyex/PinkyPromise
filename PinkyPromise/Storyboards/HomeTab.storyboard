@@ -390,8 +390,6 @@
                                                 <constraint firstItem="Hd0-jb-nME" firstAttribute="top" secondItem="umz-WS-F5L" secondAttribute="top" constant="11" id="XhL-NK-4m8"/>
                                                 <constraint firstItem="Hd0-jb-nME" firstAttribute="leading" secondItem="umz-WS-F5L" secondAttribute="leading" constant="16" id="cVD-x6-Gyd"/>
                                                 <constraint firstItem="Hd0-jb-nME" firstAttribute="centerY" secondItem="umz-WS-F5L" secondAttribute="centerY" id="kPq-bE-GCA"/>
-                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="height" secondItem="umz-WS-F5L" secondAttribute="height" multiplier="0.912" id="niM-7K-2EU"/>
-                                                <constraint firstItem="Hd0-jb-nME" firstAttribute="width" secondItem="umz-WS-F5L" secondAttribute="width" multiplier="0.914667" id="vOA-sc-bIh"/>
                                                 <constraint firstAttribute="trailing" secondItem="Hd0-jb-nME" secondAttribute="trailing" constant="16" id="yXj-d4-YO6"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -413,7 +411,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="withFriends" translatesAutoresizingMaskIntoConstraints="NO" id="22Y-lo-ZfT">
-                                                    <rect key="frame" x="16" y="18.666666666666671" width="30" height="30"/>
+                                                    <rect key="frame" x="16" y="18.666666666666671" width="30" height="30.000000000000227"/>
                                                     <color key="tintColor" red="0.55294117647058827" green="0.27450980392156865" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="2y7-ga-YOc"/>
