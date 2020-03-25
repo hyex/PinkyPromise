@@ -74,9 +74,17 @@ class AddProgressVC: UIViewController {
     
     @IBAction func saveBtnAction(_ sender: Any) {
         AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable)
-        
-        self.dismiss(animated: false, completion: nil)
-
+        alertSave()
+    }
+    
+    func alertSave() {
+        let text: String = "입력되었습니다!"
+        let dialog = UIAlertController(title: text, message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { (action) in
+            self.dismiss(animated: false, completion: nil)
+        }
+        dialog.addAction(action)
+        self.present(dialog, animated: true, completion: nil)
     }
 }
 
