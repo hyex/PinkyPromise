@@ -84,16 +84,12 @@ class PromiseDetailVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("in viewWillAppear")
         getPromiseFriendData()
-
-        
         self.myGroup.enter()
         getProgressData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("in viewWillDisappear")
         //        self.dismiss(animated: false, completion: nil)
         //        self.navigationController?.popViewController(animated: true)
     }
