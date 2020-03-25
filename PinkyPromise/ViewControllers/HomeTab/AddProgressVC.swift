@@ -73,16 +73,32 @@ class AddProgressVC: UIViewController {
     }
     
     @IBAction func saveBtnAction(_ sender: Any) {
+        if connectedToNetwork == false {
+            alertSave(name: "network")
+            return
+        }
+        
         AddProgressService.shared.updateProgress(day: self.day, userId: FirebaseUserService.currentUserID!, data: self.selectedProgress, promise: self.promiseTable)
-        alertSave()
+        alertSave(name: "save")
     }
     
-    func alertSave() {
-        let text: String = "입력되었습니다!"
-        let dialog = UIAlertController(title: text, message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { (action) in
-            self.dismiss(animated: false, completion: nil)
+    func alertSave(name : String) {
+        var text: String!
+        var action: UIAlertAction!
+        
+        switch name {
+        case "network":
+            text = "네트워크 연결을 확인해주세요."
+            action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
+        default:
+            text = "입력되었습니다!"
+            action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { (action) in
+                self.dismiss(animated: false, completion: nil)
+            }
+            break
         }
+        
+        let dialog = UIAlertController(title: text, message: "", preferredStyle: .alert)
         dialog.addAction(action)
         self.present(dialog, animated: true, completion: nil)
     }

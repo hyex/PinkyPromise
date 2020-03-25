@@ -112,6 +112,11 @@ class AddPromiseVC: UIViewController {
         // error
         if dataName == "" { alertData(name: "title"); return }
         
+        // network error
+        if connectedToNetwork == false {
+            alertData(name: "network"); return
+        }
+
         let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: false, promisePanalty: promisePanalty, promiseId: MyApi.shared.randomNonceString())
         
         AddPromiseService.shared.addPromiseData(newPromise)
@@ -170,6 +175,9 @@ extension AddPromiseVC {
             text = "제목을 입력해주세요."
             action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
             break
+        case "network":
+            text = "네트워크 연결을 확인해주세요."
+            action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
         default:
             text = "약속이 생성되었습니다!"
             action = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { (action) in
