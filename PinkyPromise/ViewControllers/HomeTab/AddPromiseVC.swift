@@ -117,7 +117,7 @@ class AddPromiseVC: UIViewController {
             alertData(name: "network"); return
         }
 
-        let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: false, promisePanalty: promisePanalty, promiseId: MyApi.shared.randomNonceString())
+        let newPromise = PromiseTable(promiseName: dataName, promiseStartTime: dataStartTime, promiseEndTime: dataEndTime, promiseColor: dataColor, promiseIcon: dataIcon, promiseUsers: dataUsers, isPromiseAchievement: false, promisePanalty: promisePanalty, promiseId: AddPromiseService.shared.randomNonceString())
         
         AddPromiseService.shared.addPromiseData(newPromise)
         AddPromiseService.shared.addProgressData(newPromise)
