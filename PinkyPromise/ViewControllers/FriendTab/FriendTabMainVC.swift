@@ -41,7 +41,7 @@ class FriendTabMainVC: UIViewController {
     }
     
     func setTitleBackground() {
-        topBackground.backgroundColor = UIColor.backgroundGray
+//        topBackground.backgroundColor = UIColor.backgroundGray
         topBackground.layer.cornerRadius = 10
         topBackground.layer.masksToBounds = true
     }
