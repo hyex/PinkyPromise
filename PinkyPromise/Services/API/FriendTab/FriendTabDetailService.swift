@@ -30,7 +30,7 @@ class FriendTabDetailService : NSObject {
                 let result = PromiseTable.parseData(snapShot: snapshot)
                 
                 if result.count > 0 {
-                    let promiseDay = Double( (result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400)
+                    let promiseDay = Double( (result[0].promiseEndTime.timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970) / 86400) + 1.0
                     
                     let promiseDaysinceToday = Double( ( Date(timeIntervalSince1970: ceil(Date().timeIntervalSince1970/86400)*86400 + 21600 - (15*3600)).timeIntervalSince1970 - result[0].promiseStartTime.timeIntervalSince1970 ) / 86400 )
                     
