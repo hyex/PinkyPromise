@@ -26,7 +26,6 @@
 		18DC0BEF2428E828009D8873 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC0BEE2428E828009D8873 /* Network.swift */; };
 		33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5623CD983A004E0104 /* DayChildVC.swift */; };
 		33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5823CD9848004E0104 /* PromiseChildVC.swift */; };
-		33028C6023CDB21B004E0104 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5F23CDB21B004E0104 /* Api.swift */; };
 		33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C6123CDB35B004E0104 /* DayTVC.swift */; };
 		3303394523E3051F00B84316 /* MyFriendTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303394423E3051F00B84316 /* MyFriendTVC.swift */; };
 		330AE60923CB56DC00706769 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 330AE5FD23CB56DC00706769 /* Assets.xcassets */; };
@@ -136,7 +135,6 @@
 		2BDC4506C0E7546CBE6D7E26 /* Pods-PinkyPromise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinkyPromise.release.xcconfig"; path = "Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise.release.xcconfig"; sourceTree = "<group>"; };
 		33028C5623CD983A004E0104 /* DayChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChildVC.swift; sourceTree = "<group>"; };
 		33028C5823CD9848004E0104 /* PromiseChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseChildVC.swift; sourceTree = "<group>"; };
-		33028C5F23CDB21B004E0104 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		33028C6123CDB35B004E0104 /* DayTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVC.swift; sourceTree = "<group>"; };
 		3303394423E3051F00B84316 /* MyFriendTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendTVC.swift; sourceTree = "<group>"; };
 		330AE5FD23CB56DC00706769 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 			children = (
 				A9FD47F92405031300DFDF20 /* API */,
 				1808C1D723E41A73004D5ED2 /* AppleAuth */,
-				33028C5F23CDB21B004E0104 /* Api.swift */,
 				186D855323D41C94006DA619 /* Constants.swift */,
 				1875B63523D876FE00751947 /* FirebaseStorageService.swift */,
 				18BA607723DFF02E00925578 /* FirebaseUserService.swift */,
@@ -836,7 +833,6 @@
 				A9FD48032405059600DFDF20 /* AddPromiseService.swift in Sources */,
 				A97AD54D241327D500621F0F /* PromiseDateVC.swift in Sources */,
 				3FE061D923E0E6C200CD2F6A /* CheckFriendsTVC.swift in Sources */,
-				33028C6023CDB21B004E0104 /* Api.swift in Sources */,
 				3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */,
 				33B7E8E323E1E4B200B2D6C0 /* MyFriendVC.swift in Sources */,
 				3F08320823E5752C000B2F49 /* Colors.swift in Sources */,
