@@ -52,4 +52,8 @@ class PromiseCVC: UICollectionViewCell {
         self.promiseIcon.layer.masksToBounds = false
         
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
 }
