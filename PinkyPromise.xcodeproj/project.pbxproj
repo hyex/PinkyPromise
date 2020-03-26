@@ -281,6 +281,14 @@
 			path = LoginView;
 			sourceTree = "<group>";
 		};
+		18BFE8B5242CB350008E31D3 /* LoginTab */ = {
+			isa = PBXGroup;
+			children = (
+				33028C5F23CDB21B004E0104 /* Api.swift */,
+			);
+			path = LoginTab;
+			sourceTree = "<group>";
+		};
 		18DC0BED2428E7FE009D8873 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +596,7 @@
 		A9FD47F92405031300DFDF20 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				18BFE8B5242CB350008E31D3 /* LoginTab */,
 				A9FD47FA2405033700DFDF20 /* HomeTab */,
 				A9FD47FB2405034000DFDF20 /* MyTab */,
 				A9FD47FC2405034C00DFDF20 /* FriendTab */,
@@ -998,6 +1007,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
