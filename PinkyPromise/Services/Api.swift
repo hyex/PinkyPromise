@@ -693,6 +693,7 @@ class MyApi: NSObject {
                 progressCollectionRef.whereField(PROMISEID, isEqualTo: douc.promiseId).whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
                     if let err = error {
                         print("this is err..1 \(err.localizedDescription)")
+                        
                     } else {
                         let temp2 = ProgressTable.parseData(snapShot: snapShot)
                         
@@ -1057,6 +1058,16 @@ class MyApi: NSObject {
                     }
                     
                 }
+            }
+        }
+    }
+    
+    func updateUserNameinAppleLogin(name: String) {
+        userCollectionRef.document(FirebaseUserService.currentUserID!).updateData([USERNAME: name]) { err in
+            if let error = err {
+                debugPrint(error.localizedDescription)
+            } else {
+                print("update name success!!")
             }
         }
     }

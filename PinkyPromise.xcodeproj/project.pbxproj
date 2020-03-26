@@ -23,6 +23,7 @@
 		18BA607823DFF02E00925578 /* FirebaseUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA607723DFF02E00925578 /* FirebaseUserService.swift */; };
 		18BA607C23E0D08100925578 /* promiseNameAndFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA607B23E0D08100925578 /* promiseNameAndFriends.swift */; };
 		18BA607E23E1834200925578 /* DayAndPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA607D23E1834200925578 /* DayAndPromise.swift */; };
+		18DC0BEF2428E828009D8873 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC0BEE2428E828009D8873 /* Network.swift */; };
 		33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5623CD983A004E0104 /* DayChildVC.swift */; };
 		33028C5923CD9848004E0104 /* PromiseChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5823CD9848004E0104 /* PromiseChildVC.swift */; };
 		33028C6023CDB21B004E0104 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33028C5F23CDB21B004E0104 /* Api.swift */; };
@@ -131,6 +132,7 @@
 		18BA607723DFF02E00925578 /* FirebaseUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserService.swift; sourceTree = "<group>"; };
 		18BA607B23E0D08100925578 /* promiseNameAndFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promiseNameAndFriends.swift; sourceTree = "<group>"; };
 		18BA607D23E1834200925578 /* DayAndPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAndPromise.swift; sourceTree = "<group>"; };
+		18DC0BEE2428E828009D8873 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		2BDC4506C0E7546CBE6D7E26 /* Pods-PinkyPromise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinkyPromise.release.xcconfig"; path = "Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise.release.xcconfig"; sourceTree = "<group>"; };
 		33028C5623CD983A004E0104 /* DayChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChildVC.swift; sourceTree = "<group>"; };
 		33028C5823CD9848004E0104 /* PromiseChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseChildVC.swift; sourceTree = "<group>"; };
@@ -281,6 +283,14 @@
 			path = LoginView;
 			sourceTree = "<group>";
 		};
+		18DC0BED2428E7FE009D8873 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				18DC0BEE2428E828009D8873 /* Network.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		33028C5E23CDB208004E0104 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +307,7 @@
 		330AE5FB23CB56DC00706769 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				18DC0BED2428E7FE009D8873 /* Network */,
 				188AAA3523D5CE0E00E8BB70 /* Authentication */,
 				186D855523D42124006DA619 /* promiseData */,
 				334AACF123CC311B00AAF955 /* MyTab */,
@@ -814,6 +825,7 @@
 				186D855423D41C94006DA619 /* Constants.swift in Sources */,
 				3F97E6D823E684250031A2E1 /* ProgressCVC.swift in Sources */,
 				1875B63A23D99F7400751947 /* signInVC.swift in Sources */,
+				18DC0BEF2428E828009D8873 /* Network.swift in Sources */,
 				A97AD54F24132DC800621F0F /* CalendarVC.swift in Sources */,
 				33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */,
 				33028C6223CDB35B004E0104 /* DayTVC.swift in Sources */,

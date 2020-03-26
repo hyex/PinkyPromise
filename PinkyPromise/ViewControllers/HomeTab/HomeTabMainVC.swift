@@ -160,23 +160,24 @@ extension HomeTabMainVC: FSCalendarDataSource, FSCalendarDelegate {
     private func configureVisibleCell(date: Date, cell: MyCalendarCell) {
         let date = Date(timeInterval: 86400, since: date)
         HomeTabMainService.shared.getAllDataWithDate(day: date) { (day) in
+        
             self.days[date] = day
             var progress: Int = 0
 
             for pm in day.PAPD {
                 let datindex = Int(date.timeIntervalSince1970 - pm.promiseData.promiseStartTime.timeIntervalSince1970) / 86400
-                if pm.progressData.progressDegree[datindex] == -1 {
-                    continue
-                } else {
+                if pm.progressData.progressDegree[datindex] != -1 {
                     progress += pm.progressData.progressDegree[datindex]
                 }
             }
 
             if day.PAPD.count > 0
             {
-                cell.setBackgroundColor(progress: ceil(Double(progress / day.PAPD.count)))
+                var calculatedProgress = Double(progress) / Double(day.PAPD.count)
+                calculatedProgress = calculatedProgress < 1 ? ceil(calculatedProgress) : floor(calculatedProgress)
+                cell.setBackgroundColor(progress: calculatedProgress)
             } else {
-                cell.setBackgroundColor(progress: ceil(0.0))
+                cell.setBackgroundColor(progress: 0.0)
             }
             self.tableView.reloadData()
         }
@@ -231,7 +232,8 @@ extension HomeTabMainVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayPromiseListCell") as! DayPromiseListTVC
-
+        
+        
         let date = Date(timeInterval: 86400, since: self.calendar.selectedDate ?? self.calendar.today!)
 
         cell.delegate = self
