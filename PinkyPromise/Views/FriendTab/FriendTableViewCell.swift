@@ -13,7 +13,7 @@ class FriendTableViewCell: UITableViewCell {
     
     @IBOutlet weak var friendNameLabel: UILabel!
     
-    @IBOutlet weak var friendDatailBtn: UIButton!
+    @IBOutlet weak var friendDetailImg: UIImageView!
     
     @IBOutlet weak var promiseNameLabel: UILabel!
     

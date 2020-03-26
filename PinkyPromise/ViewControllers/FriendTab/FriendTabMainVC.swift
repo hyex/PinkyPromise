@@ -68,14 +68,7 @@ class FriendTabMainVC: UIViewController {
         self.present(vc, animated: false, completion: nil)
     }
     
-    @IBAction func promiseDetailBtnAction(_ sender: Any) {
-        print("in ibaction")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
-        print("false / segueFlag = ", self.segueFlag)
-        vc.modalTransitionStyle = .flipHorizontal
-        vc.modalPresentationStyle = .overCurrentContext
-        
-    }
+    
     private func getPromiseAndFriend() {
         self.PromiseList = []
         FriendTabMainService.shared.getPromiseNameAndFriendsName { (result) in
@@ -89,9 +82,9 @@ class FriendTabMainVC: UIViewController {
 extension FriendTabMainVC : UITableViewDelegate{
     //table segue 설정, modal 스타일 설정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print("are we here?")
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
-        print("false / segueFlag = ", self.segueFlag)
+        
         vc.modalTransitionStyle = .flipHorizontal
         vc.modalPresentationStyle = .overCurrentContext
         vc.detailPromise = self.PromiseList[indexPath.row]
@@ -100,7 +93,6 @@ extension FriendTabMainVC : UITableViewDelegate{
             vc.detailPromise = self.PromiseList[indexPath.row]
         }
         
-        print("end of the tableview didSelectRowAt")
     }
 }
 
@@ -150,8 +142,6 @@ extension FriendTabMainVC : UITableViewDataSource{
         }
         cell.promiseNameLabel.text = promiseData.promiseName
         
-        let purpleArrow : UIImage = UIImage(named: "next")!
-        cell.friendDatailBtn.setImage(purpleArrow, for: UIControl.State.normal)
         
         return cell
     }
@@ -163,9 +153,9 @@ extension FriendTabMainVC : UITableViewDataSource{
     
     //segue 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare func doing?")
+        print("prepare func")
         self.segueFlag = true
-        if segue.identifier == "detailPromiseSegue" {
+        if segue.identifier == "detailPromise" {
             let promise = sender as? PromiseWithFriend
             if promise != nil{
                 let FriendTabDetailVC = segue.destination as? FriendTabDetailVC

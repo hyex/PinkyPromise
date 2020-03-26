@@ -10,7 +10,7 @@ import UIKit
 import FSCalendar
 
 class MyCalendarCell: FSCalendarCell {
-        required init!(coder aDecoder: NSCoder!) {
+    required init!(coder aDecoder: NSCoder!) {
         fatalError("init(coder:) has not been implemented")
     }
         
@@ -26,6 +26,10 @@ class MyCalendarCell: FSCalendarCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.backgroundView?.frame = self.bounds.insetBy(dx: 1, dy: 1)
+    }
+    
+    override func prepareForReuse() {
+        self.backgroundView?.backgroundColor = UIColor.appColor.withAlphaComponent(0)
     }
     
     func setBackgroundWithIconColor(progress: Double, name: String) {

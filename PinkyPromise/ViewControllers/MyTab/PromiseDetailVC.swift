@@ -47,11 +47,22 @@ class PromiseDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
+//        setTableViewHeight()
         setBackBtn()
         setPromieName()
         setPromiseIcon()
         AddProgressService.shared.delegate = self
     }
+    
+//    func setTableViewHeight() {
+//        var infoTableFrame : CGRect = self.promiseInfoTableView.frame
+//        infoTableFrame.size.height = self.promiseInfoTableView.contentSize.height
+//        self.promiseInfoTableView.frame = infoTableFrame
+//
+//        var friendTableFrame : CGRect = self.promiseFriendTableView.frame
+//        friendTableFrame.size.height = self.promiseFriendTableView.contentSize.height
+//        self.promiseFriendTableView.frame = friendTableFrame
+//    }
     
     func setPromieName(){
         promiseNameLabel.text = promiseDetail?.promiseName
@@ -84,16 +95,12 @@ class PromiseDetailVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("in viewWillAppear")
         getPromiseFriendData()
-
-        
         self.myGroup.enter()
         getProgressData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("in viewWillDisappear")
         //        self.dismiss(animated: false, completion: nil)
         //        self.navigationController?.popViewController(animated: true)
     }
@@ -227,6 +234,7 @@ extension PromiseDetailVC : UITableViewDataSource{
     
     func getProgressData() {
         if let promiseId = promiseDetail?.promiseId {
+            print(promiseId)
         PromiseDetailService.shared.getProgressDataWithPromiseId(promiseid: promiseId) { (result) in
                 DispatchQueue.main.async {
                     self.progressTable = result[0]
