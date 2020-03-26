@@ -67,7 +67,7 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
                     let p3 = 0.5 * Double(douc.friendDegree[2])
                     let p4 = 0.25 * Double(douc.friendDegree[1])
 
-                    nowProgressed = (p1 + p2 + p3 + p4) / 30.0
+                    nowProgressed = (p1 + p2 + p3 + p4) / result.promiseDay!
                     
                     self.friendsList.append(FriendDatailInfo(image: douc.friendImage, name: douc.friendName, degree: douc.friendDegree, progress: nowProgressed))
                 }
