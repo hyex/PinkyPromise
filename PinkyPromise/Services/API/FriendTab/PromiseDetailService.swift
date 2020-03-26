@@ -143,7 +143,7 @@ class PromiseDetailService : NSObject {
                     
                     let tempUsers = result[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
                     
-                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: tempUsers)
+                    let temp = promiseDetailjunior1(promiseName: result[0].promiseName, promiseId: result[0].promiseId, promiseDay: promiseDay, promiseDaySinceStart: promiseDaysinceToday, friendsUIDList: tempUsers)
                     
                     //completion(temp)
                     

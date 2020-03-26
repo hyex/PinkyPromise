@@ -234,6 +234,7 @@ extension PromiseDetailVC : UITableViewDataSource{
     
     func getProgressData() {
         if let promiseId = promiseDetail?.promiseId {
+            print(promiseId)
         PromiseDetailService.shared.getProgressDataWithPromiseId(promiseid: promiseId) { (result) in
                 DispatchQueue.main.async {
                     self.progressTable = result[0]
