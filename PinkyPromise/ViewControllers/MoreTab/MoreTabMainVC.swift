@@ -185,6 +185,8 @@ class MoreTabMainVC: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
+        print("this is logout Btn")
+        print(FirebaseUserService.currentUserID ?? "nil")
         
     }
 }

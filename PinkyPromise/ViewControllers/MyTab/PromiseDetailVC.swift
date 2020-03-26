@@ -101,7 +101,7 @@ class PromiseDetailVC: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: false, completion: nil)
         //        self.navigationController?.popViewController(animated: true)
     }
     
