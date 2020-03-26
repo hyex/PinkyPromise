@@ -6,7 +6,7 @@ workspace 'PinkyPromise'
 use_frameworks!
 
 target 'PinkyPromise' do
-
+pod 'Firebase'
 pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'
 pod 'Firebase/Core'
