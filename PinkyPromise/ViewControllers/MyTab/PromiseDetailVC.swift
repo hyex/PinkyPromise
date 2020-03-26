@@ -47,22 +47,22 @@ class PromiseDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-//        setTableViewHeight()
+        setTableViewHeight()
         setBackBtn()
         setPromieName()
         setPromiseIcon()
         AddProgressService.shared.delegate = self
     }
     
-//    func setTableViewHeight() {
-//        var infoTableFrame : CGRect = self.promiseInfoTableView.frame
-//        infoTableFrame.size.height = self.promiseInfoTableView.contentSize.height
-//        self.promiseInfoTableView.frame = infoTableFrame
-//
-//        var friendTableFrame : CGRect = self.promiseFriendTableView.frame
-//        friendTableFrame.size.height = self.promiseFriendTableView.contentSize.height
-//        self.promiseFriendTableView.frame = friendTableFrame
-//    }
+    func setTableViewHeight() {
+        var infoTableFrame : CGRect = self.promiseInfoTableView.frame
+        infoTableFrame.size.height = self.promiseInfoTableView.contentSize.height
+        self.promiseInfoTableView.frame = infoTableFrame
+
+        var friendTableFrame : CGRect = self.promiseFriendTableView.frame
+        friendTableFrame.size.height = self.promiseFriendTableView.contentSize.height
+        self.promiseFriendTableView.frame = friendTableFrame
+    }
     
     func setPromieName(){
         promiseNameLabel.text = promiseDetail?.promiseName

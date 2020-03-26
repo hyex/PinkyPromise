@@ -89,6 +89,7 @@
 		3FEC413223E5EF56006C318E /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC413123E5EF56006C318E /* Progress.swift */; };
 		3FEC413423E5F9C0006C318E /* AddProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC413323E5F9C0006C318E /* AddProgressVC.swift */; };
 		3FFB28C924150B9E00BFB043 /* AddProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB28C824150B9E00BFB043 /* AddProgress.storyboard */; };
+		A909D999242CB8B5002FEEA7 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = A909D998242CB8B4002FEEA7 /* Api.swift */; };
 		A95DD23723D8914E005707FC /* FriendDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */; };
 		A9601F1A23D6E8FD003CA729 /* FriendTabDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */; };
 		A969950A23CEEBBF00DA31D9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */; };
@@ -203,6 +204,7 @@
 		3FEC413323E5F9C0006C318E /* AddProgressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressVC.swift; sourceTree = "<group>"; };
 		3FFB28C824150B9E00BFB043 /* AddProgress.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddProgress.storyboard; sourceTree = "<group>"; };
 		45752F0852F9A5F9940CA4DA /* Pods-PinkyPromise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinkyPromise.debug.xcconfig"; path = "Target Support Files/Pods-PinkyPromise/Pods-PinkyPromise.debug.xcconfig"; sourceTree = "<group>"; };
+		A909D998242CB8B4002FEEA7 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		A95DD23623D8914E005707FC /* FriendDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A9601F1923D6E8FD003CA729 /* FriendTabDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabDetailVC.swift; sourceTree = "<group>"; };
 		A969950923CEEBBF00DA31D9 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -286,7 +288,7 @@
 		18BFE8B5242CB350008E31D3 /* LoginTab */ = {
 			isa = PBXGroup;
 			children = (
-				33C5F1B9242CB6FE00150B27 /* Api.swift */,
+				A909D998242CB8B4002FEEA7 /* Api.swift */,
 			);
 			path = LoginTab;
 			sourceTree = "<group>";
@@ -861,7 +863,11 @@
 				3F6DAE5B23DF158300599661 /* PromiseCustomCell.swift in Sources */,
 				334AACE523CC296100AAF955 /* MoreTabMainVC.swift in Sources */,
 				A97AD54B2413207F00621F0F /* PenaltyVC.swift in Sources */,
+<<<<<<< HEAD
 				33C5F1BA242CB6FE00150B27 /* Api.swift in Sources */,
+=======
+				A909D999242CB8B5002FEEA7 /* Api.swift in Sources */,
+>>>>>>> e26b9036d27aeac5e835b47713755acd66b321a0
 				33028C5723CD983A004E0104 /* DayChildVC.swift in Sources */,
 				3FB3AC0623CEF8AE00851FDA /* AddPromiseVC.swift in Sources */,
 				3371952F24058DA600753F99 /* UIAlertController+Extention.swift in Sources */,
