@@ -1005,31 +1005,52 @@ class MyApi: NSObject {
         }
     }
     
-    //progress를 uid를 사용해서 삭제하는함수
-    func deleteProgressWithUid(Uid: String) {
+    //progress를 uid와 promiseID 사용해서 삭제하는함수
+    //따라서 약속을 삭제할 때 deletePromiseWithPromiseID함수와 deleteProgressWithpromiseID 두 함수를 써야 완벽히 약속과 progress가 삭제된다.
+    func deleteProgressWithpromiseID(promiseId: String) {
         //let uid = Auth.auth().currentUser!.uid
-        let uid = Uid
-        
-        progressCollectionRef.whereField(USERID, isEqualTo: uid).getDocuments { (snapshot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).whereField(PROMISEID, isEqualTo: promiseId).getDocuments { (QuerySnapshot, error) in
             if let err = error {
-                print("delete user with uid cause \(err)...")
-            } else {
-                for document in snapshot!.documents {
-                    document.reference.delete()
+                debugPrint(err.localizedDescription)
+            }else {
+                for douc in QuerySnapshot!.documents {
+                    self.progressCollectionRef.document(douc.documentID).delete()
                 }
             }
         }
-        
     }
     
+    //promiseID를 사용해서 promiseTable 안에 자신을 삭제할 수 있다.
+    //따라서 약속을 삭제할 때 deletePromiseWithPromiseID함수와 deleteProgressWithpromiseID 두 함수를 써야 완벽히 약속과 progress가 삭제된다.
     func deletePromiseWithPromiseID(PromiseID: String) {
         promiseCollectionRef.document(PromiseID).getDocument { (DocumentSnapshot, Error) in
             if let err = Error {
                 debugPrint(err.localizedDescription)
             } else {
-                let tempPromise = PromiseTable.parseDouc(snapShot: DocumentSnapshot)
-                
-                if tempPromise.count == 1{
+                let promiseTemp = PromiseTable.parseDouc(snapShot: DocumentSnapshot)
+                if promiseTemp.count > 0 {
+                    //값을 가지고 왔을 경우
+                    if promiseTemp[0].promiseUsers.count == 1 {
+                        //유저가 한명인 경우 약속 자체를 없앤다.
+                        self.promiseCollectionRef.document(PromiseID).delete()
+                    } else if promiseTemp[0].promiseUsers.count > 1 {
+                        //유저가 여러명인경우 유저 한명만 없앤다.
+                        let tempUsers = promiseTemp[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID }
+                        self.progressCollectionRef.document(PromiseID).updateData([PROMISEUSERS : tempUsers])
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    func deletePromiseAndProgress(promiseId: String) {
+        promiseCollectionRef.document(promiseId).getDocument { (DocumentSnapshot, Error) in
+            if let err = Error {
+                debugPrint(err.localizedDescription)
+            }else {
+                let promiseTemp = PromiseTable.parseDouc(snapShot: DocumentSnapshot)
+                if promiseTemp.count > 0 {
                     
                 }
             }

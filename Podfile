@@ -18,6 +18,7 @@ pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
 pod 'Firebase/Storage'
+pod 'Firebase/Messaging'
 
 # Optionally, include the Swift extension if you're using Swift
 pod 'FirebaseFirestoreSwift'
