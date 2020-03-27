@@ -55,5 +55,9 @@ class PromiseCVC: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        showSliderValue.text = "0"
+        showSliderValue.center = CGPoint(x: 15, y: 81)
+        appSlider.value = 0
     }
 }
