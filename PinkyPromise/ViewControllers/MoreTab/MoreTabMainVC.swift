@@ -68,9 +68,13 @@ class MoreTabMainVC: UIViewController {
         self.dismiss(animated: false, completion: nil)
         
         if UserDefaults.standard.bool(forKey: "appleLogin") == true {
-            self.showAlertPWResetController(style: UIAlertController.Style.alert)
-            UserDefaults.standard.set(false, forKey: "appleLogin")
-            self.userName.reloadInputViews()
+           MyApi.shared.getUserNameWithUID(id: FirebaseUserService.currentUserID!, completion: { (result) in
+                if result == "" {
+                    self.showAlertPWResetController(style: UIAlertController.Style.alert)
+                    UserDefaults.standard.set(false, forKey: "appleLogin")
+                    self.userName.reloadInputViews()
+                }
+            })
         }
     }
     
@@ -78,6 +82,7 @@ class MoreTabMainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
         getUserData()
+        
     }
     
     @IBAction func imageChangeBtnAction(_ sender: Any) {
@@ -175,6 +180,17 @@ class MoreTabMainVC: UIViewController {
     
     @IBAction func logOutBtnAction(_ sender: Any) {
         
+//        FirebaseUserService.deleteUser(success: {
+//            MyApi.shared.getPromiseData { (result) in
+//                for douc in result {
+//                    MyApi.shared.deletePromiseWithPromiseID(PromiseID: douc.promiseId)
+//                }
+//            }
+//            MyApi.shared.deleteMeFromFriend()
+//            MyApi.shared.deleteUserWithUid(Uid: FirebaseUserService.currentUserID!)
+//        }) {(error) in
+//            print("nrer")
+//        }
         FirebaseUserService.signOut(success: {
             if UserDefaults.standard.bool(forKey: "loggedIn") == false {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -187,6 +203,7 @@ class MoreTabMainVC: UIViewController {
         }
         print("this is logout Btn")
         print(FirebaseUserService.currentUserID ?? "nil")
+        
         
     }
 }

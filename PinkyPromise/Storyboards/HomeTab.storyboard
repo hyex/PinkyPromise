@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nu8-v0-LSz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nu8-v0-LSz">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -411,7 +411,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="withFriends" translatesAutoresizingMaskIntoConstraints="NO" id="22Y-lo-ZfT">
-                                                    <rect key="frame" x="16" y="18.666666666666671" width="30" height="30.000000000000227"/>
+                                                    <rect key="frame" x="16" y="18.666666666666671" width="30" height="30"/>
                                                     <color key="tintColor" red="0.55294117647058827" green="0.27450980392156865" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="2y7-ga-YOc"/>
@@ -784,10 +784,10 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IconCollectionCell" id="mFU-tm-uLf" customClass="IconCVC" customModule="PinkyPromise" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Eud-0Q-eZc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </collectionViewCellContentView>
@@ -869,10 +869,10 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCollectionCell" id="cHh-jL-eEK" customClass="ColorCVC" customModule="PinkyPromise" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hPv-iw-uqe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </collectionViewCellContentView>
@@ -937,13 +937,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="64" height="48"/>
-        <image name="chevron.right" catalog="system" width="48" height="64"/>
-        <image name="circle.fill" catalog="system" width="64" height="60"/>
-        <image name="house.fill" catalog="system" width="64" height="52"/>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="panalty" width="536" height="630"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
-        <image name="star.fill" catalog="system" width="64" height="58"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="withFriends" width="1078" height="779"/>
         <namedColor name="myPurple">
             <color red="0.55294117647058827" green="0.27450980392156865" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

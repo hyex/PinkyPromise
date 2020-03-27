@@ -136,6 +136,10 @@ extension LoginVC: LoginButtonDelegate {
                 if error != nil {
                     print("Something is wrong with FB user: \(String(describing: error))")
                     return
+                } else if result?.isCancelled == true {
+                    
+                    print("Facebook login cancelled.")
+                    return
                 }
                 let userID = user?.user.uid
                 let fullName = user?.user.displayName
@@ -366,7 +370,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                         
                         MyApi.shared.getUserData(completion: { (result) in
                             if result.count == 0 {
-                                let temp = PromiseUser(userName: (user.email)!, userFriends: [], userId: (authResult?.user.uid)!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
+                                let temp = PromiseUser(userName: "", userFriends: [], userId: (authResult?.user.uid)!, userImage: "userDefaultImage", userCode: Int.random(in: 100000...999999), documentId: MyApi.shared.randomNonceString())
                                 MyApi.shared.addUserData(temp)
                                 
                                 if UserDefaults.standard.bool(forKey: "signedIn") == false {

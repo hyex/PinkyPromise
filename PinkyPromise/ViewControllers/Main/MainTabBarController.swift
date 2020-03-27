@@ -31,6 +31,7 @@ class MainTabBarController: UITabBarController {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: unselectedColor], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectedColor], for: .selected)
         
+        
 //        if UserDefaults.standard.bool(forKey: "appleLogin") == true {
 //            self.showAlertPWResetController(style: UIAlertController.Style.alert)
 //            UserDefaults.standard.set(false, forKey: "appleLogin")
@@ -170,7 +171,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidAppear(animated)
         
         if UserDefaults.standard.bool(forKey: "loggedIn") == false {
-            print("here is AppDeletage.swift 1")
+            print("here is MainTabBarController")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController

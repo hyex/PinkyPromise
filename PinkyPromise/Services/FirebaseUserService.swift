@@ -81,6 +81,33 @@ class FirebaseUserService {
         success()
     }
     
+    static func deleteUser(success: @escaping() -> Void, failure: @escaping(Error) -> Void){
+        Auth.auth().currentUser?.delete(completion: { (error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                print("1")
+                failure(error)
+            }else {
+                UserDefaults.standard.set(false, forKey: "loggedIn")
+                print("delete user complete")
+                success()
+            }
+        })
+    }
+    
+    static func deleteUsser(completion: @escaping (Bool) -> Void) {
+        Auth.auth().currentUser?.delete(completion: { (error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                print("1")
+                completion(false)
+            }else {
+                UserDefaults.standard.set(false, forKey: "loggedIn")
+                completion(true)
+            }
+        })
+    }
+    
     static func resetPassword(success: @escaping() -> Void, failure: @escaping(Error) -> Void){
         Auth.auth().sendPasswordReset(withEmail: (Auth.auth().currentUser?.email)!) { (error) in
             if error != nil {
