@@ -176,13 +176,13 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께 약속한 친구들" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfU-bz-Pg2">
-                                <rect key="frame" x="17" y="539.66666666666663" width="147.66666666666666" height="24"/>
+                                <rect key="frame" x="17" y="532.66666666666663" width="147.66666666666666" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xcI-7e-xuG">
-                                <rect key="frame" x="0.0" y="563.66666666666663" width="375" height="214.33333333333337"/>
+                                <rect key="frame" x="0.0" y="556.66666666666663" width="375" height="221.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PromiseFriendTVC" rowHeight="60" id="7g8-UX-0fb" customClass="PromiseFriendTVC" customModule="PinkyPromise" customModuleProvider="target">
@@ -282,7 +282,7 @@
                             <constraint firstItem="xcI-7e-xuG" firstAttribute="trailing" secondItem="DEz-wr-1bL" secondAttribute="trailing" id="QjB-MH-2tG"/>
                             <constraint firstItem="MoX-1L-2bP" firstAttribute="trailing" secondItem="DEz-wr-1bL" secondAttribute="trailing" id="R58-LQ-mKZ"/>
                             <constraint firstItem="zvs-jW-YzB" firstAttribute="top" secondItem="Qrz-1J-w3i" secondAttribute="bottom" constant="10" id="XKc-ec-cD5"/>
-                            <constraint firstItem="zfU-bz-Pg2" firstAttribute="top" secondItem="zvs-jW-YzB" secondAttribute="bottom" constant="2" id="XTG-dX-WH9"/>
+                            <constraint firstItem="zfU-bz-Pg2" firstAttribute="top" secondItem="zvs-jW-YzB" secondAttribute="bottom" constant="-5" id="XTG-dX-WH9"/>
                             <constraint firstItem="DEz-wr-1bL" firstAttribute="trailing" secondItem="ERU-nj-CZ8" secondAttribute="trailing" constant="20" id="ZUU-yW-tzH"/>
                             <constraint firstItem="MoX-1L-2bP" firstAttribute="leading" secondItem="DEz-wr-1bL" secondAttribute="leading" id="dwr-n9-QAF"/>
                             <constraint firstItem="DEz-wr-1bL" firstAttribute="trailing" secondItem="zvs-jW-YzB" secondAttribute="trailing" id="mOx-MW-Ui4"/>
@@ -304,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Dh-QP-q9i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-139.13043478260872" y="-101.11607142857143"/>
+            <point key="canvasLocation" x="-140" y="-101.23152709359606"/>
         </scene>
         <!--AddProgressVC-->
         <scene sceneID="tgl-UF-1aw">
