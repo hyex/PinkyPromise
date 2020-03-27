@@ -188,7 +188,11 @@ extension PromiseChildVC: UICollectionViewDataSource, UICollectionViewDelegate {
                             }
                             
                             promiseCell.appSlider.value = Float(promiseAchievement)
-                            promiseCell.showSliderValue.text = String(promiseAchievement)
+                            if promiseAchievement == days {
+                                promiseCell.showSliderValue.text = ""
+                            } else {
+                                promiseCell.showSliderValue.text = String(promiseAchievement)
+                            }
                             
                             let calcValue = CGFloat( Float(promiseAchievement) / promiseCell.appSlider.maximumValue * Float(promiseCell.appSlider.frame.width))
                             

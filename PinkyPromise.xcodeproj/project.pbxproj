@@ -61,7 +61,7 @@
 		33B7E8E323E1E4B200B2D6C0 /* MyFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */; };
 		33BC046723D6E96200DEFD3A /* OnePromiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BC046623D6E96200DEFD3A /* OnePromiseView.xib */; };
 		33BC046923D7271200DEFD3A /* OnePromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC046823D7271200DEFD3A /* OnePromiseView.swift */; };
-		33C5F1BA242CB6FE00150B27 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C5F1B9242CB6FE00150B27 /* Api.swift */; };
+		33C5F1BC242E03D000150B27 /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C5F1BB242E03D000150B27 /* MoreInfoVC.swift */; };
 		3F02329623E28C7E00BB0E23 /* AddPanaltyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */; };
 		3F02329823E2A58700BB0E23 /* FriendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02329723E2A58700BB0E23 /* FriendData.swift */; };
 		3F035C5023DF447A0037A4BA /* ColorCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F035C4E23DF447A0037A4BA /* ColorCVC.swift */; };
@@ -173,7 +173,7 @@
 		33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendVC.swift; sourceTree = "<group>"; };
 		33BC046623D6E96200DEFD3A /* OnePromiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnePromiseView.xib; sourceTree = "<group>"; };
 		33BC046823D7271200DEFD3A /* OnePromiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePromiseView.swift; sourceTree = "<group>"; };
-		33C5F1B9242CB6FE00150B27 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		33C5F1BB242E03D000150B27 /* MoreInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoVC.swift; sourceTree = "<group>"; };
 		33FF2C2F23CB55DC0040003A /* PinkyPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkyPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF2C4023CB55E20040003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F02329523E28C7E00BB0E23 /* AddPanaltyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPanaltyVC.swift; sourceTree = "<group>"; };
@@ -420,6 +420,7 @@
 				334AACE423CC296100AAF955 /* MoreTabMainVC.swift */,
 				33B7E8E223E1E4B200B2D6C0 /* MyFriendVC.swift */,
 				332A24C823DF65B1004377DA /* AddFriendCodeVC.swift */,
+				33C5F1BB242E03D000150B27 /* MoreInfoVC.swift */,
 			);
 			path = MoreTab;
 			sourceTree = "<group>";
@@ -870,6 +871,7 @@
 				18BA606C23DC82B100925578 /* progressTable.swift in Sources */,
 				186D855923D42174006DA619 /* promiseUsers.swift in Sources */,
 				334AACE323CC295100AAF955 /* FriendTabMainVC.swift in Sources */,
+				33C5F1BC242E03D000150B27 /* MoreInfoVC.swift in Sources */,
 				A9FD481124050D5100DFDF20 /* PromiseDetailService.swift in Sources */,
 				334AACDF23CC273500AAF955 /* MainTabBarController.swift in Sources */,
 				18BA607E23E1834200925578 /* DayAndPromise.swift in Sources */,
