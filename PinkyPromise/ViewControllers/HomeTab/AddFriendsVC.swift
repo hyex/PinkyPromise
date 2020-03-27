@@ -27,14 +27,8 @@ class AddFriendsVC: UIViewController {
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     fileprivate var searchController = UISearchController(searchResultsController: nil)
-    
-    //    var checkBoxesState: [Int : Bool] = [:]
-    //
+
     var delegate: SendSelectedFriendsDelegate!
-    
-    //    var myFriends: [Int : [String]]!
-    //    var myFriendsImg: [UIImage]!
-    
     var withFriendsList: [FriendData]!
     var filteredData = [FriendData]()
     
@@ -50,11 +44,8 @@ class AddFriendsVC: UIViewController {
         definesPresentationContext = true
         
         tableView.tableHeaderView = searchController.searchBar
-        //        tableView.tableHeaderView?.frame.size.height = 80
         searchController.searchBar.tintColor = .appColor
-        
-        //        searchController.searchBar.setImage(UIImage(systemName: "multiple.circle.fill"), for: UISearchBar.Icon.clear, state: .normal)
-        
+
         backBtn.tintColor = UIColor.appColor
         saveBtn.tintColor = UIColor.appColor
     }
@@ -66,11 +57,8 @@ class AddFriendsVC: UIViewController {
     }
     
     @IBAction func saveBtnAction(_ sender: Any) {
-        let arr = withFriendsList.filter({ (friend) -> Bool in
-            return friend.isChecked ? true : false
-        })
         
-        self.delegate.sendSelectedFriends(data: Array(arr))
+        self.delegate.sendSelectedFriends(data: withFriendsList)
         self.navigationController?.popViewController(animated: false)
     }
 }

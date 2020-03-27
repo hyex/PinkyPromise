@@ -22,19 +22,11 @@ class AddPromiseVC: UIViewController {
     @IBOutlet weak var saveBtn: UIBarButtonItem!
 
     let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
-    
-    //    private var isStartCalSelected: Bool!
-    //    private var isEndCalSelected: Bool!
     private var selectedColor: Int! = 2
     private var selectedIcon: Int! = 0
-    //    private var selectedFriends: [Int]!
-    //    private var myFriends: [Int : [String]]! = [ : ]
     private var myFriends: [FriendData] = []
-    
     private var selectedFriends: [FriendData] = []
-    
     private var panaltyName: String!
-    //   private var myFriendsImg: [UIImage]! = []
     
     private var todayDate: Date!
     
@@ -149,14 +141,16 @@ extension AddPromiseVC {
 // about Data
 extension AddPromiseVC {
     func getFriendsData() {
-        self.myFriends = []
-        AddPromiseService.shared.getUserData { (result) in
-            var i = 0
-             result[0].userFriends.forEach { (friendId) in
-                AddPromiseService.shared.getUserDataWithUID(id: friendId) { (friend) in
-                      let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
-                      self.myFriends.append(temp)
-                    i += 1
+        if self.myFriends.count == 0 {
+            self.myFriends = []
+            AddPromiseService.shared.getUserData { (result) in
+                var i = 0
+                 result[0].userFriends.forEach { (friendId) in
+                    AddPromiseService.shared.getUserDataWithUID(id: friendId) { (friend) in
+                          let temp = FriendData(tag: i, id: friendId, name: friend.userName, image: friend.userImage, isChecked: nil)
+                          self.myFriends.append(temp)
+                        i += 1
+                    }
                 }
             }
         }
@@ -375,7 +369,6 @@ extension AddPromiseVC: UITextFieldDelegate {
         guard let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
         return newLength <= 30
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -385,6 +378,7 @@ extension AddPromiseVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
     }
     // Called just before UITextField is edited
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -433,7 +427,7 @@ extension AddPromiseVC: SendSelectedColorDelegate {
         else if segue.identifier == "PanaltyVC" {
             let vc = segue.destination as! AddPanaltyVC
             vc.delegate = self
-            vc.panaltyName?.text = self.panaltyName ?? ""
+            vc.panaltyNameText = self.panaltyName ?? ""
         }
     }
 }
@@ -451,7 +445,10 @@ extension AddPromiseVC: SendSelectedIconDelegate {
 
 extension AddPromiseVC: SendSelectedFriendsDelegate {
     func sendSelectedFriends(data: [FriendData]) {
-        selectedFriends = data
+        self.myFriends = data
+        self.selectedFriends = myFriends.filter({ (friend) -> Bool in
+            return friend.isChecked ? true : false
+        })
     }
 }
 

@@ -24,7 +24,7 @@ class AddPanaltyVC: UIViewController {
     
     @IBOutlet var bigView: UIView!
     
-    @IBOutlet weak var textField: UITextField!
+    var panaltyNameText: String! = ""
     
     var delegate: SendPanaltyNameDelegate!
     
@@ -39,7 +39,11 @@ class AddPanaltyVC: UIViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(AddPanaltyVC.dismissPage(sender:)))
         self.bigView.addGestureRecognizer(gesture)
-        self.textField.delegate = self
+        self.panaltyName.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.panaltyName.text = panaltyNameText
     }
     
     @objc func dismissPage(sender: UIGestureRecognizer) {
@@ -49,7 +53,6 @@ class AddPanaltyVC: UIViewController {
     @IBAction func cancelBtnAction(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
-    
     
     @IBAction func saveBtnAction(_ sender: Any) {
         self.delegate.sendPanaltyName(data: panaltyName?.text ?? "")

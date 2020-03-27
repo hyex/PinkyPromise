@@ -70,16 +70,8 @@ class AddPromiseService : NSObject {
         userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (document, error) in
             if let err = error {
                 debugPrint(err)
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
                 completion(result)
             } else {
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
                 //let dataDescription = document?.data()
                 result = PromiseUser.parseDouc(snapShot: document)
                 completion(result)
@@ -94,15 +86,7 @@ class AddPromiseService : NSObject {
         userCollectionRef.document(id).getDocument { (sanpShot, err) in
             if let err = err {
                 debugPrint(err)
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
             } else {
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
                 result = PromiseUser.parseDouc(snapShot: sanpShot)
                 let result2 = result[result.startIndex]
                 completion(result2)
@@ -129,15 +113,7 @@ class AddPromiseService : NSObject {
         ]) { error in
             if let err = error {
                 debugPrint("Error adding document : \(err)")
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
             } else {
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
                 print("AddPromiseData API is success")
                 self.delegate.sendPromise()
             }
@@ -163,15 +139,7 @@ class AddPromiseService : NSObject {
             ]) { error in
                 if let err = error {
                     debugPrint("error adding document : \(err)")
-                    if connectedToNetwork == false {
-                        print("check wifi")
-                        self.networkDelegate.sendData(data: connectedToNetwork)
-                    }
                 } else {
-                    if connectedToNetwork == false {
-                        print("check wifi")
-                        self.networkDelegate.sendData(data: connectedToNetwork)
-                    }
                     print("AddProgressData API is success")
                 }
             }
