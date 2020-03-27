@@ -41,7 +41,6 @@ class FriendTabMainVC: UIViewController {
     }
     
     func setTitleBackground() {
-//        topBackground.backgroundColor = UIColor.backgroundGray
         topBackground.layer.cornerRadius = 10
         topBackground.layer.masksToBounds = true
     }
@@ -77,21 +76,22 @@ class FriendTabMainVC: UIViewController {
             }
         }
     }
+    
 }
 
 extension FriendTabMainVC : UITableViewDelegate{
     //table segue 설정, modal 스타일 설정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("are we here?")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
-        
-        vc.modalTransitionStyle = .flipHorizontal
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.detailPromise = self.PromiseList[indexPath.row]
-        
-        self.present(vc, animated: false) {
-            vc.detailPromise = self.PromiseList[indexPath.row]
-        }
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendTabDetailVC") as! FriendTabDetailVC
+//
+//        vc.modalTransitionStyle = .flipHorizontal
+//        vc.modalPresentationStyle = .overCurrentContext
+//        vc.detailPromise = self.PromiseList[indexPath.row]
+//
+//        self.present(vc, animated: false) {
+//            vc.detailPromise = self.PromiseList[indexPath.row]
+//        }
+        performSegue(withIdentifier: "detailPromise", sender: self.PromiseList[indexPath.row])
         
     }
 }
