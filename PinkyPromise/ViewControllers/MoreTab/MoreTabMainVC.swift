@@ -191,20 +191,21 @@ class MoreTabMainVC: UIViewController {
 //        }) {(error) in
 //            print("nrer")
 //        }
-        FirebaseUserService.signOut(success: {
-            if UserDefaults.standard.bool(forKey: "loggedIn") == false {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
-                tempVC.modalPresentationStyle = .fullScreen
-                self.present(tempVC, animated: true, completion: nil)
-            }
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        print("this is logout Btn")
-        print(FirebaseUserService.currentUserID ?? "nil")
-        
-        
+//        FirebaseUserService.signOut(success: {
+//            if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
+//                tempVC.modalPresentationStyle = .fullScreen
+//                self.present(tempVC, animated: true, completion: nil)
+//            }
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+//        print("this is logout Btn")
+//        print(FirebaseUserService.currentUserID ?? "nil")
+
+        let vc = storyboard?.instantiateViewController(identifier: "MoreInfoVC") as! MoreInfoVC
+        self.navigationController?.pushViewController(vc, animated: false)
     }
 }
 

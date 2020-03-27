@@ -104,7 +104,7 @@
                                         <rect key="frame" x="0.0" y="217.66666666666669" width="300" height="61.666666666666686"/>
                                         <color key="backgroundColor" red="0.55475924700000001" green="0.27558713709999999" blue="0.80382506909999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="로그아웃">
+                                        <state key="normal" title="More">
                                             <color key="titleColor" name="selectedTextColor" catalog="System" colorSpace="catalog"/>
                                         </state>
                                         <connections>
@@ -218,6 +218,62 @@
             </objects>
             <point key="canvasLocation" x="4100" y="9.6059113300492616"/>
         </scene>
+        <!--More InfoVC-->
+        <scene sceneID="rhD-7H-NDi">
+            <objects>
+                <viewController storyboardIdentifier="MoreInfoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b0m-vS-5OT" customClass="MoreInfoVC" customModule="PinkyPromise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dtq-rv-aDJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Irn-h9-FTg">
+                                <rect key="frame" x="0.0" y="246" width="414" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="e9T-iq-9HX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="34"/>
+                                <state key="normal" title="회원 탈퇴">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="AccountDeleteBtnAction:" destination="b0m-vS-5OT" eventType="touchUpInside" id="drb-T8-k3V"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESh-ev-qQn">
+                                <rect key="frame" x="0.0" y="565" width="414" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="0KX-gv-ree"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="34"/>
+                                <state key="normal" title="로그아웃">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutBtnAction:" destination="b0m-vS-5OT" eventType="touchUpInside" id="sSy-lb-7Qu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Irn-h9-FTg" firstAttribute="top" secondItem="D0v-gc-zyl" secondAttribute="top" constant="202" id="E3x-NA-dNl"/>
+                            <constraint firstItem="D0v-gc-zyl" firstAttribute="trailing" secondItem="Irn-h9-FTg" secondAttribute="trailing" id="NRU-zm-S06"/>
+                            <constraint firstItem="ESh-ev-qQn" firstAttribute="top" secondItem="Irn-h9-FTg" secondAttribute="bottom" priority="750" constant="266" id="gI5-8h-dTy"/>
+                            <constraint firstItem="Irn-h9-FTg" firstAttribute="leading" secondItem="D0v-gc-zyl" secondAttribute="leading" id="hH8-kG-3Zc"/>
+                            <constraint firstItem="D0v-gc-zyl" firstAttribute="bottom" secondItem="ESh-ev-qQn" secondAttribute="bottom" constant="244" id="vir-1p-viR"/>
+                            <constraint firstItem="ESh-ev-qQn" firstAttribute="leading" secondItem="D0v-gc-zyl" secondAttribute="leading" id="w5v-Vd-7Ac"/>
+                            <constraint firstItem="D0v-gc-zyl" firstAttribute="trailing" secondItem="ESh-ev-qQn" secondAttribute="trailing" id="wjh-pg-niN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="D0v-gc-zyl"/>
+                    </view>
+                    <connections>
+                        <outlet property="accountDeleteBtn" destination="Irn-h9-FTg" id="8ZY-3m-6WU"/>
+                        <outlet property="logoutBtn" destination="ESh-ev-qQn" id="sEm-EI-nAf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fD-qa-eKg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4100" y="723.88392857142856"/>
+        </scene>
         <!--Add Friend CodeVC-->
         <scene sceneID="HA3-FW-OdK">
             <objects>
@@ -313,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLz-wR-gAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4887" y="10"/>
+            <point key="canvasLocation" x="4100" y="-664"/>
         </scene>
     </scenes>
     <resources>
