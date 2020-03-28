@@ -33,15 +33,7 @@ class AddProgressService : NSObject {
         promiseCollectionRef.whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
             } else {
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
                 result = PromiseTable.parseData(snapShot: snapShot)
                 completion(result)
                 
@@ -57,15 +49,7 @@ class AddProgressService : NSObject {
         progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).whereField(PROMISEID, isEqualTo: promiseid).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint("debug print \(err)")
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
             } else {
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
                 result = ProgressTable.parseData(snapShot: snapShot)
                 completion(result)
                 
@@ -78,15 +62,7 @@ class AddProgressService : NSObject {
         progressCollectionRef.whereField(USERID, isEqualTo: userId).whereField(PROMISEID, isEqualTo: promise.promiseId!).getDocuments { (snapShot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
             } else {
-                if connectedToNetwork == false {
-                    print("check wifi")
-                    self.networkDelegate.sendData(data: connectedToNetwork)
-                }
                 //프로그레스 갖고오기
                 let progressTemp = ProgressTable.parseData(snapShot: snapShot)
                 
@@ -96,15 +72,7 @@ class AddProgressService : NSObject {
                 self.progressCollectionRef.document((snapShot?.documents[0].documentID)!).updateData([PROGRESSDEGREE : temp]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
-                        if connectedToNetwork == false {
-                            print("check wifi")
-                            self.networkDelegate.sendData(data: connectedToNetwork)
-                        }
                     } else {
-                        if connectedToNetwork == false {
-                            print("check wifi")
-                            self.networkDelegate.sendData(data: connectedToNetwork)
-                        }
                         print("Document successfully updated")
                         self.delegate.sendProgress(data: data)
                         // if endDate

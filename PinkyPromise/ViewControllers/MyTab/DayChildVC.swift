@@ -103,6 +103,7 @@ extension DayChildVC: UITableViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("in prepare")
         if segue.identifier == "promiseDetail"{
             let promiseDetail = sender as? PromiseTable
             if promiseDetail != nil{

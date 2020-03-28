@@ -16,6 +16,7 @@ struct Friend{
 
 class PromiseDetailVC: UIViewController {
     
+    @IBOutlet weak var deletePromiseBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var coloredPromiseIcon: UIImageView!
     @IBOutlet weak var promiseNameLabel: UILabel!
@@ -49,6 +50,7 @@ class PromiseDetailVC: UIViewController {
         setUpTableView()
         setTableViewHeight()
         setBackBtn()
+        setDeleteBtn()
         setPromieName()
         setPromiseIcon()
         AddProgressService.shared.delegate = self
@@ -92,6 +94,8 @@ class PromiseDetailVC: UIViewController {
         
         promiseInfoTableView.rowHeight = UITableView.automaticDimension
         promiseFriendTableView.rowHeight = UITableView.automaticDimension
+        
+        promiseInfoTableView.isScrollEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,6 +111,17 @@ class PromiseDetailVC: UIViewController {
     
     @IBAction func backBtnAction(_ sender : Any) {
         self.dismiss(animated: false, completion: nil)
+    }
+    
+    func setDeleteBtn() {
+        self.deletePromiseBtn.tintColor = UIColor.purple
+    }
+    
+    @IBAction func deletePromiseAction(_ sender : Any){
+        if let promiseId = promiseDetail?.promiseId {
+            PromiseDetailService.shared.deletePromiseWithDocumentId(promiseId)
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     func setBackBtn() {

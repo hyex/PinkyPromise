@@ -171,4 +171,14 @@ class PromiseDetailService : NSObject {
             }
         }
     }
+    
+    func deletePromiseWithDocumentId(_ promiseId: String) {
+        promiseCollectionRef.document(promiseId).delete() { error in
+            if let err = error {
+                print("delete promise cause \(err)..")
+            } else {
+                print("delete promise success")
+            }
+        }
+    }
 }

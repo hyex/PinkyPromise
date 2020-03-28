@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="29N-sA-g8s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="29N-sA-g8s">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -395,7 +395,7 @@
                                 <color key="tintColor" red="0.41807892250000001" green="0.1821653235" blue="0.75279584389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="arrow.left" catalog="system"/>
                                 <connections>
-                                    <action selector="backBtnAction:" destination="kn5-MZ-B4N" eventType="touchUpInside" id="nuv-mg-dpt"/>
+                                    <action selector="backBtnAction:" destination="kn5-MZ-B4N" eventType="touchUpInside" id="DDb-6e-gmn"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MF-hb-Y2q">
@@ -433,9 +433,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="64" height="48"/>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="next" width="256" height="256"/>
-        <image name="person.2.fill" catalog="system" width="64" height="40"/>
+        <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="plus" width="256" height="256"/>
     </resources>
 </document>

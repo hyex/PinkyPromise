@@ -131,9 +131,10 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    @IBAction func backBtnAction(_ sender : Any) {
-        self.backBtn.tintColor = UIColor.appColor
-        self.dismiss(animated: false, completion: nil)
+    @IBAction func backBtnAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     func setBackBtn() {
@@ -155,8 +156,11 @@ class FriendTabDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        print("swipe")
         if (sender.direction == .right) {
-            self.dismiss(animated: false, completion: nil)}
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
 }

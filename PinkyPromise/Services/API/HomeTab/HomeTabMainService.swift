@@ -131,15 +131,7 @@ class HomeTabMainService : NSObject {
                     self.progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID).whereField(PROMISEID, isEqualTo: douc.promiseId).getDocuments { (snapShot, error) in
                         if let err = error {
                             print(err.localizedDescription)
-                            if connectedToNetwork == false {
-                                print("check wifi")
-                                self.networkDelegate.sendData(data: connectedToNetwork)
-                            }
                         } else {
-                            if connectedToNetwork == false {
-                                print("check wifi")
-                                self.networkDelegate.sendData(data: connectedToNetwork)
-                            }
                             let progress1 = ProgressTable.parseData(snapShot: snapShot)
                             if progress1.count > 0 {
                                 let temp2 = PromiseAndProgressNotDay(promiseData: douc, progressData: progress1[0])
