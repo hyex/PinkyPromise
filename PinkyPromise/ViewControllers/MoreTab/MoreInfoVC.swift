@@ -8,8 +8,10 @@
 
 import UIKit
 
-class MoreInfoVC: UIViewController {
+var checkDeleteAccount = false
 
+class MoreInfoVC: UIViewController {
+    
     @IBOutlet weak var accountDeleteBtn: UIButton!
     @IBOutlet weak var logoutBtn: UIButton!
     
@@ -23,6 +25,26 @@ class MoreInfoVC: UIViewController {
         let ok =  UIAlertAction(title: "확인", style: .default) { (action) in
             print("ok")
             // 탈퇴 API
+            let tempUID = FirebaseUserService.currentUserID!
+            
+            //사진파일도 없애는 함수 만들어줘야한다. 아직 시간이 없어서 미완성
+            MyApi.shared.deleteMeFromFriend(Uid: tempUID) { result3 in
+                print("1")
+                MyApi.shared.deleteUserWithUid(Uid: tempUID) { (result2) in
+                    print("2")
+                    MyApi.shared.deleteAboutMe { (result) in
+                        print("3")
+                        checkDeleteAccount = true
+                        
+                        UserDefaults.standard.set(false, forKey: "loggedIn")
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
+                        tempVC.modalPresentationStyle = .fullScreen
+                        self.present(tempVC, animated: true, completion: nil)
+                    }
+                }
+            }
+            
         }
         
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -64,7 +86,7 @@ extension MoreInfoVC {
         bar.shadowImage = UIImage()
         bar.backgroundColor = UIColor.clear
     }
-
+    
     @objc func backToMain() {
         self.navigationController?.popViewController(animated: true)
     }

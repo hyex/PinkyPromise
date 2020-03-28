@@ -25,15 +25,15 @@ class MyApi: NSObject {
     var delegate: SendProgressDelegate!
     let dateFormatter = DateFormatter()
     
-//    func fireStoreSetting() {
-//        let store = Firestore.firestore()
-//
-//        let setting = FirestoreSettings()
-//        setting.isPersistenceEnabled = true
-//        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
-//
-//        store.settings = setting
-//    }
+    //    func fireStoreSetting() {
+    //        let store = Firestore.firestore()
+    //
+    //        let setting = FirestoreSettings()
+    //        setting.isPersistenceEnabled = true
+    //        setting.cacheSizeBytes = FirestoreCacheSizeUnlimited
+    //
+    //        store.settings = setting
+    //    }
     
     // Api 예시
     func allMore(completion: ([MoreTableData]) -> Void) { //}, onError: @escaping (Error) -> Void) {
@@ -65,15 +65,15 @@ class MyApi: NSObject {
         var result = [PromiseUser]()
         //self.fireStoreSetting()
         
-//        userCollectionRef.document(FirebaseUserService.currentUserID!).add
-//        promiseListner = userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).addSnapshotListener({ (snapShot, error) in
-//            if let err = error {
-//                debugPrint(err)
-//            } else {
-//                result = PromiseUser.parseData(snapShot: snapShot)
-//                completion(result)
-//            }
-//        })
+        //        userCollectionRef.document(FirebaseUserService.currentUserID!).add
+        //        promiseListner = userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).addSnapshotListener({ (snapShot, error) in
+        //            if let err = error {
+        //                debugPrint(err)
+        //            } else {
+        //                result = PromiseUser.parseData(snapShot: snapShot)
+        //                completion(result)
+        //            }
+        //        })
         
         userCollectionRef.document(FirebaseUserService.currentUserID!).addSnapshotListener { (document, error) in
             if let err = error {
@@ -103,14 +103,14 @@ class MyApi: NSObject {
             }
         }
         
-//        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (sanpShot, err) in
-//            if let err = err {
-//                debugPrint(err)
-//            }else {
-//                result = PromiseUser.parseData(snapShot: sanpShot)
-//                completion(result)
-//            }
-//        }
+        //        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (sanpShot, err) in
+        //            if let err = err {
+        //                debugPrint(err)
+        //            }else {
+        //                result = PromiseUser.parseData(snapShot: sanpShot)
+        //                completion(result)
+        //            }
+        //        }
     }
     
     //UID에 맞는 유저 이름을 반환해줌
@@ -133,28 +133,28 @@ class MyApi: NSObject {
     //유저의 친구들의 promiseUser들 가져온다.
     func getUsersFriendsData(completion: @escaping ([PromiseUser]) -> Void) {
         //self.fireStoreSetting()
-//        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
-//            if let err = error {
-//                debugPrint(err.localizedDescription)
-//            } else {
-//                let tempResult = PromiseUser.parseData(snapShot: snapShot)
-//                var temp = [PromiseUser]()
-//                var check1 = 0
-//
-//                if tempResult.count > 0 {
-//                    for douc in tempResult[0].userFriends {
-//                        self.getUserDataWithUID(id: douc) { (result) in
-//                            temp.append(result)
-//                            check1 += 1
-//                            if tempResult[0].userFriends.count <= check1 {
-//                                completion(temp)
-//                            }
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
+        //        userCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).getDocuments { (snapShot, error) in
+        //            if let err = error {
+        //                debugPrint(err.localizedDescription)
+        //            } else {
+        //                let tempResult = PromiseUser.parseData(snapShot: snapShot)
+        //                var temp = [PromiseUser]()
+        //                var check1 = 0
+        //
+        //                if tempResult.count > 0 {
+        //                    for douc in tempResult[0].userFriends {
+        //                        self.getUserDataWithUID(id: douc) { (result) in
+        //                            temp.append(result)
+        //                            check1 += 1
+        //                            if tempResult[0].userFriends.count <= check1 {
+        //                                completion(temp)
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //
+        //            }
+        //        }
         
         userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (snapShot, error) in
             if let err = error {
@@ -165,14 +165,14 @@ class MyApi: NSObject {
                 var check1 = 0
                 
                 for douc in tempResult[0].userFriends {
-                        self.getUserDataWithUID(id: douc) { (result) in
-                            temp.append(result)
-                            check1 += 1
-                            if tempResult[0].userFriends.count <= check1 {
-                                completion(temp)
-                            }
+                    self.getUserDataWithUID(id: douc) { (result) in
+                        temp.append(result)
+                        check1 += 1
+                        if tempResult[0].userFriends.count <= check1 {
+                            completion(temp)
                         }
                     }
+                }
             }
         }
     }
@@ -180,16 +180,16 @@ class MyApi: NSObject {
     //UID에 맞는 유저 데이터를 반환해줌
     func getUserDataWithUID(id: String, completion: @escaping (PromiseUser) -> Void) {
         //self.fireStoreSetting()
-//        var result = [PromiseUser]()
-//        userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
-//            if let err = err {
-//                debugPrint(err)
-//            }else {
-//                result = PromiseUser.parseData(snapShot: sanpShot)
-//                let result2 = result[result.startIndex]
-//                completion(result2)
-//            }
-//        }
+        //        var result = [PromiseUser]()
+        //        userCollectionRef.whereField(USERID, isEqualTo: id).getDocuments { (sanpShot, err) in
+        //            if let err = err {
+        //                debugPrint(err)
+        //            }else {
+        //                result = PromiseUser.parseData(snapShot: sanpShot)
+        //                let result2 = result[result.startIndex]
+        //                completion(result2)
+        //            }
+        //        }
         
         var result = [PromiseUser]()
         userCollectionRef.document(id).getDocument { (sanpShot, err) in
@@ -603,7 +603,7 @@ class MyApi: NSObject {
                     temp4.append(zek)
                     
                     if temp4.count == detailData1.friendsUIDList.count {
-                    
+                        
                         temp4.sort { $0.friendName < $1.friendName }
                         
                         completion(promiseDetail(promiseName: detailData1.promiseName, promiseDay: detailData1.promiseDay, promiseDaySinceStart: detailData1.promiseDaySinceStart, friendsDetail: temp4))
@@ -665,7 +665,7 @@ class MyApi: NSObject {
                     let tempResult2 = tempResult1.filter { $0.promiseStartTime.timeIntervalSince1970 <= firstDayPlusi.timeIntervalSince1970 && $0.promiseEndTime.timeIntervalSince1970 >= firstDayPlusi.timeIntervalSince1970 }
                     
                     self.getMothlyDataWithCurrentMonth2(day1: firstDayPlusi, promiseData: tempResult2) { (result2) in
-
+                        
                         //result2는 PromiseAndProgress객체임
                         
                         temp.append(result2)
@@ -682,7 +682,7 @@ class MyApi: NSObject {
         }
     }
     
-
+    
     func getMothlyDataWithCurrentMonth2(day1: Date, promiseData: [PromiseTable], completion: @escaping (PromiseAndProgress) -> Void ) {
         
         var temp11 = [ProgressTable]()
@@ -702,19 +702,19 @@ class MyApi: NSObject {
                         if temp11.count >= promiseData.count {
                             completion(PromiseAndProgress(Day: day1, promiseData: promiseData, progressData: temp11))
                         }
-
+                        
                     }
                 }
                 
             }
         }
-
+            
         else {
             let temp1 = [PromiseTable]()
             let temp2 = [ProgressTable]()
             completion(PromiseAndProgress(Day: day1, promiseData: temp1, progressData: temp2))
         }
-
+        
     }
     
     //제발.. 오늘을 기준으로 이번 달의 날짜를 반환
@@ -759,75 +759,75 @@ class MyApi: NSObject {
         
         self.getAllDataWithDate(day: firstDay) { (result) in
             temp3.append(result)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(1 * 86400) ) ) { (result2) in
+            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(1 * 86400) ) ) { (result2) in
                 temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(2 * 86400) ) ) { (result2) in
+                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(2 * 86400) ) ) { (result2) in
                     temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(3 * 86400)) ) { (result2) in
+                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(3 * 86400)) ) { (result2) in
                         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(4 * 86400) ) ) { (result2) in
+                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(4 * 86400) ) ) { (result2) in
                             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(5 * 86400)) ) { (result2) in
+                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(5 * 86400)) ) { (result2) in
                                 temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(6 * 86400) ) ) { (result2) in
+                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(6 * 86400) ) ) { (result2) in
                                     temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(7 * 86400)) ) { (result2) in
+                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(7 * 86400)) ) { (result2) in
                                         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(8 * 86400) ) ) { (result2) in
+                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(8 * 86400) ) ) { (result2) in
                                             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(9 * 86400) ) ) { (result2) in
+                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(9 * 86400) ) ) { (result2) in
                                                 temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(10 * 86400) ) ) { (result2) in
+                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(10 * 86400) ) ) { (result2) in
                                                     temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(11 * 86400)) ) { (result2) in
+                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(11 * 86400)) ) { (result2) in
                                                         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(12 * 86400) ) ) { (result2) in
+                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(12 * 86400) ) ) { (result2) in
                                                             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(13 * 86400) ) ) { (result2) in
+                                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(13 * 86400) ) ) { (result2) in
                                                                 temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(14 * 86400)) ) { (result2) in
+                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(14 * 86400)) ) { (result2) in
                                                                     temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(15 * 86400)) ) { (result2) in
+                                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(15 * 86400)) ) { (result2) in
                                                                         temp3.append(result2)
-         self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(16 * 86400) ) ) { (result2) in
+                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(16 * 86400) ) ) { (result2) in
                                                                             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(17 * 86400)) ) { (result2) in
-             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(18 * 86400)) ) { (result2) in
-                         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(19 * 86400) ) ) { (result2) in
-         temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(20 * 86400)) ) { (result2) in
-              temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(21 * 86400) ) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(22 * 86400) ) ) { (result2) in
-             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(23 * 86400)) ) { (result2) in
-            temp3.append(result2)                         
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(24 * 86400) ) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(25 * 86400) ) ) { (result2) in
-             temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(26 * 86400) ) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(27 * 86400) ) ) { (result2) in
-            temp3.append(result2)
-        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(28 * 86400) ) ) { (result2) in
-        temp3.append(result2)
-            if days > 29 {
-       self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(29 * 86400) ) ) { (result2) in
-                temp3.append(result2)
-        if days > 30 {
-            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(30 * 86400) ) ) { (result2) in
-                temp3.append(result2)
-                completion(temp3)
-            }
-        } else {
-            completion(temp3)
-        }}} else {
-                completion(temp3)
-            }}}}}}}}}}}}}}}}}}}}}} }}}}}}}}
+                                                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(17 * 86400)) ) { (result2) in
+                                                                                temp3.append(result2)
+                                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(18 * 86400)) ) { (result2) in
+                                                                                    temp3.append(result2)
+                                                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(19 * 86400) ) ) { (result2) in
+                                                                                        temp3.append(result2)
+                                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(20 * 86400)) ) { (result2) in
+                                                                                            temp3.append(result2)
+                                                                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(21 * 86400) ) ) { (result2) in
+                                                                                                temp3.append(result2)
+                                                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(22 * 86400) ) ) { (result2) in
+                                                                                                    temp3.append(result2)
+                                                                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(23 * 86400)) ) { (result2) in
+                                                                                                        temp3.append(result2)
+                                                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(24 * 86400) ) ) { (result2) in
+                                                                                                            temp3.append(result2)
+                                                                                                            self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(25 * 86400) ) ) { (result2) in
+                                                                                                                temp3.append(result2)
+                                                                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(26 * 86400) ) ) { (result2) in
+                                                                                                                    temp3.append(result2)
+                                                                                                                    self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(27 * 86400) ) ) { (result2) in
+                                                                                                                        temp3.append(result2)
+                                                                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(28 * 86400) ) ) { (result2) in
+                                                                                                                            temp3.append(result2)
+                                                                                                                            if days > 29 {
+                                                                                                                                self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(29 * 86400) ) ) { (result2) in
+                                                                                                                                    temp3.append(result2)
+                                                                                                                                    if days > 30 {
+                                                                                                                                        self.getAllDataWithDate(day: Date(timeIntervalSince1970: firstDay.timeIntervalSince1970 + Double(30 * 86400) ) ) { (result2) in
+                                                                                                                                            temp3.append(result2)
+                                                                                                                                            completion(temp3)
+                                                                                                                                        }
+                                                                                                                                    } else {
+                                                                                                                                        completion(temp3)
+                                                                                                                                    }}} else {
+                                                                                                                                completion(temp3)
+                                                                                                                            }}}}}}}}}}}}}}}}}}}}}} }}}}}}}}
     }
     
     
@@ -977,16 +977,28 @@ class MyApi: NSObject {
     }
     
     //유저를 uid를 이용해서 유저를 삭제하는 함수
-    func deleteUserWithUid(Uid: String) {
+    func deleteUserWithUid(Uid: String, completion: @escaping (Bool)-> Void) {
         //let uid = Auth.auth().currentUser!.uid
         let uid = Uid
-        
         userCollectionRef.whereField(USERID, isEqualTo: uid).getDocuments { (snapshot, error) in
             if let err = error {
                 print("get error in delete user with uid... with \(err)")
             } else {
+                var temp = 0
                 for document in snapshot!.documents {
-                    document.reference.delete()
+                    //document.reference.delete()
+                    document.reference.delete { (Error) in
+                        if let err = Error {
+                            debugPrint(err.localizedDescription)
+                            completion(false)
+                        } else {
+                            temp += 1
+                            if temp == snapshot!.documents.count {
+                                completion(true)
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
@@ -1005,23 +1017,40 @@ class MyApi: NSObject {
         }
     }
     
-    func deleteMeFromFriend() {
-        userCollectionRef.document(FirebaseUserService.currentUserID!).getDocument { (DocumentSnapshot, Error) in
+    func deleteMeFromFriend(Uid: String, completion: @escaping (Bool) -> Void) {
+        userCollectionRef.document(Uid).getDocument { (DocumentSnapshot, Error) in
             if let err = Error {
                 debugPrint(err.localizedDescription)
+                completion(false)
             } else {
                 let tempMe = PromiseUser.parseDouc(snapShot: DocumentSnapshot)
-                
+                //tempMe 는 나잖아
                 if tempMe.count > 0 {
-                    for douc in tempMe[0].userFriends {
+                    var tempCount = 0
+                    
+                    if tempMe[0].userFriends.count == 0 {//친구가 없으면 바로 completion
+                        completion(true)
+                    }
+                    for douc in tempMe[0].userFriends {//나의 친구들 명수만큼
                         self.userCollectionRef.document(douc).getDocument { (DocumentSnapshot2, Error) in
                             if let err = Error {
                                 debugPrint(err.localizedDescription)
                             } else {
                                 //친구들의 친구목록중에서 나를 제거함
                                 let tempFriend = PromiseUser.parseDouc(snapShot: DocumentSnapshot2)
-                                let tempFriendWithoutMe = tempFriend[0].userFriends.filter { $0 != FirebaseUserService.currentUserID! }
-                                self.userCollectionRef.document(tempFriend[0].documentId).updateData([USERFRIENDS : tempFriendWithoutMe] )
+                                let tempFriendWithoutMe = tempFriend[0].userFriends.filter { $0 != Uid }
+                                self.userCollectionRef.document(tempFriend[0].documentId).updateData([USERFRIENDS : tempFriendWithoutMe]) { (Error) in
+                                    if let err = Error {
+                                        debugPrint(err.localizedDescription)
+                                        completion(false)
+                                    }else {
+                                        tempCount += 1
+                                        if tempCount == tempMe[0].userFriends.count {
+                                            completion(true)
+                                        }
+                                    }
+                                }
+                                
                             }
                         }
                     }
@@ -1034,24 +1063,47 @@ class MyApi: NSObject {
     func deleteAboutMe( completion: @escaping (Bool) -> Void) {
         MyApi.shared.getPromiseData { (result) in
             var tempCount = 0
-            for douc in result {
-                MyApi.shared.deletePromiseWithPromiseID(PromiseID: douc.promiseId)
-                MyApi.shared.deleteProgressWithpromiseID(promiseId: douc.promiseId)
+            if result.count == 0 {
+                completion(true)
+            }
+             for douc in result {
+                MyApi.shared.deletePromiseWithPromiseID(Uid: FirebaseUserService.currentUserID!, PromiseID: douc.promiseId) { (result3) in
+                    tempCount += 1
+                    if tempCount == result.count * 2 {
+                        completion(true)
+                    }
+                }
+                //MyApi.shared.deleteProgressWithpromiseID(Uid: FirebaseUserService.currentUserID!, promiseId: douc.promiseId)
+                MyApi.shared.deleteProgressWithpromiseID(Uid: FirebaseUserService.currentUserID!, promiseId: douc.promiseId) { (result2) in
+                    tempCount += 1
+                    if tempCount == result.count * 2 {
+                        completion(true)
+                    }
+                }
             }
             
         }
     }
     
     //progress를 uid와 promiseID 사용해서 삭제하는함수
-    func deleteProgressWithpromiseID(promiseId: String) {
+    func deleteProgressWithpromiseID(Uid: String, promiseId: String, completion: @escaping (Bool) -> Void) {
         //let uid = Auth.auth().currentUser!.uid
-        progressCollectionRef.whereField(USERID, isEqualTo: FirebaseUserService.currentUserID!).whereField(PROMISEID, isEqualTo: promiseId).getDocuments { (QuerySnapshot, error) in
+        progressCollectionRef.whereField(USERID, isEqualTo: Uid).whereField(PROMISEID, isEqualTo: promiseId).getDocuments { (QuerySnapshot, error) in
             if let err = error {
                 debugPrint(err.localizedDescription)
             }else {
                 var temp = 0
                 for douc in QuerySnapshot!.documents {
-                    self.progressCollectionRef.document(douc.documentID).delete()
+                    self.progressCollectionRef.document(douc.documentID).delete { (Error) in
+                        if let err = Error {
+                            debugPrint(err.localizedDescription)
+                        }else {
+                            temp += 1
+                            if temp == QuerySnapshot!.documents.count {
+                                completion(true)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1059,7 +1111,7 @@ class MyApi: NSObject {
     
     //promiseID를 사용해서 promiseTable 안에 자신을 삭제할 수 있다.
     //유저가 한명인 경우 약속 자체를 없애고 유저가 여러명인경우 나 한명만 없앤다.
-    func deletePromiseWithPromiseID(PromiseID: String) {
+    func deletePromiseWithPromiseID(Uid: String, PromiseID: String, completion: @escaping (Bool) -> Void) {
         promiseCollectionRef.document(PromiseID).getDocument { (DocumentSnapshot, Error) in
             if let err = Error {
                 debugPrint(err.localizedDescription)
@@ -1069,14 +1121,26 @@ class MyApi: NSObject {
                     //값을 가지고 왔을 경우
                     if promiseTemp[0].promiseUsers.count == 1 {
                         //유저가 한명인 경우 약속 자체를 없앤다.
-                        self.promiseCollectionRef.document(PromiseID).delete()
-                        self.deleteProgressWithpromiseID(promiseId: PromiseID)//프로그레스도 없애준다.
-
+                        self.promiseCollectionRef.document(PromiseID).delete { (Error) in
+                            if let err = Error {
+                                debugPrint(err.localizedDescription)
+                            }else {
+                                completion(true)
+                            }
+                        }
+                        //self.deleteProgressWithpromiseID(Uid: Uid, promiseId: PromiseID)//프로그레스도 없애준다.
+                        
                     } else if promiseTemp[0].promiseUsers.count > 1 {
                         //유저가 여러명인경우 유저 한명만 없앤다.
-                        let tempUsers = promiseTemp[0].promiseUsers.filter { $0 != FirebaseUserService.currentUserID! }
-                        self.promiseCollectionRef.document(PromiseID).updateData([PROMISEUSERS : tempUsers])
-                        self.deleteProgressWithpromiseID(promiseId: PromiseID)//프로그레스도 없애준다.
+                        let tempUsers = promiseTemp[0].promiseUsers.filter { $0 != Uid }
+                        self.promiseCollectionRef.document(PromiseID).updateData([PROMISEUSERS : tempUsers]) { (Error) in
+                            if let err = Error {
+                                debugPrint(err.localizedDescription)
+                            }else {
+                                completion(true)
+                            }
+                        }
+                        //self.deleteProgressWithpromiseID(Uid: Uid, promiseId: PromiseID)//프로그레스도 없애준다.
                     }
                 }
             }

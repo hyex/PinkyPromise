@@ -45,16 +45,8 @@ class MoreTabMainVC: UIViewController {
         let okAction: UIAlertAction
         okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
             
-//            FirebaseUserService.forgotPassword(withEmail: (alertController.textFields![0] as UITextField).text! , success: {
-//                //SVProgressHUD.showInfo(withStatus: "비밀번호 재설정 링크가 이메일 주소로 전송되었습니다.")
-//                self.showAlert(message: "비밀번호 재설정 링크가 이메일 주소로 전송되었습니다.")
-//                self.navigationController?.popViewController(animated: true)
-//                //SVProgressHUD.dismiss()
-//            }) { (error) in
-//                //SVProgressHUD.showError(withStatus: error.localizedDescription)
-//                self.showAlert(message: "\(error.localizedDescription)")
-//            }
             MyApi.shared.updateUserNameinAppleLogin(name: (alertController.textFields![0] as UITextField).text ?? self.userName.text!)
+            self.userName.reloadInputViews()
         })
         
         alertController.addAction(okAction)

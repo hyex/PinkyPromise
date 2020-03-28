@@ -16,6 +16,8 @@ import AuthenticationServices
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+var loginCheck = false
+
 class LoginVC: UIViewController {
     
     @IBOutlet weak var signInBtn: UIButton!
@@ -48,6 +50,7 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.indicator = UIActivityIndicatorView()
         
         self.pinkyTitle.sizeToFit()
@@ -83,14 +86,17 @@ class LoginVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if checkDeleteAccount == true {
+            FirebaseUserService.deleteUsser { (result) in
+                print("delete account success.")
+                checkDeleteAccount = false
+            }
+        }
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         if UserDefaults.standard.bool(forKey: "loggedIn") == true {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
-    
-    
 }
 
 extension LoginVC: LoginButtonDelegate {
