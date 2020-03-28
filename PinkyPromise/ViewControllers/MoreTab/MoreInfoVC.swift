@@ -35,6 +35,7 @@ class MoreInfoVC: UIViewController {
                     MyApi.shared.deleteAboutMe { (result) in
                         print("3")
                         checkDeleteAccount = true
+                        self.tabBarController?.selectedIndex = 0
                         
                         UserDefaults.standard.set(false, forKey: "loggedIn")
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -58,6 +59,8 @@ class MoreInfoVC: UIViewController {
         print("action")
         FirebaseUserService.signOut(success: {
             if UserDefaults.standard.bool(forKey: "loggedIn") == false {
+                self.tabBarController?.selectedIndex = 0
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tempVC = storyboard.instantiateViewController(withIdentifier: "loginSB") as! UINavigationController
                 tempVC.modalPresentationStyle = .fullScreen
