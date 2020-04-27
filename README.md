@@ -9,26 +9,14 @@
 Xcode Version 11.3 <br>
 Swift Version 5
 
-## 기능 소개
-|              기능             |     개발여부    |       서버연결       |       담당자       |    비고    | 
-|:----------------------------:|:-------------:|:-----------------:|:---------------:|:-----------:|
-| 로그인(Google,Apple, FB)| O | O | 이현재 |  |
-| 캘린더         | O | O | 정의정 |  |
-| 약속 추가하기    | O | O | 정의정 | |
-| 날짜별 약속보기   | O | O | 김혜지 |  |
-| 약속별 약속보기   | O | O | 김혜지  | |
-| 친구와의 약속보기 | O | O | 이선영 |  |
-| 약속 디테일 뷰   | O | O | 이선영 |  |
-| 친구 추가하기(코드) | O | O | 김혜지 |  |
-| 알림(local noti)| O |  | 김혜지 |  |
-| 카카오링크 | O | O | 김혜지 |  |
-| Firebase DB   | O | O | 이현재 |  |
+## HOW TO START
+1. Download files
+2. Open terminal and find the path of files, then execute 'pod install'
+3. Run in Xcode !
 
 ## 팀원
-* 김혜지
+* 김혜지 (hyexkim@gmail.com)
 * 정의정
 * 이선영
 * 이현재
 
-## 문의
-> 김혜지 (hyexkim@gmail.com)
